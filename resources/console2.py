@@ -39,7 +39,7 @@ chan6EncDown = Button(15)
 chan6Btn = Button(14)
 
 fixtures = []
-currentFixture = 0
+currentFixture = None
 currentFixtureChans = {}
 singleFixtureView = False
 
@@ -93,10 +93,10 @@ def changeChanValue(chan, direction):
     chan = 0
     if direction == 1:
         if currentFixtureChans['parameters'][chan]['value'] < currentFixtureChans['parameters'][chan]['max']:
-            currentFixtureChans['parameters'][chan]['value'] = currentFixtureChans['parameters'][chan]['value'] + 255
+            currentFixtureChans['parameters'][chan]['value'] += 255
     elif direction == -1:
         if currentFixtureChans['parameters'][chan]['value'] > 0:
-            currentFixtureChans['parameters'][chan]['value'] = currentFixtureChans['parameters'][chan]['value'] - 255
+            currentFixtureChans['parameters'][chan]['value'] -= 255
     sio.emit('changeFixtureParameterValue', {
              'id': fixtures[0]['id'], 'pid': chan, 'value': currentFixtureChans['parameters'][chan]['value']})
 
