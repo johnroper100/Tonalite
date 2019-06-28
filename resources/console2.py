@@ -39,7 +39,7 @@ chan6EncDown = Button(15)
 chan6Btn = Button(14)
 
 fixtures = []
-currentFixture = None
+currentFixture = 0
 singleFixtureView = False
 
 currentFixturesPage = 0
@@ -88,6 +88,7 @@ pageDownBtn.when_pressed = pageDown
 
 def changeChanValue(chan, direction):
     global fixtures
+    global currentFixture
     if direction == 1:
         if fixtures[currentFixture]['parameters'][chan]['value'] < fixtures[currentFixture]['parameters'][chan]['max']:
             fixtures[currentFixture]['parameters'][chan]['value'] += 255
@@ -225,6 +226,7 @@ chan6EncDown.when_pressed = chan6EncDownRising
 
 def sendGetFixtureChans(fixture):
     global fixtures
+    global currentFixture
     currentFixture = fixture
     sio.emit('getFixtureParameters', fixtures[0]['id'])
 
