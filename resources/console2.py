@@ -301,6 +301,7 @@ def on_connect():
 @sio.on('fixtures')
 def getFixtures(data):
     fixtures = data
+    print(fixtures)
 
 
 @sio.on('fixtureParameters')
