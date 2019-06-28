@@ -239,6 +239,7 @@ def chan1BtnClick():
     if singleFixtureView:
         changeChanLock(0)
     else:
+        currentFixture = 0
         sendGetFixtureChans(0)
 
 
