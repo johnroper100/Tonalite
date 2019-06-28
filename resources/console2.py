@@ -108,7 +108,7 @@ def chan1EncUpRising():
         if singleFixtureView:
             changeChanValue(6*currentChannelsPage, -1)
         else:
-            changeFixtureIntensity(6*currentFixturesPage, -1)
+            changeFixtureIntensity(0, -1)
 
 
 def chan1EncDownRising():
@@ -116,7 +116,7 @@ def chan1EncDownRising():
         if singleFixtureView:
             changeChanValue(6*currentChannelsPage, 1)
         else:
-            changeFixtureIntensity(6*currentFixturesPage, 1)
+            changeFixtureIntensity(0, 1)
 
 
 chan1EncUp.when_pressed = chan1EncUpRising
