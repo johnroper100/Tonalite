@@ -239,6 +239,8 @@ def changeChanLock(chan):
 
 def chan1BtnClick():
     global singleFixtureView
+    global currentChannelsPage
+    global currentFixturesPage
     if singleFixtureView:
         changeChanLock(6*currentChannelsPage)
     else:
