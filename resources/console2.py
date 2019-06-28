@@ -89,6 +89,7 @@ pageDownBtn.when_pressed = pageDown
 def changeChanValue(chan, direction):
     global fixtures
     global currentFixture
+    print(fixtures[currentFixture]['parameters'][chan]['value'])
     if direction == 1:
         if fixtures[currentFixture]['parameters'][chan]['value'] < fixtures[currentFixture]['parameters'][chan]['max']:
             fixtures[currentFixture]['parameters'][chan]['value'] += 255
