@@ -88,6 +88,7 @@ pageDownBtn.when_pressed = pageDown
 
 
 def changeChanValue(chan, direction):
+    chan = 0
     if direction == 1:
         if currentFixtureChans[chan]['value'] < currentFixtureChans[chan]['max']:
             currentFixtureChans[chan]['value'] = currentFixtureChans[chan]['value'] + 1
@@ -95,7 +96,7 @@ def changeChanValue(chan, direction):
         if currentFixtureChans[chan]['value'] > 0:
             currentFixtureChans[chan]['value'] = currentFixtureChans[chan]['value'] - 1
     sio.emit('changeFixtureParameterValue', {
-             'id': fixtures[currentFixture]['id'], 'pid': chan, 'value': currentFixtureChans[chan]['value']})
+             'id': fixtures[0]['id'], 'pid': chan, 'value': currentFixtureChans[chan]['value']})
 
 
 def changeFixtureIntensity(fixture, direction):
@@ -231,7 +232,7 @@ def sendGetFixtureChans(fixture):
 
 def changeChanLock(chan):
     sio.emit('changeFixtureParameterLock', {
-             'id': fixtures[currentFixture]['id'], 'pid': chan})
+             'id': fixtures[0]['id'], 'pid': chan})
 
 
 def chan1BtnClick():
