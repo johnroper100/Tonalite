@@ -41,6 +41,7 @@ chan6Btn = Button(14)
 fixtures = []
 currentFixture = 0
 currentFixtureChans = {}
+singgleFixtureView = False
 
 
 def sendNextCue():
