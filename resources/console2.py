@@ -39,7 +39,7 @@ chan6EncDown = Button(15)
 chan6Btn = Button(14)
 
 fixtures = []
-currentFixture = None
+currentFixture = 0
 singleFixtureView = False
 
 currentFixturesPage = 0
