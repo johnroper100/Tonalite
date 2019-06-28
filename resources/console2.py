@@ -305,12 +305,10 @@ def on_connect():
 def getFixtures(data):
     global fixtures
     fixtures = data
-    print(fixtures)
 
 
 @sio.on('fixtureParameters')
 def getCurrentFixture(data):
-    global fixtures
     global singleFixtureView
     singleFixtureView = True
 
