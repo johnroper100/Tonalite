@@ -1040,6 +1040,18 @@ io.on('connection', function (socket) {
 
                         fixture.chips.push(color);
                     }
+                } else if (fixture.colortable == "EF4970BA-2536-4725-9B0F-B2D7A021E139") {
+                    // CMY
+                    colortable = JSON.parse(JSON.stringify(require(process.cwd() + "/chips/rgb.json")));
+                    let col = 0; const colMax = colortable.length; for (; col < colMax; col++) {
+                        var color = { color: colortable[col].color, parameters: [] };
+
+                        color.parameters.push({ name: "Cyan", value: 100 - colortable[col].parameters[0] });
+                        color.parameters.push({ name: "Magenta", value: 100 - colortable[col].parameters[1] });
+                        color.parameters.push({ name: "Yellow", value: 100 - colortable[col].parameters[2] });
+
+                        fixture.chips.push(color);
+                    }
                 }
                 let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
                     fixture.parameters[c].value = fixture.parameters[c].home;
