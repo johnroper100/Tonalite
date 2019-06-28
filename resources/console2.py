@@ -233,6 +233,7 @@ def sendGetFixtureChans(fixture):
 def changeChanLock(chan):
     global fixtures
     global currentFixture
+    print("hi")
     sio.emit('changeFixtureParameterLock', {
              'id': fixtures[currentFixture]['id'], 'pid': chan})
 
