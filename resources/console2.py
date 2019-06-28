@@ -313,10 +313,10 @@ def getCurrentFixture(data):
 @sio.on('cueActionBtn')
 def cueActionBtn(data):
     if data == True:
-        stopRecordLed.on()
+        #stopRecordLed.on()
         stopRecordBtn.when_pressed == sendStopCue
     else:
-        stopRecordLed.off()
+        #stopRecordLed.off()
         stopRecordBtn.when_pressed == sendRecordCue
 
 
