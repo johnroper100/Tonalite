@@ -2,14 +2,14 @@ import time
 from signal import pause
 
 import socketio
-from gpiozero import Button, Led
+from gpiozero import Button
 
 sio = socketio.Client()
 
 nextBtn = Button(16)
 lastBtn = Button(21)
 stopRecordBtn = Button(20)
-stopRecordLed = Led(4)
+#stopRecordLed = Led(4)
 
 pageUpBtn = Button(19)
 pageDownBtn = Button(26)
