@@ -92,13 +92,13 @@ def changeChanValue(chan, direction):
     global fixtures
     chan = 0
     if direction == 1:
-        if currentFixtureChans[chan]['value'] < currentFixtureChans[chan]['max']:
-            currentFixtureChans[chan]['value'] = currentFixtureChans[chan]['value'] + 1
+        if currentFixtureChans['parameters'][chan]['value'] < currentFixtureChans['parameters'][chan]['max']:
+            currentFixtureChans['parameters'][chan]['value'] = currentFixtureChans['parameters'][chan]['value'] + 1
     elif direction == -1:
-        if currentFixtureChans[chan]['value'] > 0:
-            currentFixtureChans[chan]['value'] = currentFixtureChans[chan]['value'] - 1
+        if currentFixtureChans['parameters'][chan]['value'] > 0:
+            currentFixtureChans['parameters'][chan]['value'] = currentFixtureChans['parameters'][chan]['value'] - 1
     sio.emit('changeFixtureParameterValue', {
-             'id': fixtures[0]['id'], 'pid': chan, 'value': currentFixtureChans[chan]['value']})
+             'id': fixtures[0]['id'], 'pid': chan, 'value': currentFixtureChans['parameters'][chan]['value']})
 
 
 def changeFixtureIntensity(fixture, direction):
