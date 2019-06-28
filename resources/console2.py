@@ -308,6 +308,7 @@ def on_connect():
 
 @sio.on('fixtures')
 def getFixtures(data):
+    global fixtures
     fixtures = data
     print(fixtures)
 
