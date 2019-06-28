@@ -228,6 +228,8 @@ def sendGetFixtureChans(fixture):
     global fixtures
     global currentFixture
     currentFixture = fixture
+    global singleFixtureView
+    singleFixtureView = True
 
 
 def changeChanLock(chan):
@@ -238,12 +240,11 @@ def changeChanLock(chan):
 
 
 def chan1BtnClick():
-    print("hi")
     global singleFixtureView
     global currentChannelsPage
     global currentFixturesPage
     if singleFixtureView:
-        changeChanLock(6*currentChannelsPage)
+        changeChanLock(0)
     else:
         sendGetFixtureChans(6*currentFixturesPage)
 
