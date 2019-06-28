@@ -321,7 +321,7 @@ def cueActionBtn(data):
 
 
 def start_server():
-    sio.connect('http://10.166.66.1:3000')
+    sio.connect('http://192.168.0.113:3000')
     sio.wait()
 
 
