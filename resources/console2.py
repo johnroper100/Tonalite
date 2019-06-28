@@ -226,7 +226,7 @@ chan6EncDown.when_pressed = chan6EncDownRising
 def sendGetFixtureChans(fixture):
     currentFixture = fixture
     print(len(fixtures))
-    sio.emit('getFixtureParameters', fixtures[currentFixture]['id'])
+    sio.emit('getFixtureParameters', fixtures[0]['id'])
 
 
 def changeChanLock(chan):
