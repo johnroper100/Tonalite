@@ -40,7 +40,6 @@ chan6Btn = Button(14)
 
 fixtures = []
 currentFixture = None
-currentFixtureChans = {}
 singleFixtureView = False
 
 currentFixturesPage = 0
@@ -88,17 +87,16 @@ pageDownBtn.when_pressed = pageDown
 
 
 def changeChanValue(chan, direction):
-    global currentFixtureChans
     global fixtures
     chan = 0
     if direction == 1:
-        if currentFixtureChans['parameters'][chan]['value'] < currentFixtureChans['parameters'][chan]['max']:
-            currentFixtureChans['parameters'][chan]['value'] += 255
+        if fixtures[currentFixture]['parameters'][chan]['value'] < fixtures[currentFixture]['parameters'][chan]['max']:
+            fixtures[currentFixture]['parameters'][chan]['value'] += 255
     elif direction == -1:
-        if currentFixtureChans['parameters'][chan]['value'] > 0:
-            currentFixtureChans['parameters'][chan]['value'] -= 255
+        if fixtures[currentFixture]['parameters'][chan]['value'] > 0:
+            fixtures[currentFixture]['parameters'][chan]['value'] -= 255
     sio.emit('changeFixtureParameterValue', {
-             'id': fixtures[0]['id'], 'pid': chan, 'value': currentFixtureChans['parameters'][chan]['value']})
+             'id': fixtures[0]['id'], 'pid': chan, 'value': fixtures[currentFixture]['parameters'][chan]['value']})
 
 
 def changeFixtureIntensity(fixture, direction):
@@ -313,11 +311,8 @@ def getFixtures(data):
 @sio.on('fixtureParameters')
 def getCurrentFixture(data):
     global fixtures
-    global currentFixtureChans
     global singleFixtureView
     singleFixtureView = True
-    currentFixtureChans = {'id': data['id'], 'name': data['name'],
-                           'parameters': data['parameters'], 'chips': data['chips']}
 
 
 @sio.on('cueActionBtn')
