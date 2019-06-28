@@ -69,6 +69,7 @@ def pageUp():
     else:
         currentFixturesPage += 1
 
+
 def pageDown():
     if singleFixtureView:
         if currentChannelsPage > 0:
@@ -76,6 +77,7 @@ def pageDown():
     else:
         if currentFixturesPage > 0:
             currentFixturesPage -= 1
+
 
 lastBtn.when_pressed = sendNextCue
 stopRecordBtn.when_pressed = sendStopCue
@@ -96,30 +98,199 @@ def changeChanValue(chan, direction):
              'id': fixtures[currentFixture]['id'], 'pid': chan, 'value': currentFixtureChans[chan]['value']})
 
 
+def changeFixtureIntensity(fixture, direction):
+    sio.emit('changeFixtureIntensity', {
+             'id': fixtures[fixture]['id'], direction: direction})
+
+
 def chan1EncUpRising():
     if chan1EncUp.is_pressed:
         if singleFixtureView:
-            changeChanValue(0, -1)
+            changeChanValue(6*currentChannelsPage, -1)
+        else:
+            changeFixtureIntensity(6*currentFixturesPage, -1)
 
 
 def chan1EncDownRising():
     if chan1EncDown.is_pressed:
         if singleFixtureView:
-            changeChanValue(0, 1)
+            changeChanValue(6*currentChannelsPage, 1)
+        else:
+            changeFixtureIntensity(6*currentFixturesPage, 1)
 
 
 chan1EncUp.when_pressed = chan1EncUpRising
 chan1EncDown.when_pressed = chan1EncDownRising
 
+
+def chan2EncUpRising():
+    if chan2EncUp.is_pressed:
+        if singleFixtureView:
+            changeChanValue((6*currentChannelsPage)+1, -1)
+        else:
+            changeFixtureIntensity((6*currentChannelsPage)+1, -1)
+
+
+def chan2EncDownRising():
+    if chan2EncDown.is_pressed:
+        if singleFixtureView:
+            changeChanValue((6*currentChannelsPage)+1, 1)
+        else:
+            changeFixtureIntensity((6*currentChannelsPage)+1, 1)
+
+
+chan2EncUp.when_pressed = chan2EncUpRising
+chan2EncDown.when_pressed = chan2EncDownRising
+
+
+def chan3EncUpRising():
+    if chan3EncUp.is_pressed:
+        if singleFixtureView:
+            changeChanValue((6*currentChannelsPage)+2, -1)
+        else:
+            changeFixtureIntensity((6*currentChannelsPage)+2, -1)
+
+
+def chan3EncDownRising():
+    if chan3EncDown.is_pressed:
+        if singleFixtureView:
+            changeChanValue((6*currentChannelsPage)+2, 1)
+        else:
+            changeFixtureIntensity((6*currentChannelsPage)+2, 1)
+
+
+chan3EncUp.when_pressed = chan3EncUpRising
+chan3EncDown.when_pressed = chan3EncDownRising
+
+
+def chan4EncUpRising():
+    if chan4EncUp.is_pressed:
+        if singleFixtureView:
+            changeChanValue((6*currentChannelsPage)+3, -1)
+        else:
+            changeFixtureIntensity((6*currentChannelsPage)+3, -1)
+
+
+def chan4EncDownRising():
+    if chan4EncDown.is_pressed:
+        if singleFixtureView:
+            changeChanValue((6*currentChannelsPage)+3, 1)
+        else:
+            changeFixtureIntensity((6*currentChannelsPage)+3, 1)
+
+
+chan4EncUp.when_pressed = chan4EncUpRising
+chan4EncDown.when_pressed = chan4EncDownRising
+
+
+def chan5EncUpRising():
+    if chan5EncUp.is_pressed:
+        if singleFixtureView:
+            changeChanValue((6*currentChannelsPage)+4, -1)
+        else:
+            changeFixtureIntensity((6*currentChannelsPage)+4, -1)
+
+
+def chan5EncDownRising():
+    if chan4EncDown.is_pressed:
+        if singleFixtureView:
+            changeChanValue((6*currentChannelsPage)+4, 1)
+        else:
+            changeFixtureIntensity((6*currentChannelsPage)+4, 1)
+
+
+chan5EncUp.when_pressed = chan5EncUpRising
+chan5EncDown.when_pressed = chan5EncDownRising
+
+
+def chan6EncUpRising():
+    if chan6EncUp.is_pressed:
+        if singleFixtureView:
+            changeChanValue((6*currentChannelsPage)+5, -1)
+        else:
+            changeFixtureIntensity((6*currentChannelsPage)+5, -1)
+
+
+def chan6EncDownRising():
+    if chan6EncDown.is_pressed:
+        if singleFixtureView:
+            changeChanValue((6*currentChannelsPage)+5, 1)
+        else:
+            changeFixtureIntensity((6*currentChannelsPage)+5, 1)
+
+
+chan6EncUp.when_pressed = chan6EncUpRising
+chan6EncDown.when_pressed = chan6EncDownRising
+
+
+def sendGetFixtureChans(fixture):
+    currentFixture = fixture
+    sio.emit('getFixtureParameters', fixtures[currentFixture]['id'])
+
+
 def changeChanLock(chan):
-    sio.emit('changeFixtureParameterLock', {'id': fixtures[currentFixture]['id'], 'pid': chan})
+    sio.emit('changeFixtureParameterLock', {
+             'id': fixtures[currentFixture]['id'], 'pid': chan})
+
 
 def chan1BtnClick():
     if singleFixtureView:
-        changeChanLock(0)
+        changeChanLock(6*currentChannelsPage)
+    else:
+        sendGetFixtureChans(6*currentFixturesPage)
 
 
 chan1Btn.when_pressed = chan1BtnClick
+
+
+def chan2BtnClick():
+    if singleFixtureView:
+        changeChanLock((6*currentChannelsPage)+1)
+    else:
+        sendGetFixtureChans((6*currentFixturesPage)+1)
+
+
+chan2Btn.when_pressed = chan2BtnClick
+
+
+def chan3BtnClick():
+    if singleFixtureView:
+        changeChanLock((6*currentChannelsPage)+2)
+    else:
+        sendGetFixtureChans((6*currentFixturesPage)+2)
+
+
+chan3Btn.when_pressed = chan3BtnClick
+
+
+def chan4BtnClick():
+    if singleFixtureView:
+        changeChanLock((6*currentChannelsPage)+3)
+    else:
+        sendGetFixtureChans((6*currentFixturesPage)+3)
+
+
+chan4Btn.when_pressed = chan4BtnClick
+
+
+def chan5BtnClick():
+    if singleFixtureView:
+        changeChanLock((6*currentChannelsPage)+4)
+    else:
+        sendGetFixtureChans((6*currentFixturesPage)+4)
+
+
+chan5Btn.when_pressed = chan5BtnClick
+
+
+def chan6BtnClick():
+    if singleFixtureView:
+        changeChanLock((6*currentChannelsPage)+5)
+    else:
+        sendGetFixtureChans((6*currentFixturesPage)+5)
+
+
+chan6Btn.when_pressed = chan6BtnClick
 
 
 @sio.on('connect')
@@ -130,6 +301,13 @@ def on_connect():
 @sio.on('fixtures')
 def getFixtures(data):
     fixtures = data
+
+
+@sio.on('fixtureParameters')
+def getCurrentFixture(data):
+    singleFixtureView = True
+    currentFixtureChans = {'id': data['id'], 'name': data['name'],
+                           'parameters': data['parameters'], 'chips': data['chips']}
 
 
 @sio.on('cueActionBtn')
