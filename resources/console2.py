@@ -108,7 +108,7 @@ def changeFixtureIntensity(fixture, direction):
 def chan1EncUpRising():
     if chan1EncUp.is_pressed:
         if singleFixtureView:
-            changeChanValue(6*currentChannelsPage, -1)
+            changeChanValue(0, -1)
         else:
             changeFixtureIntensity(0, -1)
 
