@@ -237,7 +237,7 @@ def chan1BtnClick():
     if singleFixtureView:
         changeChanLock(6*currentChannelsPage)
     else:
-        sendGetFixtureChans(6*currentFixturesPage)
+        sendGetFixtureChans(0)
 
 
 chan1Btn.when_pressed = chan1BtnClick
