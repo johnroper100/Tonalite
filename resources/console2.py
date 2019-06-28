@@ -39,7 +39,7 @@ chan6EncDown = Button(15)
 chan6Btn = Button(14)
 
 fixtures = []
-currentFixture = 0
+currentFixture = None
 singleFixtureView = False
 
 currentFixturesPage = 0
@@ -96,7 +96,7 @@ def changeChanValue(chan, direction):
         if fixtures[currentFixture]['parameters'][chan]['value'] > 0:
             fixtures[currentFixture]['parameters'][chan]['value'] -= 255
     sio.emit('changeFixtureParameterValue', {
-             'id': fixtures[0]['id'], 'pid': chan, 'value': fixtures[currentFixture]['parameters'][chan]['value']})
+             'id': fixtures[currentFixture]['id'], 'pid': chan, 'value': fixtures[currentFixture]['parameters'][chan]['value']})
 
 
 def changeFixtureIntensity(fixture, direction):
@@ -107,17 +107,17 @@ def changeFixtureIntensity(fixture, direction):
 def chan1EncUpRising():
     if chan1EncUp.is_pressed:
         if singleFixtureView:
-            changeChanValue(0, -1)
+            changeChanValue(6*currentChannelsPage, -1)
         else:
-            changeFixtureIntensity(0, -1)
+            changeFixtureIntensity(6*currentFixturesPage, -1)
 
 
 def chan1EncDownRising():
     if chan1EncDown.is_pressed:
         if singleFixtureView:
-            changeChanValue(0, 1)
+            changeChanValue(6*currentChannelsPage, 1)
         else:
-            changeFixtureIntensity(0, 1)
+            changeFixtureIntensity(6*currentFixturesPage, 1)
 
 
 chan1EncUp.when_pressed = chan1EncUpRising
@@ -228,21 +228,19 @@ def sendGetFixtureChans(fixture):
     global fixtures
     global currentFixture
     currentFixture = fixture
-    sio.emit('getFixtureParameters', fixtures[0]['id'])
 
 
 def changeChanLock(chan):
     global fixtures
     sio.emit('changeFixtureParameterLock', {
-             'id': fixtures[0]['id'], 'pid': chan})
+             'id': fixtures[currentFixture]['id'], 'pid': chan})
 
 
 def chan1BtnClick():
     if singleFixtureView:
-        changeChanLock(0)
+        changeChanLock(6*currentChannelsPage)
     else:
-        currentFixture = 0
-        sendGetFixtureChans(0)
+        sendGetFixtureChans(6*currentFixturesPage)
 
 
 chan1Btn.when_pressed = chan1BtnClick
