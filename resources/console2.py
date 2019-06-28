@@ -14,8 +14,8 @@ stopRecordBtn = Button(20)
 pageUpBtn = Button(19)
 pageDownBtn = Button(26)
 
-chan1EncUp = Button(13)
-chan1EncDown = Button(12)
+chan1EncUp = Button(13,pull_up=True)
+chan1EncDown = Button(12,pull_up=True)
 chan1Btn = Button(6)
 
 chan2EncUp = Button(5)
@@ -105,19 +105,17 @@ def changeFixtureIntensity(fixture, direction):
 
 
 def chan1EncUpRising():
-    if chan1EncUp.is_pressed:
-        if singleFixtureView:
-            changeChanValue(6*currentChannelsPage, -1)
-        else:
-            changeFixtureIntensity(6*currentFixturesPage, -1)
+    if singleFixtureView:
+        changeChanValue(6*currentChannelsPage, -1)
+    else:
+        changeFixtureIntensity(6*currentFixturesPage, -1)
 
 
 def chan1EncDownRising():
-    if chan1EncDown.is_pressed:
-        if singleFixtureView:
-            changeChanValue(6*currentChannelsPage, 1)
-        else:
-            changeFixtureIntensity(6*currentFixturesPage, 1)
+    if singleFixtureView:
+        changeChanValue(6*currentChannelsPage, 1)
+    else:
+        changeFixtureIntensity(6*currentFixturesPage, 1)
 
 
 chan1EncUp.when_pressed = chan1EncUpRising
