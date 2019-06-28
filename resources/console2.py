@@ -90,7 +90,6 @@ def changeChanValue(chan, direction):
     global fixtures
     global currentFixture
     if direction == 1:
-        print(fixtures[currentFixture]['parameters'][chan])
         if fixtures[currentFixture]['parameters'][chan]['value'] < fixtures[currentFixture]['parameters'][chan]['max']:
             fixtures[currentFixture]['parameters'][chan]['value'] += 255
     elif direction == -1:

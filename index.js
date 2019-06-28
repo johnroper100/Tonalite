@@ -283,8 +283,6 @@ function cleanFixtures() {
         delete newFixtures.effects;
         delete newFixtures.chips;
         let p = 0; const pMax = newFixtures[f].parameters.length; for (; p < pMax; p++) {
-            delete newFixtures[f].parameters[p].max;
-            delete newFixtures[f].parameters[p].min;
             delete newFixtures[f].parameters[p].home;
             delete newFixtures[f].parameters[p].coarse;
             newFixtures[f].parameters[p].displayValue = Math.round(newFixtures[f].parameters[p].displayValue);
