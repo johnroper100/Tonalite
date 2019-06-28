@@ -238,6 +238,7 @@ def changeChanLock(chan):
 
 
 def chan1BtnClick():
+    print("hi")
     global singleFixtureView
     global currentChannelsPage
     global currentFixturesPage
