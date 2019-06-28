@@ -229,10 +229,7 @@ def sendGetFixtureChans(fixture):
     global fixtures
     currentFixture = fixture
     print(len(fixtures))
-    try:
-        sio.emit('getFixtureParameters', fixtures[0]['id'])
-    except Exception:
-        print(len(fixtures))
+    sio.emit('getFixtureParameters', fixtures[0]['id'])
 
 
 def changeChanLock(chan):
