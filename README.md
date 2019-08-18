@@ -58,3 +58,5 @@ https://scribles.net/customizing-boot-up-screen-on-raspberry-pi/
 https://ubuntuforums.org/showthread.php?t=1935099
 
 https://raspberrypi.stackexchange.com/questions/66169/auto-mount-usb-stick-on-plug-in-without-uuid
+
+https://www.reddit.com/r/node/comments/91b7xa/find_all_existing_ip_addresses_on_local_network/
