@@ -90,7 +90,8 @@
               <h3 v-if="fixture.hasIntensity === true" class="fixtureValue">
                 {{fixture.parameters[fixture.parameters.map(el => el.type).indexOf(1)].displayValue}}</h3>
               <p>{{fixture.shortName}} ({{fixture.startDMXAddress}}) <span
-                  v-html="lockedFixtureParameters(fixture.hasLockedParameters)"></span></p>
+                  v-html="lockedFixtureParameters(fixture.hasLockedParameters)"></span> <span
+                  v-html="activeFixtureEffects(fixture.hasActiveEffects)"></span></p>
             </div>
           </div>
           <div v-if="fixtures.length == 0" class="col-12">
@@ -629,8 +630,8 @@
               <div class="col-12">
                 <div class="form-group">
                   <div class="custom-control custom-checkbox">
-                    <input v-on:input="saveSettingsBackground()" type="checkbox"
-                      class="custom-control-input" id="useUDMX">
+                    <input v-on:input="saveSettingsBackground()" type="checkbox" class="custom-control-input"
+                      id="useUDMX">
                     <label class="custom-control-label dark" for="useUDMX">Use uDMX?</label>
                   </div>
                 </div>
@@ -651,15 +652,15 @@
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                   <label class="dark" for="artnetIP">ArtNet IP:</label>
-                  <input v-on:input="saveSettingsBackground()" class="form-control" type="text"
-                    id="artnetIP" placeholder="ArtNet IP is localhost">
+                  <input v-on:input="saveSettingsBackground()" class="form-control" type="text" id="artnetIP"
+                    placeholder="ArtNet IP is localhost">
                 </div>
               </div>
               <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                   <label class="dark" for="sacnIP">sACN IP:</label>
-                  <input v-on:input="saveSettingsBackground()" class="form-control" type="text"
-                    id="sacnIP" placeholder="sACN IP is localhost">
+                  <input v-on:input="saveSettingsBackground()" class="form-control" type="text" id="sacnIP"
+                    placeholder="sACN IP is localhost">
                 </div>
               </div>
             </div>

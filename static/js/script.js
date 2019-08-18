@@ -46,6 +46,11 @@ var app = new Vue({
                 return "<i class=\"ml-1 far fa-lock-alt fa-sm\"></i>";
             return "";
         },
+        activeFixtureEffects: function (active) {
+            if (active === true)
+                return "<i class=\"ml-1 far fa-hurricane fa-sm\"></i>";
+            return "";
+        },
         openShowFromUSB: function (showFile) {
             socket.emit('openShowFromUSB', [showFile, app.usbPath]);
             $('#showFilesModal').modal("hide");

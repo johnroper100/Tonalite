@@ -298,6 +298,7 @@ function cleanFixtureForCue(fixture) {
     delete newFixture.shortName;
     delete newFixture.manufacturerName;
     delete newFixture.hasLockedParameters;
+    delete newFixture.hasActiveEffects;
     delete newFixture.chips;
     delete newFixture.dcid;
     delete newFixture.colortable;
@@ -415,6 +416,14 @@ function getGroupFixtures(groupID) {
     return fixtureStarts;
 };
 
+function checkFixtureActiveEffects(effects) {
+    let e = 0; const eMax = effects.length; for (; e < eMax; e++) {
+        if (effects[e].active == true) {
+            return true;
+        }
+    }
+}
+
 // Set the output channel values to those of the current fixture values
 function calculateChannels() {
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
@@ -473,6 +482,7 @@ function calculateCue(cue) {
                 startFixture.effects[e].active = cue.fixtures[f].effects[e].active;
             }
         }
+        startFixture.hasActiveEffects = checkFixtureActiveEffects(startFixture.effects);
         let c = 0; const cMax = cue.fixtures[f].parameters.length; for (; c < cMax; c++) {
             if (startFixture.parameters[c].locked === false) {
                 var startParameter = startFixture.parameters[c].value;
@@ -698,6 +708,7 @@ function resetFixtures() {
         let e = 0; const eMax = fixtures[f].effects.length; for (; e < eMax; e++) {
             fixtures[f].effects[e].active = false;
         }
+        fixtures[f].hasActiveEffects = checkFixtureActiveEffects(fixtures[f].effects);
     }
 };
 
@@ -974,6 +985,7 @@ io.on('connection', function (socket) {
                 fixture.startDMXAddress = startDMXAddress;
                 fixture.dmxUniverse = 0;
                 fixture.hasLockedParameters = false;
+                fixture.hasActiveEffects = false;
                 fixture.name = fixture.modelName;
                 fixture.chips = [];
                 fixture.effects = [];
@@ -1236,6 +1248,7 @@ io.on('connection', function (socket) {
                 let e = 0; const eMax = fixture.effects.length; for (; e < eMax; e++) {
                     fixture.effects[e].active = false;
                 }
+                fixture.hasActiveEffects = false;
                 socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
                 io.emit('fixtures', cleanFixtures());
                 socket.emit('message', { type: "info", content: "Fixture values reset!" });
@@ -1305,6 +1318,7 @@ io.on('connection', function (socket) {
                     var effect = fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectid)];
                     effect.step = effect.fan;
                     effect.active = !effect.active;
+                    fixture.hasActiveEffects = checkFixtureActiveEffects(fixture.effects);
                     if (effect.active == false) {
                         let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
                             fixture.parameters[p].displayValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 100);
@@ -1312,6 +1326,7 @@ io.on('connection', function (socket) {
                         }
                     }
                     socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
+                    io.emit('fixtures', cleanFixtures());
                 }
             }
         } else {
@@ -1354,6 +1369,7 @@ io.on('connection', function (socket) {
                         }
                     }
                 }
+                fixture.hasActiveEffects = true;
                 saveShow();
                 socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
                 socket.emit('message', { type: "info", content: "Effect has been added to fixture!" });
