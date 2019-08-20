@@ -1,3 +1,52 @@
+body {
+    background-color: #333333;
+    font-family: 'Roboto', sans-serif;
+}
+.mainNav > .navbar-brand {
+    font-weight: 700;
+}
+.mainNav .dropdown-toggle::after {
+    display: none !important;
+}
+.mainNav {
+    background-color: #4F4F4F;
+    color: #F2F2F2;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+.mainNav .nav-link {
+    font-weight: 300;
+    color: #BDBDBD;
+    font-size: 1.2rem;
+}
 .selected {
     border: solid 2px red;
+}
+.tabHeader {
+    background-color: #828282;
+}
+.btn {
+    font-weight: 400;
+    color: #F2F2F2;
+    border-radius: 0.35rem;
+    padding: 0.1rem 1rem;
+}
+.btn:hover {
+    cursor: pointer;
+}
+.btn-success {
+    background-color: #27AE60;
+}
+.btn-success:hover {
+    background-color: #219653;
+}
+.tabHeader select {
+    background-color: #333333;
+    font-weight: 400;
+    color: #F2F2F2;
+    width: auto;
+    border: 0px;
+    padding: 0.1rem 0.5rem;
+    height: calc(1em + .7rem + 2px);
+    border-radius: 0.35rem;
 }

@@ -9,16 +9,17 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
     <title>Tonalite UI</title>
 </head>
 
-<body class="bg-dark">
+<body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Tonalite</a>
+        <nav class="navbar navbar-expand-lg mainNav">
+            <span class="navbar-brand">TONALITE</span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -67,28 +68,31 @@
         </nav>
         <div id="patchTab"></div>
         <div id="fixturesTab" v-if="currentTab =='fixtures'">
-            <div class="tabHeader bg-secondary p-2">
+            <div class="tabHeader p-2">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-3 col-lg-2 col-6">
-                            <select v-model="fixturesDisplay" class="form-control w-100">
+                            <select v-model="fixturesDisplay" class="form-control">
                                 <option value="fixtures">Fixtures</option>
                                 <option value="groups">Groups</option>
                             </select>
                         </div>
                         <div class="offset-md-3 offset-lg-6 col-lg-2 col-md-3 col-6">
-                            <div class="btn btn-success w-100" v-bind:class="{ disabled: selectedFixtures <= 0 }">Group Selected</div>
+                            <div class="btn btn-success" v-bind:class="{ disabled: selectedFixtures <= 0 }">Group
+                                Selected</div>
                         </div>
                         <div class="col-lg-2 col-md-3 col-6">
-                            <div class="btn btn-primary w-100" v-bind:class="{ disabled: selectedFixtures <= 0 }">Parameters</div>
+                            <div class="btn btn-primary" v-bind:class="{ disabled: selectedFixtures <= 0 }">
+                                Open Parameters</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container mt-2">
+            <div class="container-fluid mt-2">
                 <div id="fixturesDisplay" v-if="fixturesDisplay == 'fixtures'">
                     <div class="row">
-                        <div class="col-4 col-md-3" v-for="fixture in fixtures" v-on:click='selectFixture(fixture.id)' :key="fixture.id">
+                        <div class="col-4 col-md-3 col-lg-2" v-for="fixture in fixtures" v-on:click='selectFixture(fixture.id)'
+                            :key="fixture.id">
                             <div class="card" v-bind:class="{ selected: fixture.selected }">
                                 <div class="card-body">
                                     {{fixture.name}} - {{fixture.selected}}
