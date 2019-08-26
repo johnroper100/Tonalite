@@ -18,90 +18,98 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg mainNav">
-            <span class="navbar-brand">TONALITE</span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class="sticky-top">
+            <nav class="navbar navbar-expand mainNav">
+                <span class="navbar-brand">TONALITE</span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            File
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Edit
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Help
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-fixture dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                File
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-fixture" href="#">Action</a>
+                                <a class="dropdown-fixture" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-fixture" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        <li class="nav-fixture dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Edit
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-fixture" href="#">Action</a>
+                                <a class="dropdown-fixture" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-fixture" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        <li class="nav-fixture dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Help
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-fixture" href="#">Action</a>
+                                <a class="dropdown-fixture" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-fixture" href="#">Something else here</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="tabHeader d-flex" v-if="currentTab =='fixtures'">
+                <select v-model="fixturesDisplay" class="form-control">
+                    <option value="fixtures">Fixtures</option>
+                    <option value="groups">Groups</option>
+                </select>
+                <div class="ml-auto">
+                    <div class="btn btn-success" v-bind:class="{ disabled: selectedFixtures <= 0 }">Group
+                        Selected</div>
+                    <div class="btn btn-primary" v-bind:class="{ disabled: selectedFixtures <= 0 }">
+                        Open Parameters</div>
+                </div>
             </div>
-        </nav>
+        </div>
         <div id="patchTab"></div>
         <div id="fixturesTab" v-if="currentTab =='fixtures'">
-            <div class="tabHeader p-2">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-3 col-lg-2 col-6">
-                            <select v-model="fixturesDisplay" class="form-control">
-                                <option value="fixtures">Fixtures</option>
-                                <option value="groups">Groups</option>
-                            </select>
-                        </div>
-                        <div class="offset-md-3 offset-lg-6 col-lg-2 col-md-3 col-6">
-                            <div class="btn btn-success" v-bind:class="{ disabled: selectedFixtures <= 0 }">Group
-                                Selected</div>
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-6">
-                            <div class="btn btn-primary" v-bind:class="{ disabled: selectedFixtures <= 0 }">
-                                Open Parameters</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="container-fluid mt-2">
                 <div id="fixturesDisplay" v-if="fixturesDisplay == 'fixtures'">
-                    <div class="row">
-                        <div class="col-4 col-md-3 col-lg-2" v-for="fixture in fixtures" v-on:click='selectFixture(fixture.id)'
-                            :key="fixture.id">
-                            <div class="card" v-bind:class="{ selected: fixture.selected }">
-                                <div class="card-body">
-                                    {{fixture.name}} - {{fixture.selected}}
-                                </div>
+                    <grid-layout :layout.sync="fixtures" :col-num="14" :row-height="50" v-bind:is-draggable="layoutMode"
+                        :is-resizable="false" :vertical-compact="false" :margin="[10, 10]" :use-css-transforms="true">
+                        <grid-item v-bind:class="{ selected: fixture.selected }" class="grid-item" v-for="fixture in fixtures" :x="fixture.x" :y="fixture.y" :w="fixture.w"
+                            :h="fixture.h" :i="fixture.i" :key="fixture.i">
+                            <div class="grid-item-content noselect" v-on:click="selectItem(fixture)">
+                                    {{fixture.i}} {{fixture.x}} {{fixture.y}} {{fixture.selected}}
                             </div>
-                        </div>
-                    </div>
+                        </grid-item>
+                    </grid-layout>
                 </div>
                 <div id="groupsDisplay" v-if="fixturesDisplay == 'groups'">g here</div>
+            </div>
+        </div>
+        <div class="fixed-bottom">
+            <div class="tabHeader d-flex" v-if="currentTab =='fixtures'">
+                <select v-model="fixturesDisplay" class="form-control">
+                    <option value="fixtures">Fixtures</option>
+                    <option value="groups">Groups</option>
+                </select>
+                <div class="ml-auto">
+                    <div class="btn btn-success" v-bind:class="{ disabled: selectedFixtures <= 0 }">Group
+                        Selected</div>
+                    <div class="btn btn-primary" v-bind:class="{ disabled: selectedFixtures <= 0 }">
+                        Open Parameters</div>
+                </div>
             </div>
         </div>
     </div>
@@ -118,6 +126,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue-grid-layout.umd.min.js"></script>
     <script src="index.js"></script>
 </body>
 
