@@ -29,43 +29,54 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-fixture dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 File
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-fixture" href="#">Action</a>
-                                <a class="dropdown-fixture" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-fixture" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
-                        <li class="nav-fixture dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Edit
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-fixture" href="#">Action</a>
-                                <a class="dropdown-fixture" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-fixture" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
-                        <li class="nav-fixture dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Help
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-fixture" href="#">Action</a>
-                                <a class="dropdown-fixture" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-fixture" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
                     </ul>
+                    <div class="ml-auto">
+                        <div class="btn-group">
+                            <div class="switch">
+                                <div class="label">
+                                    Layout Mode:
+                                </div>
+                                <div class="btn left" v-bind:class="{ on : layoutMode == true, off : layoutMode == false}" @click="layoutMode = true">On</div>
+                                <div class="btn right" v-bind:class="{ on : layoutMode == false, off : layoutMode == true}" @click="layoutMode=false">Off</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </nav>
             <div class="tabHeader d-flex" v-if="currentTab =='fixtures'">
@@ -86,11 +97,12 @@
             <div class="container-fluid mt-2">
                 <div id="fixturesDisplay" v-if="fixturesDisplay == 'fixtures'">
                     <grid-layout :layout.sync="fixtures" :col-num="14" :row-height="50" v-bind:is-draggable="layoutMode"
-                        :is-resizable="false" :vertical-compact="false" :margin="[10, 10]" :use-css-transforms="true">
-                        <grid-item v-bind:class="{ selected: fixture.selected }" class="grid-item" v-for="fixture in fixtures" :x="fixture.x" :y="fixture.y" :w="fixture.w"
-                            :h="fixture.h" :i="fixture.i" :key="fixture.i">
-                            <div class="grid-item-content noselect" v-on:click="selectItem(fixture)">
-                                    {{fixture.i}} {{fixture.x}} {{fixture.y}} {{fixture.selected}}
+                        :is-resizable="false" :vertical-compact="false" :margin="[10, 10]" :use-css-transforms="true" v-bind:class="{inLayout: layoutMode}">
+                        <grid-item v-bind:class="{ selected: fixture.selected }" class="grid-item fixture-item"
+                            v-for="fixture in fixtures" :x="fixture.x" :y="fixture.y" :w="fixture.w" :h="fixture.h"
+                            :i="fixture.i" :key="fixture.i">
+                            <div class="grid-item-content noselect" v-on:click="selectFixture(fixture)">
+                                <div class="text">{{fixture.i}}</div>
                             </div>
                         </grid-item>
                     </grid-layout>

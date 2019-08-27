@@ -12,12 +12,18 @@ var app = new Vue({
         currentTab: 'fixtures',
         fixturesDisplay: 'fixtures',
         fixtures: testLayout,
+        selectedFixtures: [],
         layoutMode: false
     },
     methods: {
-        selectItem: function (item) {
+        selectFixture: function (fixture) {
             if (app.layoutMode == false) {
-                item.selected = !item.selected;
+                fixture.selected = !fixture.selected;
+                if (fixture.selected == true) {
+                    app.selectedFixtures.push(fixture.i);
+                } else {
+                    app.selectedFixtures.splice(app.selectedFixtures.indexOf(fixture.i), 1);
+                }
             }
         }
     }
