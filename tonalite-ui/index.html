@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </nav>
-            <div class="tabHeader d-flex" v-if="currentTab =='fixtures'">
+            <div class="subHeader d-flex" v-if="currentTab =='fixtures'">
                 <select v-model="fixturesDisplay" class="form-control">
                     <option value="fixtures">Fixtures</option>
                     <option value="groups">Groups</option>
@@ -116,7 +116,7 @@
             </div>
         </div>
         <div class="fixed-bottom">
-            <div class="tabHeader row" v-if="currentTab =='fixtures'">
+            <div class="subHeader row" v-if="currentTab =='fixtures'">
                 <div class="col-md-7 col-lg-4 col-12">
                     <div class="btn btn-danger" v-bind:class="{ disabled: fixtures.length == 0 }">Record Cue</div>
                     <div class="progress" style="display: inline-block; width: 35%;">
@@ -133,6 +133,25 @@
                     <div class="btn btn-success" v-bind:class="{ disabled: cues.length == 0 }">Next Cue</div>
                     <div class="btn btn-warning" v-bind:class="{ disabled: cues.length == 0 }">Pause</div>
                     <div class="btn btn-success" v-bind:class="{ disabled: cues == 0 }">Last Cue</div>
+                </div>
+            </div>
+            <div class="tabHeader">
+                <div class="row">
+                    <div class="col-3 tab" @click="currentTab = 'patch'"
+                        v-bind:class="{ active: currentTab == 'patch' }">
+                        Patch
+                    </div>
+                    <div class="col-3 tab" @click="currentTab = 'fixtures'"
+                        v-bind:class="{ active: currentTab == 'fixtures' }">
+                        Fixtures
+                    </div>
+                    <div class="col-3 tab" @click="currentTab = 'cues'" v-bind:class="{ active: currentTab == 'cues' }">
+                        Cues
+                    </div>
+                    <div class="col-3 tab" @click="currentTab = 'presets'"
+                        v-bind:class="{ active: currentTab == 'presets' }">
+                        Presets
+                    </div>
                 </div>
             </div>
         </div>

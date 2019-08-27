@@ -27,7 +27,7 @@ body {
 .selected {
     box-shadow: 0 0 0 4px #27AE60;
 }
-.tabHeader {
+.subHeader {
     background-color: #828282;
     padding: 0.35rem 0.75rem;
 }
@@ -48,7 +48,7 @@ body {
 .btn-success:hover {
     background-color: #219653;
 }
-.tabHeader select {
+.subHeader select {
     background-color: #333333;
     font-weight: 400;
     color: #F2F2F2;
@@ -114,4 +114,22 @@ body {
 }
 .vue-grid-layout {
     margin-bottom: 3rem;
+}
+.tab {
+    text-align: center;
+    color: #828282;
+    font-weight: 300;
+    padding-bottom: 0.35rem;
+    padding-top: 0.4rem;
+    font-size: 1.25rem;
+}
+.tab:hover {
+    cursor: pointer;
+}
+.tab.active {
+    color: #F2F2F2;
+    border-bottom: solid 3px #2D9CDB;
+}
+.tabHeader {
+    background-color: #4F4F4F;
 }
