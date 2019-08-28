@@ -1310,6 +1310,22 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('useParameterRange', function (msg) {
+        if (fixtures.length != 0) {
+            if (fixtures.some(e => e.id === msg.id)) {
+                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
+                var parameter = fixture.parameters[msg.pid];
+                var range = parameter.ranges[msg.rid];
+                fixture.parameters[msg.pid].value = cppaddon.mapRange(range.default, 0, 255, parameter.min, parameter.max);
+                fixture.parameters[msg.pid].displayValue = fixture.parameters[msg.pid].value;
+                socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
+                io.emit('fixtures', cleanFixtures());
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
     socket.on('changeFixtureEffectState', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
