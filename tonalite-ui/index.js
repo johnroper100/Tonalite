@@ -1,10 +1,10 @@
 var testLayout = [
-    { "x": 0, "y": 0, "w": 1, "h": 1, "i": "0"},
-    { "x": 1, "y": 0, "w": 1, "h": 1, "i": "1"},
-    { "x": 2, "y": 0, "w": 1, "h": 1, "i": "2"},
-    { "x": 3, "y": 0, "w": 1, "h": 1, "i": "3"},
-    { "x": 4, "y": 0, "w": 1, "h": 1, "i": "4"},
-    { "x": 5, "y": 0, "w": 1, "h": 1, "i": "5"}
+    { "x": 0, "y": 0, "w": 1, "h": 1, "i": "0", "name": "Martin Mac 360", "universe": 0, "coarse": 1, channels: ["hi"]},
+    { "x": 1, "y": 0, "w": 1, "h": 1, "i": "1", "name": "Martin Mac 360", "universe": 0, "coarse": 2, channels: ["hi"]},
+    { "x": 2, "y": 0, "w": 1, "h": 1, "i": "2", "name": "Martin Mac 360", "universe": 0, "coarse": 3, channels: ["hi"]},
+    { "x": 3, "y": 0, "w": 1, "h": 1, "i": "3", "name": "Martin Mac 360", "universe": 0, "coarse": 4, channels: ["hi"]},
+    { "x": 4, "y": 0, "w": 1, "h": 1, "i": "4", "name": "Martin Mac 360", "universe": 0, "coarse": 5, channels: ["hi"]},
+    { "x": 5, "y": 0, "w": 1, "h": 1, "i": "5", "name": "Martin Mac 360", "universe": 0, "coarse": 6, channels: ["hi"]}
 ];
 var app = new Vue({
     el: '#app',
