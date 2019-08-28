@@ -163,7 +163,7 @@
                     <grid-layout :layout.sync="fixtures" :col-num="14" :row-height="50" v-bind:is-draggable="layoutMode"
                         :is-resizable="false" :vertical-compact="false" :margin="[10, 10]" :use-css-transforms="true"
                         v-bind:class="{inLayout: layoutMode}">
-                        <grid-item v-bind:class="{ selected: fixture.selected }" class="grid-item fixture-item"
+                        <grid-item v-bind:class="{ selected: selectedFixtures.indexOf(fixture.i) >= 0 }" class="grid-item fixture-item"
                             v-for="fixture in fixtures" :x="fixture.x" :y="fixture.y" :w="fixture.w" :h="fixture.h"
                             :i="fixture.i" :key="fixture.i">
                             <div class="grid-item-content noselect" v-on:click="selectFixture(fixture)">

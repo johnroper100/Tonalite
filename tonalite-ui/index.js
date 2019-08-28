@@ -19,11 +19,10 @@ var app = new Vue({
     methods: {
         selectFixture: function (fixture) {
             if (app.layoutMode == false) {
-                fixture.selected = !fixture.selected;
-                if (fixture.selected == true) {
-                    app.selectedFixtures.push(fixture.i);
-                } else {
+                if (app.selectedFixtures.indexOf(fixture.i) >= 0) {
                     app.selectedFixtures.splice(app.selectedFixtures.indexOf(fixture.i), 1);
+                } else {
+                    app.selectedFixtures.push(fixture.i);
                 }
             }
         },
@@ -33,9 +32,6 @@ var app = new Vue({
         },
         deselectAllFixtures: function () {
             app.selectedFixtures = [];
-            let f = 0; const fMax = app.fixtures.length; for (; f < fMax; f++) {
-                app.fixtures[f].selected = false;
-            }
         }
     }
 });
