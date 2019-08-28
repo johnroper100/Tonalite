@@ -2,6 +2,7 @@ body {
     background-color: #333333;
     font-family: 'Roboto', sans-serif;
 }
+
 .inLayout {
     background-color: white;
     background-size: 40px 40px;
@@ -84,7 +85,7 @@ body {
     background-color: #56CCF2;
 }
 
-.subHeader select {
+.subHeader select, .subHeader select:focus, .subHeader select:active {
     background-color: #333333;
     font-weight: 400;
     color: #F2F2F2;
@@ -94,6 +95,12 @@ body {
     height: calc(1em + .7rem + 2px);
     border-radius: 0.30rem;
     font-size: 1rem;
+    outline: none;
+    box-shadow: none;
+}
+
+.subHeader select:hover {
+    cursor: pointer;
 }
 
 .grid-item {
@@ -109,6 +116,7 @@ body {
 .fixture-item {
     background-color: #F2994A;
 }
+
 .group-item {
     background-color: #BB6BD9;
     color: #F2F2F2;
@@ -119,12 +127,9 @@ body {
 }
 
 .grid-item-content>.text {
-    top: 50%;
-    -ms-transform: translateY(20%);
-    transform: translateY(20%);
     color: #F2F2F2;
     font-weight: 300;
-    font-size: 1.5rem;
+    font-size: 1.1vw;
 }
 
 .noselect {

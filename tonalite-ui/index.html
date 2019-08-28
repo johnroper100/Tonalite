@@ -152,7 +152,7 @@
                     </div>
                 </div>
             -->
-            <div class="tabHeader">
+            <div class="tabHeader noselect">
                 <div class="row">
                     <div class="col-3 tab" @click="currentTab = 'patch'"
                         v-bind:class="{ active: currentTab == 'patch' }">
@@ -192,14 +192,14 @@
         <div id="fixturesTab" v-if="currentTab =='fixtures'">
             <div class="container-fluid mt-2">
                 <div id="fixturesDisplay" v-if="fixturesDisplay == 'fixtures'">
-                    <grid-layout :layout.sync="fixtures" :col-num="14" :row-height="50" v-bind:is-draggable="layoutMode"
+                    <grid-layout :layout.sync="fixtures" :col-num="14" :row-height="60" v-bind:is-draggable="layoutMode"
                         :is-resizable="false" :vertical-compact="false" :margin="[10, 10]" :use-css-transforms="true"
                         v-bind:class="{inLayout: layoutMode}">
                         <grid-item v-bind:class="{ selected: selectedFixtures.indexOf(fixture.i) >= 0 }"
                             class="grid-item fixture-item" v-for="fixture in fixtures" :x="fixture.x" :y="fixture.y"
                             :w="fixture.w" :h="fixture.h" :i="fixture.i" :key="fixture.i">
                             <div class="grid-item-content noselect" @click="selectFixture(fixture.i)">
-                                <div class="text">{{fixture.i}}</div>
+                                <div class="text">{{fixture.name}}</div>
                             </div>
                         </grid-item>
                     </grid-layout>
