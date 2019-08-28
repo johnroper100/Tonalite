@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <script defer src="all.min.js"></script>
 
     <title>Tonalite UI</title>
 </head>
@@ -93,6 +94,11 @@
                         Selected</div>
                     <div class="btn btn-primary" v-bind:class="{ disabled: selectedFixtures <= 0 }">
                         Open Parameters</div>
+                    <div class="btn btn-primary" @click="deselectAllFixtures()" v-bind:class="{ disabled: selectedFixtures <= 0 }"><span
+                            class="fa-stack" style="vertical-align: middle;font-size: 55%;">
+                            <i class="fas fa-hand-pointer fa-stack-1x"></i>
+                            <i class="far fa-ban fa-stack-2x"></i>
+                        </span></div>
                 </div>
             </div>
             <div class="subHeader d-flex" v-if="currentTab =='patch'">

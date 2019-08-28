@@ -29,11 +29,12 @@ var app = new Vue({
         },
         setLayoutMode: function (value) {
             app.layoutMode = value;
+            app.deselectAllFixtures();
+        },
+        deselectAllFixtures: function () {
             app.selectedFixtures = [];
-            if (app.layoutMode == true) {
-                let f = 0; const fMax = app.fixtures.length; for (; f < fMax; f++) {
-                    app.fixtures[f].selected = false;
-                }
+            let f = 0; const fMax = app.fixtures.length; for (; f < fMax; f++) {
+                app.fixtures[f].selected = false;
             }
         }
     }
