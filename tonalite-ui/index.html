@@ -188,13 +188,24 @@
                         <grid-item v-bind:class="{ selected: selectedFixtures.indexOf(fixture.i) >= 0 }"
                             class="grid-item fixture-item" v-for="fixture in fixtures" :x="fixture.x" :y="fixture.y"
                             :w="fixture.w" :h="fixture.h" :i="fixture.i" :key="fixture.i">
-                            <div class="grid-item-content noselect" v-on:click="selectFixture(fixture)">
+                            <div class="grid-item-content noselect" @click="selectFixture(fixture.i)">
                                 <div class="text">{{fixture.i}}</div>
                             </div>
                         </grid-item>
                     </grid-layout>
                 </div>
-                <div id="groupsDisplay" v-if="fixturesDisplay == 'groups'">g here</div>
+                <div id="groupsDisplay" v-if="fixturesDisplay == 'groups'">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-4 col-md-2 noselect" @click="selectGroup(group.i)" v-for="group in groups"
+                                :key="group.i">
+                                <div class="group-item"
+                                    v-bind:class="{ selected: selectedGroups.indexOf(group.i) >= 0 }">{{group.name}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="cuesTab" v-if="currentTab =='cues'">

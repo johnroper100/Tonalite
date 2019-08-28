@@ -13,18 +13,32 @@ var app = new Vue({
         fixturesDisplay: 'fixtures',
         fixtures: testLayout,
         selectedFixtures: [],
+        selectedGroups: [],
         layoutMode: false,
-        cues: []
+        cues: [],
+        groups: [
+            {"name": "Test group", "i": "0"},
+            {"name": "Test group", "i": "1"},
+            {"name": "Test group", "i": "2"}
+        ],
+        presets: []
     },
     methods: {
-        selectFixture: function (fixture) {
+        selectFixture: function (fixtureID) {
             if (app.layoutMode == false) {
-                if (app.selectedFixtures.indexOf(fixture.i) >= 0) {
-                    app.selectedFixtures.splice(app.selectedFixtures.indexOf(fixture.i), 1);
+                if (app.selectedFixtures.indexOf(fixtureID) >= 0) {
+                    app.selectedFixtures.splice(app.selectedFixtures.indexOf(fixtureID), 1);
                 } else {
-                    app.selectedFixtures.push(fixture.i);
+                    app.selectedFixtures.push(fixtureID);
                 }
             }
+        },
+        selectGroup: function (groupID) {
+                if (app.selectedGroups.indexOf(groupID) >= 0) {
+                    app.selectedGroups.splice(app.selectedGroups.indexOf(groupID), 1);
+                } else {
+                    app.selectedGroups.push(groupID);
+                }
         },
         setLayoutMode: function (value) {
             app.layoutMode = value;
