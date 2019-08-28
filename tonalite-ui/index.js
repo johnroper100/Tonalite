@@ -11,20 +11,40 @@ var app = new Vue({
     data: {
         currentTab: 'fixtures',
         fixturesDisplay: 'fixtures',
-        fixtures: testLayout,
-        selectedFixtures: [],
-        selectedPatchedFixtures: [],
-        selectedGroups: [],
         layoutMode: false,
-        cues: [],
+        fixtures: testLayout,
         groups: [
             { "name": "Test group", "i": "0" },
             { "name": "Test group", "i": "1" },
             { "name": "Test group", "i": "2" }
         ],
-        presets: []
+        cues: [],
+        presets: [],
+        selectedFixtures: [],
+        selectedPatchedFixtures: [],
+        selectedGroups: [],
+        selectedCues: [],
+        selectedPresets: []
     },
     methods: {
+        setLayoutMode: function (value) {
+            app.layoutMode = value;
+            app.deselectAllFixtures();
+        },
+        launchFullScreen: function () {
+            element = document.documentElement;
+            if (element.requestFullScreen) {
+                element.requestFullScreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullScreen) {
+                element.webkitRequestFullScreen();
+            } else if (element.msRequestFullScreen) {
+                element.msRequestFullScreen();
+            } else {
+                element.webkitEnterFullScreen();
+            }
+        },
         selectFixture: function (fixtureID) {
             if (app.layoutMode == false) {
                 if (app.selectedFixtures.indexOf(fixtureID) >= 0) {
@@ -48,9 +68,19 @@ var app = new Vue({
                 app.selectedGroups.push(groupID);
             }
         },
-        setLayoutMode: function (value) {
-            app.layoutMode = value;
-            app.deselectAllFixtures();
+        selectCue: function (cueID) {
+            if (app.selectedCues.indexOf(cueID) >= 0) {
+                app.selectedCues.splice(app.selectedCues.indexOf(cueID), 1);
+            } else {
+                app.selectedCues.push(cueID);
+            }
+        },
+        selectPreset: function (presetID) {
+            if (app.selectedPresets.indexOf(presetID) >= 0) {
+                app.selectedPresets.splice(app.selectedPresets.indexOf(presetID), 1);
+            } else {
+                app.selectedPresets.push(presetID);
+            }
         },
         deselectAllFixtures: function () {
             app.selectedFixtures = [];
@@ -61,19 +91,11 @@ var app = new Vue({
         deselectAllGroups: function () {
             app.selectedGroups = [];
         },
-        launchFullScreen: function () {
-            element = document.documentElement;
-            if (element.requestFullScreen) {
-                element.requestFullScreen();
-            } else if (element.mozRequestFullScreen) {
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullScreen) {
-                element.webkitRequestFullScreen();
-            } else if (element.msRequestFullScreen) {
-                element.msRequestFullScreen();
-            } else {
-                element.webkitEnterFullScreen();
-            }
+        deselectAllCues: function () {
+            app.selectedCues = [];
+        },
+        deselectAllPresets: function () {
+            app.selectedPresets = [];
         }
     }
 });
