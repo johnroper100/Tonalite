@@ -90,12 +90,13 @@
                     <option value="groups">Groups</option>
                 </select>
                 <div class="ml-auto">
-                    <div class="btn btn-success" v-bind:class="{ disabled: selectedFixtures <= 0 }">Group
+                    <div class="btn btn-success" v-bind:class="{ disabled: selectedFixtures.length == 0 }">Group
                         Selected</div>
-                    <div class="btn btn-primary" v-bind:class="{ disabled: selectedFixtures <= 0 }">
+                    <div class="btn btn-primary" v-bind:class="{ disabled: selectedFixtures.length == 0 }">
                         Open Parameters</div>
-                    <div class="btn btn-primary" @click="deselectAllFixtures()" v-bind:class="{ disabled: selectedFixtures <= 0 }"><span
-                            class="fa-stack" style="vertical-align: middle;font-size: 55%;">
+                    <div class="btn btn-primary" @click="deselectAllFixtures()"
+                        v-bind:class="{ disabled: selectedFixtures.length == 0 }"><span class="fa-stack"
+                            style="vertical-align: middle;font-size: 55%;">
                             <i class="fas fa-hand-pointer fa-stack-1x"></i>
                             <i class="far fa-ban fa-stack-2x"></i>
                         </span></div>
@@ -130,7 +131,7 @@
                     <div class="col-md-5 col-lg-2 offset-lg-6 col-12 mt-2 mt-md-0">
                         <div class="btn btn-success" v-bind:class="{ disabled: cues.length == 0 }">Next Cue</div>
                         <div class="btn btn-warning" v-bind:class="{ disabled: cues.length == 0 }">Pause</div>
-                        <div class="btn btn-success" v-bind:class="{ disabled: cues == 0 }">Last Cue</div>
+                        <div class="btn btn-success" v-bind:class="{ disabled: cues.length == 0 }">Last Cue</div>
                     </div>
                 </div>
             -->
@@ -163,9 +164,9 @@
                     <grid-layout :layout.sync="fixtures" :col-num="14" :row-height="50" v-bind:is-draggable="layoutMode"
                         :is-resizable="false" :vertical-compact="false" :margin="[10, 10]" :use-css-transforms="true"
                         v-bind:class="{inLayout: layoutMode}">
-                        <grid-item v-bind:class="{ selected: selectedFixtures.indexOf(fixture.i) >= 0 }" class="grid-item fixture-item"
-                            v-for="fixture in fixtures" :x="fixture.x" :y="fixture.y" :w="fixture.w" :h="fixture.h"
-                            :i="fixture.i" :key="fixture.i">
+                        <grid-item v-bind:class="{ selected: selectedFixtures.indexOf(fixture.i) >= 0 }"
+                            class="grid-item fixture-item" v-for="fixture in fixtures" :x="fixture.x" :y="fixture.y"
+                            :w="fixture.w" :h="fixture.h" :i="fixture.i" :key="fixture.i">
                             <div class="grid-item-content noselect" v-on:click="selectFixture(fixture)">
                                 <div class="text">{{fixture.i}}</div>
                             </div>
