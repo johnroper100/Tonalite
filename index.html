@@ -130,8 +130,8 @@
             </div>
             <ul class="list-group" id="fixtureProfilesList">
               <li class="list-group-item fixtureProfileItem" v-for="profile in fixtureProfiles"
-                v-on:click="addFixture(profile[3], profile[4])">{{profile[0]}} <span v-if="profile[1] != '-'">-
-                  {{profile[1]}}</span> - {{profile[2]}} </li>
+                v-on:click="addFixture(profile[3], profile[4])">{{profile[2]}} {{profile[0]}} <span v-if="profile[1] != '-'">-
+                  {{profile[1]}}</span> </li>
             </ul>
             <div v-if="fixtureProfiles.length == 0" class="text-danger"> There are no fixture profiles in your library!
             </div>
