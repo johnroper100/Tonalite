@@ -60,6 +60,20 @@ var app = new Vue({
         },
         deselectAllGroups: function () {
             app.selectedGroups = [];
+        },
+        launchFullScreen: function () {
+            element = document.documentElement;
+            if (element.requestFullScreen) {
+                element.requestFullScreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullScreen) {
+                element.webkitRequestFullScreen();
+            } else if (element.msRequestFullScreen) {
+                element.msRequestFullScreen();
+            } else {
+                element.webkitEnterFullScreen();
+            }
         }
     }
 });
