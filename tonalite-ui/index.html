@@ -173,7 +173,7 @@
             </div>
         </div>
         <div id="patchTab" v-if="currentTab =='patch'">
-            <div class="container">
+            <div class="container mb-5">
                 <div class="row mt-3">
                     <div class="col-12 patchFixture noselect"
                         v-bind:class="{ selected: selectedPatchedFixtures.indexOf(fixture.i) >= 0 }"
@@ -205,7 +205,7 @@
                     </grid-layout>
                 </div>
                 <div id="groupsDisplay" v-if="fixturesDisplay == 'groups'">
-                    <div class="container">
+                    <div class="container mb-5">
                         <div class="row">
                             <div class="col-4 col-md-2 noselect" @click="selectGroup(group.i)" v-for="group in groups"
                                 :key="group.i">
