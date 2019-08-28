@@ -18,7 +18,10 @@ var app = new Vue({
             { "name": "Test group", "i": "1" },
             { "name": "Test group", "i": "2" }
         ],
-        cues: [],
+        cues: [
+            {"name": "Cue 1", "i": "0"},
+            {"name": "Cue 2", "i": "1"}
+        ],
         presets: [],
         selectedFixtures: [],
         selectedPatchedFixtures: [],

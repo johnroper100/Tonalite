@@ -86,13 +86,13 @@
                 <div class="btn btn-success mr-1">Add Dimmer</div>
                 <div class="btn btn-primary mr-1">Add Device</div>
                 <div class="ml-auto">
-                    <div class="btn btn-primary ml-1" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }">
+                    <div class="btn btn-primary" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }">
                         <i class="fas fa-search"></i> <span class="d-none d-lg-inline-block">Identify</span></div>
-                    <div class="btn btn-danger ml-1" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }"><i
+                    <div class="btn btn-danger" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }"><i
                             class="fas fa-trash"></i> <span class="d-none d-lg-inline-block">Delete</span></div>
-                    <div class="btn btn-success ml-1" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }">
+                    <div class="btn btn-success" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }">
                         <i class="fas fa-copy"></i> <span class="d-none d-lg-inline-block">Copy</span></div>
-                    <div class="btn btn-primary ml-1" @click="deselectAllPatchedFixtures()"
+                    <div class="btn btn-primary" @click="deselectAllPatchedFixtures()"
                         v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }"><span class="fa-stack"
                             style="vertical-align: middle;font-size: 55%;">
                             <i class="fas fa-hand-pointer fa-stack-1x"></i>
@@ -131,15 +131,15 @@
                 </div>
             </div>
             <div class="subHeader d-flex" v-if="currentTab =='cues'">
-                <div class="btn btn-primary mr-1" v-bind:class="{ disabled: cues.length == 0 }"><i class="fas fa-angle-left"></i> Last</div>
+                <div class="btn btn-primary mr-1"><i class="fas fa-angle-left"></i> Last</div>
                 <div class="btn btn-danger mr-1"><i class="fas fa-camera-alt"></i> Record Cue</div>
-                <div class="btn btn-primary mr-1" v-bind:class="{ disabled: cues.length == 0 }">Next <i class="fas fa-angle-right"></i> </div>
+                <div class="btn btn-primary mr-1">Next <i class="fas fa-angle-right"></i> </div>
                 <div class="ml-auto">
-                    <div class="btn btn-danger ml-1" v-bind:class="{ disabled: selectedCues.length == 0 }"><i
-                            class="fas fa-trash"></i> <span class="d-none d-lg-inline-block">Delete</span></div>
-                    <div class="btn btn-success ml-1" v-bind:class="{ disabled: selectedCues.length == 0 }">
+                    <div class="btn btn-danger"><i class="fas fa-trash"></i> <span
+                            class="d-none d-lg-inline-block">Delete</span></div>
+                    <div class="btn btn-success">
                         <i class="fas fa-copy"></i> <span class="d-none d-lg-inline-block">Copy</span></div>
-                    <div class="btn btn-primary ml-1" @click="deselectAllPatchedFixtures()"
+                    <div class="btn btn-primary" @click="deselectAllCues()"
                         v-bind:class="{ disabled: selectedCues.length == 0 }"><span class="fa-stack"
                             style="vertical-align: middle;font-size: 55%;">
                             <i class="fas fa-hand-pointer fa-stack-1x"></i>
@@ -223,10 +223,10 @@
                     </grid-layout>
                 </div>
                 <div id="groupsDisplay" v-if="fixturesDisplay == 'groups'">
-                    <div class="container mb-5">
+                    <div class="container-fluid mb-5">
                         <div class="row">
-                            <div class="col-4 col-md-2 noselect" @click="selectGroup(group.i)" v-for="group in groups"
-                                :key="group.i">
+                            <div class="col-4 col-lg-1 col-md-2 noselect" @click="selectGroup(group.i)"
+                                v-for="group in groups" :key="group.i">
                                 <div class="group-item"
                                     v-bind:class="{ selected: selectedGroups.indexOf(group.i) >= 0 }">{{group.name}}
                                 </div>
@@ -237,7 +237,16 @@
             </div>
         </div>
         <div id="cuesTab" v-if="currentTab =='cues'">
-            cues here
+            <div class="container-fluid mb-5 mt-3">
+                <div class="row">
+                    <div class="col-4 col-lg-1 col-md-2 noselect" @click="selectCue(cue.i)" v-for="cue in cues"
+                        :key="cue.i">
+                        <div class="cue-item" v-bind:class="{ selected: selectedCues.indexOf(cue.i) >= 0 }">
+                            {{cue.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="presetsTab" v-if="currentTab =='presets'">
             presets here
