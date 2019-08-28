@@ -89,13 +89,25 @@
                     <option value="fixtures">Fixtures</option>
                     <option value="groups">Groups</option>
                 </select>
-                <div class="ml-auto">
+                <div class="ml-auto" v-if="fixturesDisplay == 'fixtures'">
                     <div class="btn btn-success" v-bind:class="{ disabled: selectedFixtures.length == 0 }">Group
                         Selected</div>
                     <div class="btn btn-primary" v-bind:class="{ disabled: selectedFixtures.length == 0 }">
                         Open Parameters</div>
                     <div class="btn btn-primary" @click="deselectAllFixtures()"
                         v-bind:class="{ disabled: selectedFixtures.length == 0 }"><span class="fa-stack"
+                            style="vertical-align: middle;font-size: 55%;">
+                            <i class="fas fa-hand-pointer fa-stack-1x"></i>
+                            <i class="far fa-ban fa-stack-2x"></i>
+                        </span></div>
+                </div>
+                <div class="ml-auto" v-if="fixturesDisplay == 'groups'">
+                    <div class="btn btn-success" v-bind:class="{ disabled: selectedGroups.length == 0 }">Group
+                        Selected</div>
+                    <div class="btn btn-primary" v-bind:class="{ disabled: selectedGroups.length == 0 }">
+                        Open Parameters</div>
+                    <div class="btn btn-primary" @click="deselectAllGroups()"
+                        v-bind:class="{ disabled: selectedGroups.length == 0 }"><span class="fa-stack"
                             style="vertical-align: middle;font-size: 55%;">
                             <i class="fas fa-hand-pointer fa-stack-1x"></i>
                             <i class="far fa-ban fa-stack-2x"></i>
