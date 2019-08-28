@@ -135,12 +135,31 @@
                 <div class="btn btn-danger mr-1"><i class="fas fa-camera-alt"></i> Record Cue</div>
                 <div class="btn btn-primary mr-1">Next <i class="fas fa-angle-right"></i> </div>
                 <div class="ml-auto">
+                    <div class="btn btn-primary" v-bind:class="{ disabled: selectedCues.length == 0 }">
+                        Open Settings</div>
                     <div class="btn btn-danger"><i class="fas fa-trash"></i> <span
                             class="d-none d-lg-inline-block">Delete</span></div>
                     <div class="btn btn-success">
                         <i class="fas fa-copy"></i> <span class="d-none d-lg-inline-block">Copy</span></div>
                     <div class="btn btn-primary" @click="deselectAllCues()"
                         v-bind:class="{ disabled: selectedCues.length == 0 }"><span class="fa-stack"
+                            style="vertical-align: middle;font-size: 55%;">
+                            <i class="fas fa-hand-pointer fa-stack-1x"></i>
+                            <i class="far fa-ban fa-stack-2x"></i>
+                        </span> <span class="d-none d-lg-inline-block">Deselect All</span></div>
+                </div>
+            </div>
+            <div class="subHeader d-flex" v-if="currentTab =='presets'">
+                <div class="btn btn-success">Record Preset</div>
+                <div class="ml-auto">
+                    <div class="btn btn-primary" v-bind:class="{ disabled: selectedPresets.length == 0 }">
+                        Open Settings</div>
+                    <div class="btn btn-danger" v-bind:class="{ disabled: selectedPresets.length == 0 }"><i
+                            class="fas fa-trash"></i> <span class="d-none d-lg-inline-block">Delete</span></div>
+                    <div class="btn btn-success" v-bind:class="{ disabled: selectedPresets.length == 0 }">
+                        <i class="fas fa-copy"></i> <span class="d-none d-lg-inline-block">Copy</span></div>
+                    <div class="btn btn-primary" @click="deselectAllPresets()"
+                        v-bind:class="{ disabled: selectedPresets.length == 0 }"><span class="fa-stack"
                             style="vertical-align: middle;font-size: 55%;">
                             <i class="fas fa-hand-pointer fa-stack-1x"></i>
                             <i class="far fa-ban fa-stack-2x"></i>
@@ -249,7 +268,17 @@
             </div>
         </div>
         <div id="presetsTab" v-if="currentTab =='presets'">
-            presets here
+            <div class="container-fluid mb-5 mt-3">
+                <div class="row">
+                    <div class="col-4 col-lg-1 col-md-2 noselect" @click="selectPreset(preset.i)"
+                        v-for="preset in presets" :key="preset.i">
+                        <div class="preset-item"
+                            v-bind:class="{ selected: selectedPresets.indexOf(preset.i) >= 0, presetActive: preset.active == true }">
+                            {{preset.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
