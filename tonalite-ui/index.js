@@ -26,6 +26,15 @@ var app = new Vue({
                     app.selectedFixtures.splice(app.selectedFixtures.indexOf(fixture.i), 1);
                 }
             }
+        },
+        setLayoutMode: function (value) {
+            app.layoutMode = value;
+            app.selectedFixtures = [];
+            if (app.layoutMode == true) {
+                let f = 0; const fMax = app.fixtures.length; for (; f < fMax; f++) {
+                    app.fixtures[f].selected = false;
+                }
+            }
         }
     }
 });

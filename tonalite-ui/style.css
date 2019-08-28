@@ -2,23 +2,28 @@ body {
     background-color: #333333;
     font-family: 'Roboto', sans-serif;
 }
+
 .inLayout {
     background-color: white;
     background-size: 40px 40px;
     background-image: radial-gradient(circle, #000000 1px, rgba(0, 0, 0, 0) 1px);
 }
-.mainNav > .navbar-brand {
+
+.mainNav>.navbar-brand {
     font-weight: 700;
 }
+
 .mainNav .dropdown-toggle::after {
     display: none !important;
 }
+
 .mainNav {
     background-color: #4F4F4F;
     color: #F2F2F2;
     padding-top: 0rem;
     padding-bottom: 0rem;
 }
+
 .mainNav .nav-link {
     font-weight: 300;
     color: #BDBDBD;
@@ -26,30 +31,60 @@ body {
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
 }
+
 .selected {
     box-shadow: 0 0 0 4px #27AE60;
 }
+
 .subHeader {
     background-color: #828282;
     padding: 0.35rem 0.75rem;
 }
-.btn {
+
+.btn, .alert {
     font-weight: 400;
     color: #F2F2F2;
     border-radius: 0.35rem;
     padding: 0.1rem 1rem;
     font-size: 1rem;
+    margin-bottom: 0;
+    outline: none;
+    border: 0px;
 }
+
+.btn.diabled {
+    color: #E0E0E0;
+}
+
+.alert {
+    padding: 0.1rem 2rem;
+}
+
 .btn:hover {
     cursor: pointer;
     color: #F2F2F2;
 }
-.btn-success {
+
+.btn-primary, .alert-primary {
+    background-color: #2D9CDB;
+}
+
+.btn-primary:hover {
+    background-color: #2F80ED;
+}
+
+.btn-success, .alert-success {
     background-color: #27AE60;
 }
+
 .btn-success:hover {
     background-color: #219653;
 }
+
+.alert-info {
+    background-color: #56CCF2;
+}
+
 .subHeader select {
     background-color: #333333;
     font-weight: 400;
@@ -66,14 +101,17 @@ body {
     border-radius: 0.5rem;
     text-align: center;
 }
+
 .grid-item-content {
     width: 100%;
     height: 100%;
 }
+
 .fixture-item {
     background-color: #F2994A;
 }
-.grid-item-content > .text {
+
+.grid-item-content>.text {
     top: 50%;
     -ms-transform: translateY(20%);
     transform: translateY(20%);
@@ -81,42 +119,56 @@ body {
     font-weight: 300;
     font-size: 1.5rem;
 }
+
 .noselect {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
                             supported by Chrome and Opera */
 }
-.switch > .label {
+
+.switch>.label {
     margin-right: 0.1rem;
     display: inline-block;
 }
-.switch > .left {
+
+.switch>.left {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     margin-right: -0.2rem !important;
     padding: 0.007rem 0.75rem;
     display: inline-block;
 }
-.switch > .right {
+
+.switch>.right {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     margin-left: 0 !important;
     padding: 0.007rem 0.75rem;
     display: inline-block;
 }
-.switch > .on {
+
+.switch>.on {
     background-color: #27AE60;
 }
-.switch > .off {
+
+.switch>.off {
     background-color: #333333;
 }
+
 .vue-grid-layout {
     margin-bottom: 5.5rem;
 }
+
 .tab {
     text-align: center;
     color: #828282;
@@ -125,13 +177,16 @@ body {
     padding-top: 0.4rem;
     font-size: 1.25rem;
 }
+
 .tab:hover {
     cursor: pointer;
 }
+
 .tab.active {
     color: #F2F2F2;
     border-bottom: solid 3px #2D9CDB;
 }
+
 .tabHeader {
     background-color: #4F4F4F;
 }

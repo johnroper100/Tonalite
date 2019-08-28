@@ -66,7 +66,7 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="ml-auto">
+                    <div class="ml-auto" v-if="currentTab == 'fixtures' && fixturesDisplay == 'fixtures'">
                         <div class="btn-group">
                             <div class="switch">
                                 <div class="label">
@@ -74,10 +74,10 @@
                                 </div>
                                 <div class="btn left"
                                     v-bind:class="{ on : layoutMode == true, off : layoutMode == false}"
-                                    @click="layoutMode = true">On</div>
+                                    @click="setLayoutMode(true)">On</div>
                                 <div class="btn right"
                                     v-bind:class="{ on : layoutMode == false, off : layoutMode == true}"
-                                    @click="layoutMode=false">Off</div>
+                                    @click="setLayoutMode(false)">Off</div>
                             </div>
                         </div>
                     </div>
@@ -95,48 +95,39 @@
                         Open Parameters</div>
                 </div>
             </div>
-        </div>
-        <div id="patchTab"></div>
-        <div id="fixturesTab" v-if="currentTab =='fixtures'">
-            <div class="container-fluid mt-2">
-                <div id="fixturesDisplay" v-if="fixturesDisplay == 'fixtures'">
-                    <grid-layout :layout.sync="fixtures" :col-num="14" :row-height="50" v-bind:is-draggable="layoutMode"
-                        :is-resizable="false" :vertical-compact="false" :margin="[10, 10]" :use-css-transforms="true"
-                        v-bind:class="{inLayout: layoutMode}">
-                        <grid-item v-bind:class="{ selected: fixture.selected }" class="grid-item fixture-item"
-                            v-for="fixture in fixtures" :x="fixture.x" :y="fixture.y" :w="fixture.w" :h="fixture.h"
-                            :i="fixture.i" :key="fixture.i">
-                            <div class="grid-item-content noselect" v-on:click="selectFixture(fixture)">
-                                <div class="text">{{fixture.i}}</div>
-                            </div>
-                        </grid-item>
-                    </grid-layout>
+            <div class="subHeader d-flex" v-if="currentTab =='patch'">
+                <div class="btn btn-success mr-1">Add Dimmer</div>
+                <div class="btn btn-primary mr-1">Add Device</div>
+                <div class="btn btn-primary disabled">Re-search RDM</div>
+                <div class="ml-auto">
+                    <div class="alert alert-info" role="alert">
+                        RDM support coming soon!
+                    </div>
                 </div>
-                <div id="groupsDisplay" v-if="fixturesDisplay == 'groups'">g here</div>
             </div>
         </div>
         <div class="fixed-bottom">
             <!--
-            <div class="subHeader row" v-if="currentTab =='fixtures'">
-                <div class="col-md-7 col-lg-4 col-12">
-                    <div class="btn btn-danger" v-bind:class="{ disabled: fixtures.length == 0 }">Record Cue</div>
-                    <div class="progress" style="display: inline-block; width: 35%;">
-                        <div class="progress-bar" role="progressbar" style="width: 20%; height: 100%;"
-                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Cue 1</div>
+                <div class="subHeader row" v-if="currentTab =='fixtures'">
+                    <div class="col-md-7 col-lg-4 col-12">
+                        <div class="btn btn-danger" v-bind:class="{ disabled: fixtures.length == 0 }">Record Cue</div>
+                        <div class="progress" style="display: inline-block; width: 35%;">
+                            <div class="progress-bar" role="progressbar" style="width: 20%; height: 100%;"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Cue 1</div>
+                        </div>
+                        <div class="progress" style="display: inline-block; width: 35%;">
+                            <div class="progress-bar" role="progressbar" style="width: 20%; height: 100%;"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Cue 2</div>
+                        </div>
                     </div>
-                    <div class="progress" style="display: inline-block; width: 35%;">
-                        <div class="progress-bar" role="progressbar" style="width: 20%; height: 100%;"
-                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Cue 2</div>
+    
+                    <div class="col-md-5 col-lg-2 offset-lg-6 col-12 mt-2 mt-md-0">
+                        <div class="btn btn-success" v-bind:class="{ disabled: cues.length == 0 }">Next Cue</div>
+                        <div class="btn btn-warning" v-bind:class="{ disabled: cues.length == 0 }">Pause</div>
+                        <div class="btn btn-success" v-bind:class="{ disabled: cues == 0 }">Last Cue</div>
                     </div>
                 </div>
-
-                <div class="col-md-5 col-lg-2 offset-lg-6 col-12 mt-2 mt-md-0">
-                    <div class="btn btn-success" v-bind:class="{ disabled: cues.length == 0 }">Next Cue</div>
-                    <div class="btn btn-warning" v-bind:class="{ disabled: cues.length == 0 }">Pause</div>
-                    <div class="btn btn-success" v-bind:class="{ disabled: cues == 0 }">Last Cue</div>
-                </div>
-            </div>
-        -->
+            -->
             <div class="tabHeader">
                 <div class="row">
                     <div class="col-3 tab" @click="currentTab = 'patch'"
@@ -156,6 +147,33 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="patchTab" v-if="currentTab =='patch'">
+            patch here
+        </div>
+        <div id="fixturesTab" v-if="currentTab =='fixtures'">
+            <div class="container-fluid mt-2">
+                <div id="fixturesDisplay" v-if="fixturesDisplay == 'fixtures'">
+                    <grid-layout :layout.sync="fixtures" :col-num="14" :row-height="50" v-bind:is-draggable="layoutMode"
+                        :is-resizable="false" :vertical-compact="false" :margin="[10, 10]" :use-css-transforms="true"
+                        v-bind:class="{inLayout: layoutMode}">
+                        <grid-item v-bind:class="{ selected: fixture.selected }" class="grid-item fixture-item"
+                            v-for="fixture in fixtures" :x="fixture.x" :y="fixture.y" :w="fixture.w" :h="fixture.h"
+                            :i="fixture.i" :key="fixture.i">
+                            <div class="grid-item-content noselect" v-on:click="selectFixture(fixture)">
+                                <div class="text">{{fixture.i}}</div>
+                            </div>
+                        </grid-item>
+                    </grid-layout>
+                </div>
+                <div id="groupsDisplay" v-if="fixturesDisplay == 'groups'">g here</div>
+            </div>
+        </div>
+        <div id="cuesTab" v-if="currentTab =='cues'">
+            cues here
+        </div>
+        <div id="presetsTab" v-if="currentTab =='presets'">
+            presets here
         </div>
     </div>
 
