@@ -36,22 +36,23 @@
                                 File
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Save Show</a>
-                                <a class="dropdown-item" href="#">Save Show As</a>
+                                <div class="dropdown-item">Open Show</div>
+                                <div class="dropdown-item">Save Show</div>
+                                <div class="dropdown-item" href="#">Save Show As</div>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Update Console Firmware</a>
+                                <div class="dropdown-item">Console Settings</div>
+                                <div class="dropdown-item">Update Console Firmware</div>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Edit
+                                View
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#" @click="launchFullScreen()">Full Screen</a>
-                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-item" @click="launchFullScreen()">Full Screen</div>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="/presets">Presets View</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -60,7 +61,7 @@
                                 Help
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Documentation</a>
+                                <a class="dropdown-item" href="/docs">Documentation</a>
                             </div>
                         </li>
                     </ul>
