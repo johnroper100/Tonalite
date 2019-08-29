@@ -30,7 +30,8 @@ var app = new Vue({
         selectedPatchedFixtures: [],
         selectedGroups: [],
         selectedCues: [],
-        selectedPresets: []
+        selectedPresets: [],
+        selectedProfileDevice: ''
     },
     methods: {
         setLayoutMode: function (value) {
@@ -102,6 +103,12 @@ var app = new Vue({
         },
         deselectAllPresets: function () {
             app.selectedPresets = [];
+        },
+        closeAddDeviceModal: function () {
+            app.selectedProfileDevice = '';
+            app.fixtureProfileManufacturers = [];
+            app.fixtureProfileModes = [];
+            $("#addDeviceModal").modal('hide');
         }
     }
 });
