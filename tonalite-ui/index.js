@@ -31,7 +31,12 @@ var app = new Vue({
         selectedGroups: [],
         selectedCues: [],
         selectedPresets: [],
-        selectedProfileDevice: ''
+        selectedProfileDevice: '',
+        selectedProfileManufacturer: '',
+        selectedProfileMode: '',
+        fixtureProfileManufacturers: ["hi"],
+        fixtureProfileModes: [],
+        fixtureProfiles: []
     },
     methods: {
         setLayoutMode: function (value) {
@@ -108,7 +113,23 @@ var app = new Vue({
             app.selectedProfileDevice = '';
             app.fixtureProfileManufacturers = [];
             app.fixtureProfileModes = [];
+            app.fixtureProfiles = [];
             $("#addDeviceModal").modal('hide');
+        },
+        selectFixtureProfileManufacturer: function(manufacturer) {
+            app.fixtureProfileModes = [];
+            app.fixtureProfiles = ["test"];
+            app.selectedProfileManufacturer = manufacturer;
+            app.selectedProfileDevice = '';
+            app.selectedProfileMode = '';
+        },
+        selectFixtureProfile: function(profile) {
+            app.fixtureProfileModes = ["fun"];
+            app.selectedProfileDevice = profile;
+            app.selectedProfileMode = '';
+        },
+        selectFixtureProfileMode: function(mode) {
+            app.selectedProfileMode = mode;
         }
     }
 });

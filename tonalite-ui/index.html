@@ -273,7 +273,7 @@
             </div>
         </div>
         <div class="modal" tabindex="-1" role="dialog" id="addDeviceModal">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" v-show="selectedProfileDevice == 'dimmer'">
@@ -289,15 +289,30 @@
                     <div class="modal-body">
                         <div v-if="selectedProfileDevice != 'dimmer'">
                             <div class="row">
-                                <div class="col-4">Manufacturers</div>
-                                <div class="col-4">Fixtures</div>
-                                <div class="col-4">Modes</div>
+                                <div class="col-4">
+                                    Manufacturer:
+                                    <ul class="list-group">
+                                        <li class="list-group-item" v-for="manufacturer in fixtureProfileManufacturers" :key="manufacturer" @click="selectFixtureProfileManufacturer(manufacturer)" v-bind:class="{ textselected: selectedProfileManufacturer == manufacturer }">{{manufacturer}}</li>
+                                    </ul>
+                                </div>
+                                <div class="col-4">
+                                    Fixture:
+                                    <ul class="list-group">
+                                        <li class="list-group-item" v-for="profile in fixtureProfiles" :key="profile" @click="selectFixtureProfile(profile)" v-bind:class="{textselected: selectedProfileDevice == profile}">{{profile}}</li>
+                                    </ul>
+                                </div>
+                                <div class="col-4">
+                                    Mode:
+                                    <ul class="list-group">
+                                        <li class="list-group-item" v-for="mode in fixtureProfileModes" :key="mode" @click="selectFixtureProfileMode(mode)" v-bind:class="{textselected: selectedProfileMode == mode}">{{mode}}</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="closeAddDeviceModal()">Cancel</button>
-                        <button type="button" class="btn btn-primary">Proceed</button>
+                        <button type="button" class="btn btn-primary" v-if="selectedProfileMode != ''">Proceed</button>
                     </div>
                 </div>
             </div>
