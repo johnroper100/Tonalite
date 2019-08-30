@@ -1,53 +1,16 @@
 {
-    "date": "2019-04-08T14:28:40Z",
+    "date": "2019-08-30T18:53:33Z",
     "editorVersion": "1.1.1.9.0.4",
     "personalities": [
         {
             "colortable": "77A82F8A-9B24-4C3F-98FC-B6A29FB1AAE6",
-            "dcid": "75ED513B-CA5D-441B-A5AA-96381FD3E005",
+            "dcid": "74D38B0D-FCF6-41DB-98A6-3022BA9C6154",
             "hasIntensity": false,
             "manufacturerName": "PSL",
             "maxOffset": 8,
-            "modeName": "9 Channel",
-            "modelName": "Mini LED",
+            "modeName": "9CH",
+            "modelName": "MINI LED",
             "parameters": [
-                {
-                    "coarse": 2,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Strobe",
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 7,
-                            "label": "Off"
-                        },
-                        {
-                            "begin": 8,
-                            "default": 71,
-                            "end": 134,
-                            "label": "Master Dimmer"
-                        },
-                        {
-                            "begin": 135,
-                            "default": 187,
-                            "end": 239,
-                            "label": "Strobe from slow to fast"
-                        },
-                        {
-                            "begin": 240,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open"
-                        }
-                    ],
-                    "size": 8,
-                    "snap": false,
-                    "type": 4
-                },
                 {
                     "coarse": 0,
                     "fadeWithIntensity": false,
@@ -69,6 +32,43 @@
                     "size": 8,
                     "snap": false,
                     "type": 2
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 7,
+                            "label": "Off"
+                        },
+                        {
+                            "begin": 8,
+                            "default": 8,
+                            "end": 134,
+                            "label": "Master Dimmer"
+                        },
+                        {
+                            "begin": 135,
+                            "default": 187,
+                            "end": 239,
+                            "label": "Strobe from slow to fast"
+                        },
+                        {
+                            "begin": 240,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -134,10 +134,22 @@
                     "name": "Reset",
                     "ranges": [
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 149,
+                            "label": "No function"
+                        },
+                        {
                             "begin": 150,
                             "default": 175,
                             "end": 200,
-                            "label": "Active"
+                            "label": "Reset"
+                        },
+                        {
+                            "begin": 201,
+                            "default": 255,
+                            "end": 255,
+                            "label": "No function"
                         }
                     ],
                     "size": 8,
@@ -148,50 +160,13 @@
         },
         {
             "colortable": "77A82F8A-9B24-4C3F-98FC-B6A29FB1AAE6",
-            "dcid": "3A3CA40F-B05F-499E-B8ED-0AFB5BBBE507",
+            "dcid": "4E9BCB00-2708-422B-A26F-E44723CE599A",
             "hasIntensity": false,
             "manufacturerName": "PSL",
             "maxOffset": 13,
-            "modeName": "14 Channel",
-            "modelName": "Mini LED",
+            "modeName": "14CH",
+            "modelName": "MINI LED",
             "parameters": [
-                {
-                    "coarse": 5,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Strobe",
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 7,
-                            "label": "Off"
-                        },
-                        {
-                            "begin": 8,
-                            "default": 71,
-                            "end": 134,
-                            "label": "Master dimmer"
-                        },
-                        {
-                            "begin": 135,
-                            "default": 187,
-                            "end": 239,
-                            "label": "Strobe from slow to fast"
-                        },
-                        {
-                            "begin": 240,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open"
-                        }
-                    ],
-                    "size": 8,
-                    "snap": false,
-                    "type": 4
-                },
                 {
                     "coarse": 0,
                     "fadeWithIntensity": false,
@@ -215,6 +190,43 @@
                     "size": 16,
                     "snap": false,
                     "type": 2
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 7,
+                            "label": "Off"
+                        },
+                        {
+                            "begin": 8,
+                            "default": 8,
+                            "end": 134,
+                            "label": "Master Dimmer"
+                        },
+                        {
+                            "begin": 135,
+                            "default": 187,
+                            "end": 239,
+                            "label": "Strobe from slow to fast"
+                        },
+                        {
+                            "begin": 240,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 6,
@@ -280,10 +292,22 @@
                     "name": "Reset",
                     "ranges": [
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 149,
+                            "label": "No function"
+                        },
+                        {
                             "begin": 150,
                             "default": 175,
                             "end": 200,
-                            "label": "Active"
+                            "label": "Reset"
+                        },
+                        {
+                            "begin": 201,
+                            "default": 255,
+                            "end": 255,
+                            "label": "No function"
                         }
                     ],
                     "size": 8,
@@ -302,13 +326,13 @@
                             "begin": 0,
                             "default": 0,
                             "end": 7,
-                            "label": "Mix color depend on 7-10ch"
+                            "label": "Manual color mixing"
                         },
                         {
                             "begin": 8,
-                            "default": 119,
+                            "default": 8,
                             "end": 231,
-                            "label": "Macro color"
+                            "label": "Macro colors"
                         },
                         {
                             "begin": 232,
@@ -338,29 +362,29 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "Color control",
+                    "name": "Control Macros",
                     "ranges": [
                         {
                             "begin": 0,
                             "default": 0,
                             "end": 7,
-                            "label": "Control freely depend on 1-12ch"
+                            "label": "No function"
                         },
                         {
                             "begin": 8,
-                            "default": 35,
+                            "default": 63,
                             "end": 63,
                             "label": "Fast running"
                         },
                         {
                             "begin": 64,
-                            "default": 95,
+                            "default": 127,
                             "end": 127,
                             "label": "Slow running"
                         },
                         {
                             "begin": 128,
-                            "default": 159,
+                            "default": 191,
                             "end": 191,
                             "label": "Sound 1"
                         },
