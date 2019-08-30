@@ -188,7 +188,7 @@ socket.on('fixtureParameters', function (msg) {
         chanString += "<label class=\"ml-2\" ";
         chanString += "for=\"" + msg.parameters[c].type + "\">" + msg.parameters[c].name + ":</label><input type=\"range\" class=\"custom-range\" id=\"" + msg.parameters[c].type + "\" max=\"" + msg.parameters[c].max + "\" min=\"" + msg.parameters[c].min + "\" value=\"" + msg.parameters[c].value + "\" oninput=\"updateFixtureParameterValue(this, '" + msg.id + "', " + c + ")\">";
         if ('ranges' in msg.parameters[c] && msg.parameters[c].ranges.length > 0) {
-            chanString += "<div class=\"channelRanges row\">";
+            chanString += "<div class=\"channelRanges row flex-nowrap\">";
             var r = 0; const rMax = msg.parameters[c].ranges.length; for (; r < rMax; r++) {
                 chanString += "<div class=\"channelRange col-2 col-md-1 mr-1 bg-danger\" onclick=\"useParameterRange(this, '" + msg.id + "', " + c + ", " + r + ")\">" + msg.parameters[c].ranges[r].label + "</div>";
             }
