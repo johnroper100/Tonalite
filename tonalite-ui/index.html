@@ -75,8 +75,6 @@
                 </div>
             </nav>
             <div class="subHeader d-flex" v-if="currentTab =='patch'">
-                <div class="btn btn-success mr-1" data-toggle="modal" data-target="#addDeviceModal"
-                    @click="selectedProfileDevice = 'dimmer'">Add Dimmer</div>
                 <div class="btn btn-success mr-1" data-toggle="modal" data-target="#addDeviceModal">Add Device</div>
                 <div class="ml-auto">
                     <div class="btn btn-primary" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }">
@@ -277,18 +275,15 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" v-show="selectedProfileDevice == 'dimmer'">
-                            Add A Dimmer
-                        </h5>
-                        <h5 class="modal-title" v-show="selectedProfileDevice != 'dimmer'">
-                            Add A Device
+                        <h5 class="modal-title">
+                            Add Device(s)
                         </h5>
                         <button type="button" class="close" aria-label="Close" @click="closeAddDeviceModal()">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div v-if="selectedProfileDevice != 'dimmer' && showFixtureProfilesOptions != true">
+                        <div v-if="showFixtureProfilesOptions != true">
                             <div class="row">
                                 <div class="col-4">
                                     Manufacturer:
@@ -318,12 +313,36 @@
                                 </div>
                             </div>
                         </div>
+                        <div v-if="showFixtureProfilesOptions == true">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="fixtureProfileCount">Count:</label>
+                                        <input type="number" class="form-control" id="fixtureProfileCount" value="1">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="fixtureProfileUniverse">DMX Universe:</label>
+                                        <input type="number" class="form-control" id="fixtureProfileUniverse" value="1">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="fixtureProfileAddress">DMX Address:</label>
+                                        <input type="number" class="form-control" id="fixtureProfileAddress" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="closeAddDeviceModal()">Cancel</button>
                         <button type="button" class="btn btn-primary"
                             v-if="selectedProfileMode != '' && showFixtureProfilesOptions != true"
                             @click="showFixtureProfilesOptions = true">Proceed</button>
+                        <button type="button" class="btn btn-success"
+                            v-if="selectedProfileMode != '' && showFixtureProfilesOptions == true">Create</button>
                     </div>
                 </div>
             </div>
