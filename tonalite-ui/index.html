@@ -11,8 +11,8 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
-    <script defer src="all.min.js"></script>
+    <link rel="stylesheet" href="static/css/style.css">
+    <script defer src="static/js/all.min.js"></script>
 
     <title>Tonalite UI</title>
 </head>
@@ -80,7 +80,7 @@
                     <div class="btn btn-primary" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }">
                         <i class="fas fa-search"></i> <span class="d-none d-lg-inline-block">Identify</span></div>
                     <div class="btn btn-danger" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }"><i
-                            class="fas fa-trash"></i> <span class="d-none d-lg-inline-block">Delete</span></div>
+                        class="fas fa-trash"></i> <span class="d-none d-lg-inline-block">Delete</span></div>
                     <div class="btn btn-success" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }">
                         <i class="fas fa-copy"></i> <span class="d-none d-lg-inline-block">Copy</span></div>
                     <div class="btn btn-primary" @click="deselectAllPatchedFixtures()"
@@ -361,8 +361,9 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="vue-grid-layout.umd.min.js"></script>
-    <script src="index.js"></script>
+    <script src="static/js/vue-grid-layout.umd.min.js"></script>
+    <script src="static/js/socket.io.js"></script>
+    <script src="static/js/script.js"></script>
 </body>
 
 </html>
