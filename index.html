@@ -163,19 +163,19 @@
             </ul>
             <div class="tab-content" v-if="fixtureEffects.length > 0">
               <div class="tab-pane active" id="colorEffects" role="tabpanel" aria-labelledby="colorEffects-tab">
-                <ul class="list-group" id="fixtureEffectsListColor">
+                <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
                   <li class="list-group-item fixtureProfileItem" v-for="effect in fixtureEffects"
                     v-if="effect[1] == 'Color'" v-on:click="addEffect(effect[2])">{{effect[0]}} </li>
                 </ul>
               </div>
               <div class="tab-pane" id="intensityEffects" role="tabpanel" aria-labelledby="intensityEffects-tab">
-                <ul class="list-group" id="fixtureEffectsListIntensity">
+                <ul class="list-group fixtureEffectsList" id="fixtureEffectsListIntensity">
                   <li class="list-group-item fixtureProfileItem" v-for="effect in fixtureEffects"
                     v-if="effect[1] == 'Intensity'" v-on:click="addEffect(effect[2])">{{effect[0]}} </li>
                 </ul>
               </div>
               <div class="tab-pane" id="shapeEffects" role="tabpanel" aria-labelledby="shapeEffects-tab">
-                <ul class="list-group" id="fixtureEffectsListShape">
+                <ul class="list-group fixtureEffectsList" id="fixtureEffectsListShape">
                   <li class="list-group-item fixtureProfileItem" v-for="effect in fixtureEffects"
                     v-if="effect[1] == 'Shape'" v-on:click="addEffect(effect[2])">{{effect[0]}} </li>
                 </ul>
@@ -186,7 +186,7 @@
                   <option v-for="(parameter, index) in fixtureParameters" :key="index" :value="parameter.name">
                     {{parameter.name}}</option>
                 </select>
-                <ul class="list-group" id="fixtureEffectsListParameter">
+                <ul class="list-group fixtureEffectsList" id="fixtureEffectsListParameter">
                   <li class="list-group-item fixtureProfileItem" v-for="effect in fixtureEffects"
                     v-if="effect[1] == 'Parameter'" v-on:click="addEffect(effect[2])">{{effect[0]}} </li>
                 </ul>

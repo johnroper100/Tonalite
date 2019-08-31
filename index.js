@@ -1134,6 +1134,7 @@ io.on('connection', function (socket) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
                 if (fixture.effects.some(e => e.id === msg.effectID)) {
                     fixture.effects.splice(fixture.effects.map(el => el.id).indexOf(msg.effectID), 1);
+                    fixture.hasActiveEffects = checkFixtureActiveEffects(fixture.effects);
                     let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
                         fixture.parameters[p].displayValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 100);
                         io.sockets.emit('fixtures', cleanFixtures());
