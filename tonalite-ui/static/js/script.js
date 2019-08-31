@@ -1,41 +1,23 @@
 var socket = io('http://' + document.domain + ':' + location.port);
-var testLayout = [
-    { "x": 0, "y": 0, "w": 1, "h": 1, "i": "0", "name": "Martin Mac 360", "mode": "Mode 1", "universe": 0, "coarse": 1, channels: ["hi"] },
-    { "x": 1, "y": 0, "w": 1, "h": 1, "i": "1", "name": "Martin Mac 360", "mode": "Mode 1", "universe": 0, "coarse": 2, channels: ["hi"] },
-    { "x": 2, "y": 0, "w": 1, "h": 1, "i": "2", "name": "Martin Mac 360", "mode": "Mode 1", "universe": 0, "coarse": 3, channels: ["hi"] },
-    { "x": 3, "y": 0, "w": 1, "h": 1, "i": "3", "name": "Martin Mac 360", "mode": "Mode 1", "universe": 0, "coarse": 4, channels: ["hi"] },
-    { "x": 4, "y": 0, "w": 1, "h": 1, "i": "4", "name": "Martin Mac 360", "mode": "Mode 1", "universe": 0, "coarse": 5, channels: ["hi"] },
-    { "x": 5, "y": 0, "w": 1, "h": 1, "i": "5", "name": "Martin Mac 360", "mode": "Mode 1", "universe": 0, "coarse": 6, channels: ["hi"] }
-];
 var app = new Vue({
     el: '#app',
     data: {
         currentTab: 'fixtures',
         fixturesDisplay: 'fixtures',
         layoutMode: false,
-        fixtures: testLayout,
-        groups: [
-            { "name": "Test group", "i": "0" },
-            { "name": "Test group", "i": "1" },
-            { "name": "Test group", "i": "2" }
-        ],
-        cues: [
-            {"name": "Cue 1", "i": "0"},
-            {"name": "Cue 2", "i": "1"}
-        ],
-        presets: [
-            {"name": "Preset 1", "i": "0", "active": false},
-            {"name": "Preset 2", "i": "1", "active": true}
-        ],
+        fixtures: [],
+        groups: [],
+        cues: [],
+        presets: [],
         selectedFixtures: [],
         selectedPatchedFixtures: [],
         selectedGroups: [],
         selectedCues: [],
         selectedPresets: [],
-        selectedProfileDevice: '',
+        selectedProfile: '',
         selectedProfileManufacturer: '',
         selectedProfileMode: '',
-        fixtureProfileManufacturers: ["hi"],
+        fixtureProfileManufacturers: [],
         fixtureProfileModes: [],
         fixtureProfiles: [],
         showFixtureProfilesOptions: false
@@ -112,27 +94,49 @@ var app = new Vue({
             app.selectedPresets = [];
         },
         closeAddDeviceModal: function () {
-            app.selectedProfileDevice = '';
+            app.selectedProfile = '';
+            app.selectedProfileManufacturer = '';
+            app.selectedProfileMode = '';
             app.fixtureProfileManufacturers = [];
             app.fixtureProfileModes = [];
             app.fixtureProfiles = [];
             app.showFixtureProfilesOptions = false;
             $("#addDeviceModal").modal('hide');
         },
-        selectFixtureProfileManufacturer: function(manufacturer) {
+        selectFixtureProfileManufacturer: function (manufacturer) {
             app.fixtureProfileModes = [];
-            app.fixtureProfiles = ["test"];
             app.selectedProfileManufacturer = manufacturer;
-            app.selectedProfileDevice = '';
+            app.selectedProfile = '';
             app.selectedProfileMode = '';
+            socket.emit('getFixtureProfiles', app.selectedProfileManufacturer);
         },
-        selectFixtureProfile: function(profile) {
-            app.fixtureProfileModes = ["fun"];
-            app.selectedProfileDevice = profile;
+        selectFixtureProfile: function (profile) {
+            app.fixtureProfileModes = [];
+            app.selectedProfile = profile;
             app.selectedProfileMode = '';
+            socket.emit('getFixtureProfileModes', {"manufacturer": app.selectedProfileManufacturer, "profile": app.selectedProfile});
         },
-        selectFixtureProfileMode: function(mode) {
+        selectFixtureProfileMode: function (mode) {
             app.selectedProfileMode = mode;
+        },
+        getFixtureProfileManufacturers: function () {
+            socket.emit('getFixtureProfileManufacturers');
         }
     }
+});
+
+socket.on('fixtures', function (msg) {
+    app.fixtures = msg;
+});
+
+socket.on('fixtureProfilesManufacturers', function (msg) {
+    app.fixtureProfileManufacturers = msg;
+});
+
+socket.on('fixtureProfiles', function (msg) {
+    app.fixtureProfiles = msg;
+});
+
+socket.on('fixtureProfileModes', function (msg) {
+    app.fixtureProfileModes = msg;
 });
