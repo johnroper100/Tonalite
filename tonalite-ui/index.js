@@ -36,7 +36,8 @@ var app = new Vue({
         selectedProfileMode: '',
         fixtureProfileManufacturers: ["hi"],
         fixtureProfileModes: [],
-        fixtureProfiles: []
+        fixtureProfiles: [],
+        showFixtureProfilesOptions: false
     },
     methods: {
         setLayoutMode: function (value) {
@@ -114,6 +115,7 @@ var app = new Vue({
             app.fixtureProfileManufacturers = [];
             app.fixtureProfileModes = [];
             app.fixtureProfiles = [];
+            app.showFixtureProfilesOptions = false;
             $("#addDeviceModal").modal('hide');
         },
         selectFixtureProfileManufacturer: function(manufacturer) {
