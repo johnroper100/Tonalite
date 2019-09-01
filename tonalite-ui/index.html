@@ -208,10 +208,10 @@
                         v-bind:class="{ selected: selectedPatchedFixtures.indexOf(fixture.i) >= 0 }"
                         v-for="fixture in fixtures" @click="selectPatchedFixture(fixture.i)" :key="fixture.i">
                         Name: <span class="light">{{fixture.name}}</span>
-                        Mode: <span class="light">{{fixture.mode}}</span>
+                        Mode: <span class="light">{{fixture.modeName}}</span>
                         DMX Universe: <span class="light">{{fixture.universe}}</span>
-                        DMX Address: <span class="light">{{fixture.coarse}}</span>
-                        Channels: <span class="light">{{fixture.channels.length}}</span>
+                        DMX Address: <span class="light">{{fixture.address}}</span>
+                        Parameters: <span class="light">{{fixture.parameters.length}}</span>
                         <div class="btn btn-primary float-right">
                             <i class="fas fa-edit"></i> <span class="d-none d-lg-inline-block">Edit</span></div>
                     </div>
@@ -278,6 +278,9 @@
                     <div class="modal-header">
                         <h5 class="modal-title">
                             Add Device(s)
+                            <small v-if="selectedProfileMode != '' && showFixtureProfilesOptions == true">Selected
+                                fixture: {{selectedProfileManufacturer}} {{selectedProfile}}
+                                {{selectedProfileMode}}</small>
                         </h5>
                         <button type="button" class="close" aria-label="Close" @click="closeAddDeviceModal()">
                             <span aria-hidden="true">&times;</span>
@@ -307,9 +310,10 @@
                                 <div class="col-4">
                                     Mode:
                                     <ul class="list-group list-group-scroll">
-                                        <li class="list-group-item" v-for="mode in fixtureProfileModes" :key="mode"
+                                        <li class="list-group-item" v-for="mode in fixtureProfileModes" :key="mode.mode"
                                             @click="selectFixtureProfileMode(mode)"
-                                            v-bind:class="{textselected: selectedProfileMode == mode}">{{mode}}</li>
+                                            v-bind:class="{textselected: selectedProfileMode == mode.mode}">
+                                            {{mode.mode}}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -319,19 +323,22 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="fixtureProfileCount">Count:</label>
-                                        <input type="number" class="form-control" id="fixtureProfileCount" value="1">
+                                        <input type="number" class="form-control" id="fixtureProfileCount"
+                                            v-model="fixtureProfileCreationCount" min="1">
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="fixtureProfileUniverse">DMX Universe:</label>
-                                        <input type="number" class="form-control" id="fixtureProfileUniverse" value="1">
+                                        <input type="number" class="form-control" id="fixtureProfileUniverse"
+                                            v-model="fixtureProfileCreationUniverse" min="1">
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="fixtureProfileAddress">DMX Address:</label>
-                                        <input type="number" class="form-control" id="fixtureProfileAddress" value="1">
+                                        <input type="number" class="form-control" id="fixtureProfileAddress"
+                                            v-model="fixtureProfileCreationAddress" min="1">
                                     </div>
                                 </div>
                             </div>
@@ -342,8 +349,12 @@
                         <button type="button" class="btn btn-primary"
                             v-if="selectedProfileMode != '' && showFixtureProfilesOptions != true"
                             @click="showFixtureProfilesOptions = true">Proceed</button>
+                        <button type="button" class="btn btn-primary"
+                            v-if="selectedProfileMode != '' && showFixtureProfilesOptions == true"
+                            @click="showFixtureProfilesOptions = false">Back</button>
                         <button type="button" class="btn btn-success"
-                            v-if="selectedProfileMode != '' && showFixtureProfilesOptions == true">Create</button>
+                            v-if="selectedProfileMode != '' && showFixtureProfilesOptions == true"
+                            @click="addDevice">Create</button>
                     </div>
                 </div>
             </div>

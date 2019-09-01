@@ -8,7 +8,7 @@ require.extensions['.jlib'] = require.extensions['.json'];
 
 artnet = require('artnet')({ sendAll: true });
 
-fixtures = [{ "x": 0, "y": 0, "w": 1, "h": 1, "i": "5", "name": "Martin Mac 360", "mode": "Mode 1", "universe": 0, "coarse": 6, channels: ["hi"] }];
+fixtures = [];
 
 http.listen(3000, function () {
     console.log(`Tonalite DMX Lighting Control System`);
@@ -32,6 +32,10 @@ app.get('/open-source-licenses', function (req, res) {
 app.get('/showFile', function (req, res) {
     res.download(process.cwd() + '/show.json', moment().format() + '.tonalite', { headers: { 'Content-Disposition': 'attachment', 'Content-Type': 'application/octet-stream' } });
 });
+
+function generateID() {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+};
 
 io.on('connection', function (socket) {
     socket.emit('fixtures', fixtures);
@@ -76,12 +80,31 @@ io.on('connection', function (socket) {
                 let p = 0; const pMax = fixture.personalities.length; for (; p < pMax; p++) {
                     if (fixture.personalities[p].manufacturerName == msg.manufacturer && fixture.personalities[p].modelName == msg.profile) {
                         if (modes.indexOf(fixture.personalities[p].modeName) < 0) {
-                            modes.push(fixture.personalities[p].modeName);
+                            modes.push({ "mode": fixture.personalities[p].modeName, "file": files[f] });
                         }
                     }
                 }
             }
             socket.emit('fixtureProfileModes', modes);
         });
+    });
+
+    socket.on('addDevice', function (msg) {
+        var fixtureFile = require(process.cwd() + "/fixtures/" + msg.file);
+        let p = 0; const pMax = fixtureFile.personalities.length; for (; p < pMax; p++) {
+            if (fixtureFile.personalities[p].modelName == msg.profile && fixtureFile.personalities[p].modeName == msg.mode && fixtureFile.personalities[p].manufacturerName == msg.manufacturer) {
+                var fixture = JSON.parse(JSON.stringify(fixtureFile.personalities[p]));
+                fixture.i = generateID();
+                fixture.x = 0;
+                fixture.y = 0;
+                fixture.w = 1;
+                fixture.h = 1;
+                fixture.name = fixture.modelName;
+                fixture.address = parseInt(msg.address);
+                fixture.universe = parseInt(msg.universe);
+                fixtures.push(fixture);
+            }
+        }
+        io.emit('fixtures', fixtures);
     });
 });

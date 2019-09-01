@@ -17,10 +17,14 @@ var app = new Vue({
         selectedProfile: '',
         selectedProfileManufacturer: '',
         selectedProfileMode: '',
+        selectedProfileFile: '',
         fixtureProfileManufacturers: [],
         fixtureProfileModes: [],
         fixtureProfiles: [],
-        showFixtureProfilesOptions: false
+        showFixtureProfilesOptions: false,
+        fixtureProfileCreationCount: 1,
+        fixtureProfileCreationUniverse: 1,
+        fixtureProfileCreationAddress: 1
     },
     methods: {
         setLayoutMode: function (value) {
@@ -101,6 +105,10 @@ var app = new Vue({
             app.fixtureProfileModes = [];
             app.fixtureProfiles = [];
             app.showFixtureProfilesOptions = false;
+            app.fixtureProfileCreationAddress = 1;
+            app.fixtureProfileCreationCount = 1;
+            app.fixtureProfileCreationUniverse = 1;
+            app.selectedProfileFile = '';
             $("#addDeviceModal").modal('hide');
         },
         selectFixtureProfileManufacturer: function (manufacturer) {
@@ -108,19 +116,26 @@ var app = new Vue({
             app.selectedProfileManufacturer = manufacturer;
             app.selectedProfile = '';
             app.selectedProfileMode = '';
+            app.selectedProfileFile = '';
             socket.emit('getFixtureProfiles', app.selectedProfileManufacturer);
         },
         selectFixtureProfile: function (profile) {
             app.fixtureProfileModes = [];
             app.selectedProfile = profile;
             app.selectedProfileMode = '';
-            socket.emit('getFixtureProfileModes', {"manufacturer": app.selectedProfileManufacturer, "profile": app.selectedProfile});
+            app.selectedProfileFile = '';
+            socket.emit('getFixtureProfileModes', { "manufacturer": app.selectedProfileManufacturer, "profile": app.selectedProfile });
         },
         selectFixtureProfileMode: function (mode) {
-            app.selectedProfileMode = mode;
+            app.selectedProfileMode = mode.mode;
+            app.selectedProfileFile = mode.file;
         },
         getFixtureProfileManufacturers: function () {
             socket.emit('getFixtureProfileManufacturers');
+        },
+        addDevice: function () {
+            socket.emit('addDevice', { "manufacturer": app.selectedProfileManufacturer, "profile": app.selectedProfile, "mode": app.selectedProfileMode, "file": app.selectedProfileFile, "count": app.fixtureProfileCreationCount, "universe": app.fixtureProfileCreationUniverse, "address": app.fixtureProfileCreationAddress })
+            app.closeAddDeviceModal();
         }
     }
 });
