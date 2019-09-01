@@ -111,7 +111,6 @@ io.on('connection', function (socket) {
                     let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
                         fixture.parameters[c].value = fixture.parameters[c].home;
                         fixture.parameters[c].displayValue = fixture.parameters[c].home;
-                        console.log(fixture.parameters[c]);
                     }
                     fixtures.push(fixture);
                 }
