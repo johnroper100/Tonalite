@@ -137,9 +137,21 @@ io.on('connection', function (socket) {
         let id = 0; const idMax = fixtureIDs.length; for (; id < idMax; id++) {
             if (fixtures.some(e => e.i === fixtureIDs[id])) {
                 fixtures.splice(fixtures.map(el => el.i).indexOf(fixtureIDs[id]), 1);
+                let g = groups.length - 1; const gMax = 0; for (; gMax <= g; g--) {
+                    var group = groups[g];
+                    let fid = 0; const fidMax = group.fixtures.length; for (; fid < fidMax; fid++) {
+                        if (group.fixtures[fid] == fixtureIDs[id]) {
+                            group.fixtures.splice(fid, 1);
+                        }
+                    }
+                    if (group.fixtures.length == 0) {
+                        groups.splice(g, 1);
+                    }
+                }
             }
         }
         io.emit('fixtures', fixtures);
+        io.emit('groups', groups);
     });
 
     socket.on('groupFixtures', function (fixtureIDs) {
@@ -173,6 +185,15 @@ io.on('connection', function (socket) {
         }
         if (newGroup.fixtures.length > 0) {
             groups.push(newGroup);
+        }
+        io.emit('groups', groups);
+    });
+
+    socket.on('deleteGroups', function (groupIDs) {
+        let id = 0; const idMax = groupIDs.length; for (; id < idMax; id++) {
+            if (groups.some(e => e.i === groupIDs[id])) {
+                groups.splice(groups.map(el => el.i).indexOf(groupIDs[id]), 1);
+            }
         }
         io.emit('groups', groups);
     });

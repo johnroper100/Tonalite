@@ -161,6 +161,11 @@ var app = new Vue({
             if (app.selectedGroups.length > 0) {
                 socket.emit('groupGroups', app.selectedGroups);
             }
+        },
+        deleteSelectedGroups: function () {
+            if (app.selectedGroups.length > 0) {
+                socket.emit('deleteGroups', app.selectedGroups);
+            }
         }
     }
 });
