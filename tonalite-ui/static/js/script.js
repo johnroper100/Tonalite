@@ -156,6 +156,11 @@ var app = new Vue({
             if (app.selectedFixtures.length > 0) {
                 socket.emit('groupFixtures', app.selectedFixtures);
             }
+        },
+        groupSelectedGroups: function () {
+            if (app.selectedGroups.length > 0) {
+                socket.emit('groupGroups', app.selectedGroups);
+            }
         }
     }
 });

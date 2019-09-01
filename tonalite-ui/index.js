@@ -146,9 +146,32 @@ io.on('connection', function (socket) {
         var newGroup = { "i": generateID(), "name": "New Group", "fixtures": [] };
         let id = 0; const idMax = fixtureIDs.length; for (; id < idMax; id++) {
             if (fixtures.some(e => e.i === fixtureIDs[id])) {
-                newGroup.fixtures.push(fixtureIDs[id]);
+                if (newGroup.fixtures.indexOf(fixtureIDs[id]) < 0) {
+                    newGroup.fixtures.push(fixtureIDs[id]);
+                }
             }
         }
+        if (newGroup.fixtures.length > 0) {
+            groups.push(newGroup);
+        }
+        io.emit('groups', groups);
+    });
+
+    socket.on('groupGroups', function (groupIDs) {
+        var newGroup = { "i": generateID(), "name": "New Group", "fixtures": [] };
+        let id = 0; const idMax = groupIDs.length; for (; id < idMax; id++) {
+            if (groups.some(e => e.i === groupIDs[id])) {
+                var group = groups[groups.map(el => el.i).indexOf(groupIDs[id])];
+                let fid = 0; const fidMax = group.fixtures.length; for (; fid < fidMax; fid++) {
+                    if (fixtures.some(e => e.i === group.fixtures[fid])) {
+                        if (newGroup.fixtures.indexOf(group.fixtures[fid]) < 0) {
+                            newGroup.fixtures.push(group.fixtures[fid]);
+                        }
+                    }
+                }
+            }
+        }
+        console.log(newGroup);
         if (newGroup.fixtures.length > 0) {
             groups.push(newGroup);
         }
