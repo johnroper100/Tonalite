@@ -151,12 +151,21 @@ var app = new Vue({
             if (app.selectedPatchedFixtures.length > 0) {
                 socket.emit('deleteFixtures', app.selectedPatchedFixtures);
             }
+        },
+        groupSelectedFixtures: function () {
+            if (app.selectedFixtures.length > 0) {
+                socket.emit('groupFixtures', app.selectedFixtures);
+            }
         }
     }
 });
 
 socket.on('fixtures', function (msg) {
     app.fixtures = msg;
+});
+
+socket.on('groups', function (msg) {
+    app.groups = msg;
 });
 
 socket.on('fixtureProfilesManufacturers', function (msg) {

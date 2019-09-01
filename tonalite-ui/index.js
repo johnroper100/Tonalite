@@ -9,6 +9,7 @@ require.extensions['.jlib'] = require.extensions['.json'];
 artnet = require('artnet')({ sendAll: true });
 
 fixtures = [];
+groups = [];
 
 http.listen(3000, function () {
     console.log(`Tonalite DMX Lighting Control System`);
@@ -39,6 +40,7 @@ function generateID() {
 
 io.on('connection', function (socket) {
     socket.emit('fixtures', fixtures);
+    socket.emit('groups', groups);
 
     socket.on('getFixtureProfileManufacturers', function () {
         fs.readdir(process.cwd() + "/fixtures", (err, files) => {
@@ -138,5 +140,18 @@ io.on('connection', function (socket) {
             }
         }
         io.emit('fixtures', fixtures);
+    });
+
+    socket.on('groupFixtures', function (fixtureIDs) {
+        var newGroup = { "i": generateID(), "name": "New Group", "fixtures": [] };
+        let id = 0; const idMax = fixtureIDs.length; for (; id < idMax; id++) {
+            if (fixtures.some(e => e.i === fixtureIDs[id])) {
+                newGroup.fixtures.push(fixtureIDs[id]);
+            }
+        }
+        if (newGroup.fixtures.length > 0) {
+            groups.push(newGroup);
+        }
+        io.emit('groups', groups);
     });
 });
