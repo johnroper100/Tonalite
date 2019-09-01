@@ -130,4 +130,13 @@ io.on('connection', function (socket) {
         }
         io.emit('fixtures', fixtures);
     });
+
+    socket.on('deleteFixtures', function (fixtureIDs) {
+        let id = 0; const idMax = fixtureIDs.length; for (; id < idMax; id++) {
+            if (fixtures.some(e => e.i === fixtureIDs[id])) {
+                fixtures.splice(fixtures.map(el => el.i).indexOf(fixtureIDs[id]), 1);
+            }
+        }
+        io.emit('fixtures', fixtures);
+    });
 });

@@ -146,6 +146,11 @@ var app = new Vue({
             if (app.selectedPatchedFixtures.length > 0) {
                 socket.emit('duplicateFixtures', app.selectedPatchedFixtures);
             }
+        },
+        deleteSelectedPatchedFixtures: function () {
+            if (app.selectedPatchedFixtures.length > 0) {
+                socket.emit('deleteFixtures', app.selectedPatchedFixtures);
+            }
         }
     }
 });
