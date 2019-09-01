@@ -6,7 +6,7 @@ const fs = require('fs');
 
 require.extensions['.jlib'] = require.extensions['.json'];
 
-artnet = require('artnet')({ sendAll: true });
+artnet = require('artnet')({ iface: "192.168.0.118", host: "255.255.255.255", sendAll: true });
 
 fixtures = [];
 groups = [];
@@ -37,6 +37,17 @@ app.get('/showFile', function (req, res) {
 function generateID() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 };
+
+function dmxLoop() {
+    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+        var fixture = fixtures[f];
+        let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+            var parameter = fixture.parameters[p];
+            artnet.set(fixture.universe, fixture.address + parameter.coarse, parameter.value);
+        }
+    }
+}
+setInterval(dmxLoop, 25);
 
 io.on('connection', function (socket) {
     socket.emit('fixtures', fixtures);
