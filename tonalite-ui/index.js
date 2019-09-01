@@ -171,7 +171,6 @@ io.on('connection', function (socket) {
                 }
             }
         }
-        console.log(newGroup);
         if (newGroup.fixtures.length > 0) {
             groups.push(newGroup);
         }
