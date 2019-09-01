@@ -118,4 +118,16 @@ io.on('connection', function (socket) {
         fixture.y = msg.y;
         socket.broadcast.emit('fixtures', fixtures);
     });
+
+    socket.on('duplicateFixtures', function (fixtureIDs) {
+        let id = 0; const idMax = fixtureIDs.length; for (; id < idMax; id++) {
+            var originalFixture = fixtures[fixtures.map(el => el.i).indexOf(fixtureIDs[id])];
+            var newFixture = JSON.parse(JSON.stringify(originalFixture));
+            newFixture.i = generateID();
+            newFixture.x = parseInt(fixtures.length % 14);
+            newFixture.y = parseInt(fixtures.length / 14);
+            fixtures.push(newFixture);
+        }
+        io.emit('fixtures', fixtures);
+    });
 });

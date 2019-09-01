@@ -141,6 +141,11 @@ var app = new Vue({
         },
         fixtureItemMoved: function (fixture) {
             socket.emit('fixtureItemMoved', { "id": fixture.i, "x": fixture.x, "y": fixture.y });
+        },
+        duplicateSelectedPatchedFixtures: function () {
+            if (app.selectedPatchedFixtures.length > 0) {
+                socket.emit('duplicateFixtures', app.selectedPatchedFixtures);
+            }
         }
     }
 });
