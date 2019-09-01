@@ -10,7 +10,7 @@ artnet = require('artnet')({ sendAll: true });
 
 fixtures = [];
 
-http.listen(3000, "192.168.0.118", function () {
+http.listen(3000, function () {
     console.log(`Tonalite DMX Lighting Control System`);
 });
 
@@ -103,7 +103,7 @@ io.on('connection', function (socket) {
                     fixture.h = 1;
                     fixture.name = fixture.modelName;
                     fixture.address = startAddress;
-                    startAddress += fixture.maxOffset + 1;
+                    startAddress += fixture.maxOffset + 1 + parseInt(msg.offset);
                     fixture.universe = parseInt(msg.universe);
                     fixtures.push(fixture);
                 }

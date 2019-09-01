@@ -24,7 +24,8 @@ var app = new Vue({
         showFixtureProfilesOptions: false,
         fixtureProfileCreationCount: 1,
         fixtureProfileCreationUniverse: 1,
-        fixtureProfileCreationAddress: 1
+        fixtureProfileCreationAddress: 1,
+        fixtureProfileCreationAddressOffset: 0
     },
     methods: {
         setLayoutMode: function (value) {
@@ -108,6 +109,7 @@ var app = new Vue({
             app.fixtureProfileCreationAddress = 1;
             app.fixtureProfileCreationCount = 1;
             app.fixtureProfileCreationUniverse = 1;
+            app.fixtureProfileCreationAddressOffset = 0;
             app.selectedProfileFile = '';
             $("#addDeviceModal").modal('hide');
         },
@@ -134,7 +136,7 @@ var app = new Vue({
             socket.emit('getFixtureProfileManufacturers');
         },
         addDevice: function () {
-            socket.emit('addDevice', { "manufacturer": app.selectedProfileManufacturer, "profile": app.selectedProfile, "mode": app.selectedProfileMode, "file": app.selectedProfileFile, "count": app.fixtureProfileCreationCount, "universe": app.fixtureProfileCreationUniverse, "address": app.fixtureProfileCreationAddress })
+            socket.emit('addDevice', { "manufacturer": app.selectedProfileManufacturer, "profile": app.selectedProfile, "mode": app.selectedProfileMode, "file": app.selectedProfileFile, "count": app.fixtureProfileCreationCount, "universe": app.fixtureProfileCreationUniverse, "address": app.fixtureProfileCreationAddress, "offset": app.fixtureProfileCreationAddressOffset })
             app.closeAddDeviceModal();
         },
         fixtureItemMoved: function (fixture) {

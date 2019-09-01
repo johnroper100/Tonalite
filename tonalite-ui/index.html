@@ -321,25 +321,32 @@
                         </div>
                         <div v-if="showFixtureProfilesOptions == true">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label for="fixtureProfileCount">Count:</label>
                                         <input type="number" class="form-control" id="fixtureProfileCount"
                                             v-model="fixtureProfileCreationCount" min="1">
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label for="fixtureProfileUniverse">DMX Universe:</label>
                                         <input type="number" class="form-control" id="fixtureProfileUniverse"
-                                            v-model="fixtureProfileCreationUniverse" min="1">
+                                            v-model="fixtureProfileCreationUniverse" min="1" max="30000">
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <div class="form-group">
                                         <label for="fixtureProfileAddress">DMX Address:</label>
                                         <input type="number" class="form-control" id="fixtureProfileAddress"
-                                            v-model="fixtureProfileCreationAddress" min="1">
+                                            v-model="fixtureProfileCreationAddress" min="1" max="512">
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <label for="fixtureProfileAddressOffset">Address Offset:</label>
+                                        <input type="number" class="form-control" id="fixtureProfileAddressOffset"
+                                            v-model="fixtureProfileCreationAddressOffset" min="0">
                                     </div>
                                 </div>
                             </div>
