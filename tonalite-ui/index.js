@@ -97,8 +97,8 @@ io.on('connection', function (socket) {
                 let i = 0; const iMax = parseInt(msg.count); for (; i < iMax; i++) {
                     var fixture = JSON.parse(JSON.stringify(fixtureFile.personalities[p]));
                     fixture.i = generateID();
-                    fixture.x = 0;
-                    fixture.y = 0;
+                    fixture.x = parseInt(fixtures.length % 14);
+                    fixture.y = parseInt(fixtures.length / 14);
                     fixture.w = 1;
                     fixture.h = 1;
                     fixture.name = fixture.modelName;
