@@ -25,7 +25,9 @@ var app = new Vue({
         fixtureProfileCreationCount: 1,
         fixtureProfileCreationUniverse: 1,
         fixtureProfileCreationAddress: 1,
-        fixtureProfileCreationAddressOffset: 0
+        fixtureProfileCreationAddressOffset: 0,
+        editingFixtureParameters: false,
+        selectedFixturesParameters: []
     },
     methods: {
         setLayoutMode: function (value) {
@@ -166,12 +168,36 @@ var app = new Vue({
             if (app.selectedGroups.length > 0) {
                 socket.emit('deleteGroups', app.selectedGroups);
             }
+        },
+        updateSelectedFixturesParameters: function () {
+            var parameterCats = [];
+            app.selectedFixturesParameters = [];
+            let i = 0; const iMax = app.selectedFixtures.length; for (; i < iMax; i++) {
+                var fixture = app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedFixtures[i])];
+                let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+                    var newParameter = JSON.parse(JSON.stringify(fixture.parameters[p]));
+                    if (!parameterCats.includes(newParameter.name + ":" + newParameter.type)) {
+                        newParameter.value = newParameter.home;
+                        app.selectedFixturesParameters.push(newParameter);
+                        parameterCats.push(newParameter.name + ":" + newParameter.type);
+                    }
+                }
+            }
+        },
+        openFixtureParameters: function () {
+            if (app.selectedFixtures.length > 0) {
+                app.updateSelectedFixturesParameters();
+                app.editingFixtureParameters = true;
+            }
         }
     }
 });
 
 socket.on('fixtures', function (msg) {
     app.fixtures = msg;
+    if (app.editingFixtureParameters == true) {
+        app.updateSelectedFixturesParameters();
+    }
 });
 
 socket.on('groups', function (msg) {
