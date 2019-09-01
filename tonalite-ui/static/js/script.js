@@ -136,6 +136,9 @@ var app = new Vue({
         addDevice: function () {
             socket.emit('addDevice', { "manufacturer": app.selectedProfileManufacturer, "profile": app.selectedProfile, "mode": app.selectedProfileMode, "file": app.selectedProfileFile, "count": app.fixtureProfileCreationCount, "universe": app.fixtureProfileCreationUniverse, "address": app.fixtureProfileCreationAddress })
             app.closeAddDeviceModal();
+        },
+        fixtureItemMoved: function (fixture) {
+            socket.emit('fixtureItemMoved', { "id": fixture.i, "x": fixture.x, "y": fixture.y });
         }
     }
 });

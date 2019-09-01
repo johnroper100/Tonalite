@@ -10,7 +10,7 @@ artnet = require('artnet')({ sendAll: true });
 
 fixtures = [];
 
-http.listen(3000, function () {
+http.listen(3000, "192.168.0.118", function () {
     console.log(`Tonalite DMX Lighting Control System`);
 });
 
@@ -106,5 +106,12 @@ io.on('connection', function (socket) {
             }
         }
         io.emit('fixtures', fixtures);
+    });
+
+    socket.on('fixtureItemMoved', function (msg) {
+        var fixture = fixtures[fixtures.map(el => el.i).indexOf(msg.id)];
+        fixture.x = msg.x;
+        fixture.y = msg.y;
+        socket.broadcast.emit('fixtures', fixtures);
     });
 });
