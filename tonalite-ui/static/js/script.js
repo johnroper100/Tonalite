@@ -177,7 +177,6 @@ var app = new Vue({
                 let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
                     var newParameter = JSON.parse(JSON.stringify(fixture.parameters[p]));
                     if (!parameterCats.includes(newParameter.name + ":" + newParameter.type)) {
-                        newParameter.value = newParameter.home;
                         app.selectedFixturesParameters.push(newParameter);
                         parameterCats.push(newParameter.name + ":" + newParameter.type);
                     }
@@ -189,15 +188,17 @@ var app = new Vue({
                 app.updateSelectedFixturesParameters();
                 app.editingFixtureParameters = true;
             }
+        },
+        updateFixtureParameterValue: function (param) {
+            param.value = param.displayValue;
+            socket.emit('updateFixtureParameterValue', { "fixtures": app.selectedFixtures, "paramName": param.name, "paramType": param.type, "paramValue": param.value });
         }
     }
 });
 
 socket.on('fixtures', function (msg) {
     app.fixtures = msg;
-    if (app.editingFixtureParameters == true) {
-        app.updateSelectedFixturesParameters();
-    }
+    app.updateSelectedFixturesParameters();
 });
 
 socket.on('groups', function (msg) {

@@ -411,7 +411,8 @@
                     <div class="modal-body fixtureParametersScroll">
                         <div class="form-group" v-for="param in selectedFixturesParameters">
                             <label for="formControlRange">{{param.name}}:</label>
-                            <input type="range" class="form-control-range" id="formControlRange" min="0" max="65535" v-bind:value="param.value">
+                            <input type="range" class="form-control-range" id="formControlRange" min="0" max="65535"
+                                @input="updateFixtureParameterValue(param)" v-model="param.displayValue">
                         </div>
                     </div>
                     <div class="modal-footer">

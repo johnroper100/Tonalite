@@ -11,7 +11,7 @@ artnet = require('artnet')({ sendAll: true });
 fixtures = [];
 groups = [];
 
-http.listen(3000, function () {
+http.listen(3000, "192.168.0.118", function () {
     console.log(`Tonalite DMX Lighting Control System`);
 });
 
@@ -201,5 +201,19 @@ io.on('connection', function (socket) {
             }
         }
         io.emit('groups', groups);
+    });
+
+    socket.on('updateFixtureParameterValue', function (msg) {
+        let id = 0; const idMax = msg.fixtures.length; for (; id < idMax; id++) {
+            var fixture = fixtures[fixtures.map(el => el.i).indexOf(msg.fixtures[id])];
+            let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+                var parameter = fixture.parameters[p];
+                if (parameter.name == msg.paramName && parameter.type == msg.paramType) {
+                    parameter.value = parseInt(msg.paramValue);
+                    parameter.displayValue = parameter.value;
+                }
+            }
+        }
+        io.emit('fixtures', fixtures);
     });
 });
