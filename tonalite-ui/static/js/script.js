@@ -98,7 +98,8 @@ var app = new Vue({
         deselectAllPresets: function () {
             app.selectedPresets = [];
         },
-        closeAddDeviceModal: function () {
+        closeAddFixtureModal: function () {
+            $("#addFixtureModal").modal('hide');
             app.selectedProfile = '';
             app.selectedProfileManufacturer = '';
             app.selectedProfileMode = '';
@@ -111,7 +112,6 @@ var app = new Vue({
             app.fixtureProfileCreationUniverse = 1;
             app.fixtureProfileCreationAddressOffset = 0;
             app.selectedProfileFile = '';
-            $("#addDeviceModal").modal('hide');
         },
         selectFixtureProfileManufacturer: function (manufacturer) {
             app.fixtureProfileModes = [];
@@ -135,9 +135,9 @@ var app = new Vue({
         getFixtureProfileManufacturers: function () {
             socket.emit('getFixtureProfileManufacturers');
         },
-        addDevice: function () {
-            socket.emit('addDevice', { "manufacturer": app.selectedProfileManufacturer, "profile": app.selectedProfile, "mode": app.selectedProfileMode, "file": app.selectedProfileFile, "count": app.fixtureProfileCreationCount, "universe": app.fixtureProfileCreationUniverse, "address": app.fixtureProfileCreationAddress, "offset": app.fixtureProfileCreationAddressOffset })
-            app.closeAddDeviceModal();
+        addFixture: function () {
+            socket.emit('addFixture', { "manufacturer": app.selectedProfileManufacturer, "profile": app.selectedProfile, "mode": app.selectedProfileMode, "file": app.selectedProfileFile, "count": app.fixtureProfileCreationCount, "universe": app.fixtureProfileCreationUniverse, "address": app.fixtureProfileCreationAddress, "offset": app.fixtureProfileCreationAddressOffset })
+            app.closeAddFixtureModal();
         },
         fixtureItemMoved: function (fixture) {
             socket.emit('fixtureItemMoved', { "id": fixture.i, "x": fixture.x, "y": fixture.y });

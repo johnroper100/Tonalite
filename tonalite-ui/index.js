@@ -89,7 +89,7 @@ io.on('connection', function (socket) {
         });
     });
 
-    socket.on('addDevice', function (msg) {
+    socket.on('addFixture', function (msg) {
         var fixtureFile = require(process.cwd() + "/fixtures/" + msg.file);
         var startAddress = parseInt(msg.address);
         let p = 0; const pMax = fixtureFile.personalities.length; for (; p < pMax; p++) {
