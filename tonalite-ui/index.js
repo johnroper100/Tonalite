@@ -91,18 +91,22 @@ io.on('connection', function (socket) {
 
     socket.on('addDevice', function (msg) {
         var fixtureFile = require(process.cwd() + "/fixtures/" + msg.file);
+        var startAddress = parseInt(msg.address);
         let p = 0; const pMax = fixtureFile.personalities.length; for (; p < pMax; p++) {
             if (fixtureFile.personalities[p].modelName == msg.profile && fixtureFile.personalities[p].modeName == msg.mode && fixtureFile.personalities[p].manufacturerName == msg.manufacturer) {
-                var fixture = JSON.parse(JSON.stringify(fixtureFile.personalities[p]));
-                fixture.i = generateID();
-                fixture.x = 0;
-                fixture.y = 0;
-                fixture.w = 1;
-                fixture.h = 1;
-                fixture.name = fixture.modelName;
-                fixture.address = parseInt(msg.address);
-                fixture.universe = parseInt(msg.universe);
-                fixtures.push(fixture);
+                let i = 0; const iMax = parseInt(msg.count); for (; i < iMax; i++) {
+                    var fixture = JSON.parse(JSON.stringify(fixtureFile.personalities[p]));
+                    fixture.i = generateID();
+                    fixture.x = 0;
+                    fixture.y = 0;
+                    fixture.w = 1;
+                    fixture.h = 1;
+                    fixture.name = fixture.modelName;
+                    fixture.address = startAddress;
+                    startAddress += fixture.maxOffset + 1;
+                    fixture.universe = parseInt(msg.universe);
+                    fixtures.push(fixture);
+                }
             }
         }
         io.emit('fixtures', fixtures);
