@@ -180,12 +180,14 @@ var app = new Vue({
             var parameterCats = [];
             app.selectedFixturesParameters = [];
             let i = 0; const iMax = app.selectedFixtures.length; for (; i < iMax; i++) {
-                var fixture = app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedFixtures[i])];
-                let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
-                    var newParameter = JSON.parse(JSON.stringify(fixture.parameters[p]));
-                    if (!parameterCats.includes(newParameter.name + ":" + newParameter.type)) {
-                        app.selectedFixturesParameters.push(newParameter);
-                        parameterCats.push(newParameter.name + ":" + newParameter.type);
+                if (app.fixtures.some(e => e.i === app.selectedFixtures[i])) {
+                    var fixture = app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedFixtures[i])];
+                    let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+                        var newParameter = JSON.parse(JSON.stringify(fixture.parameters[p]));
+                        if (!parameterCats.includes(newParameter.name + ":" + newParameter.type)) {
+                            app.selectedFixturesParameters.push(newParameter);
+                            parameterCats.push(newParameter.name + ":" + newParameter.type);
+                        }
                     }
                 }
             }
