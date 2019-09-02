@@ -6,7 +6,7 @@ const fs = require('fs');
 
 require.extensions['.jlib'] = require.extensions['.json'];
 
-artnet = require('artnet')({ iface: "192.168.0.103", host: "255.255.255.255", sendAll: true });
+artnet = require('artnet')({ iface: null, host: "255.255.255.255", sendAll: true });
 
 channels = [];
 
