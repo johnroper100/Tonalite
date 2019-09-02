@@ -195,6 +195,10 @@ var app = new Vue({
         },
         resetFixtures: function () {
             socket.emit('resetFixtures');
+        },
+        resetSelectedFixtures: function () {
+            $("#fixtureParametersModal").modal('show');
+            socket.emit('resetSelectedFixtures', app.selectedFixtures);
         }
     }
 });

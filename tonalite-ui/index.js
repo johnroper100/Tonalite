@@ -248,4 +248,16 @@ io.on('connection', function (socket) {
         }
         io.emit('fixtures', fixtures);
     });
+
+    socket.on('resetSelectedFixtures', function (fixtureIDs) {
+        let id = 0; const idMax = fixtureIDs.length; for (; id < idMax; id++) {
+            var fixture = fixtures[fixtures.map(el => el.i).indexOf(fixtureIDs[id])];
+            let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+                var parameter = fixture.parameters[p];
+                parameter.value = parameter.home;
+                parameter.displayValue = parameter.value;
+            }
+        }
+        io.emit('fixtures', fixtures);
+    });
 });
