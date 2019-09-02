@@ -138,6 +138,13 @@
                         </span> <span class="d-none d-lg-inline-block">Deselect All</span></div>
                 </div>
             </div>
+            <div class="subHeader d-flex" v-if="currentTab == 'fixtures' && fixturesDisplay == 'parameters'">
+                <button class="btn btn-primary" @click="fixturesDisplay='fixtures'">Back</button>
+                <div class="ml-auto">
+                    <div class="btn btn-primary" data-toggle="modal" data-target="#resetSelectedFixturesModal">Reset All
+                    </div>
+                </div>
+            </div>
             <div class="subHeader d-flex" v-if="currentTab == 'cues'">
                 <div class="btn btn-primary mr-1"><i class="fas fa-angle-left"></i> Last</div>
                 <div class="btn btn-success mr-1"><i class="fas fa-camera-alt"></i> Record Cue</div>
@@ -452,7 +459,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">
-                            Reset Selected Fixture Values
+                            Reset Fixture Values
                         </h5>
                         <button type="button" class="close" aria-label="Close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
