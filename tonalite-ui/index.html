@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </nav>
-            <div class="subHeader d-flex" v-if="currentTab =='patch'">
+            <div class="subHeader d-flex" v-if="currentTab == 'patch'">
                 <div class="btn btn-success mr-1" data-toggle="modal" data-target="#addFixtureModal"
                     @click="getFixtureProfileManufacturers">Add Fixture</div>
                 <div class="ml-auto">
@@ -95,7 +95,7 @@
                         </span> <span class="d-none d-lg-inline-block">Deselect All</span></div>
                 </div>
             </div>
-            <div class="subHeader d-flex" v-if="currentTab =='fixtures'">
+            <div class="subHeader d-flex" v-if="currentTab == 'fixtures'">
                 <select v-model="fixturesDisplay" class="form-control">
                     <option value="fixtures">Fixtures</option>
                     <option value="groups">Groups</option>
@@ -137,7 +137,7 @@
                         </span> <span class="d-none d-lg-inline-block">Deselect All</span></div>
                 </div>
             </div>
-            <div class="subHeader d-flex" v-if="currentTab =='cues'">
+            <div class="subHeader d-flex" v-if="currentTab == 'cues'">
                 <div class="btn btn-primary mr-1"><i class="fas fa-angle-left"></i> Last</div>
                 <div class="btn btn-success mr-1"><i class="fas fa-camera-alt"></i> Record Cue</div>
                 <div class="btn btn-primary mr-1">Next <i class="fas fa-angle-right"></i> </div>
@@ -156,7 +156,7 @@
                         </span> <span class="d-none d-lg-inline-block">Deselect All</span></div>
                 </div>
             </div>
-            <div class="subHeader d-flex" v-if="currentTab =='presets'">
+            <div class="subHeader d-flex" v-if="currentTab == 'presets'">
                 <div class="btn btn-success">Record Preset</div>
                 <div class="ml-auto">
                     <div class="btn btn-primary" v-bind:class="{ disabled: selectedPresets.length == 0 }">
@@ -195,7 +195,7 @@
                 </div>
             </div>
         </div>
-        <div id="patchTab" v-if="currentTab =='patch'">
+        <div id="patchTab" v-if="currentTab == 'patch'">
             <div class="container mb-5">
                 <div class="row mt-3">
                     <div class="col-12 patchFixture noselect"
@@ -212,7 +212,7 @@
                 </div>
             </div>
         </div>
-        <div id="fixturesTab" v-if="currentTab =='fixtures'">
+        <div id="fixturesTab" v-if="currentTab == 'fixtures'">
             <div class="container-fluid mt-2">
                 <div id="fixturesDisplay" v-if="fixturesDisplay == 'fixtures'">
                     <grid-layout :layout.sync="fixtures" :col-num="14" :row-height="60" v-bind:is-draggable="layoutMode"
@@ -242,7 +242,7 @@
                 </div>
             </div>
         </div>
-        <div id="cuesTab" v-if="currentTab =='cues'">
+        <div id="cuesTab" v-if="currentTab == 'cues'">
             <div class="container-fluid mb-5 mt-3">
                 <div class="row">
                     <div class="col-4 col-lg-1 col-md-2 noselect" @click="selectCue(cue.i)" v-for="cue in cues"
@@ -254,7 +254,7 @@
                 </div>
             </div>
         </div>
-        <div id="presetsTab" v-if="currentTab =='presets'">
+        <div id="presetsTab" v-if="currentTab == 'presets'">
             <div class="container-fluid mb-5 mt-3">
                 <div class="row">
                     <div class="col-4 col-lg-1 col-md-2 noselect" @click="selectPreset(preset.i)"
