@@ -210,6 +210,10 @@ var app = new Vue({
     }
 });
 
+socket.on('connect', function () {
+    $("#fixtureParametersModal").modal('hide');
+});
+
 socket.on('fixtures', function (msg) {
     app.fixtures = msg;
     app.updateSelectedFixturesParameters();
