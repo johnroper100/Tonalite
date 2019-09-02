@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/@radial-color-picker/vue-color-picker@2.3.0/dist/vue-color-picker.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/@radial-color-picker/vue-color-picker@2.3.0/dist/vue-color-picker.min.css"
+        rel="stylesheet">
     <script defer src="static/js/all.min.js"></script>
     <link rel="stylesheet" href="static/css/style.css">
 
@@ -466,6 +467,11 @@
                             <label for="formControlRange">{{param.name}}:</label>
                             <input type="range" class="form-control-range" id="formControlRange" step="1" min="0"
                                 max="65535" @input="updateFixtureParameterValue(param)" v-model="param.displayValue">
+                            <div class="parameterRanges row flex-nowrap mt-3"
+                                v-if="'ranges' in param && param.ranges.length > 0">
+                                <div class="parameterRange col-2 mr-1 bg-danger" v-for="range in param.ranges"
+                                    :key="range.begin">{{range.label}}</div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -489,7 +495,8 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="static/js/vue-grid-layout.umd.min.js"></script>
-    <script src="https://unpkg.com/@radial-color-picker/vue-color-picker@2.3.0/dist/vue-color-picker.umd.min.js"></script>
+    <script
+        src="https://unpkg.com/@radial-color-picker/vue-color-picker@2.3.0/dist/vue-color-picker.umd.min.js"></script>
     <script src="static/js/socket.io.js"></script>
     <script src="static/js/script.js"></script>
 </body>
