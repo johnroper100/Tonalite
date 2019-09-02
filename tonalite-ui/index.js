@@ -49,7 +49,10 @@ function dmxLoop() {
         var fixture = fixtures[f];
         let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
             var parameter = fixture.parameters[p];
-            artnet.set(fixture.universe - 1, fixture.address + parameter.coarse, mapRange(parameter.value, 0, 65535, 0, 255));
+            artnet.set(fixture.universe - 1, fixture.address + parameter.coarse, parameter.value >> 8);
+            if (parameter.fine != null) {
+                artnet.set(fixture.universe - 1, fixture.address + parameter.fine, parameter.value & 0xff);
+            }
         }
     }
 }
