@@ -29,7 +29,6 @@ var app = new Vue({
         fixtureProfileCreationUniverse: 1,
         fixtureProfileCreationAddress: 1,
         fixtureProfileCreationAddressOffset: 0,
-        editingFixtureParameters: false,
         selectedFixturesParameters: []
     },
     methods: {
@@ -180,26 +179,26 @@ var app = new Vue({
             }
         },
         updateSelectedFixturesParameters: function () {
-            var parameterCats = [];
-            app.selectedFixturesParameters = [];
-            let i = 0; const iMax = app.selectedFixtures.length; for (; i < iMax; i++) {
-                if (app.fixtures.some(e => e.i === app.selectedFixtures[i])) {
-                    var fixture = app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedFixtures[i])];
-                    let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
-                        var newParameter = JSON.parse(JSON.stringify(fixture.parameters[p]));
-                        if (!parameterCats.includes(newParameter.name + ":" + newParameter.type)) {
-                            app.selectedFixturesParameters.push(newParameter);
-                            parameterCats.push(newParameter.name + ":" + newParameter.type);
+            if (app.selectedFixtures.length > 0) {
+                var parameterCats = [];
+                app.selectedFixturesParameters = [];
+                let i = 0; const iMax = app.selectedFixtures.length; for (; i < iMax; i++) {
+                    if (app.fixtures.some(e => e.i === app.selectedFixtures[i])) {
+                        var fixture = app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedFixtures[i])];
+                        let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+                            var newParameter = JSON.parse(JSON.stringify(fixture.parameters[p]));
+                            if (!parameterCats.includes(newParameter.name + ":" + newParameter.type)) {
+                                app.selectedFixturesParameters.push(newParameter);
+                                parameterCats.push(newParameter.name + ":" + newParameter.type);
+                            }
                         }
                     }
                 }
             }
         },
         openFixtureParameters: function () {
-            if (app.selectedFixtures.length > 0) {
-                app.updateSelectedFixturesParameters();
-                app.editingFixtureParameters = true;
-            }
+            app.updateSelectedFixturesParameters();
+            app.fixturesDisplay = 'parameters';
         },
         updateFixtureParameterValue: function (param) {
             param.value = param.displayValue;
@@ -209,19 +208,20 @@ var app = new Vue({
             socket.emit('resetFixtures');
         },
         resetSelectedFixtures: function () {
-            $("#fixtureParametersModal").modal('show');
             socket.emit('resetSelectedFixtures', app.selectedFixtures);
         }
     }
 });
 
 socket.on('connect', function () {
-    $("#fixtureParametersModal").modal('hide');
+    app.fixturesDisplay = 'fixtures';
 });
 
 socket.on('fixtures', function (msg) {
     app.fixtures = msg;
-    app.updateSelectedFixturesParameters();
+    if (app.fixturesDisplay == 'parameters') {
+        app.updateSelectedFixturesParameters();
+    }
 });
 
 socket.on('groups', function (msg) {
