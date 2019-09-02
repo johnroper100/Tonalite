@@ -6,7 +6,9 @@ const fs = require('fs');
 
 require.extensions['.jlib'] = require.extensions['.json'];
 
-artnet = require('artnet')({ iface: "192.168.0.118", host: "255.255.255.255", sendAll: true });
+artnet = require('artnet')({ iface: "192.168.0.103", host: "255.255.255.255", sendAll: true });
+
+channels = [];
 
 fixtures = [];
 groups = [];
@@ -38,12 +40,16 @@ function generateID() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 };
 
+function mapRange(num, inMin, inMax, outMin, outMax) {
+    return (num - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+}
+
 function dmxLoop() {
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
         var fixture = fixtures[f];
         let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
             var parameter = fixture.parameters[p];
-            artnet.set(fixture.universe, fixture.address + parameter.coarse, parameter.value);
+            artnet.set(fixture.universe - 1, fixture.address + parameter.coarse, mapRange(parameter.value, 0, 65535, 0, 255));
         }
     }
 }
