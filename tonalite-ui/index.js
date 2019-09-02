@@ -13,7 +13,7 @@ channels = [];
 fixtures = [];
 groups = [];
 
-http.listen(3000, "192.168.0.118", function () {
+http.listen(3000, function () {
     console.log(`Tonalite DMX Lighting Control System`);
 });
 
@@ -21,18 +21,6 @@ app.use('/static', express.static(__dirname + '/static'));
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
-});
-
-app.get('/presets', function (req, res) {
-    res.sendFile(__dirname + '/presets.html');
-});
-
-app.get('/open-source-licenses', function (req, res) {
-    res.sendFile(__dirname + '/open-source-licenses.txt');
-});
-
-app.get('/showFile', function (req, res) {
-    res.download(process.cwd() + '/show.json', moment().format() + '.tonalite', { headers: { 'Content-Disposition': 'attachment', 'Content-Type': 'application/octet-stream' } });
 });
 
 function generateID() {

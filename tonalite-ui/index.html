@@ -158,18 +158,17 @@
         <div class="fixed-bottom">
             <div class="tabHeader noselect">
                 <div class="row">
-                    <div class="col-3 tab" @click="currentTab = 'patch'"
-                        v-bind:class="{ active: currentTab == 'patch' }">
+                    <div class="col-3 tab" @click="openTab('patch')" v-bind:class="{ active: currentTab == 'patch' }">
                         Patch
                     </div>
-                    <div class="col-3 tab" @click="currentTab = 'fixtures'"
+                    <div class="col-3 tab" @click="openTab('fixtures')"
                         v-bind:class="{ active: currentTab == 'fixtures' }">
                         Fixtures
                     </div>
-                    <div class="col-3 tab" @click="currentTab = 'cues'" v-bind:class="{ active: currentTab == 'cues' }">
+                    <div class="col-3 tab" @click="openTab('cues')" v-bind:class="{ active: currentTab == 'cues' }">
                         Cues
                     </div>
-                    <div class="col-3 tab" @click="currentTab = 'presets'"
+                    <div class="col-3 tab" @click="openTab('presets')"
                         v-bind:class="{ active: currentTab == 'presets' }">
                         Presets
                     </div>
@@ -237,7 +236,8 @@
                                             v-if="'ranges' in param && param.ranges.length > 0">
                                             <div class="parameterRange col-2 col-lg-1 mr-1 noselect"
                                                 v-bind:class="{active: param.displayValue >= mapRange(range.begin, 0, 255, 0, 65535) && param.displayValue <= mapRange(range.end, 0, 255, 0, 65535)}"
-                                                v-for="range in param.ranges" :key="range.begin">{{range.label}}</div>
+                                                v-for="range in param.ranges" :key="range.begin"
+                                                @click="useParameterRange(param, range)">{{range.label}}</div>
                                         </div>
                                     </div>
                                 </div>

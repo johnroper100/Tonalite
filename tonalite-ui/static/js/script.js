@@ -214,6 +214,15 @@ var app = new Vue({
         },
         mapRange: function (num, inMin, inMax, outMin, outMax) {
             return (num - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+        },
+        useParameterRange: function (param, range) {
+            param.value = app.mapRange(range.default, 0, 255, 0, 65535);
+            param.displayValue = param.value;
+            socket.emit('updateFixtureParameterValue', { "fixtures": app.selectedFixtures, "paramName": param.name, "paramType": param.type, "paramValue": param.value });
+        },
+        openTab: function (tab) {
+            app.fixturesDisplay = 'fixtures';
+            app.currentTab = tab;
         }
     }
 });
