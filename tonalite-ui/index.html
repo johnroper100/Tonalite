@@ -104,12 +104,23 @@
                     <option value="fixtures">Fixtures</option>
                     <option value="groups">Groups</option>
                 </select>
-                <div>
+                <div v-if="fixturesDisplay == 'fixtures'">
                     <button class="btn btn-primary ml-1" @click="selectAllFixtures()">
                         <i class="fas fa-hand-pointer"></i>
                         <span class="d-none d-lg-inline-block">Select All</span></button>
                     <button class="btn btn-primary" @click="deselectAllFixtures()"
                         v-bind:class="{ disabled: selectedFixtures.length == 0 }"><span class="fa-stack"
+                            style="vertical-align: middle;font-size: 55%;">
+                            <i class="fas fa-hand-pointer fa-stack-1x"></i>
+                            <i class="far fa-ban fa-stack-2x"></i>
+                        </span> <span class="d-none d-lg-inline-block">Deselect All</span></button>
+                </div>
+                <div v-if="fixturesDisplay == 'groups'">
+                    <button class="btn btn-primary ml-1" @click="selectAllGroups()">
+                        <i class="fas fa-hand-pointer"></i>
+                        <span class="d-none d-lg-inline-block">Select All</span></button>
+                    <button class="btn btn-primary" @click="deselectAllGroups()"
+                        v-bind:class="{ disabled: selectedGroups.length == 0 }"><span class="fa-stack"
                             style="vertical-align: middle;font-size: 55%;">
                             <i class="fas fa-hand-pointer fa-stack-1x"></i>
                             <i class="far fa-ban fa-stack-2x"></i>
@@ -126,19 +137,13 @@
                         v-bind:class="{ disabled: fixtures.length == 0 }">Reset All</div>
                 </div>
                 <div class="ml-auto" v-if="fixturesDisplay == 'groups'">
-                    <div class="btn btn-primary" v-bind:class="{ disabled: selectedGroups.length == 0 }">
+                    <div class="btn btn-primary" @click="openGroupParameters" v-bind:class="{ disabled: selectedGroups.length == 0 }">
                         Open Parameters</div>
                     <div class="btn btn-success" @click="groupSelectedGroups()"
                         v-bind:class="{ disabled: selectedGroups.length == 0 }">Group
                         Selected</div>
                     <div class="btn btn-danger" v-bind:class="{ disabled: selectedGroups.length == 0 }"
                         data-toggle="modal" data-target="#deleteGroupsModal">Delete Selected</div>
-                    <div class="btn btn-primary" @click="deselectAllGroups()"
-                        v-bind:class="{ disabled: selectedGroups.length == 0 }"><span class="fa-stack"
-                            style="vertical-align: middle;font-size: 55%;">
-                            <i class="fas fa-hand-pointer fa-stack-1x"></i>
-                            <i class="far fa-ban fa-stack-2x"></i>
-                        </span> <span class="d-none d-lg-inline-block">Deselect All</span></div>
                 </div>
             </div>
             <div class="subHeader d-flex" v-if="currentTab == 'fixtures' && fixturesDisplay == 'parameters'">

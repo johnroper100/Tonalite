@@ -106,6 +106,13 @@ var app = new Vue({
         deselectAllGroups: function () {
             app.selectedGroups = [];
         },
+        selectAllGroups: function () {
+            let g = 0; const gMax = app.groups.length; for (; g < gMax; g++) {
+                if (app.selectedGroups.includes(app.groups[g].i) == false) {
+                    app.selectedGroups.push(app.groups[g].i);
+                }
+            }
+        },
         deselectAllCues: function () {
             app.selectedCues = [];
         },
@@ -199,8 +206,27 @@ var app = new Vue({
             }
         },
         openFixtureParameters: function () {
-            app.updateSelectedFixturesParameters();
-            app.fixturesDisplay = 'parameters';
+            if (app.selectedFixtures.length > 0) {
+                app.updateSelectedFixturesParameters();
+                app.fixturesDisplay = 'parameters';
+            }
+        },
+        openGroupParameters: function () {
+            if (app.selectedGroups.length > 0) {
+                app.selectedFixtures = [];
+                let g = 0; const gMax = app.selectedGroups.length; for (; g < gMax; g++) {
+                    var group = app.groups[app.groups.map(el => el.i).indexOf(app.selectedGroups[g])];
+                    let f = 0; const fMax = group.fixtures.length; for (; f < fMax; f++) {
+                        if (!app.selectedFixtures.includes(group.fixtures[f])) {
+                            app.selectedFixtures.push(group.fixtures[f]);
+                        }
+                    }
+                }
+                if (app.selectedFixtures.length > 0) {
+                    app.updateSelectedFixturesParameters();
+                    app.fixturesDisplay = 'parameters';
+                }
+            }
         },
         updateFixtureParameterValue: function (param) {
             param.value = param.displayValue;
