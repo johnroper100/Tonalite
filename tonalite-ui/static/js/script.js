@@ -1,9 +1,6 @@
 var socket = io('http://' + document.domain + ':' + location.port);
 var app = new Vue({
     el: '#app',
-    components: {
-        ColorPicker: window.VueColorPicker
-    },
     data: {
         currentTab: 'fixtures',
         fixturesDisplay: 'fixtures',
