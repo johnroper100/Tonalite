@@ -100,8 +100,15 @@
                     <option value="groups">Groups</option>
                 </select>
                 <div>
-                    <div class="btn btn-primary ml-1" data-toggle="modal" data-target="#resetFixturesModal"
-                        v-bind:class="{ disabled: fixtures.length == 0 }">Reset All</div>
+                    <button class="btn btn-primary ml-1" @click="selectAllFixtures()">
+                        <i class="fas fa-hand-pointer"></i>
+                        <span class="d-none d-lg-inline-block">Select All</span></button>
+                    <button class="btn btn-primary" @click="deselectAllFixtures()"
+                        v-bind:class="{ disabled: selectedFixtures.length == 0 }"><span class="fa-stack"
+                            style="vertical-align: middle;font-size: 55%;">
+                            <i class="fas fa-hand-pointer fa-stack-1x"></i>
+                            <i class="far fa-ban fa-stack-2x"></i>
+                        </span> <span class="d-none d-lg-inline-block">Deselect All</span></button>
                 </div>
                 <div class="ml-auto" v-if="fixturesDisplay == 'fixtures'">
                     <div class="btn btn-primary" v-bind:class="{ disabled: selectedFixtures.length == 0 }"
@@ -110,12 +117,8 @@
                     <div class="btn btn-success" @click="groupSelectedFixtures()"
                         v-bind:class="{ disabled: selectedFixtures.length == 0 }">Group
                         Selected</div>
-                    <div class="btn btn-primary" @click="deselectAllFixtures()"
-                        v-bind:class="{ disabled: selectedFixtures.length == 0 }"><span class="fa-stack"
-                            style="vertical-align: middle;font-size: 55%;">
-                            <i class="fas fa-hand-pointer fa-stack-1x"></i>
-                            <i class="far fa-ban fa-stack-2x"></i>
-                        </span> <span class="d-none d-lg-inline-block">Deselect All</span></div>
+                    <div class="btn btn-primary" data-toggle="modal" data-target="#resetFixturesModal"
+                        v-bind:class="{ disabled: fixtures.length == 0 }">Reset All</div>
                 </div>
                 <div class="ml-auto" v-if="fixturesDisplay == 'groups'">
                     <div class="btn btn-primary" v-bind:class="{ disabled: selectedGroups.length == 0 }">

@@ -88,6 +88,13 @@ var app = new Vue({
         deselectAllFixtures: function () {
             app.selectedFixtures = [];
         },
+        selectAllFixtures: function () {
+            let f = 0; const fMax = app.fixtures.length; for (; f < fMax; f++) {
+                if (app.selectedFixtures.includes(app.fixtures[f].i) == false) {
+                    app.selectedFixtures.push(app.fixtures[f].i);
+                }
+            }
+        },
         deselectAllPatchedFixtures: function () {
             app.selectedPatchedFixtures = [];
         },
