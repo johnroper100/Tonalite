@@ -18,7 +18,6 @@ http.listen(3000, function () {
 });
 
 app.use('/static', express.static(__dirname + '/static'));
-app.use('/docs', express.static(__dirname + '/docs/dist'));
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
