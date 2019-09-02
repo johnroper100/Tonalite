@@ -185,10 +185,10 @@
                         Number: <span class="light">{{index+1}}</span>
                         Name: <span class="light">{{fixture.name}}</span>
                         Mode: <span class="light">{{fixture.modeName}}</span>
-                        DMX Universe: <span class="light">{{fixture.universe}}</span>
-                        <div class="d-inline-block" v-if="fixture.maxOffset == 0">DMX Address: <span
+                        Universe: <span class="light">{{fixture.universe}}</span>
+                        <div class="d-inline" v-if="fixture.maxOffset == 0">Address: <span
                                 class="light">{{fixture.address}}</span></div>
-                        <div class="d-inline-block" v-if="fixture.maxOffset > 0">DMX Addresses: <span
+                        <div class="d-inline" v-if="fixture.maxOffset > 0">Addresses: <span
                                 class="light">{{fixture.address}} - {{fixture.address+fixture.maxOffset}}</span></div>
                     </div>
                 </div>
