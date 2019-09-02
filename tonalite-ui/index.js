@@ -13,7 +13,7 @@ channels = [];
 fixtures = [];
 groups = [];
 
-http.listen(3000, "192.168.0.118", function () {
+http.listen(3000,  function () {
     console.log(`Tonalite DMX Lighting Control System`);
 });
 
