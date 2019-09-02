@@ -236,4 +236,16 @@ io.on('connection', function (socket) {
         }
         io.emit('fixtures', fixtures);
     });
+
+    socket.on('resetFixtures', function () {
+        let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+            var fixture = fixtures[f];
+            let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+                var parameter = fixture.parameters[p];
+                parameter.value = parameter.home;
+                parameter.displayValue = parameter.value;
+            }
+        }
+        io.emit('fixtures', fixtures);
+    });
 });

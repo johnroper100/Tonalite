@@ -192,6 +192,9 @@ var app = new Vue({
         updateFixtureParameterValue: function (param) {
             param.value = param.displayValue;
             socket.emit('updateFixtureParameterValue', { "fixtures": app.selectedFixtures, "paramName": param.name, "paramType": param.type, "paramValue": param.value });
+        },
+        resetFixtures: function () {
+            socket.emit('resetFixtures');
         }
     }
 });
