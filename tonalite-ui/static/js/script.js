@@ -24,7 +24,6 @@ var app = new Vue({
         fixtureProfileManufacturers: [],
         fixtureProfileModes: [],
         fixtureProfiles: [],
-        showFixtureProfilesOptions: false,
         fixtureProfileCreationCount: 1,
         fixtureProfileCreationUniverse: 1,
         fixtureProfileCreationAddress: 1,
@@ -100,6 +99,13 @@ var app = new Vue({
         deselectAllPatchedFixtures: function () {
             app.selectedPatchedFixtures = [];
         },
+        selectAllPatchedFixtures: function () {
+            let f = 0; const fMax = app.fixtures.length; for (; f < fMax; f++) {
+                if (app.selectedPatchedFixtures.includes(app.fixtures[f].i) == false) {
+                    app.selectedPatchedFixtures.push(app.fixtures[f].i);
+                }
+            }
+        },
         deselectAllGroups: function () {
             app.selectedGroups = [];
         },
@@ -117,7 +123,6 @@ var app = new Vue({
             app.fixtureProfileManufacturers = [];
             app.fixtureProfileModes = [];
             app.fixtureProfiles = [];
-            app.showFixtureProfilesOptions = false;
             app.fixtureProfileCreationAddress = 1;
             app.fixtureProfileCreationCount = 1;
             app.fixtureProfileCreationUniverse = 1;
