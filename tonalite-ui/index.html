@@ -227,14 +227,14 @@
                     <div class="card mb-3" v-for="param in selectedFixturesParameters">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="formControlRange">{{param.name}}:</label>
-                                <input type="range" class="form-control-range" id="formControlRange" step="1" min="0"
-                                    max="65535" @input="updateFixtureParameterValue(param)"
-                                    v-model="param.displayValue">
+                                <label>{{param.name}}:</label>
+                                <input class="form-control-range" type="range" min="0" max="65535"
+                                    v-model="param.displayValue" @input="updateFixtureParameterValue(param)"></input>
                                 <div class="parameterRanges row flex-nowrap mt-3"
                                     v-if="'ranges' in param && param.ranges.length > 0">
-                                    <div class="parameterRange col-2 mr-1 bg-danger" v-for="range in param.ranges"
-                                        :key="range.begin">{{range.label}}</div>
+                                    <div class="parameterRange col-2 col-lg-1 mr-1"
+                                        v-bind:class="{active: param.displayValue >= mapRange(range.begin, 0, 255, 0, 65535) && param.displayValue <= mapRange(range.end, 0, 255, 0, 65535)}"
+                                        v-for="range in param.ranges" :key="range.begin">{{range.label}}</div>
                                 </div>
                             </div>
                         </div>
@@ -296,7 +296,7 @@
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
-                                    <label for="fixtureProfileAddressOffset">DMX Address Offset:</label>
+                                    <label for="fixtureProfileAddressOffset">Address Offset:</label>
                                     <input type="number" class="form-control" id="fixtureProfileAddressOffset"
                                         v-model="fixtureProfileCreationAddressOffset" min="0">
                                 </div>

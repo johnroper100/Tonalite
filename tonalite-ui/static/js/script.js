@@ -33,7 +33,7 @@ var app = new Vue({
             app.deselectAllFixtures();
         },
         launchFullScreen: function () {
-            element = document.documentElement;
+            var element = document.documentElement;
             if (element.requestFullScreen) {
                 element.requestFullScreen();
             } else if (element.mozRequestFullScreen) {
@@ -211,12 +211,38 @@ var app = new Vue({
         },
         resetSelectedFixtures: function () {
             socket.emit('resetSelectedFixtures', app.selectedFixtures);
+        },
+        mapRange: function (num, inMin, inMax, outMin, outMax) {
+            return (num - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
         }
     }
 });
 
 socket.on('connect', function () {
+    app.currentTab = 'fixtures';
     app.fixturesDisplay = 'fixtures';
+    app.layoutMode = false;
+    app.fixtures = [];
+    app.groups = [];
+    app.cues = [];
+    app.presets = [];
+    app.selectedFixtures = [];
+    app.selectedPatchedFixtures = [];
+    app.selectedGroups = [];
+    app.selectedCues = [];
+    app.selectedPresets = [];
+    app.selectedProfile = '';
+    app.selectedProfileManufacturer = '';
+    app.selectedProfileMode = '';
+    app.selectedProfileFile = '';
+    app.fixtureProfileManufacturers = [];
+    app.fixtureProfileModes = [];
+    app.fixtureProfiles = [];
+    app.fixtureProfileCreationCount = 1;
+    app.fixtureProfileCreationUniverse = 1;
+    app.fixtureProfileCreationAddress = 1;
+    app.fixtureProfileCreationAddressOffset = 0;
+    app.selectedFixturesParameters = [];
 });
 
 socket.on('fixtures', function (msg) {
