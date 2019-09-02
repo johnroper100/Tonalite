@@ -234,7 +234,7 @@ io.on('connection', function (socket) {
                 }
             }
         }
-        io.emit('fixtures', fixtures);
+        socket.broadcast.emit('fixtures', fixtures);
     });
 
     socket.on('resetFixtures', function () {
