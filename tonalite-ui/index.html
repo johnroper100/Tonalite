@@ -232,7 +232,7 @@
                                     v-model="param.displayValue" @input="updateFixtureParameterValue(param)"></input>
                                 <div class="parameterRanges row flex-nowrap mt-3"
                                     v-if="'ranges' in param && param.ranges.length > 0">
-                                    <div class="parameterRange col-2 col-lg-1 mr-1"
+                                    <div class="parameterRange col-2 col-lg-1 mr-1 noselect"
                                         v-bind:class="{active: param.displayValue >= mapRange(range.begin, 0, 255, 0, 65535) && param.displayValue <= mapRange(range.end, 0, 255, 0, 65535)}"
                                         v-for="range in param.ranges" :key="range.begin">{{range.label}}</div>
                                 </div>
