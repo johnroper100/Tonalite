@@ -274,6 +274,13 @@ var app = new Vue({
                 return "";
             }
         },
+        getEditGroupName: function () {
+            if (app.selectedGroups.length == 1) {
+                return app.groups[app.groups.map(el => el.i).indexOf(app.selectedGroups[0])].name;
+            } else {
+                return "";
+            }
+        },
         editFixtureName: function (value) {
             if (app.selectedPatchedFixtures.length > 0) {
                 socket.emit('editFixtureName', { fixtures: app.selectedPatchedFixtures, value: value });
@@ -287,6 +294,11 @@ var app = new Vue({
         editFixtureAddress: function (value) {
             if (app.selectedPatchedFixtures.length == 1) {
                 socket.emit('editFixtureAddress', { fixtures: app.selectedPatchedFixtures, value: value });
+            }
+        },
+        editGroupName: function (value) {
+            if (app.selectedGroups.length > 0) {
+                socket.emit('editGroupName', { groups: app.selectedGroups, value: value });
             }
         }
     }

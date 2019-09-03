@@ -146,6 +146,9 @@
                         Selected</div>
                     <div class="btn btn-danger" v-bind:class="{ disabled: selectedGroups.length == 0 }"
                         data-toggle="modal" data-target="#deleteGroupsModal">Delete Selected</div>
+                    <div class="btn btn-primary" data-toggle="modal" data-target="#editGroupModal"
+                        v-bind:class="{ disabled: selectedGroups.length == 0 }">
+                        <i class="fas fa-edit"></i> <span class="d-none d-lg-inline-block">Edit</span></div>
                 </div>
             </div>
             <div class="subHeader d-flex" v-if="currentTab == 'fixtures' && fixturesDisplay == 'parameters'">
@@ -396,6 +399,34 @@
                                     <label for="fixtureName">Name:</label>
                                     <input type="text" class="form-control" id="fixtureName"
                                         v-model="getEditFixtureName()" @input="editFixtureName($event.target.value)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="editGroupModal">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Edit Group(s)
+                        </h5>
+                        <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="groupName">Name:</label>
+                                    <input type="text" class="form-control" id="groupName" v-model="getEditGroupName()"
+                                        @input="editGroupName($event.target.value)">
                                 </div>
                             </div>
                         </div>

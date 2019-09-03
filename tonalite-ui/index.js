@@ -291,4 +291,13 @@ io.on('connection', function (socket) {
         }
         io.emit('fixtures', fixtures);
     });
+
+    socket.on('editGroupName', function (msg) {
+        var group = {};
+        let id = 0; const idMax = msg.groups.length; for (; id < idMax; id++) {
+            group = groups[groups.map(el => el.i).indexOf(msg.groups[id])];
+            group.name = msg.value;
+        }
+        io.emit('groups', groups);
+    });
 });
