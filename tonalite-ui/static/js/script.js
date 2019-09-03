@@ -252,6 +252,42 @@ var app = new Vue({
         openTab: function (tab) {
             app.fixturesDisplay = 'fixtures';
             app.currentTab = tab;
+        },
+        getEditFixtureName: function () {
+            if (app.selectedPatchedFixtures.length == 1) {
+                return app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedPatchedFixtures[0])].name;
+            } else {
+                return "";
+            }
+        },
+        getEditFixtureUniverse: function () {
+            if (app.selectedPatchedFixtures.length == 1) {
+                return app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedPatchedFixtures[0])].universe;
+            } else {
+                return "";
+            }
+        },
+        getEditFixtureAddress: function () {
+            if (app.selectedPatchedFixtures.length == 1) {
+                return app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedPatchedFixtures[0])].address;
+            } else {
+                return "";
+            }
+        },
+        editFixtureName: function (value) {
+            if (app.selectedPatchedFixtures.length > 0) {
+                socket.emit('editFixtureName', { fixtures: app.selectedPatchedFixtures, value: value });
+            }
+        },
+        editFixtureUniverse: function (value) {
+            if (app.selectedPatchedFixtures.length == 1) {
+                socket.emit('editFixtureUniverse', { fixtures: app.selectedPatchedFixtures, value: value });
+            }
+        },
+        editFixtureAddress: function (value) {
+            if (app.selectedPatchedFixtures.length == 1) {
+                socket.emit('editFixtureAddress', { fixtures: app.selectedPatchedFixtures, value: value });
+            }
         }
     }
 });

@@ -32,10 +32,12 @@ function mapRange(num, inMin, inMax, outMin, outMax) {
 }
 
 function dmxLoop() {
+    var fixture = {};
+    var parameter = {};
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-        var fixture = fixtures[f];
+        fixture = fixtures[f];
         let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
-            var parameter = fixture.parameters[p];
+            parameter = fixture.parameters[p];
             artnet.set(fixture.universe - 1, fixture.address + parameter.coarse, parameter.value >> 8);
             if (parameter.fine != null) {
                 artnet.set(fixture.universe - 1, fixture.address + parameter.fine, parameter.value & 0xff);
@@ -52,8 +54,9 @@ io.on('connection', function (socket) {
     socket.on('getFixtureProfileManufacturers', function () {
         fs.readdir(process.cwd() + "/fixtures", (err, files) => {
             var manufacturers = [];
+            var fixture = {};
             let f = 0; const fMax = files.length; for (; f < fMax; f++) {
-                var fixture = require(process.cwd() + "/fixtures/" + files[f]);
+                fixture = require(process.cwd() + "/fixtures/" + files[f]);
                 let p = 0; const pMax = fixture.personalities.length; for (; p < pMax; p++) {
                     if (manufacturers.indexOf(fixture.personalities[p].manufacturerName) < 0) {
                         manufacturers.push(fixture.personalities[p].manufacturerName);
@@ -67,8 +70,9 @@ io.on('connection', function (socket) {
     socket.on('getFixtureProfiles', function (manufacturer) {
         fs.readdir(process.cwd() + "/fixtures", (err, files) => {
             var profiles = [];
+            var fixture = {};
             let f = 0; const fMax = files.length; for (; f < fMax; f++) {
-                var fixture = require(process.cwd() + "/fixtures/" + files[f]);
+                fixture = require(process.cwd() + "/fixtures/" + files[f]);
                 let p = 0; const pMax = fixture.personalities.length; for (; p < pMax; p++) {
                     if (fixture.personalities[p].manufacturerName == manufacturer) {
                         if (profiles.indexOf(fixture.personalities[p].modelName) < 0) {
@@ -84,8 +88,9 @@ io.on('connection', function (socket) {
     socket.on('getFixtureProfileModes', function (msg) {
         fs.readdir(process.cwd() + "/fixtures", (err, files) => {
             var modes = [];
+            var fixture = {};
             let f = 0; const fMax = files.length; for (; f < fMax; f++) {
-                var fixture = require(process.cwd() + "/fixtures/" + files[f]);
+                fixture = require(process.cwd() + "/fixtures/" + files[f]);
                 let p = 0; const pMax = fixture.personalities.length; for (; p < pMax; p++) {
                     if (fixture.personalities[p].manufacturerName == msg.manufacturer && fixture.personalities[p].modelName == msg.profile) {
                         if (modes.indexOf(fixture.personalities[p].modeName) < 0) {
@@ -101,10 +106,11 @@ io.on('connection', function (socket) {
     socket.on('addFixture', function (msg) {
         var fixtureFile = require(process.cwd() + "/fixtures/" + msg.file);
         var startAddress = parseInt(msg.address);
+        var fixture = {};
         let p = 0; const pMax = fixtureFile.personalities.length; for (; p < pMax; p++) {
             if (fixtureFile.personalities[p].modelName == msg.profile && fixtureFile.personalities[p].modeName == msg.mode && fixtureFile.personalities[p].manufacturerName == msg.manufacturer) {
                 let i = 0; const iMax = parseInt(msg.count); for (; i < iMax; i++) {
-                    var fixture = JSON.parse(JSON.stringify(fixtureFile.personalities[p]));
+                    fixture = JSON.parse(JSON.stringify(fixtureFile.personalities[p]));
                     fixture.i = generateID();
                     fixture.x = parseInt(fixtures.length % 14);
                     fixture.y = parseInt(fixtures.length / 14);
@@ -135,9 +141,11 @@ io.on('connection', function (socket) {
     });
 
     socket.on('duplicateFixtures', function (fixtureIDs) {
+        var originalFixture = {};
+        var newFixture = {};
         let id = 0; const idMax = fixtureIDs.length; for (; id < idMax; id++) {
-            var originalFixture = fixtures[fixtures.map(el => el.i).indexOf(fixtureIDs[id])];
-            var newFixture = JSON.parse(JSON.stringify(originalFixture));
+            originalFixture = fixtures[fixtures.map(el => el.i).indexOf(fixtureIDs[id])];
+            newFixture = JSON.parse(JSON.stringify(originalFixture));
             newFixture.i = generateID();
             newFixture.x = parseInt(fixtures.length % 14);
             newFixture.y = parseInt(fixtures.length / 14);
@@ -147,11 +155,12 @@ io.on('connection', function (socket) {
     });
 
     socket.on('deleteFixtures', function (fixtureIDs) {
+        var group = {};
         let id = 0; const idMax = fixtureIDs.length; for (; id < idMax; id++) {
             if (fixtures.some(e => e.i === fixtureIDs[id])) {
                 fixtures.splice(fixtures.map(el => el.i).indexOf(fixtureIDs[id]), 1);
                 let g = groups.length - 1; const gMax = 0; for (; gMax <= g; g--) {
-                    var group = groups[g];
+                    group = groups[g];
                     let fid = 0; const fidMax = group.fixtures.length; for (; fid < fidMax; fid++) {
                         if (group.fixtures[fid] == fixtureIDs[id]) {
                             group.fixtures.splice(fid, 1);
@@ -184,9 +193,10 @@ io.on('connection', function (socket) {
 
     socket.on('groupGroups', function (groupIDs) {
         var newGroup = { "i": generateID(), "name": "New Group", "fixtures": [] };
+        var group = {};
         let id = 0; const idMax = groupIDs.length; for (; id < idMax; id++) {
             if (groups.some(e => e.i === groupIDs[id])) {
-                var group = groups[groups.map(el => el.i).indexOf(groupIDs[id])];
+                group = groups[groups.map(el => el.i).indexOf(groupIDs[id])];
                 let fid = 0; const fidMax = group.fixtures.length; for (; fid < fidMax; fid++) {
                     if (fixtures.some(e => e.i === group.fixtures[fid])) {
                         if (newGroup.fixtures.indexOf(group.fixtures[fid]) < 0) {
@@ -212,10 +222,12 @@ io.on('connection', function (socket) {
     });
 
     socket.on('updateFixtureParameterValue', function (msg) {
+        var fixture = {};
+        var parameter = {};
         let id = 0; const idMax = msg.fixtures.length; for (; id < idMax; id++) {
-            var fixture = fixtures[fixtures.map(el => el.i).indexOf(msg.fixtures[id])];
+            fixture = fixtures[fixtures.map(el => el.i).indexOf(msg.fixtures[id])];
             let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
-                var parameter = fixture.parameters[p];
+                parameter = fixture.parameters[p];
                 if (parameter.name == msg.paramName && parameter.type == msg.paramType) {
                     parameter.value = parseInt(msg.paramValue);
                     parameter.displayValue = parameter.value;
@@ -226,10 +238,12 @@ io.on('connection', function (socket) {
     });
 
     socket.on('resetFixtures', function () {
+        var fixture = {};
+        var parameter = {};
         let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-            var fixture = fixtures[f];
+            fixture = fixtures[f];
             let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
-                var parameter = fixture.parameters[p];
+                parameter = fixture.parameters[p];
                 parameter.value = parameter.home;
                 parameter.displayValue = parameter.value;
             }
@@ -238,13 +252,42 @@ io.on('connection', function (socket) {
     });
 
     socket.on('resetSelectedFixtures', function (fixtureIDs) {
+        var fixture = {};
+        var parameter = {};
         let id = 0; const idMax = fixtureIDs.length; for (; id < idMax; id++) {
-            var fixture = fixtures[fixtures.map(el => el.i).indexOf(fixtureIDs[id])];
+            fixture = fixtures[fixtures.map(el => el.i).indexOf(fixtureIDs[id])];
             let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
-                var parameter = fixture.parameters[p];
+                parameter = fixture.parameters[p];
                 parameter.value = parameter.home;
                 parameter.displayValue = parameter.value;
             }
+        }
+        io.emit('fixtures', fixtures);
+    });
+
+    socket.on('editFixtureName', function (msg) {
+        var fixture = {};
+        let id = 0; const idMax = msg.fixtures.length; for (; id < idMax; id++) {
+            fixture = fixtures[fixtures.map(el => el.i).indexOf(msg.fixtures[id])];
+            fixture.name = msg.value;
+        }
+        io.emit('fixtures', fixtures);
+    });
+
+    socket.on('editFixtureUniverse', function (msg) {
+        var fixture = {};
+        let id = 0; const idMax = msg.fixtures.length; for (; id < idMax; id++) {
+            fixture = fixtures[fixtures.map(el => el.i).indexOf(msg.fixtures[id])];
+            fixture.universe = parseInt(msg.value);
+        }
+        io.emit('fixtures', fixtures);
+    });
+
+    socket.on('editFixtureAddress', function (msg) {
+        var fixture = {};
+        let id = 0; const idMax = msg.fixtures.length; for (; id < idMax; id++) {
+            fixture = fixtures[fixtures.map(el => el.i).indexOf(msg.fixtures[id])];
+            fixture.address = parseInt(msg.value);
         }
         io.emit('fixtures', fixtures);
     });

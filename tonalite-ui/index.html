@@ -88,7 +88,8 @@
                         </span> <span class="d-none d-lg-inline-block">Deselect All</span></button>
                 </div>
                 <div class="ml-auto">
-                    <div class="btn btn-primary" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }">
+                    <div class="btn btn-primary" data-toggle="modal" data-target="#editFixtureModal"
+                        v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }">
                         <i class="fas fa-edit"></i> <span class="d-none d-lg-inline-block">Edit</span></div>
                     <div class="btn btn-danger" v-bind:class="{ disabled: selectedPatchedFixtures.length == 0 }"><i
                             class="fas fa-trash"></i> <span class="d-none d-lg-inline-block" data-toggle="modal"
@@ -137,7 +138,8 @@
                         v-bind:class="{ disabled: fixtures.length == 0 }">Reset All</div>
                 </div>
                 <div class="ml-auto" v-if="fixturesDisplay == 'groups'">
-                    <div class="btn btn-primary" @click="openGroupParameters" v-bind:class="{ disabled: selectedGroups.length == 0 }">
+                    <div class="btn btn-primary" @click="openGroupParameters"
+                        v-bind:class="{ disabled: selectedGroups.length == 0 }">
                         Open Parameters</div>
                     <div class="btn btn-success" @click="groupSelectedGroups()"
                         v-bind:class="{ disabled: selectedGroups.length == 0 }">Group
@@ -359,49 +361,51 @@
             </div>
         </div>
         <div class="modal" tabindex="-1" role="dialog" id="editFixtureModal">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">
-                                Edit Fixture(s)
-                            </h5>
-                            <button type="button" class="close" aria-label="Close" data-dismiss="modal">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row" v-if="selectedPatchedFixtures.length == 1">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="fixtureAddress">DMX Address:</label>
-                                        <input type="number" class="form-control" id="fixtureAddress"
-                                            v-model="getEditFixtureAddress()" min="1" max="512">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="fixtureUniverse">DMX Universe:</label>
-                                        <input type="number" class="form-control" id="fixtureUniverse"
-                                            v-model="getEditFixtureUniverse()" min="1" max="30000">
-                                    </div>
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Edit Fixture(s)
+                        </h5>
+                        <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" v-if="selectedPatchedFixtures.length == 1">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="fixtureAddress">DMX Address:</label>
+                                    <input type="number" class="form-control" id="fixtureAddress"
+                                        v-model="getEditFixtureAddress()"
+                                        @input="editFixtureAddress($event.target.value)" min="1" max="512">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="fixtureName">Name:</label>
-                                        <input type="text" class="form-control" id="fixtureName"
-                                            v-model="getEditFixtureName()">
-                                    </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="fixtureUniverse">DMX Universe:</label>
+                                    <input type="number" class="form-control" id="fixtureUniverse"
+                                        v-model="getEditFixtureUniverse()"
+                                        @input="editFixtureUniverse($event.target.value)" min="1" max="30000">
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="fixtureName">Name:</label>
+                                    <input type="text" class="form-control" id="fixtureName"
+                                        v-model="getEditFixtureName()" @input="editFixtureName($event.target.value)">
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
+        </div>
         <div class="modal" tabindex="-1" role="dialog" id="deleteFixturesModal">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
