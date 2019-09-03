@@ -132,8 +132,7 @@
                         @click="openFixtureParameters()">
                         Open Parameters</div>
                     <div class="btn btn-success" @click="groupSelectedFixtures()"
-                        v-bind:class="{ disabled: selectedFixtures.length == 0 }">Group
-                        Selected</div>
+                        v-bind:class="{ disabled: selectedFixtures.length == 0 }">Group</div>
                     <div class="btn btn-primary" data-toggle="modal" data-target="#resetFixturesModal"
                         v-bind:class="{ disabled: fixtures.length == 0 }">Reset All</div>
                 </div>
@@ -142,13 +141,13 @@
                         v-bind:class="{ disabled: selectedGroups.length == 0 }">
                         Open Parameters</div>
                     <div class="btn btn-success" @click="groupSelectedGroups()"
-                        v-bind:class="{ disabled: selectedGroups.length == 0 }">Group
-                        Selected</div>
+                        v-bind:class="{ disabled: selectedGroups.length == 0 }">Group</div>
                     <div class="btn btn-danger" v-bind:class="{ disabled: selectedGroups.length == 0 }"
-                        data-toggle="modal" data-target="#deleteGroupsModal">Delete Selected</div>
+                        data-toggle="modal" data-target="#deleteGroupsModal">Delete</div>
                     <div class="btn btn-primary" data-toggle="modal" data-target="#editGroupModal"
                         v-bind:class="{ disabled: selectedGroups.length == 0 }">
-                        <i class="fas fa-edit"></i> <span class="d-none d-lg-inline-block">Edit</span></div>
+                        Edit
+                    </div>
                 </div>
             </div>
             <div class="subHeader d-flex" v-if="currentTab == 'fixtures' && fixturesDisplay == 'parameters'">
