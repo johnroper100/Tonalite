@@ -254,31 +254,23 @@ var app = new Vue({
             app.currentTab = tab;
         },
         getEditFixtureName: function () {
-            if (app.selectedPatchedFixtures.length == 1) {
+            if (app.selectedPatchedFixtures.length > 0) {
                 return app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedPatchedFixtures[0])].name;
-            } else {
-                return "";
             }
         },
         getEditFixtureUniverse: function () {
-            if (app.selectedPatchedFixtures.length == 1) {
+            if (app.selectedPatchedFixtures.length > 0) {
                 return app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedPatchedFixtures[0])].universe;
-            } else {
-                return "";
             }
         },
         getEditFixtureAddress: function () {
-            if (app.selectedPatchedFixtures.length == 1) {
+            if (app.selectedPatchedFixtures.length > 0) {
                 return app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedPatchedFixtures[0])].address;
-            } else {
-                return "";
             }
         },
         getEditGroupName: function () {
-            if (app.selectedGroups.length == 1) {
+            if (app.selectedGroups.length > 0) {
                 return app.groups[app.groups.map(el => el.i).indexOf(app.selectedGroups[0])].name;
-            } else {
-                return "";
             }
         },
         editFixtureName: function (value) {
