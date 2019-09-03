@@ -222,7 +222,7 @@ io.on('connection', function (socket) {
                 }
             }
         }
-        socket.broadcast.emit('fixtures', fixtures);
+        io.emit('fixtures', fixtures);
     });
 
     socket.on('resetFixtures', function () {
