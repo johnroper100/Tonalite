@@ -191,11 +191,13 @@ var app = new Vue({
             if (app.selectedFixtures.length > 0) {
                 var parameterCats = [];
                 app.selectedFixturesParameters = [];
+                var fixture = {};
+                var newParameter = {};
                 let i = 0; const iMax = app.selectedFixtures.length; for (; i < iMax; i++) {
                     if (app.fixtures.some(e => e.i === app.selectedFixtures[i])) {
-                        var fixture = app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedFixtures[i])];
+                        fixture = app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedFixtures[i])];
                         let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
-                            var newParameter = JSON.parse(JSON.stringify(fixture.parameters[p]));
+                            newParameter = JSON.parse(JSON.stringify(fixture.parameters[p]));
                             if (!parameterCats.includes(newParameter.name + ":" + newParameter.type)) {
                                 app.selectedFixturesParameters.push(newParameter);
                                 parameterCats.push(newParameter.name + ":" + newParameter.type);
@@ -214,8 +216,9 @@ var app = new Vue({
         openGroupParameters: function () {
             if (app.selectedGroups.length > 0) {
                 app.selectedFixtures = [];
+                var group = {};
                 let g = 0; const gMax = app.selectedGroups.length; for (; g < gMax; g++) {
-                    var group = app.groups[app.groups.map(el => el.i).indexOf(app.selectedGroups[g])];
+                    group = app.groups[app.groups.map(el => el.i).indexOf(app.selectedGroups[g])];
                     let f = 0; const fMax = group.fixtures.length; for (; f < fMax; f++) {
                         if (!app.selectedFixtures.includes(group.fixtures[f])) {
                             app.selectedFixtures.push(group.fixtures[f]);
