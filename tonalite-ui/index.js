@@ -87,7 +87,7 @@ io.on('connection', function (socket) {
                     }
                 }
             }
-            socket.emit('fixtureProfilesManufacturers', manufacturers);
+            socket.emit('fixtureProfilesManufacturers', manufacturers.sort());
         });
     });
 
@@ -105,7 +105,7 @@ io.on('connection', function (socket) {
                     }
                 }
             }
-            socket.emit('fixtureProfiles', profiles);
+            socket.emit('fixtureProfiles', profiles.sort());
         });
     });
 
@@ -123,7 +123,7 @@ io.on('connection', function (socket) {
                     }
                 }
             }
-            socket.emit('fixtureProfileModes', modes);
+            socket.emit('fixtureProfileModes', modes.sort());
         });
     });
 
