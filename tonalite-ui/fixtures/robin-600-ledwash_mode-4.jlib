@@ -59,7 +59,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 6,
@@ -351,6 +362,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Zone effect 6",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -389,7 +410,7 @@
                         },
                         {
                             "begin": 32,
-                            "default": 63,
+                            "default": 47,
                             "end": 63,
                             "label": "Strobe - Zone 3 only [Strobe,Color Mix Macro Rate]",
                             "media": {
@@ -399,7 +420,7 @@
                         },
                         {
                             "begin": 64,
-                            "default": 95,
+                            "default": 79,
                             "end": 95,
                             "label": "Strobe [Color Mix Macro Rate]",
                             "media": {
@@ -439,7 +460,7 @@
                         },
                         {
                             "begin": 144,
-                            "default": 159,
+                            "default": 151,
                             "end": 159,
                             "label": "C Pulse [Color Mix Macro Rate]",
                             "media": {
@@ -472,6 +493,16 @@
                             "default": 192,
                             "end": 223,
                             "label": "Rnd [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open [Color Mix Macro Rate]",
                             "media": {
                                 "dcid": "",
                                 "name": ""

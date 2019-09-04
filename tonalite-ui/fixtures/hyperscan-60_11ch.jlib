@@ -135,6 +135,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Spin <<",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -174,6 +184,16 @@
                             "default": 8,
                             "end": 215,
                             "label": "Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -286,7 +306,7 @@
                         },
                         {
                             "begin": 64,
-                            "default": 67,
+                            "default": 71,
                             "end": 71,
                             "label": "(gobo 7) [S]",
                             "media": {
@@ -296,7 +316,7 @@
                         },
                         {
                             "begin": 72,
-                            "default": 75,
+                            "default": 79,
                             "end": 79,
                             "label": "(gobo 6) [S]",
                             "media": {
@@ -306,7 +326,7 @@
                         },
                         {
                             "begin": 80,
-                            "default": 83,
+                            "default": 87,
                             "end": 87,
                             "label": "(gobo 5) [S]",
                             "media": {
@@ -316,7 +336,7 @@
                         },
                         {
                             "begin": 88,
-                            "default": 91,
+                            "default": 95,
                             "end": 95,
                             "label": "(gobo 4) [S]",
                             "media": {
@@ -326,7 +346,7 @@
                         },
                         {
                             "begin": 96,
-                            "default": 99,
+                            "default": 103,
                             "end": 103,
                             "label": "(gobo 3) [S]",
                             "media": {
@@ -336,7 +356,7 @@
                         },
                         {
                             "begin": 104,
-                            "default": 107,
+                            "default": 111,
                             "end": 111,
                             "label": "(gobo 2) [S]",
                             "media": {
@@ -346,7 +366,7 @@
                         },
                         {
                             "begin": 112,
-                            "default": 115,
+                            "default": 119,
                             "end": 119,
                             "label": "(gobo 1) [S]",
                             "media": {
@@ -369,6 +389,16 @@
                             "default": 128,
                             "end": 191,
                             "label": "Spin >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Spin <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -416,6 +446,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 232,
+                            "default": 232,
+                            "end": 255,
+                            "label": "Gobo Shake ^",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -452,9 +492,19 @@
                         },
                         {
                             "begin": 4,
-                            "default": 66,
+                            "default": 129,
                             "end": 129,
                             "label": "(effect) [>>]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(effect) [<<]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -472,7 +522,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 8,
@@ -612,6 +673,16 @@
                             "default": 139,
                             "end": 139,
                             "label": "FX Reset",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 147,
+                            "default": 147,
+                            "end": 147,
+                            "label": "Focus Reset",
                             "media": {
                                 "dcid": "",
                                 "name": ""

@@ -59,7 +59,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 6,
@@ -93,8 +104,18 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 10,
-                            "default": 17,
+                            "default": 25,
                             "end": 25,
                             "label": "Deep Red",
                             "media": {
@@ -104,7 +125,7 @@
                         },
                         {
                             "begin": 10,
-                            "default": 17,
+                            "default": 25,
                             "end": 25,
                             "label": "Deep Red",
                             "media": {
@@ -114,7 +135,7 @@
                         },
                         {
                             "begin": 26,
-                            "default": 35,
+                            "default": 44,
                             "end": 44,
                             "label": "Deep Blue",
                             "media": {
@@ -124,7 +145,7 @@
                         },
                         {
                             "begin": 26,
-                            "default": 35,
+                            "default": 44,
                             "end": 44,
                             "label": "Deep Blue",
                             "media": {
@@ -134,7 +155,7 @@
                         },
                         {
                             "begin": 45,
-                            "default": 54,
+                            "default": 64,
                             "end": 64,
                             "label": "Orange",
                             "media": {
@@ -144,7 +165,7 @@
                         },
                         {
                             "begin": 45,
-                            "default": 54,
+                            "default": 64,
                             "end": 64,
                             "label": "Orange",
                             "media": {
@@ -154,7 +175,7 @@
                         },
                         {
                             "begin": 65,
-                            "default": 73,
+                            "default": 82,
                             "end": 82,
                             "label": "Green",
                             "media": {
@@ -164,7 +185,7 @@
                         },
                         {
                             "begin": 65,
-                            "default": 73,
+                            "default": 82,
                             "end": 82,
                             "label": "Green",
                             "media": {
@@ -174,7 +195,7 @@
                         },
                         {
                             "begin": 83,
-                            "default": 91,
+                            "default": 100,
                             "end": 100,
                             "label": "Amber",
                             "media": {
@@ -184,7 +205,7 @@
                         },
                         {
                             "begin": 83,
-                            "default": 91,
+                            "default": 100,
                             "end": 100,
                             "label": "Amber",
                             "media": {
@@ -194,7 +215,7 @@
                         },
                         {
                             "begin": 101,
-                            "default": 114,
+                            "default": 127,
                             "end": 127,
                             "label": "UV",
                             "media": {
@@ -204,7 +225,7 @@
                         },
                         {
                             "begin": 101,
-                            "default": 114,
+                            "default": 127,
                             "end": 127,
                             "label": "UV",
                             "media": {
@@ -214,7 +235,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 128,
+                            "default": 129,
                             "end": 129,
                             "label": "(Open)",
                             "media": {
@@ -224,7 +245,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 128,
+                            "default": 129,
                             "end": 129,
                             "label": "(Open)",
                             "media": {
@@ -234,7 +255,7 @@
                         },
                         {
                             "begin": 130,
-                            "default": 134,
+                            "default": 139,
                             "end": 139,
                             "label": "(Deep Red)",
                             "media": {
@@ -244,7 +265,7 @@
                         },
                         {
                             "begin": 130,
-                            "default": 134,
+                            "default": 139,
                             "end": 139,
                             "label": "(Deep Red)",
                             "media": {
@@ -254,7 +275,7 @@
                         },
                         {
                             "begin": 140,
-                            "default": 144,
+                            "default": 149,
                             "end": 149,
                             "label": "(Deep Blue)",
                             "media": {
@@ -264,7 +285,7 @@
                         },
                         {
                             "begin": 140,
-                            "default": 144,
+                            "default": 149,
                             "end": 149,
                             "label": "(Deep Blue)",
                             "media": {
@@ -274,7 +295,7 @@
                         },
                         {
                             "begin": 150,
-                            "default": 154,
+                            "default": 159,
                             "end": 159,
                             "label": "(Orange)",
                             "media": {
@@ -284,7 +305,7 @@
                         },
                         {
                             "begin": 150,
-                            "default": 154,
+                            "default": 159,
                             "end": 159,
                             "label": "(Orange)",
                             "media": {
@@ -294,7 +315,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 164,
+                            "default": 169,
                             "end": 169,
                             "label": "(Green)",
                             "media": {
@@ -304,7 +325,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 164,
+                            "default": 169,
                             "end": 169,
                             "label": "(Green)",
                             "media": {
@@ -314,7 +335,7 @@
                         },
                         {
                             "begin": 170,
-                            "default": 174,
+                            "default": 179,
                             "end": 179,
                             "label": "(Amber)",
                             "media": {
@@ -324,7 +345,7 @@
                         },
                         {
                             "begin": 170,
-                            "default": 174,
+                            "default": 179,
                             "end": 179,
                             "label": "(Amber)",
                             "media": {
@@ -334,7 +355,7 @@
                         },
                         {
                             "begin": 180,
-                            "default": 184,
+                            "default": 189,
                             "end": 189,
                             "label": "(UV)",
                             "media": {
@@ -344,7 +365,7 @@
                         },
                         {
                             "begin": 180,
-                            "default": 184,
+                            "default": 189,
                             "end": 189,
                             "label": "(UV)",
                             "media": {
@@ -354,7 +375,7 @@
                         },
                         {
                             "begin": 190,
-                            "default": 215,
+                            "default": 202,
                             "end": 215,
                             "label": "Spin >>",
                             "media": {
@@ -364,7 +385,7 @@
                         },
                         {
                             "begin": 190,
-                            "default": 215,
+                            "default": 202,
                             "end": 215,
                             "label": "Spin >>",
                             "media": {
@@ -374,7 +395,7 @@
                         },
                         {
                             "begin": 216,
-                            "default": 216,
+                            "default": 217,
                             "end": 217,
                             "label": "Spin Stop",
                             "media": {
@@ -384,7 +405,7 @@
                         },
                         {
                             "begin": 216,
-                            "default": 216,
+                            "default": 217,
                             "end": 217,
                             "label": "Spin Stop",
                             "media": {
@@ -414,7 +435,7 @@
                         },
                         {
                             "begin": 244,
-                            "default": 246,
+                            "default": 249,
                             "end": 249,
                             "label": "Color Aud 100",
                             "media": {
@@ -424,7 +445,7 @@
                         },
                         {
                             "begin": 244,
-                            "default": 246,
+                            "default": 249,
                             "end": 249,
                             "label": "Color Aud 100",
                             "media": {
@@ -434,7 +455,7 @@
                         },
                         {
                             "begin": 250,
-                            "default": 255,
+                            "default": 252,
                             "end": 255,
                             "label": "Rnd",
                             "media": {
@@ -444,7 +465,7 @@
                         },
                         {
                             "begin": 250,
-                            "default": 255,
+                            "default": 252,
                             "end": 255,
                             "label": "Rnd",
                             "media": {
@@ -833,6 +854,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 250,
+                            "default": 252,
+                            "end": 255,
+                            "label": "MixRnd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -864,6 +895,16 @@
                             "default": 0,
                             "end": 0,
                             "label": "Color Mix Snap",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 255,
+                            "label": "Color Mix [CTO Spd Time 2,Time]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1141,6 +1182,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 250,
+                            "default": 250,
+                            "end": 255,
+                            "label": "25.0s",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -1167,7 +1218,7 @@
                         },
                         {
                             "begin": 20,
-                            "default": 127,
+                            "default": 73,
                             "end": 127,
                             "label": "001",
                             "media": {
@@ -1177,7 +1228,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 170,
+                            "default": 149,
                             "end": 170,
                             "label": "001 [Anim Shake,Anim Shake 2]",
                             "media": {
@@ -1189,6 +1240,16 @@
                             "begin": 171,
                             "default": 171,
                             "end": 213,
+                            "label": "001 [Anim Shake,Anim Shake 2]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 214,
+                            "default": 234,
+                            "end": 255,
                             "label": "001 [Anim Shake,Anim Shake 2]",
                             "media": {
                                 "dcid": "",
@@ -1237,6 +1298,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Rot <<",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -1276,6 +1347,16 @@
                             "default": 128,
                             "end": 128,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1893,6 +1974,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 126,
+                            "default": 126,
+                            "end": 126,
+                            "label": "Spaghetti#2",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -2059,7 +2150,7 @@
                         },
                         {
                             "begin": 60,
-                            "default": 64,
+                            "default": 69,
                             "end": 69,
                             "label": "(255) [I,S]",
                             "media": {
@@ -2069,7 +2160,7 @@
                         },
                         {
                             "begin": 70,
-                            "default": 74,
+                            "default": 79,
                             "end": 79,
                             "label": "(249) [I,S]",
                             "media": {
@@ -2079,7 +2170,7 @@
                         },
                         {
                             "begin": 80,
-                            "default": 84,
+                            "default": 89,
                             "end": 89,
                             "label": "(250) [I,S]",
                             "media": {
@@ -2089,7 +2180,7 @@
                         },
                         {
                             "begin": 90,
-                            "default": 94,
+                            "default": 99,
                             "end": 99,
                             "label": "(178) [I,S]",
                             "media": {
@@ -2099,7 +2190,7 @@
                         },
                         {
                             "begin": 100,
-                            "default": 104,
+                            "default": 109,
                             "end": 109,
                             "label": "(252) [I,S]",
                             "media": {
@@ -2109,7 +2200,7 @@
                         },
                         {
                             "begin": 110,
-                            "default": 114,
+                            "default": 119,
                             "end": 119,
                             "label": "(251) [I,S]",
                             "media": {
@@ -2119,7 +2210,7 @@
                         },
                         {
                             "begin": 120,
-                            "default": 124,
+                            "default": 129,
                             "end": 129,
                             "label": "(030) [I,S]",
                             "media": {
@@ -2129,7 +2220,7 @@
                         },
                         {
                             "begin": 130,
-                            "default": 134,
+                            "default": 139,
                             "end": 139,
                             "label": "(255) [R,S]",
                             "media": {
@@ -2139,7 +2230,7 @@
                         },
                         {
                             "begin": 140,
-                            "default": 144,
+                            "default": 149,
                             "end": 149,
                             "label": "(249) [R,S]",
                             "media": {
@@ -2149,7 +2240,7 @@
                         },
                         {
                             "begin": 150,
-                            "default": 154,
+                            "default": 159,
                             "end": 159,
                             "label": "(250) [R,S]",
                             "media": {
@@ -2159,7 +2250,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 164,
+                            "default": 169,
                             "end": 169,
                             "label": "(178) [R,S]",
                             "media": {
@@ -2169,7 +2260,7 @@
                         },
                         {
                             "begin": 170,
-                            "default": 174,
+                            "default": 179,
                             "end": 179,
                             "label": "(252) [R,S]",
                             "media": {
@@ -2179,7 +2270,7 @@
                         },
                         {
                             "begin": 180,
-                            "default": 184,
+                            "default": 189,
                             "end": 189,
                             "label": "(251) [R,S]",
                             "media": {
@@ -2189,7 +2280,7 @@
                         },
                         {
                             "begin": 190,
-                            "default": 194,
+                            "default": 199,
                             "end": 199,
                             "label": "(030) [R,S]",
                             "media": {
@@ -2209,7 +2300,7 @@
                         },
                         {
                             "begin": 202,
-                            "default": 221,
+                            "default": 211,
                             "end": 221,
                             "label": "Spin >> [R]",
                             "media": {
@@ -2242,6 +2333,16 @@
                             "default": 246,
                             "end": 246,
                             "label": "Gobo Aud 100 [R]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 250,
+                            "default": 252,
+                            "end": 255,
+                            "label": "Rnd [R]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2302,7 +2403,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -2312,7 +2413,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -2322,7 +2423,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 128,
+                            "default": 129,
                             "end": 129,
                             "label": "Rot Stop",
                             "media": {
@@ -2332,9 +2433,19 @@
                         },
                         {
                             "begin": 128,
-                            "default": 128,
+                            "default": 129,
                             "end": 129,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2516,7 +2627,7 @@
                         },
                         {
                             "begin": 60,
-                            "default": 64,
+                            "default": 69,
                             "end": 69,
                             "label": "(248) [I,S]",
                             "media": {
@@ -2526,7 +2637,7 @@
                         },
                         {
                             "begin": 70,
-                            "default": 74,
+                            "default": 79,
                             "end": 79,
                             "label": "(190) [I,S]",
                             "media": {
@@ -2536,7 +2647,7 @@
                         },
                         {
                             "begin": 80,
-                            "default": 84,
+                            "default": 89,
                             "end": 89,
                             "label": "(253) [I,S]",
                             "media": {
@@ -2546,7 +2657,7 @@
                         },
                         {
                             "begin": 90,
-                            "default": 94,
+                            "default": 99,
                             "end": 99,
                             "label": "(254) [I,S]",
                             "media": {
@@ -2556,7 +2667,7 @@
                         },
                         {
                             "begin": 100,
-                            "default": 104,
+                            "default": 109,
                             "end": 109,
                             "label": "(256) [I,S]",
                             "media": {
@@ -2566,7 +2677,7 @@
                         },
                         {
                             "begin": 110,
-                            "default": 114,
+                            "default": 119,
                             "end": 119,
                             "label": "(257) [I,S]",
                             "media": {
@@ -2576,7 +2687,7 @@
                         },
                         {
                             "begin": 120,
-                            "default": 124,
+                            "default": 129,
                             "end": 129,
                             "label": "(Circle) [I,S]",
                             "media": {
@@ -2586,7 +2697,7 @@
                         },
                         {
                             "begin": 130,
-                            "default": 134,
+                            "default": 139,
                             "end": 139,
                             "label": "(248) [R,S]",
                             "media": {
@@ -2596,7 +2707,7 @@
                         },
                         {
                             "begin": 140,
-                            "default": 144,
+                            "default": 149,
                             "end": 149,
                             "label": "(190) [R,S]",
                             "media": {
@@ -2606,7 +2717,7 @@
                         },
                         {
                             "begin": 150,
-                            "default": 154,
+                            "default": 159,
                             "end": 159,
                             "label": "(253) [R,S]",
                             "media": {
@@ -2616,7 +2727,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 164,
+                            "default": 169,
                             "end": 169,
                             "label": "(254) [R,S]",
                             "media": {
@@ -2626,7 +2737,7 @@
                         },
                         {
                             "begin": 170,
-                            "default": 174,
+                            "default": 179,
                             "end": 179,
                             "label": "(256) [R,S]",
                             "media": {
@@ -2636,7 +2747,7 @@
                         },
                         {
                             "begin": 180,
-                            "default": 184,
+                            "default": 189,
                             "end": 189,
                             "label": "(257) [R,S]",
                             "media": {
@@ -2646,7 +2757,7 @@
                         },
                         {
                             "begin": 190,
-                            "default": 194,
+                            "default": 199,
                             "end": 199,
                             "label": "(Circle) [R,S]",
                             "media": {
@@ -2666,7 +2777,7 @@
                         },
                         {
                             "begin": 202,
-                            "default": 221,
+                            "default": 211,
                             "end": 221,
                             "label": "Spin >> [R]",
                             "media": {
@@ -2699,6 +2810,16 @@
                             "default": 246,
                             "end": 246,
                             "label": "Gobo Aud 100 [R]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 250,
+                            "default": 252,
+                            "end": 255,
+                            "label": "Rnd [R]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2759,7 +2880,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -2769,7 +2890,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -2779,7 +2900,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 128,
+                            "default": 129,
                             "end": 129,
                             "label": "Rot Stop",
                             "media": {
@@ -2789,9 +2910,19 @@
                         },
                         {
                             "begin": 128,
-                            "default": 128,
+                            "default": 129,
                             "end": 129,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2842,8 +2973,18 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 20,
-                            "default": 73,
+                            "default": 127,
                             "end": 127,
                             "label": "(5 Prism)",
                             "media": {
@@ -2853,7 +2994,7 @@
                         },
                         {
                             "begin": 20,
-                            "default": 73,
+                            "default": 127,
                             "end": 127,
                             "label": "(5 Prism)",
                             "media": {
@@ -2863,7 +3004,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 131,
+                            "default": 135,
                             "end": 135,
                             "label": "Prism, gobo macro 1",
                             "media": {
@@ -2873,7 +3014,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 131,
+                            "default": 135,
                             "end": 135,
                             "label": "Prism, gobo macro 1",
                             "media": {
@@ -2883,7 +3024,7 @@
                         },
                         {
                             "begin": 136,
-                            "default": 139,
+                            "default": 143,
                             "end": 143,
                             "label": "Prism, gobo macro 2",
                             "media": {
@@ -2893,7 +3034,7 @@
                         },
                         {
                             "begin": 136,
-                            "default": 139,
+                            "default": 143,
                             "end": 143,
                             "label": "Prism, gobo macro 2",
                             "media": {
@@ -2903,7 +3044,7 @@
                         },
                         {
                             "begin": 144,
-                            "default": 147,
+                            "default": 151,
                             "end": 151,
                             "label": "Prism, gobo macro 3",
                             "media": {
@@ -2913,7 +3054,7 @@
                         },
                         {
                             "begin": 144,
-                            "default": 147,
+                            "default": 151,
                             "end": 151,
                             "label": "Prism, gobo macro 3",
                             "media": {
@@ -2923,7 +3064,7 @@
                         },
                         {
                             "begin": 152,
-                            "default": 155,
+                            "default": 159,
                             "end": 159,
                             "label": "Prism, gobo macro 4",
                             "media": {
@@ -2933,7 +3074,7 @@
                         },
                         {
                             "begin": 152,
-                            "default": 155,
+                            "default": 159,
                             "end": 159,
                             "label": "Prism, gobo macro 4",
                             "media": {
@@ -2943,7 +3084,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 163,
+                            "default": 167,
                             "end": 167,
                             "label": "Prism, gobo macro 5",
                             "media": {
@@ -2953,7 +3094,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 163,
+                            "default": 167,
                             "end": 167,
                             "label": "Prism, gobo macro 5",
                             "media": {
@@ -2963,7 +3104,7 @@
                         },
                         {
                             "begin": 168,
-                            "default": 171,
+                            "default": 175,
                             "end": 175,
                             "label": "Prism, gobo macro 6",
                             "media": {
@@ -2973,7 +3114,7 @@
                         },
                         {
                             "begin": 168,
-                            "default": 171,
+                            "default": 175,
                             "end": 175,
                             "label": "Prism, gobo macro 6",
                             "media": {
@@ -2983,7 +3124,7 @@
                         },
                         {
                             "begin": 176,
-                            "default": 179,
+                            "default": 183,
                             "end": 183,
                             "label": "Prism, gobo macro 7",
                             "media": {
@@ -2993,7 +3134,7 @@
                         },
                         {
                             "begin": 176,
-                            "default": 179,
+                            "default": 183,
                             "end": 183,
                             "label": "Prism, gobo macro 7",
                             "media": {
@@ -3003,7 +3144,7 @@
                         },
                         {
                             "begin": 184,
-                            "default": 187,
+                            "default": 191,
                             "end": 191,
                             "label": "Prism, gobo macro 8",
                             "media": {
@@ -3013,7 +3154,7 @@
                         },
                         {
                             "begin": 184,
-                            "default": 187,
+                            "default": 191,
                             "end": 191,
                             "label": "Prism, gobo macro 8",
                             "media": {
@@ -3023,7 +3164,7 @@
                         },
                         {
                             "begin": 192,
-                            "default": 195,
+                            "default": 199,
                             "end": 199,
                             "label": "Prism, gobo macro 9",
                             "media": {
@@ -3033,7 +3174,7 @@
                         },
                         {
                             "begin": 192,
-                            "default": 195,
+                            "default": 199,
                             "end": 199,
                             "label": "Prism, gobo macro 9",
                             "media": {
@@ -3043,7 +3184,7 @@
                         },
                         {
                             "begin": 200,
-                            "default": 203,
+                            "default": 207,
                             "end": 207,
                             "label": "Prism, gobo macro 10",
                             "media": {
@@ -3053,7 +3194,7 @@
                         },
                         {
                             "begin": 200,
-                            "default": 203,
+                            "default": 207,
                             "end": 207,
                             "label": "Prism, gobo macro 10",
                             "media": {
@@ -3063,7 +3204,7 @@
                         },
                         {
                             "begin": 208,
-                            "default": 211,
+                            "default": 215,
                             "end": 215,
                             "label": "Prism, gobo macro 11",
                             "media": {
@@ -3073,7 +3214,7 @@
                         },
                         {
                             "begin": 208,
-                            "default": 211,
+                            "default": 215,
                             "end": 215,
                             "label": "Prism, gobo macro 11",
                             "media": {
@@ -3083,7 +3224,7 @@
                         },
                         {
                             "begin": 216,
-                            "default": 219,
+                            "default": 223,
                             "end": 223,
                             "label": "Prism, gobo macro 12",
                             "media": {
@@ -3093,7 +3234,7 @@
                         },
                         {
                             "begin": 216,
-                            "default": 219,
+                            "default": 223,
                             "end": 223,
                             "label": "Prism, gobo macro 12",
                             "media": {
@@ -3103,7 +3244,7 @@
                         },
                         {
                             "begin": 224,
-                            "default": 227,
+                            "default": 231,
                             "end": 231,
                             "label": "Prism, gobo macro 13",
                             "media": {
@@ -3113,7 +3254,7 @@
                         },
                         {
                             "begin": 224,
-                            "default": 227,
+                            "default": 231,
                             "end": 231,
                             "label": "Prism, gobo macro 13",
                             "media": {
@@ -3123,7 +3264,7 @@
                         },
                         {
                             "begin": 232,
-                            "default": 235,
+                            "default": 239,
                             "end": 239,
                             "label": "Prism, gobo macro 14",
                             "media": {
@@ -3133,7 +3274,7 @@
                         },
                         {
                             "begin": 232,
-                            "default": 235,
+                            "default": 239,
                             "end": 239,
                             "label": "Prism, gobo macro 14",
                             "media": {
@@ -3143,7 +3284,7 @@
                         },
                         {
                             "begin": 240,
-                            "default": 243,
+                            "default": 247,
                             "end": 247,
                             "label": "Prism, gobo macro 15",
                             "media": {
@@ -3153,7 +3294,7 @@
                         },
                         {
                             "begin": 240,
-                            "default": 243,
+                            "default": 247,
                             "end": 247,
                             "label": "Prism, gobo macro 15",
                             "media": {
@@ -3163,7 +3304,7 @@
                         },
                         {
                             "begin": 248,
-                            "default": 251,
+                            "default": 255,
                             "end": 255,
                             "label": "Prism, gobo macro 16",
                             "media": {
@@ -3173,7 +3314,7 @@
                         },
                         {
                             "begin": 248,
-                            "default": 251,
+                            "default": 255,
                             "end": 255,
                             "label": "Prism, gobo macro 16",
                             "media": {
@@ -3209,6 +3350,16 @@
                             "default": 0,
                             "end": 0,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3331,9 +3482,19 @@
                         },
                         {
                             "begin": 212,
-                            "default": 233,
+                            "default": 222,
                             "end": 233,
                             "label": "Frost Strobe +Pulse",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 234,
+                            "default": 244,
+                            "end": 255,
+                            "label": "Frost Strobe Pulse",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3384,7 +3545,7 @@
                         },
                         {
                             "begin": 220,
-                            "default": 247,
+                            "default": 233,
                             "end": 247,
                             "label": "Iris Strobe C Pulse [IrisStr Blk]",
                             "media": {
@@ -3417,6 +3578,16 @@
                             "default": 252,
                             "end": 252,
                             "label": "Iris Strobe Rnd C Pulse 100 [IrisStr Blk]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 254,
+                            "default": 254,
+                            "end": 254,
+                            "label": "Iris Strobe Rnd C Pulse 1 [IrisStr Blk]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3501,6 +3672,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Focus [Focus Auto]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -3579,7 +3760,7 @@
                         },
                         {
                             "begin": 144,
-                            "default": 159,
+                            "default": 151,
                             "end": 159,
                             "label": "C Pulse [Mech]",
                             "media": {
@@ -3602,6 +3783,16 @@
                             "default": 192,
                             "end": 223,
                             "label": "Rnd [Mech]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open [Lamp Pwr]",
                             "media": {
                                 "dcid": "",
                                 "name": ""

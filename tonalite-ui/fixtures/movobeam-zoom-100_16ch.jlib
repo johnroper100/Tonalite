@@ -47,7 +47,7 @@
                         },
                         {
                             "begin": 6,
-                            "default": 126,
+                            "default": 66,
                             "end": 126,
                             "label": "Pan Rotate >>",
                             "media": {
@@ -60,6 +60,16 @@
                             "default": 127,
                             "end": 127,
                             "label": "Pan Rotate Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
+                            "label": "Pan Rotate <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -115,7 +125,7 @@
                         },
                         {
                             "begin": 6,
-                            "default": 126,
+                            "default": 66,
                             "end": 126,
                             "label": "Tilt Rotate",
                             "media": {
@@ -127,6 +137,16 @@
                             "begin": 127,
                             "default": 127,
                             "end": 127,
+                            "label": "Tilt Rotate",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
                             "label": "Tilt Rotate",
                             "media": {
                                 "dcid": "",
@@ -220,7 +240,7 @@
                         },
                         {
                             "begin": 103,
-                            "default": 127,
+                            "default": 115,
                             "end": 127,
                             "label": "Burst",
                             "media": {
@@ -233,6 +253,16 @@
                             "default": 128,
                             "end": 250,
                             "label": "Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -310,7 +340,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 14,
@@ -488,6 +529,16 @@
                             "default": 129,
                             "end": 129,
                             "label": "2 Step cyan red",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 194,
+                            "label": "off",
                             "media": {
                                 "dcid": "",
                                 "name": ""

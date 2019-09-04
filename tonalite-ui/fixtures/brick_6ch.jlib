@@ -102,7 +102,7 @@
                         },
                         {
                             "begin": 30,
-                            "default": 119,
+                            "default": 74,
                             "end": 119,
                             "label": "Strobe",
                             "media": {
@@ -112,7 +112,7 @@
                         },
                         {
                             "begin": 120,
-                            "default": 149,
+                            "default": 134,
                             "end": 149,
                             "label": "O Pulse",
                             "media": {
@@ -122,7 +122,7 @@
                         },
                         {
                             "begin": 150,
-                            "default": 179,
+                            "default": 164,
                             "end": 179,
                             "label": "C Pulse",
                             "media": {
@@ -149,6 +149,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -162,7 +172,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

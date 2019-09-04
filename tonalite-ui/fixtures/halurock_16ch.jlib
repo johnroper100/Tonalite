@@ -59,7 +59,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 6,
@@ -89,6 +100,16 @@
                             "default": 0,
                             "end": 0,
                             "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 255,
+                            "label": "Strobe",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2680,6 +2701,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "File 255",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -2705,8 +2736,18 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 11,
-                            "default": 15,
+                            "default": 20,
                             "end": 20,
                             "label": "Simple cross",
                             "media": {
@@ -2716,7 +2757,7 @@
                         },
                         {
                             "begin": 21,
-                            "default": 25,
+                            "default": 29,
                             "end": 29,
                             "label": "Simple box",
                             "media": {
@@ -2726,7 +2767,7 @@
                         },
                         {
                             "begin": 30,
-                            "default": 34,
+                            "default": 38,
                             "end": 38,
                             "label": "Square imploder",
                             "media": {
@@ -2736,7 +2777,7 @@
                         },
                         {
                             "begin": 39,
-                            "default": 43,
+                            "default": 47,
                             "end": 47,
                             "label": "Square exploder",
                             "media": {
@@ -2746,7 +2787,7 @@
                         },
                         {
                             "begin": 48,
-                            "default": 52,
+                            "default": 56,
                             "end": 56,
                             "label": "Diamond imploder",
                             "media": {
@@ -2756,7 +2797,7 @@
                         },
                         {
                             "begin": 57,
-                            "default": 61,
+                            "default": 65,
                             "end": 65,
                             "label": "Diamond exploder",
                             "media": {
@@ -2766,7 +2807,7 @@
                         },
                         {
                             "begin": 66,
-                            "default": 70,
+                            "default": 74,
                             "end": 74,
                             "label": "Two line spinner",
                             "media": {
@@ -2776,7 +2817,7 @@
                         },
                         {
                             "begin": 75,
-                            "default": 79,
+                            "default": 83,
                             "end": 83,
                             "label": "Triangle spinner",
                             "media": {
@@ -2786,7 +2827,7 @@
                         },
                         {
                             "begin": 84,
-                            "default": 88,
+                            "default": 92,
                             "end": 92,
                             "label": "Tri-downer",
                             "media": {
@@ -2796,7 +2837,7 @@
                         },
                         {
                             "begin": 93,
-                            "default": 97,
+                            "default": 101,
                             "end": 101,
                             "label": "Tri-upper",
                             "media": {
@@ -2806,7 +2847,7 @@
                         },
                         {
                             "begin": 102,
-                            "default": 106,
+                            "default": 110,
                             "end": 110,
                             "label": "Bowtie spinner",
                             "media": {
@@ -2816,7 +2857,7 @@
                         },
                         {
                             "begin": 111,
-                            "default": 115,
+                            "default": 119,
                             "end": 119,
                             "label": "One-liner",
                             "media": {
@@ -2826,7 +2867,7 @@
                         },
                         {
                             "begin": 120,
-                            "default": 124,
+                            "default": 128,
                             "end": 128,
                             "label": "Line hop up",
                             "media": {
@@ -2836,7 +2877,7 @@
                         },
                         {
                             "begin": 129,
-                            "default": 133,
+                            "default": 137,
                             "end": 137,
                             "label": "Line hop down",
                             "media": {
@@ -2846,7 +2887,7 @@
                         },
                         {
                             "begin": 138,
-                            "default": 142,
+                            "default": 146,
                             "end": 146,
                             "label": "Line hop up/down",
                             "media": {
@@ -2856,7 +2897,7 @@
                         },
                         {
                             "begin": 147,
-                            "default": 151,
+                            "default": 155,
                             "end": 155,
                             "label": "T-Spin",
                             "media": {
@@ -2866,7 +2907,7 @@
                         },
                         {
                             "begin": 156,
-                            "default": 160,
+                            "default": 164,
                             "end": 164,
                             "label": "Upside down T-spin",
                             "media": {
@@ -2876,7 +2917,7 @@
                         },
                         {
                             "begin": 165,
-                            "default": 169,
+                            "default": 173,
                             "end": 173,
                             "label": "Diamond spoke spin",
                             "media": {
@@ -2886,7 +2927,7 @@
                         },
                         {
                             "begin": 174,
-                            "default": 178,
+                            "default": 182,
                             "end": 182,
                             "label": "Line hop left",
                             "media": {
@@ -2896,7 +2937,7 @@
                         },
                         {
                             "begin": 183,
-                            "default": 187,
+                            "default": 191,
                             "end": 191,
                             "label": "Line hop right",
                             "media": {
@@ -2906,7 +2947,7 @@
                         },
                         {
                             "begin": 192,
-                            "default": 196,
+                            "default": 200,
                             "end": 200,
                             "label": "Line hop left-right",
                             "media": {
@@ -2916,7 +2957,7 @@
                         },
                         {
                             "begin": 201,
-                            "default": 205,
+                            "default": 209,
                             "end": 209,
                             "label": "Double verticals",
                             "media": {
@@ -2926,7 +2967,7 @@
                         },
                         {
                             "begin": 210,
-                            "default": 214,
+                            "default": 218,
                             "end": 218,
                             "label": "Double horizontals",
                             "media": {
@@ -2936,7 +2977,7 @@
                         },
                         {
                             "begin": 219,
-                            "default": 223,
+                            "default": 227,
                             "end": 227,
                             "label": "Diagonal right",
                             "media": {
@@ -2946,7 +2987,7 @@
                         },
                         {
                             "begin": 228,
-                            "default": 232,
+                            "default": 236,
                             "end": 236,
                             "label": "Diagonal left",
                             "media": {
@@ -2956,7 +2997,7 @@
                         },
                         {
                             "begin": 237,
-                            "default": 241,
+                            "default": 246,
                             "end": 246,
                             "label": "Moving squares",
                             "media": {
@@ -2966,7 +3007,7 @@
                         },
                         {
                             "begin": 247,
-                            "default": 251,
+                            "default": 255,
                             "end": 255,
                             "label": "Clock",
                             "media": {
@@ -3026,6 +3067,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 229,
+                            "default": 229,
+                            "end": 229,
+                            "label": "Dimmer curve 3",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -3072,7 +3123,7 @@
                         },
                         {
                             "begin": 64,
-                            "default": 95,
+                            "default": 127,
                             "end": 127,
                             "label": "Ind 25",
                             "media": {
@@ -3082,7 +3133,7 @@
                         },
                         {
                             "begin": 101,
-                            "default": 125,
+                            "default": 149,
                             "end": 149,
                             "label": "Rot Stop",
                             "media": {
@@ -3092,7 +3143,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 159,
+                            "default": 191,
                             "end": 191,
                             "label": "Ind 50",
                             "media": {
@@ -3102,7 +3153,7 @@
                         },
                         {
                             "begin": 150,
-                            "default": 202,
+                            "default": 176,
                             "end": 202,
                             "label": "Rot >>",
                             "media": {
@@ -3112,9 +3163,19 @@
                         },
                         {
                             "begin": 192,
-                            "default": 223,
+                            "default": 255,
                             "end": 255,
                             "label": "Ind 75",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 203,
+                            "default": 203,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3168,6 +3229,16 @@
                             "default": 164,
                             "end": 164,
                             "label": "Pos Macros 3",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 225,
+                            "default": 225,
+                            "end": 225,
+                            "label": "Pos Macros 4",
                             "media": {
                                 "dcid": "",
                                 "name": ""

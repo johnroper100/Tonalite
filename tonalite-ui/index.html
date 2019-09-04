@@ -334,6 +334,9 @@
                                         :key="manufacturer" @click="selectFixtureProfileManufacturer(manufacturer)"
                                         v-bind:class="{ textselected: selectedProfileManufacturer == manufacturer }">
                                         {{manufacturer}}</li>
+                                    <div v-if="fixtureProfileManufacturers.length == 0">
+                                        <i class="fas fa-circle-notch fa-spin"></i>
+                                    </div>
                                 </ul>
                             </div>
                             <div class="col-4">
@@ -343,6 +346,9 @@
                                         @click="selectFixtureProfile(profile)"
                                         v-bind:class="{textselected: selectedProfile == profile}">{{profile}}
                                     </li>
+                                    <div v-if="fixtureProfiles.length == 0 && selectedProfileManufacturer != ''">
+                                        <i class="fas fa-circle-notch fa-spin"></i>
+                                    </div>
                                 </ul>
                             </div>
                             <div class="col-4">
@@ -352,6 +358,10 @@
                                         @click="selectFixtureProfileMode(mode)"
                                         v-bind:class="{textselected: selectedProfileMode == mode.mode}">
                                         {{mode.mode}}</li>
+                                    <div
+                                        v-if="fixtureProfileModes.length == 0 && selectedProfile != '' && selectedProfileMode != ''">
+                                        <i class="fas fa-circle-notch fa-spin"></i>
+                                    </div>
                                 </ul>
                             </div>
                         </div>

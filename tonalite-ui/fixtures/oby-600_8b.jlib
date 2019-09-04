@@ -76,7 +76,7 @@
                         },
                         {
                             "begin": 72,
-                            "default": 127,
+                            "default": 99,
                             "end": 127,
                             "label": "C Pulse",
                             "media": {
@@ -119,6 +119,16 @@
                             "default": 200,
                             "end": 253,
                             "label": "Rnd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -209,7 +219,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 187,
+                            "default": 157,
                             "end": 187,
                             "label": "Spin >>",
                             "media": {
@@ -222,6 +232,16 @@
                             "default": 191,
                             "end": 191,
                             "label": "Spin Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 196,
+                            "default": 196,
+                            "end": 255,
+                            "label": "Spin <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -585,6 +605,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
+                            "label": "Color Macros 31",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -624,6 +654,16 @@
                             "default": 135,
                             "end": 135,
                             "label": "(Beamshaper)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 144,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(Beamshaper) [Index]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -707,6 +747,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "Unknown",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -720,7 +770,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

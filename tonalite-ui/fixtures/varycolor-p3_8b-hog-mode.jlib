@@ -45,7 +45,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 3,
@@ -110,7 +121,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 142,
+                            "default": 135,
                             "end": 142,
                             "label": "O Pulse",
                             "media": {
@@ -130,7 +141,7 @@
                         },
                         {
                             "begin": 144,
-                            "default": 158,
+                            "default": 151,
                             "end": 158,
                             "label": "C Pulse",
                             "media": {
@@ -190,7 +201,7 @@
                         },
                         {
                             "begin": 192,
-                            "default": 206,
+                            "default": 199,
                             "end": 206,
                             "label": "Rnd O Pulse",
                             "media": {
@@ -210,7 +221,7 @@
                         },
                         {
                             "begin": 208,
-                            "default": 222,
+                            "default": 215,
                             "end": 222,
                             "label": "Rnd C Pulse",
                             "media": {
@@ -257,6 +268,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -288,6 +309,16 @@
                             "default": 0,
                             "end": 0,
                             "label": "(Open)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 135,
+                            "default": 135,
+                            "end": 135,
+                            "label": "(Beamshaper)",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -627,6 +658,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
+                            "label": "Dark green",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -702,6 +743,16 @@
                             "default": 223,
                             "end": 223,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 225,
+                            "default": 225,
+                            "end": 255,
+                            "label": "Rot >>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -902,7 +953,7 @@
                         },
                         {
                             "begin": 70,
-                            "default": 76,
+                            "default": 82,
                             "end": 82,
                             "label": "Red",
                             "media": {
@@ -912,7 +963,7 @@
                         },
                         {
                             "begin": 83,
-                            "default": 89,
+                            "default": 95,
                             "end": 95,
                             "label": "Yellow",
                             "media": {
@@ -922,7 +973,7 @@
                         },
                         {
                             "begin": 96,
-                            "default": 102,
+                            "default": 108,
                             "end": 108,
                             "label": "Magenta",
                             "media": {
@@ -932,7 +983,7 @@
                         },
                         {
                             "begin": 109,
-                            "default": 115,
+                            "default": 121,
                             "end": 121,
                             "label": "Green",
                             "media": {
@@ -942,7 +993,7 @@
                         },
                         {
                             "begin": 122,
-                            "default": 127,
+                            "default": 133,
                             "end": 133,
                             "label": "Amber",
                             "media": {
@@ -952,7 +1003,7 @@
                         },
                         {
                             "begin": 134,
-                            "default": 140,
+                            "default": 146,
                             "end": 146,
                             "label": "Blue",
                             "media": {
@@ -962,7 +1013,7 @@
                         },
                         {
                             "begin": 147,
-                            "default": 153,
+                            "default": 159,
                             "end": 159,
                             "label": "Cyan",
                             "media": {
@@ -972,7 +1023,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 166,
+                            "default": 172,
                             "end": 172,
                             "label": "Open",
                             "media": {
@@ -982,7 +1033,7 @@
                         },
                         {
                             "begin": 173,
-                            "default": 179,
+                            "default": 185,
                             "end": 185,
                             "label": "CTO",
                             "media": {
@@ -992,7 +1043,7 @@
                         },
                         {
                             "begin": 186,
-                            "default": 191,
+                            "default": 188,
                             "end": 191,
                             "label": "Open",
                             "media": {
@@ -1002,7 +1053,7 @@
                         },
                         {
                             "begin": 192,
-                            "default": 222,
+                            "default": 207,
                             "end": 222,
                             "label": "Spin >>",
                             "media": {
@@ -1015,6 +1066,16 @@
                             "default": 223,
                             "end": 223,
                             "label": "Spin Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 225,
+                            "default": 225,
+                            "end": 255,
+                            "label": "Spin <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1042,6 +1103,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 4,
+                            "default": 129,
+                            "end": 255,
+                            "label": "Focus Spd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -1061,6 +1132,16 @@
                             "default": 0,
                             "end": 0,
                             "label": "FX Wheel Select Spd 100 [FX Idx]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 4,
+                            "default": 129,
+                            "end": 255,
+                            "label": "FX Wheel Select Spd [FX Idx]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1124,6 +1205,16 @@
                             "default": 207,
                             "end": 207,
                             "label": "On [Clr & Color Mix & FX Idx Blink]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 239,
+                            "default": 239,
+                            "end": 239,
+                            "label": "On [Clr & Color Mix & FX Idx & Zm Blink]",
                             "media": {
                                 "dcid": "",
                                 "name": ""

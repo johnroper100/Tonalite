@@ -67,6 +67,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 2,
+                            "default": 128,
+                            "end": 255,
+                            "label": "Focus Spd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -80,7 +90,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 6,
@@ -142,6 +163,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 140,
+                            "default": 140,
+                            "end": 140,
+                            "label": "off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -168,9 +199,19 @@
                         },
                         {
                             "begin": 2,
-                            "default": 128,
+                            "default": 254,
                             "end": 254,
                             "label": "PWM Freq",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "PWM Freq 50",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -188,7 +229,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 9,
@@ -1002,6 +1054,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 246,
+                            "default": 246,
+                            "end": 255,
+                            "label": "Without fade time",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -1055,6 +1117,16 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 0,
+                            "label": "2800K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
                         {
                             "begin": 15,
                             "default": 15,
@@ -1200,7 +1272,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Mag",
                             "media": {
@@ -1223,6 +1295,16 @@
                             "default": 129,
                             "end": 254,
                             "label": "Grn",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "No Tint",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1326,6 +1408,16 @@
                             "default": 130,
                             "end": 254,
                             "label": "Crossfade mode [Mix Pos]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Colour channels [Mix Pos]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1615,6 +1707,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 250,
+                            "default": 250,
+                            "end": 255,
+                            "label": "25.0s",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -1651,7 +1753,7 @@
                         },
                         {
                             "begin": 74,
-                            "default": 127,
+                            "default": 100,
                             "end": 127,
                             "label": "animation",
                             "media": {
@@ -1661,7 +1763,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 149,
+                            "default": 170,
                             "end": 170,
                             "label": "(animation) [Anim Shake]",
                             "media": {
@@ -1671,8 +1773,18 @@
                         },
                         {
                             "begin": 171,
-                            "default": 192,
+                            "default": 213,
                             "end": 213,
+                            "label": "animation [Anim Shake]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 214,
+                            "default": 255,
+                            "end": 255,
                             "label": "animation [Anim Shake]",
                             "media": {
                                 "dcid": "",
@@ -1704,7 +1816,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -1717,6 +1829,16 @@
                             "default": 128,
                             "end": 128,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1830,6 +1952,16 @@
                             "default": 24,
                             "end": 24,
                             "label": "Animation macro 9",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 26,
+                            "default": 26,
+                            "end": 26,
+                            "label": "Animation macro 10",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2000,7 +2132,7 @@
                         },
                         {
                             "begin": 60,
-                            "default": 64,
+                            "default": 69,
                             "end": 69,
                             "label": "(gobo 1) [I,S]",
                             "media": {
@@ -2010,7 +2142,7 @@
                         },
                         {
                             "begin": 70,
-                            "default": 74,
+                            "default": 79,
                             "end": 79,
                             "label": "(gobo 2) [I,S]",
                             "media": {
@@ -2020,7 +2152,7 @@
                         },
                         {
                             "begin": 80,
-                            "default": 84,
+                            "default": 89,
                             "end": 89,
                             "label": "(gobo 3) [I,S]",
                             "media": {
@@ -2030,7 +2162,7 @@
                         },
                         {
                             "begin": 90,
-                            "default": 94,
+                            "default": 99,
                             "end": 99,
                             "label": "(gobo 4) [I,S]",
                             "media": {
@@ -2040,7 +2172,7 @@
                         },
                         {
                             "begin": 100,
-                            "default": 104,
+                            "default": 109,
                             "end": 109,
                             "label": "(gobo 5) [I,S]",
                             "media": {
@@ -2050,7 +2182,7 @@
                         },
                         {
                             "begin": 110,
-                            "default": 114,
+                            "default": 119,
                             "end": 119,
                             "label": "(gobo 6) [I,S]",
                             "media": {
@@ -2060,7 +2192,7 @@
                         },
                         {
                             "begin": 120,
-                            "default": 124,
+                            "default": 129,
                             "end": 129,
                             "label": "(gobo 7) [I,S]",
                             "media": {
@@ -2070,7 +2202,7 @@
                         },
                         {
                             "begin": 130,
-                            "default": 134,
+                            "default": 139,
                             "end": 139,
                             "label": "(gobo 1) [R,S]",
                             "media": {
@@ -2080,7 +2212,7 @@
                         },
                         {
                             "begin": 140,
-                            "default": 144,
+                            "default": 149,
                             "end": 149,
                             "label": "(gobo 2) [R,S]",
                             "media": {
@@ -2090,7 +2222,7 @@
                         },
                         {
                             "begin": 150,
-                            "default": 154,
+                            "default": 159,
                             "end": 159,
                             "label": "(gobo 3) [R,S]",
                             "media": {
@@ -2100,7 +2232,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 164,
+                            "default": 169,
                             "end": 169,
                             "label": "(gobo 4) [R,S]",
                             "media": {
@@ -2110,7 +2242,7 @@
                         },
                         {
                             "begin": 170,
-                            "default": 174,
+                            "default": 179,
                             "end": 179,
                             "label": "(gobo 5) [R,S]",
                             "media": {
@@ -2120,7 +2252,7 @@
                         },
                         {
                             "begin": 180,
-                            "default": 184,
+                            "default": 189,
                             "end": 189,
                             "label": "(gobo 6) [R,S]",
                             "media": {
@@ -2130,7 +2262,7 @@
                         },
                         {
                             "begin": 190,
-                            "default": 194,
+                            "default": 199,
                             "end": 199,
                             "label": "(gobo 7) [R,S]",
                             "media": {
@@ -2150,7 +2282,7 @@
                         },
                         {
                             "begin": 202,
-                            "default": 221,
+                            "default": 211,
                             "end": 221,
                             "label": "Spin >> [R]",
                             "media": {
@@ -2183,6 +2315,16 @@
                             "default": 246,
                             "end": 246,
                             "label": "Gobo Aud 100 [R]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 250,
+                            "default": 252,
+                            "end": 255,
+                            "label": "Rnd [R]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2243,7 +2385,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -2253,7 +2395,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -2263,7 +2405,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 128,
+                            "default": 129,
                             "end": 129,
                             "label": "Rot Stop",
                             "media": {
@@ -2273,9 +2415,19 @@
                         },
                         {
                             "begin": 128,
-                            "default": 128,
+                            "default": 129,
                             "end": 129,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2474,6 +2626,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
+                            "label": "Prism, gobo macro 16",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -2513,7 +2675,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -2526,6 +2688,16 @@
                             "default": 128,
                             "end": 128,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2576,7 +2748,7 @@
                         },
                         {
                             "begin": 64,
-                            "default": 73,
+                            "default": 68,
                             "end": 73,
                             "label": "Frost Strobe +Pulse",
                             "media": {
@@ -2586,7 +2758,7 @@
                         },
                         {
                             "begin": 74,
-                            "default": 83,
+                            "default": 78,
                             "end": 83,
                             "label": "Frost Strobe Pulse",
                             "media": {
@@ -2636,7 +2808,7 @@
                         },
                         {
                             "begin": 150,
-                            "default": 159,
+                            "default": 154,
                             "end": 159,
                             "label": "Frost Strobe +Pulse",
                             "media": {
@@ -2646,7 +2818,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 169,
+                            "default": 164,
                             "end": 169,
                             "label": "Frost Strobe Pulse",
                             "media": {
@@ -2696,9 +2868,19 @@
                         },
                         {
                             "begin": 236,
-                            "default": 245,
+                            "default": 240,
                             "end": 245,
                             "label": "Frost Strobe +Pulse",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 246,
+                            "default": 250,
+                            "end": 255,
+                            "label": "Frost Strobe Pulse",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2749,7 +2931,7 @@
                         },
                         {
                             "begin": 220,
-                            "default": 247,
+                            "default": 233,
                             "end": 247,
                             "label": "Iris Strobe C Pulse [IrisStr Blk]",
                             "media": {
@@ -2782,6 +2964,16 @@
                             "default": 252,
                             "end": 252,
                             "label": "Iris Strobe Rnd C Pulse 100 [IrisStr Blk]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 254,
+                            "default": 254,
+                            "end": 254,
+                            "label": "Iris Strobe Rnd C Pulse 1 [IrisStr Blk]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2987,7 +3179,7 @@
                         },
                         {
                             "begin": 144,
-                            "default": 159,
+                            "default": 151,
                             "end": 159,
                             "label": "C Pulse",
                             "media": {
@@ -3010,6 +3202,16 @@
                             "default": 192,
                             "end": 223,
                             "label": "Rnd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 239,
+                            "default": 239,
+                            "end": 239,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""

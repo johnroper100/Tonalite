@@ -47,7 +47,7 @@
                         },
                         {
                             "begin": 6,
-                            "default": 126,
+                            "default": 66,
                             "end": 126,
                             "label": "Pan Rotate >>",
                             "media": {
@@ -60,6 +60,16 @@
                             "default": 127,
                             "end": 127,
                             "label": "Pan Rotate Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
+                            "label": "Pan Rotate <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -103,7 +113,7 @@
                         },
                         {
                             "begin": 6,
-                            "default": 126,
+                            "default": 66,
                             "end": 126,
                             "label": "Tilt Rotate",
                             "media": {
@@ -115,6 +125,16 @@
                             "begin": 127,
                             "default": 127,
                             "end": 127,
+                            "label": "Tilt Rotate",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
                             "label": "Tilt Rotate",
                             "media": {
                                 "dcid": "",
@@ -208,7 +228,7 @@
                         },
                         {
                             "begin": 103,
-                            "default": 127,
+                            "default": 115,
                             "end": 127,
                             "label": "Burst",
                             "media": {
@@ -221,6 +241,16 @@
                             "default": 128,
                             "end": 250,
                             "label": "Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -466,6 +496,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 255,
+                            "label": "Colour fading [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -485,6 +525,16 @@
                             "default": 0,
                             "end": 0,
                             "label": "Color Temp Control Disabled",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 6,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Color Temp",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -642,6 +692,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 247,
+                            "default": 247,
+                            "end": 247,
+                            "label": "Flow10",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -742,7 +802,7 @@
                         },
                         {
                             "begin": 103,
-                            "default": 127,
+                            "default": 115,
                             "end": 127,
                             "label": "Background Strobe Rnd",
                             "media": {
@@ -755,6 +815,16 @@
                             "default": 128,
                             "end": 250,
                             "label": "Background Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -772,7 +842,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 18,
@@ -1012,6 +1093,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 255,
+                            "label": "Colour fading [Background Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -1081,6 +1172,16 @@
                             "default": 174,
                             "end": 215,
                             "label": "Elipse small to big [Pos Macro Size]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 216,
+                            "default": 216,
+                            "end": 255,
+                            "label": "Rnd small to big [Pos Macro Size]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1162,6 +1263,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 223,
+                            "label": "S curve",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -1175,7 +1286,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

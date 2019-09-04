@@ -70,7 +70,7 @@
                         },
                         {
                             "begin": 26,
-                            "default": 127,
+                            "default": 76,
                             "end": 127,
                             "label": "MSpeed Vector mode",
                             "media": {
@@ -80,8 +80,18 @@
                         },
                         {
                             "begin": 128,
-                            "default": 247,
+                            "default": 187,
                             "end": 247,
+                            "label": "MSpeed Tracking mode",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
                             "label": "MSpeed Tracking mode",
                             "media": {
                                 "dcid": "",
@@ -202,6 +212,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 210,
+                            "default": 210,
+                            "end": 255,
+                            "label": "Rnd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -263,7 +283,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

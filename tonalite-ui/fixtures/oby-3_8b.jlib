@@ -76,7 +76,7 @@
                         },
                         {
                             "begin": 72,
-                            "default": 127,
+                            "default": 99,
                             "end": 127,
                             "label": "C Pulse",
                             "media": {
@@ -119,6 +119,16 @@
                             "default": 200,
                             "end": 253,
                             "label": "Rnd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -256,6 +266,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 168,
+                            "default": 168,
+                            "end": 255,
+                            "label": "Spin >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -339,6 +359,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 168,
+                            "default": 168,
+                            "end": 255,
+                            "label": "Spin >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -365,9 +395,19 @@
                         },
                         {
                             "begin": 128,
-                            "default": 191,
+                            "default": 159,
                             "end": 191,
                             "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -408,7 +448,7 @@
                         },
                         {
                             "begin": 8,
-                            "default": 70,
+                            "default": 132,
                             "end": 132,
                             "label": "(3 Prism) [>>]",
                             "media": {
@@ -418,9 +458,19 @@
                         },
                         {
                             "begin": 133,
-                            "default": 193,
+                            "default": 253,
                             "end": 253,
                             "label": "(3 Prism) [<<]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 254,
+                            "default": 254,
+                            "end": 254,
+                            "label": "(3 Prism)",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -494,6 +544,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -507,7 +567,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

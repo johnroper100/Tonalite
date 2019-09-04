@@ -56,7 +56,7 @@
                         },
                         {
                             "begin": 8,
-                            "default": 63,
+                            "default": 35,
                             "end": 63,
                             "label": "Strobe",
                             "media": {
@@ -119,6 +119,16 @@
                             "default": 200,
                             "end": 253,
                             "label": "Rnd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 254,
+                            "default": 254,
+                            "end": 254,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -256,6 +266,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 168,
+                            "default": 168,
+                            "end": 255,
+                            "label": "Spin >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -339,6 +359,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 168,
+                            "default": 168,
+                            "end": 255,
+                            "label": "Spin >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -368,6 +398,16 @@
                             "default": 128,
                             "end": 191,
                             "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -408,7 +448,7 @@
                         },
                         {
                             "begin": 8,
-                            "default": 69,
+                            "default": 131,
                             "end": 131,
                             "label": "(3 Prism) [>>]",
                             "media": {
@@ -418,9 +458,19 @@
                         },
                         {
                             "begin": 132,
-                            "default": 192,
+                            "default": 253,
                             "end": 253,
                             "label": "(3 Prism) [<<]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 254,
+                            "default": 254,
+                            "end": 254,
+                            "label": "(3 Prism)",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -484,6 +534,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 8,
+                            "default": 8,
+                            "end": 63,
+                            "label": "Focus Spd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -497,7 +557,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

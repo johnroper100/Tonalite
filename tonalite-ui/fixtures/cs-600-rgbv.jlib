@@ -51,6 +51,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "DMX mode",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -2624,6 +2634,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "File 255",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -2657,6 +2677,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 255,
+                            "label": "Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -2673,7 +2703,7 @@
                     "ranges": [
                         {
                             "begin": 0,
-                            "default": 127,
+                            "default": 255,
                             "end": 255,
                             "label": "None",
                             "media": {
@@ -2693,7 +2723,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 84,
+                            "default": 167,
                             "end": 167,
                             "label": "X Pos",
                             "media": {
@@ -2716,6 +2746,16 @@
                             "default": 189,
                             "end": 209,
                             "label": "X Scroll",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 210,
+                            "default": 210,
+                            "end": 255,
+                            "label": "X Bounce",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2736,7 +2776,7 @@
                     "ranges": [
                         {
                             "begin": 0,
-                            "default": 127,
+                            "default": 255,
                             "end": 255,
                             "label": "None",
                             "media": {
@@ -2756,7 +2796,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 84,
+                            "default": 167,
                             "end": 167,
                             "label": "Y Pos",
                             "media": {
@@ -2779,6 +2819,16 @@
                             "default": 189,
                             "end": 209,
                             "label": "Y Scroll",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 210,
+                            "default": 210,
+                            "end": 255,
+                            "label": "Y Bounce",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2839,9 +2889,19 @@
                         },
                         {
                             "begin": 155,
-                            "default": 204,
+                            "default": 179,
                             "end": 204,
                             "label": "Zoom",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 205,
+                            "default": 205,
+                            "end": 255,
+                            "label": "Zoom Pulse",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2879,6 +2939,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 151,
+                            "default": 151,
+                            "end": 255,
+                            "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -2912,6 +2982,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 151,
+                            "default": 151,
+                            "end": 255,
+                            "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -2928,7 +3008,7 @@
                     "ranges": [
                         {
                             "begin": 0,
-                            "default": 127,
+                            "default": 255,
                             "end": 255,
                             "label": "None",
                             "media": {
@@ -2938,7 +3018,7 @@
                         },
                         {
                             "begin": 0,
-                            "default": 90,
+                            "default": 180,
                             "end": 180,
                             "label": "Pos",
                             "media": {
@@ -2950,6 +3030,16 @@
                             "begin": 181,
                             "default": 181,
                             "end": 217,
+                            "label": "Pos [Spd]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 218,
+                            "default": 218,
+                            "end": 255,
                             "label": "Pos [Spd]",
                             "media": {
                                 "dcid": "",
@@ -2991,7 +3081,7 @@
                         },
                         {
                             "begin": 71,
-                            "default": 105,
+                            "default": 139,
                             "end": 139,
                             "label": "Points are brighter",
                             "media": {
@@ -3001,9 +3091,19 @@
                         },
                         {
                             "begin": 140,
-                            "default": 174,
+                            "default": 209,
                             "end": 209,
                             "label": "Dashed lines",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 210,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Points only",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3027,6 +3127,16 @@
                             "default": 0,
                             "end": 255,
                             "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "FX Macros 1 [FX Macro Pos]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3060,6 +3170,16 @@
                             "default": 0,
                             "end": 127,
                             "label": "Piecewise drawing [FXM Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 255,
+                            "label": "Piecewise drawing erasing [FXM Rate]",
                             "media": {
                                 "dcid": "",
                                 "name": ""

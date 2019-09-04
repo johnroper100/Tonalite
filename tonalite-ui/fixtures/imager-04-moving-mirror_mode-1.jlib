@@ -21,7 +21,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 1,
@@ -135,6 +146,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 199,
+                            "default": 218,
+                            "end": 237,
+                            "label": "Spin >> [R]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -170,6 +191,16 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Unknown",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 3,
                             "default": 3,
                             "end": 127,
@@ -181,7 +212,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 252,
+                            "default": 190,
                             "end": 252,
                             "label": "Rot >>",
                             "media": {
@@ -191,7 +222,7 @@
                         },
                         {
                             "begin": 253,
-                            "default": 254,
+                            "default": 255,
                             "end": 255,
                             "label": "Rot Stop",
                             "media": {
@@ -260,9 +291,19 @@
                         },
                         {
                             "begin": 3,
-                            "default": 251,
+                            "default": 127,
                             "end": 251,
                             "label": "Focus Spd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Focus Track [BlackMove]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -303,7 +344,7 @@
                         },
                         {
                             "begin": 3,
-                            "default": 251,
+                            "default": 127,
                             "end": 251,
                             "label": "Gobo Speed [Track]",
                             "media": {
@@ -313,7 +354,7 @@
                         },
                         {
                             "begin": 3,
-                            "default": 251,
+                            "default": 127,
                             "end": 251,
                             "label": "Gobo Speed [Track]",
                             "media": {
@@ -323,9 +364,19 @@
                         },
                         {
                             "begin": 252,
-                            "default": 253,
+                            "default": 255,
                             "end": 255,
                             "label": "Gobo Speed Track [Track,Gobo & Gobo Idx Blink]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 252,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Gobo Speed Track [Track,Gobo Blink]",
                             "media": {
                                 "dcid": "",
                                 "name": ""

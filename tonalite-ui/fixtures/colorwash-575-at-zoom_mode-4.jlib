@@ -59,7 +59,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 6,
@@ -141,6 +152,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 255,
+                            "label": "Movement macro - cross [Pos Macro Size]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -167,7 +188,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Pos Macro Rate",
                             "media": {
@@ -179,6 +200,16 @@
                             "begin": 128,
                             "default": 128,
                             "end": 128,
+                            "label": "Pos Macro Rate",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 255,
                             "label": "Pos Macro Rate",
                             "media": {
                                 "dcid": "",
@@ -209,8 +240,18 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 11,
-                            "default": 21,
+                            "default": 31,
                             "end": 31,
                             "label": "Deep Red",
                             "media": {
@@ -220,7 +261,7 @@
                         },
                         {
                             "begin": 32,
-                            "default": 42,
+                            "default": 52,
                             "end": 52,
                             "label": "Deep Blue",
                             "media": {
@@ -230,7 +271,7 @@
                         },
                         {
                             "begin": 53,
-                            "default": 63,
+                            "default": 74,
                             "end": 74,
                             "label": "Green",
                             "media": {
@@ -240,7 +281,7 @@
                         },
                         {
                             "begin": 75,
-                            "default": 85,
+                            "default": 95,
                             "end": 95,
                             "label": "CTC 6000K",
                             "media": {
@@ -250,7 +291,7 @@
                         },
                         {
                             "begin": 96,
-                            "default": 106,
+                            "default": 116,
                             "end": 116,
                             "label": "UV",
                             "media": {
@@ -260,7 +301,7 @@
                         },
                         {
                             "begin": 117,
-                            "default": 127,
+                            "default": 122,
                             "end": 127,
                             "label": "Open",
                             "media": {
@@ -280,7 +321,7 @@
                         },
                         {
                             "begin": 130,
-                            "default": 135,
+                            "default": 141,
                             "end": 141,
                             "label": "(Deep Red)",
                             "media": {
@@ -290,7 +331,7 @@
                         },
                         {
                             "begin": 142,
-                            "default": 147,
+                            "default": 153,
                             "end": 153,
                             "label": "(Deep Blue)",
                             "media": {
@@ -300,7 +341,7 @@
                         },
                         {
                             "begin": 154,
-                            "default": 159,
+                            "default": 165,
                             "end": 165,
                             "label": "(Green)",
                             "media": {
@@ -310,7 +351,7 @@
                         },
                         {
                             "begin": 166,
-                            "default": 171,
+                            "default": 177,
                             "end": 177,
                             "label": "(CTC 6000K)",
                             "media": {
@@ -320,7 +361,7 @@
                         },
                         {
                             "begin": 178,
-                            "default": 183,
+                            "default": 189,
                             "end": 189,
                             "label": "(UV)",
                             "media": {
@@ -330,7 +371,7 @@
                         },
                         {
                             "begin": 190,
-                            "default": 215,
+                            "default": 202,
                             "end": 215,
                             "label": "Spin >>",
                             "media": {
@@ -360,7 +401,7 @@
                         },
                         {
                             "begin": 244,
-                            "default": 246,
+                            "default": 249,
                             "end": 249,
                             "label": "Color Aud 100",
                             "media": {
@@ -370,7 +411,7 @@
                         },
                         {
                             "begin": 250,
-                            "default": 255,
+                            "default": 252,
                             "end": 255,
                             "label": "Rnd",
                             "media": {
@@ -753,7 +794,7 @@
                         },
                         {
                             "begin": 240,
-                            "default": 243,
+                            "default": 241,
                             "end": 243,
                             "label": "MixRnd",
                             "media": {
@@ -766,6 +807,16 @@
                             "default": 246,
                             "end": 246,
                             "label": "Color Macro Aud",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 250,
+                            "default": 252,
+                            "end": 255,
+                            "label": "MixRnd",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -848,7 +899,7 @@
                         },
                         {
                             "begin": 144,
-                            "default": 159,
+                            "default": 151,
                             "end": 159,
                             "label": "C Pulse",
                             "media": {
@@ -871,6 +922,16 @@
                             "default": 192,
                             "end": 223,
                             "label": "Rnd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""

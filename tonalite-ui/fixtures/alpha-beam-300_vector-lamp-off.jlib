@@ -70,7 +70,7 @@
                         },
                         {
                             "begin": 8,
-                            "default": 15,
+                            "default": 22,
                             "end": 22,
                             "label": "Red",
                             "media": {
@@ -80,7 +80,7 @@
                         },
                         {
                             "begin": 23,
-                            "default": 30,
+                            "default": 37,
                             "end": 37,
                             "label": "CTB",
                             "media": {
@@ -90,7 +90,7 @@
                         },
                         {
                             "begin": 38,
-                            "default": 45,
+                            "default": 52,
                             "end": 52,
                             "label": "CTO 3200K",
                             "media": {
@@ -100,7 +100,7 @@
                         },
                         {
                             "begin": 53,
-                            "default": 60,
+                            "default": 67,
                             "end": 67,
                             "label": "CTO 2500K",
                             "media": {
@@ -110,7 +110,7 @@
                         },
                         {
                             "begin": 68,
-                            "default": 75,
+                            "default": 82,
                             "end": 82,
                             "label": "Green",
                             "media": {
@@ -120,7 +120,7 @@
                         },
                         {
                             "begin": 83,
-                            "default": 90,
+                            "default": 97,
                             "end": 97,
                             "label": "Aquamarine",
                             "media": {
@@ -130,7 +130,7 @@
                         },
                         {
                             "begin": 98,
-                            "default": 105,
+                            "default": 112,
                             "end": 112,
                             "label": "Orange",
                             "media": {
@@ -140,9 +140,19 @@
                         },
                         {
                             "begin": 113,
-                            "default": 120,
+                            "default": 127,
                             "end": 127,
                             "label": "Blue",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 255,
+                            "label": "Spin >>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -236,6 +246,16 @@
                             "default": 245,
                             "end": 245,
                             "label": "Rnd 100",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -358,7 +378,7 @@
                         },
                         {
                             "begin": 72,
-                            "default": 113,
+                            "default": 92,
                             "end": 113,
                             "label": "Spin >>",
                             "media": {
@@ -388,7 +408,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 167,
+                            "default": 175,
                             "end": 175,
                             "label": "(04) [S]",
                             "media": {
@@ -398,7 +418,7 @@
                         },
                         {
                             "begin": 176,
-                            "default": 183,
+                            "default": 191,
                             "end": 191,
                             "label": "(03) [S]",
                             "media": {
@@ -408,7 +428,7 @@
                         },
                         {
                             "begin": 192,
-                            "default": 199,
+                            "default": 207,
                             "end": 207,
                             "label": "(02) [S]",
                             "media": {
@@ -418,7 +438,7 @@
                         },
                         {
                             "begin": 208,
-                            "default": 215,
+                            "default": 223,
                             "end": 223,
                             "label": "(05) [S]",
                             "media": {
@@ -428,9 +448,19 @@
                         },
                         {
                             "begin": 224,
-                            "default": 231,
+                            "default": 239,
                             "end": 239,
                             "label": "(02) [S]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 240,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(03) [S]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -486,7 +516,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 13,
@@ -498,7 +539,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 14,
@@ -1886,6 +1938,16 @@
                             "default": 253,
                             "end": 254,
                             "label": "307.0s",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Focus Track",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3283,6 +3345,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Color Mix Track [Track]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -4672,6 +4744,16 @@
                             "default": 253,
                             "end": 254,
                             "label": "307.0s",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Track [Frost Speed]",
                             "media": {
                                 "dcid": "",
                                 "name": ""

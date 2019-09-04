@@ -57,7 +57,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 4,
@@ -152,7 +163,7 @@
                         },
                         {
                             "begin": 16,
-                            "default": 55,
+                            "default": 35,
                             "end": 55,
                             "label": "Blue [Mix Pos]",
                             "media": {
@@ -162,7 +173,7 @@
                         },
                         {
                             "begin": 56,
-                            "default": 95,
+                            "default": 75,
                             "end": 95,
                             "label": "Cyan [Mix Pos]",
                             "media": {
@@ -172,7 +183,7 @@
                         },
                         {
                             "begin": 96,
-                            "default": 134,
+                            "default": 115,
                             "end": 134,
                             "label": "Green [Mix Pos]",
                             "media": {
@@ -182,7 +193,7 @@
                         },
                         {
                             "begin": 135,
-                            "default": 174,
+                            "default": 154,
                             "end": 174,
                             "label": "Yellow [Mix Pos]",
                             "media": {
@@ -192,7 +203,7 @@
                         },
                         {
                             "begin": 175,
-                            "default": 214,
+                            "default": 194,
                             "end": 214,
                             "label": "Red [Mix Pos]",
                             "media": {
@@ -202,7 +213,7 @@
                         },
                         {
                             "begin": 215,
-                            "default": 246,
+                            "default": 230,
                             "end": 246,
                             "label": "Magenta [Mix Pos]",
                             "media": {
@@ -225,6 +236,16 @@
                             "default": 248,
                             "end": 251,
                             "label": "MixCycle",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 252,
+                            "default": 252,
+                            "end": 255,
+                            "label": "MixCycle [Color Mix Step]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -416,6 +437,16 @@
                             "default": 240,
                             "end": 249,
                             "label": "3000K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 250,
+                            "default": 250,
+                            "end": 255,
+                            "label": "2800K",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -683,6 +714,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 250,
+                            "default": 250,
+                            "end": 255,
+                            "label": "25.0s",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -709,7 +750,7 @@
                         },
                         {
                             "begin": 20,
-                            "default": 127,
+                            "default": 73,
                             "end": 127,
                             "label": "001",
                             "media": {
@@ -719,7 +760,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 170,
+                            "default": 149,
                             "end": 170,
                             "label": "001 [Anim Shake]",
                             "media": {
@@ -731,6 +772,16 @@
                             "begin": 171,
                             "default": 171,
                             "end": 213,
+                            "label": "001 [Anim Shake]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 214,
+                            "default": 234,
+                            "end": 255,
                             "label": "001 [Anim Shake]",
                             "media": {
                                 "dcid": "",
@@ -762,7 +813,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -775,6 +826,16 @@
                             "default": 128,
                             "end": 128,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -888,6 +949,16 @@
                             "default": 24,
                             "end": 24,
                             "label": "Animation macro 9",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 26,
+                            "default": 26,
+                            "end": 26,
+                            "label": "Animation macro 10",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1058,7 +1129,7 @@
                         },
                         {
                             "begin": 60,
-                            "default": 64,
+                            "default": 69,
                             "end": 69,
                             "label": "(754) [I,S]",
                             "media": {
@@ -1068,7 +1139,7 @@
                         },
                         {
                             "begin": 70,
-                            "default": 74,
+                            "default": 79,
                             "end": 79,
                             "label": "(753) [I,S]",
                             "media": {
@@ -1078,7 +1149,7 @@
                         },
                         {
                             "begin": 80,
-                            "default": 84,
+                            "default": 89,
                             "end": 89,
                             "label": "(752) [I,S]",
                             "media": {
@@ -1088,7 +1159,7 @@
                         },
                         {
                             "begin": 90,
-                            "default": 94,
+                            "default": 99,
                             "end": 99,
                             "label": "(751) [I,S]",
                             "media": {
@@ -1098,7 +1169,7 @@
                         },
                         {
                             "begin": 100,
-                            "default": 104,
+                            "default": 109,
                             "end": 109,
                             "label": "(750) [I,S]",
                             "media": {
@@ -1108,7 +1179,7 @@
                         },
                         {
                             "begin": 110,
-                            "default": 114,
+                            "default": 119,
                             "end": 119,
                             "label": "(749) [I,S]",
                             "media": {
@@ -1118,7 +1189,7 @@
                         },
                         {
                             "begin": 120,
-                            "default": 124,
+                            "default": 129,
                             "end": 129,
                             "label": "(748) [I,S]",
                             "media": {
@@ -1128,7 +1199,7 @@
                         },
                         {
                             "begin": 130,
-                            "default": 134,
+                            "default": 139,
                             "end": 139,
                             "label": "(754) [R,S]",
                             "media": {
@@ -1138,7 +1209,7 @@
                         },
                         {
                             "begin": 140,
-                            "default": 144,
+                            "default": 149,
                             "end": 149,
                             "label": "(753) [R,S]",
                             "media": {
@@ -1148,7 +1219,7 @@
                         },
                         {
                             "begin": 150,
-                            "default": 154,
+                            "default": 159,
                             "end": 159,
                             "label": "(752) [R,S]",
                             "media": {
@@ -1158,7 +1229,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 164,
+                            "default": 169,
                             "end": 169,
                             "label": "(751) [R,S]",
                             "media": {
@@ -1168,7 +1239,7 @@
                         },
                         {
                             "begin": 170,
-                            "default": 174,
+                            "default": 179,
                             "end": 179,
                             "label": "(750) [R,S]",
                             "media": {
@@ -1178,7 +1249,7 @@
                         },
                         {
                             "begin": 180,
-                            "default": 184,
+                            "default": 189,
                             "end": 189,
                             "label": "(749) [R,S]",
                             "media": {
@@ -1188,7 +1259,7 @@
                         },
                         {
                             "begin": 190,
-                            "default": 194,
+                            "default": 199,
                             "end": 199,
                             "label": "(748) [R,S]",
                             "media": {
@@ -1241,6 +1312,16 @@
                             "default": 246,
                             "end": 246,
                             "label": "Gobo Aud 100 [R]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 250,
+                            "default": 252,
+                            "end": 255,
+                            "label": "Rnd [R]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1301,7 +1382,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -1311,7 +1392,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -1334,6 +1415,16 @@
                             "default": 128,
                             "end": 129,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1531,6 +1622,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
+                            "label": "Prism, gobo macro 16",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -1557,7 +1658,7 @@
                         },
                         {
                             "begin": 1,
-                            "default": 127,
+                            "default": 64,
                             "end": 127,
                             "label": "Rot >>",
                             "media": {
@@ -1570,6 +1671,16 @@
                             "default": 128,
                             "end": 128,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1620,9 +1731,19 @@
                         },
                         {
                             "begin": 212,
-                            "default": 233,
+                            "default": 222,
                             "end": 233,
                             "label": "Frost Strobe -Pulse",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 234,
+                            "default": 244,
+                            "end": 255,
+                            "label": "Frost Strobe Pulse",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1673,7 +1794,7 @@
                         },
                         {
                             "begin": 220,
-                            "default": 247,
+                            "default": 233,
                             "end": 247,
                             "label": "Iris Strobe C Pulse [IrisStr Blk]",
                             "media": {
@@ -1706,6 +1827,16 @@
                             "default": 252,
                             "end": 252,
                             "label": "Iris Strobe Rnd C Pulse 100 [IrisStr Blk]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 254,
+                            "default": 254,
+                            "end": 254,
+                            "label": "Iris Strobe Rnd C Pulse 1 [IrisStr Blk]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1773,6 +1904,16 @@
                             "default": 60,
                             "end": 60,
                             "label": "Unknown",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 120,
+                            "label": "Rotating Gobo Wheel [Focus Dist]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2418,6 +2559,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 209,
+                            "default": 209,
+                            "end": 209,
+                            "label": "Frame Macros 52",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -2496,7 +2647,7 @@
                         },
                         {
                             "begin": 144,
-                            "default": 159,
+                            "default": 151,
                             "end": 159,
                             "label": "C Pulse",
                             "media": {
@@ -2519,6 +2670,16 @@
                             "default": 192,
                             "end": 223,
                             "label": "Rnd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""

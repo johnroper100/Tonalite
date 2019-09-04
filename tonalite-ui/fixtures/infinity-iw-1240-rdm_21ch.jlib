@@ -94,7 +94,7 @@
                         },
                         {
                             "begin": 10,
-                            "default": 50,
+                            "default": 30,
                             "end": 50,
                             "label": "Strobe",
                             "media": {
@@ -114,7 +114,7 @@
                         },
                         {
                             "begin": 55,
-                            "default": 95,
+                            "default": 75,
                             "end": 95,
                             "label": "C Pulse",
                             "media": {
@@ -134,7 +134,7 @@
                         },
                         {
                             "begin": 100,
-                            "default": 140,
+                            "default": 120,
                             "end": 140,
                             "label": "O Pulse",
                             "media": {
@@ -154,7 +154,7 @@
                         },
                         {
                             "begin": 145,
-                            "default": 195,
+                            "default": 170,
                             "end": 195,
                             "label": "Rnd",
                             "media": {
@@ -174,9 +174,19 @@
                         },
                         {
                             "begin": 200,
-                            "default": 239,
+                            "default": 219,
                             "end": 239,
                             "label": "Pulse",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -308,6 +318,16 @@
                             "default": 191,
                             "end": 222,
                             "label": "2500K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 255,
+                            "label": "2600K",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -518,8 +538,18 @@
                         },
                         {
                             "begin": 240,
-                            "default": 247,
+                            "default": 243,
                             "end": 247,
+                            "label": "MixCycle",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 248,
+                            "default": 251,
+                            "end": 255,
                             "label": "MixCycle",
                             "media": {
                                 "dcid": "",
@@ -1148,6 +1178,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Macros 61",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -1561,6 +1601,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 252,
+                            "default": 252,
+                            "end": 252,
+                            "label": "FX Macros 40",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -1817,6 +1867,16 @@
                             "begin": 240,
                             "default": 240,
                             "end": 247,
+                            "label": "Background Color Mix Cycle",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 248,
+                            "default": 248,
+                            "end": 255,
                             "label": "Background Color Mix Cycle",
                             "media": {
                                 "dcid": "",

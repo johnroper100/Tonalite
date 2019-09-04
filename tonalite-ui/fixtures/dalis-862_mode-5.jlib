@@ -66,9 +66,19 @@
                         },
                         {
                             "begin": 129,
-                            "default": 254,
+                            "default": 191,
                             "end": 254,
                             "label": "Intensity 2 [Full]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Intensity 100",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -236,6 +246,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 225,
+                            "default": 225,
+                            "end": 255,
+                            "label": "6000K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -254,6 +274,16 @@
                             "begin": 0,
                             "default": 0,
                             "end": 0,
+                            "label": "Strobe Duration",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 255,
                             "label": "Strobe Duration",
                             "media": {
                                 "dcid": "",
@@ -282,6 +312,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -295,7 +335,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 250,
+                            "label": "Global Spd Time",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 6,
@@ -313,6 +364,16 @@
                             "default": 0,
                             "end": 0,
                             "label": "RDM Control",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "RDM Off",
                             "media": {
                                 "dcid": "",
                                 "name": ""

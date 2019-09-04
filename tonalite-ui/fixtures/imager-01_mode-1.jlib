@@ -21,7 +21,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 1,
@@ -51,6 +62,16 @@
                             "default": 0,
                             "end": 0,
                             "label": "Index",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 119,
+                            "default": 119,
+                            "end": 119,
+                            "label": "Rot",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -90,6 +111,16 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Unknown",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 3,
                             "default": 3,
                             "end": 127,
@@ -101,7 +132,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 252,
+                            "default": 190,
                             "end": 252,
                             "label": "Rot >>",
                             "media": {
@@ -111,7 +142,7 @@
                         },
                         {
                             "begin": 253,
-                            "default": 254,
+                            "default": 255,
                             "end": 255,
                             "label": "Rot Stop",
                             "media": {
@@ -149,6 +180,16 @@
                             "default": 0,
                             "end": 0,
                             "label": "Focus Track",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 5,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Focus Spd",
                             "media": {
                                 "dcid": "",
                                 "name": ""

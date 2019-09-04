@@ -70,7 +70,7 @@
                         },
                         {
                             "begin": 26,
-                            "default": 127,
+                            "default": 76,
                             "end": 127,
                             "label": "Movement MSpeed Vector mode",
                             "media": {
@@ -80,8 +80,18 @@
                         },
                         {
                             "begin": 128,
-                            "default": 247,
+                            "default": 187,
                             "end": 247,
+                            "label": "Movement MSpeed Tracking mode",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
                             "label": "Movement MSpeed Tracking mode",
                             "media": {
                                 "dcid": "",
@@ -165,7 +175,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 184,
+                            "default": 156,
                             "end": 184,
                             "label": "O Pulse",
                             "media": {
@@ -192,6 +202,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -211,6 +231,16 @@
                             "default": 0,
                             "end": 0,
                             "label": "Off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 252,
+                            "default": 252,
+                            "end": 252,
+                            "label": "On [Clr Blink]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -241,9 +271,19 @@
                         },
                         {
                             "begin": 10,
-                            "default": 120,
+                            "default": 230,
                             "end": 230,
                             "label": "(Beamshaper) [Index]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 243,
+                            "default": 243,
+                            "end": 243,
+                            "label": "(Wide Angle)",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -344,7 +384,7 @@
                         },
                         {
                             "begin": 66,
-                            "default": 70,
+                            "default": 74,
                             "end": 74,
                             "label": "colour 1",
                             "media": {
@@ -354,7 +394,7 @@
                         },
                         {
                             "begin": 75,
-                            "default": 79,
+                            "default": 84,
                             "end": 84,
                             "label": "colour 2",
                             "media": {
@@ -364,7 +404,7 @@
                         },
                         {
                             "begin": 85,
-                            "default": 89,
+                            "default": 93,
                             "end": 93,
                             "label": "colour 3",
                             "media": {
@@ -374,7 +414,7 @@
                         },
                         {
                             "begin": 94,
-                            "default": 98,
+                            "default": 102,
                             "end": 102,
                             "label": "colour 4",
                             "media": {
@@ -384,7 +424,7 @@
                         },
                         {
                             "begin": 103,
-                            "default": 107,
+                            "default": 112,
                             "end": 112,
                             "label": "colour 5",
                             "media": {
@@ -394,7 +434,7 @@
                         },
                         {
                             "begin": 113,
-                            "default": 117,
+                            "default": 121,
                             "end": 121,
                             "label": "colour 6",
                             "media": {
@@ -404,7 +444,7 @@
                         },
                         {
                             "begin": 122,
-                            "default": 127,
+                            "default": 124,
                             "end": 127,
                             "label": "Open",
                             "media": {
@@ -414,7 +454,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 190,
+                            "default": 159,
                             "end": 190,
                             "label": "Spin >>",
                             "media": {
@@ -427,6 +467,16 @@
                             "default": 191,
                             "end": 191,
                             "label": "Spin Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 255,
+                            "label": "Spin <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -480,7 +530,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 20,
+                            "default": 20,
+                            "end": 20,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

@@ -61,6 +61,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 211,
+                            "default": 211,
+                            "end": 255,
+                            "label": "Rnd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -100,7 +110,7 @@
                         },
                         {
                             "begin": 8,
-                            "default": 15,
+                            "default": 22,
                             "end": 22,
                             "label": "01",
                             "media": {
@@ -110,7 +120,7 @@
                         },
                         {
                             "begin": 23,
-                            "default": 30,
+                            "default": 37,
                             "end": 37,
                             "label": "02",
                             "media": {
@@ -120,7 +130,7 @@
                         },
                         {
                             "begin": 38,
-                            "default": 45,
+                            "default": 52,
                             "end": 52,
                             "label": "03",
                             "media": {
@@ -130,7 +140,7 @@
                         },
                         {
                             "begin": 53,
-                            "default": 60,
+                            "default": 67,
                             "end": 67,
                             "label": "04",
                             "media": {
@@ -140,7 +150,7 @@
                         },
                         {
                             "begin": 68,
-                            "default": 75,
+                            "default": 82,
                             "end": 82,
                             "label": "05",
                             "media": {
@@ -150,7 +160,7 @@
                         },
                         {
                             "begin": 83,
-                            "default": 90,
+                            "default": 97,
                             "end": 97,
                             "label": "06",
                             "media": {
@@ -160,7 +170,7 @@
                         },
                         {
                             "begin": 98,
-                            "default": 105,
+                            "default": 112,
                             "end": 112,
                             "label": "07",
                             "media": {
@@ -170,7 +180,7 @@
                         },
                         {
                             "begin": 113,
-                            "default": 123,
+                            "default": 134,
                             "end": 134,
                             "label": "08",
                             "media": {
@@ -180,7 +190,7 @@
                         },
                         {
                             "begin": 135,
-                            "default": 160,
+                            "default": 147,
                             "end": 160,
                             "label": "Open",
                             "media": {
@@ -280,7 +290,7 @@
                         },
                         {
                             "begin": 193,
-                            "default": 214,
+                            "default": 203,
                             "end": 214,
                             "label": "Spin >>",
                             "media": {
@@ -323,6 +333,16 @@
                             "default": 249,
                             "end": 249,
                             "label": "Rnd 50",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Rnd 1",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -473,9 +493,19 @@
                         },
                         {
                             "begin": 210,
-                            "default": 232,
+                            "default": 221,
                             "end": 232,
                             "label": "Spin >> [R]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 233,
+                            "default": 233,
+                            "end": 255,
+                            "label": "Spin << [R]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -496,7 +526,7 @@
                     "ranges": [
                         {
                             "begin": 0,
-                            "default": 127,
+                            "default": 255,
                             "end": 255,
                             "label": "Index",
                             "media": {
@@ -515,8 +545,18 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 255,
+                            "end": 255,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 2,
-                            "default": 125,
+                            "default": 63,
                             "end": 125,
                             "label": "Rot >>",
                             "media": {
@@ -526,7 +566,7 @@
                         },
                         {
                             "begin": 125,
-                            "default": 126,
+                            "default": 128,
                             "end": 128,
                             "label": "Rot Stop",
                             "media": {
@@ -546,7 +586,7 @@
                         },
                         {
                             "begin": 251,
-                            "default": 253,
+                            "default": 255,
                             "end": 255,
                             "label": "Rot Stop",
                             "media": {
@@ -583,6 +623,16 @@
                             "default": 7,
                             "end": 7,
                             "label": "(Radial Breakup)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(Radial Breakup) [>>]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -660,6 +710,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 31,
+                            "default": 31,
+                            "end": 255,
+                            "label": "Frost",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -695,8 +755,18 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 3,
-                            "default": 126,
+                            "default": 64,
                             "end": 126,
                             "label": "Rot >>",
                             "media": {
@@ -706,7 +776,7 @@
                         },
                         {
                             "begin": 127,
-                            "default": 128,
+                            "default": 129,
                             "end": 129,
                             "label": "Rot Stop",
                             "media": {
@@ -815,6 +885,16 @@
                             "default": 62,
                             "end": 62,
                             "label": "Display On",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 67,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Display Off",
                             "media": {
                                 "dcid": "",
                                 "name": ""

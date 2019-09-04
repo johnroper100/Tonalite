@@ -129,6 +129,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -347,7 +357,7 @@
                         },
                         {
                             "begin": 144,
-                            "default": 151,
+                            "default": 159,
                             "end": 159,
                             "label": "Dark Red",
                             "media": {
@@ -357,7 +367,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 167,
+                            "default": 175,
                             "end": 175,
                             "label": "Dark Blue",
                             "media": {
@@ -367,7 +377,7 @@
                         },
                         {
                             "begin": 176,
-                            "default": 183,
+                            "default": 191,
                             "end": 191,
                             "label": "Yellow",
                             "media": {
@@ -377,7 +387,7 @@
                         },
                         {
                             "begin": 192,
-                            "default": 199,
+                            "default": 207,
                             "end": 207,
                             "label": "Green",
                             "media": {
@@ -387,7 +397,7 @@
                         },
                         {
                             "begin": 208,
-                            "default": 215,
+                            "default": 223,
                             "end": 223,
                             "label": "Light Orange",
                             "media": {
@@ -397,9 +407,19 @@
                         },
                         {
                             "begin": 224,
-                            "default": 231,
+                            "default": 239,
                             "end": 239,
                             "label": "Magenta",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 240,
+                            "default": 247,
+                            "end": 255,
+                            "label": "UV",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -417,7 +437,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 8,
@@ -622,7 +653,7 @@
                         },
                         {
                             "begin": 144,
-                            "default": 151,
+                            "default": 159,
                             "end": 159,
                             "label": "CTO",
                             "media": {
@@ -632,7 +663,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 167,
+                            "default": 175,
                             "end": 175,
                             "label": "Jade",
                             "media": {
@@ -642,7 +673,7 @@
                         },
                         {
                             "begin": 176,
-                            "default": 183,
+                            "default": 191,
                             "end": 191,
                             "label": "CTB",
                             "media": {
@@ -652,7 +683,7 @@
                         },
                         {
                             "begin": 192,
-                            "default": 199,
+                            "default": 207,
                             "end": 207,
                             "label": "Pink",
                             "media": {
@@ -662,7 +693,7 @@
                         },
                         {
                             "begin": 208,
-                            "default": 215,
+                            "default": 223,
                             "end": 223,
                             "label": "Light Green",
                             "media": {
@@ -672,9 +703,19 @@
                         },
                         {
                             "begin": 224,
-                            "default": 231,
+                            "default": 239,
                             "end": 239,
                             "label": "Dark Orange",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 240,
+                            "default": 247,
+                            "end": 255,
+                            "label": "Cyan",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -748,6 +789,16 @@
                             "default": 87,
                             "end": 87,
                             "label": "Full Frame [Shk]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "Unknown",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -827,8 +878,18 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Unknown",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 32,
-                            "default": 47,
+                            "default": 63,
                             "end": 63,
                             "label": "(125)",
                             "media": {
@@ -838,7 +899,7 @@
                         },
                         {
                             "begin": 32,
-                            "default": 47,
+                            "default": 63,
                             "end": 63,
                             "label": "125",
                             "media": {
@@ -848,7 +909,7 @@
                         },
                         {
                             "begin": 32,
-                            "default": 47,
+                            "default": 63,
                             "end": 63,
                             "label": "(125) [S]",
                             "media": {
@@ -858,7 +919,7 @@
                         },
                         {
                             "begin": 64,
-                            "default": 79,
+                            "default": 95,
                             "end": 95,
                             "label": "(126)",
                             "media": {
@@ -868,7 +929,7 @@
                         },
                         {
                             "begin": 64,
-                            "default": 79,
+                            "default": 95,
                             "end": 95,
                             "label": "126",
                             "media": {
@@ -878,7 +939,7 @@
                         },
                         {
                             "begin": 64,
-                            "default": 79,
+                            "default": 95,
                             "end": 95,
                             "label": "(126) [S]",
                             "media": {
@@ -888,7 +949,7 @@
                         },
                         {
                             "begin": 96,
-                            "default": 111,
+                            "default": 127,
                             "end": 127,
                             "label": "(95)",
                             "media": {
@@ -898,7 +959,7 @@
                         },
                         {
                             "begin": 96,
-                            "default": 111,
+                            "default": 127,
                             "end": 127,
                             "label": "95",
                             "media": {
@@ -908,7 +969,7 @@
                         },
                         {
                             "begin": 96,
-                            "default": 111,
+                            "default": 127,
                             "end": 127,
                             "label": "(95) [S]",
                             "media": {
@@ -918,7 +979,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 143,
+                            "default": 159,
                             "end": 159,
                             "label": "(113)",
                             "media": {
@@ -928,7 +989,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 143,
+                            "default": 159,
                             "end": 159,
                             "label": "113",
                             "media": {
@@ -938,7 +999,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 143,
+                            "default": 159,
                             "end": 159,
                             "label": "(113) [S]",
                             "media": {
@@ -948,7 +1009,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 175,
+                            "default": 191,
                             "end": 191,
                             "label": "(29)",
                             "media": {
@@ -958,7 +1019,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 175,
+                            "default": 191,
                             "end": 191,
                             "label": "29",
                             "media": {
@@ -968,7 +1029,7 @@
                         },
                         {
                             "begin": 160,
-                            "default": 175,
+                            "default": 191,
                             "end": 191,
                             "label": "(29) [S]",
                             "media": {
@@ -978,7 +1039,7 @@
                         },
                         {
                             "begin": 192,
-                            "default": 207,
+                            "default": 223,
                             "end": 223,
                             "label": "(127)",
                             "media": {
@@ -988,7 +1049,7 @@
                         },
                         {
                             "begin": 192,
-                            "default": 207,
+                            "default": 223,
                             "end": 223,
                             "label": "127",
                             "media": {
@@ -998,7 +1059,7 @@
                         },
                         {
                             "begin": 192,
-                            "default": 207,
+                            "default": 223,
                             "end": 223,
                             "label": "(127) [S]",
                             "media": {
@@ -1008,7 +1069,7 @@
                         },
                         {
                             "begin": 224,
-                            "default": 239,
+                            "default": 255,
                             "end": 255,
                             "label": "(85)",
                             "media": {
@@ -1018,7 +1079,7 @@
                         },
                         {
                             "begin": 224,
-                            "default": 255,
+                            "default": 239,
                             "end": 255,
                             "label": "85",
                             "media": {
@@ -1028,7 +1089,7 @@
                         },
                         {
                             "begin": 224,
-                            "default": 239,
+                            "default": 255,
                             "end": 255,
                             "label": "(85) [S]",
                             "media": {
@@ -1074,6 +1135,16 @@
                             "default": 223,
                             "end": 223,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 226,
+                            "default": 226,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1184,7 +1255,7 @@
                         },
                         {
                             "begin": 38,
-                            "default": 44,
+                            "default": 51,
                             "end": 51,
                             "label": "(128) [S]",
                             "media": {
@@ -1194,7 +1265,7 @@
                         },
                         {
                             "begin": 52,
-                            "default": 58,
+                            "default": 65,
                             "end": 65,
                             "label": "(129) [S]",
                             "media": {
@@ -1204,7 +1275,7 @@
                         },
                         {
                             "begin": 66,
-                            "default": 72,
+                            "default": 79,
                             "end": 79,
                             "label": "(67) [S]",
                             "media": {
@@ -1214,7 +1285,7 @@
                         },
                         {
                             "begin": 80,
-                            "default": 86,
+                            "default": 93,
                             "end": 93,
                             "label": "(46) [S]",
                             "media": {
@@ -1224,7 +1295,7 @@
                         },
                         {
                             "begin": 94,
-                            "default": 100,
+                            "default": 107,
                             "end": 107,
                             "label": "(130) [S]",
                             "media": {
@@ -1234,7 +1305,7 @@
                         },
                         {
                             "begin": 108,
-                            "default": 114,
+                            "default": 121,
                             "end": 121,
                             "label": "(110) [S]",
                             "media": {
@@ -1244,7 +1315,7 @@
                         },
                         {
                             "begin": 122,
-                            "default": 128,
+                            "default": 135,
                             "end": 135,
                             "label": "(131) [S]",
                             "media": {
@@ -1254,7 +1325,7 @@
                         },
                         {
                             "begin": 136,
-                            "default": 142,
+                            "default": 149,
                             "end": 149,
                             "label": "(132) [S]",
                             "media": {
@@ -1267,6 +1338,16 @@
                             "default": 150,
                             "end": 202,
                             "label": "Spin >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 203,
+                            "default": 203,
+                            "end": 255,
+                            "label": "Spin <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1297,7 +1378,7 @@
                         },
                         {
                             "begin": 6,
-                            "default": 98,
+                            "default": 191,
                             "end": 191,
                             "label": "(3 Prism) [Index]",
                             "media": {
@@ -1307,9 +1388,19 @@
                         },
                         {
                             "begin": 192,
-                            "default": 207,
+                            "default": 223,
                             "end": 223,
                             "label": "(3 Prism) [>>]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(3 Prism) [<<]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1378,6 +1469,16 @@
                             "default": 128,
                             "end": 191,
                             "label": "Iris Strobe O Pulse",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Iris Strobe C Pulse",
                             "media": {
                                 "dcid": "",
                                 "name": ""

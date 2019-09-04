@@ -141,6 +141,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -247,7 +257,7 @@
                         },
                         {
                             "begin": 68,
-                            "default": 71,
+                            "default": 75,
                             "end": 75,
                             "label": "Red",
                             "media": {
@@ -257,7 +267,7 @@
                         },
                         {
                             "begin": 76,
-                            "default": 79,
+                            "default": 83,
                             "end": 83,
                             "label": "Orange",
                             "media": {
@@ -267,7 +277,7 @@
                         },
                         {
                             "begin": 84,
-                            "default": 87,
+                            "default": 91,
                             "end": 91,
                             "label": "CTC 3200K",
                             "media": {
@@ -277,7 +287,7 @@
                         },
                         {
                             "begin": 92,
-                            "default": 95,
+                            "default": 99,
                             "end": 99,
                             "label": "CTC 5600K",
                             "media": {
@@ -287,7 +297,7 @@
                         },
                         {
                             "begin": 100,
-                            "default": 103,
+                            "default": 107,
                             "end": 107,
                             "label": "Pink",
                             "media": {
@@ -297,7 +307,7 @@
                         },
                         {
                             "begin": 108,
-                            "default": 111,
+                            "default": 115,
                             "end": 115,
                             "label": "Green",
                             "media": {
@@ -307,7 +317,7 @@
                         },
                         {
                             "begin": 116,
-                            "default": 119,
+                            "default": 123,
                             "end": 123,
                             "label": "Dark Blue",
                             "media": {
@@ -317,7 +327,7 @@
                         },
                         {
                             "begin": 124,
-                            "default": 127,
+                            "default": 125,
                             "end": 127,
                             "label": "Open",
                             "media": {
@@ -327,7 +337,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 189,
+                            "default": 158,
                             "end": 189,
                             "label": "Spin >>",
                             "media": {
@@ -340,6 +350,16 @@
                             "default": 191,
                             "end": 191,
                             "label": "Spin Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Spin <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -393,7 +413,18 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 11,
@@ -417,8 +448,18 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 8,
-                            "default": 11,
+                            "default": 14,
                             "end": 14,
                             "label": "(79)",
                             "media": {
@@ -428,7 +469,7 @@
                         },
                         {
                             "begin": 15,
-                            "default": 18,
+                            "default": 21,
                             "end": 21,
                             "label": "(80)",
                             "media": {
@@ -438,7 +479,7 @@
                         },
                         {
                             "begin": 22,
-                            "default": 25,
+                            "default": 28,
                             "end": 28,
                             "label": "(169)",
                             "media": {
@@ -448,7 +489,7 @@
                         },
                         {
                             "begin": 29,
-                            "default": 32,
+                            "default": 35,
                             "end": 35,
                             "label": "(81)",
                             "media": {
@@ -458,7 +499,7 @@
                         },
                         {
                             "begin": 36,
-                            "default": 39,
+                            "default": 42,
                             "end": 42,
                             "label": "(82)",
                             "media": {
@@ -468,7 +509,7 @@
                         },
                         {
                             "begin": 43,
-                            "default": 46,
+                            "default": 49,
                             "end": 49,
                             "label": "(249)",
                             "media": {
@@ -478,7 +519,7 @@
                         },
                         {
                             "begin": 50,
-                            "default": 53,
+                            "default": 57,
                             "end": 57,
                             "label": "(196)",
                             "media": {
@@ -488,7 +529,7 @@
                         },
                         {
                             "begin": 58,
-                            "default": 62,
+                            "default": 67,
                             "end": 67,
                             "label": "(79) [Shk]",
                             "media": {
@@ -498,7 +539,7 @@
                         },
                         {
                             "begin": 68,
-                            "default": 72,
+                            "default": 77,
                             "end": 77,
                             "label": "(80) [Shk]",
                             "media": {
@@ -508,7 +549,7 @@
                         },
                         {
                             "begin": 78,
-                            "default": 82,
+                            "default": 87,
                             "end": 87,
                             "label": "(169) [Shk]",
                             "media": {
@@ -518,7 +559,7 @@
                         },
                         {
                             "begin": 88,
-                            "default": 92,
+                            "default": 97,
                             "end": 97,
                             "label": "(81) [Shk]",
                             "media": {
@@ -528,7 +569,7 @@
                         },
                         {
                             "begin": 98,
-                            "default": 102,
+                            "default": 107,
                             "end": 107,
                             "label": "(82) [Shk]",
                             "media": {
@@ -538,7 +579,7 @@
                         },
                         {
                             "begin": 108,
-                            "default": 112,
+                            "default": 117,
                             "end": 117,
                             "label": "(249) [Shk]",
                             "media": {
@@ -548,7 +589,7 @@
                         },
                         {
                             "begin": 118,
-                            "default": 122,
+                            "default": 127,
                             "end": 127,
                             "label": "(196) [Shk]",
                             "media": {
@@ -558,7 +599,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 189,
+                            "default": 158,
                             "end": 189,
                             "label": "Spin >>",
                             "media": {
@@ -568,7 +609,7 @@
                         },
                         {
                             "begin": 190,
-                            "default": 191,
+                            "default": 193,
                             "end": 193,
                             "label": "Spin Stop",
                             "media": {
@@ -610,8 +651,18 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 128,
-                            "default": 189,
+                            "default": 158,
                             "end": 189,
                             "label": "Rot >>",
                             "media": {
@@ -621,7 +672,7 @@
                         },
                         {
                             "begin": 190,
-                            "default": 191,
+                            "default": 193,
                             "end": 193,
                             "label": "Rot Stop",
                             "media": {
@@ -941,6 +992,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "FX Macros 28",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -967,7 +1028,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 189,
+                            "default": 158,
                             "end": 189,
                             "label": "Rot >>",
                             "media": {
@@ -980,6 +1041,16 @@
                             "default": 191,
                             "end": 191,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1002,6 +1073,16 @@
                             "begin": 0,
                             "default": 0,
                             "end": 0,
+                            "label": "Frost",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 7,
+                            "default": 7,
+                            "end": 255,
                             "label": "Frost",
                             "media": {
                                 "dcid": "",

@@ -160,8 +160,8 @@ with open('Carallon.def') as f:
                 rangeItem["label"] = " ".join(tableInfo[3:])
                 if int(tableInfo[2]) == 0:
                     rangeItem["default"] = rangeItem["begin"]
-                elif int(tableInfo[2]) == 1:
-                    rangeItem["default"] = rangeItem["end"]
                 elif int(tableInfo[2]) == 2:
+                    rangeItem["default"] = rangeItem["end"]
+                elif int(tableInfo[2]) == 1:
                     rangeItem["default"] = int(
                         (rangeItem["begin"]+rangeItem["end"])/2)

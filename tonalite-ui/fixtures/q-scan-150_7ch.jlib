@@ -108,9 +108,19 @@
                         },
                         {
                             "begin": 192,
-                            "default": 223,
+                            "default": 207,
                             "end": 223,
                             "label": "C Pulse [Full]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 239,
+                            "default": 239,
+                            "end": 239,
+                            "label": "Open [Full]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -231,7 +241,7 @@
                         },
                         {
                             "begin": 137,
-                            "default": 141,
+                            "default": 146,
                             "end": 146,
                             "label": "(09) [^]",
                             "media": {
@@ -241,7 +251,7 @@
                         },
                         {
                             "begin": 147,
-                            "default": 151,
+                            "default": 156,
                             "end": 156,
                             "label": "(06) [^]",
                             "media": {
@@ -251,7 +261,7 @@
                         },
                         {
                             "begin": 157,
-                            "default": 161,
+                            "default": 166,
                             "end": 166,
                             "label": "(10) [^]",
                             "media": {
@@ -261,7 +271,7 @@
                         },
                         {
                             "begin": 167,
-                            "default": 171,
+                            "default": 176,
                             "end": 176,
                             "label": "(11) [^]",
                             "media": {
@@ -271,7 +281,7 @@
                         },
                         {
                             "begin": 177,
-                            "default": 181,
+                            "default": 186,
                             "end": 186,
                             "label": "(12) [^]",
                             "media": {
@@ -281,7 +291,7 @@
                         },
                         {
                             "begin": 187,
-                            "default": 191,
+                            "default": 196,
                             "end": 196,
                             "label": "(07) [^]",
                             "media": {
@@ -291,7 +301,7 @@
                         },
                         {
                             "begin": 197,
-                            "default": 201,
+                            "default": 206,
                             "end": 206,
                             "label": "(13) [^]",
                             "media": {
@@ -301,7 +311,7 @@
                         },
                         {
                             "begin": 207,
-                            "default": 212,
+                            "default": 217,
                             "end": 217,
                             "label": "(14) [^]",
                             "media": {
@@ -314,6 +324,16 @@
                             "default": 218,
                             "end": 219,
                             "label": "(Open) [^]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 220,
+                            "default": 220,
+                            "end": 255,
+                            "label": "Spin >>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -464,7 +484,7 @@
                         },
                         {
                             "begin": 191,
-                            "default": 220,
+                            "default": 205,
                             "end": 220,
                             "label": "Spin >>",
                             "media": {
@@ -481,45 +501,12 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 5,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Gobo <>",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 127,
-                            "label": "Index",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         },
                         {
-                            "begin": 128,
-                            "default": 189,
-                            "end": 189,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 191,
-                            "default": 191,
-                            "end": 191,
-                            "label": "Rot Stop",
+                            "begin": 223,
+                            "default": 223,
+                            "end": 255,
+                            "label": "Spin <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -550,7 +537,7 @@
                         },
                         {
                             "begin": 128,
-                            "default": 189,
+                            "default": 158,
                             "end": 189,
                             "label": "Rot >>",
                             "media": {
@@ -563,6 +550,69 @@
                             "default": 191,
                             "end": 191,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
