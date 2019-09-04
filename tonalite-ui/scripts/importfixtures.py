@@ -18,6 +18,8 @@ with open('Carallon.def') as f:
     }
     personality = {}
     parameter = {}
+    swatches = []
+    rangeItem = {}
     filename = ""
     #lineNum = 0
     needsFade = True
@@ -40,6 +42,7 @@ with open('Carallon.def') as f:
                             "editorVersion": "1.1.1.9.0.4",
                             "personalities": []
                         }
+                        rangeItem = {}
                         print(filename)
                         filename = ""
                 personality = {
@@ -101,7 +104,8 @@ with open('Carallon.def') as f:
                         "name": "",
                         "size": 8,  # 8bit or 16bit
                         "snap": False,
-                        "type": 1
+                        "type": 1,
+                        "ranges": []
                     }
                     parameter["name"] = " ".join(line.partition("$$PARAMETER")[
                         2].strip().split(" ")[5:])
@@ -129,3 +133,26 @@ with open('Carallon.def') as f:
                     parameter["type"] = 4
                 elif number == 2:
                     parameter["type"] = 2
+            elif "$$TABLE" in line:
+                if rangeItem != {}:
+                    parameter["ranges"].append(rangeItem)
+                    rangeItem = {
+                        "begin": 0,
+                        "default": 0,
+                        "end": 0,
+                        "label": "",
+                        "media": {
+                            "dcid": "",
+                            "name": ""
+                        }
+                    }
+                    tableInfo = line.partition("$$TABLE")[2].strip().split(" ")
+                    rangeItem["begin"] = int(tableInfo[0])
+                    rangeItem["end"] = int(tableInfo[1])
+                    rangeItem["label"] = tableInfo[3:]
+                    if int(tableInfo[2]) == 0:
+                        rangeItem["default"] = rangeItem["begin"]
+                    elif int(tableInfo[2]) == 1:
+                        rangeItem["default"] = rangeItem["end"]
+                    elif int(tableInfo[2]) == 2:
+                        rangeItem["default"] = int(rangeItem["end"]/2)
