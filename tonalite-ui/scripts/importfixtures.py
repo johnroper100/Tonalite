@@ -19,22 +19,24 @@ with open('Carallon.def') as f:
     personality = {}
     parameter = {}
     filename = ""
+    lineNum = 0
     for line in f:
+        lineNum += 1
+        print(lineNum)
         if len(line) > 1:
             if "$TEMPLATE" in line:
                 if personality != {}:
                     if filename != "":
                         filename = slugify(filename)+".jlib"
                         fixtureProfile["personalities"].append(personality)
-                        with open("../fixtures/"+filename, 'w', encoding='utf-8') as f:
-                            json.dump(fixtureProfile, f,
-                                      ensure_ascii=False, indent=4)
+                        with open("../fixtures/"+filename, 'w') as f:
+                            json.dump(fixtureProfile, f, ndent=4)
                         fixtureProfile = {
                             "date": "",
                             "editorVersion": "",
                             "personalities": []
                         }
-                        print(filename)
+                        #print(filename)
                         filename = ""
                 personality = {
                     "dcid": "",
