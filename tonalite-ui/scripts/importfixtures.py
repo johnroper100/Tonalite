@@ -97,6 +97,8 @@ with open('Carallon.def') as f:
             elif "$$PARAMETER" in line:
                 if not "GROUP" in line:
                     if parameter != {}:
+                        if rangeItem != {}:
+                            parameter["ranges"].append(rangeItem)
                         parameter["ranges"] = sorted(
                             parameter["ranges"], key=lambda i: i['begin'])
                         personality["parameters"].append(parameter)
