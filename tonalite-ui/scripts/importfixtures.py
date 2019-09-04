@@ -19,10 +19,10 @@ with open('Carallon.def') as f:
     personality = {}
     parameter = {}
     filename = ""
-    lineNum = 0
+    #lineNum = 0
     needsFade = True
     for line in f:
-        lineNum += 1
+        #lineNum += 1
         if len(line) > 1:
             if "$TEMPLATE" in line:
                 if personality != {}:
@@ -37,10 +37,10 @@ with open('Carallon.def') as f:
                             json.dump(fixtureProfile, f, indent=4)
                         fixtureProfile = {
                             "date": "",
-                            "editorVersion": "",
+                            "editorVersion": "1.1.1.9.0.4",
                             "personalities": []
                         }
-                        print(lineNum)
+                        print(filename)
                         filename = ""
                 personality = {
                     "dcid": "",
@@ -63,12 +63,6 @@ with open('Carallon.def') as f:
                     with open('../fixtures/'+filename, 'w', encoding='utf-8') as f:
                         json.dump(fixtureProfile, f,
                                   ensure_ascii=False, indent=4)
-                    fixtureProfile = {
-                        "date": "",
-                        "editorVersion": "",
-                        "personalities": []
-                    }
-                    filename = ""
             elif "$$MANUFACTURER" in line:
                 personality["manufacturerName"] = line.partition("$$MANUFACTURER")[
                     2].strip()
