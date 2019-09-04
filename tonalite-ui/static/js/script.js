@@ -170,6 +170,8 @@ var app = new Vue({
         deleteSelectedPatchedFixtures: function () {
             if (app.selectedPatchedFixtures.length > 0) {
                 socket.emit('deleteFixtures', app.selectedPatchedFixtures);
+                app.selectedPatchedFixtures = [];
+                app.selectedFixtures = [];
             }
         },
         groupSelectedFixtures: function () {
@@ -185,6 +187,7 @@ var app = new Vue({
         deleteSelectedGroups: function () {
             if (app.selectedGroups.length > 0) {
                 socket.emit('deleteGroups', app.selectedGroups);
+                app.selectedGroups = [];
             }
         },
         updateSelectedFixturesParameters: function () {
