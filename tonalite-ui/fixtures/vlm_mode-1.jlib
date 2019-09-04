@@ -12,6 +12,67 @@
             "colortable": "",
             "parameters": [
                 {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Tilt >>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Tilt Rotate",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Tilt <<",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
                     "coarse": 29,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -22,16 +83,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Gobo Speed Track",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -143,67 +194,6 @@
                             }
                         }
                     ]
-                },
-                {
-                    "coarse": 0,
-                    "fadeWithIntensity": false,
-                    "highlight": 32768,
-                    "home": 32768,
-                    "invert": false,
-                    "name": "Pan",
-                    "size": 16,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [],
-                    "fine": 1
-                },
-                {
-                    "coarse": 2,
-                    "fadeWithIntensity": false,
-                    "highlight": 32768,
-                    "home": 32768,
-                    "invert": false,
-                    "name": "Tilt",
-                    "size": 16,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [],
-                    "fine": 3
-                },
-                {
-                    "coarse": 4,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Tilt >>",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "Tilt Rotate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 5,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Tilt <<",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
                 }
             ]
         }

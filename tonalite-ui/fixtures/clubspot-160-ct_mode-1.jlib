@@ -12,6 +12,75 @@
             "colortable": "",
             "parameters": [
                 {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 2
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Focus Track",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 249,
+                            "label": "Time",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
+                            "label": "Focus Track [Clr & Gobo Blink]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
                     "coarse": 5,
                     "fadeWithIntensity": false,
                     "highlight": 16128,
@@ -22,16 +91,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 228,
-                            "default": 228,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -115,75 +174,6 @@
                     ]
                 },
                 {
-                    "coarse": 0,
-                    "fadeWithIntensity": false,
-                    "highlight": 32768,
-                    "home": 32768,
-                    "invert": false,
-                    "name": "Pan",
-                    "size": 16,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [],
-                    "fine": 2
-                },
-                {
-                    "coarse": 1,
-                    "fadeWithIntensity": false,
-                    "highlight": 32768,
-                    "home": 32768,
-                    "invert": false,
-                    "name": "Tilt",
-                    "size": 16,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [],
-                    "fine": 3
-                },
-                {
-                    "coarse": 4,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Focus Speed",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Focus Track",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 1,
-                            "default": 1,
-                            "end": 249,
-                            "label": "Time",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 251,
-                            "default": 251,
-                            "end": 251,
-                            "label": "Focus Track [Clr & Gobo Blink]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 5,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -194,16 +184,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 254,
-                            "default": 254,
-                            "end": 254,
-                            "label": "Focus Track [BlackMove,Clr & Gobo Blink]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -368,16 +348,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 194,
-                            "default": 194,
-                            "end": 255,
-                            "label": "Spin <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -540,16 +510,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 236,
-                            "default": 236,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

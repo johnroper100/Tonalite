@@ -12,29 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 5,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Closed",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
@@ -80,10 +57,10 @@
                             }
                         },
                         {
-                            "begin": 6,
-                            "default": 6,
-                            "end": 255,
-                            "label": "Strobe",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 5,
+                            "label": "Closed",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -94,6 +71,56 @@
                             "default": 0,
                             "end": 5,
                             "label": "Closed",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 5,
+                            "label": "Closed",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 5,
+                            "label": "Closed",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 5,
+                            "label": "off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 5,
+                            "label": "off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 6,
+                            "default": 6,
+                            "end": 255,
+                            "label": "Strobe",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -110,30 +137,10 @@
                             }
                         },
                         {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 5,
-                            "label": "Closed",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 6,
                             "default": 6,
                             "end": 255,
                             "label": "C Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 5,
-                            "label": "Closed",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -150,16 +157,6 @@
                             }
                         },
                         {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 5,
-                            "label": "Closed",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 6,
                             "default": 6,
                             "end": 255,
@@ -170,30 +167,10 @@
                             }
                         },
                         {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 5,
-                            "label": "off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 6,
                             "default": 6,
                             "end": 255,
                             "label": "Lightning [Strobe FX Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 5,
-                            "label": "off",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -212,16 +189,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 6,
-                            "default": 6,
-                            "end": 255,
-                            "label": "Spikes [Strobe FX Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -295,6 +262,29 @@
                     "snap": false,
                     "type": 1,
                     "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 5,

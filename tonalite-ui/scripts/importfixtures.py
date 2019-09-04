@@ -34,6 +34,8 @@ with open('Carallon.def') as f:
                             for param in personality["parameters"]:
                                 if param["type"] == 5:
                                     param["fadeWithIntensity"] = True
+                        personality["parameters"] = sorted(
+                            personality["parameters"], key=lambda i: i['coarse'])
                         fixtureProfile["personalities"].append(personality)
                         with open("../fixtures/"+filename, 'w') as f:
                             json.dump(fixtureProfile, f, indent=4)
@@ -42,7 +44,6 @@ with open('Carallon.def') as f:
                             "editorVersion": "1.1.1.9.0.4",
                             "personalities": []
                         }
-                        rangeItem = {}
                         print(filename)
                         filename = ""
                 personality = {
@@ -62,6 +63,8 @@ with open('Carallon.def') as f:
                         for param in personality["parameters"]:
                             if param["type"] == 5:
                                 param["fadeWithIntensity"] = True
+                    personality["parameters"] = sorted(
+                        personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
                     with open('../fixtures/'+filename, 'w', encoding='utf-8') as f:
                         json.dump(fixtureProfile, f,
@@ -97,6 +100,7 @@ with open('Carallon.def') as f:
                         parameter["ranges"] = sorted(
                             parameter["ranges"], key=lambda i: i['begin'])
                         personality["parameters"].append(parameter)
+                        rangeItem = {}
                     parameter = {
                         "coarse": 0,
                         "fadeWithIntensity": False,

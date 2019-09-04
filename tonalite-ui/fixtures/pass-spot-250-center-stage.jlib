@@ -12,18 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 6,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Focus Speed",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
@@ -67,16 +55,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -203,16 +181,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 189,
-                            "default": 189,
-                            "end": 255,
-                            "label": "Spin <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -306,16 +274,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 127,
@@ -339,16 +297,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 255,
-                            "label": "Gobo Scn Scn",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -363,6 +311,18 @@
                 {
                     "coarse": 6,
                     "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
@@ -371,16 +331,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 143,
-                            "default": 143,
-                            "end": 143,
-                            "label": "(3 Prism)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -447,10 +397,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 179,
-                            "default": 179,
-                            "end": 255,
-                            "label": "FX Scn [Iris Mode]",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 20,
+                            "label": "Iris 100",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -461,6 +411,16 @@
                             "default": 0,
                             "end": 20,
                             "label": "Iris 100",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 21,
+                            "default": 21,
+                            "end": 199,
+                            "label": "Iris",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -481,26 +441,6 @@
                             "default": 200,
                             "end": 255,
                             "label": "Iris Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 20,
-                            "label": "Iris 100",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 21,
-                            "default": 21,
-                            "end": 199,
-                            "label": "Iris",
                             "media": {
                                 "dcid": "",
                                 "name": ""

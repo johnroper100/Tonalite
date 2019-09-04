@@ -12,89 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 8,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 250,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Iris Strobe Rnd C Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 22,
-                            "default": 22,
-                            "end": 22,
-                            "label": "Optically linear",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 32,
-                            "end": 32,
-                            "label": "Square law",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 42,
-                            "default": 42,
-                            "end": 42,
-                            "label": "Inverse square law",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 52,
-                            "default": 52,
-                            "end": 52,
-                            "label": "S curve",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 62,
-                            "default": 62,
-                            "end": 62,
-                            "label": "Calibrated output",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 5120,
@@ -340,16 +257,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 250,
-                            "default": 250,
-                            "end": 250,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -613,16 +520,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 250,
-                            "default": 250,
-                            "end": 250,
-                            "label": "Rnd 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -907,16 +804,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 220,
-                            "default": 220,
-                            "end": 255,
-                            "label": "Spin << [R,S]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 127,
                             "end": 255,
@@ -947,20 +834,10 @@
                             }
                         },
                         {
-                            "begin": 126,
-                            "default": 127,
-                            "end": 128,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 255,
-                            "label": "Rot <<",
+                            "begin": 0,
+                            "default": 125,
+                            "end": 125,
+                            "label": "Rot >>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -987,20 +864,10 @@
                             }
                         },
                         {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 125,
-                            "end": 125,
-                            "label": "Rot >>",
+                            "begin": 126,
+                            "default": 127,
+                            "end": 128,
+                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1011,6 +878,26 @@
                             "default": 127,
                             "end": 128,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
+                            "label": "Rot <<",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1030,16 +917,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1103,6 +980,79 @@
                     "snap": false,
                     "type": 1,
                     "ranges": []
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 22,
+                            "label": "Optically linear",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 32,
+                            "label": "Square law",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 42,
+                            "default": 42,
+                            "end": 42,
+                            "label": "Inverse square law",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 52,
+                            "default": 52,
+                            "end": 52,
+                            "label": "S curve",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 62,
+                            "default": 62,
+                            "end": 62,
+                            "label": "Calibrated output",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

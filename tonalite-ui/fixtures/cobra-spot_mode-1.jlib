@@ -12,19 +12,6 @@
             "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139",
             "parameters": [
                 {
-                    "coarse": 7,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Intensity",
-                    "size": 16,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [],
-                    "fine": 8
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 7680,
@@ -148,16 +135,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 211,
-                            "default": 211,
-                            "end": 255,
-                            "label": "Rnd",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -363,6 +340,19 @@
                 {
                     "coarse": 7,
                     "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 8
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
@@ -371,16 +361,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 253,
-                            "default": 253,
-                            "end": 253,
-                            "label": "Rnd 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -565,16 +545,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 233,
-                            "default": 233,
-                            "end": 255,
-                            "label": "Spin << [R]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -605,6 +575,26 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 2,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 3,
+                            "default": 3,
+                            "end": 125,
+                            "label": "Rot <<",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 3,
                             "default": 3,
                             "end": 125,
@@ -619,6 +609,26 @@
                             "default": 127,
                             "end": 128,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 126,
+                            "default": 127,
+                            "end": 128,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 252,
+                            "label": "Rot >>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -639,46 +649,6 @@
                             "default": 254,
                             "end": 255,
                             "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 2,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 3,
-                            "default": 3,
-                            "end": 125,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 126,
-                            "default": 127,
-                            "end": 128,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 252,
-                            "label": "Rot >>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -698,16 +668,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 253,
-                            "default": 254,
-                            "end": 255,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -892,16 +852,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 233,
-                            "default": 233,
-                            "end": 255,
-                            "label": "Spin << [R]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -932,6 +882,26 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 2,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 3,
+                            "default": 3,
+                            "end": 125,
+                            "label": "Rot <<",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 3,
                             "default": 3,
                             "end": 125,
@@ -946,6 +916,26 @@
                             "default": 127,
                             "end": 128,
                             "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 126,
+                            "default": 127,
+                            "end": 128,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 252,
+                            "label": "Rot >>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -966,46 +956,6 @@
                             "default": 254,
                             "end": 255,
                             "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 2,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 3,
-                            "default": 3,
-                            "end": 125,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 126,
-                            "default": 127,
-                            "end": 128,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 252,
-                            "label": "Rot >>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1025,16 +975,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 253,
-                            "default": 254,
-                            "end": 255,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1399,16 +1339,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 254,
-                            "default": 254,
-                            "end": 254,
-                            "label": "FX Macros 1 10",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -1454,16 +1384,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 11,
-                            "default": 11,
-                            "end": 255,
-                            "label": "FXM Rate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1496,16 +1416,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 197,
-                            "default": 197,
-                            "end": 197,
-                            "label": "(4 Prism) [FX Rot]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

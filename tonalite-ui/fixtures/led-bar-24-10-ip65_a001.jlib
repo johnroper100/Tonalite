@@ -12,6 +12,118 @@
             "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 50,
+                            "label": "Mix Pos",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 100,
+                            "label": "Jump change [Mix Pos]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 101,
+                            "default": 101,
+                            "end": 150,
+                            "label": "Gradient [Mix Pos]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 151,
+                            "default": 151,
+                            "end": 200,
+                            "label": "Clock change 1 [Mix Pos]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix Macro Rate",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
                     "coarse": 5,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -22,16 +134,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 6,
-                            "default": 6,
-                            "end": 255,
-                            "label": "FXM Rate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -533,128 +635,6 @@
                             }
                         }
                     ]
-                },
-                {
-                    "coarse": 0,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Intensity",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 1,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 2,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 1,
-                            "default": 1,
-                            "end": 255,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 50,
-                            "label": "Mix Pos",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 51,
-                            "default": 51,
-                            "end": 100,
-                            "label": "Jump change [Mix Pos]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 101,
-                            "default": 101,
-                            "end": 150,
-                            "label": "Gradient [Mix Pos]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 151,
-                            "default": 151,
-                            "end": 200,
-                            "label": "Clock change 1 [Mix Pos]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 3,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Color Mix Macro Rate",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 4,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Red",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
                 },
                 {
                     "coarse": 5,

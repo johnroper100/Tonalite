@@ -12,6 +12,339 @@
             "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 32512,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 32512,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 225,
+                            "label": "Focus Spd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 230,
+                            "default": 230,
+                            "end": 230,
+                            "label": "Focus Track [BlackMove]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 47,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 95,
+                            "label": "Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 111,
+                            "default": 111,
+                            "end": 111,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 159,
+                            "label": "Pulse",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 223,
+                            "label": "Rnd",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Green",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Blue",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "White",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 35,
+                            "label": "MixMacro 1 [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 36,
+                            "default": 36,
+                            "end": 55,
+                            "label": "MixMacro 2 [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 56,
+                            "default": 56,
+                            "end": 75,
+                            "label": "MixMacro 3 [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 76,
+                            "default": 76,
+                            "end": 95,
+                            "label": "MixMacro 4 [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 96,
+                            "end": 115,
+                            "label": "MixMacro 5 [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 116,
+                            "default": 116,
+                            "end": 135,
+                            "label": "MixMacro 6 [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 136,
+                            "default": 136,
+                            "end": 155,
+                            "label": "MixMacro 7 [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 156,
+                            "default": 156,
+                            "end": 175,
+                            "label": "MixMacro 8 [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 176,
+                            "default": 176,
+                            "end": 195,
+                            "label": "MixMacro 9 [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 196,
+                            "default": 196,
+                            "end": 215,
+                            "label": "MixMacro 10 [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 216,
+                            "default": 216,
+                            "end": 235,
+                            "label": "MixMacro 11 [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
                     "coarse": 14,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -22,16 +355,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -277,359 +600,6 @@
                             "default": 244,
                             "end": 244,
                             "label": "Fixture ID 24",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 0,
-                    "fadeWithIntensity": false,
-                    "highlight": 32512,
-                    "home": 32512,
-                    "invert": false,
-                    "name": "Pan",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 1,
-                    "fadeWithIntensity": false,
-                    "highlight": 32512,
-                    "home": 32512,
-                    "invert": false,
-                    "name": "Tilt",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 2,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Focus Speed",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 225,
-                            "label": "Focus Spd",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 230,
-                            "default": 230,
-                            "end": 230,
-                            "label": "Focus Track [BlackMove]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 3,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 245,
-                            "default": 245,
-                            "end": 245,
-                            "label": "Focus Track",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Closed",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 47,
-                            "default": 47,
-                            "end": 47,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 64,
-                            "default": 64,
-                            "end": 95,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 111,
-                            "default": 111,
-                            "end": 111,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 159,
-                            "label": "Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 175,
-                            "default": 175,
-                            "end": 175,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 192,
-                            "end": 223,
-                            "label": "Rnd",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 4,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Intensity",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 5,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Red",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 6,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Green",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 7,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Blue",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 8,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "White",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 9,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "off [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 16,
-                            "default": 16,
-                            "end": 35,
-                            "label": "MixMacro 1 [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 36,
-                            "default": 36,
-                            "end": 55,
-                            "label": "MixMacro 2 [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 56,
-                            "default": 56,
-                            "end": 75,
-                            "label": "MixMacro 3 [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 76,
-                            "default": 76,
-                            "end": 95,
-                            "label": "MixMacro 4 [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 96,
-                            "default": 96,
-                            "end": 115,
-                            "label": "MixMacro 5 [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 116,
-                            "default": 116,
-                            "end": 135,
-                            "label": "MixMacro 6 [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 136,
-                            "default": 136,
-                            "end": 155,
-                            "label": "MixMacro 7 [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 156,
-                            "default": 156,
-                            "end": 175,
-                            "label": "MixMacro 8 [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 176,
-                            "default": 176,
-                            "end": 195,
-                            "label": "MixMacro 9 [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 196,
-                            "default": 196,
-                            "end": 215,
-                            "label": "MixMacro 10 [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 216,
-                            "default": 216,
-                            "end": 235,
-                            "label": "MixMacro 11 [Color Mix Macro Rate]",
                             "media": {
                                 "dcid": "",
                                 "name": ""

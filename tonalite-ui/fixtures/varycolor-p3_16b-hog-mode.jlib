@@ -12,39 +12,6 @@
             "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139",
             "parameters": [
                 {
-                    "coarse": 5,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Pos Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Stop pan and tilt abruptly",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32768,
@@ -85,10 +52,10 @@
                 {
                     "coarse": 5,
                     "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
+                    "highlight": 0,
+                    "home": 0,
                     "invert": false,
-                    "name": "Strobe",
+                    "name": "Pos Mode",
                     "size": 8,
                     "snap": false,
                     "type": 1,
@@ -97,12 +64,25 @@
                             "begin": 0,
                             "default": 0,
                             "end": 0,
-                            "label": "None",
+                            "label": "Stop pan and tilt abruptly",
                             "media": {
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
                         {
                             "begin": 0,
                             "default": 0,
@@ -329,16 +309,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -373,16 +343,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 135,
-                            "default": 135,
-                            "end": 135,
-                            "label": "(Beamshaper)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -743,16 +703,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 251,
-                            "default": 251,
-                            "end": 251,
-                            "label": "Dark green",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 191,
@@ -795,16 +745,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 225,
-                            "default": 225,
-                            "end": 255,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1119,16 +1059,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 225,
-                            "default": 225,
-                            "end": 255,
-                            "label": "Spin <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1151,16 +1081,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 4,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Focus Spd",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

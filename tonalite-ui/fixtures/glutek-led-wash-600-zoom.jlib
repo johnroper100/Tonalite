@@ -12,6 +12,408 @@
             "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Green",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Blue",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "White",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 7,
+                            "default": 7,
+                            "end": 65,
+                            "label": "Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 67,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 128,
+                            "label": "Pulse",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 133,
+                            "default": 133,
+                            "end": 191,
+                            "label": "O Pulse",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 193,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 7,
+                            "default": 7,
+                            "end": 7,
+                            "label": "Red [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 12,
+                            "default": 12,
+                            "end": 12,
+                            "label": "Amber [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "Yellow [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 22,
+                            "label": "Green [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "Cyan [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 32,
+                            "label": "Blue [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 37,
+                            "default": 37,
+                            "end": 37,
+                            "label": "Magenta [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 42,
+                            "default": 42,
+                            "end": 42,
+                            "label": "White [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 47,
+                            "label": "off [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 94,
+                            "label": "8 colour step [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 97,
+                            "default": 97,
+                            "end": 97,
+                            "label": "off [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 100,
+                            "default": 100,
+                            "end": 149,
+                            "label": "8 colour fade [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 152,
+                            "default": 152,
+                            "end": 152,
+                            "label": "off [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 160,
+                            "end": 160,
+                            "label": "Red/green dark to bright [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 172,
+                            "default": 172,
+                            "end": 172,
+                            "label": "Green/red bright to dark [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 184,
+                            "label": "Green/blue dark to bright [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 196,
+                            "default": 196,
+                            "end": 196,
+                            "label": "Blue/green bright to dark [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 208,
+                            "default": 208,
+                            "end": 208,
+                            "label": "Blue/red dark to bright [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 220,
+                            "default": 220,
+                            "end": 220,
+                            "label": "Red/blue bright to dark [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 232,
+                            "default": 232,
+                            "end": 232,
+                            "label": "RGB dark to bright [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 244,
+                            "default": 244,
+                            "end": 244,
+                            "label": "Blue/red/green dark to bright [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
                     "coarse": 11,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -22,16 +424,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 222,
-                            "default": 222,
-                            "end": 222,
-                            "label": "Speed 4",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -687,418 +1079,6 @@
                             "default": 254,
                             "end": 254,
                             "label": "Fixture ID 65",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 0,
-                    "fadeWithIntensity": false,
-                    "highlight": 32768,
-                    "home": 32768,
-                    "invert": false,
-                    "name": "Pan",
-                    "size": 16,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [],
-                    "fine": 1
-                },
-                {
-                    "coarse": 2,
-                    "fadeWithIntensity": false,
-                    "highlight": 32768,
-                    "home": 32768,
-                    "invert": false,
-                    "name": "Tilt",
-                    "size": 16,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [],
-                    "fine": 3
-                },
-                {
-                    "coarse": 4,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Red",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 5,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Green",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 6,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Blue",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 7,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "White",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 8,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 7,
-                            "default": 7,
-                            "end": 65,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 67,
-                            "default": 67,
-                            "end": 67,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 70,
-                            "default": 70,
-                            "end": 128,
-                            "label": "Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 130,
-                            "default": 130,
-                            "end": 130,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 133,
-                            "default": 133,
-                            "end": 191,
-                            "label": "O Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 193,
-                            "default": 193,
-                            "end": 193,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 9,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Intensity",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 10,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 196,
-                            "default": 196,
-                            "end": 255,
-                            "label": "C Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "off [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 7,
-                            "default": 7,
-                            "end": 7,
-                            "label": "Red [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 12,
-                            "default": 12,
-                            "end": 12,
-                            "label": "Amber [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 17,
-                            "default": 17,
-                            "end": 17,
-                            "label": "Yellow [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 22,
-                            "default": 22,
-                            "end": 22,
-                            "label": "Green [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 27,
-                            "default": 27,
-                            "end": 27,
-                            "label": "Cyan [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 32,
-                            "end": 32,
-                            "label": "Blue [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 37,
-                            "default": 37,
-                            "end": 37,
-                            "label": "Magenta [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 42,
-                            "default": 42,
-                            "end": 42,
-                            "label": "White [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 47,
-                            "default": 47,
-                            "end": 47,
-                            "label": "off [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 50,
-                            "default": 50,
-                            "end": 94,
-                            "label": "8 colour step [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 97,
-                            "default": 97,
-                            "end": 97,
-                            "label": "off [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 100,
-                            "default": 100,
-                            "end": 149,
-                            "label": "8 colour fade [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 152,
-                            "default": 152,
-                            "end": 152,
-                            "label": "off [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 160,
-                            "default": 160,
-                            "end": 160,
-                            "label": "Red/green dark to bright [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 172,
-                            "default": 172,
-                            "end": 172,
-                            "label": "Green/red bright to dark [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 184,
-                            "default": 184,
-                            "end": 184,
-                            "label": "Green/blue dark to bright [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 196,
-                            "default": 196,
-                            "end": 196,
-                            "label": "Blue/green bright to dark [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 208,
-                            "default": 208,
-                            "end": 208,
-                            "label": "Blue/red dark to bright [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 220,
-                            "default": 220,
-                            "end": 220,
-                            "label": "Red/blue bright to dark [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 232,
-                            "default": 232,
-                            "end": 232,
-                            "label": "RGB dark to bright [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 244,
-                            "default": 244,
-                            "end": 244,
-                            "label": "Blue/red/green dark to bright [Color Mix Macro Rate]",
                             "media": {
                                 "dcid": "",
                                 "name": ""

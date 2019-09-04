@@ -12,6 +12,151 @@
             "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 10
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 11
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 7,
+                            "default": 65,
+                            "end": 65,
+                            "label": "Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 67,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 69,
+                            "default": 128,
+                            "end": 128,
+                            "label": "Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 133,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 193,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Green",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
                     "coarse": 6,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -22,16 +167,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 2,
-                            "default": 2,
-                            "end": 255,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -235,151 +370,6 @@
                     ]
                 },
                 {
-                    "coarse": 0,
-                    "fadeWithIntensity": false,
-                    "highlight": 32768,
-                    "home": 32768,
-                    "invert": false,
-                    "name": "Pan",
-                    "size": 16,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [],
-                    "fine": 10
-                },
-                {
-                    "coarse": 1,
-                    "fadeWithIntensity": false,
-                    "highlight": 32768,
-                    "home": 32768,
-                    "invert": false,
-                    "name": "Tilt",
-                    "size": 16,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [],
-                    "fine": 11
-                },
-                {
-                    "coarse": 2,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Intensity",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 3,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 7,
-                            "default": 65,
-                            "end": 65,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 67,
-                            "default": 67,
-                            "end": 67,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 69,
-                            "default": 128,
-                            "end": 128,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 130,
-                            "default": 130,
-                            "end": 130,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 133,
-                            "default": 191,
-                            "end": 191,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 193,
-                            "default": 193,
-                            "end": 193,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 4,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Red",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
-                    "coarse": 5,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Green",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
                     "coarse": 6,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
@@ -426,16 +416,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 196,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -530,16 +510,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 253,
-                            "default": 253,
-                            "end": 253,
-                            "label": "RGBW colour",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -561,18 +531,7 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 191,
-                            "default": 191,
-                            "end": 191,
-                            "label": "Auto",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
+                    "ranges": []
                 },
                 {
                     "coarse": 14,

@@ -12,79 +12,6 @@
             "colortable": "3874B444-A11E-47D9-8295-04556EAEBEA7",
             "parameters": [
                 {
-                    "coarse": 11,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Global Reset",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 242,
-                            "default": 242,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 12,
-                            "default": 12,
-                            "end": 12,
-                            "label": "Pan Reset",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 17,
-                            "default": 17,
-                            "end": 17,
-                            "label": "Tilt Reset",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 22,
-                            "default": 22,
-                            "end": 22,
-                            "label": "Gobo Reset",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 27,
-                            "default": 27,
-                            "end": 27,
-                            "label": "Color Reset",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 2560,
@@ -220,16 +147,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 242,
-                            "default": 242,
-                            "end": 242,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -470,10 +387,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 227,
-                            "default": 227,
-                            "end": 227,
-                            "label": "Unknown",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Color Temp 50",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -490,6 +407,26 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Color Temp Control Disabled",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Color Temp Control Disabled",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 1,
                             "default": 2,
                             "end": 4,
@@ -500,49 +437,9 @@
                             }
                         },
                         {
-                            "begin": 5,
-                            "default": 130,
-                            "end": 255,
-                            "label": "Color Temp",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Color Temp 50",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 1,
                             "default": 2,
                             "end": 4,
-                            "label": "Color Temp Control Disabled",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 5,
-                            "default": 130,
-                            "end": 255,
-                            "label": "Color Temp",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
                             "label": "Color Temp Control Disabled",
                             "media": {
                                 "dcid": "",
@@ -560,10 +457,20 @@
                             }
                         },
                         {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Color Temp Control Disabled",
+                            "begin": 5,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Color Temp",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 5,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Color Temp",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -603,21 +510,74 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "Pan Mode",
+                    "name": "Global Reset",
                     "size": 8,
                     "snap": false,
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 1,
-                            "default": 128,
-                            "end": 255,
-                            "label": "Color Temp",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
                             }
                         },
+                        {
+                            "begin": 12,
+                            "default": 12,
+                            "end": 12,
+                            "label": "Pan Reset",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "Tilt Reset",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 22,
+                            "label": "Gobo Reset",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "Color Reset",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Pan Mode",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
                         {
                             "begin": 0,
                             "default": 0,

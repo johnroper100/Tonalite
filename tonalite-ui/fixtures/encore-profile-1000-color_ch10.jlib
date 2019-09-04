@@ -12,29 +12,6 @@
             "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
-                    "coarse": 5,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
@@ -118,6 +95,29 @@
                     ]
                 },
                 {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
                     "coarse": 6,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -128,16 +128,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 16,
-                            "default": 16,
-                            "end": 255,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -192,10 +182,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 230,
-                            "default": 230,
-                            "end": 230,
-                            "label": "Auto mode",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -204,8 +194,28 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 0,
-                            "label": "off",
+                            "end": 15,
+                            "label": "colour change 1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 15,
+                            "label": "colour fade 1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Auto",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -252,6 +262,26 @@
                             }
                         },
                         {
+                            "begin": 16,
+                            "default": 23,
+                            "end": 31,
+                            "label": "colour change 2",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 16,
+                            "default": 23,
+                            "end": 31,
+                            "label": "colour fade 2",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 17,
                             "default": 18,
                             "end": 20,
@@ -286,6 +316,26 @@
                             "default": 30,
                             "end": 32,
                             "label": "Color 8",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 32,
+                            "default": 39,
+                            "end": 47,
+                            "label": "colour change 3",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 32,
+                            "default": 39,
+                            "end": 47,
+                            "label": "colour fade 3",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -332,6 +382,26 @@
                             }
                         },
                         {
+                            "begin": 48,
+                            "default": 55,
+                            "end": 63,
+                            "label": "colour change 4",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 48,
+                            "default": 55,
+                            "end": 63,
+                            "label": "colour fade 4",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 49,
                             "default": 50,
                             "end": 52,
@@ -366,6 +436,26 @@
                             "default": 62,
                             "end": 64,
                             "label": "Color 16",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 71,
+                            "end": 79,
+                            "label": "colour change 5",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 71,
+                            "end": 79,
+                            "label": "colour fade 5",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -412,6 +502,26 @@
                             }
                         },
                         {
+                            "begin": 80,
+                            "default": 87,
+                            "end": 95,
+                            "label": "colour change 6",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 80,
+                            "default": 87,
+                            "end": 95,
+                            "label": "colour fade 6",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 81,
                             "default": 82,
                             "end": 84,
@@ -446,6 +556,26 @@
                             "default": 94,
                             "end": 96,
                             "label": "Color 24",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 103,
+                            "end": 111,
+                            "label": "colour change 7",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 103,
+                            "end": 111,
+                            "label": "colour fade 7",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -492,6 +622,26 @@
                             }
                         },
                         {
+                            "begin": 112,
+                            "default": 119,
+                            "end": 127,
+                            "label": "colour change 8",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 119,
+                            "end": 127,
+                            "label": "colour fade 8",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 113,
                             "default": 114,
                             "end": 116,
@@ -526,6 +676,26 @@
                             "default": 126,
                             "end": 128,
                             "label": "Color 32",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 135,
+                            "end": 143,
+                            "label": "colour change 9",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 135,
+                            "end": 143,
+                            "label": "colour fade 9",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -572,6 +742,26 @@
                             }
                         },
                         {
+                            "begin": 144,
+                            "default": 151,
+                            "end": 159,
+                            "label": "colour change 10",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 144,
+                            "default": 151,
+                            "end": 159,
+                            "label": "colour fade 10",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 145,
                             "default": 146,
                             "end": 148,
@@ -606,6 +796,26 @@
                             "default": 158,
                             "end": 160,
                             "label": "Color 40",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 167,
+                            "end": 175,
+                            "label": "colour change 11",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 167,
+                            "end": 175,
+                            "label": "colour fade 11",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -652,6 +862,26 @@
                             }
                         },
                         {
+                            "begin": 176,
+                            "default": 183,
+                            "end": 191,
+                            "label": "colour change 12",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 176,
+                            "default": 183,
+                            "end": 191,
+                            "label": "colour fade 12",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 177,
                             "default": 178,
                             "end": 180,
@@ -686,6 +916,26 @@
                             "default": 190,
                             "end": 192,
                             "label": "Color 48",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 199,
+                            "end": 207,
+                            "label": "colour change 13",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 199,
+                            "end": 207,
+                            "label": "colour fade 13",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -732,6 +982,26 @@
                             }
                         },
                         {
+                            "begin": 208,
+                            "default": 215,
+                            "end": 223,
+                            "label": "colour change 14",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 208,
+                            "default": 215,
+                            "end": 223,
+                            "label": "colour fade 14",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 209,
                             "default": 210,
                             "end": 212,
@@ -766,6 +1036,26 @@
                             "default": 222,
                             "end": 224,
                             "label": "Color 56",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 231,
+                            "end": 239,
+                            "label": "colour change 15",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 231,
+                            "end": 239,
+                            "label": "colour fade 15",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -812,6 +1102,26 @@
                             }
                         },
                         {
+                            "begin": 240,
+                            "default": 247,
+                            "end": 255,
+                            "label": "colour change 16",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 240,
+                            "default": 247,
+                            "end": 255,
+                            "label": "colour fade 16",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 241,
                             "default": 242,
                             "end": 244,
@@ -846,336 +1156,6 @@
                             "default": 254,
                             "end": 255,
                             "label": "Color 64",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 15,
-                            "label": "colour change 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 16,
-                            "default": 23,
-                            "end": 31,
-                            "label": "colour change 2",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 39,
-                            "end": 47,
-                            "label": "colour change 3",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 48,
-                            "default": 55,
-                            "end": 63,
-                            "label": "colour change 4",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 64,
-                            "default": 71,
-                            "end": 79,
-                            "label": "colour change 5",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 80,
-                            "default": 87,
-                            "end": 95,
-                            "label": "colour change 6",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 96,
-                            "default": 103,
-                            "end": 111,
-                            "label": "colour change 7",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 112,
-                            "default": 119,
-                            "end": 127,
-                            "label": "colour change 8",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 135,
-                            "end": 143,
-                            "label": "colour change 9",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 144,
-                            "default": 151,
-                            "end": 159,
-                            "label": "colour change 10",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 160,
-                            "default": 167,
-                            "end": 175,
-                            "label": "colour change 11",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 176,
-                            "default": 183,
-                            "end": 191,
-                            "label": "colour change 12",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 199,
-                            "end": 207,
-                            "label": "colour change 13",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 208,
-                            "default": 215,
-                            "end": 223,
-                            "label": "colour change 14",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 224,
-                            "default": 231,
-                            "end": 239,
-                            "label": "colour change 15",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 240,
-                            "default": 247,
-                            "end": 255,
-                            "label": "colour change 16",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 15,
-                            "label": "colour fade 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 16,
-                            "default": 23,
-                            "end": 31,
-                            "label": "colour fade 2",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 39,
-                            "end": 47,
-                            "label": "colour fade 3",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 48,
-                            "default": 55,
-                            "end": 63,
-                            "label": "colour fade 4",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 64,
-                            "default": 71,
-                            "end": 79,
-                            "label": "colour fade 5",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 80,
-                            "default": 87,
-                            "end": 95,
-                            "label": "colour fade 6",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 96,
-                            "default": 103,
-                            "end": 111,
-                            "label": "colour fade 7",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 112,
-                            "default": 119,
-                            "end": 127,
-                            "label": "colour fade 8",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 135,
-                            "end": 143,
-                            "label": "colour fade 9",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 144,
-                            "default": 151,
-                            "end": 159,
-                            "label": "colour fade 10",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 160,
-                            "default": 167,
-                            "end": 175,
-                            "label": "colour fade 11",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 176,
-                            "default": 183,
-                            "end": 191,
-                            "label": "colour fade 12",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 199,
-                            "end": 207,
-                            "label": "colour fade 13",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 208,
-                            "default": 215,
-                            "end": 223,
-                            "label": "colour fade 14",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 224,
-                            "default": 231,
-                            "end": 239,
-                            "label": "colour fade 15",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 240,
-                            "default": 247,
-                            "end": 255,
-                            "label": "colour fade 16",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "Auto",
                             "media": {
                                 "dcid": "",
                                 "name": ""

@@ -12,119 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 3,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 208,
-                            "default": 208,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 16,
-                            "label": "(gobo 1) [Intensity]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 17,
-                            "default": 26,
-                            "end": 35,
-                            "label": "(gobo 1) [Full,<>]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 36,
-                            "default": 43,
-                            "end": 51,
-                            "label": "(gobo 2) [Full,<>]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 52,
-                            "default": 59,
-                            "end": 67,
-                            "label": "(gobo 3) [Full,<>]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 68,
-                            "default": 75,
-                            "end": 83,
-                            "label": "(gobo 4) [Full,<>]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 84,
-                            "default": 91,
-                            "end": 99,
-                            "label": "(gobo 5) [Full,<>]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 100,
-                            "default": 107,
-                            "end": 115,
-                            "label": "(gobo 6) [Full,<>]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 116,
-                            "default": 123,
-                            "end": 131,
-                            "label": "(gobo 7) [Full,<>]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 132,
-                            "default": 178,
-                            "end": 225,
-                            "label": "(gobo 8) [Intensity]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32512,
@@ -200,16 +87,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Drum",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -318,21 +195,114 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "Gobo",
+                    "name": "Strobe",
                     "size": 8,
                     "snap": false,
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 208,
-                            "default": 208,
-                            "end": 255,
-                            "label": "Spin >>",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 16,
+                            "label": "(gobo 1) [Intensity]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
                             }
                         },
+                        {
+                            "begin": 17,
+                            "default": 26,
+                            "end": 35,
+                            "label": "(gobo 1) [Full,<>]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 36,
+                            "default": 43,
+                            "end": 51,
+                            "label": "(gobo 2) [Full,<>]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 52,
+                            "default": 59,
+                            "end": 67,
+                            "label": "(gobo 3) [Full,<>]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 68,
+                            "default": 75,
+                            "end": 83,
+                            "label": "(gobo 4) [Full,<>]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 84,
+                            "default": 91,
+                            "end": 99,
+                            "label": "(gobo 5) [Full,<>]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 100,
+                            "default": 107,
+                            "end": 115,
+                            "label": "(gobo 6) [Full,<>]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 116,
+                            "default": 123,
+                            "end": 131,
+                            "label": "(gobo 7) [Full,<>]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 132,
+                            "default": 178,
+                            "end": 225,
+                            "label": "(gobo 8) [Intensity]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
                         {
                             "begin": 0,
                             "default": 0,
@@ -426,16 +396,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 195,
-                            "default": 195,
-                            "end": 195,
-                            "label": "(gobo 8)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

@@ -12,7 +12,7 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 1,
+                    "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
                     "home": 0,
@@ -24,7 +24,7 @@
                     "ranges": []
                 },
                 {
-                    "coarse": 0,
+                    "coarse": 1,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
                     "home": 0,
@@ -122,28 +122,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
                             "end": 5,
                             "label": "Closed",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 6,
-                            "default": 6,
-                            "end": 255,
-                            "label": "Strobe",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -198,6 +178,16 @@
                                 "dcid": "",
                                 "name": ""
                             }
+                        },
+                        {
+                            "begin": 6,
+                            "default": 6,
+                            "end": 255,
+                            "label": "Strobe",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
                         }
                     ]
                 },
@@ -212,16 +202,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "Lightning Rate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

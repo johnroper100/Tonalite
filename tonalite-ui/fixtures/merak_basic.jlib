@@ -12,119 +12,6 @@
             "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
-                    "coarse": 19,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 131,
-                            "default": 131,
-                            "end": 255,
-                            "label": "Chase Rate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 86,
-                            "default": 86,
-                            "end": 86,
-                            "label": "Pos Reset",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 109,
-                            "default": 109,
-                            "end": 109,
-                            "label": "Internal program 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 129,
-                            "label": "Internal program 2",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 149,
-                            "default": 149,
-                            "end": 149,
-                            "label": "Internal program 3",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 169,
-                            "default": 169,
-                            "end": 169,
-                            "label": "Internal program 4",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 189,
-                            "default": 189,
-                            "end": 189,
-                            "label": "Internal program 5",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 209,
-                            "default": 209,
-                            "end": 209,
-                            "label": "Internal program 6",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 229,
-                            "default": 229,
-                            "end": 229,
-                            "label": "Internal program 7",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32512,
@@ -241,16 +128,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 245,
-                            "default": 245,
-                            "end": 245,
-                            "label": "Focus Track",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -346,16 +223,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -379,10 +246,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 5,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Color Temp",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 7,
+                            "label": "Color Mix [Mix Pos,Color Mix Macro Rate]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -409,10 +276,40 @@
                             }
                         },
                         {
+                            "begin": 8,
+                            "default": 39,
+                            "end": 39,
+                            "label": "Red [Mix Pos,Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 40,
                             "default": 71,
                             "end": 71,
                             "label": "Yellow [Mix Pos,Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 40,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Yellow [Mix Pos,Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 103,
+                            "end": 103,
+                            "label": "Green [Mix Pos,Color Mix Macro Rate]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -439,6 +336,26 @@
                             }
                         },
                         {
+                            "begin": 104,
+                            "default": 135,
+                            "end": 135,
+                            "label": "Cyan [Mix Pos,Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 136,
+                            "default": 167,
+                            "end": 167,
+                            "label": "Blue [Mix Pos,Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 136,
                             "default": 167,
                             "end": 167,
@@ -459,10 +376,40 @@
                             }
                         },
                         {
+                            "begin": 168,
+                            "default": 199,
+                            "end": 199,
+                            "label": "Magenta [Mix Pos,Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 200,
                             "default": 230,
                             "end": 230,
                             "label": "Red [Mix Pos,Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 200,
+                            "default": 230,
+                            "end": 230,
+                            "label": "Red [Mix Pos,Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 231,
+                            "default": 231,
+                            "end": 231,
+                            "label": "White [Mix Pos,Color Mix Macro Rate]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -483,96 +430,6 @@
                             "default": 232,
                             "end": 255,
                             "label": "Crossfading colours [Mix Pos,Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 7,
-                            "label": "Color Mix [Mix Pos,Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 8,
-                            "default": 39,
-                            "end": 39,
-                            "label": "Red [Mix Pos,Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 40,
-                            "default": 71,
-                            "end": 71,
-                            "label": "Yellow [Mix Pos,Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 72,
-                            "default": 103,
-                            "end": 103,
-                            "label": "Green [Mix Pos,Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 104,
-                            "default": 135,
-                            "end": 135,
-                            "label": "Cyan [Mix Pos,Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 136,
-                            "default": 167,
-                            "end": 167,
-                            "label": "Blue [Mix Pos,Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 168,
-                            "default": 199,
-                            "end": 199,
-                            "label": "Magenta [Mix Pos,Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 200,
-                            "default": 230,
-                            "end": 230,
-                            "label": "Red [Mix Pos,Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 231,
-                            "default": 231,
-                            "end": 231,
-                            "label": "White [Mix Pos,Color Mix Macro Rate]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -601,16 +458,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -869,16 +716,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 117,
-                            "default": 117,
-                            "end": 117,
-                            "label": "Color Mix",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -901,16 +738,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 159,
-                            "default": 159,
-                            "end": 159,
-                            "label": "(Beamshaper)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -954,6 +781,109 @@
                     "snap": false,
                     "type": 1,
                     "ranges": []
+                },
+                {
+                    "coarse": 19,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 86,
+                            "default": 86,
+                            "end": 86,
+                            "label": "Pos Reset",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 109,
+                            "default": 109,
+                            "end": 109,
+                            "label": "Internal program 1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 129,
+                            "label": "Internal program 2",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 149,
+                            "default": 149,
+                            "end": 149,
+                            "label": "Internal program 3",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 169,
+                            "default": 169,
+                            "end": 169,
+                            "label": "Internal program 4",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 189,
+                            "default": 189,
+                            "end": 189,
+                            "label": "Internal program 5",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 209,
+                            "default": 209,
+                            "end": 209,
+                            "label": "Internal program 6",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 229,
+                            "default": 229,
+                            "end": 229,
+                            "label": "Internal program 7",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

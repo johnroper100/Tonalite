@@ -12,59 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 8,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Rotate X 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 134,
-                            "default": 134,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 5,
-                            "default": 5,
-                            "end": 127,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 130,
-                            "default": 130,
-                            "end": 130,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
@@ -118,16 +65,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Manual edit mode",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -202,16 +139,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 253,
-                            "default": 253,
-                            "end": 253,
-                            "label": "Unknown colour",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -284,16 +211,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 215,
-                            "default": 235,
-                            "end": 255,
-                            "label": "Gobo Group 6 cartoons",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -628,16 +545,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 248,
-                            "default": 251,
-                            "end": 255,
-                            "label": "File 31",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -771,16 +678,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 235,
-                            "default": 245,
-                            "end": 255,
-                            "label": "Spd 100",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -833,16 +730,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 192,
-                            "default": 192,
-                            "end": 255,
-                            "label": "Rot >> [>>]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -897,16 +784,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 192,
-                            "default": 223,
-                            "end": 255,
-                            "label": "Rotating on [Dotting on]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -954,21 +831,54 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "Scale",
+                    "name": "Rotate X 2",
                     "size": 8,
                     "snap": false,
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 192,
-                            "default": 192,
-                            "end": 255,
-                            "label": "X Pos [Y Pos]",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
                             }
                         },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 127,
+                            "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Scale",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
                         {
                             "begin": 0,
                             "default": 0,
@@ -1023,16 +933,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 192,
-                            "default": 192,
-                            "end": 255,
-                            "label": "X Zoom [Y Zoom]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -1076,16 +976,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 170,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Zoom",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -1112,16 +1002,6 @@
                             "begin": 0,
                             "default": 0,
                             "end": 255,
-                            "label": "Trans Spd",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
                             "label": "None",
                             "media": {
                                 "dcid": "",
@@ -1141,16 +1021,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "Scan Rate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

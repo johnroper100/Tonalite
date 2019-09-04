@@ -12,69 +12,6 @@
             "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
-                    "coarse": 15,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 76,
-                            "default": 76,
-                            "end": 76,
-                            "label": "Dimmer speed off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 127,
-                            "default": 127,
-                            "end": 127,
-                            "label": "Dimmer speed 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 178,
-                            "default": 178,
-                            "end": 178,
-                            "label": "Dimmer speed 2",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
@@ -211,16 +148,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 228,
-                            "default": 228,
-                            "end": 228,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -264,10 +191,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 213,
-                            "default": 213,
-                            "end": 213,
-                            "label": "Colour macro",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 28,
+                            "label": "R100%,G0-100%,B0% [Mix Pos]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -276,8 +203,28 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 28,
-                            "label": "R100%,G0-100%,B0% [Mix Pos]",
+                            "end": 0,
+                            "label": "White 2000K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 60,
+                            "label": "Auto Program 1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 195,
+                            "label": "White 2000K - 3000K [Mix Pos]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -304,10 +251,30 @@
                             }
                         },
                         {
+                            "begin": 61,
+                            "default": 85,
+                            "end": 110,
+                            "label": "Auto Program 2",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 85,
                             "default": 85,
                             "end": 112,
                             "label": "R0%,G0-100%,B100% [Mix Pos]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 111,
+                            "default": 135,
+                            "end": 160,
+                            "label": "Auto Program 3",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -334,50 +301,20 @@
                             }
                         },
                         {
+                            "begin": 161,
+                            "default": 185,
+                            "end": 210,
+                            "label": "Auto Program 4",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 169,
                             "default": 169,
                             "end": 196,
                             "label": "R100%,G0%-100%,B0%-100% [Mix Pos]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 197,
-                            "default": 197,
-                            "end": 224,
-                            "label": "R100%-0%,G100%-0%,B100% [Mix Pos]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 225,
-                            "default": 225,
-                            "end": 255,
-                            "label": "R0%-100%,G0%-100%,B100%,W0%-100% [Mix Pos]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "White 2000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 1,
-                            "default": 1,
-                            "end": 195,
-                            "label": "White 2000K - 3000K [Mix Pos]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -394,10 +331,40 @@
                             }
                         },
                         {
+                            "begin": 197,
+                            "default": 197,
+                            "end": 224,
+                            "label": "R100%-0%,G100%-0%,B100% [Mix Pos]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 211,
                             "default": 211,
                             "end": 225,
                             "label": "White 4000K - 6000K [Mix Pos]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 211,
+                            "default": 233,
+                            "end": 255,
+                            "label": "Auto Program 5",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 225,
+                            "default": 225,
+                            "end": 255,
+                            "label": "R0%-100%,G0%-100%,B100%,W0%-100% [Mix Pos]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -422,56 +389,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 60,
-                            "label": "Auto Program 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 61,
-                            "default": 85,
-                            "end": 110,
-                            "label": "Auto Program 2",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 111,
-                            "default": 135,
-                            "end": 160,
-                            "label": "Auto Program 3",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 161,
-                            "default": 185,
-                            "end": 210,
-                            "label": "Auto Program 4",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 211,
-                            "default": 233,
-                            "end": 255,
-                            "label": "Auto Program 5",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -486,6 +403,59 @@
                     "snap": false,
                     "type": 1,
                     "ranges": []
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Dimmer Curve",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 76,
+                            "default": 76,
+                            "end": 76,
+                            "label": "Dimmer speed off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 127,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Dimmer speed 1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 178,
+                            "default": 178,
+                            "end": 178,
+                            "label": "Dimmer speed 2",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

@@ -12,6 +12,89 @@
             "colortable": "",
             "parameters": [
                 {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Gobo <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Track",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "Unknown",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 254,
+                            "label": "Rot <<",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
                     "coarse": 1,
                     "fadeWithIntensity": false,
                     "highlight": 32768,
@@ -22,16 +105,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -85,89 +158,6 @@
                     ]
                 },
                 {
-                    "coarse": 0,
-                    "fadeWithIntensity": false,
-                    "highlight": 32768,
-                    "home": 32768,
-                    "invert": false,
-                    "name": "Gobo <>",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 1,
-                            "default": 127,
-                            "end": 127,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 128,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 254,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 127,
-                            "end": 127,
-                            "label": "Track",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 128,
-                            "label": "Unknown",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 1,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -178,16 +168,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 255,
-                            "label": "Track",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -212,10 +192,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 1,
-                            "default": 1,
-                            "end": 255,
-                            "label": "Index [I,Scut]",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -223,9 +203,9 @@
                         },
                         {
                             "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Rot Stop",
+                            "default": 127,
+                            "end": 127,
+                            "label": "Track",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -252,6 +232,16 @@
                             }
                         },
                         {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "Unknown 1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 129,
                             "default": 129,
                             "end": 254,
@@ -266,26 +256,6 @@
                             "default": 255,
                             "end": 255,
                             "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 127,
-                            "end": 127,
-                            "label": "Track",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 128,
-                            "label": "Unknown 1",
                             "media": {
                                 "dcid": "",
                                 "name": ""

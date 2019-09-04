@@ -12,39 +12,6 @@
             "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139",
             "parameters": [
                 {
-                    "coarse": 6,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "0.0s",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Closed",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 16384,
@@ -88,16 +55,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 255,
-                            "label": "Rot <> [Iris]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -191,16 +148,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -385,16 +332,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 251,
-                            "default": 251,
-                            "end": 251,
-                            "label": "(Open)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 128,
@@ -456,21 +393,34 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "FX",
+                    "name": "Strobe",
                     "size": 8,
                     "snap": false,
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 249,
-                            "default": 249,
-                            "end": 249,
-                            "label": "Open [Full]",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed",
                             "media": {
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
                         {
                             "begin": 0,
                             "default": 0,

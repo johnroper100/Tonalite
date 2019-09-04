@@ -12,29 +12,6 @@
             "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
-                    "coarse": 7,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -142,6 +119,29 @@
                     ]
                 },
                 {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
                     "coarse": 8,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -152,16 +152,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 1,
-                            "default": 1,
-                            "end": 255,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -226,16 +216,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 228,
-                            "default": 228,
-                            "end": 228,
-                            "label": "HSI",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -260,6 +240,26 @@
                             "default": 0,
                             "end": 4,
                             "label": "2600K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -654,26 +654,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -688,16 +668,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 127,
@@ -735,16 +705,6 @@
                             "begin": 0,
                             "default": 127,
                             "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 127,
-                            "end": 255,
                             "label": "CIE Y",
                             "media": {
                                 "dcid": "",
@@ -776,9 +736,9 @@
                     "ranges": [
                         {
                             "begin": 0,
-                            "default": 127,
-                            "end": 255,
-                            "label": "None",
+                            "default": 0,
+                            "end": 6,
+                            "label": "790 moroccan pink",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -787,8 +747,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 6,
-                            "label": "790 moroccan pink",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1139,16 +1099,6 @@
                             "default": 250,
                             "end": 255,
                             "label": "Color 36",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1170,8 +1120,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 6,
+                            "label": "790 moroccan pink",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1180,8 +1130,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 6,
-                            "label": "790 moroccan pink",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1532,16 +1482,6 @@
                             "default": 250,
                             "end": 255,
                             "label": "Color 36",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""

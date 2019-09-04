@@ -12,69 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 13,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Blink",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 4,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Color Mix",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 111,
-                            "default": 111,
-                            "end": 111,
-                            "label": "On",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 143,
-                            "default": 143,
-                            "end": 143,
-                            "label": "Off [Color Mix Blink]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 191,
-                            "default": 191,
-                            "end": 191,
-                            "label": "Off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32768,
@@ -123,16 +60,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -359,16 +286,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 126,
@@ -564,16 +481,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Iris 100",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -717,16 +624,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 224,
-                            "default": 224,
-                            "end": 255,
-                            "label": "Spin <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 191,
@@ -769,16 +666,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 225,
-                            "default": 225,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -923,16 +810,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 224,
-                            "default": 224,
-                            "end": 255,
-                            "label": "Spin <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 191,
@@ -970,21 +847,64 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "Color",
+                    "name": "Blink",
                     "size": 8,
                     "snap": false,
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 225,
-                            "default": 225,
-                            "end": 255,
-                            "label": "Rot <<",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Off",
                             "media": {
                                 "dcid": "",
                                 "name": ""
                             }
                         },
+                        {
+                            "begin": 111,
+                            "default": 111,
+                            "end": 111,
+                            "label": "On",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 143,
+                            "default": 143,
+                            "end": 143,
+                            "label": "Off [Color Mix Blink]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
                         {
                             "begin": 0,
                             "default": 0,
@@ -1281,16 +1201,6 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "(Open)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
                             "end": 0,
                             "label": "(Open)",
                             "media": {
@@ -1382,16 +1292,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 128,
-                            "default": 191,
-                            "end": 255,
-                            "label": "Colors 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1445,16 +1345,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 195,
-                            "default": 195,
-                            "end": 195,
-                            "label": "Unknown",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 191,
@@ -1497,16 +1387,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 225,
-                            "default": 225,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1691,16 +1571,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Frost 100",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1723,16 +1593,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 4,
-                            "default": 4,
-                            "end": 255,
-                            "label": "Focus Spd",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

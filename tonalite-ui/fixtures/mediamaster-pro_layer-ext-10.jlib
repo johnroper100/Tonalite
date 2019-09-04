@@ -12,39 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 2,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "Beam Macro Rate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Index/rotate mode",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
@@ -2625,21 +2592,34 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "File",
+                    "name": "Mode",
                     "size": 8,
                     "snap": false,
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Masks",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Index/rotate mode",
                             "media": {
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
+                        }
+                    ]
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "File",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
                         {
                             "begin": 0,
                             "default": 0,
@@ -5228,16 +5208,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "File 255",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -5300,16 +5270,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 175,
-                            "default": 175,
-                            "end": 175,
-                            "label": "5/4",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -6223,16 +6183,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "FX Library 90",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -8845,16 +8795,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "FX 255",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -11418,16 +11358,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Text 255",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -11472,16 +11402,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 79,
-                            "default": 79,
-                            "end": 79,
-                            "label": "Sphere",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -11545,16 +11465,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 175,
-                            "default": 175,
-                            "end": 175,
-                            "label": "Maximum",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -11645,16 +11555,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 143,
-                            "default": 143,
-                            "end": 143,
-                            "label": "ChromaKey BP",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 63,
@@ -11677,16 +11577,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 64,
-                            "default": 64,
-                            "end": 255,
-                            "label": "Spd",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -11849,16 +11739,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 233,
-                            "default": 233,
-                            "end": 233,
-                            "label": "Timecode",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

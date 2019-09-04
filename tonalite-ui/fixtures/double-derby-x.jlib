@@ -12,7 +12,7 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 7,
+                    "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
@@ -23,15 +23,38 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 11,
-                            "default": 11,
-                            "end": 255,
-                            "label": "Strobe",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off",
                             "media": {
                                 "dcid": "",
                                 "name": ""
                             }
                         },
+                        {
+                            "begin": 57,
+                            "default": 57,
+                            "end": 57,
+                            "label": "LEDs on",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Mode",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
                         {
                             "begin": 0,
                             "default": 0,
@@ -197,39 +220,6 @@
                             "default": 235,
                             "end": 235,
                             "label": "Mode 16",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 0,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 57,
-                            "default": 57,
-                            "end": 57,
-                            "label": "LEDs on",
                             "media": {
                                 "dcid": "",
                                 "name": ""

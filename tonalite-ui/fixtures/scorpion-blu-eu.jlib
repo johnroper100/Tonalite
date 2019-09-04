@@ -12,69 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 17,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Pos",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 4,
-                            "label": "Pos",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 5,
-                            "default": 5,
-                            "end": 127,
-                            "label": "Pos",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 130,
-                            "end": 133,
-                            "label": "Pos",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 134,
-                            "default": 134,
-                            "end": 255,
-                            "label": "Pos",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
@@ -128,16 +65,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "DMX",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -462,16 +389,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 251,
-                            "default": 251,
-                            "end": 251,
-                            "label": "Twelve blocks",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -495,16 +412,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 140,
-                            "default": 140,
-                            "end": 140,
-                            "label": "Laser Int 100",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -527,16 +434,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 5,
-                            "default": 5,
-                            "end": 255,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -581,16 +478,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 210,
-                            "default": 210,
-                            "end": 255,
-                            "label": "Zoom Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 127,
@@ -623,16 +510,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 192,
-                            "default": 255,
-                            "end": 255,
-                            "label": "X Scroll",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -667,16 +544,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 192,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Y Scroll",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 127,
@@ -710,16 +577,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 192,
-                            "default": 192,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 127,
@@ -734,6 +591,59 @@
                             "default": 128,
                             "end": 191,
                             "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Pos",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 4,
+                            "label": "Pos",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 127,
+                            "label": "Pos",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 130,
+                            "end": 133,
+                            "label": "Pos",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 134,
+                            "default": 134,
+                            "end": 255,
+                            "label": "Pos",
                             "media": {
                                 "dcid": "",
                                 "name": ""

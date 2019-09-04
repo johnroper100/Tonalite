@@ -12,49 +12,6 @@
             "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139",
             "parameters": [
                 {
-                    "coarse": 10,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Y Pos 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 128,
-                            "label": "Y Scroll",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 255,
-                            "label": "X Scroll",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32512,
@@ -161,16 +118,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 22,
-                            "default": 22,
-                            "end": 22,
-                            "label": "Lamp Pwr 50",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -233,16 +180,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 230,
-                            "default": 230,
-                            "end": 230,
-                            "label": "(CTO)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -307,16 +244,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 230,
-                            "default": 230,
-                            "end": 230,
-                            "label": "(Purple)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -374,6 +301,39 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
+                    "name": "Y Pos 2",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 128,
+                            "label": "Y Scroll",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
+                            "label": "X Scroll",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
                     "name": "Gobo Speed",
                     "size": 8,
                     "snap": false,
@@ -391,16 +351,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 230,
-                            "default": 230,
-                            "end": 230,
-                            "label": "(Pink)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -725,16 +675,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 236,
-                            "default": 245,
-                            "end": 255,
-                            "label": "(063) [S]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1048,16 +988,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 252,
-                            "default": 252,
-                            "end": 252,
-                            "label": "Rnd 100",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 127,
@@ -1100,16 +1030,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 195,
-                            "default": 195,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1164,16 +1084,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 223,
-                            "default": 223,
-                            "end": 223,
-                            "label": "(16 Facet Prism)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -1204,10 +1114,40 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 1,
                             "default": 127,
                             "end": 127,
                             "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 129,
+                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1228,36 +1168,6 @@
                             "default": 130,
                             "end": 255,
                             "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 1,
-                            "default": 127,
-                            "end": 127,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 129,
-                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1276,16 +1186,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 130,
-                            "default": 130,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1363,16 +1263,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 234,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Frost Strobe Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

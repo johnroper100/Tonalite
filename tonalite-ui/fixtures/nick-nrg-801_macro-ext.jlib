@@ -12,29 +12,6 @@
             "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
-                    "coarse": 19,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Global Reset",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 161,
-                            "default": 208,
-                            "end": 255,
-                            "label": "Custom white store",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32768,
@@ -104,16 +81,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 251,
-                            "default": 251,
-                            "end": 251,
-                            "label": "Focus 50",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -268,16 +235,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -330,16 +287,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 230,
-                            "default": 230,
-                            "end": 230,
-                            "label": "White CTC",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -473,16 +420,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 206,
-                            "default": 206,
-                            "end": 255,
-                            "label": "7000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -737,10 +674,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 250,
-                            "default": 250,
-                            "end": 250,
-                            "label": "MixCycle 100",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 79,
+                            "label": "Custom white recall",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -749,8 +686,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 79,
-                            "label": "Custom white recall",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -771,16 +708,6 @@
                             "default": 208,
                             "end": 255,
                             "label": "Custom white store",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -814,16 +741,6 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
                             "end": 128,
                             "label": "Zoom",
                             "media": {
@@ -842,6 +759,18 @@
                             }
                         }
                     ]
+                },
+                {
+                    "coarse": 19,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Global Reset",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
                 }
             ]
         }

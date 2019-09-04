@@ -12,18 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 5,
-                    "fadeWithIntensity": false,
-                    "highlight": 32768,
-                    "home": 32768,
-                    "invert": false,
-                    "name": "Y Pos",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -78,10 +66,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 223,
-                            "default": 223,
-                            "end": 223,
-                            "label": "Wave mode",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 15,
+                            "label": "Spd 1",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -90,8 +78,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 15,
-                            "label": "Spd 1",
+                            "end": 127,
+                            "label": "Off",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -178,6 +166,16 @@
                             }
                         },
                         {
+                            "begin": 128,
+                            "default": 191,
+                            "end": 255,
+                            "label": "On",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 144,
                             "default": 151,
                             "end": 159,
@@ -246,26 +244,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 127,
-                            "label": "Off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 191,
-                            "end": 255,
-                            "label": "On",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -283,8 +261,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 15,
+                            "label": "All shows",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -293,8 +271,18 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 15,
-                            "label": "All shows",
+                            "end": 31,
+                            "label": "off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "FX Level",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -321,6 +309,16 @@
                             }
                         },
                         {
+                            "begin": 32,
+                            "default": 47,
+                            "end": 63,
+                            "label": "Library 1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 48,
                             "default": 55,
                             "end": 63,
@@ -335,6 +333,16 @@
                             "default": 71,
                             "end": 79,
                             "label": "Show 4",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 79,
+                            "end": 95,
+                            "label": "Library 2",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -361,6 +369,16 @@
                             }
                         },
                         {
+                            "begin": 96,
+                            "default": 111,
+                            "end": 127,
+                            "label": "Library 3",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 112,
                             "default": 119,
                             "end": 127,
@@ -375,6 +393,16 @@
                             "default": 135,
                             "end": 143,
                             "label": "Show 8",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 143,
+                            "end": 159,
+                            "label": "Library 4",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -401,6 +429,16 @@
                             }
                         },
                         {
+                            "begin": 160,
+                            "default": 175,
+                            "end": 191,
+                            "label": "Library 5",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 176,
                             "default": 183,
                             "end": 191,
@@ -415,6 +453,16 @@
                             "default": 199,
                             "end": 207,
                             "label": "Show 12",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 207,
+                            "end": 223,
+                            "label": "Library 6",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -441,86 +489,6 @@
                             }
                         },
                         {
-                            "begin": 240,
-                            "default": 247,
-                            "end": 255,
-                            "label": "Show 15",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 31,
-                            "label": "off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 47,
-                            "end": 63,
-                            "label": "Library 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 64,
-                            "default": 79,
-                            "end": 95,
-                            "label": "Library 2",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 96,
-                            "default": 111,
-                            "end": 127,
-                            "label": "Library 3",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 143,
-                            "end": 159,
-                            "label": "Library 4",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 160,
-                            "default": 175,
-                            "end": 191,
-                            "label": "Library 5",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 207,
-                            "end": 223,
-                            "label": "Library 6",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 224,
                             "default": 239,
                             "end": 255,
@@ -531,10 +499,10 @@
                             }
                         },
                         {
-                            "begin": 0,
-                            "default": 0,
+                            "begin": 240,
+                            "default": 247,
                             "end": 255,
-                            "label": "FX Level",
+                            "label": "Show 15",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -556,8 +524,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 15,
+                            "label": "All shows",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -566,8 +534,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 15,
-                            "label": "All shows",
+                            "end": 255,
+                            "label": "FX Param",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -722,16 +690,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "FX Param",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -749,8 +707,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 31,
+                            "label": "Color Mix",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -777,10 +735,40 @@
                             }
                         },
                         {
+                            "begin": 32,
+                            "default": 47,
+                            "end": 63,
+                            "label": "White",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 64,
                             "default": 79,
                             "end": 95,
                             "label": "Red",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 79,
+                            "end": 95,
+                            "label": "Red",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 111,
+                            "end": 127,
+                            "label": "Yellow",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -807,10 +795,40 @@
                             }
                         },
                         {
+                            "begin": 128,
+                            "default": 143,
+                            "end": 159,
+                            "label": "Green",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 160,
                             "default": 175,
                             "end": 191,
                             "label": "Cyan",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 175,
+                            "end": 191,
+                            "label": "Cyan",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 207,
+                            "end": 223,
+                            "label": "Blue",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -831,76 +849,6 @@
                             "default": 239,
                             "end": 255,
                             "label": "Purple",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 31,
-                            "label": "Color Mix",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 47,
-                            "end": 63,
-                            "label": "White",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 64,
-                            "default": 79,
-                            "end": 95,
-                            "label": "Red",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 96,
-                            "default": 111,
-                            "end": 127,
-                            "label": "Yellow",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 143,
-                            "end": 159,
-                            "label": "Green",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 160,
-                            "default": 175,
-                            "end": 191,
-                            "label": "Cyan",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 207,
-                            "end": 223,
-                            "label": "Blue",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -921,6 +869,18 @@
                 {
                     "coarse": 5,
                     "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Y Pos",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
@@ -932,8 +892,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 1,
+                            "label": "Mix Pos",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -953,16 +913,6 @@
                             "begin": 2,
                             "default": 2,
                             "end": 255,
-                            "label": "Mix Pos",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 1,
                             "label": "Mix Pos",
                             "media": {
                                 "dcid": "",
@@ -995,8 +945,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 127,
+                            "label": "Manual drawing",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1017,16 +967,6 @@
                             "default": 128,
                             "end": 255,
                             "label": "Scan Rate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 127,
-                            "label": "Manual drawing",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1058,38 +998,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
                             "end": 127,
                             "label": "Zoom",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 191,
-                            "end": 191,
-                            "label": "Auto 1 [Zoom]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 192,
-                            "end": 255,
-                            "label": "Auto 2 [Zoom]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1177,6 +1087,16 @@
                         },
                         {
                             "begin": 128,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Auto 1 [Zoom]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
                             "default": 135,
                             "end": 143,
                             "label": "Show 8",
@@ -1210,6 +1130,16 @@
                             "default": 183,
                             "end": 191,
                             "label": "Show 11",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Auto 2 [Zoom]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1271,38 +1201,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
                             "end": 127,
                             "label": "Ind",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 191,
-                            "end": 191,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 192,
-                            "end": 255,
-                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1330,9 +1230,29 @@
                         },
                         {
                             "begin": 128,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
                             "default": 159,
                             "end": 191,
                             "label": "Inside to outside",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1364,38 +1284,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
                             "end": 127,
                             "label": "Ind",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 191,
-                            "end": 191,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 192,
-                            "end": 255,
-                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1413,9 +1303,29 @@
                         },
                         {
                             "begin": 128,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
                             "default": 128,
                             "end": 255,
                             "label": "Wave Rate",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Rot <<",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1437,8 +1347,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 127,
+                            "label": "Ind",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1447,8 +1357,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Ind",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1473,16 +1383,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -1500,8 +1400,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 127,
+                            "label": "X Pos",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1510,8 +1410,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "X Pos",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1532,16 +1432,6 @@
                             "default": 192,
                             "end": 255,
                             "label": "X Scroll",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1563,8 +1453,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 127,
+                            "label": "Y Pos",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1573,8 +1463,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Y Pos",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1599,16 +1489,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -1623,16 +1503,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1737,10 +1607,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 224,
-                            "default": 239,
-                            "end": 255,
-                            "label": "Library 7",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 15,
+                            "label": "off",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1749,8 +1619,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 15,
-                            "label": "off",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1905,16 +1775,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -1932,8 +1792,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 31,
+                            "label": "Color Mix",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1942,8 +1802,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 31,
-                            "label": "Color Mix",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2018,16 +1878,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -2045,8 +1895,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 1,
+                            "label": "Mix Pos",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2055,8 +1905,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 1,
-                            "label": "Mix Pos",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2067,16 +1917,6 @@
                             "default": 2,
                             "end": 255,
                             "label": "Mix Pos",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2098,8 +1938,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 127,
+                            "label": "Manual drawing",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2108,8 +1948,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Manual drawing",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2120,16 +1960,6 @@
                             "default": 128,
                             "end": 255,
                             "label": "Scan Rate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2151,8 +1981,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 127,
+                            "label": "Zoom",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2161,8 +1991,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Zoom",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2187,16 +2017,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -2214,8 +2034,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 127,
+                            "label": "Ind",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2224,8 +2044,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Ind",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2246,16 +2066,6 @@
                             "default": 192,
                             "end": 255,
                             "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2277,8 +2087,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 127,
+                            "label": "Ind",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2287,8 +2097,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Ind",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2309,16 +2119,6 @@
                             "default": 192,
                             "end": 255,
                             "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2340,8 +2140,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 127,
+                            "label": "Ind",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2350,8 +2150,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Ind",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2376,16 +2176,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -2403,8 +2193,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 127,
+                            "label": "X Pos",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2413,8 +2203,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "X Pos",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2435,16 +2225,6 @@
                             "default": 192,
                             "end": 255,
                             "label": "X Scroll",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""

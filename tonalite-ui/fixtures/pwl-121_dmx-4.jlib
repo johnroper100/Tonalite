@@ -12,18 +12,6 @@
             "colortable": "3874B444-A11E-47D9-8295-04556EAEBEA7",
             "parameters": [
                 {
-                    "coarse": 2,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Blue",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
@@ -42,6 +30,18 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Green",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Blue",
                     "size": 8,
                     "snap": false,
                     "type": 1,
@@ -456,8 +456,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 15,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -467,7 +467,7 @@
                             "begin": 0,
                             "default": 0,
                             "end": 15,
-                            "label": "Open",
+                            "label": "Open [Color Mix Macro Rate]",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -484,170 +484,20 @@
                             }
                         },
                         {
-                            "begin": 31,
-                            "default": 38,
-                            "end": 45,
-                            "label": "Strobe 8",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 46,
-                            "default": 53,
-                            "end": 60,
-                            "label": "Strobe 14",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 61,
-                            "default": 68,
-                            "end": 75,
-                            "label": "Strobe 21",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 76,
-                            "default": 83,
-                            "end": 90,
-                            "label": "Strobe 27",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 91,
-                            "default": 98,
-                            "end": 105,
-                            "label": "Strobe 34",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 106,
-                            "default": 113,
-                            "end": 120,
-                            "label": "Strobe 41",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 121,
-                            "default": 128,
-                            "end": 135,
-                            "label": "Strobe 47",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 136,
-                            "default": 143,
-                            "end": 150,
-                            "label": "Strobe 54",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 151,
-                            "default": 158,
-                            "end": 165,
-                            "label": "Strobe 60",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 166,
-                            "default": 173,
-                            "end": 180,
-                            "label": "Strobe 67",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 181,
-                            "default": 188,
-                            "end": 195,
-                            "label": "Strobe 74",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 196,
-                            "default": 203,
-                            "end": 210,
-                            "label": "Strobe 80",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 211,
-                            "default": 218,
-                            "end": 225,
-                            "label": "Strobe 87",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 226,
-                            "default": 233,
-                            "end": 240,
-                            "label": "Strobe 93",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 241,
-                            "default": 248,
-                            "end": 255,
-                            "label": "Strobe 100",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 15,
-                            "label": "Open [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 16,
                             "default": 23,
                             "end": 31,
                             "label": "Open [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 31,
+                            "default": 38,
+                            "end": 45,
+                            "label": "Strobe 8",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -664,10 +514,30 @@
                             }
                         },
                         {
+                            "begin": 46,
+                            "default": 53,
+                            "end": 60,
+                            "label": "Strobe 14",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 48,
                             "default": 55,
                             "end": 63,
                             "label": "Open [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 61,
+                            "default": 68,
+                            "end": 75,
+                            "label": "Strobe 21",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -684,10 +554,30 @@
                             }
                         },
                         {
+                            "begin": 76,
+                            "default": 83,
+                            "end": 90,
+                            "label": "Strobe 27",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 80,
                             "default": 87,
                             "end": 95,
                             "label": "Open [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 91,
+                            "default": 98,
+                            "end": 105,
+                            "label": "Strobe 34",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -704,10 +594,30 @@
                             }
                         },
                         {
+                            "begin": 106,
+                            "default": 113,
+                            "end": 120,
+                            "label": "Strobe 41",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 112,
                             "default": 119,
                             "end": 127,
                             "label": "Open [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 121,
+                            "default": 128,
+                            "end": 135,
+                            "label": "Strobe 47",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -724,10 +634,30 @@
                             }
                         },
                         {
+                            "begin": 136,
+                            "default": 143,
+                            "end": 150,
+                            "label": "Strobe 54",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 144,
                             "default": 151,
                             "end": 159,
                             "label": "Open [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 151,
+                            "default": 158,
+                            "end": 165,
+                            "label": "Strobe 60",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -744,10 +674,30 @@
                             }
                         },
                         {
+                            "begin": 166,
+                            "default": 173,
+                            "end": 180,
+                            "label": "Strobe 67",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 176,
                             "default": 183,
                             "end": 191,
                             "label": "Open [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 181,
+                            "default": 188,
+                            "end": 195,
+                            "label": "Strobe 74",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -764,10 +714,30 @@
                             }
                         },
                         {
+                            "begin": 196,
+                            "default": 203,
+                            "end": 210,
+                            "label": "Strobe 80",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 208,
                             "default": 215,
                             "end": 223,
                             "label": "Open [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 211,
+                            "default": 218,
+                            "end": 225,
+                            "label": "Strobe 87",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -784,10 +754,30 @@
                             }
                         },
                         {
+                            "begin": 226,
+                            "default": 233,
+                            "end": 240,
+                            "label": "Strobe 93",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 240,
                             "default": 247,
                             "end": 255,
                             "label": "Open [Color Mix Macro Rate]",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 241,
+                            "default": 248,
+                            "end": 255,
+                            "label": "Strobe 100",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -806,16 +796,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "Open [Color Mix Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

@@ -12,59 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 2,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Pan Rotate",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 253,
-                            "default": 253,
-                            "end": 253,
-                            "label": "Mode Rate Aud",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Pan Rotate Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 5,
-                            "default": 5,
-                            "end": 127,
-                            "label": "Pan Rotate >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 130,
-                            "default": 130,
-                            "end": 130,
-                            "label": "Pan Rotate Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 8960,
@@ -299,10 +246,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 242,
-                            "default": 242,
-                            "end": 242,
-                            "label": "Sound",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 9,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -311,8 +258,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 9,
-                            "label": "Open",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -327,12 +274,45 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
+                        }
+                    ]
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Pan Rotate",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 0,
+                            "label": "Pan Rotate Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 127,
+                            "label": "Pan Rotate >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "Pan Rotate Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -354,8 +334,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 9,
+                            "label": "Color Mix Macro Rate",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -364,8 +344,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 9,
-                            "label": "Color Mix Macro Rate",
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -376,16 +356,6 @@
                             "default": 10,
                             "end": 255,
                             "label": "Color Mix Macro Rate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""

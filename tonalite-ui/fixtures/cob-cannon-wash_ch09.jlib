@@ -12,79 +12,6 @@
             "colortable": "D3E71EC8-3406-4572-A64C-52A38649C795",
             "parameters": [
                 {
-                    "coarse": 6,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Standard",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 30,
-                            "default": 30,
-                            "end": 30,
-                            "label": "Stage",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 50,
-                            "default": 50,
-                            "end": 50,
-                            "label": "TV",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 70,
-                            "default": 70,
-                            "end": 70,
-                            "label": "Architectural",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 90,
-                            "default": 90,
-                            "end": 90,
-                            "label": "Theatre",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
@@ -230,6 +157,69 @@
                 {
                     "coarse": 6,
                     "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Dimmer Curve",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Standard",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "Stage",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 50,
+                            "label": "TV",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 70,
+                            "label": "Architectural",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 90,
+                            "default": 90,
+                            "end": 90,
+                            "label": "Theatre",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
@@ -238,16 +228,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -302,10 +282,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 230,
-                            "default": 230,
-                            "end": 230,
-                            "label": "Sound active mode",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -314,8 +294,28 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 0,
-                            "label": "off",
+                            "end": 15,
+                            "label": "Colour change 1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 15,
+                            "label": "Colour fade 1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 15,
+                            "label": "Sound active mode 1",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -362,6 +362,36 @@
                             }
                         },
                         {
+                            "begin": 16,
+                            "default": 23,
+                            "end": 31,
+                            "label": "Colour change 2",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 16,
+                            "default": 23,
+                            "end": 31,
+                            "label": "Colour fade 2",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 16,
+                            "default": 23,
+                            "end": 31,
+                            "label": "Sound active mode 2",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 17,
                             "default": 18,
                             "end": 20,
@@ -396,6 +426,36 @@
                             "default": 30,
                             "end": 32,
                             "label": "Color 8",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 32,
+                            "default": 39,
+                            "end": 47,
+                            "label": "Colour change 3",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 32,
+                            "default": 39,
+                            "end": 47,
+                            "label": "Colour fade 3",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 32,
+                            "default": 39,
+                            "end": 47,
+                            "label": "Sound active mode 3",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -442,6 +502,36 @@
                             }
                         },
                         {
+                            "begin": 48,
+                            "default": 55,
+                            "end": 63,
+                            "label": "Colour change 4",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 48,
+                            "default": 55,
+                            "end": 63,
+                            "label": "Colour fade 4",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 48,
+                            "default": 55,
+                            "end": 63,
+                            "label": "Sound active mode 4",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 49,
                             "default": 50,
                             "end": 52,
@@ -476,6 +566,36 @@
                             "default": 62,
                             "end": 64,
                             "label": "Color 16",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 71,
+                            "end": 79,
+                            "label": "Colour change 5",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 71,
+                            "end": 79,
+                            "label": "Colour fade 5",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 71,
+                            "end": 79,
+                            "label": "Sound active mode 5",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -522,6 +642,36 @@
                             }
                         },
                         {
+                            "begin": 80,
+                            "default": 87,
+                            "end": 95,
+                            "label": "Colour change 6",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 80,
+                            "default": 87,
+                            "end": 95,
+                            "label": "Colour fade 6",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 80,
+                            "default": 87,
+                            "end": 95,
+                            "label": "Sound active mode 6",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 81,
                             "default": 82,
                             "end": 84,
@@ -556,6 +706,36 @@
                             "default": 94,
                             "end": 96,
                             "label": "Color 24",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 103,
+                            "end": 111,
+                            "label": "Colour change 7",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 103,
+                            "end": 111,
+                            "label": "Colour fade 7",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 103,
+                            "end": 111,
+                            "label": "Sound active mode 7",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -602,6 +782,36 @@
                             }
                         },
                         {
+                            "begin": 112,
+                            "default": 119,
+                            "end": 127,
+                            "label": "Colour change 8",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 119,
+                            "end": 127,
+                            "label": "Colour fade 8",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 119,
+                            "end": 127,
+                            "label": "Sound active mode 8",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 113,
                             "default": 114,
                             "end": 116,
@@ -636,6 +846,36 @@
                             "default": 126,
                             "end": 128,
                             "label": "Color 32",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 135,
+                            "end": 143,
+                            "label": "Colour change 9",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 135,
+                            "end": 143,
+                            "label": "Colour fade 9",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 135,
+                            "end": 143,
+                            "label": "Sound active mode 9",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -682,6 +922,36 @@
                             }
                         },
                         {
+                            "begin": 144,
+                            "default": 151,
+                            "end": 159,
+                            "label": "Colour change 10",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 144,
+                            "default": 151,
+                            "end": 159,
+                            "label": "Colour fade 10",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 144,
+                            "default": 151,
+                            "end": 159,
+                            "label": "Sound active mode 10",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 145,
                             "default": 146,
                             "end": 148,
@@ -716,6 +986,36 @@
                             "default": 158,
                             "end": 160,
                             "label": "Color 40",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 167,
+                            "end": 175,
+                            "label": "Colour change 11",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 167,
+                            "end": 175,
+                            "label": "Colour fade 11",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 167,
+                            "end": 175,
+                            "label": "Sound active mode 11",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -762,6 +1062,36 @@
                             }
                         },
                         {
+                            "begin": 176,
+                            "default": 183,
+                            "end": 191,
+                            "label": "Colour change 12",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 176,
+                            "default": 183,
+                            "end": 191,
+                            "label": "Colour fade 12",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 176,
+                            "default": 183,
+                            "end": 191,
+                            "label": "Sound active mode 12",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 177,
                             "default": 178,
                             "end": 180,
@@ -796,6 +1126,36 @@
                             "default": 190,
                             "end": 192,
                             "label": "Color 48",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 199,
+                            "end": 207,
+                            "label": "Colour change 13",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 199,
+                            "end": 207,
+                            "label": "Colour fade 13",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 199,
+                            "end": 207,
+                            "label": "Sound active mode 13",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -842,6 +1202,36 @@
                             }
                         },
                         {
+                            "begin": 208,
+                            "default": 215,
+                            "end": 223,
+                            "label": "Colour change 14",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 208,
+                            "default": 215,
+                            "end": 223,
+                            "label": "Colour fade 14",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 208,
+                            "default": 215,
+                            "end": 223,
+                            "label": "Sound active mode 14",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 209,
                             "default": 210,
                             "end": 212,
@@ -876,6 +1266,36 @@
                             "default": 222,
                             "end": 224,
                             "label": "Color 56",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 231,
+                            "end": 239,
+                            "label": "Colour change 15",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 231,
+                            "end": 239,
+                            "label": "Colour fade 15",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 231,
+                            "end": 239,
+                            "label": "Sound active mode 15",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -922,6 +1342,36 @@
                             }
                         },
                         {
+                            "begin": 240,
+                            "default": 247,
+                            "end": 255,
+                            "label": "Colour change 16",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 240,
+                            "default": 247,
+                            "end": 255,
+                            "label": "Colour fade 16",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 240,
+                            "default": 247,
+                            "end": 255,
+                            "label": "Sound active mode 16",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 241,
                             "default": 242,
                             "end": 244,
@@ -956,486 +1406,6 @@
                             "default": 254,
                             "end": 255,
                             "label": "Color 64",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 15,
-                            "label": "Colour change 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 16,
-                            "default": 23,
-                            "end": 31,
-                            "label": "Colour change 2",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 39,
-                            "end": 47,
-                            "label": "Colour change 3",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 48,
-                            "default": 55,
-                            "end": 63,
-                            "label": "Colour change 4",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 64,
-                            "default": 71,
-                            "end": 79,
-                            "label": "Colour change 5",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 80,
-                            "default": 87,
-                            "end": 95,
-                            "label": "Colour change 6",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 96,
-                            "default": 103,
-                            "end": 111,
-                            "label": "Colour change 7",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 112,
-                            "default": 119,
-                            "end": 127,
-                            "label": "Colour change 8",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 135,
-                            "end": 143,
-                            "label": "Colour change 9",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 144,
-                            "default": 151,
-                            "end": 159,
-                            "label": "Colour change 10",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 160,
-                            "default": 167,
-                            "end": 175,
-                            "label": "Colour change 11",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 176,
-                            "default": 183,
-                            "end": 191,
-                            "label": "Colour change 12",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 199,
-                            "end": 207,
-                            "label": "Colour change 13",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 208,
-                            "default": 215,
-                            "end": 223,
-                            "label": "Colour change 14",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 224,
-                            "default": 231,
-                            "end": 239,
-                            "label": "Colour change 15",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 240,
-                            "default": 247,
-                            "end": 255,
-                            "label": "Colour change 16",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 15,
-                            "label": "Colour fade 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 16,
-                            "default": 23,
-                            "end": 31,
-                            "label": "Colour fade 2",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 39,
-                            "end": 47,
-                            "label": "Colour fade 3",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 48,
-                            "default": 55,
-                            "end": 63,
-                            "label": "Colour fade 4",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 64,
-                            "default": 71,
-                            "end": 79,
-                            "label": "Colour fade 5",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 80,
-                            "default": 87,
-                            "end": 95,
-                            "label": "Colour fade 6",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 96,
-                            "default": 103,
-                            "end": 111,
-                            "label": "Colour fade 7",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 112,
-                            "default": 119,
-                            "end": 127,
-                            "label": "Colour fade 8",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 135,
-                            "end": 143,
-                            "label": "Colour fade 9",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 144,
-                            "default": 151,
-                            "end": 159,
-                            "label": "Colour fade 10",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 160,
-                            "default": 167,
-                            "end": 175,
-                            "label": "Colour fade 11",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 176,
-                            "default": 183,
-                            "end": 191,
-                            "label": "Colour fade 12",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 199,
-                            "end": 207,
-                            "label": "Colour fade 13",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 208,
-                            "default": 215,
-                            "end": 223,
-                            "label": "Colour fade 14",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 224,
-                            "default": 231,
-                            "end": 239,
-                            "label": "Colour fade 15",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 240,
-                            "default": 247,
-                            "end": 255,
-                            "label": "Colour fade 16",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 15,
-                            "label": "Sound active mode 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 16,
-                            "default": 23,
-                            "end": 31,
-                            "label": "Sound active mode 2",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 39,
-                            "end": 47,
-                            "label": "Sound active mode 3",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 48,
-                            "default": 55,
-                            "end": 63,
-                            "label": "Sound active mode 4",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 64,
-                            "default": 71,
-                            "end": 79,
-                            "label": "Sound active mode 5",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 80,
-                            "default": 87,
-                            "end": 95,
-                            "label": "Sound active mode 6",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 96,
-                            "default": 103,
-                            "end": 111,
-                            "label": "Sound active mode 7",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 112,
-                            "default": 119,
-                            "end": 127,
-                            "label": "Sound active mode 8",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 135,
-                            "end": 143,
-                            "label": "Sound active mode 9",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 144,
-                            "default": 151,
-                            "end": 159,
-                            "label": "Sound active mode 10",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 160,
-                            "default": 167,
-                            "end": 175,
-                            "label": "Sound active mode 11",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 176,
-                            "default": 183,
-                            "end": 191,
-                            "label": "Sound active mode 12",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 199,
-                            "end": 207,
-                            "label": "Sound active mode 13",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 208,
-                            "default": 215,
-                            "end": 223,
-                            "label": "Sound active mode 14",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 224,
-                            "default": 231,
-                            "end": 239,
-                            "label": "Sound active mode 15",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 240,
-                            "default": 247,
-                            "end": 255,
-                            "label": "Sound active mode 16",
                             "media": {
                                 "dcid": "",
                                 "name": ""

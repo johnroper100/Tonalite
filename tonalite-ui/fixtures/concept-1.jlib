@@ -12,18 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 4,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Intensity",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32512,
@@ -442,16 +430,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Color Aud 100",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -676,6 +654,18 @@
                 {
                     "coarse": 4,
                     "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
@@ -684,16 +674,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Gobo Aud 100",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -760,10 +740,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 247,
-                            "default": 247,
-                            "end": 247,
-                            "label": "Open",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Movement off",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -790,10 +770,40 @@
                             }
                         },
                         {
+                            "begin": 1,
+                            "default": 16,
+                            "end": 31,
+                            "label": "X - movement",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 32,
                             "default": 47,
                             "end": 63,
                             "label": "Y - movement",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 32,
+                            "default": 47,
+                            "end": 63,
+                            "label": "Y - movement",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 79,
+                            "end": 95,
+                            "label": "X/Y - movement",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -820,6 +830,26 @@
                             }
                         },
                         {
+                            "begin": 96,
+                            "default": 111,
+                            "end": 127,
+                            "label": "X/Y - movement inverted",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 143,
+                            "end": 159,
+                            "label": "Circle",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 128,
                             "default": 143,
                             "end": 159,
@@ -834,6 +864,26 @@
                             "default": 175,
                             "end": 191,
                             "label": "Circle inverted",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 175,
+                            "end": 191,
+                            "label": "Circle inverted",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 207,
+                            "end": 223,
+                            "label": "Eight movement",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -854,86 +904,6 @@
                             "default": 239,
                             "end": 255,
                             "label": "Pos Macro Rnd",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Movement off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 1,
-                            "default": 16,
-                            "end": 31,
-                            "label": "X - movement",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 47,
-                            "end": 63,
-                            "label": "Y - movement",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 64,
-                            "default": 79,
-                            "end": 95,
-                            "label": "X/Y - movement",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 96,
-                            "default": 111,
-                            "end": 127,
-                            "label": "X/Y - movement inverted",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 143,
-                            "end": 159,
-                            "label": "Circle",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 160,
-                            "default": 175,
-                            "end": 191,
-                            "label": "Circle inverted",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 207,
-                            "end": 223,
-                            "label": "Eight movement",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -962,16 +932,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

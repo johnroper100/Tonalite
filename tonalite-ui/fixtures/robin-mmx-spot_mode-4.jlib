@@ -12,18 +12,6 @@
             "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139",
             "parameters": [
                 {
-                    "coarse": 28,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Intensity",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32768,
@@ -87,8 +75,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 0,
-                            "label": "Reserved",
+                            "end": 9,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -115,10 +103,40 @@
                             }
                         },
                         {
+                            "begin": 10,
+                            "default": 17,
+                            "end": 25,
+                            "label": "Deep Red",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 26,
                             "default": 35,
                             "end": 44,
                             "label": "Deep Blue",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 26,
+                            "default": 35,
+                            "end": 44,
+                            "label": "Deep Blue",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 45,
+                            "default": 54,
+                            "end": 64,
+                            "label": "Orange",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -145,10 +163,40 @@
                             }
                         },
                         {
+                            "begin": 65,
+                            "default": 73,
+                            "end": 82,
+                            "label": "Green",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 83,
                             "default": 91,
                             "end": 100,
                             "label": "Amber",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 83,
+                            "default": 91,
+                            "end": 100,
+                            "label": "Amber",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 101,
+                            "default": 114,
+                            "end": 127,
+                            "label": "UV",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -175,10 +223,40 @@
                             }
                         },
                         {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 129,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 130,
                             "default": 134,
                             "end": 139,
                             "label": "(Deep Red)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 134,
+                            "end": 139,
+                            "label": "(Deep Red)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 140,
+                            "default": 144,
+                            "end": 149,
+                            "label": "(Deep Blue)",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -205,10 +283,40 @@
                             }
                         },
                         {
+                            "begin": 150,
+                            "default": 154,
+                            "end": 159,
+                            "label": "(Orange)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 160,
                             "default": 164,
                             "end": 169,
                             "label": "(Green)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 164,
+                            "end": 169,
+                            "label": "(Green)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 170,
+                            "default": 174,
+                            "end": 179,
+                            "label": "(Amber)",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -235,6 +343,26 @@
                             }
                         },
                         {
+                            "begin": 180,
+                            "default": 184,
+                            "end": 189,
+                            "label": "(UV)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 190,
+                            "default": 215,
+                            "end": 215,
+                            "label": "Spin >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 190,
                             "default": 215,
                             "end": 215,
@@ -255,10 +383,40 @@
                             }
                         },
                         {
+                            "begin": 216,
+                            "default": 216,
+                            "end": 217,
+                            "label": "Spin Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 218,
                             "default": 218,
                             "end": 243,
                             "label": "Spin <<",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 218,
+                            "default": 218,
+                            "end": 243,
+                            "label": "Spin <<",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 244,
+                            "default": 246,
+                            "end": 249,
+                            "label": "Color Aud 100",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -279,186 +437,6 @@
                             "default": 255,
                             "end": 255,
                             "label": "Rnd",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 9,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 10,
-                            "default": 17,
-                            "end": 25,
-                            "label": "Deep Red",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 26,
-                            "default": 35,
-                            "end": 44,
-                            "label": "Deep Blue",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 45,
-                            "default": 54,
-                            "end": 64,
-                            "label": "Orange",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 65,
-                            "default": 73,
-                            "end": 82,
-                            "label": "Green",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 83,
-                            "default": 91,
-                            "end": 100,
-                            "label": "Amber",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 101,
-                            "default": 114,
-                            "end": 127,
-                            "label": "UV",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 129,
-                            "label": "(Open)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 130,
-                            "default": 134,
-                            "end": 139,
-                            "label": "(Deep Red)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 140,
-                            "default": 144,
-                            "end": 149,
-                            "label": "(Deep Blue)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 150,
-                            "default": 154,
-                            "end": 159,
-                            "label": "(Orange)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 160,
-                            "default": 164,
-                            "end": 169,
-                            "label": "(Green)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 170,
-                            "default": 174,
-                            "end": 179,
-                            "label": "(Amber)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 180,
-                            "default": 184,
-                            "end": 189,
-                            "label": "(UV)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 190,
-                            "default": 215,
-                            "end": 215,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 216,
-                            "default": 216,
-                            "end": 217,
-                            "label": "Spin Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 218,
-                            "default": 218,
-                            "end": 243,
-                            "label": "Spin <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 244,
-                            "default": 246,
-                            "end": 249,
-                            "label": "Color Aud 100",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -536,16 +514,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -892,16 +860,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 250,
-                            "default": 255,
-                            "end": 255,
-                            "label": "MixRnd",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -924,16 +882,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 1,
-                            "default": 1,
-                            "end": 255,
-                            "label": "Color Mix [CTO Spd Time 2,Time]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1208,16 +1156,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 250,
-                            "default": 250,
-                            "end": 255,
-                            "label": "25.0s",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1271,16 +1209,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 214,
-                            "default": 255,
-                            "end": 255,
-                            "label": "001 [Anim Shake,Anim Shake 2]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1324,16 +1252,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 130,
-                            "default": 130,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1376,16 +1294,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 130,
-                            "default": 130,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -2000,16 +1908,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 126,
-                            "default": 126,
-                            "end": 126,
-                            "label": "Spaghetti#2",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -2363,16 +2261,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 250,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Rnd [R]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -2403,10 +2291,40 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 1,
                             "default": 127,
                             "end": 127,
                             "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 129,
+                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2427,36 +2345,6 @@
                             "default": 130,
                             "end": 255,
                             "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 1,
-                            "default": 127,
-                            "end": 127,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 129,
-                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2476,16 +2364,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 130,
-                            "default": 130,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -2840,16 +2718,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 250,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Rnd [R]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -2880,10 +2748,40 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 1,
                             "default": 127,
                             "end": 127,
                             "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 129,
+                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2904,36 +2802,6 @@
                             "default": 130,
                             "end": 255,
                             "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 1,
-                            "default": 127,
-                            "end": 127,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 129,
-                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2954,10 +2822,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 130,
-                            "default": 130,
-                            "end": 255,
-                            "label": "Rot <<",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 19,
+                            "label": "(Open)",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2984,10 +2852,40 @@
                             }
                         },
                         {
+                            "begin": 20,
+                            "default": 73,
+                            "end": 127,
+                            "label": "(5 Prism)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 128,
                             "default": 131,
                             "end": 135,
                             "label": "Prism, gobo macro 1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 131,
+                            "end": 135,
+                            "label": "Prism, gobo macro 1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 136,
+                            "default": 139,
+                            "end": 143,
+                            "label": "Prism, gobo macro 2",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3014,10 +2912,40 @@
                             }
                         },
                         {
+                            "begin": 144,
+                            "default": 147,
+                            "end": 151,
+                            "label": "Prism, gobo macro 3",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 152,
                             "default": 155,
                             "end": 159,
                             "label": "Prism, gobo macro 4",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 152,
+                            "default": 155,
+                            "end": 159,
+                            "label": "Prism, gobo macro 4",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 163,
+                            "end": 167,
+                            "label": "Prism, gobo macro 5",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3044,10 +2972,40 @@
                             }
                         },
                         {
+                            "begin": 168,
+                            "default": 171,
+                            "end": 175,
+                            "label": "Prism, gobo macro 6",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 176,
                             "default": 179,
                             "end": 183,
                             "label": "Prism, gobo macro 7",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 176,
+                            "default": 179,
+                            "end": 183,
+                            "label": "Prism, gobo macro 7",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 184,
+                            "default": 187,
+                            "end": 191,
+                            "label": "Prism, gobo macro 8",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3074,10 +3032,40 @@
                             }
                         },
                         {
+                            "begin": 192,
+                            "default": 195,
+                            "end": 199,
+                            "label": "Prism, gobo macro 9",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 200,
                             "default": 203,
                             "end": 207,
                             "label": "Prism, gobo macro 10",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 200,
+                            "default": 203,
+                            "end": 207,
+                            "label": "Prism, gobo macro 10",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 208,
+                            "default": 211,
+                            "end": 215,
+                            "label": "Prism, gobo macro 11",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3104,6 +3092,26 @@
                             }
                         },
                         {
+                            "begin": 216,
+                            "default": 219,
+                            "end": 223,
+                            "label": "Prism, gobo macro 12",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 227,
+                            "end": 231,
+                            "label": "Prism, gobo macro 13",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 224,
                             "default": 227,
                             "end": 231,
@@ -3118,6 +3126,26 @@
                             "default": 235,
                             "end": 239,
                             "label": "Prism, gobo macro 14",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 232,
+                            "default": 235,
+                            "end": 239,
+                            "label": "Prism, gobo macro 14",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 240,
+                            "default": 243,
+                            "end": 247,
+                            "label": "Prism, gobo macro 15",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3138,176 +3166,6 @@
                             "default": 251,
                             "end": 255,
                             "label": "Prism, gobo macro 16",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 19,
-                            "label": "(Open)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 20,
-                            "default": 73,
-                            "end": 127,
-                            "label": "(5 Prism)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 131,
-                            "end": 135,
-                            "label": "Prism, gobo macro 1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 136,
-                            "default": 139,
-                            "end": 143,
-                            "label": "Prism, gobo macro 2",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 144,
-                            "default": 147,
-                            "end": 151,
-                            "label": "Prism, gobo macro 3",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 152,
-                            "default": 155,
-                            "end": 159,
-                            "label": "Prism, gobo macro 4",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 160,
-                            "default": 163,
-                            "end": 167,
-                            "label": "Prism, gobo macro 5",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 168,
-                            "default": 171,
-                            "end": 175,
-                            "label": "Prism, gobo macro 6",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 176,
-                            "default": 179,
-                            "end": 183,
-                            "label": "Prism, gobo macro 7",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 184,
-                            "default": 187,
-                            "end": 191,
-                            "label": "Prism, gobo macro 8",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 192,
-                            "default": 195,
-                            "end": 199,
-                            "label": "Prism, gobo macro 9",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 200,
-                            "default": 203,
-                            "end": 207,
-                            "label": "Prism, gobo macro 10",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 208,
-                            "default": 211,
-                            "end": 215,
-                            "label": "Prism, gobo macro 11",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 216,
-                            "default": 219,
-                            "end": 223,
-                            "label": "Prism, gobo macro 12",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 224,
-                            "default": 227,
-                            "end": 231,
-                            "label": "Prism, gobo macro 13",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 232,
-                            "default": 235,
-                            "end": 239,
-                            "label": "Prism, gobo macro 14",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 240,
-                            "default": 243,
-                            "end": 247,
-                            "label": "Prism, gobo macro 15",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3339,8 +3197,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "None",
+                            "end": 0,
+                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3361,6 +3219,26 @@
                             "default": 1,
                             "end": 127,
                             "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 127,
+                            "label": "Rot >>",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 129,
+                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3381,36 +3259,6 @@
                             "default": 130,
                             "end": 255,
                             "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 1,
-                            "default": 1,
-                            "end": 127,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 129,
-                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -3431,6 +3279,18 @@
                 {
                     "coarse": 28,
                     "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 28,
+                    "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
@@ -3439,16 +3299,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -3502,16 +3352,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 234,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Frost Strobe Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -3623,16 +3463,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 254,
-                            "default": 254,
-                            "end": 254,
-                            "label": "Iris Strobe Rnd C Pulse 1 [IrisStr Blk]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -3697,16 +3527,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 192,
-                            "default": 192,
-                            "end": 255,
-                            "label": "Focus [Focus Auto]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

@@ -12,29 +12,6 @@
             "colortable": "3874B444-A11E-47D9-8295-04556EAEBEA7",
             "parameters": [
                 {
-                    "coarse": 9,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 65535,
@@ -80,6 +57,16 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 1,
+                            "label": "Pixel Mask FX Param Rate",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 1,
                             "default": 1,
                             "end": 1,
@@ -100,6 +87,16 @@
                             }
                         },
                         {
+                            "begin": 2,
+                            "default": 2,
+                            "end": 253,
+                            "label": "Pixel Mask FX Param Rate",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 251,
                             "default": 251,
                             "end": 252,
@@ -114,26 +111,6 @@
                             "default": 254,
                             "end": 255,
                             "label": "Strobe 100",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 1,
-                            "label": "Pixel Mask FX Param Rate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 2,
-                            "default": 2,
-                            "end": 253,
-                            "label": "Pixel Mask FX Param Rate",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -162,16 +139,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -245,16 +212,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 212,
-                            "default": 212,
-                            "end": 212,
-                            "label": "off [Macro Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -769,16 +726,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 202,
-                            "default": 202,
-                            "end": 202,
-                            "label": "off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -811,16 +758,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 255,
-                            "label": "Pixel Mask FX Time",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1310,6 +1247,18 @@
                 {
                     "coarse": 9,
                     "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
                     "highlight": 65535,
                     "home": 0,
                     "invert": false,
@@ -1343,10 +1292,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 250,
-                            "default": 250,
-                            "end": 250,
-                            "label": "off",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1355,8 +1304,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 0,
-                            "label": "Open",
+                            "end": 1,
+                            "label": "Pixel Mask FX Param Rate",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1383,6 +1332,16 @@
                             }
                         },
                         {
+                            "begin": 2,
+                            "default": 2,
+                            "end": 253,
+                            "label": "Pixel Mask FX Param Rate",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 251,
                             "default": 251,
                             "end": 252,
@@ -1397,26 +1356,6 @@
                             "default": 254,
                             "end": 255,
                             "label": "Strobe 100",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 1,
-                            "label": "Pixel Mask FX Param Rate",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 2,
-                            "default": 2,
-                            "end": 253,
-                            "label": "Pixel Mask FX Param Rate",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1481,16 +1420,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1564,16 +1493,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 212,
-                            "default": 212,
-                            "end": 212,
-                            "label": "off [Macro Rate 2]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -2088,16 +2007,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 202,
-                            "default": 202,
-                            "end": 202,
-                            "label": "off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -2130,16 +2039,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 255,
-                            "label": "Pixel Mask FX Time",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -2637,16 +2536,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 250,
-                            "default": 250,
-                            "end": 250,
-                            "label": "off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

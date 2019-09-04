@@ -12,39 +12,6 @@
             "colortable": "",
             "parameters": [
                 {
-                    "coarse": 16,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Mode 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 245,
-                            "default": 245,
-                            "end": 245,
-                            "label": "End recording mode",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Enter enabled",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 0,
@@ -169,10 +136,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 242,
-                            "default": 242,
-                            "end": 242,
-                            "label": "All programs",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 9,
+                            "label": "Memory 1",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -181,8 +148,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 9,
-                            "label": "Memory 1",
+                            "end": 255,
+                            "label": "FX Macro Size",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -337,16 +304,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "FX Macro Size",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -361,16 +318,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "FX Macro Size",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -416,6 +363,29 @@
                     "snap": false,
                     "type": 1,
                     "ranges": []
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Mode 2",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Enter enabled",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

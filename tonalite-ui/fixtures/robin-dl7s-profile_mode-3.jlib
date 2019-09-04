@@ -12,18 +12,6 @@
             "colortable": "C79C1569-031F-FE42-94E3-0A4D1181E2DE",
             "parameters": [
                 {
-                    "coarse": 41,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Intensity",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": []
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32768,
@@ -105,16 +93,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 241,
-                            "default": 241,
-                            "end": 255,
-                            "label": "Fan Speed",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -548,16 +526,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 155,
-                            "default": 155,
-                            "end": 155,
-                            "label": "CRI=90+",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1573,110 +1541,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 246,
-                            "default": 246,
-                            "end": 255,
-                            "label": "Without fade time",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 208,
-                            "label": "8000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 207,
-                            "default": 207,
-                            "end": 184,
-                            "label": "7000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 183,
-                            "default": 183,
-                            "end": 160,
-                            "label": "6500K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 159,
-                            "default": 159,
-                            "end": 141,
-                            "label": "6000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 140,
-                            "default": 140,
-                            "end": 112,
-                            "label": "5600K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 111,
-                            "default": 111,
-                            "end": 88,
-                            "label": "5000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 87,
-                            "default": 87,
-                            "end": 64,
-                            "label": "4500K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 63,
-                            "default": 63,
-                            "end": 45,
-                            "label": "4000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 44,
-                            "default": 44,
-                            "end": 33,
-                            "label": "3600K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 32,
-                            "end": 26,
-                            "label": "3350K",
+                            "begin": 15,
+                            "default": 15,
+                            "end": 6,
+                            "label": "3000K",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1693,10 +1561,100 @@
                             }
                         },
                         {
-                            "begin": 15,
-                            "default": 15,
-                            "end": 6,
-                            "label": "3000K",
+                            "begin": 32,
+                            "default": 32,
+                            "end": 26,
+                            "label": "3350K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 33,
+                            "label": "3600K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 63,
+                            "default": 63,
+                            "end": 45,
+                            "label": "4000K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 87,
+                            "default": 87,
+                            "end": 64,
+                            "label": "4500K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 111,
+                            "default": 111,
+                            "end": 88,
+                            "label": "5000K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 140,
+                            "default": 140,
+                            "end": 112,
+                            "label": "5600K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 141,
+                            "label": "6000K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 183,
+                            "default": 183,
+                            "end": 160,
+                            "label": "6500K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 207,
+                            "default": 207,
+                            "end": 184,
+                            "label": "7000K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 208,
+                            "label": "8000K",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1715,16 +1673,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 5,
-                            "default": 5,
-                            "end": 0,
-                            "label": "2800K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1778,16 +1726,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "No Tint",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1894,16 +1832,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 255,
-                            "label": "Crossfade mode [Mix Pos]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1926,16 +1854,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 1,
-                            "default": 1,
-                            "end": 255,
-                            "label": "Zoom Spd Time [ & FX & Frame & Frost & Iris Spd Time]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -2000,16 +1918,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 214,
-                            "default": 234,
-                            "end": 255,
-                            "label": "(001) [Anim Shake]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -2052,16 +1960,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -2175,16 +2073,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 26,
-                            "default": 26,
-                            "end": 26,
-                            "label": "Animation macro 10",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -2510,16 +2398,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 250,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Rnd",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -2823,16 +2701,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 250,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Rnd [R]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -2863,10 +2731,40 @@
                             }
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Rot Stop",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 1,
                             "default": 1,
                             "end": 127,
                             "label": "Rot <<",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 127,
+                            "label": "Rot <<",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2887,36 +2785,6 @@
                             "default": 129,
                             "end": 255,
                             "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Rot Stop",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 1,
-                            "default": 1,
-                            "end": 127,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 128,
-                            "label": "Rot Stop",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2936,16 +2804,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 255,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -3130,16 +2988,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 251,
-                            "default": 251,
-                            "end": 251,
-                            "label": "Prism, gobo macro 16",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -3182,16 +3030,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 129,
-                            "default": 129,
-                            "end": 255,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -3245,16 +3083,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 234,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Frost Strobe Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -3340,6 +3168,18 @@
                     "type": 1,
                     "ranges": [],
                     "fine": 41
+                },
+                {
+                    "coarse": 41,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
                 },
                 {
                     "coarse": 42,
@@ -3473,16 +3313,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 254,
-                            "default": 254,
-                            "end": 254,
-                            "label": "Iris Strobe Rnd C Pulse 1 [IrisStr Blk]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -4028,16 +3858,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 209,
-                            "default": 209,
-                            "end": 209,
-                            "label": "Frame Macros 52",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

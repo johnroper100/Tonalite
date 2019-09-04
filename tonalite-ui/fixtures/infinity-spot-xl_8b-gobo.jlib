@@ -12,39 +12,6 @@
             "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139",
             "parameters": [
                 {
-                    "coarse": 30,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32768,
@@ -147,16 +114,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 251,
-                            "default": 251,
-                            "end": 251,
-                            "label": "Movement MSpeed Tracking mode",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -250,16 +207,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -347,10 +294,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 193,
-                            "default": 193,
+                            "begin": 0,
+                            "default": 0,
                             "end": 255,
-                            "label": "Iris Strobe C Pulse",
+                            "label": "Unknown",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -359,8 +306,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "Unknown",
+                            "end": 10,
+                            "label": "(Open)",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -387,80 +334,20 @@
                             }
                         },
                         {
-                            "begin": 41,
-                            "default": 55,
-                            "end": 70,
-                            "label": "204",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 71,
-                            "default": 85,
-                            "end": 100,
-                            "label": "205",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 101,
-                            "default": 115,
-                            "end": 130,
-                            "label": "200",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 131,
-                            "default": 145,
-                            "end": 160,
-                            "label": "201",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 161,
-                            "default": 176,
-                            "end": 192,
-                            "label": "202",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 193,
-                            "default": 193,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 10,
-                            "label": "(Open)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 11,
                             "default": 30,
                             "end": 49,
                             "label": "(197)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 41,
+                            "default": 55,
+                            "end": 70,
+                            "label": "204",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -477,10 +364,30 @@
                             }
                         },
                         {
+                            "begin": 71,
+                            "default": 85,
+                            "end": 100,
+                            "label": "205",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 76,
                             "default": 88,
                             "end": 101,
                             "label": "(205)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 101,
+                            "default": 115,
+                            "end": 130,
+                            "label": "200",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -507,10 +414,40 @@
                             }
                         },
                         {
+                            "begin": 131,
+                            "default": 145,
+                            "end": 160,
+                            "label": "201",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 154,
                             "default": 173,
                             "end": 192,
                             "label": "(202)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 161,
+                            "default": 176,
+                            "end": 192,
+                            "label": "202",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 255,
+                            "label": "Spin >>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -529,16 +466,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 193,
-                            "default": 193,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -572,16 +499,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -626,10 +543,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 135,
-                            "default": 135,
+                            "begin": 0,
+                            "default": 0,
                             "end": 255,
-                            "label": "Rot <<",
+                            "label": "Unknown 1",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -638,8 +555,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "Unknown 1",
+                            "end": 10,
+                            "label": "(Open)",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -666,80 +583,20 @@
                             }
                         },
                         {
-                            "begin": 41,
-                            "default": 55,
-                            "end": 70,
-                            "label": "203",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 71,
-                            "default": 85,
-                            "end": 100,
-                            "label": "206",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 101,
-                            "default": 115,
-                            "end": 130,
-                            "label": "207",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 131,
-                            "default": 145,
-                            "end": 160,
-                            "label": "198",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 161,
-                            "default": 176,
-                            "end": 192,
-                            "label": "199",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 193,
-                            "default": 193,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 10,
-                            "label": "(Open)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 11,
                             "default": 30,
                             "end": 49,
                             "label": "(196)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 41,
+                            "default": 55,
+                            "end": 70,
+                            "label": "203",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -756,10 +613,30 @@
                             }
                         },
                         {
+                            "begin": 71,
+                            "default": 85,
+                            "end": 100,
+                            "label": "206",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 76,
                             "default": 88,
                             "end": 101,
                             "label": "(206)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 101,
+                            "default": 115,
+                            "end": 130,
+                            "label": "207",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -786,10 +663,40 @@
                             }
                         },
                         {
+                            "begin": 131,
+                            "default": 145,
+                            "end": 160,
+                            "label": "198",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 154,
                             "default": 173,
                             "end": 192,
                             "label": "(199)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 161,
+                            "default": 176,
+                            "end": 192,
+                            "label": "199",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 255,
+                            "label": "Spin >>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -808,16 +715,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 193,
-                            "default": 193,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -851,16 +748,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -905,10 +792,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 135,
-                            "default": 135,
+                            "begin": 0,
+                            "default": 0,
                             "end": 255,
-                            "label": "Rot <<",
+                            "label": "Unknown",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -917,8 +804,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
-                            "label": "Unknown",
+                            "end": 10,
+                            "label": "(Open)",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -945,80 +832,20 @@
                             }
                         },
                         {
-                            "begin": 41,
-                            "default": 55,
-                            "end": 70,
-                            "label": "VT167/1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 71,
-                            "default": 85,
-                            "end": 100,
-                            "label": "VT208",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 101,
-                            "default": 115,
-                            "end": 130,
-                            "label": "VT206",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 131,
-                            "default": 145,
-                            "end": 160,
-                            "label": "VT204/1",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 161,
-                            "default": 176,
-                            "end": 192,
-                            "label": "VT202",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 193,
-                            "default": 193,
-                            "end": 255,
-                            "label": "FX Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 10,
-                            "label": "(Open)",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 11,
                             "default": 30,
                             "end": 49,
                             "label": "(5 Prism)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 41,
+                            "default": 55,
+                            "end": 70,
+                            "label": "VT167/1",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1035,10 +862,30 @@
                             }
                         },
                         {
+                            "begin": 71,
+                            "default": 85,
+                            "end": 100,
+                            "label": "VT208",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 76,
                             "default": 88,
                             "end": 101,
                             "label": "(VT208)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 101,
+                            "default": 115,
+                            "end": 130,
+                            "label": "VT206",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1065,10 +912,40 @@
                             }
                         },
                         {
+                            "begin": 131,
+                            "default": 145,
+                            "end": 160,
+                            "label": "VT204/1",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 154,
                             "default": 173,
                             "end": 192,
                             "label": "(VT202)",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 161,
+                            "default": 176,
+                            "end": 192,
+                            "label": "VT202",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 255,
+                            "label": "FX Spin >>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1087,16 +964,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 193,
-                            "default": 193,
-                            "end": 255,
-                            "label": "FX Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1130,16 +997,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1183,16 +1040,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 135,
-                            "default": 135,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1375,16 +1222,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 191,
-                            "default": 191,
-                            "end": 255,
-                            "label": "Spin >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1428,16 +1265,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 252,
-                            "default": 252,
-                            "end": 252,
-                            "label": "Str Mech [BlackMove,Clr & FX Blink]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1471,16 +1298,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 194,
-                            "default": 194,
-                            "end": 194,
-                            "label": "Full Frame [Full]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
@@ -1494,6 +1311,29 @@
                             "begin": 0,
                             "default": 0,
                             "end": 255,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 30,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
                             "label": "None",
                             "media": {
                                 "dcid": "",

@@ -169,16 +169,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 238,
-                            "default": 238,
-                            "end": 238,
-                            "label": "DMX mode",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -2742,10 +2732,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Library 255",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2754,8 +2744,18 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 0,
-                            "label": "Open",
+                            "end": 5,
+                            "label": "Closed",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -2822,6 +2822,16 @@
                             }
                         },
                         {
+                            "begin": 6,
+                            "default": 8,
+                            "end": 10,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 7,
                             "default": 7,
                             "end": 7,
@@ -2866,6 +2876,16 @@
                             "default": 11,
                             "end": 11,
                             "label": "File 2 11",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 199,
+                            "label": "Strobe",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -4762,6 +4782,16 @@
                             }
                         },
                         {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 255,
+                            "label": "Shutter Aud",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 201,
                             "default": 201,
                             "end": 201,
@@ -5310,56 +5340,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 5,
-                            "label": "Closed",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 6,
-                            "default": 8,
-                            "end": 10,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 11,
-                            "default": 11,
-                            "end": 199,
-                            "label": "Strobe",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 200,
-                            "default": 200,
-                            "end": 255,
-                            "label": "Shutter Aud",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -5374,16 +5354,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 62,
@@ -5438,16 +5408,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 250,
-                            "default": 250,
-                            "end": 250,
-                            "label": "X Pos",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 62,
                             "end": 125,
@@ -5500,16 +5460,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 250,
-                            "default": 250,
-                            "end": 250,
-                            "label": "Y Pos",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -5564,16 +5514,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 201,
-                            "default": 201,
-                            "end": 255,
-                            "label": "Zoom Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -5607,16 +5547,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 111,
-                            "default": 111,
-                            "end": 255,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -5649,16 +5579,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 111,
-                            "default": 111,
-                            "end": 255,
-                            "label": "Rot >>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -5702,16 +5622,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 218,
-                            "default": 218,
-                            "end": 255,
-                            "label": "Rot <<",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -5786,16 +5696,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 240,
-                            "default": 240,
-                            "end": 240,
-                            "label": "Clipping off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -5828,16 +5728,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 200,
-                            "default": 200,
-                            "end": 255,
-                            "label": "Wave Size [Wave Rate]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,

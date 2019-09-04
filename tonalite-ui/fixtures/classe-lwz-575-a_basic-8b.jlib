@@ -12,79 +12,6 @@
             "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
-                    "coarse": 16,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 19,
-                            "default": 19,
-                            "end": 19,
-                            "label": "Pos Reset",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 51,
-                            "default": 51,
-                            "end": 51,
-                            "label": "NonPos Reset",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 59,
-                            "default": 59,
-                            "end": 59,
-                            "label": "Display Off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 67,
-                            "default": 67,
-                            "end": 67,
-                            "label": "Display On",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        }
-                    ]
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32512,
@@ -245,16 +172,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 207,
-                            "default": 207,
-                            "end": 207,
-                            "label": "Pan Mode [Tilt Mode]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -350,16 +267,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Open",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -423,10 +330,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 95,
-                            "default": 95,
-                            "end": 95,
-                            "label": "Color Bounce",
+                            "begin": 0,
+                            "default": 0,
+                            "end": 32,
+                            "label": "0K",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -435,8 +342,88 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 32,
-                            "label": "0K",
+                            "end": 255,
+                            "label": "MixCycle",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "MixCycle",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 1,
+                            "label": "Red",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 2,
+                            "default": 2,
+                            "end": 2,
+                            "label": "Green",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 3,
+                            "default": 3,
+                            "end": 3,
+                            "label": "Blue",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 4,
+                            "default": 4,
+                            "end": 4,
+                            "label": "White",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 5,
+                            "default": 25,
+                            "end": 46,
+                            "label": "Red 0 Green up Blue full White 0",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -453,10 +440,30 @@
                             }
                         },
                         {
+                            "begin": 47,
+                            "default": 67,
+                            "end": 88,
+                            "label": "Red 0 Green full Blue down White 0",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 65,
                             "default": 65,
                             "end": 95,
                             "label": "2200K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 89,
+                            "default": 109,
+                            "end": 130,
+                            "label": "Red up Green full Blue 0 White 0",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -483,6 +490,16 @@
                             }
                         },
                         {
+                            "begin": 131,
+                            "default": 151,
+                            "end": 172,
+                            "label": "Red full Green down Blue 0 White 0",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 159,
                             "default": 159,
                             "end": 190,
@@ -493,10 +510,30 @@
                             }
                         },
                         {
+                            "begin": 173,
+                            "default": 193,
+                            "end": 214,
+                            "label": "Red full Green 0 Blue up White 0",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
                             "begin": 191,
                             "default": 191,
                             "end": 223,
                             "label": "2600K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 215,
+                            "default": 235,
+                            "end": 255,
+                            "label": "Red down Green 0 Blue full White 0",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -541,146 +578,6 @@
                                 "dcid": "",
                                 "name": ""
                             }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "MixCycle",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "MixCycle",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 1,
-                            "default": 1,
-                            "end": 1,
-                            "label": "Red",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 2,
-                            "default": 2,
-                            "end": 2,
-                            "label": "Green",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 3,
-                            "default": 3,
-                            "end": 3,
-                            "label": "Blue",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 4,
-                            "default": 4,
-                            "end": 4,
-                            "label": "White",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 5,
-                            "default": 25,
-                            "end": 46,
-                            "label": "Red 0 Green up Blue full White 0",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 47,
-                            "default": 67,
-                            "end": 88,
-                            "label": "Red 0 Green full Blue down White 0",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 89,
-                            "default": 109,
-                            "end": 130,
-                            "label": "Red up Green full Blue 0 White 0",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 131,
-                            "default": 151,
-                            "end": 172,
-                            "label": "Red full Green down Blue 0 White 0",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 173,
-                            "default": 193,
-                            "end": 214,
-                            "label": "Red full Green 0 Blue up White 0",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 215,
-                            "default": 235,
-                            "end": 255,
-                            "label": "Red down Green 0 Blue full White 0",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "off",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
                         }
                     ]
                 },
@@ -698,7 +595,7 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 255,
+                            "end": 0,
                             "label": "off",
                             "media": {
                                 "dcid": "",
@@ -708,7 +605,7 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 0,
+                            "end": 255,
                             "label": "off",
                             "media": {
                                 "dcid": "",
@@ -810,16 +707,6 @@
                             "default": 235,
                             "end": 255,
                             "label": "Red down Green 0 Blue full White 0",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "off",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -886,6 +773,69 @@
                     "snap": false,
                     "type": 1,
                     "ranges": []
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "Pos Reset",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "NonPos Reset",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "Display Off",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 67,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Display On",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }

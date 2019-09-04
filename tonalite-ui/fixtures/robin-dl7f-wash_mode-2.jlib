@@ -12,19 +12,6 @@
             "colortable": "3874B444-A11E-47D9-8295-04556EAEBEA7",
             "parameters": [
                 {
-                    "coarse": 32,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Intensity",
-                    "size": 16,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [],
-                    "fine": 33
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32768,
@@ -85,16 +72,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "Reserved",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -518,16 +495,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 155,
-                            "default": 155,
-                            "end": 155,
-                            "label": "CRI=90+",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1488,110 +1455,10 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 246,
-                            "default": 246,
-                            "end": 255,
-                            "label": "Without fade time",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 208,
-                            "label": "8000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 207,
-                            "default": 207,
-                            "end": 184,
-                            "label": "7000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 183,
-                            "default": 183,
-                            "end": 160,
-                            "label": "6500K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 159,
-                            "default": 159,
-                            "end": 141,
-                            "label": "6000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 140,
-                            "default": 140,
-                            "end": 112,
-                            "label": "5600K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 111,
-                            "default": 111,
-                            "end": 88,
-                            "label": "5000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 87,
-                            "default": 87,
-                            "end": 64,
-                            "label": "4500K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 63,
-                            "default": 63,
-                            "end": 45,
-                            "label": "4000K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 44,
-                            "default": 44,
-                            "end": 33,
-                            "label": "3600K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 32,
-                            "default": 32,
-                            "end": 26,
-                            "label": "3350K",
+                            "begin": 15,
+                            "default": 15,
+                            "end": 6,
+                            "label": "3000K",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1608,10 +1475,100 @@
                             }
                         },
                         {
-                            "begin": 15,
-                            "default": 15,
-                            "end": 6,
-                            "label": "3000K",
+                            "begin": 32,
+                            "default": 32,
+                            "end": 26,
+                            "label": "3350K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 33,
+                            "label": "3600K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 63,
+                            "default": 63,
+                            "end": 45,
+                            "label": "4000K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 87,
+                            "default": 87,
+                            "end": 64,
+                            "label": "4500K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 111,
+                            "default": 111,
+                            "end": 88,
+                            "label": "5000K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 140,
+                            "default": 140,
+                            "end": 112,
+                            "label": "5600K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 141,
+                            "label": "6000K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 183,
+                            "default": 183,
+                            "end": 160,
+                            "label": "6500K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 207,
+                            "default": 207,
+                            "end": 184,
+                            "label": "7000K",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 208,
+                            "label": "8000K",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1630,16 +1587,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 5,
-                            "default": 5,
-                            "end": 0,
-                            "label": "2800K",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1693,16 +1640,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "50",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1807,16 +1744,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "off [Mix Pos]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1839,16 +1766,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 1,
-                            "default": 1,
-                            "end": 255,
-                            "label": "Zoom Spd Time [Frame & Frost Spd Time]",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -1980,16 +1897,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 1,
-                            "default": 255,
-                            "end": 255,
-                            "label": "FX",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -2426,16 +2333,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 165,
-                            "default": 165,
-                            "end": 165,
-                            "label": "Frame Macros 41",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -2516,6 +2413,19 @@
                             }
                         }
                     ]
+                },
+                {
+                    "coarse": 32,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 33
                 }
             ]
         }

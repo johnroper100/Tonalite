@@ -12,19 +12,6 @@
             "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
-                    "coarse": 25,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": false,
-                    "name": "White",
-                    "size": 16,
-                    "snap": false,
-                    "type": 1,
-                    "ranges": [],
-                    "fine": 26
-                },
-                {
                     "coarse": 0,
                     "fadeWithIntensity": false,
                     "highlight": 32768,
@@ -1058,16 +1045,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 254,
-                            "default": 254,
-                            "end": 254,
-                            "label": "User chase 8",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1235,16 +1212,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 198,
-                            "default": 198,
-                            "end": 255,
-                            "label": "O Pulse",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -1278,39 +1245,9 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 133,
-                            "default": 133,
-                            "end": 133,
-                            "label": "Compound Lens Mode Index",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 123,
                             "end": 123,
-                            "label": "Cmpnd Lens <>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 124,
-                            "default": 127,
-                            "end": 131,
-                            "label": "Cmpnd Lens <>",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
-                            "begin": 132,
-                            "default": 132,
-                            "end": 255,
                             "label": "Cmpnd Lens <>",
                             "media": {
                                 "dcid": "",
@@ -1322,6 +1259,26 @@
                             "default": 0,
                             "end": 126,
                             "label": "Compound Lens Index",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 127,
+                            "end": 255,
+                            "label": "None",
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 124,
+                            "default": 127,
+                            "end": 131,
+                            "label": "Cmpnd Lens <>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1348,10 +1305,10 @@
                             }
                         },
                         {
-                            "begin": 0,
-                            "default": 127,
+                            "begin": 132,
+                            "default": 132,
                             "end": 255,
-                            "label": "None",
+                            "label": "Cmpnd Lens <>",
                             "media": {
                                 "dcid": "",
                                 "name": ""
@@ -1370,16 +1327,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 127,
-                            "end": 255,
-                            "label": "None",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -2774,16 +2721,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Time",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 5,
@@ -4176,16 +4113,6 @@
                     "snap": false,
                     "type": 1,
                     "ranges": [
-                        {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Time",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -5580,16 +5507,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Color Mix Snap",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 5,
@@ -6983,16 +6900,6 @@
                     "type": 1,
                     "ranges": [
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Zoom Spd Time",
-                            "media": {
-                                "dcid": "",
-                                "name": ""
-                            }
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
@@ -7052,6 +6959,19 @@
                     "type": 1,
                     "ranges": [],
                     "fine": 22
+                },
+                {
+                    "coarse": 25,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "White",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 26
                 }
             ]
         }
