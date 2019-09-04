@@ -149,10 +149,6 @@ with open('Carallon.def') as f:
                     "default": 0,
                     "end": 0,
                     "label": "",
-                    "media": {
-                        "dcid": "",
-                        "name": ""
-                    }
                 }
                 tableInfo = line.partition("$$TABLE")[2].strip().split(" ")
                 rangeItem["begin"] = int(tableInfo[0])
@@ -165,3 +161,27 @@ with open('Carallon.def') as f:
                 elif int(tableInfo[2]) == 1:
                     rangeItem["default"] = int(
                         (rangeItem["begin"]+rangeItem["end"])/2)
+            elif "$$GEL" in line:
+                rangeItem["media"] = {
+                    "dcid": "",
+                    "name": ""
+                }
+                rangeItem["media"]["name"] = rangeItem["label"]
+                rangeItem["media"]["dcid"] = line.partition("$$GEL")[2].strip()
+            elif "$$SWATCH" in line:
+                swatch = {
+                    "red": 0,
+                    "green": 0,
+                    "blue": 0,
+                    "name": ""
+                }
+                swatch["name"] = rangeItem["label"]
+                swatch["red"] = int(line.partition("$$GEL")[
+                                    2].strip().split(" ")[0])
+                swatch["green"] = int(line.partition(
+                    "$$GEL")[2].strip().split(" ")[1])
+                swatch["blue"] = int(line.partition("$$GEL")[
+                                     2].strip().split(" ")[1])
+                if not swatch in swatches:
+                    swatches.append(swatch)
+print(len(swatches))
