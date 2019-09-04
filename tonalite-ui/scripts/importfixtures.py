@@ -7,7 +7,7 @@ import os
 def slugify(value):
     """Generate a url or filename worthy string from input text"""
     value = unicodedata.normalize('NFKC', value)
-    value = re.sub(r'[^\w\s-]', '', value).strip().lower()
+    value = re.sub(r'[^.\w\s-]', '', value).strip().lower()
     return re.sub(r'[-\s]+', '-', value)
 
 
@@ -39,11 +39,8 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
-                    if not os.path.exists("../fixtures/"+filename):
-                        with open("../fixtures/"+filename, 'w') as f:
-                            json.dump(fixtureProfile, f, indent=4)
-                    else:
-                        print(filename)
+                    with open("../fixtures/"+filename, 'w') as f:
+                        json.dump(fixtureProfile, f, indent=4)
 
                     fixtureProfile = {
                         "date": "",
