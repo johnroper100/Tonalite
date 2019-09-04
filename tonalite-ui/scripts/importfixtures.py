@@ -176,11 +176,11 @@ with open('Carallon.def') as f:
                     "name": ""
                 }
                 swatch["name"] = rangeItem["label"]
-                swatch["red"] = int(line.partition("$$GEL")[
+                swatch["red"] = int(line.partition("$$SWATCH")[
                                     2].strip().split(" ")[0])
                 swatch["green"] = int(line.partition(
-                    "$$GEL")[2].strip().split(" ")[1])
-                swatch["blue"] = int(line.partition("$$GEL")[
+                    "$$SWATCH")[2].strip().split(" ")[1])
+                swatch["blue"] = int(line.partition("$$SWATCH")[
                                      2].strip().split(" ")[1])
                 if not swatch in swatches:
                     swatches.append(swatch)
