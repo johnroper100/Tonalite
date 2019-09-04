@@ -40,7 +40,7 @@ with open('Carallon.def') as f:
                             "editorVersion": "",
                             "personalities": []
                         }
-                        print(filename)
+                        print(lineNum)
                         filename = ""
                 personality = {
                     "dcid": "",
