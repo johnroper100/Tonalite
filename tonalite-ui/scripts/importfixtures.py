@@ -30,8 +30,8 @@ with open('Carallon.def') as f:
                         filename = slugify(filename)+".jlib"
                         if needsFade == True:
                             for param in personality["parameters"]:
-                                if param.type == 5:
-                                    param.fadeWithIntensity = True
+                                if param["type"] == 5:
+                                    param["fadeWithIntensity"] = True
                         fixtureProfile["personalities"].append(personality)
                         with open("../fixtures/"+filename, 'w') as f:
                             json.dump(fixtureProfile, f, indent=4)
@@ -57,8 +57,8 @@ with open('Carallon.def') as f:
                     filename = slugify(filename)+".jlib"
                     if needsFade == True:
                         for param in personality["parameters"]:
-                            if param.type == 5:
-                                param.fadeWithIntensity = True
+                            if param["type"] == 5:
+                                param["fadeWithIntensity"] = True
                     fixtureProfile["personalities"].append(personality)
                     with open('../fixtures/'+filename, 'w', encoding='utf-8') as f:
                         json.dump(fixtureProfile, f,
