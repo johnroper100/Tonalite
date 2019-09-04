@@ -1,6 +1,7 @@
 import re
 import unicodedata
 import json
+import os
 
 
 def slugify(value):
@@ -37,14 +38,16 @@ with open('Carallon.def') as f:
                         personality["parameters"] = sorted(
                             personality["parameters"], key=lambda i: i['coarse'])
                         fixtureProfile["personalities"].append(personality)
-                        with open("../fixtures/"+filename, 'w') as f:
-                            json.dump(fixtureProfile, f, indent=4)
+                        if not os.path.exists("../fixtures/"+filename):
+                            with open("../fixtures/"+filename, 'w') as f:
+                                json.dump(fixtureProfile, f, indent=4)
+                        else:
+                            print(filename)
                         fixtureProfile = {
                             "date": "",
                             "editorVersion": "1.1.1.9.0.4",
                             "personalities": []
                         }
-                        print(filename)
                         filename = ""
                 personality = {
                     "dcid": "",
@@ -66,9 +69,12 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
-                    with open('../fixtures/'+filename, 'w', encoding='utf-8') as f:
-                        json.dump(fixtureProfile, f,
-                                  ensure_ascii=False, indent=4)
+                    if not os.path.exists("../fixtures/"+filename):
+                        with open('../fixtures/'+filename, 'w', encoding='utf-8') as f:
+                            json.dump(fixtureProfile, f,
+                                      ensure_ascii=False, indent=4)
+                    else:
+                        print(filename)
             elif "$$MANUFACTURER" in line:
                 personality["manufacturerName"] = line.partition("$$MANUFACTURER")[
                     2].strip()
