@@ -29,36 +29,30 @@ with open('Carallon.def') as f:
         if len(line) > 1:
             if "$TEMPLATE" in line:
                 if personality != {}:
-                    if filename != "":
-                        filename = slugify(filename)+".jlib"
-                        if needsFade == True:
-                            for param in personality["parameters"]:
-                                if param["type"] == 5:
-                                    param["fadeWithIntensity"] = True
-                        personality["parameters"] = sorted(
-                            personality["parameters"], key=lambda i: i['coarse'])
-                        fixtureProfile["personalities"].append(personality)
-                        if not os.path.exists("../fixtures/"+filename):
-                            with open("../fixtures/"+filename, 'w') as f:
-                                json.dump(fixtureProfile, f, indent=4)
-                        else:
-                            print(filename)
-                        fixtureProfile = {
-                            "date": "",
-                            "editorVersion": "1.1.1.9.0.4",
-                            "personalities": []
-                        }
-                        filename = ""
-                personality = {
-                    "dcid": "",
-                    "hasIntensity": False,
-                    "manufacturerName": "",
-                    "maxOffset": 0,
-                    "modeName": "",
-                    "modelName": "",
-                    "colortable": "",
-                    "parameters": []
-                }
+                    filename = personality["manufacturerName"]+"-" + \
+                        personality["modelName"]+"-"+personality["modeName"]
+                    filename = slugify(filename)+".jlib"
+                    if needsFade == True:
+                        for param in personality["parameters"]:
+                            if param["type"] == 5:
+                                param["fadeWithIntensity"] = True
+                    personality["parameters"] = sorted(
+                        personality["parameters"], key=lambda i: i['coarse'])
+                    fixtureProfile["personalities"].append(personality)
+                    if not os.path.exists("../fixtures/"+filename):
+                        with open("../fixtures/"+filename, 'w') as f:
+                            json.dump(fixtureProfile, f, indent=4)
+                    else:
+                        print(filename)
+
+                    fixtureProfile = {
+                        "date": "",
+                        "editorVersion": "1.1.1.9.0.4",
+                        "personalities": []
+                    }
+                    filename = ""
+
+                personality = {}
             elif "ENDDATA" in line:
                 if personality != {}:
                     filename = slugify(filename)+".jlib"
@@ -76,17 +70,23 @@ with open('Carallon.def') as f:
                     else:
                         print(filename)
             elif "$$MANUFACTURER" in line:
+                personality = {
+                    "dcid": "",
+                    "hasIntensity": False,
+                    "manufacturerName": "",
+                    "maxOffset": 0,
+                    "modeName": "",
+                    "modelName": "",
+                    "colortable": "",
+                    "parameters": []
+                }
                 personality["manufacturerName"] = line.partition("$$MANUFACTURER")[
                     2].strip()
             elif "$$MODELNAME" in line:
                 personality["modelName"] = line.partition("$$MODELNAME")[
                     2].strip()
-                filename = line.partition("$$MODELNAME")[
-                    2].strip()
             elif "$$MODENAME" in line:
                 personality["modeName"] = line.partition("$$MODENAME")[
-                    2].strip()
-                filename += "_"+line.partition("$$MODENAME")[
                     2].strip()
             elif "$$DCID" in line:
                 personality["dcid"] = line.partition("$$DCID")[

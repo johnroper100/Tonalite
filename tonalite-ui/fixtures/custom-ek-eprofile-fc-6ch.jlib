@@ -3,13 +3,13 @@
     "editorVersion": "1.1.1.9.0.4",
     "personalities": [
         {
-            "dcid": "B55D5876-BDD5-F54F-B247-0603866958DB",
+            "dcid": "460BA6DC-608B-41A4-8CFD-EB2E2727DB54",
             "hasIntensity": false,
-            "manufacturerName": "Vello",
-            "maxOffset": 4,
-            "modeName": "d001",
-            "modelName": "RGBWA 5in1",
-            "colortable": "C7A1FB0A-AA23-468F-9060-AC1625155DE8",
+            "manufacturerName": "Custom",
+            "maxOffset": 5,
+            "modeName": "6ch",
+            "modelName": "EK Eprofile FC",
+            "colortable": "61140E03-B858-436F-A40F-2E72CFF06157",
             "parameters": [
                 {
                     "coarse": 0,
@@ -53,19 +53,31 @@
                     "highlight": 65535,
                     "home": 65535,
                     "invert": false,
-                    "name": "White",
+                    "name": "Amber",
                     "size": 8,
                     "snap": false,
                     "type": 1,
                     "ranges": []
                 },
                 {
-                    "coarse": 8,
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Lime",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 13,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "Mode",
+                    "name": "PWM Freq",
                     "size": 8,
                     "snap": false,
                     "type": 1,
@@ -74,31 +86,37 @@
                             "begin": 0,
                             "default": 0,
                             "end": 0,
-                            "label": "off"
+                            "label": "PWM Freq 1"
                         },
                         {
-                            "begin": 36,
-                            "default": 36,
-                            "end": 36,
-                            "label": "R+B"
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "PWM Freq 20"
                         },
                         {
-                            "begin": 95,
-                            "default": 95,
-                            "end": 95,
-                            "label": "R+G"
+                            "begin": 75,
+                            "default": 75,
+                            "end": 75,
+                            "label": "PWM Freq 40"
                         },
                         {
-                            "begin": 159,
-                            "default": 159,
-                            "end": 159,
-                            "label": "G+B"
+                            "begin": 125,
+                            "default": 125,
+                            "end": 125,
+                            "label": "PWM Freq 60"
                         },
                         {
-                            "begin": 223,
-                            "default": 223,
-                            "end": 223,
-                            "label": "RGBWA"
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "PWM Freq 100"
+                        },
+                        {
+                            "begin": 228,
+                            "default": 228,
+                            "end": 228,
+                            "label": "PWM Freq 80"
                         }
                     ]
                 }
