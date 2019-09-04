@@ -149,7 +149,7 @@ with open('Carallon.def') as f:
                 tableInfo = line.partition("$$TABLE")[2].strip().split(" ")
                 rangeItem["begin"] = int(tableInfo[0])
                 rangeItem["end"] = int(tableInfo[1])
-                rangeItem["label"] = tableInfo[3:]
+                rangeItem["label"] = " ".join(tableInfo[3:])
                 if int(tableInfo[2]) == 0:
                     rangeItem["default"] = rangeItem["begin"]
                 elif int(tableInfo[2]) == 1:
