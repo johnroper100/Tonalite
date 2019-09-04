@@ -119,3 +119,9 @@ with open('Carallon.def') as f:
                 number = int(line.partition("$$PARAMETERGROUP")[2].strip())
                 if number == 3:
                     parameter["type"] = 5
+                elif number == 1:
+                    parameter["type"] = 1
+                elif number == 4:
+                    parameter["type"] = 4
+                elif number == 2:
+                    parameter["type"] = 2
