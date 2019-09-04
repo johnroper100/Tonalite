@@ -21,7 +21,22 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": [
+                                "FX",
+                                "Macros",
+                                "255"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 0,
@@ -59,7 +74,20 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": [
+                                "Open"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 5,
@@ -143,7 +171,143 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 255,
+                            "label": [
+                                "Strobe"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": [
+                                "off",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 13,
+                            "default": 13,
+                            "end": 13,
+                            "label": [
+                                "Enable",
+                                "console",
+                                "delay",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 38,
+                            "default": 38,
+                            "end": 38,
+                            "label": [
+                                "Close",
+                                "the",
+                                "console",
+                                "delay",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 90,
+                            "label": [
+                                "Colour",
+                                "selection",
+                                "switch",
+                                "program",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 110,
+                            "default": 110,
+                            "end": 110,
+                            "label": [
+                                "Variable",
+                                "pulse",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 150,
+                            "label": [
+                                "Hopping",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 190,
+                            "label": [
+                                "Gradient",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 230,
+                            "default": 230,
+                            "end": 230,
+                            "label": [
+                                "Internal",
+                                "Mode",
+                                "1",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 12,
@@ -155,7 +319,681 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": [
+                                "Sound",
+                                "mode",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": [
+                                "Color",
+                                "Mix",
+                                "Macro",
+                                "Rate"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": [
+                                "off",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 20,
+                            "label": [
+                                "Color",
+                                "1",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 21,
+                            "default": 21,
+                            "end": 40,
+                            "label": [
+                                "Color",
+                                "2",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 41,
+                            "default": 41,
+                            "end": 60,
+                            "label": [
+                                "Color",
+                                "3",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 61,
+                            "default": 61,
+                            "end": 80,
+                            "label": [
+                                "Color",
+                                "4",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 81,
+                            "default": 81,
+                            "end": 100,
+                            "label": [
+                                "Color",
+                                "5",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 101,
+                            "default": 101,
+                            "end": 120,
+                            "label": [
+                                "Color",
+                                "6",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 121,
+                            "default": 121,
+                            "end": 140,
+                            "label": [
+                                "Color",
+                                "7",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 141,
+                            "default": 141,
+                            "end": 160,
+                            "label": [
+                                "Color",
+                                "8",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 161,
+                            "default": 165,
+                            "end": 170,
+                            "label": [
+                                "Color",
+                                "9",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 171,
+                            "default": 185,
+                            "end": 200,
+                            "label": [
+                                "Color",
+                                "10",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 201,
+                            "default": 203,
+                            "end": 205,
+                            "label": [
+                                "Color",
+                                "11",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 206,
+                            "default": 208,
+                            "end": 210,
+                            "label": [
+                                "Color",
+                                "12",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 211,
+                            "default": 213,
+                            "end": 215,
+                            "label": [
+                                "Color",
+                                "13",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 216,
+                            "default": 218,
+                            "end": 220,
+                            "label": [
+                                "Color",
+                                "14",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 221,
+                            "default": 223,
+                            "end": 225,
+                            "label": [
+                                "Color",
+                                "15",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 226,
+                            "default": 228,
+                            "end": 230,
+                            "label": [
+                                "Color",
+                                "16",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 231,
+                            "default": 233,
+                            "end": 235,
+                            "label": [
+                                "Color",
+                                "17",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 236,
+                            "default": 238,
+                            "end": 240,
+                            "label": [
+                                "Color",
+                                "18",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 241,
+                            "default": 243,
+                            "end": 245,
+                            "label": [
+                                "Color",
+                                "19",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 246,
+                            "default": 248,
+                            "end": 250,
+                            "label": [
+                                "Color",
+                                "20",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 251,
+                            "default": 253,
+                            "end": 255,
+                            "label": [
+                                "Color",
+                                "21",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": [
+                                "off",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 20,
+                            "label": [
+                                "Color",
+                                "1",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 21,
+                            "default": 21,
+                            "end": 40,
+                            "label": [
+                                "Color",
+                                "2",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 41,
+                            "default": 41,
+                            "end": 60,
+                            "label": [
+                                "Color",
+                                "3",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 61,
+                            "default": 61,
+                            "end": 80,
+                            "label": [
+                                "Color",
+                                "4",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 81,
+                            "default": 81,
+                            "end": 100,
+                            "label": [
+                                "Color",
+                                "5",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 101,
+                            "default": 101,
+                            "end": 120,
+                            "label": [
+                                "Color",
+                                "6",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 121,
+                            "default": 121,
+                            "end": 140,
+                            "label": [
+                                "Color",
+                                "7",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 141,
+                            "default": 141,
+                            "end": 160,
+                            "label": [
+                                "Color",
+                                "8",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 161,
+                            "default": 165,
+                            "end": 170,
+                            "label": [
+                                "Color",
+                                "9",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 171,
+                            "default": 185,
+                            "end": 200,
+                            "label": [
+                                "Color",
+                                "10",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 201,
+                            "default": 203,
+                            "end": 205,
+                            "label": [
+                                "Color",
+                                "11",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 206,
+                            "default": 208,
+                            "end": 210,
+                            "label": [
+                                "Color",
+                                "12",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 211,
+                            "default": 213,
+                            "end": 215,
+                            "label": [
+                                "Color",
+                                "13",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 216,
+                            "default": 218,
+                            "end": 220,
+                            "label": [
+                                "Color",
+                                "14",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 221,
+                            "default": 223,
+                            "end": 225,
+                            "label": [
+                                "Color",
+                                "15",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 226,
+                            "default": 228,
+                            "end": 230,
+                            "label": [
+                                "Color",
+                                "16",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 231,
+                            "default": 233,
+                            "end": 235,
+                            "label": [
+                                "Color",
+                                "17",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 236,
+                            "default": 238,
+                            "end": 240,
+                            "label": [
+                                "Color",
+                                "18",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 241,
+                            "default": 243,
+                            "end": 245,
+                            "label": [
+                                "Color",
+                                "19",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 246,
+                            "default": 248,
+                            "end": 250,
+                            "label": [
+                                "Color",
+                                "20",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 13,

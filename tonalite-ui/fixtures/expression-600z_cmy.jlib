@@ -21,7 +21,44 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 10,
+                            "default": 255,
+                            "end": 255,
+                            "label": [
+                                "Strobe"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": [
+                                "Off"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 29,
+                            "default": 29,
+                            "end": 29,
+                            "label": [
+                                "On"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 0,
@@ -71,7 +108,49 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": [
+                                "Pan",
+                                "Mode"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 127,
+                            "label": [
+                                "Pan",
+                                "Rotate",
+                                ">>"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 254,
+                            "label": [
+                                "Pan",
+                                "Rotate",
+                                "<<"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 6,
@@ -131,7 +210,243 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": [
+                                "Pan",
+                                "Rotate",
+                                "Stop"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": [
+                                "Color",
+                                "Mix"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": [
+                                "Cyan",
+                                "100%/magenta",
+                                "up"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 49,
+                            "label": [
+                                "Cyan",
+                                "down/magenta",
+                                "100%",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 69,
+                            "label": [
+                                "Magenta",
+                                "100%/yellow",
+                                "up",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 89,
+                            "label": [
+                                "Magenta",
+                                "down/yellow",
+                                "100%",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 90,
+                            "default": 90,
+                            "end": 109,
+                            "label": [
+                                "Cyan",
+                                "up/yellow",
+                                "100%",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 110,
+                            "default": 110,
+                            "end": 129,
+                            "label": [
+                                "Cyan",
+                                "100%/yellow",
+                                "down",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 149,
+                            "label": [
+                                "Cyan",
+                                "100%/magenta",
+                                "up/yellow",
+                                "up",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 169,
+                            "label": [
+                                "Cyan",
+                                "down/magenta",
+                                "down/yellow",
+                                "100%",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 170,
+                            "default": 170,
+                            "end": 189,
+                            "label": [
+                                "CMY",
+                                "100%",
+                                "[Mix",
+                                "Pos]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 194,
+                            "label": [
+                                "White",
+                                "2700K"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 204,
+                            "default": 204,
+                            "end": 204,
+                            "label": [
+                                "White",
+                                "3200K"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 214,
+                            "default": 214,
+                            "end": 214,
+                            "label": [
+                                "White",
+                                "4200K"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 224,
+                            "label": [
+                                "White",
+                                "5600K"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 234,
+                            "default": 234,
+                            "end": 234,
+                            "label": [
+                                "White",
+                                "6500K"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 11,
@@ -143,7 +458,45 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 247,
+                            "default": 247,
+                            "end": 247,
+                            "label": [
+                                "White",
+                                "8000K"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": [
+                                "Open"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 109,
+                            "end": 109,
+                            "label": [
+                                "Strobe"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 12,

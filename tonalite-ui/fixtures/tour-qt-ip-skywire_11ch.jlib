@@ -21,7 +21,89 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 11,
+                            "default": 255,
+                            "end": 255,
+                            "label": [
+                                "Strobe"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": [
+                                "From",
+                                "menu"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 25,
+                            "default": 25,
+                            "end": 25,
+                            "label": [
+                                "Dimmer",
+                                "mode",
+                                "1"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": [
+                                "Dimmer",
+                                "mode",
+                                "2"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": [
+                                "Dimmer",
+                                "mode",
+                                "3"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 55,
+                            "label": [
+                                "Dimmer",
+                                "mode",
+                                "4"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 0,
@@ -117,7 +199,20 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": [
+                                "Open"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 8,
@@ -129,7 +224,803 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 255,
+                            "label": [
+                                "Strobe"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 15,
+                            "label": [
+                                "off"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 16,
+                            "default": 17,
+                            "end": 18,
+                            "label": [
+                                "R"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 19,
+                            "default": 20,
+                            "end": 21,
+                            "label": [
+                                "G"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 22,
+                            "default": 23,
+                            "end": 24,
+                            "label": [
+                                "B"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 25,
+                            "default": 26,
+                            "end": 27,
+                            "label": [
+                                "A"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 28,
+                            "default": 29,
+                            "end": 30,
+                            "label": [
+                                "W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 31,
+                            "default": 32,
+                            "end": 33,
+                            "label": [
+                                "UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 34,
+                            "default": 35,
+                            "end": 36,
+                            "label": [
+                                "R+G"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 37,
+                            "default": 38,
+                            "end": 39,
+                            "label": [
+                                "R+B"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 40,
+                            "default": 41,
+                            "end": 42,
+                            "label": [
+                                "R+A"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 43,
+                            "default": 44,
+                            "end": 45,
+                            "label": [
+                                "R+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 46,
+                            "default": 47,
+                            "end": 48,
+                            "label": [
+                                "R+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 49,
+                            "default": 50,
+                            "end": 51,
+                            "label": [
+                                "G+B"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 52,
+                            "default": 53,
+                            "end": 54,
+                            "label": [
+                                "G+A"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 55,
+                            "default": 56,
+                            "end": 57,
+                            "label": [
+                                "G+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 58,
+                            "default": 59,
+                            "end": 60,
+                            "label": [
+                                "G+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 61,
+                            "default": 62,
+                            "end": 63,
+                            "label": [
+                                "B+A"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 65,
+                            "end": 66,
+                            "label": [
+                                "B+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 67,
+                            "default": 68,
+                            "end": 69,
+                            "label": [
+                                "B+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 71,
+                            "end": 72,
+                            "label": [
+                                "A+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 73,
+                            "default": 74,
+                            "end": 75,
+                            "label": [
+                                "A+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 76,
+                            "default": 77,
+                            "end": 78,
+                            "label": [
+                                "W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 79,
+                            "default": 80,
+                            "end": 81,
+                            "label": [
+                                "R+G+B"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 82,
+                            "default": 83,
+                            "end": 84,
+                            "label": [
+                                "R+G+A"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 85,
+                            "default": 86,
+                            "end": 87,
+                            "label": [
+                                "R+G+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 88,
+                            "default": 89,
+                            "end": 90,
+                            "label": [
+                                "R+G+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 91,
+                            "default": 92,
+                            "end": 93,
+                            "label": [
+                                "R+B+A"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 94,
+                            "default": 95,
+                            "end": 96,
+                            "label": [
+                                "R+B+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 97,
+                            "default": 98,
+                            "end": 99,
+                            "label": [
+                                "R+B+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 100,
+                            "default": 101,
+                            "end": 102,
+                            "label": [
+                                "R+A+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 103,
+                            "default": 104,
+                            "end": 105,
+                            "label": [
+                                "R+A+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 106,
+                            "default": 107,
+                            "end": 108,
+                            "label": [
+                                "R+W",
+                                "+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 109,
+                            "default": 110,
+                            "end": 111,
+                            "label": [
+                                "G+B+A"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 113,
+                            "end": 114,
+                            "label": [
+                                "G+B+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 115,
+                            "default": 116,
+                            "end": 117,
+                            "label": [
+                                "G+B+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 118,
+                            "default": 119,
+                            "end": 120,
+                            "label": [
+                                "G+A+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 121,
+                            "default": 122,
+                            "end": 123,
+                            "label": [
+                                "G+A+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 124,
+                            "default": 125,
+                            "end": 126,
+                            "label": [
+                                "G+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 127,
+                            "default": 128,
+                            "end": 129,
+                            "label": [
+                                "B+A+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 131,
+                            "end": 132,
+                            "label": [
+                                "B+A+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 133,
+                            "default": 134,
+                            "end": 135,
+                            "label": [
+                                "B+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 136,
+                            "default": 137,
+                            "end": 138,
+                            "label": [
+                                "A+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 139,
+                            "default": 140,
+                            "end": 141,
+                            "label": [
+                                "R+G+B+A"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 142,
+                            "default": 143,
+                            "end": 144,
+                            "label": [
+                                "R+G+B+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 145,
+                            "default": 146,
+                            "end": 147,
+                            "label": [
+                                "R+G+B+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 148,
+                            "default": 149,
+                            "end": 150,
+                            "label": [
+                                "R+G+A+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 151,
+                            "default": 152,
+                            "end": 153,
+                            "label": [
+                                "R+G+A+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 154,
+                            "default": 155,
+                            "end": 156,
+                            "label": [
+                                "R+G+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 157,
+                            "default": 158,
+                            "end": 159,
+                            "label": [
+                                "R+B+A+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 161,
+                            "end": 162,
+                            "label": [
+                                "R+B+A+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 163,
+                            "default": 164,
+                            "end": 165,
+                            "label": [
+                                "R+B+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 166,
+                            "default": 167,
+                            "end": 168,
+                            "label": [
+                                "R+A+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 169,
+                            "default": 170,
+                            "end": 171,
+                            "label": [
+                                "G+B+A+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 172,
+                            "default": 173,
+                            "end": 174,
+                            "label": [
+                                "G+B+A+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 175,
+                            "default": 176,
+                            "end": 177,
+                            "label": [
+                                "G+B+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 178,
+                            "default": 179,
+                            "end": 180,
+                            "label": [
+                                "G+A+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 181,
+                            "default": 182,
+                            "end": 183,
+                            "label": [
+                                "B+A+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 184,
+                            "default": 185,
+                            "end": 186,
+                            "label": [
+                                "R+G+B+A+W"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 187,
+                            "default": 188,
+                            "end": 189,
+                            "label": [
+                                "R+G+B+A+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 190,
+                            "default": 191,
+                            "end": 192,
+                            "label": [
+                                "R+G+B+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 193,
+                            "default": 194,
+                            "end": 195,
+                            "label": [
+                                "R+G+A+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 196,
+                            "default": 197,
+                            "end": 198,
+                            "label": [
+                                "R+B+A+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 199,
+                            "default": 200,
+                            "end": 201,
+                            "label": [
+                                "G+B+A+W+UV"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 202,
+                            "default": 203,
+                            "end": 204,
+                            "label": [
+                                "Full",
+                                "on"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 205,
+                            "default": 230,
+                            "end": 255,
+                            "label": [
+                                "Auto",
+                                "run"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 },
                 {
                     "coarse": 9,
@@ -141,7 +1032,53 @@
                     "size": 8,
                     "snap": false,
                     "type": 1,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": [
+                                "None"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": [
+                                "off",
+                                "[Color",
+                                "Mix",
+                                "Macro",
+                                "Rate]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 250,
+                            "label": [
+                                "Colour",
+                                "fade",
+                                "[Color",
+                                "Mix",
+                                "Macro",
+                                "Rate]"
+                            ],
+                            "media": {
+                                "dcid": "",
+                                "name": ""
+                            }
+                        }
+                    ]
                 }
             ]
         }
