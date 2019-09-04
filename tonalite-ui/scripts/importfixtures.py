@@ -29,6 +29,8 @@ with open('Carallon.def') as f:
         if len(line) > 1:
             if "$TEMPLATE" in line:
                 if personality != {}:
+                    if personality["modeName"] == "":
+                        personality["modeName"] = "-"
                     filename = personality["manufacturerName"]+"-" + \
                         personality["modelName"]+"-"+personality["modeName"]
                     filename = slugify(filename)+".jlib"
