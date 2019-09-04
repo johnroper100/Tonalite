@@ -187,4 +187,6 @@ with open('Carallon.def') as f:
                                      2].strip().split(" ")[1])
                 if not swatch in swatches:
                     swatches.append(swatch)
-print(len(swatches))
+
+with open("../swatches.json", 'w') as f:
+    json.dump(swatches, f, indent=4)
