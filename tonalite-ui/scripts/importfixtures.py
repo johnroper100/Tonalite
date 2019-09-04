@@ -7,7 +7,7 @@ import os
 def slugify(value):
     """Generate a url or filename worthy string from input text"""
     value = unicodedata.normalize('NFKC', value)
-    value = re.sub(r'[^.\w\s-]', '', value).strip().lower()
+    value = re.sub(r'[^.+\w\s-]', '', value).strip().lower()
     return re.sub(r'[-\s]+', '-', value)
 
 
@@ -59,6 +59,8 @@ with open('Carallon.def') as f:
                 if personality != {}:
                     if personality["modeName"] == "":
                         personality["modeName"] = "-"
+                    filename = personality["manufacturerName"]+"-" + \
+                        personality["modelName"]+"-"+personality["modeName"]
                     filename = slugify(filename)+".jlib"
                     if needsFade == True:
                         for param in personality["parameters"]:
