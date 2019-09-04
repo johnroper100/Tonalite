@@ -13,6 +13,13 @@ channels = [];
 fixtures = [];
 groups = [];
 
+fs.exists(process.cwd() + '/show.json', function (exists) {
+    if (exists == false) {
+        saveShow();
+    }
+    openShow();
+});
+
 http.listen(3000, function () {
     console.log(`Tonalite DMX Lighting Control System`);
 });
@@ -30,6 +37,25 @@ function generateID() {
 function mapRange(num, inMin, inMax, outMin, outMax) {
     return (num - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 }
+
+function saveShow() {
+    fs.writeFile(process.cwd() + "/show.json", JSON.stringify({ fixtures: fixtures, groups: groups }), (err) => {
+        if (err) {
+            logError(err);
+            return false;
+        };
+    });
+    return true;
+};
+
+function openShow(file = "show.json") {
+    fs.readFile(process.cwd() + '/' + file, (err, data) => {
+        if (err) console.log(err);
+        let show = JSON.parse(data);
+        fixtures = show.fixtures;
+        groups = show.groups;
+    });
+};
 
 function dmxLoop() {
     var fixture = {};
@@ -131,6 +157,7 @@ io.on('connection', function (socket) {
             }
         }
         io.emit('fixtures', fixtures);
+        saveShow();
     });
 
     socket.on('fixtureItemMoved', function (msg) {
@@ -138,6 +165,7 @@ io.on('connection', function (socket) {
         fixture.x = msg.x;
         fixture.y = msg.y;
         socket.broadcast.emit('fixtures', fixtures);
+        saveShow();
     });
 
     socket.on('duplicateFixtures', function (fixtureIDs) {
@@ -152,6 +180,7 @@ io.on('connection', function (socket) {
             fixtures.push(newFixture);
         }
         io.emit('fixtures', fixtures);
+        saveShow();
     });
 
     socket.on('deleteFixtures', function (fixtureIDs) {
@@ -174,6 +203,7 @@ io.on('connection', function (socket) {
         }
         io.emit('fixtures', fixtures);
         io.emit('groups', groups);
+        saveShow();
     });
 
     socket.on('groupFixtures', function (fixtureIDs) {
@@ -189,6 +219,7 @@ io.on('connection', function (socket) {
             groups.push(newGroup);
         }
         io.emit('groups', groups);
+        saveShow();
     });
 
     socket.on('groupGroups', function (groupIDs) {
@@ -210,6 +241,7 @@ io.on('connection', function (socket) {
             groups.push(newGroup);
         }
         io.emit('groups', groups);
+        saveShow();
     });
 
     socket.on('deleteGroups', function (groupIDs) {
@@ -219,6 +251,7 @@ io.on('connection', function (socket) {
             }
         }
         io.emit('groups', groups);
+        saveShow();
     });
 
     socket.on('updateFixtureParameterValue', function (msg) {
@@ -235,6 +268,7 @@ io.on('connection', function (socket) {
             }
         }
         io.emit('fixtures', fixtures);
+        saveShow();
     });
 
     socket.on('resetFixtures', function () {
@@ -249,6 +283,7 @@ io.on('connection', function (socket) {
             }
         }
         io.emit('fixtures', fixtures);
+        saveShow();
     });
 
     socket.on('resetSelectedFixtures', function (fixtureIDs) {
@@ -263,6 +298,7 @@ io.on('connection', function (socket) {
             }
         }
         io.emit('fixtures', fixtures);
+        saveShow();
     });
 
     socket.on('editFixtureName', function (msg) {
@@ -272,6 +308,7 @@ io.on('connection', function (socket) {
             fixture.name = msg.value;
         }
         io.emit('fixtures', fixtures);
+        saveShow();
     });
 
     socket.on('editFixtureUniverse', function (msg) {
@@ -281,6 +318,7 @@ io.on('connection', function (socket) {
             fixture.universe = parseInt(msg.value);
         }
         io.emit('fixtures', fixtures);
+        saveShow();
     });
 
     socket.on('editFixtureAddress', function (msg) {
@@ -290,6 +328,7 @@ io.on('connection', function (socket) {
             fixture.address = parseInt(msg.value);
         }
         io.emit('fixtures', fixtures);
+        saveShow();
     });
 
     socket.on('editGroupName', function (msg) {
@@ -299,5 +338,6 @@ io.on('connection', function (socket) {
             group.name = msg.value;
         }
         io.emit('groups', groups);
+        saveShow();
     });
 });
