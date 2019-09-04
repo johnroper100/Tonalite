@@ -79,12 +79,18 @@ with open('Carallon.def') as f:
                 }
                 personality["manufacturerName"] = line.partition("$$MANUFACTURER")[
                     2].strip()
+                if personality["manufacturerName"] == "":
+                    personality["manufacturerName"] = "-"
             elif "$$MODELNAME" in line:
                 personality["modelName"] = line.partition("$$MODELNAME")[
                     2].strip()
+                if personality["modelName"] == "":
+                    personality["modelName"] = "-"
             elif "$$MODENAME" in line:
                 personality["modeName"] = line.partition("$$MODENAME")[
                     2].strip()
+                if personality["modeName"] == "":
+                    personality["modeName"] = "-"
             elif "$$DCID" in line:
                 personality["dcid"] = line.partition("$$DCID")[
                     2].strip()
