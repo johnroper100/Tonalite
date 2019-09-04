@@ -41,8 +41,11 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
-                    with open("../fixtures/"+filename, 'w') as f:
-                        json.dump(fixtureProfile, f, indent=4)
+                    if not os.path.exists("../fixtures/"+filename):
+                        with open("../fixtures/"+filename, 'w') as f:
+                            json.dump(fixtureProfile, f, indent=4)
+                    else:
+                        print(filename)
 
                     fixtureProfile = {
                         "date": "",
@@ -54,6 +57,8 @@ with open('Carallon.def') as f:
                 personality = {}
             elif "ENDDATA" in line:
                 if personality != {}:
+                    if personality["modeName"] == "":
+                        personality["modeName"] = "-"
                     filename = slugify(filename)+".jlib"
                     if needsFade == True:
                         for param in personality["parameters"]:
