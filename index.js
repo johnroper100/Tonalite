@@ -615,10 +615,10 @@ function calculateStack() {
                     }
                 }
             }
-            io.sockets.emit('currentCue', currentCueID);
-            io.sockets.emit('cues', cleanCues());
+            io.emit('currentCue', currentCueID);
+            io.emit('cues', cleanCues());
         }
-        io.sockets.emit('fixtures', cleanFixtures());
+        io.emit('fixtures', cleanFixtures());
     }
     if (blackout === false) {
         //var displayChanged = false;
@@ -663,7 +663,7 @@ function calculateStack() {
             }
         }
         /*if (displayChanged === true) {
-            io.sockets.emit('fixtures', cleanFixtures());
+            io.emit('fixtures', cleanFixtures());
         }*/
     }
     // Allow presets to overide everything else for channels in which they have higher values
@@ -1137,7 +1137,7 @@ io.on('connection', function (socket) {
                     fixture.hasActiveEffects = checkFixtureActiveEffects(fixture.effects);
                     let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
                         fixture.parameters[p].displayValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 100);
-                        io.sockets.emit('fixtures', cleanFixtures());
+                        io.emit('fixtures', cleanFixtures());
                     }
                     socket.emit('message', { type: "info", content: "Fixture effect has been removed!" });
                     saveShow();
@@ -1339,7 +1339,7 @@ io.on('connection', function (socket) {
                     if (effect.active == false) {
                         let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
                             fixture.parameters[p].displayValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 100);
-                            io.sockets.emit('fixtures', cleanFixtures());
+                            io.emit('fixtures', cleanFixtures());
                         }
                     }
                     socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
@@ -1390,6 +1390,7 @@ io.on('connection', function (socket) {
                 saveShow();
                 socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
                 socket.emit('message', { type: "info", content: "Effect has been added to fixture!" });
+                io.emit('fixtures', cleanFixtures());
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
