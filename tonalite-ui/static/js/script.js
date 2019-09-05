@@ -124,7 +124,6 @@ var app = new Vue({
             app.selectedProfile = '';
             app.selectedProfileManufacturer = '';
             app.selectedProfileMode = '';
-            app.fixtureProfileManufacturers = [];
             app.fixtureProfileModes = [];
             app.fixtureProfiles = [];
             app.fixtureProfileCreationAddress = 1;
@@ -237,6 +236,18 @@ var app = new Vue({
         updateFixtureParameterValue: function (param) {
             param.value = param.displayValue;
             socket.emit('updateFixtureParameterValue', { "fixtures": app.selectedFixtures, "paramName": param.name, "paramType": param.type, "paramValue": param.value });
+            var fixture = {};
+            var parameter = {};
+            let id = 0; const idMax = app.selectedFixtures.length; for (; id < idMax; id++) {
+                fixture = app.fixtures[app.fixtures.map(el => el.i).indexOf(app.selectedFixtures[id])];
+                let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+                    parameter = fixture.parameters[p];
+                    if (parameter.name == param.name && parameter.type == param.type) {
+                        parameter.value = parseInt(param.displayValue);
+                        parameter.displayValue = parameter.value;
+                    }
+                }
+            }
         },
         resetFixtures: function () {
             socket.emit('resetFixtures');
