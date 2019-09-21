@@ -794,7 +794,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/presets', function (req, res) {
-    res.sendFile(__dirname + '/presets.min.html');
+    res.sendFile(__dirname + '/presets.html');
 });
 
 app.get('/open-source-licenses', function (req, res) {
