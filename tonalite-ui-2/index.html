@@ -103,26 +103,52 @@
                     </div>
                 </div>
             </div>
+            <div id="groups" class="tabcontent" v-if="currentView == 'groups'">
+                <div class="container">
+                    <div class="row topBtns sticky-top">
+                        <div class="col-6">
+                            <button :disabled="fixtures.length == 0" class="btn btn-success btn-block"
+                                onclick="addGroupModal()">Add
+                                Group</button>
+                        </div>
+                        <div class="col-6">
+                            <button :disabled="groups.length == 0" class="btn btn-danger btn-block"
+                                onclick="resetGroups()">Reset
+                                Values</button>
+                        </div>
+                    </div>
+                    <div class="row" id="groupsList">
+                        <div class="col-4 col-lg-2 mb-3" v-for="group in groups" :key="group.id">
+                            <div class="groupItem" v-on:click="viewGroupParameters(group.id)">
+                                <p>{{group.name}}</p>
+                            </div>
+                        </div>
+                        <div v-if="groups.length == 0" class="col-12">
+                            <h5>There are no groups in this show!</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="tab">
             <div class="row">
                 <div class="col-3" @click="currentView = 'fixtures'">
-                    <div class="tabitem tabitem-fixtures" v-bind:class="{ active: currentView == 'fixtures' }">
+                    <div class="tabitem tabitem-fixtures" :class="{ active: currentView == 'fixtures' }">
                         <i class="tablinks far fa-lightbulb"></i><span class="tabtext">Fixtures</span>
                     </div>
                 </div>
                 <div class="col-3" @click="currentView = 'groups'">
-                    <div class="tabitem tabitem-groups" v-bind:class="{ active: currentView == 'groups' }">
+                    <div class="tabitem tabitem-groups" :class="{ active: currentView == 'groups' }">
                         <i class="tablinks far fa-layer-group"></i><span class="tabtext">Groups</span>
                     </div>
                 </div>
                 <div class="col-3" @click="currentView = 'cues'">
-                    <div class="tabitem tabitem-cues" v-bind:class="{ active: currentView == 'cues' }">
+                    <div class="tabitem tabitem-cues" :class="{ active: currentView == 'cues' }">
                         <i class="tablinks far fa-list"></i><span class="tabtext">Cues</span>
                     </div>
                 </div>
                 <div class="col-3" @click="currentView = 'presets'">
-                    <div class="tabitem tabitem-presets" v-bind:class="{ active: currentView == 'presets' }">
+                    <div class="tabitem tabitem-presets" :class="{ active: currentView == 'presets' }">
                         <i class="tablinks far fa-swatchbook"></i><span class="tabtext">Presets</span>
                     </div>
                 </div>

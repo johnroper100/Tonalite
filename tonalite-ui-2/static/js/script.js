@@ -4,7 +4,8 @@ var app = new Vue({
     data: {
         currentView: 'fixtures',
         embeded: false,
-        fixtures: []
+        fixtures: [],
+        groups: []
     },
     methods: {
         launchFullScreen: function () {
@@ -35,4 +36,8 @@ socket.on('connect', function () {
 
 socket.on('fixtures', function (msg) {
     app.fixtures = msg;
+});
+
+socket.on('groups', function (msg) {
+    app.groups = msg;
 });

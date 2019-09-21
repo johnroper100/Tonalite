@@ -412,17 +412,17 @@
       <div class="container">
         <div class="row topBtns sticky-top">
           <div class="col-6">
-            <button :disabled="fixtures.length == 0" class="btn btn-success btn-block" onclick="addGroupModal()">Add
+            <button :disabled="fixtures.length == 0" class="btn btn-success btn-block">Add
               Group</button>
           </div>
           <div class="col-6">
-            <button :disabled="groups.length == 0" class="btn btn-danger btn-block" onclick="resetGroups()">Reset
+            <button :disabled="groups.length == 0" class="btn btn-danger btn-block">Reset
               Values</button>
           </div>
         </div>
         <div class="row" id="groupsList">
           <div class="col-4 col-lg-2 mb-3" v-for="group in groups" :key="group.id">
-            <div class="groupItem" v-on:click="viewGroupParameters(group.id)">
+            <div class="groupItem">
               <p>{{group.name}}</p>
             </div>
           </div>
