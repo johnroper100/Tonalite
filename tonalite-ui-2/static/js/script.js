@@ -2,7 +2,8 @@ var socket = io('http://' + document.domain + ':' + location.port);
 var app = new Vue({
     el: '#app',
     data: {
-        currentTab: 'fixtures',
+        currentView: 'fixtures',
+        embeded: false,
         fixtures: []
     },
     methods: {
@@ -19,6 +20,9 @@ var app = new Vue({
             } else {
                 element.webkitEnterFullScreen();
             }
+        },
+        ifMobile: function () {
+            return isMobile.any;
         }
     }
 });
@@ -26,6 +30,7 @@ var app = new Vue({
 socket.on('connect', function () {
     app.currentTab = 'fixtures';
     app.fixtures = [];
+    app.embeded = false;
 });
 
 socket.on('fixtures', function (msg) {

@@ -9,14 +9,135 @@
     <script defer src="static/js/all.min.js"></script>
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/bootstrap-multiselect.css">
-    <link rel="stylesheet" href="static/css/style.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
     <link rel="apple-touch-icon" href="static/img/icon.png">
     <link rel="manifest" href="/static/manifest.json">
 </head>
 
 <body>
     <div id="app">
+        <nav class="navbar sticky-top navbar-expand navbar-dark bg-light">
+            <a class="navbar-brand" href="/">Tonalite</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">File</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item">New Show</a>
+                            <a class="dropdown-item">Reset Presets</a>
+                            <div class="dropdown-divider"></div>
+                            <a v-if="embeded == true" class="dropdown-item">Save Show To USB</a>
+                            <a v-if="embeded == true" class="dropdown-item">Open Show From USB</a>
+                            <a v-if="ifMobile() || embeded == false" class="dropdown-item" href="/showFile">Save Show To
+                                File</a>
+                            <a v-if="ifMobile() || embeded == false" class="dropdown-item">Open
+                                Show From
+                                File</a>
+                            <div class="dropdown-divider"></div>
+                            <a v-if="ifMobile() || embeded == false" class="dropdown-item">Import
+                                Fixture Definitions From File</a>
+                            <a v-if="embeded == true" class="dropdown-item">Import Fixture Definitions From USB</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Edit</a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item">Settings</a>
+                            <a v-if="embeded == true" class="dropdown-item">Update Firmware</a>
+                            <div class="dropdown-divider"></div>
+                            <a v-if="ifMobile() || embeded == false" class="dropdown-item"
+                                @click="launchFullScreen">Full Screen</a>
+                            <a class="dropdown-item" href="/presets">Presets View</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Help</a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item">About Tonalite</a>
+                            <a class="dropdown-item" href="/docs">Documentation</a>
+                            <div class="dropdown-divider"></div>
+                            <a v-if="ifMobile() || embeded == false" class="dropdown-item"
+                                href="http://jmroper.com/tonalite">Website</a>
+                            <a v-if="ifMobile() || embeded == false" class="dropdown-item"
+                                href="mailto(johnroper100@gmail.com)">Send An
+                                Email</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="tabs">
+            <div id="fixtures" class="tabcontent" v-if="currentView == 'fixtures'">
+                <div class="container">
+                    <div class="row topBtns sticky-top">
+                        <div class="col-6">
+                            <button class="btn btn-success btn-block">Add Fixture</button>
+                        </div>
+                        <div class="col-6">
+                            <button :disabled="fixtures.length == 0" class="btn btn-danger btn-block">Reset
+                                Values</button>
+                        </div>
+                    </div>
+                    <div class="row" id="fixturesList">
+                        <div class="col-4 col-sm-3 col-lg-2 mb-3" v-for="fixture in fixtures" :key="fixture.id">
+                            <div class="fixtureItem">
+                                <h3 v-if="fixture.hasIntensity === true" class="fixtureValue">
+                                    {{fixture.parameters[fixture.parameters.map(el => el.type).indexOf(1)].displayValue}}
+                                </h3>
+                                <p>{{fixture.shortName}} ({{fixture.startDMXAddress}})
+                                    <i v-if="fixture.hasLockedChannels" class="ml-1 far fa-lock-alt fa-sm"></i>
+                                    <i v-if="fixture.hasActiveEffects" class="ml-1 far fa-hurricane fa-sm"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div v-if="fixtures.length == 0" class="col-12">
+                            <h5>There are no fixtures in this show!</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab">
+            <div class="row">
+                <div class="col-3" @click="currentView = 'fixtures'">
+                    <div class="tabitem tabitem-fixtures" v-bind:class="{ active: currentView == 'fixtures' }">
+                        <i class="tablinks far fa-lightbulb"></i><span class="tabtext">Fixtures</span>
+                    </div>
+                </div>
+                <div class="col-3" @click="currentView = 'groups'">
+                    <div class="tabitem tabitem-groups" v-bind:class="{ active: currentView == 'groups' }">
+                        <i class="tablinks far fa-layer-group"></i><span class="tabtext">Groups</span>
+                    </div>
+                </div>
+                <div class="col-3" @click="currentView = 'cues'">
+                    <div class="tabitem tabitem-cues" v-bind:class="{ active: currentView == 'cues' }">
+                        <i class="tablinks far fa-list"></i><span class="tabtext">Cues</span>
+                    </div>
+                </div>
+                <div class="col-3" @click="currentView = 'presets'">
+                    <div class="tabitem tabitem-presets" v-bind:class="{ active: currentView == 'presets' }">
+                        <i class="tablinks far fa-swatchbook"></i><span class="tabtext">Presets</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="static/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/socket.io.js"></script>
+    <script src="static/js/bootstrap-multiselect.js"></script>
+    <script src="static/js/bootbox.min.js"></script>
+    <script src="static/js/isMobile.min.js"></script>
+    <script src="static/js/vue.js"></script>
+    <script src="static/js/script.js"></script>
 </body>
 
 </html>
