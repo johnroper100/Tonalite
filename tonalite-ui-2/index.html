@@ -28,7 +28,7 @@
                         <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">File</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item">New Show</a>
+                            <a class="dropdown-item" @click="resetShow">New Show</a>
                             <a class="dropdown-item">Reset Presets</a>
                             <div class="dropdown-divider"></div>
                             <a v-if="embeded == true" class="dropdown-item">Save Show To USB</a>
@@ -141,8 +141,8 @@
                                 class="btn btn-danger btn-block">Stop</button>
                         </div>
                         <div class="col-4" v-if="cuePlaying == false">
-                            <button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                class="btn btn-danger btn-block">Record</button>
+                            <button :disabled="fixtures.length == 0" id="cueActionBtn" class="btn btn-danger btn-block"
+                                @click="recordCue">Record</button>
                         </div>
                         <div class="col-4">
                             <div>
