@@ -1979,7 +1979,7 @@ io.on('connection', function (socket) {
         });
     });
 
-    socket.on('importFixtures', function () {
+    socket.on('importFixturesFromUSB', function () {
         importFixtures(function (result) {
             if (result) {
                 socket.emit('message', { type: "info", content: "The fixture profiles have been imported from USB!" });

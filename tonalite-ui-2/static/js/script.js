@@ -9,7 +9,8 @@ var app = new Vue({
         cues: [],
         presets: [],
         cuePlaying: false,
-        currentCue: ""
+        currentCue: "",
+        blackout: false
     },
     methods: {
         launchFullScreen: function () {
@@ -69,6 +70,18 @@ var app = new Vue({
         },
         stopCue: function () {
             socket.emit("stopCue");
+        },
+        recordPreset: function () {
+            socket.emit("recordPreset");
+        },
+        toggleBlackout: function () {
+            socket.emit("toggleBlackout");
+        },
+        updateFirmware: function () {
+            socket.emit("updateFirmware");
+        },
+        importFixturesFromUSB: function () {
+            socket.emit("importFixturesFromUSB");
         }
     }
 });
@@ -82,6 +95,7 @@ socket.on('connect', function () {
     app.currentCue = "";
     app.cuePlaying = false;
     app.embeded = false;
+    app.blackout = false;
 });
 
 socket.on('fixtures', function (msg) {
@@ -106,4 +120,8 @@ socket.on('cueActionBtn', function (msg) {
 
 socket.on('currentCue', function (msg) {
     app.currentCue = msg;
+});
+
+socket.on('blackout', function (msg) {
+    app.blackout = msg;
 });

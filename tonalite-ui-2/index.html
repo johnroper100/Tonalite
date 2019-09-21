@@ -41,7 +41,8 @@
                             <div class="dropdown-divider"></div>
                             <a v-if="ifMobile() || embeded == false" class="dropdown-item">Import
                                 Fixture Definitions From File</a>
-                            <a v-if="embeded == true" class="dropdown-item">Import Fixture Definitions From USB</a>
+                            <a v-if="embeded == true" class="dropdown-item" @click="importFixturesFromUSB">Import
+                                Fixture Definitions From USB</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -49,7 +50,7 @@
                             aria-expanded="false">Edit</a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item">Settings</a>
-                            <a v-if="embeded == true" class="dropdown-item">Update Firmware</a>
+                            <a v-if="embeded == true" class="dropdown-item" @click="updateFirmware">Update Firmware</a>
                             <div class="dropdown-divider"></div>
                             <a v-if="ifMobile() || embeded == false" class="dropdown-item"
                                 @click="launchFullScreen">Full Screen</a>
@@ -81,7 +82,8 @@
                             <button class="btn btn-success btn-block">Add Fixture</button>
                         </div>
                         <div class="col-6">
-                            <button :disabled="fixtures.length == 0" class="btn btn-danger btn-block" @click="resetFixtures">Reset
+                            <button :disabled="fixtures.length == 0" class="btn btn-danger btn-block"
+                                @click="resetFixtures">Reset
                                 Values</button>
                         </div>
                     </div>
@@ -111,7 +113,8 @@
                                 Group</button>
                         </div>
                         <div class="col-6">
-                            <button :disabled="groups.length == 0" class="btn btn-danger btn-block" @click="resetGroups">Reset
+                            <button :disabled="groups.length == 0" class="btn btn-danger btn-block"
+                                @click="resetGroups">Reset
                                 Values</button>
                         </div>
                     </div>
@@ -137,8 +140,8 @@
                             </div>
                         </div>
                         <div class="col-4" v-if="cuePlaying == true">
-                            <button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                class="btn btn-danger btn-block" @click="stopCue">Stop</button>
+                            <button :disabled="fixtures.length == 0" id="cueActionBtn" class="btn btn-danger btn-block"
+                                @click="stopCue">Stop</button>
                         </div>
                         <div class="col-4" v-if="cuePlaying == false">
                             <button :disabled="fixtures.length == 0" id="cueActionBtn" class="btn btn-danger btn-block"
@@ -160,6 +163,35 @@
                         </div>
                         <div v-if="cues.length == 0" class="col-12">
                             <h5>There are no cues in this show!</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="presets" class="tabcontent" v-if="currentView == 'presets'">
+                <div class="container">
+                    <div class="row topBtns sticky-top">
+                        <div class="col-12">
+                            <button :disabled="fixtures.length == 0" class="btn btn-success btn-block"
+                                @click="recordPreset">Record Preset</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="blackoutBtn" class="btn"
+                                :class="{ 'btn-primary' : blackout == false, 'btn-danger' : blackout == true}"
+                                @click="toggleBlackout">Blackout</button>
+                            <label class="ml-2" for="grandmaster">Grandmaster:</label>
+                            <input type="range" class="custom-range" id="grandmaster" min="0" max="100">
+                        </div>
+                    </div>
+                    <div class="row" id="presetsList">
+                        <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id">
+                            <div :class="{ 'presetActive' : preset.active == true}" class="presetItem">
+                                <p>{{preset.name}}</p>
+                            </div>
+                        </div>
+                        <div v-if="presets.length == 0" class="col-12">
+                            <h5>There are no presets in this show!</h5>
                         </div>
                     </div>
                 </div>
