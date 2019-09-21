@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="static/css/style.css">
 
     <link rel="apple-touch-icon" href="static/img/icon.png">
+    <link rel="manifest" href="/static/manifest.json">
 </head>
 
 <body>
@@ -42,13 +43,6 @@
                         v-on:input="updatePresetIntensity(preset.id)" v-bind:value="preset.intensity">
                 </div>
             </div>
-            <!--<div class="row">
-                <div class="col-12">
-                    <label for="grandmaster">Grandmaster:</label>
-                    <input type="range" class="custom-range preset-range" id="grandmaster" min="0" max="100"
-                        v-on:input="updateGrandmasterValue()" v-model="grandmaster">
-                </div>
-            </div>-->
         </div>
 
         <div id="serverDisconnectedModal" data-backdrop="static" data-keyboard="false" class="modal" tabindex="-1"
