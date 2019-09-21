@@ -29,15 +29,46 @@ var app = new Vue({
         ifMobile: function () {
             return isMobile.any;
         },
-        resetShow: function() {
+        resetShow: function () {
             bootbox.confirm("Are you sure you want a new show? This will reset everything.", function (result) {
                 if (result === true) {
                     socket.emit("resetShow");
                 }
             });
         },
-        recordCue: function() {
+        resetPresets: function () {
+            bootbox.confirm("Are you sure you want to reset the presets?", function (result) {
+                if (result === true) {
+                    socket.emit("resetPresets");
+                    app.currentView = "presets";
+                }
+            });
+        },
+        resetFixtures: function () {
+            bootbox.confirm("Are you sure you want to reset all fixture parameter values?", function (result) {
+                if (result === true) {
+                    socket.emit("resetFixtures");
+                }
+            });
+        },
+        resetGroups: function () {
+            bootbox.confirm("Are you sure you want to reset all group parameter values?", function (result) {
+                if (result === true) {
+                    socket.emit("resetGroups");
+                }
+            });
+        },
+        recordCue: function () {
             socket.emit("recordCue");
+        },
+        nextCue: function () {
+            socket.emit("nextCue");
+        },
+        lastCue: function () {
+            socket.emit("lastCue");
+        },
+        stopCue: function () {
+            socket.emit("stopCue");
         }
     }
 });
@@ -71,4 +102,8 @@ socket.on('presets', function (msg) {
 
 socket.on('cueActionBtn', function (msg) {
     app.cuePlaying = msg;
+});
+
+socket.on('currentCue', function (msg) {
+    app.currentCue = msg;
 });

@@ -29,7 +29,7 @@
                             aria-expanded="false">File</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" @click="resetShow">New Show</a>
-                            <a class="dropdown-item">Reset Presets</a>
+                            <a class="dropdown-item" @click="resetPresets">Reset Presets</a>
                             <div class="dropdown-divider"></div>
                             <a v-if="embeded == true" class="dropdown-item">Save Show To USB</a>
                             <a v-if="embeded == true" class="dropdown-item">Open Show From USB</a>
@@ -81,7 +81,7 @@
                             <button class="btn btn-success btn-block">Add Fixture</button>
                         </div>
                         <div class="col-6">
-                            <button :disabled="fixtures.length == 0" class="btn btn-danger btn-block">Reset
+                            <button :disabled="fixtures.length == 0" class="btn btn-danger btn-block" @click="resetFixtures">Reset
                                 Values</button>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                                 Group</button>
                         </div>
                         <div class="col-6">
-                            <button :disabled="groups.length == 0" class="btn btn-danger btn-block">Reset
+                            <button :disabled="groups.length == 0" class="btn btn-danger btn-block" @click="resetGroups">Reset
                                 Values</button>
                         </div>
                     </div>
@@ -133,12 +133,12 @@
                         <div class="col-4">
                             <div>
                                 <button :disabled="cues.length == 0" class="btn btn-primary btn-block"><i
-                                        class="far fa-chevron-left"></i></button>
+                                        class="far fa-chevron-left" @click="lastCue"></i></button>
                             </div>
                         </div>
                         <div class="col-4" v-if="cuePlaying == true">
                             <button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                class="btn btn-danger btn-block">Stop</button>
+                                class="btn btn-danger btn-block" @click="stopCue">Stop</button>
                         </div>
                         <div class="col-4" v-if="cuePlaying == false">
                             <button :disabled="fixtures.length == 0" id="cueActionBtn" class="btn btn-danger btn-block"
@@ -147,7 +147,7 @@
                         <div class="col-4">
                             <div>
                                 <button :disabled="cues.length == 0" class="btn btn-primary btn-block"><i
-                                        class="far fa-chevron-right"></i></button>
+                                        class="far fa-chevron-right" @click="nextCue"></i></button>
                             </div>
                         </div>
                     </div>
