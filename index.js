@@ -782,7 +782,7 @@ function savePresets() {
     return true;
 };
 
-app.use('/static', express.static(__dirname + '/static'));
+app.use('/static', express.static(__dirname + '/tonalite-ui-2/static'));
 app.use('/docs', express.static(__dirname + '/docs/dist'));
 
 app.use(fileUpload());
@@ -790,7 +790,7 @@ app.use(compression());
 app.use(favicon(__dirname + '/static/img/favicon.ico'));
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.min.html');
+    res.sendFile(__dirname + '/tonalite-ui-2/index.html');
 });
 
 app.get('/presets', function (req, res) {

@@ -5,7 +5,11 @@ var app = new Vue({
         currentView: 'fixtures',
         embeded: false,
         fixtures: [],
-        groups: []
+        groups: [],
+        cues: [],
+        presets: [],
+        cuePlaying: false,
+        currentCue: ""
     },
     methods: {
         launchFullScreen: function () {
@@ -31,6 +35,11 @@ var app = new Vue({
 socket.on('connect', function () {
     app.currentTab = 'fixtures';
     app.fixtures = [];
+    app.groups = [];
+    app.cues = [];
+    app.presets = [];
+    app.currentCue = "";
+    app.cuePlaying = false;
     app.embeded = false;
 });
 
@@ -40,4 +49,12 @@ socket.on('fixtures', function (msg) {
 
 socket.on('groups', function (msg) {
     app.groups = msg;
+});
+
+socket.on('cues', function (msg) {
+    app.cues = msg;
+});
+
+socket.on('presets', function (msg) {
+    app.presets = msg;
 });

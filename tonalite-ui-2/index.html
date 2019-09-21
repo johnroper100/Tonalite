@@ -107,24 +107,59 @@
                 <div class="container">
                     <div class="row topBtns sticky-top">
                         <div class="col-6">
-                            <button :disabled="fixtures.length == 0" class="btn btn-success btn-block"
-                                onclick="addGroupModal()">Add
+                            <button :disabled="fixtures.length == 0" class="btn btn-success btn-block">Add
                                 Group</button>
                         </div>
                         <div class="col-6">
-                            <button :disabled="groups.length == 0" class="btn btn-danger btn-block"
-                                onclick="resetGroups()">Reset
+                            <button :disabled="groups.length == 0" class="btn btn-danger btn-block">Reset
                                 Values</button>
                         </div>
                     </div>
                     <div class="row" id="groupsList">
                         <div class="col-4 col-lg-2 mb-3" v-for="group in groups" :key="group.id">
-                            <div class="groupItem" v-on:click="viewGroupParameters(group.id)">
+                            <div class="groupItem">
                                 <p>{{group.name}}</p>
                             </div>
                         </div>
                         <div v-if="groups.length == 0" class="col-12">
                             <h5>There are no groups in this show!</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="cues" class="tabcontent" v-if="currentView == 'cues'">
+                <div class="container">
+                    <div class="row topBtns sticky-top">
+                        <div class="col-4">
+                            <div>
+                                <button :disabled="cues.length == 0" class="btn btn-primary btn-block"><i
+                                        class="far fa-chevron-left"></i></button>
+                            </div>
+                        </div>
+                        <div class="col-4" v-if="cuePlaying == true">
+                            <button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                class="btn btn-danger btn-block">Stop</button>
+                        </div>
+                        <div class="col-4" v-if="cuePlaying == false">
+                            <button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                class="btn btn-danger btn-block">Record</button>
+                        </div>
+                        <div class="col-4">
+                            <div>
+                                <button :disabled="cues.length == 0" class="btn btn-primary btn-block"><i
+                                        class="far fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="cuesList">
+                        <div class="col-4 col-lg-2 mb-3" v-for="cue in cues" :key="cue.id">
+                            <div class="cueItem"
+                                :class="{ 'cueActive' : cue.active == true, 'cueCurrent' : cue.id == currentCue && cue.active != true}">
+                                <p>{{cue.name}}</p>
+                            </div>
+                        </div>
+                        <div v-if="cues.length == 0" class="col-12">
+                            <h5>There are no cues in this show!</h5>
                         </div>
                     </div>
                 </div>
