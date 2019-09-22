@@ -61,7 +61,9 @@ var app = new Vue({
             });
         },
         recordCue: function () {
-            socket.emit("recordCue");
+            if (app.cuePlaying == false) {
+                socket.emit("recordCue");
+            }
         },
         nextCue: function () {
             socket.emit("nextCue");
@@ -84,7 +86,7 @@ var app = new Vue({
         importFixturesFromUSB: function () {
             socket.emit("importFixturesFromUSB");
         },
-        changeGrandMasterValue: function() {
+        changeGrandMasterValue: function () {
             socket.emit('changeGrandmasterValue', app.grandmaster)
         }
     }
