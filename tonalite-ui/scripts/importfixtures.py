@@ -201,8 +201,8 @@ with open('Carallon.def') as f:
                     "$$SWATCH")[2].strip().split(" ")[1])
                 swatch["parameters"][2] = int(line.partition("$$SWATCH")[
                     2].strip().split(" ")[1])
-                swatch["color"] = "#".join(
-                    [format(val, '02X') for val in swatch["parameters"]])
+                swatch["color"] = "#"+("".join(
+                    [format(val, '02X') for val in swatch["parameters"]]))
                 if not swatch in swatches:
                     swatches.append(swatch)
 
