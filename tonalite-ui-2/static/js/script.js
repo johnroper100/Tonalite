@@ -143,6 +143,14 @@ var app = new Vue({
         },
         editFixtureSettings: function () {
             socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress });
+        },
+        removeFixture: function () {
+            bootbox.confirm("Are you sure you want to delete this fixture?", function (result) {
+                if (result === true) {
+                    app.currentView = 'fixtures';
+                    socket.emit('removeFixture', app.currentFixture.id);
+                }
+            });
         }
     }
 });
@@ -214,5 +222,13 @@ socket.on('fixtureParameters', function (msg) {
     app.currentFixture = msg;
     if (app.currentView != "fixtureSettings") {
         app.currentView = "fixtureParameters";
+    }
+});
+
+socket.on('resetView', function (msg) {
+    if (msg.type == 'fixtures') {
+        if (app.currentFixture.id == msg.eid) {
+            app.currentView = 'fixtures';
+        }
     }
 });

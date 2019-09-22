@@ -1122,6 +1122,7 @@ io.on('connection', function (socket) {
                 }
                 fixtures.splice(fixtures.map(el => el.id).indexOf(fixtureID), 1);
                 socket.emit('message', { type: "info", content: "Fixture has been removed!" });
+                io.emit('resetView', { type: 'fixtures', eid: fixtureID });
                 io.emit('fixtures', cleanFixtures());
                 io.emit('currentCue', currentCueID);
                 io.emit('cues', cleanCues());
