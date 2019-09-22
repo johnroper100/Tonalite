@@ -209,7 +209,7 @@
                                 <h5>Fixture Chips:</h5>
                                 <div v-for="(chip, id) in currentFixture.chips" :key="id"
                                     class="fixtureChip d-inline-block mr-2"
-                                    v-bind:style="{ backgroundColor: chip.color }"></div>
+                                    v-bind:style="{ backgroundColor: chip.color }" @click="useFixtureChip(id)"></div>
                             </div>
                         </div>
                         <div v-if="currentFixture.effects.length > 0">

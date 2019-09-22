@@ -127,6 +127,9 @@ var app = new Vue({
         },
         useParameterRange: function (pid, rid) {
             socket.emit('useParameterRange', { id: app.currentFixture.id, pid: pid, rid: rid });
+        },
+        useFixtureChip: function(pid) {
+            socket.emit('useFixtureChip', {id: app.currentFixture.id, pid: pid});
         }
     }
 });
