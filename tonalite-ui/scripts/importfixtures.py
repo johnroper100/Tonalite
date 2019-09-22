@@ -42,8 +42,9 @@ with open('Carallon.def') as f:
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
                     if not os.path.exists("../fixtures/"+filename):
-                        with open("../fixtures/"+filename, 'w') as f:
-                            json.dump(fixtureProfile, f, indent=4)
+                        # with open("../fixtures/"+filename, 'w') as f:
+                        #    json.dump(fixtureProfile, f, indent=4)
+                        pass
                     else:
                         print(filename)
 
@@ -70,9 +71,10 @@ with open('Carallon.def') as f:
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
                     if not os.path.exists("../fixtures/"+filename):
-                        with open('../fixtures/'+filename, 'w', encoding='utf-8') as f:
-                            json.dump(fixtureProfile, f,
-                                      ensure_ascii=False, indent=4)
+                        # with open('../fixtures/'+filename, 'w', encoding='utf-8') as f:
+                        #    json.dump(fixtureProfile, f,
+                        #              ensure_ascii=False, indent=4)
+                        pass
                     else:
                         print(filename)
             elif "$$MANUFACTURER" in line:
@@ -188,18 +190,19 @@ with open('Carallon.def') as f:
                 rangeItem["media"]["dcid"] = line.partition("$$GEL")[2].strip()
             elif "$$SWATCH" in line:
                 swatch = {
-                    "red": 0,
-                    "green": 0,
-                    "blue": 0,
-                    "name": ""
+                    "name": "",
+                    "color": "",
+                    "parameters": [0, 0, 0]
                 }
                 swatch["name"] = rangeItem["label"]
-                swatch["red"] = int(line.partition("$$SWATCH")[
-                                    2].strip().split(" ")[0])
-                swatch["green"] = int(line.partition(
+                swatch["parameters"][0] = int(line.partition("$$SWATCH")[
+                    2].strip().split(" ")[0])
+                swatch["parameters"][1] = int(line.partition(
                     "$$SWATCH")[2].strip().split(" ")[1])
-                swatch["blue"] = int(line.partition("$$SWATCH")[
-                                     2].strip().split(" ")[1])
+                swatch["parameters"][2] = int(line.partition("$$SWATCH")[
+                    2].strip().split(" ")[1])
+                swatch["color"] = "#".join(
+                    [format(val, '02X') for val in swatch["parameters"]])
                 if not swatch in swatches:
                     swatches.append(swatch)
 

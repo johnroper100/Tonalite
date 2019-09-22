@@ -202,6 +202,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div v-if="currentFixture.chips.length > 0">
+                            <div class="fixtureChips">
+                                <h5>Fixture Chips:</h5>
+                                <div v-for="(chip, id) in currentFixture.chips" :key="id"
+                                    class="fixtureChip d-inline-block mr-2"
+                                    v-bind:style="{ backgroundColor: chip.color }"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
