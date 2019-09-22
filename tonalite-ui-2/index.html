@@ -89,7 +89,8 @@
                         </div>
                     </div>
                     <div class="row" id="fixturesList">
-                        <div class="col-4 col-sm-3 col-lg-2 mb-3" v-for="fixture in fixtures" :key="fixture.id">
+                        <div class="col-4 col-sm-3 col-lg-2 mb-3" v-for="fixture in fixtures" :key="fixture.id"
+                            @click="getFixtureParameters(fixture.id)">
                             <div class="fixtureItem">
                                 <h3 v-if="fixture.hasIntensity === true" class="fixtureValue">
                                     {{fixture.parameters[fixture.parameters.map(el => el.type).indexOf(1)].displayValue}}
@@ -145,6 +146,48 @@
                                 </ul>
                                 <div v-if="fixtureProfiles.length == 0" class="text-danger"> There are no fixture
                                     profiles in your library!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="fixtureParametersPage" class="tabcontent" v-if="currentView == 'fixtureParameters'">
+                <div class="container">
+                    <div class="row topBtns">
+                        <div class="col-4">
+                            <h5 id="fixtureParametersName">{{currentFixture.name}}</h5>
+                        </div>
+                        <div class="col-3">
+                            <button id="fixtureSettingsBtn" class="btn btn-primary btn-block"><i
+                                    class="far fa-cog d-sm-none d-inline-block"></i><span
+                                    class="d-none d-sm-inline-block">Settings</span></button>
+                        </div>
+                        <div class="col-2">
+                            <button id="fixtureResetBtn" class="btn btn-danger btn-block"><i
+                                    class="far fa-redo d-sm-none d-inline-block"></i><span
+                                    class="d-none d-sm-inline-block">Reset</span></button>
+                        </div>
+                        <div class="col-3">
+                            <button id="fixtureAddEffectBtn" class="btn btn-success btn-block"><i
+                                    class="far fa-hurricane d-sm-none d-inline-block"></i><span
+                                    class="d-none d-sm-inline-block">Add
+                                    Effect</span></button>
+                        </div>
+                    </div>
+                    <div id="fixtureParameters">
+                        <div v-for="parameter in currentFixture.parameters" :key="parameter.coarse">
+                            <button class="btn btn-info" v-if="parameter.locked == true"><i
+                                    class="far fa-lock-alt fa-sm"></i></button>
+                            <button class="btn btn-info" v-if="parameter.locked == false"><i
+                                    class="far fa-lock-open-alt fa-sm"></i></button>
+                            <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}</label>
+                            <input type="range" class="custom-range" v-bind:id="parameter.coarse"
+                                v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value">
+                            <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
+                                <div class="channelRanges row flex-nowrap">
+                                    <div class="channelRange col-2 col-md-1 mr-1 bg-danger"
+                                        v-for="range in parameter.ranges">{{range.label}}</div>
                                 </div>
                             </div>
                         </div>
@@ -247,7 +290,8 @@
         <div class="tab">
             <div class="row">
                 <div class="col-3" @click="currentView = 'fixtures'">
-                    <div class="tabitem tabitem-fixtures" :class="{ active: currentView == 'fixtures' }">
+                    <div class="tabitem tabitem-fixtures"
+                        :class="{ active: currentView == 'fixtures' || currentView == 'fixtureParameters' || currentView == 'fixtureSettings' }">
                         <i class="tablinks far fa-lightbulb"></i><span class="tabtext">Fixtures</span>
                     </div>
                 </div>

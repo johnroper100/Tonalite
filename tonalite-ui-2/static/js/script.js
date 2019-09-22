@@ -16,6 +16,8 @@ var app = new Vue({
         startDMXAddress: 1,
         newFixtureCreationCount: 1,
         fixtureProfilesSearch: "",
+        fixtureParameters: [],
+        currentFixture: {}
     },
     computed: {
         filteredFixtureProfilesList() {
@@ -110,12 +112,16 @@ var app = new Vue({
         addFixture: function (fixture, dcid) {
             socket.emit("addFixture", { fixtureName: fixture, dcid: dcid, startDMXAddress: $('#newFixtureStartDMXAddress').val(), creationCount: $('#newFixtureCreationCount').val() });
             $('#fixtureProfilesModal').modal("hide");
+        },
+        getFixtureParameters: function (fixtureID) {
+            socket.emit("getFixtureParameters", fixtureID);
+            app.currentView = "fixtureParameters";
         }
     }
 });
 
 socket.on('connect', function () {
-    app.currentTab = 'fixtures';
+    app.currentView = 'fixtures';
     app.fixtures = [];
     app.groups = [];
     app.cues = [];
@@ -129,6 +135,8 @@ socket.on('connect', function () {
     app.startDMXAddress = 1;
     app.newFixtureCreationCount = 1;
     app.fixtureProfilesSearch = "";
+    app.fixtureParameters = [];
+    app.currentFixture = {};
 });
 
 socket.on('fixtures', function (msg) {
@@ -170,4 +178,8 @@ socket.on('meta', function (msg) {
 socket.on('fixtureProfiles', function (msg) {
     app.fixtureProfiles = msg[0];
     app.startDMXAddress = msg[1];
+});
+
+socket.on('fixtureParameters', function (msg) {
+    app.currentFixture = msg;
 });
