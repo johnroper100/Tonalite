@@ -11,7 +11,18 @@ var app = new Vue({
         cuePlaying: false,
         currentCue: "",
         blackout: false,
-        grandmaster: 100
+        grandmaster: 100,
+        fixtureProfiles: [],
+        startDMXAddress: 1,
+        newFixtureCreationCount: 1,
+        fixtureProfilesSearch: "",
+    },
+    computed: {
+        filteredFixtureProfilesList() {
+            return this.fixtureProfiles.filter(profile => {
+                return (profile[2] + " " + profile[0] + " " + profile[1]).toLowerCase().includes(this.fixtureProfilesSearch.toLowerCase());
+            });
+        }
     },
     methods: {
         launchFullScreen: function () {
@@ -87,7 +98,18 @@ var app = new Vue({
             socket.emit("importFixturesFromUSB");
         },
         changeGrandMasterValue: function () {
-            socket.emit('changeGrandmasterValue', app.grandmaster)
+            socket.emit("changeGrandmasterValue", app.grandmaster);
+        },
+        getFixtureProfiles: function () {
+            socket.emit("getFixtureProfiles");
+            app.newFixtureCreationCount = 1;
+            app.startDMXAddress = 1;
+            app.fixtureProfilesSearch = "";
+            $('#fixtureProfilesModal').modal("show");
+        },
+        addFixture: function (fixture, dcid) {
+            socket.emit("addFixture", { fixtureName: fixture, dcid: dcid, startDMXAddress: $('#newFixtureStartDMXAddress').val(), creationCount: $('#newFixtureCreationCount').val() });
+            $('#fixtureProfilesModal').modal("hide");
         }
     }
 });
@@ -103,6 +125,10 @@ socket.on('connect', function () {
     app.desktop = false;
     app.blackout = false;
     app.grandmaster = 100;
+    app.fixtureProfiles = [];
+    app.startDMXAddress = 1;
+    app.newFixtureCreationCount = 1;
+    app.fixtureProfilesSearch = "";
 });
 
 socket.on('fixtures', function (msg) {
@@ -139,4 +165,9 @@ socket.on('grandmaster', function (msg) {
 
 socket.on('meta', function (msg) {
     app.desktop = msg.desktop;
+});
+
+socket.on('fixtureProfiles', function (msg) {
+    app.fixtureProfiles = msg[0];
+    app.startDMXAddress = msg[1];
 });

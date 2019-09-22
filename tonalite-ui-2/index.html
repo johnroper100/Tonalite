@@ -33,7 +33,8 @@
                             <div class="dropdown-divider"></div>
                             <a v-if="desktop == false" class="dropdown-item">Save Show To USB</a>
                             <a v-if="desktop == false" class="dropdown-item">Open Show From USB</a>
-                            <a v-if="ifMobile() || desktop == true" class="dropdown-item" href="/showFile" download>Save Show To
+                            <a v-if="ifMobile() || desktop == true" class="dropdown-item" href="/showFile" download>Save
+                                Show To
                                 File</a>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item">Open
                                 Show From
@@ -52,8 +53,8 @@
                             <a class="dropdown-item">Settings</a>
                             <a v-if="desktop == false" class="dropdown-item" @click="updateFirmware">Update Firmware</a>
                             <div class="dropdown-divider"></div>
-                            <a v-if="ifMobile() || desktop == true" class="dropdown-item"
-                                @click="launchFullScreen">Full Screen</a>
+                            <a v-if="ifMobile() || desktop == true" class="dropdown-item" @click="launchFullScreen">Full
+                                Screen</a>
                             <a class="dropdown-item" href="/presets">Presets View</a>
                         </div>
                     </li>
@@ -79,7 +80,7 @@
                 <div class="container">
                     <div class="row topBtns sticky-top">
                         <div class="col-6">
-                            <button class="btn btn-success btn-block">Add Fixture</button>
+                            <button class="btn btn-success btn-block" @click="getFixtureProfiles">Add Fixture</button>
                         </div>
                         <div class="col-6">
                             <button :disabled="fixtures.length == 0" class="btn btn-danger btn-block"
@@ -101,6 +102,51 @@
                         </div>
                         <div v-if="fixtures.length == 0" class="col-12">
                             <h5>There are no fixtures in this show!</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="fixtureProfilesModal" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="dark" for="newFixtureStartDMXAddress">Starting
+                                                Address:</label>
+                                            <input type="number" class="form-control" max="512" min="1"
+                                                id="newFixtureStartDMXAddress" placeholder="DMX Address"
+                                                v-model="startDMXAddress">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="dark" for="newFixtureCreationCount">Number To Create:</label>
+                                            <input type="number" class="form-control" min="1"
+                                                id="newFixtureCreationCount" placeholder="Creation Count"
+                                                v-model="newFixtureCreationCount">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="searchFixtureProfiles"
+                                                placeholder="Search:" v-model="fixtureProfilesSearch">
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="list-group" id="fixtureProfilesList">
+                                    <li class="list-group-item fixtureProfileItem"
+                                        v-for="profile in filteredFixtureProfilesList"
+                                        @click="addFixture(profile[3], profile[4])">{{profile[2]}} {{profile[0]}}
+                                        <span v-if="profile[1] != '-'">-
+                                            {{profile[1]}}</span> </li>
+                                </ul>
+                                <div v-if="fixtureProfiles.length == 0" class="text-danger"> There are no fixture
+                                    profiles in your library!
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
