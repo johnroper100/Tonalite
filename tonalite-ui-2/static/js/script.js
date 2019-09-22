@@ -3,7 +3,7 @@ var app = new Vue({
     el: '#app',
     data: {
         currentView: 'fixtures',
-        embeded: false,
+        desktop: false,
         fixtures: [],
         groups: [],
         cues: [],
@@ -100,7 +100,7 @@ socket.on('connect', function () {
     app.presets = [];
     app.currentCue = "";
     app.cuePlaying = false;
-    app.embeded = false;
+    app.desktop = false;
     app.blackout = false;
     app.grandmaster = 100;
 });
@@ -135,4 +135,8 @@ socket.on('blackout', function (msg) {
 
 socket.on('grandmaster', function (msg) {
     app.grandmaster = msg;
+});
+
+socket.on('meta', function (msg) {
+    app.desktop = msg.desktop;
 });

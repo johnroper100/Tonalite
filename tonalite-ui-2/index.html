@@ -31,17 +31,17 @@
                             <a class="dropdown-item" @click="resetShow">New Show</a>
                             <a class="dropdown-item" @click="resetPresets">Reset Presets</a>
                             <div class="dropdown-divider"></div>
-                            <a v-if="embeded == true" class="dropdown-item">Save Show To USB</a>
-                            <a v-if="embeded == true" class="dropdown-item">Open Show From USB</a>
-                            <a v-if="ifMobile() || embeded == false" class="dropdown-item" href="/showFile" download>Save Show To
+                            <a v-if="desktop == false" class="dropdown-item">Save Show To USB</a>
+                            <a v-if="desktop == false" class="dropdown-item">Open Show From USB</a>
+                            <a v-if="ifMobile() || desktop == true" class="dropdown-item" href="/showFile" download>Save Show To
                                 File</a>
-                            <a v-if="ifMobile() || embeded == false" class="dropdown-item">Open
+                            <a v-if="ifMobile() || desktop == true" class="dropdown-item">Open
                                 Show From
                                 File</a>
                             <div class="dropdown-divider"></div>
-                            <a v-if="ifMobile() || embeded == false" class="dropdown-item">Import
+                            <a v-if="ifMobile() || desktop == true" class="dropdown-item">Import
                                 Fixture Definitions From File</a>
-                            <a v-if="embeded == true" class="dropdown-item" @click="importFixturesFromUSB">Import
+                            <a v-if="desktop == false" class="dropdown-item" @click="importFixturesFromUSB">Import
                                 Fixture Definitions From USB</a>
                         </div>
                     </li>
@@ -50,9 +50,9 @@
                             aria-expanded="false">Edit</a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item">Settings</a>
-                            <a v-if="embeded == true" class="dropdown-item" @click="updateFirmware">Update Firmware</a>
+                            <a v-if="desktop == false" class="dropdown-item" @click="updateFirmware">Update Firmware</a>
                             <div class="dropdown-divider"></div>
-                            <a v-if="ifMobile() || embeded == false" class="dropdown-item"
+                            <a v-if="ifMobile() || desktop == true" class="dropdown-item"
                                 @click="launchFullScreen">Full Screen</a>
                             <a class="dropdown-item" href="/presets">Presets View</a>
                         </div>
@@ -64,9 +64,9 @@
                             <a class="dropdown-item">About Tonalite</a>
                             <a class="dropdown-item" href="/docs">Documentation</a>
                             <div class="dropdown-divider"></div>
-                            <a v-if="ifMobile() || embeded == false" class="dropdown-item"
+                            <a v-if="ifMobile() || desktop == true" class="dropdown-item"
                                 href="http://jmroper.com/tonalite">Website</a>
-                            <a v-if="ifMobile() || embeded == false" class="dropdown-item"
+                            <a v-if="ifMobile() || desktop == true" class="dropdown-item"
                                 href="mailto(johnroper100@gmail.com)">Send An
                                 Email</a>
                         </div>
