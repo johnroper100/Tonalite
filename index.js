@@ -630,9 +630,11 @@ function calculateStack() {
                         if (fixtures[f].parameters[p].locked === false) {
                             var effectChanIndex = fixtures[f].effects[e].parameterNames.findIndex(function (element) { return element == fixtures[f].parameters[p].name });
                             if (effectChanIndex > -1) {
-                                var effectValue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex] * 2;
+                                var effectValue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex];
                                 if (fixtures[f].effects[e].resolution == 8) {
                                     effectValue = cppaddon.mapRange(effectValue, 0, 255, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max);
+                                } else {
+                                    effectValue = effectValue + 32766;
                                 }
                                 effectValue = (effectValue * fixtures[f].effects[e].depth) + ((fixtures[f].parameters[p].value >> 8) * (1 - fixtures[f].effects[e].depth));
                                 if (fixtures[f].parameters[p].type == 1) {
