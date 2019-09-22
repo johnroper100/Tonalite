@@ -1311,7 +1311,6 @@ io.on('connection', function (socket) {
                     fixture.parameters[fixture.parameters.map(el => el.name).indexOf(chip.parameters[c].name)].value = (fixture.parameters[fixture.parameters.map(el => el.name).indexOf(chip.parameters[c].name)].max / 100.0) * chip.parameters[c].value;
                     fixture.parameters[fixture.parameters.map(el => el.name).indexOf(chip.parameters[c].name)].displayValue = chip.parameters[c].value;
                 }
-                socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
                 io.emit('fixtures', cleanFixtures());
             }
         } else {
@@ -1326,8 +1325,7 @@ io.on('connection', function (socket) {
                 var parameter = fixture.parameters[msg.pid];
                 var range = parameter.ranges[msg.rid];
                 fixture.parameters[msg.pid].value = cppaddon.mapRange(range.default, 0, 255, parameter.min, parameter.max);
-                fixture.parameters[msg.pid].displayValue = fixture.parameters[msg.pid].value;
-                socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
+                fixture.parameters[msg.pid].displayValue = cppaddon.mapRange(fixture.parameters[msg.pid].value, fixture.parameters[msg.pid].min, fixture.parameters[msg.pid].max, 0, 100);;
                 io.emit('fixtures', cleanFixtures());
             }
         } else {
@@ -1396,7 +1394,6 @@ io.on('connection', function (socket) {
                 }
                 fixture.hasActiveEffects = true;
                 saveShow();
-                socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
                 socket.emit('message', { type: "info", content: "Effect has been added to fixture!" });
                 io.emit('fixtures', cleanFixtures());
             }
