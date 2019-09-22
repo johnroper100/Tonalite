@@ -1286,7 +1286,6 @@ io.on('connection', function (socket) {
                         fixture.hasLockedParameters = true;
                     }
                 }
-                socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
                 io.emit('fixtures', cleanFixtures());
             }
         } else {

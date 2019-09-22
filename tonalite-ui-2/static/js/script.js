@@ -122,6 +122,9 @@ var app = new Vue({
         },
         changeFixtureParameterValue: function (parameter, index) {
             socket.emit("changeFixtureParameterValue", { id: app.currentFixture.id, pid: index, value: parameter.value })
+        },
+        changeFixtureParameterLock: function (index) {
+            socket.emit("changeFixtureParameterLock", { id: app.currentFixture.id, pid: index })
         }
     }
 });
