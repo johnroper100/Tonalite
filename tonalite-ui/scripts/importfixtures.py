@@ -2,6 +2,15 @@ import re
 import unicodedata
 import json
 import os
+import colorsys
+
+
+def get_hsv(hexrgb):
+    hexrgb = hexrgb.lstrip("#")   # in case you have Web color specs
+    lh = len(hexrgb)
+    # Allow short and long hex codes
+    r, g, b = (int(hexrgb[i:i+int(lh/3)], 16) / 255.0 for i in range(0, lh, int(lh/3)))
+    return colorsys.rgb_to_hsv(r, g, b)
 
 
 def slugify(value):
@@ -206,5 +215,6 @@ with open('Carallon.def') as f:
                 if not swatch in swatches:
                     swatches.append(swatch)
 
+swatches = sorted(swatches, key=lambda i: get_hsv(i['color']))
 with open("../swatches.json", 'w') as f:
     json.dump(swatches, f, indent=4)
