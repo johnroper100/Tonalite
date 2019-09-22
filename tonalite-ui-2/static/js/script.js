@@ -140,6 +140,9 @@ var app = new Vue({
                     socket.emit('resetFixture', app.currentFixture.id);
                 }
             });
+        },
+        editFixtureSettings: function () {
+            socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress });
         }
     }
 });
@@ -165,7 +168,7 @@ socket.on('connect', function () {
 
 socket.on('fixtures', function (msg) {
     app.fixtures = msg;
-    if (app.currentView == 'fixtureParameters' && app.currentFixture != {}) {
+    if ((app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings') && app.currentFixture != {}) {
         app.getFixtureParameters(app.currentFixture.id, false);
     }
 });
@@ -209,5 +212,7 @@ socket.on('fixtureProfiles', function (msg) {
 
 socket.on('fixtureParameters', function (msg) {
     app.currentFixture = msg;
-    app.currentView = "fixtureParameters";
+    if (app.currentView != "fixtureSettings") {
+        app.currentView = "fixtureParameters";
+    }
 });

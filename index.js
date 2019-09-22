@@ -1160,16 +1160,6 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('getFixtureSettings', function (fixtureID) {
-        if (fixtures.length != 0) {
-            if (fixtures.some(e => e.id === fixtureID)) {
-                socket.emit('fixtureSettings', fixtures[fixtures.map(el => el.id).indexOf(fixtureID)]);
-            }
-        } else {
-            socket.emit('message', { type: "error", content: "No fixtures exist!" });
-        }
-    });
-
     socket.on('getEffectSettings', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
@@ -1194,7 +1184,6 @@ io.on('connection', function (socket) {
                 }
                 fixture.name = msg.name;
                 fixture.startDMXAddress = parseInt(msg.startDMXAddress);
-                socket.emit('fixtureSettings', fixture);
                 socket.emit('message', { type: "info", content: "Fixture settings have been updated!" });
                 io.emit('fixtures', cleanFixtures());
                 saveShow();
@@ -1227,7 +1216,7 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(fixtureID)];
-                socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
+                socket.emit('fixtureParameters', fixtures[fixtures.map(el => el.id).indexOf(fixtureID)]);
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });

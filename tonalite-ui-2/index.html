@@ -83,9 +83,10 @@
                             <button class="btn btn-success btn-block" @click="getFixtureProfiles">Add Fixture</button>
                         </div>
                         <div class="col-6">
-                            <button :disabled="fixtures.length == 0" class="btn btn-danger btn-block"
-                                @click="resetFixtures">Reset
-                                Values</button>
+                            <div><button :disabled="fixtures.length == 0" class="btn btn-danger btn-block"
+                                    @click="resetFixtures">Reset
+                                    Values</button></div>
+
                         </div>
                     </div>
                     <div class="row" id="fixturesList">
@@ -165,7 +166,8 @@
                             <h5 id="fixtureParametersName">{{currentFixture.name}}</h5>
                         </div>
                         <div class="col-3">
-                            <button id="fixtureSettingsBtn" class="btn btn-primary btn-block"><i
+                            <button id="fixtureSettingsBtn" class="btn btn-primary btn-block"
+                                @click="currentView = 'fixtureSettings'"><i
                                     class="far fa-cog d-sm-none d-inline-block"></i><span
                                     class="d-none d-sm-inline-block">Settings</span></button>
                         </div>
@@ -235,6 +237,47 @@
                                         </span>
                                     </li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="fixtureSettingsPage" class="tabcontent" v-if="currentView == 'fixtureSettings'">
+                <div class="container">
+                    <div class="row topBtns">
+                        <div class="col-6">
+                            <div><button id="fixtureParametersBackBtn" class="btn btn-primary btn-block"
+                                    @click="currentView = 'fixtureParameters'">Back</button></div>
+
+                        </div>
+                        <div class="col-6">
+                            <div><button id="fixtureDeleteBtn" class="btn btn-danger btn-block">Delete</button></div>
+
+                        </div>
+                    </div>
+                    <div class="row" id="fixtureSettings">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="fixtureNameInput">Name:</label>
+                                <input class="form-control" type="text" id="fixtureNameInput"
+                                    placeholder="Full Fixture Name" @input="editFixtureSettings"
+                                    v-model="currentFixture.name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="fixtureShortNameInput">Short Name:</label>
+                                <input class="form-control" type="text" id="fixtureShortNameInput"
+                                    placeholder="Short Fixture Name" @input="editFixtureSettings"
+                                    v-model="currentFixture.shortName">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="fixtureDMXAddressInput">Starting DMX Address:</label>
+                                <input class="form-control" min="1" max="512" type="number" id="fixtureDMXAddressInput"
+                                    placeholder="Fixture Starting DMX Address" @input="editFixtureSettings"
+                                    v-model="currentFixture.startDMXAddress">
                             </div>
                         </div>
                     </div>
