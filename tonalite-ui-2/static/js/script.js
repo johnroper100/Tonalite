@@ -27,6 +27,9 @@ var app = new Vue({
         }
     },
     methods: {
+        mapRange: function (num, inMin, inMax, outMin, outMax) {
+            return (num - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+        },
         launchFullScreen: function () {
             var element = document.documentElement;
             if (element.requestFullScreen) {
