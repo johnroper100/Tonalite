@@ -492,7 +492,7 @@
               v-on:click="toggleBlackout()">Blackout</button>
             <label class="ml-2" for="grandmaster">Grandmaster:</label>
             <input type="range" class="custom-range" id="grandmaster" min="0" max="100"
-              v-on:input="updateGrandmasterValue()" v-model="grandmaster">
+              v-on:input="changeGrandmasterValue()" v-model="grandmaster">
           </div>
         </div>
         <div class="row" id="presetsList">

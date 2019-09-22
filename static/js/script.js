@@ -74,7 +74,7 @@ var app = new Vue({
                 return (word.charAt(0).toUpperCase() + word.slice(1));
             }).join(' ');
         },
-        updateGrandmasterValue: function () {
+        changeGrandmasterValue: function () {
             socket.emit('changeGrandmasterValue', app.grandmaster);
         },
         updatePresetIntensity: function () {

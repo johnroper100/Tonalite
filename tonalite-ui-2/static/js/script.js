@@ -10,7 +10,8 @@ var app = new Vue({
         presets: [],
         cuePlaying: false,
         currentCue: "",
-        blackout: false
+        blackout: false,
+        grandmaster: 100
     },
     methods: {
         launchFullScreen: function () {
@@ -82,6 +83,9 @@ var app = new Vue({
         },
         importFixturesFromUSB: function () {
             socket.emit("importFixturesFromUSB");
+        },
+        changeGrandMasterValue: function() {
+            socket.emit('changeGrandmasterValue', app.grandmaster)
         }
     }
 });
@@ -96,6 +100,7 @@ socket.on('connect', function () {
     app.cuePlaying = false;
     app.embeded = false;
     app.blackout = false;
+    app.grandmaster = 100;
 });
 
 socket.on('fixtures', function (msg) {
@@ -124,4 +129,8 @@ socket.on('currentCue', function (msg) {
 
 socket.on('blackout', function (msg) {
     app.blackout = msg;
+});
+
+socket.on('grandmaster', function (msg) {
+    app.grandmaster = msg;
 });
