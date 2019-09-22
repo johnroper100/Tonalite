@@ -78,7 +78,7 @@ var SETTINGS = {
     port: 3000,
     defaultUpTime: 3,
     defaultDownTime: 3,
-    desktop: true, // desktop vs embeded
+    desktop: false, // desktop vs embeded
     udmx: false,
     automark: true,
     artnetIP: null, // ArtNet output IP
