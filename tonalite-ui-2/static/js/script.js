@@ -133,6 +133,13 @@ var app = new Vue({
         },
         changeFixtureEffectState: function (eid) {
             socket.emit('changeFixtureEffectState', { id: app.currentFixture.id, effectid: eid })
+        },
+        resetFixture: function () {
+            bootbox.confirm("Are you sure you want to reset this fixture's parameter values?", function (result) {
+                if (result === true) {
+                    socket.emit('resetFixture', app.currentFixture.id);
+                }
+            });
         }
     }
 });
