@@ -210,6 +210,12 @@
                                     v-bind:style="{ backgroundColor: chip.color }"></div>
                             </div>
                         </div>
+                        <div v-if="currentFixture.effects.length > 0">
+                            <div class="fixtureEffects">
+                                <h5>Fixture Effects:</h5>
+                                <ul class="list-group"></ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
