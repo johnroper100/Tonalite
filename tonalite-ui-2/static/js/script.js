@@ -128,11 +128,11 @@ var app = new Vue({
         useParameterRange: function (pid, rid) {
             socket.emit('useParameterRange', { id: app.currentFixture.id, pid: pid, rid: rid });
         },
-        useFixtureChip: function(pid) {
-            socket.emit('useFixtureChip', {id: app.currentFixture.id, pid: pid});
+        useFixtureChip: function (pid) {
+            socket.emit('useFixtureChip', { id: app.currentFixture.id, pid: pid });
         },
-        changeFixtureEffectState: function(eid) {
-            socket.emit('changeFixtureEffectState', {id: app.currentFixture.id, effectid: eid})
+        changeFixtureEffectState: function (eid) {
+            socket.emit('changeFixtureEffectState', { id: app.currentFixture.id, effectid: eid })
         }
     }
 });
