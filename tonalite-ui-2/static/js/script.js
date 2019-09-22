@@ -116,7 +116,10 @@ var app = new Vue({
             socket.emit("addFixture", { fixtureName: fixture, dcid: dcid, startDMXAddress: $('#newFixtureStartDMXAddress').val(), creationCount: $('#newFixtureCreationCount').val() });
             $('#fixtureProfilesModal').modal("hide");
         },
-        getFixtureParameters: function (fixtureID) {
+        getFixtureParameters: function (fixtureID, clearAll) {
+            if (clearAll == true) {
+                app.currentFixture = {};
+            }
             socket.emit("getFixtureParameters", fixtureID);
             app.currentView = "fixtureParameters";
         },
@@ -151,7 +154,7 @@ socket.on('connect', function () {
 socket.on('fixtures', function (msg) {
     app.fixtures = msg;
     if (app.currentView == 'fixtureParameters' && app.currentFixture != {}) {
-        app.getFixtureParameters(app.currentFixture.id);
+        app.getFixtureParameters(app.currentFixture.id, false);
     }
 });
 
