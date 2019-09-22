@@ -1345,7 +1345,6 @@ io.on('connection', function (socket) {
                     if (effect.active == false) {
                         let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
                             fixture.parameters[p].displayValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 100);
-                            io.emit('fixtures', cleanFixtures());
                         }
                     }
                     io.emit('fixtures', cleanFixtures());

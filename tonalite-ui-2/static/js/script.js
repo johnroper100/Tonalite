@@ -130,6 +130,9 @@ var app = new Vue({
         },
         useFixtureChip: function(pid) {
             socket.emit('useFixtureChip', {id: app.currentFixture.id, pid: pid});
+        },
+        changeFixtureEffectState: function(eid) {
+            socket.emit('changeFixtureEffectState', {id: app.currentFixture.id, effectid: eid})
         }
     }
 });

@@ -225,12 +225,12 @@
                                             class="float-right btn btn-sm btn-primary d-inline-block">Settings</button>
                                         <span v-if="effect.active == true">
                                             <button
-                                                class="float-right btn btn-sm btn-success d-inline-block mr-1">Deactivate</button>
+                                                class="float-right btn btn-sm btn-success d-inline-block mr-1" @click="changeFixtureEffectState(effect.id)">Deactivate</button>
                                         </span>
                                         <span>
                                             <span v-if="effect.active == false">
                                                 <button
-                                                    class="float-right btn btn-sm btn-warning d-inline-block mr-1">Activate</button>
+                                                    class="float-right btn btn-sm btn-warning d-inline-block mr-1" @click="changeFixtureEffectState(effect.id)">Activate</button>
                                             </span>
                                         </span>
                                     </li>
