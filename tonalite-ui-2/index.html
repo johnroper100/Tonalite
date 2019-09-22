@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Tonalite - DMX Lighting Control System</title>
-    <script defer src="static/js/all.min.js"></script>
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/bootstrap-multiselect.css">
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="apple-touch-icon" href="static/img/icon.png">
-    <link rel="manifest" href="/static/manifest.json">
+    <script defer src="/v2/static/js/all.min.js"></script>
+    <link rel="stylesheet" href="/v2/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/v2/static/css/bootstrap-multiselect.css">
+    <link rel="stylesheet" href="/v2/static/css/style.css">
+    <link rel="apple-touch-icon" href="/v2/static/img/icon.png">
+    <link rel="manifest" href="/v2/static/manifest.json">
 </head>
 
 <body>
@@ -213,7 +213,26 @@
                         <div v-if="currentFixture.effects.length > 0">
                             <div class="fixtureEffects">
                                 <h5>Fixture Effects:</h5>
-                                <ul class="list-group"></ul>
+                                <ul class="list-group">
+                                    <li class="list-group-item fixtureEffect" v-for="effect in currentFixture.effects"
+                                        :key="effect.id">
+                                        <i class="mr-1 far"
+                                            :class="{'fa-palette': effect.type == 'Color', 'fa-running': effect.type == 'Shape', 'fa-lightbulb': effect.type == 'Intensity', 'fa-cog': effect.type == 'Parameter'}"></i>
+                                        {{effect.name}}
+                                        <button
+                                            class="float-right btn btn-sm btn-primary d-inline-block">Settings</button>
+                                        <span v-if="effect.active == true">
+                                            <button
+                                                class="float-right btn btn-sm btn-success d-inline-block mr-1">Deactivate</button>
+                                        </span>
+                                        <span>
+                                            <span v-if="effect.active == false">
+                                                <button
+                                                    class="float-right btn btn-sm btn-warning d-inline-block mr-1">Activate</button>
+                                            </span>
+                                        </span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -338,15 +357,15 @@
             </div>
         </div>
     </div>
-    <script src="static/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="static/js/popper.min.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/socket.io.js"></script>
-    <script src="static/js/bootstrap-multiselect.js"></script>
-    <script src="static/js/bootbox.min.js"></script>
-    <script src="static/js/isMobile.min.js"></script>
-    <script src="static/js/vue.js"></script>
-    <script src="static/js/script.js"></script>
+    <script src="/v2/static/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/v2/static/js/popper.min.js"></script>
+    <script src="/v2/static/js/bootstrap.min.js"></script>
+    <script src="/v2/static/js/socket.io.js"></script>
+    <script src="/v2/static/js/bootstrap-multiselect.js"></script>
+    <script src="/v2/static/js/bootbox.min.js"></script>
+    <script src="/v2/static/js/isMobile.min.js"></script>
+    <script src="/v2/static/js/vue.js"></script>
+    <script src="/v2/static/js/script.js"></script>
 </body>
 
 </html>
