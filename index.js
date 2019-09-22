@@ -81,6 +81,7 @@ var SETTINGS = {
     desktop: false, // desktop vs embeded
     udmx: false,
     automark: true,
+    displayEffectsRealtime: true,
     artnetIP: null, // ArtNet output IP
     artnetHost: '255.255.255.255', // Artnet network host
     sacnIP: null // sACN output IP
@@ -621,7 +622,7 @@ function calculateStack() {
         io.emit('fixtures', cleanFixtures());
     }
     if (blackout === false) {
-        //var displayChanged = false;
+        var displayChanged = false;
         let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
             let e = 0; const eMax = fixtures[f].effects.length; for (; e < eMax; e++) {
                 if (fixtures[f].effects[e].active == true) {
@@ -634,10 +635,12 @@ function calculateStack() {
                                     effectValue = cppaddon.mapRange(effectValue, 0, 255, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max);
                                 }
                                 effectValue = (effectValue * fixtures[f].effects[e].depth) + ((fixtures[f].parameters[p].value >> 8) * (1 - fixtures[f].effects[e].depth));
-                                /*if (fixtures[f].parameters[p].type == 1) {
-                                    fixtures[f].parameters[p].displayValue = cppaddon.mapRange(effectValue, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 100);
-                                    displayChanged = true;
-                                }*/
+                                if (fixtures[f].parameters[p].type == 1) {
+                                    if (SETTINGS.displayEffectsRealtime === true) {
+                                        fixtures[f].parameters[p].displayValue = cppaddon.mapRange(effectValue, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 100);
+                                        displayChanged = true;
+                                    }
+                                }
                                 if (fixtures[f].parameters[p].fadeWithIntensity == true || fixtures[f].parameters[p].type == 1) {
                                     effectValue = (effectValue / 100.0) * grandmaster;
                                 }
@@ -662,9 +665,11 @@ function calculateStack() {
                 }
             }
         }
-        /*if (displayChanged === true) {
-            io.emit('fixtures', cleanFixtures());
-        }*/
+        if (SETTINGS.displayEffectsRealtime === true) {
+            if (displayChanged === true) {
+                io.emit('fixtures', cleanFixtures());
+            }
+        }
     }
     // Allow presets to overide everything else for channels in which they have higher values
     let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
@@ -1255,7 +1260,6 @@ io.on('connection', function (socket) {
                     fixture.effects[e].active = false;
                 }
                 fixture.hasActiveEffects = false;
-                socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
                 io.emit('fixtures', cleanFixtures());
                 socket.emit('message', { type: "info", content: "Fixture values reset!" });
                 saveShow();
@@ -1346,8 +1350,8 @@ io.on('connection', function (socket) {
                             io.emit('fixtures', cleanFixtures());
                         }
                     }
-                    socket.emit('fixtureParameters', { id: fixture.id, name: fixture.name, startDMXAddress: fixture.startDMXAddress, parameters: fixture.parameters, chips: fixture.chips, effects: cleanEffects(fixture.effects) });
                     io.emit('fixtures', cleanFixtures());
+                    saveShow();
                 }
             }
         } else {

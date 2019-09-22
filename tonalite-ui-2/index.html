@@ -93,7 +93,7 @@
                             @click="getFixtureParameters(fixture.id, true)">
                             <div class="fixtureItem">
                                 <h3 v-if="fixture.hasIntensity === true" class="fixtureValue">
-                                    {{fixture.parameters[fixture.parameters.map(el => el.type).indexOf(1)].displayValue}}
+                                    {{fixture.parameters[fixture.parameters.map(el => el.type).indexOf(1)].displayValue}}%
                                 </h3>
                                 <p>{{fixture.shortName}} ({{fixture.startDMXAddress}})
                                     <span v-if="fixture.hasLockedParameters == true" class="d-inline"><i
@@ -190,7 +190,8 @@
                                     </div>
                                 </div>
                             </button>
-                            <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}</label>
+                            <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
+                                ({{parameter.displayValue}}%)</label>
                             <input type="range" class="custom-range" v-bind:id="parameter.coarse"
                                 v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value"
                                 @input="changeFixtureParameterValue(parameter, index)">

@@ -117,11 +117,7 @@ var app = new Vue({
             $('#fixtureProfilesModal').modal("hide");
         },
         getFixtureParameters: function (fixtureID, clearAll) {
-            if (clearAll == true) {
-                app.currentFixture = {};
-            }
             socket.emit("getFixtureParameters", fixtureID);
-            app.currentView = "fixtureParameters";
         },
         changeFixtureParameterValue: function (parameter, index) {
             socket.emit("changeFixtureParameterValue", { id: app.currentFixture.id, pid: index, value: parameter.value })
@@ -197,4 +193,5 @@ socket.on('fixtureProfiles', function (msg) {
 
 socket.on('fixtureParameters', function (msg) {
     app.currentFixture = msg;
+    app.currentView = "fixtureParameters";
 });
