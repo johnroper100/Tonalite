@@ -119,6 +119,9 @@ var app = new Vue({
         getFixtureParameters: function (fixtureID) {
             socket.emit("getFixtureParameters", fixtureID);
             app.currentView = "fixtureParameters";
+        },
+        changeFixtureParameterValue: function (parameter, index) {
+            socket.emit("changeFixtureParameterValue", { id: app.currentFixture.id, pid: index, value: parameter.value })
         }
     }
 });
@@ -144,6 +147,9 @@ socket.on('connect', function () {
 
 socket.on('fixtures', function (msg) {
     app.fixtures = msg;
+    if (app.currentView == 'fixtureParameters' && app.currentFixture != {}) {
+        app.getFixtureParameters(app.currentFixture.id);
+    }
 });
 
 socket.on('groups', function (msg) {

@@ -176,14 +176,14 @@
                         </div>
                     </div>
                     <div id="fixtureParameters">
-                        <div v-for="parameter in currentFixture.parameters" :key="parameter.coarse">
+                        <div v-for="(parameter, index) in currentFixture.parameters" :key="parameter.coarse">
                             <button class="btn btn-info" v-if="parameter.locked == true"><i
                                     class="far fa-lock-alt fa-sm"></i></button>
                             <button class="btn btn-info" v-if="parameter.locked == false"><i
                                     class="far fa-lock-open-alt fa-sm"></i></button>
                             <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}</label>
                             <input type="range" class="custom-range" v-bind:id="parameter.coarse"
-                                v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value">
+                                v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value" @input="changeFixtureParameterValue(parameter, index)">
                             <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
                                 <div class="channelRanges row flex-nowrap">
                                     <div class="channelRange col-2 col-md-1 mr-1 " v-for="range in parameter.ranges"
