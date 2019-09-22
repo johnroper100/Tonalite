@@ -630,7 +630,7 @@ function calculateStack() {
                         if (fixtures[f].parameters[p].locked === false) {
                             var effectChanIndex = fixtures[f].effects[e].parameterNames.findIndex(function (element) { return element == fixtures[f].parameters[p].name });
                             if (effectChanIndex > -1) {
-                                var effectValue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex];
+                                var effectValue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex] * 2;
                                 if (fixtures[f].effects[e].resolution == 8) {
                                     effectValue = cppaddon.mapRange(effectValue, 0, 255, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max);
                                 }
