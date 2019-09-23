@@ -83,9 +83,11 @@
                             <button class="btn btn-success btn-block" @click="getFixtureProfiles">Add Fixture</button>
                         </div>
                         <div class="col-6">
-                            <div><button :disabled="fixtures.length == 0" class="btn btn-danger btn-block"
-                                    @click="resetFixtures">Reset
-                                    Values</button></div>
+                            <div>
+                                <div><button :disabled="fixtures.length == 0" class="btn btn-danger btn-block"
+                                        @click="resetFixtures">Reset
+                                        Values</button></div>
+                            </div>
 
                         </div>
                     </div>
@@ -291,9 +293,13 @@
                                 Group</button>
                         </div>
                         <div class="col-6">
-                            <button :disabled="groups.length == 0" class="btn btn-danger btn-block"
-                                @click="resetGroups">Reset
-                                Values</button>
+                            <div>
+                                <div>
+                                    <button :disabled="groups.length == 0" class="btn btn-danger btn-block"
+                                        @click="resetGroups">Reset
+                                        Values</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row" id="groupsList">
@@ -375,10 +381,10 @@
                     </div>
                     <div class="row topBtns">
                         <div class="col-4">
-                            <button id="cueUpdateBtn" class="btn btn-warning btn-block"><i
-                                    class="far fa-pencil d-sm-none d-inline-block"></i><span
-                                    class="d-none d-sm-inline-block">Update
-                                    Params.</span></button>
+                            <div><button id="cueUpdateBtn" class="btn btn-warning btn-block" @click="updateCue"><i
+                                        class="far fa-pencil d-sm-none d-inline-block"></i><span
+                                        class="d-none d-sm-inline-block">Update
+                                        Params.</span></button></div>
                         </div>
                         <div class="col-4">
                             <button id="moveCueUpBtn" class="btn btn-success btn-block" @click="moveCueUp"><i

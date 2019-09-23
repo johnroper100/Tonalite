@@ -180,6 +180,9 @@ var app = new Vue({
         },
         cloneCueEnd: function () {
             socket.emit('cloneCueEnd', app.currentCue.id);
+        },
+        updateCue: function () {
+            socket.emit('updateCue', app.currentCue.id);
         }
     }
 });
