@@ -17,7 +17,8 @@ var app = new Vue({
         newFixtureCreationCount: 1,
         fixtureProfilesSearch: "",
         currentCue: {},
-        currentFixture: {}
+        currentFixture: {},
+        version: ""
     },
     computed: {
         filteredFixtureProfilesList() {
@@ -204,6 +205,7 @@ socket.on('connect', function () {
     app.fixtureProfilesSearch = "";
     app.currentCue = {};
     app.currentFixture = {};
+    app.version = "";
 });
 
 socket.on('fixtures', function (msg) {
@@ -246,6 +248,7 @@ socket.on('grandmaster', function (msg) {
 
 socket.on('meta', function (msg) {
     app.desktop = msg.desktop;
+    app.version = msg.version;
 });
 
 socket.on('fixtureProfiles', function (msg) {
