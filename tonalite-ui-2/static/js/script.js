@@ -16,7 +16,7 @@ var app = new Vue({
         startDMXAddress: 1,
         newFixtureCreationCount: 1,
         fixtureProfilesSearch: "",
-        fixtureParameters: [],
+        currentCue: {},
         currentFixture: {}
     },
     computed: {
@@ -116,8 +116,11 @@ var app = new Vue({
             socket.emit("addFixture", { fixtureName: fixture, dcid: dcid, startDMXAddress: $('#newFixtureStartDMXAddress').val(), creationCount: $('#newFixtureCreationCount').val() });
             $('#fixtureProfilesModal').modal("hide");
         },
-        getFixtureParameters: function (fixtureID, clearAll) {
+        getFixtureParameters: function (fixtureID) {
             socket.emit("getFixtureParameters", fixtureID);
+        },
+        getCueSettings: function (cueID) {
+            socket.emit("getCueSettings", cueID);
         },
         changeFixtureParameterValue: function (parameter, index) {
             socket.emit("changeFixtureParameterValue", { id: app.currentFixture.id, pid: index, value: parameter.value })
@@ -143,6 +146,9 @@ var app = new Vue({
         },
         editFixtureSettings: function () {
             socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress });
+        },
+        editCueSettings: function () {
+            socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow });
         },
         removeFixture: function () {
             bootbox.confirm("Are you sure you want to delete this fixture?", function (result) {
@@ -170,14 +176,14 @@ socket.on('connect', function () {
     app.startDMXAddress = 1;
     app.newFixtureCreationCount = 1;
     app.fixtureProfilesSearch = "";
-    app.fixtureParameters = [];
+    app.currentCue = {};
     app.currentFixture = {};
 });
 
 socket.on('fixtures', function (msg) {
     app.fixtures = msg;
     if ((app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings') && app.currentFixture != {}) {
-        app.getFixtureParameters(app.currentFixture.id, false);
+        app.getFixtureParameters(app.currentFixture.id);
     }
 });
 
@@ -187,6 +193,9 @@ socket.on('groups', function (msg) {
 
 socket.on('cues', function (msg) {
     app.cues = msg;
+    if (app.currentView == 'cueSettings' && app.currentCue != {}) {
+        app.getCueSettings(app.currentCue.id);
+    }
 });
 
 socket.on('presets', function (msg) {
@@ -223,6 +232,11 @@ socket.on('fixtureParameters', function (msg) {
     if (app.currentView != "fixtureSettings") {
         app.currentView = "fixtureParameters";
     }
+});
+
+socket.on('cueSettings', function (msg) {
+    app.currentCue = msg;
+    app.currentView = "cueSettings";
 });
 
 socket.on('resetView', function (msg) {

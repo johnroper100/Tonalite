@@ -91,7 +91,7 @@
                     </div>
                     <div class="row" id="fixturesList">
                         <div class="col-4 col-sm-3 col-lg-2 mb-3" v-for="fixture in fixtures" :key="fixture.id"
-                            @click="getFixtureParameters(fixture.id, true)">
+                            @click="getFixtureParameters(fixture.id)">
                             <div class="fixtureItem">
                                 <h3 v-if="fixture.hasIntensity === true" class="fixtureValue">
                                     {{fixture.parameters[fixture.parameters.map(el => el.type).indexOf(1)].displayValue}}%
@@ -333,7 +333,8 @@
                         </div>
                     </div>
                     <div class="row" id="cuesList">
-                        <div class="col-4 col-lg-2 mb-3" v-for="cue in cues" :key="cue.id">
+                        <div class="col-4 col-lg-2 mb-3" v-for="cue in cues" :key="cue.id"
+                            @click="getCueSettings(cue.id)">
                             <div class="cueItem"
                                 :class="{ 'cueActive' : cue.active == true, 'cueCurrent' : cue.id == currentCue && cue.active != true}">
                                 <p>{{cue.name}}</p>
@@ -341,6 +342,79 @@
                         </div>
                         <div v-if="cues.length == 0" class="col-12">
                             <h5>There are no cues in this show!</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="cueSettingsPage" class="tabcontent" v-if="currentView == 'cueSettings'">
+                <div class="container">
+                    <div class="row topBtns">
+                        <div class="col-3">
+                            <button id="gotoCueBtn" class="btn btn-primary btn-block">Go</button>
+                        </div>
+                        <div class="col-3">
+                            <button id="cueDeleteBtn" class="btn btn-danger btn-block"><i
+                                    class="far fa-trash-alt d-sm-none d-inline-block"></i><span
+                                    class="d-none d-sm-inline-block">Delete</span></button>
+                        </div>
+                        <div class="col-3">
+                            <button id="cueCloneEndBtn" class="btn btn-info btn-block"><i
+                                    class="far fa-clone d-sm-none d-inline-block"></i> <span
+                                    class="d-inline-block d-sm-none">E</span><span
+                                    class="d-none d-sm-inline-block">Clone To End</span></button>
+                        </div>
+                        <div class="col-3">
+                            <button id="cueCloneNextBtn" class="btn btn-info btn-block"><i
+                                    class="far fa-clone d-sm-none d-inline-block"></i> <span
+                                    class="d-inline-block d-sm-none">N</span><span
+                                    class="d-none d-sm-inline-block">Clone To Next</span></button>
+                        </div>
+                    </div>
+                    <div class="row topBtns">
+                        <div class="col-4">
+                            <button id="cueUpdateBtn" class="btn btn-warning btn-block"><i
+                                    class="far fa-pencil d-sm-none d-inline-block"></i><span
+                                    class="d-none d-sm-inline-block">Update
+                                    Params.</span></button>
+                        </div>
+                        <div class="col-4">
+                            <button id="moveCueUpBtn" class="btn btn-success btn-block"><i
+                                    class="far fa-chevron-up d-sm-none d-inline-block"></i><span
+                                    class="d-none d-sm-inline-block">Move Up In Stack</span></button>
+                        </div>
+                        <div class="col-4">
+                            <button id="moveCueDownBtn" class="btn btn-success btn-block"><i
+                                    class="far fa-chevron-down d-sm-none d-inline-block"></i><span
+                                    class="d-none d-sm-inline-block">Move Down In Stack</span></button>
+                        </div>
+                    </div>
+                    <div class="row" id="cueSettings">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="cueNameInput">Name:</label>
+                                <input @input="editCueSettings" class="form-control" type="text" id="cueNameInput" placeholder="Cue Name" v-model="currentCue.name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="cueUpTimeInput">Up Time:</label>
+                                <input @input="editCueSettings" class="form-control" min="0" type="number" id="cueUpTimeInput"
+                                    placeholder="Cue Up Length In Seconds" v-model="currentCue.upTime">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="cueDownTimeInput">Down Time:</label>
+                                <input @input="editCueSettings" class="form-control" min="0" type="number" id="cueDownTimeInput"
+                                    placeholder="Cue Down Length In Seconds" v-model="currentCue.downTime">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="cueFollowInput">Follow:</label>
+                                <input @input="editCueSettings" class="form-control" type="number" min="-1" id="cueFollowInput"
+                                    placeholder="Cue Follow Time In Seconds" v-model="currentCue.follow">
+                            </div>
                         </div>
                     </div>
                 </div>
