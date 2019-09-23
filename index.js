@@ -195,12 +195,12 @@ function updateFirmware(callback) {
                     if (exists) {
                         fs.createReadStream(drive.mountpoints[0].path + "/tonalite.zip").pipe(unzipper.Extract({ path: process.cwd() }));
                         uploadComplete = true;
-                        return callback(uploadComplete);
                     }
                 });
             }
         });
     });
+    return callback(uploadComplete);
 };
 
 function importFixtures(callback) {

@@ -278,3 +278,19 @@ socket.on('resetView', function (msg) {
         }
     }
 });
+
+socket.on('message', function (msg) {
+    $("#alertText").text(msg.content);
+    $("#alert").addClass("show");
+    if (msg.type == "info") {
+        $("#alert").addClass("alert-info");
+    } else {
+        $("#alert").addClass("alert-danger");
+    }
+    $("#alert").fadeTo(1000, 500).slideUp(500, function () {
+        $("#alert").removeClass('show');
+        $("#alert").removeClass('alert-info');
+        $("#alert").removeClass('alert-danger');
+    });
+
+});
