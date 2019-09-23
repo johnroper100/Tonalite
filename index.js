@@ -388,9 +388,6 @@ function cleanGroups() {
 function cleanCues() {
     var newCues = JSON.parse(JSON.stringify(cues));
     let c = 0; const cMax = newCues.length; for (; c < cMax; c++) {
-        delete newCues[c].upTime;
-        delete newCues[c].downTime;
-        delete newCues[c].follow;
         delete newCues[c].upStep;
         delete newCues[c].downStep;
         delete newCues[c].following;
@@ -616,7 +613,7 @@ function calculateStack() {
                     }
                 }
             }
-            io.emit('currentCue', currentCueID);
+            io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
         }
         io.emit('fixtures', cleanFixtures());
@@ -752,7 +749,7 @@ function openShow(file = "show.json") {
         cues = show[1];
         groups = show[2];
         io.emit('fixtures', cleanFixtures());
-        io.emit('currentCue', currentCueID);
+        io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
         io.emit('groups', cleanGroups());
     });
@@ -895,7 +892,7 @@ io.on('connection', function (socket) {
         currentCue = "";
         lastCue = "";
         io.emit('fixtures', cleanFixtures());
-        io.emit('currentCue', currentCueID);
+        io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
         io.emit('groups', cleanGroups());
         io.emit('cueActionBtn', false);
@@ -1124,7 +1121,7 @@ io.on('connection', function (socket) {
                 socket.emit('message', { type: "info", content: "Fixture has been removed!" });
                 io.emit('resetView', { type: 'fixtures', eid: fixtureID });
                 io.emit('fixtures', cleanFixtures());
-                io.emit('currentCue', currentCueID);
+                io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 saveShow();
             }
@@ -1216,7 +1213,6 @@ io.on('connection', function (socket) {
     socket.on('getFixtureParameters', function (fixtureID) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
-                var fixture = fixtures[fixtures.map(el => el.id).indexOf(fixtureID)];
                 socket.emit('fixtureParameters', fixtures[fixtures.map(el => el.id).indexOf(fixtureID)]);
             }
         } else {
@@ -1229,7 +1225,7 @@ io.on('connection', function (socket) {
             resetFixtures();
             currentCue = "";
             currentCueID = "";
-            io.emit('currentCue', currentCueID);
+            io.emit('activeCue', currentCueID);
             io.emit('fixtures', cleanFixtures());
             socket.emit('message', { type: "info", content: "Fixture values have been reset!" });
             saveShow();
@@ -1408,7 +1404,7 @@ io.on('connection', function (socket) {
                 fixtures: cleanFixturesForCue()
             };
             cues.push(newCue);
-            io.emit('currentCue', currentCueID);
+            io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
             saveShow();
         } else {
@@ -1422,7 +1418,7 @@ io.on('connection', function (socket) {
                 var cue = cues[cues.map(el => el.id).indexOf(cueID)];
                 cue.fixtures = cleanFixturesForCue();
                 socket.emit('cueSettings', cue);
-                io.emit('currentCue', currentCueID);
+                io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue parameters have been updated!" });
                 saveShow();
@@ -1439,7 +1435,7 @@ io.on('connection', function (socket) {
                 newCue.id = generateID();
                 cues.push(newCue);
                 socket.emit('cueSettings', cues[cues.map(el => el.id).indexOf(cueID)]);
-                io.emit('currentCue', currentCueID);
+                io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue has been cloned!" });
                 saveShow();
@@ -1457,7 +1453,7 @@ io.on('connection', function (socket) {
                 cues.push(newCue);
                 moveArrayItem(cues, cues.map(el => el.id).indexOf(newCue.id), cues.map(el => el.id).indexOf(cueID) + 1);
                 socket.emit('cueSettings', cues[cues.map(el => el.id).indexOf(cueID)]);
-                io.emit('currentCue', currentCueID);
+                io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue has been cloned!" });
                 saveShow();
@@ -1506,9 +1502,8 @@ io.on('connection', function (socket) {
                     cue.upStep = cue.upTime * 40;
                     cue.downStep = cue.downTime * 40;
                 }
-                socket.emit('cueSettings', cue);
                 socket.emit('message', { type: "info", content: "Cue settings have been updated!" });
-                io.emit('currentCue', currentCueID);
+                io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 saveShow();
             }
@@ -1527,7 +1522,7 @@ io.on('connection', function (socket) {
                     io.emit('cueActionBtn', false);
                 }
                 socket.emit('message', { type: "info", content: "Cue has been removed!" });
-                io.emit('currentCue', currentCueID);
+                io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 saveShow();
             }
@@ -1562,7 +1557,7 @@ io.on('connection', function (socket) {
             currentCue = lastCue;
             cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
             currentCueID = lastCue;
-            io.emit('currentCue', currentCueID);
+            io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
             io.emit('cueActionBtn', true);
         } else {
@@ -1596,7 +1591,7 @@ io.on('connection', function (socket) {
             currentCue = lastCue;
             cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
             currentCueID = lastCue;
-            io.emit('currentCue', currentCueID);
+            io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
             io.emit('cueActionBtn', true);
         } else {
@@ -1619,7 +1614,7 @@ io.on('connection', function (socket) {
             cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * 40;
             cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
             cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
-            io.emit('currentCue', currentCueID);
+            io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
             io.emit('cueActionBtn', false);
         } else {
@@ -1647,7 +1642,7 @@ io.on('connection', function (socket) {
             currentCue = lastCue;
             cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
             currentCueID = lastCue;
-            io.emit('currentCue', currentCueID);
+            io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
             io.emit('cueActionBtn', true);
         } else {
@@ -1658,7 +1653,7 @@ io.on('connection', function (socket) {
     socket.on('moveCueUp', function (cueID) {
         if (cues.length != 0) {
             moveArrayItem(cues, cues.map(el => el.id).indexOf(cueID), cues.map(el => el.id).indexOf(cueID) - 1);
-            io.emit('currentCue', currentCueID);
+            io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
             socket.emit('message', { type: "info", content: "Cue moved up." });
             saveShow();
@@ -1670,7 +1665,7 @@ io.on('connection', function (socket) {
     socket.on('moveCueDown', function (cueID) {
         if (cues.length != 0) {
             moveArrayItem(cues, cues.map(el => el.id).indexOf(cueID), cues.map(el => el.id).indexOf(cueID) + 1);
-            io.emit('currentCue', currentCueID);
+            io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
             socket.emit('message', { type: "info", content: "Cue moved down." });
             saveShow();

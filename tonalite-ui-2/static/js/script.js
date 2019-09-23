@@ -9,7 +9,7 @@ var app = new Vue({
         cues: [],
         presets: [],
         cuePlaying: false,
-        currentCue: "",
+        activeCue: "",
         blackout: false,
         grandmaster: 100,
         fixtureProfiles: [],
@@ -167,7 +167,7 @@ socket.on('connect', function () {
     app.groups = [];
     app.cues = [];
     app.presets = [];
-    app.currentCue = "";
+    app.activeCue = "";
     app.cuePlaying = false;
     app.desktop = false;
     app.blackout = false;
@@ -206,8 +206,8 @@ socket.on('cueActionBtn', function (msg) {
     app.cuePlaying = msg;
 });
 
-socket.on('currentCue', function (msg) {
-    app.currentCue = msg;
+socket.on('activeCue', function (msg) {
+    app.activeCue = msg;
 });
 
 socket.on('blackout', function (msg) {

@@ -336,7 +336,7 @@
                         <div class="col-4 col-lg-2 mb-3" v-for="cue in cues" :key="cue.id"
                             @click="getCueSettings(cue.id)">
                             <div class="cueItem"
-                                :class="{ 'cueActive' : cue.active == true, 'cueCurrent' : cue.id == currentCue && cue.active != true}">
+                                :class="{ 'cueActive' : cue.active == true, 'cueCurrent' : cue.id == activeCue && cue.active != true}">
                                 <p>{{cue.name}}</p>
                             </div>
                         </div>
@@ -392,14 +392,14 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="cueNameInput">Name:</label>
-                                <input @input="editCueSettings" class="form-control" type="text" id="cueNameInput" placeholder="Cue Name" v-model="currentCue.name">
+                                <input class="form-control" type="text" id="cueNameInput" placeholder="Cue Name" @input="editCueSettings" v-model="currentCue.name">
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="cueUpTimeInput">Up Time:</label>
-                                <input @input="editCueSettings" class="form-control" min="0" type="number" id="cueUpTimeInput"
-                                    placeholder="Cue Up Length In Seconds" v-model="currentCue.upTime">
+                                <input class="form-control" min="0" type="number" id="cueUpTimeInput"
+                                    placeholder="Cue Up Length In Seconds" @input="editCueSettings" v-model="currentCue.upTime">
                             </div>
                         </div>
                         <div class="col-12">
