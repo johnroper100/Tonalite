@@ -322,8 +322,9 @@
                                 @click="stopCue">Stop</button>
                         </div>
                         <div class="col-4" v-if="cuePlaying == false">
-                            <button :disabled="fixtures.length == 0" id="cueActionBtn" class="btn btn-danger btn-block"
-                                @click="recordCue">Record</button>
+                            <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                    class="btn btn-danger btn-block" @click="recordCue">Record</button></div>
+
                         </div>
                         <div class="col-4">
                             <div>
@@ -358,16 +359,18 @@
                                     class="d-none d-sm-inline-block">Delete</span></button>
                         </div>
                         <div class="col-3">
-                            <button id="cueCloneEndBtn" class="btn btn-info btn-block"><i
+                            <button id="cueCloneEndBtn" class="btn btn-info btn-block" @click="cloneCueEnd"><i
                                     class="far fa-clone d-sm-none d-inline-block"></i> <span
                                     class="d-inline-block d-sm-none">E</span><span
                                     class="d-none d-sm-inline-block">Clone To End</span></button>
                         </div>
                         <div class="col-3">
-                            <button id="cueCloneNextBtn" class="btn btn-info btn-block"><i
-                                    class="far fa-clone d-sm-none d-inline-block"></i> <span
-                                    class="d-inline-block d-sm-none">N</span><span
-                                    class="d-none d-sm-inline-block">Clone To Next</span></button>
+                            <div>
+                                <div><button id="cueCloneNextBtn" class="btn btn-info btn-block"
+                                        @click="cloneCueNext"><i class="far fa-clone d-sm-none d-inline-block"></i>
+                                        <span class="d-inline-block d-sm-none">N</span><span
+                                            class="d-none d-sm-inline-block">Clone To Next</span></button></div>
+                            </div>
                         </div>
                     </div>
                     <div class="row topBtns">
@@ -378,12 +381,12 @@
                                     Params.</span></button>
                         </div>
                         <div class="col-4">
-                            <button id="moveCueUpBtn" class="btn btn-success btn-block"><i
+                            <button id="moveCueUpBtn" class="btn btn-success btn-block" @click="moveCueUp"><i
                                     class="far fa-chevron-up d-sm-none d-inline-block"></i><span
                                     class="d-none d-sm-inline-block">Move Up In Stack</span></button>
                         </div>
                         <div class="col-4">
-                            <button id="moveCueDownBtn" class="btn btn-success btn-block"><i
+                            <button id="moveCueDownBtn" class="btn btn-success btn-block" @click="moveCueDown"><i
                                     class="far fa-chevron-down d-sm-none d-inline-block"></i><span
                                     class="d-none d-sm-inline-block">Move Down In Stack</span></button>
                         </div>

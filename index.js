@@ -1417,7 +1417,6 @@ io.on('connection', function (socket) {
             if (cues.some(e => e.id === cueID)) {
                 var cue = cues[cues.map(el => el.id).indexOf(cueID)];
                 cue.fixtures = cleanFixturesForCue();
-                socket.emit('cueSettings', cue);
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue parameters have been updated!" });
@@ -1434,7 +1433,6 @@ io.on('connection', function (socket) {
                 var newCue = JSON.parse(JSON.stringify(cues[cues.map(el => el.id).indexOf(cueID)]));
                 newCue.id = generateID();
                 cues.push(newCue);
-                socket.emit('cueSettings', cues[cues.map(el => el.id).indexOf(cueID)]);
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue has been cloned!" });
@@ -1452,7 +1450,6 @@ io.on('connection', function (socket) {
                 newCue.id = generateID();
                 cues.push(newCue);
                 moveArrayItem(cues, cues.map(el => el.id).indexOf(newCue.id), cues.map(el => el.id).indexOf(cueID) + 1);
-                socket.emit('cueSettings', cues[cues.map(el => el.id).indexOf(cueID)]);
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue has been cloned!" });

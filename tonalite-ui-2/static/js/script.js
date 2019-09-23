@@ -166,8 +166,20 @@ var app = new Vue({
                 }
             });
         },
-        gotoCue: function() {
+        gotoCue: function () {
             socket.emit('gotoCue', app.currentCue.id);
+        },
+        moveCueUp: function () {
+            socket.emit('moveCueUp', app.currentCue.id);
+        },
+        moveCueDown: function () {
+            socket.emit('moveCueDown', app.currentCue.id);
+        },
+        cloneCueNext: function () {
+            socket.emit('cloneCueNext', app.currentCue.id);
+        },
+        cloneCueEnd: function () {
+            socket.emit('cloneCueEnd', app.currentCue.id);
         }
     }
 });
