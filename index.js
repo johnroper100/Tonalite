@@ -181,54 +181,44 @@ function saveSettings() {
     return true;
 };
 
-function updateFirmware(callback) {
+async function updateFirmware(callback) {
     var uploadComplete = false;
-
-    drivelist.list((error, drives) => {
-        if (error) {
-            logError(error);
+    var drives = await drivelist.list();
+    drives.forEach((drive) => {
+        if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
+            fs.exists(drive.mountpoints[0].path + "/tonalite.zip", function (exists) {
+                if (exists) {
+                    fs.createReadStream(drive.mountpoints[0].path + "/tonalite.zip").pipe(unzipper.Extract({ path: process.cwd() }));
+                    uploadComplete = true;
+                }
+            });
         }
-
-        drives.forEach((drive) => {
-            if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
-                fs.exists(drive.mountpoints[0].path + "/tonalite.zip", function (exists) {
-                    if (exists) {
-                        fs.createReadStream(drive.mountpoints[0].path + "/tonalite.zip").pipe(unzipper.Extract({ path: process.cwd() }));
-                        uploadComplete = true;
-                    }
-                });
-            }
-        });
     });
     return callback(uploadComplete);
 };
 
-function importFixtures(callback) {
+async function importFixtures(callback) {
     var importComplete = false;
 
-    drivelist.list((error, drives) => {
-        if (error) {
-            logError(error);
-        }
-        drives.forEach((drive) => {
-            if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
-                fs.readdir(drive.mountpoints[0].path, (err, files) => {
-                    files.forEach(file => {
-                        fs.copyFile(drive.mountpoints[0].path + "/" + file, process.cwd() + "/fixtures/" + file, (err) => {
-                            if (err) logError(err);
-                            importComplete = true;
-                        });
+    var drives = await drivelist.list();
+    drives.forEach((drive) => {
+        if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
+            fs.readdir(drive.mountpoints[0].path, (err, files) => {
+                files.forEach(file => {
+                    fs.copyFile(drive.mountpoints[0].path + "/" + file, process.cwd() + "/fixtures/" + file, (err) => {
+                        if (err) logError(err);
+                        importComplete = true;
                     });
                 });
+            });
 
-                fs.exists(drive.mountpoints[0].path + "/fixtures.zip", function (exists) {
-                    if (exists) {
-                        fs.createReadStream(drive.mountpoints[0].path + "/fixtures.zip").pipe(unzipper.Extract({ path: process.cwd() }));
-                        importComplete = true;
-                    }
-                });
-            }
-        });
+            fs.exists(drive.mountpoints[0].path + "/fixtures.zip", function (exists) {
+                if (exists) {
+                    fs.createReadStream(drive.mountpoints[0].path + "/fixtures.zip").pipe(unzipper.Extract({ path: process.cwd() }));
+                    importComplete = true;
+                }
+            });
+        }
     });
     return callback(importComplete);
 };
