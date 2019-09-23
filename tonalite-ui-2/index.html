@@ -324,13 +324,16 @@
                             </div>
                         </div>
                         <div class="col-4" v-if="cuePlaying == true">
-                            <button :disabled="fixtures.length == 0" id="cueActionBtn" class="btn btn-danger btn-block"
-                                @click="stopCue">Stop</button>
+                            <div>
+                                <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                        class="btn btn-danger btn-block" @click="stopCue">Stop</button></div>
+                            </div>
                         </div>
                         <div class="col-4" v-if="cuePlaying == false">
-                            <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                    class="btn btn-danger btn-block" @click="recordCue">Record</button></div>
-
+                            <div>
+                                <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                        class="btn btn-danger btn-block" @click="recordCue">Record</button></div>
+                            </div>
                         </div>
                         <div class="col-4">
                             <div>
