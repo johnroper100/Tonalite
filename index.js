@@ -1521,6 +1521,7 @@ io.on('connection', function (socket) {
                     currentCue = lastCue;
                     io.emit('cueActionBtn', false);
                 }
+                io.emit('resetView', { type: 'cues', eid: cueID });
                 socket.emit('message', { type: "info", content: "Cue has been removed!" });
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());

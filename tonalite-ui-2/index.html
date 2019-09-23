@@ -353,7 +353,7 @@
                             <button id="gotoCueBtn" class="btn btn-primary btn-block">Go</button>
                         </div>
                         <div class="col-3">
-                            <button id="cueDeleteBtn" class="btn btn-danger btn-block"><i
+                            <button id="cueDeleteBtn" class="btn btn-danger btn-block" @click="removeCue"><i
                                     class="far fa-trash-alt d-sm-none d-inline-block"></i><span
                                     class="d-none d-sm-inline-block">Delete</span></button>
                         </div>
@@ -392,28 +392,32 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="cueNameInput">Name:</label>
-                                <input class="form-control" type="text" id="cueNameInput" placeholder="Cue Name" @input="editCueSettings" v-model="currentCue.name">
+                                <input class="form-control" type="text" id="cueNameInput" placeholder="Cue Name"
+                                    @input="editCueSettings" v-model="currentCue.name">
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="cueUpTimeInput">Up Time:</label>
                                 <input class="form-control" min="0" type="number" id="cueUpTimeInput"
-                                    placeholder="Cue Up Length In Seconds" @input="editCueSettings" v-model="currentCue.upTime">
+                                    placeholder="Cue Up Length In Seconds" @input="editCueSettings"
+                                    v-model="currentCue.upTime">
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="cueDownTimeInput">Down Time:</label>
-                                <input @input="editCueSettings" class="form-control" min="0" type="number" id="cueDownTimeInput"
-                                    placeholder="Cue Down Length In Seconds" v-model="currentCue.downTime">
+                                <input @input="editCueSettings" class="form-control" min="0" type="number"
+                                    id="cueDownTimeInput" placeholder="Cue Down Length In Seconds"
+                                    v-model="currentCue.downTime">
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="cueFollowInput">Follow:</label>
-                                <input @input="editCueSettings" class="form-control" type="number" min="-1" id="cueFollowInput"
-                                    placeholder="Cue Follow Time In Seconds" v-model="currentCue.follow">
+                                <input @input="editCueSettings" class="form-control" type="number" min="-1"
+                                    id="cueFollowInput" placeholder="Cue Follow Time In Seconds"
+                                    v-model="currentCue.follow">
                             </div>
                         </div>
                     </div>

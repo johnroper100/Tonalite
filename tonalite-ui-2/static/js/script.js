@@ -157,6 +157,14 @@ var app = new Vue({
                     socket.emit('removeFixture', app.currentFixture.id);
                 }
             });
+        },
+        removeCue: function () {
+            bootbox.confirm("Are you sure you want to delete this cue?", function (result) {
+                if (result === true) {
+                    app.currentView = 'cues';
+                    socket.emit('removeCue', app.currentCue.id);
+                }
+            });
         }
     }
 });
@@ -243,6 +251,12 @@ socket.on('resetView', function (msg) {
     if (msg.type == 'fixtures') {
         if (app.currentFixture.id == msg.eid) {
             app.currentView = 'fixtures';
+            app.currentFixture = {};
+        }
+    } else if (msg.type == 'cues') {
+        if (app.currentCue.id == msg.eid) {
+            app.currentView = 'cues';
+            app.currentCue = {};
         }
     }
 });
