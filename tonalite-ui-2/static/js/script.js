@@ -165,6 +165,9 @@ var app = new Vue({
                     socket.emit('removeCue', app.currentCue.id);
                 }
             });
+        },
+        gotoCue: function() {
+            socket.emit('gotoCue', app.currentCue.id);
         }
     }
 });
