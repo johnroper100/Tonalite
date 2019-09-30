@@ -1898,22 +1898,6 @@ io.on('connection', function (socket) {
         io.emit('blackout', blackout);
     });
 
-    socket.on('keypadCommand', function (command) {
-        cmd = command.split("");
-        if (cmd.length >= 4) {
-            if (cmd[0] == "chan") {
-                chan = parseInt(cmd[1]);
-                if (cmd[2] == "@") {
-                    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-                        if (chan >= fixtures[f].startDMXAddress && chan < fixtures[f].startDMXAddress + (fixtures[f].maxOffset + 1)) {
-
-                        }
-                    }
-                }
-            }
-        }
-    });
-
     socket.on('changeGrandmasterValue', function (value) {
         grandmaster = parseInt(value);
         socket.broadcast.emit('grandmaster', grandmaster);
