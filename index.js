@@ -1069,6 +1069,7 @@ io.on('connection', function (socket) {
                     fixture.parameters[c].min = 0;
                     fixture.parameters[c].displayValue = cppaddon.mapRange(fixture.parameters[c].home, fixture.parameters[c].min, fixture.parameters[c].max, 0, 100);
                     fixture.parameters[c].locked = false;
+                    fixture.parameters[c].id = generateID();
                 }
                 fixture.parameters.sort((a, b) => (a.coarse > b.coarse) ? 1 : -1)
                 fixture.shortName = fixture.name.split(" ")[0];
