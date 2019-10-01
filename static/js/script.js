@@ -16,7 +16,7 @@ var app = new Vue({
         effectFixture: "",
         usbPath: "",
         desktop: false,
-        version: "2.0.0 Beta 5",
+        version: "2.0.0 Beta 6",
         qrcode: "",
         appURL: "",
         currentCue: "",

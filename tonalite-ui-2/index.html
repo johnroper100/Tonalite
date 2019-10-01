@@ -64,7 +64,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item">About Tonalite</a>
                             <a class="dropdown-item" href="/docs">Documentation</a>
-                            <div class="dropdown-divider"></div>
+                            <div v-if="ifMobile() || desktop == true" class="dropdown-divider"></div>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item"
                                 href="http://jmroper.com/tonalite">Website</a>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item"
