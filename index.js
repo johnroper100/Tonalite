@@ -1140,8 +1140,9 @@ io.on('connection', function (socket) {
                     fixture.hasActiveEffects = checkFixtureActiveEffects(fixture.effects);
                     let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
                         fixture.parameters[p].displayValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 100);
-                        io.emit('fixtures', cleanFixtures());
                     }
+                    io.emit('fixtures', cleanFixtures());
+                    io.emit('resetView', { type: 'effect', eid: msg.effectID });
                     socket.emit('message', { type: "info", content: "Fixture effect has been removed!" });
                     saveShow();
                 }
@@ -1193,8 +1194,9 @@ io.on('connection', function (socket) {
                     effect.name = msg.name;
                     effect.depth = parseFloat(msg.depth);
                     effect.fan = parseInt(msg.fan);
-                    socket.emit('effectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
+                    socket.broadcast.emit('effectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
                     socket.emit('message', { type: "info", content: "Effect settings have been updated!" });
+                    io.emit('fixtures', cleanFixtures());
                     saveShow();
                 }
             }

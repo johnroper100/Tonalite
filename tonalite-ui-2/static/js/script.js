@@ -150,6 +150,9 @@ var app = new Vue({
         editFixtureSettings: function () {
             socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress });
         },
+        editEffectSettings: function () {
+            socket.emit('editEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, fan: app.currentEffect.fan });
+        },
         editCueSettings: function () {
             socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow });
         },
@@ -198,6 +201,14 @@ var app = new Vue({
         getEffectSettings: function (effectID) {
             socket.emit('getEffectSettings', { fixtureID: app.currentFixture.id, effectID: effectID });
             app.currentView = 'effectSettings';
+        },
+        removeEffect: function() {
+            bootbox.confirm("Are you sure you want to delete this effect?", function (result) {
+                if (result === true) {
+                    app.currentView = 'fixtureParameters';
+                    socket.emit('removeEffect', {fixtureID: app.currentFixture.id, effectID: app.currentEffect.id});
+                }
+            });
         }
     }
 });
@@ -226,7 +237,7 @@ socket.on('connect', function () {
 
 socket.on('fixtures', function (msg) {
     app.fixtures = msg;
-    if ((app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings') && app.currentFixture != {}) {
+    if ((app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings' || app.currentView == 'effectSettings') && app.currentFixture != {}) {
         app.getFixtureParameters(app.currentFixture.id);
     }
 });
@@ -274,7 +285,7 @@ socket.on('fixtureProfiles', function (msg) {
 
 socket.on('fixtureParameters', function (msg) {
     app.currentFixture = msg;
-    if (app.currentView != "fixtureSettings") {
+    if (app.currentView != "fixtureSettings" && app.currentView != "effectSettings") {
         app.currentView = "fixtureParameters";
     }
 });
@@ -289,6 +300,11 @@ socket.on('resetView', function (msg) {
         if (app.currentFixture.id == msg.eid) {
             app.currentView = 'fixtures';
             app.currentFixture = {};
+        }
+    } else if (msg.type == 'effect') {
+        if (app.currentEffect.id == msg.eid) {
+            app.currentView = 'fixtureParameters';
+            app.currentEffect = {};
         }
     } else if (msg.type == 'cues') {
         if (app.currentCue.id == msg.eid) {
