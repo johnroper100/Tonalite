@@ -13,6 +13,7 @@ var app = new Vue({
         blackout: false,
         grandmaster: 100,
         fixtureProfiles: [],
+        effectProfiles: [],
         startDMXAddress: 1,
         newFixtureCreationCount: 1,
         fixtureProfilesSearch: "",
@@ -184,6 +185,10 @@ var app = new Vue({
         },
         updateCue: function () {
             socket.emit('updateCue', app.currentCue.id);
+        },
+        getEffects: function() {
+            socket.emit('getEffects', app.currentFixture.id);
+            $('#fixtureAddEffectsModal').modal("show");
         }
     }
 });
@@ -206,6 +211,7 @@ socket.on('connect', function () {
     app.currentCue = {};
     app.currentFixture = {};
     app.version = "";
+    app.effectProfiles = [];
 });
 
 socket.on('fixtures', function (msg) {
@@ -279,6 +285,12 @@ socket.on('resetView', function (msg) {
             app.currentView = 'cues';
             app.currentCue = {};
         }
+    }
+});
+
+socket.on('fixtureEffects', function (msg) {
+    if (msg.fixtureID == app.currentFixture.id) {
+        app.effectProfiles = msg.effects;
     }
 });
 

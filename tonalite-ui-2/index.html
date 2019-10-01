@@ -179,7 +179,7 @@
                                         class="d-none d-sm-inline-block">Reset</span></button></div>
                         </div>
                         <div class="col-3">
-                            <button id="fixtureAddEffectBtn" class="btn btn-success btn-block"><i
+                            <button id="fixtureAddEffectBtn" class="btn btn-success btn-block" @click="getEffects"><i
                                     class="far fa-hurricane d-sm-none d-inline-block"></i><span
                                     class="d-none d-sm-inline-block">Add
                                     Effect</span></button>
@@ -239,6 +239,81 @@
                                         </span>
                                     </li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="fixtureAddEffectsModal" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <ul class="nav nav-tabs" id="effectsTabs" role="tablist"
+                                    v-if="effectProfiles.length > 0">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="colorEffects-tab" data-toggle="tab"
+                                            href="#colorEffects" role="tab" aria-controls="colorEffects"
+                                            aria-selected="true">Color</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="intensityEffects-tab" data-toggle="tab"
+                                            href="#intensityEffects" role="tab" aria-controls="intensityEffects"
+                                            aria-selected="false">Intensity</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="shapeEffects-tab" data-toggle="tab" href="#shapeEffects"
+                                            role="tab" aria-controls="shapeEffects" aria-selected="false">Shape</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="parameterEffects-tab" data-toggle="tab"
+                                            href="#parameterEffects" role="tab" aria-controls="parameterEffects"
+                                            aria-selected="false">Param.</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" v-if="effectProfiles.length > 0">
+                                    <div class="tab-pane active" id="colorEffects" role="tabpanel"
+                                        aria-labelledby="colorEffects-tab">
+                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
+                                            <li class="list-group-item fixtureProfileItem"
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Color'">
+                                                {{effect.name}} </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" id="intensityEffects" role="tabpanel"
+                                        aria-labelledby="intensityEffects-tab">
+                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListIntensity">
+                                            <li class="list-group-item fixtureProfileItem"
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Intensity'">
+                                                {{effect.name}} </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" id="shapeEffects" role="tabpanel"
+                                        aria-labelledby="shapeEffects-tab">
+                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListShape">
+                                            <li class="list-group-item fixtureProfileItem"
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Shape'">
+                                                {{effect.name}} </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" id="parameterEffects" role="tabpanel"
+                                        aria-labelledby="parameterEffects-tab">
+                                        <label for="fixtureEffectParametersList" class="mb-0 text-dark mt-1">Apply
+                                            Effect To:</label>
+                                        <select class="form-control mb-1" id="fixtureEffectParametersList"
+                                            name="fixtureEffectParametersList">
+                                            <option v-for="(parameter, index) in currentFixture.parameters" :key="index"
+                                                :value="parameter.name">
+                                                {{parameter.name}}</option>
+                                        </select>
+                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListParameter">
+                                            <li class="list-group-item fixtureProfileItem"
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Parameter'">
+                                                {{effect.name}} </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div v-if="effectProfiles.length == 0" class="text-danger"> There are no fixture effects
+                                    in your library!
+                                </div>
                             </div>
                         </div>
                     </div>

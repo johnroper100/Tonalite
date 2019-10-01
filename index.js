@@ -922,18 +922,18 @@ io.on('connection', function (socket) {
             var effectsList = [];
             files.forEach(file => {
                 var effect = require(process.cwd() + "/effects/" + file).effectTable;
-                if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Red", "Green", "Blue"])) {
+                if (JSON.stringify(effect.parameterNames).indexOf("Red") >= 0 || JSON.stringify(effect.parameterNames).indexOf("Green") >= 0 || JSON.stringify(effect.parameterNames).indexOf("Blue") >= 0) {
                     effect.type = "Color";
-                } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Intensity"])) {
+                } else if (JSON.stringify(effect.parameterNames).indexOf("Intensity") >= 0) {
                     effect.type = "Intensity";
-                } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Pan", "Tilt"])) {
+                } else if (JSON.stringify(effect.parameterNames).indexOf("Pan") >= 0 || JSON.stringify(effect.parameterNames).indexOf("Tilt") >= 0) {
                     effect.type = "Shape";
-                } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Parameter"])) {
+                } else if (JSON.stringify(effect.parameterNames).indexOf("Parameter") >= 0) {
                     effect.type = "Parameter";
                 }
-                effectsList.push([effect.name, effect.type, file]);
+                effectsList.push({ name: effect.name, type: effect.type, file: file });
             });
-            socket.emit('fixtureEffects', [fixtureid, effectsList]);
+            socket.emit('fixtureEffects', { fixtureID: fixtureid, effects: effectsList });
         });
     });
 
