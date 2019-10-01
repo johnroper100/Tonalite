@@ -274,7 +274,8 @@
                                         aria-labelledby="colorEffects-tab">
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
                                             <li class="list-group-item fixtureProfileItem"
-                                                v-for="effect in effectProfiles" v-if="effect.type == 'Color'">
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Color'"
+                                                @click="addEffect(effect.file)">
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>
@@ -282,7 +283,8 @@
                                         aria-labelledby="intensityEffects-tab">
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListIntensity">
                                             <li class="list-group-item fixtureProfileItem"
-                                                v-for="effect in effectProfiles" v-if="effect.type == 'Intensity'">
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Intensity'"
+                                                @click="addEffect(effect.file)">
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>
@@ -290,7 +292,8 @@
                                         aria-labelledby="shapeEffects-tab">
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListShape">
                                             <li class="list-group-item fixtureProfileItem"
-                                                v-for="effect in effectProfiles" v-if="effect.type == 'Shape'">
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Shape'"
+                                                @click="addEffect(effect.file)">
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>
@@ -306,7 +309,8 @@
                                         </select>
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListParameter">
                                             <li class="list-group-item fixtureProfileItem"
-                                                v-for="effect in effectProfiles" v-if="effect.type == 'Parameter'">
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Parameter'"
+                                                @click="addEffect(effect.file)">
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>
