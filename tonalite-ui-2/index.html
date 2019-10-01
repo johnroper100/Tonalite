@@ -225,8 +225,8 @@
                                         <i class="mr-1 far"
                                             :class="{'fa-palette': effect.type == 'Color', 'fa-running': effect.type == 'Shape', 'fa-lightbulb': effect.type == 'Intensity', 'fa-cog': effect.type == 'Parameter'}"></i>
                                         {{effect.name}}
-                                        <button
-                                            class="float-right btn btn-sm btn-primary d-inline-block">Settings</button>
+                                        <button class="float-right btn btn-sm btn-primary d-inline-block"
+                                            @click="getEffectSettings(effect.id)">Settings</button>
                                         <span v-if="effect.active == true">
                                             <button class="float-right btn btn-sm btn-success d-inline-block mr-1"
                                                 @click="changeFixtureEffectState(effect.id)">Deactivate</button>
@@ -359,6 +359,42 @@
                                 <input class="form-control" min="1" max="512" type="number" id="fixtureDMXAddressInput"
                                     placeholder="Fixture Starting DMX Address" @input="editFixtureSettings"
                                     v-model="currentFixture.startDMXAddress">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="effectSettingsPage" class="tabcontent" v-if="currentView == 'effectSettings'">
+                <div class="container">
+                    <div class="row topBtns">
+                        <div class="col-6">
+                            <button id="fixtureParametersEffectBackBtn" class="btn btn-primary btn-block"
+                                @click="currentView = 'fixtureParameters'">Back</button>
+                        </div>
+                        <div class="col-6">
+                            <button id="effectDeleteBtn" class="btn btn-danger btn-block">Delete</button>
+                        </div>
+                    </div>
+                    <div class="row" id="effectSettings">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="effectNameInput">Name:</label>
+                                <input class="form-control" type="text" id="effectNameInput" placeholder="Effect Name"
+                                    v-model="currentEffect.name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="ml-2 mb-0" for="effectDepthInput">Depth:</label>
+                                <input type="range" step="0.01" min="0.0" max="1.0" class="custom-range"
+                                    id="effectDepthInput" min="0" max="100" v-model="currentEffect.depth">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="effectFanInput">Fan:</label>
+                                <input class="form-control" min="0" max="1023" type="number" id="effectFanInput"
+                                    placeholder="Effect Fan" v-model="currentEffect.fan">
                             </div>
                         </div>
                     </div>

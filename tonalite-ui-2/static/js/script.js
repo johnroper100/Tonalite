@@ -19,7 +19,8 @@ var app = new Vue({
         fixtureProfilesSearch: "",
         currentCue: {},
         currentFixture: {},
-        version: ""
+        version: "",
+        currentEffect: {}
     },
     computed: {
         filteredFixtureProfilesList() {
@@ -186,13 +187,17 @@ var app = new Vue({
         updateCue: function () {
             socket.emit('updateCue', app.currentCue.id);
         },
-        getEffects: function() {
+        getEffects: function () {
             socket.emit('getEffects', app.currentFixture.id);
             $('#fixtureAddEffectsModal').modal("show");
         },
-        addEffect: function(file) {
-            socket.emit('addEffect', {fixtureID: app.currentFixture.id, effectFile: file});
+        addEffect: function (file) {
+            socket.emit('addEffect', { fixtureID: app.currentFixture.id, effectFile: file });
             $('#fixtureAddEffectsModal').modal("hide");
+        },
+        getEffectSettings: function (effectID) {
+            socket.emit('getEffectSettings', { fixtureID: app.currentFixture.id, effectID: effectID });
+            app.currentView = 'effectSettings';
         }
     }
 });
@@ -216,6 +221,7 @@ socket.on('connect', function () {
     app.currentFixture = {};
     app.version = "";
     app.effectProfiles = [];
+    app.currentEffect = {};
 });
 
 socket.on('fixtures', function (msg) {
@@ -295,6 +301,13 @@ socket.on('resetView', function (msg) {
 socket.on('fixtureEffects', function (msg) {
     if (msg.fixtureID == app.currentFixture.id) {
         app.effectProfiles = msg.effects;
+    }
+});
+
+socket.on('effectSettings', function (msg) {
+    if (msg.fixtureID == app.currentFixture.id) {
+        app.currentEffect = msg.effect;
+        app.currentView = "effectSettings";
     }
 });
 
