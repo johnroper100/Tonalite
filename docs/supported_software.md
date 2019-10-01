@@ -5,6 +5,5 @@ It is possible to visualize your lighting using external software that supports 
 | Software                                                                        | Manufacturer  |
 |:-------------------------------------------------------------------------------:|:-------------:|
 | [Capture](http://www.capturesweden.com/)                                        | Capture Visualisation AB |
-| [ShowDesigner](http://www.martin.com/en-us/product-details/martin-showdesigner) | Martin |
 | [Realizzer](http://www.realizzer.com/)                                          | Realizzer |
 | [Vision](http://www.espvision.com/)                                             | Vectorworks, Inc. |
