@@ -989,6 +989,7 @@ io.on('connection', function (socket) {
                 fixture.name = fixture.modelName;
                 fixture.chips = [];
                 fixture.effects = [];
+                fixture.parameterTypes = [];
 
                 if (fixture.colortable == "3874B444-A11E-47D9-8295-04556EAEBEA7") {
                     // RGB
@@ -1070,6 +1071,15 @@ io.on('connection', function (socket) {
                     fixture.parameters[c].displayValue = cppaddon.mapRange(fixture.parameters[c].home, fixture.parameters[c].min, fixture.parameters[c].max, 0, 100);
                     fixture.parameters[c].locked = false;
                     fixture.parameters[c].id = generateID();
+                    if (fixture.parameters[c].type == 2) {
+                        fixture.parameterTypes.push("Shape");
+                    } else if (fixture.parameters[c].type == 5) {
+                        fixture.parameterTypes.push("Color");
+                    } else if (fixture.parameters[c].type == 4) {
+                        fixture.parameterTypes.push("Parameter");
+                    } else if (fixture.parameters[c].type == 1) {
+                        fixture.parameterTypes.push("Intensity");
+                    }
                 }
                 fixture.parameters.sort((a, b) => (a.coarse > b.coarse) ? 1 : -1)
                 fixture.shortName = fixture.name.split(" ")[0];

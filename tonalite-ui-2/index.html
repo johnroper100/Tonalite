@@ -249,28 +249,27 @@
                             <div class="modal-body">
                                 <ul class="nav nav-tabs" id="effectsTabs" role="tablist"
                                     v-if="effectProfiles.length > 0">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="colorEffects-tab" data-toggle="tab"
-                                            href="#colorEffects" role="tab" aria-controls="colorEffects"
-                                            aria-selected="true">Color</a>
+                                    <li class="nav-item" v-if="currentFixture.parameterTypes.indexOf('Color') >= 0">
+                                        <a class="nav-link" id="colorEffects-tab" data-toggle="tab" href="#colorEffects"
+                                            role="tab" aria-controls="colorEffects" aria-selected="false">Color</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item" v-if="currentFixture.parameterTypes.indexOf('Intensity') >= 0">
                                         <a class="nav-link" id="intensityEffects-tab" data-toggle="tab"
                                             href="#intensityEffects" role="tab" aria-controls="intensityEffects"
                                             aria-selected="false">Intensity</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item" v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0">
                                         <a class="nav-link" id="shapeEffects-tab" data-toggle="tab" href="#shapeEffects"
                                             role="tab" aria-controls="shapeEffects" aria-selected="false">Shape</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="parameterEffects-tab" data-toggle="tab"
+                                        <a class="nav-link active" id="parameterEffects-tab" data-toggle="tab"
                                             href="#parameterEffects" role="tab" aria-controls="parameterEffects"
-                                            aria-selected="false">Param.</a>
+                                            aria-selected="true">Param.</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content" v-if="effectProfiles.length > 0">
-                                    <div class="tab-pane active" id="colorEffects" role="tabpanel"
+                                    <div class="tab-pane" id="colorEffects" role="tabpanel"
                                         aria-labelledby="colorEffects-tab">
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
                                             <li class="list-group-item fixtureProfileItem"
@@ -297,7 +296,7 @@
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>
-                                    <div class="tab-pane" id="parameterEffects" role="tabpanel"
+                                    <div class="tab-pane active" id="parameterEffects" role="tabpanel"
                                         aria-labelledby="parameterEffects-tab">
                                         <label for="fixtureEffectParametersList" class="mb-0 text-dark mt-1">Apply
                                             Effect To:</label>
