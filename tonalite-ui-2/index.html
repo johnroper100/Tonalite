@@ -196,6 +196,17 @@
                             </button>
                             <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
                                 ({{parameter.displayValue}}%)</label>
+                            <div class="float-right">
+                                <button class="btn btn-warning"
+                                    @click="setParameterValue(parameter, parameter.min, index)">
+                                    <i class="far fa-step-backward fa-sm"></i>
+                                </button>
+                                <button class="btn btn-warning"
+                                    @click="setParameterValue(parameter, parameter.max, index)">
+                                    <i class="far fa-step-forward fa-sm"></i>
+                                </button>
+                            </div>
+
                             <input type="range" class="custom-range" v-bind:id="parameter.coarse"
                                 v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value"
                                 @input="changeFixtureParameterValue(parameter, index)">

@@ -210,6 +210,10 @@ var app = new Vue({
                     socket.emit('removeEffect', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id });
                 }
             });
+        },
+        setParameterValue(param, value, index) {
+            param.value = value;
+            app.changeFixtureParameterValue(param, index, value)
         }
     }
 });
