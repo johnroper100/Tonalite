@@ -202,11 +202,11 @@ var app = new Vue({
             socket.emit('getEffectSettings', { fixtureID: app.currentFixture.id, effectID: effectID });
             app.currentView = 'effectSettings';
         },
-        removeEffect: function() {
+        removeEffect: function () {
             bootbox.confirm("Are you sure you want to delete this effect?", function (result) {
                 if (result === true) {
                     app.currentView = 'fixtureParameters';
-                    socket.emit('removeEffect', {fixtureID: app.currentFixture.id, effectID: app.currentEffect.id});
+                    socket.emit('removeEffect', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id });
                 }
             });
         }
@@ -236,9 +236,11 @@ socket.on('connect', function () {
 });
 
 socket.on('fixtures', function (msg) {
-    app.fixtures = msg;
-    if ((app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings' || app.currentView == 'effectSettings') && app.currentFixture != {}) {
-        app.getFixtureParameters(app.currentFixture.id);
+    app.fixtures = msg.fixtures;
+    if (msg.target == true) {
+        if ((app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings' || app.currentView == 'effectSettings') && app.currentFixture != {}) {
+            app.getFixtureParameters(app.currentFixture.id);
+        }
     }
 });
 
