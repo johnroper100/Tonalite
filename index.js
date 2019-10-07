@@ -1187,7 +1187,6 @@ io.on('connection', function (socket) {
                 }
                 fixture.name = msg.name;
                 fixture.startDMXAddress = parseInt(msg.startDMXAddress);
-                socket.emit('message', { type: "info", content: "Fixture settings have been updated!" });
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                 saveShow();
             }
@@ -1206,7 +1205,6 @@ io.on('connection', function (socket) {
                     effect.depth = parseFloat(msg.depth);
                     effect.fan = parseInt(msg.fan);
                     socket.broadcast.emit('effectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
-                    socket.emit('message', { type: "info", content: "Effect settings have been updated!" });
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                     saveShow();
                 }

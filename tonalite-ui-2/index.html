@@ -285,7 +285,7 @@
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
                                             <li class="list-group-item fixtureProfileItem"
                                                 v-for="effect in effectProfiles" v-if="effect.type == 'Color'"
-                                                @click="addEffect(effect.file)">
+                                                @click="addEffect(effect.file, effect.type)">
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>
@@ -294,7 +294,7 @@
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListIntensity">
                                             <li class="list-group-item fixtureProfileItem"
                                                 v-for="effect in effectProfiles" v-if="effect.type == 'Intensity'"
-                                                @click="addEffect(effect.file)">
+                                                @click="addEffect(effect.file, effect.type)">
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>
@@ -303,7 +303,7 @@
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListShape">
                                             <li class="list-group-item fixtureProfileItem"
                                                 v-for="effect in effectProfiles" v-if="effect.type == 'Shape'"
-                                                @click="addEffect(effect.file)">
+                                                @click="addEffect(effect.file, effect.type)">
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>
@@ -320,7 +320,7 @@
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListParameter">
                                             <li class="list-group-item fixtureProfileItem"
                                                 v-for="effect in effectProfiles" v-if="effect.type == 'Parameter'"
-                                                @click="addEffect(effect.file)">
+                                                @click="addEffect(effect.file, effect.type)">
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>

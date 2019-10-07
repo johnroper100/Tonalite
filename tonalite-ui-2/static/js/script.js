@@ -195,8 +195,12 @@ var app = new Vue({
             socket.emit('getEffects', app.currentFixture.id);
             $('#fixtureAddEffectsModal').modal("show");
         },
-        addEffect: function (file) {
-            socket.emit('addEffect', { fixtureID: app.currentFixture.id, effectFile: file });
+        addEffect: function (file, type) {
+            var paramName = "";
+            if (type == 'Parameter') {
+                paramName = $("#fixtureEffectParametersList").val()
+            }
+            socket.emit('addEffect', { fixtureID: app.currentFixture.id, effectFile: file, parameterName: paramName });
             $('#fixtureAddEffectsModal').modal("hide");
         },
         getEffectSettings: function (effectID) {
