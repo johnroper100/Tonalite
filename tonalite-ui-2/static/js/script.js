@@ -127,6 +127,7 @@ var app = new Vue({
         },
         changeFixtureParameterValue: function (parameter, index) {
             socket.emit("changeFixtureParameterValue", { id: app.currentFixture.id, pid: index, value: parameter.value })
+            parameter.displayValue = parseInt(app.mapRange(parameter.value, parameter.min, parameter.max, 0, 100));
         },
         changeFixtureParameterLock: function (index) {
             socket.emit("changeFixtureParameterLock", { id: app.currentFixture.id, pid: index })
@@ -313,6 +314,11 @@ socket.on('resetView', function (msg) {
             app.currentView = 'cues';
             app.currentCue = {};
         }
+    } else if (msg.type == 'show') {
+        app.currentView = 'fixtures';
+        app.currentCue = {};
+        app.currentFixture = {};
+        app.currentEffect = {};
     }
 });
 

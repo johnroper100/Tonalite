@@ -887,6 +887,7 @@ io.on('connection', function (socket) {
         io.emit('cues', cleanCues());
         io.emit('groups', cleanGroups());
         io.emit('cueActionBtn', false);
+        io.emit('resetView', { type: 'show', eid: "" });
         io.emit('message', { type: "info", content: "A new show has been created!" });
         saveShow();
     });
@@ -1269,7 +1270,8 @@ io.on('connection', function (socket) {
                 var parameter = fixture.parameters[msg.pid];
                 parameter.value = parseInt(msg.value);
                 parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
-                io.emit('fixtures', {fixtures: cleanFixtures(), target: true});
+                socket.broadcast.emit('fixtures', {fixtures: cleanFixtures(), target: true});
+                socket.emit('fixtures', {fixtures: cleanFixtures(), target: false});
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
