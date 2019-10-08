@@ -187,15 +187,15 @@
                     </div>
                     <div id="fixtureParameters">
                         <div class="fixtureParameterTabButtons mb-3">
-                            <button class="btn btn-light" @click="fixtureParametersTab = 'all'"
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
                                 :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
-                            <button class="btn btn-light" @click="fixtureParametersTab = 'intensity'"
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'intensity'"
                                 :class="{'btn-success': fixtureParametersTab == 'intensity'}">Intensity</button>
-                            <button class="btn btn-light" @click="fixtureParametersTab = 'color'"
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'color'"
                                 :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
-                            <button class="btn btn-light" @click="fixtureParametersTab = 'position'"
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'position'"
                                 :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
-                            <button class="btn btn-light" @click="fixtureParametersTab = 'parameter'"
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'parameter'"
                                 :class="{'btn-success': fixtureParametersTab == 'parameter'}">Parameter</button>
 
                         </div>
@@ -214,7 +214,8 @@
                                 <button class="btn btn-warning" @click="setParameterValue(parameter, parameter.min)">
                                     <i class="far fa-step-backward fa-sm"></i>
                                 </button>
-                                <button class="btn btn-warning" @click="setParameterValue(parameter, parseInt(parameter.max/2))">
+                                <button class="btn btn-warning"
+                                    @click="setParameterValue(parameter, parseInt(parameter.max/2))">
                                     50%
                                 </button>
                                 <button class="btn btn-warning" @click="setParameterValue(parameter, parameter.max)">
