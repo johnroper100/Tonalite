@@ -3,6 +3,7 @@ var app = new Vue({
     el: '#app',
     data: {
         currentView: 'fixtures',
+        fixtureParametersTab: 'all',
         desktop: false,
         fixtures: [],
         groups: [],
@@ -237,11 +238,34 @@ var app = new Vue({
                 }
             });
         },
+        getParameterTabType: function (param) {
+            if (app.fixtureParametersTab == 'intensity') {
+                if (param.type == 1) {
+                    return true;
+                }
+            } else if (app.fixtureParametersTab == 'position') {
+                if (param.type == 2) {
+                    return true;
+                }
+            } else if (app.fixtureParametersTab == 'color') {
+                if (param.type == 5) {
+                    return true;
+                }
+            } else if (app.fixtureParametersTab == 'parameter') {
+                if (param.type == 4) {
+                    return true;
+                }
+            } else if (app.fixtureParametersTab == 'all') {
+                return true;
+            }
+            return false;
+        }
     }
 });
 
 socket.on('connect', function () {
     app.currentView = 'fixtures';
+    app.fixtureParametersTab = 'all';
     app.fixtures = [];
     app.groups = [];
     app.cues = [];
@@ -342,6 +366,7 @@ socket.on('resetView', function (msg) {
     } else if (msg.type == 'effect') {
         if (app.currentEffect.id == msg.eid) {
             app.currentView = 'fixtureParameters';
+            app.fixtureParametersTab = 'all';
             app.currentEffect = {};
         }
     } else if (msg.type == 'cues') {

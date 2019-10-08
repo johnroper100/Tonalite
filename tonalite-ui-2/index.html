@@ -186,7 +186,21 @@
                         </div>
                     </div>
                     <div id="fixtureParameters">
-                        <div v-for="(parameter, index) in currentFixture.parameters" :key="parameter.coarse">
+                        <div class="fixtureParameterTabButtons mb-3">
+                            <button class="btn btn-warning" @click="fixtureParametersTab = 'all'"
+                                :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
+                            <button class="btn btn-warning" @click="fixtureParametersTab = 'intensity'"
+                                :class="{'btn-success': fixtureParametersTab == 'intensity'}">Intensity</button>
+                            <button class="btn btn-warning" @click="fixtureParametersTab = 'color'"
+                                :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
+                            <button class="btn btn-warning" @click="fixtureParametersTab = 'position'"
+                                :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
+                            <button class="btn btn-warning" @click="fixtureParametersTab = 'parameter'"
+                                :class="{'btn-success': fixtureParametersTab == 'parameter'}">Parameter</button>
+
+                        </div>
+                        <div v-for="(parameter, index) in currentFixture.parameters"
+                            v-if="getParameterTabType(parameter)" :key="parameter.coarse">
                             <button class="btn btn-info" @click="changeFixtureParameterLock(index)">
                                 <div v-if="parameter.locked == true"><i class="far fa-lock-alt fa-sm"></i></div>
                                 <div>
@@ -219,7 +233,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="currentFixture.chips.length > 0">
+                        <div
+                            v-if="currentFixture.chips.length > 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
                             <div class="fixtureChips">
                                 <h5>Fixture Chips:</h5>
                                 <div v-for="(chip, id) in currentFixture.chips" :key="id"
@@ -260,14 +275,14 @@
                             <div class="modal-body">
                                 <ul class="nav nav-tabs" id="effectsTabs" role="tablist"
                                     v-if="effectProfiles.length > 0">
-                                    <li class="nav-item" v-if="currentFixture.parameterTypes.indexOf('Color') >= 0">
-                                        <a class="nav-link" id="colorEffects-tab" data-toggle="tab" href="#colorEffects"
-                                            role="tab" aria-controls="colorEffects" aria-selected="false">Color</a>
-                                    </li>
                                     <li class="nav-item" v-if="currentFixture.parameterTypes.indexOf('Intensity') >= 0">
                                         <a class="nav-link" id="intensityEffects-tab" data-toggle="tab"
                                             href="#intensityEffects" role="tab" aria-controls="intensityEffects"
                                             aria-selected="false">Intensity</a>
+                                    </li>
+                                    <li class="nav-item" v-if="currentFixture.parameterTypes.indexOf('Color') >= 0">
+                                        <a class="nav-link" id="colorEffects-tab" data-toggle="tab" href="#colorEffects"
+                                            role="tab" aria-controls="colorEffects" aria-selected="false">Color</a>
                                     </li>
                                     <li class="nav-item" v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0">
                                         <a class="nav-link" id="shapeEffects-tab" data-toggle="tab" href="#shapeEffects"
@@ -280,20 +295,20 @@
                                     </li>
                                 </ul>
                                 <div class="tab-content" v-if="effectProfiles.length > 0">
-                                    <div class="tab-pane" id="colorEffects" role="tabpanel"
-                                        aria-labelledby="colorEffects-tab">
-                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
-                                            <li class="list-group-item fixtureProfileItem"
-                                                v-for="effect in effectProfiles" v-if="effect.type == 'Color'"
-                                                @click="addEffect(effect.file, effect.type)">
-                                                {{effect.name}} </li>
-                                        </ul>
-                                    </div>
                                     <div class="tab-pane" id="intensityEffects" role="tabpanel"
                                         aria-labelledby="intensityEffects-tab">
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListIntensity">
                                             <li class="list-group-item fixtureProfileItem"
                                                 v-for="effect in effectProfiles" v-if="effect.type == 'Intensity'"
+                                                @click="addEffect(effect.file, effect.type)">
+                                                {{effect.name}} </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" id="colorEffects" role="tabpanel"
+                                        aria-labelledby="colorEffects-tab">
+                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
+                                            <li class="list-group-item fixtureProfileItem"
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Color'"
                                                 @click="addEffect(effect.file, effect.type)">
                                                 {{effect.name}} </li>
                                         </ul>
