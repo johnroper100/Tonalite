@@ -617,14 +617,14 @@
                             <div class="form-group">
                                 <label for="presetNameInput">Name:</label>
                                 <input class="form-control" type="text" id="presetNameInput" placeholder="Preset Name"
-                                @input="editPresetSettings" v-model="currentPreset.name">
+                                    @input="editPresetSettings" v-model="currentPreset.name">
                             </div>
                         </div>
                         <div class="col-md-4 col-12">
                             <div class="form-group mt-0 mt-md-4">
                                 <div class="custom-control custom-checkbox">
-                                    <input @change="editPresetSettings" type="checkbox" class="custom-control-input" id="displayPresetAsDimmer"
-                                        v-model="currentPreset.displayAsDimmer">
+                                    <input @change="editPresetSettings" type="checkbox" class="custom-control-input"
+                                        id="displayPresetAsDimmer" v-model="currentPreset.displayAsDimmer">
                                     <label class="custom-control-label" for="displayPresetAsDimmer">Display As
                                         Dimmer</label>
                                 </div>
@@ -633,8 +633,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label class="ml-2" for="presetIntensityInput">Intensity:</label>
-                                <input type="range" class="custom-range" id="presetIntensityInput" min="0" max="100"
-                                    v-model="currentPreset.intensity">
+                                <input type="range" @input="editPresetSettings" class="custom-range"
+                                    id="presetIntensityInput" min="0" max="100" v-model="currentPreset.intensity">
                             </div>
                         </div>
                     </div>
