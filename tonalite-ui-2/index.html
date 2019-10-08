@@ -584,13 +584,58 @@
                         </div>
                     </div>
                     <div class="row" id="presetsList">
-                        <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id">
+                        <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id"
+                            @click="getPresetSettings(preset.id)">
                             <div :class="{ 'presetActive' : preset.active == true}" class="presetItem">
                                 <p>{{preset.name}}</p>
                             </div>
                         </div>
                         <div v-if="presets.length == 0" class="col-12">
                             <h5>There are no presets in this show!</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="presetSettingsPage" class="tabcontent" v-if="currentView == 'presetSettings'">
+                <div class="container">
+                    <div class="row topBtns">
+                        <div class="col-6">
+                            <div><button id="presetDeleteBtn" class="btn btn-danger btn-block" @click="removePreset"><i
+                                        class="far fa-trash-alt d-sm-none d-inline-block"></i><span
+                                        class="d-none d-sm-inline-block">Delete</span></button></div>
+
+                        </div>
+                        <div class="col-6">
+                            <button v-if="currentPreset.active == false" id="presetActiveBtn"
+                                class="btn btn-warning btn-block" @click="changePresetActive">Activate</button>
+                            <button v-if="currentPreset.active == true" id="presetActiveBtn"
+                                class="btn btn-warning btn-block" @click="changePresetActive">Deactivate</button>
+                        </div>
+                    </div>
+                    <div class="row" id="presetSettings">
+                        <div class="col-md-8 col-12">
+                            <div class="form-group">
+                                <label for="presetNameInput">Name:</label>
+                                <input class="form-control" type="text" id="presetNameInput" placeholder="Preset Name"
+                                @input="editPresetSettings" v-model="currentPreset.name">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="form-group mt-0 mt-md-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editPresetSettings" type="checkbox" class="custom-control-input" id="displayPresetAsDimmer"
+                                        v-model="currentPreset.displayAsDimmer">
+                                    <label class="custom-control-label" for="displayPresetAsDimmer">Display As
+                                        Dimmer</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="ml-2" for="presetIntensityInput">Intensity:</label>
+                                <input type="range" class="custom-range" id="presetIntensityInput" min="0" max="100"
+                                    v-model="currentPreset.intensity">
+                            </div>
                         </div>
                     </div>
                 </div>

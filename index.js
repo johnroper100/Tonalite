@@ -1504,7 +1504,6 @@ io.on('connection', function (socket) {
                     cue.upStep = cue.upTime * 40;
                     cue.downStep = cue.downTime * 40;
                 }
-                socket.emit('message', { type: "info", content: "Cue settings have been updated!" });
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 saveShow();
@@ -1850,8 +1849,6 @@ io.on('connection', function (socket) {
             var preset = presets[presets.map(el => el.id).indexOf(msg.id)];
             preset.name = msg.name;
             preset.displayAsDimmer = msg.displayAsDimmer;
-            socket.emit('presetSettings', preset);
-            socket.emit('message', { type: "info", content: "Preset settings have been updated!" });
             io.emit('presets', cleanPresets());
             savePresets();
         } else {
@@ -1863,6 +1860,7 @@ io.on('connection', function (socket) {
         if (presets.length != 0) {
             presets.splice(presets.map(el => el.id).indexOf(presetID), 1);
             socket.emit('message', { type: "info", content: "Preset has been removed!" });
+            io.emit('resetView', { type: 'presets', eid: presetID });
             io.emit('presets', cleanPresets());
             savePresets();
         } else {

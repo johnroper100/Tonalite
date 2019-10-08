@@ -18,6 +18,7 @@ var app = new Vue({
         newFixtureCreationCount: 1,
         fixtureProfilesSearch: "",
         currentCue: {},
+        currentPreset: {},
         currentFixture: {},
         version: "",
         currentEffect: {}
@@ -125,6 +126,9 @@ var app = new Vue({
         getCueSettings: function (cueID) {
             socket.emit("getCueSettings", cueID);
         },
+        getPresetSettings: function (presetID) {
+            socket.emit("getPresetSettings", presetID);
+        },
         changeFixtureParameterValue: function (parameter, index) {
             socket.emit("changeFixtureParameterValue", { id: app.currentFixture.id, pid: index, value: parameter.value })
             parameter.displayValue = parseInt(app.mapRange(parameter.value, parameter.min, parameter.max, 0, 100));
@@ -156,6 +160,9 @@ var app = new Vue({
         },
         editCueSettings: function () {
             socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow });
+        },
+        editPresetSettings: function () {
+            socket.emit('editPresetSettings', { id: app.currentPreset.id, name: app.currentPreset.name, displayAsDimmer: app.currentPreset.displayAsDimmer });
         },
         removeFixture: function () {
             bootbox.confirm("Are you sure you want to delete this fixture?", function (result) {
@@ -218,7 +225,18 @@ var app = new Vue({
         setParameterValue(param, value, index) {
             param.value = value;
             app.changeFixtureParameterValue(param, index, value)
-        }
+        },
+        changePresetActive() {
+            socket.emit('changePresetActive', app.currentPreset.id);
+        },
+        removePreset: function () {
+            bootbox.confirm("Are you sure you want to delete this preset?", function (result) {
+                if (result === true) {
+                    app.currentView = 'presets';
+                    socket.emit('removePreset', app.currentPreset.id);
+                }
+            });
+        },
     }
 });
 
@@ -238,6 +256,7 @@ socket.on('connect', function () {
     app.newFixtureCreationCount = 1;
     app.fixtureProfilesSearch = "";
     app.currentCue = {};
+    app.currentPreset = {};
     app.currentFixture = {};
     app.version = "";
     app.effectProfiles = [];
@@ -266,6 +285,9 @@ socket.on('cues', function (msg) {
 
 socket.on('presets', function (msg) {
     app.presets = msg;
+    if (app.currentView == 'presetSettings' && app.currentPreset != {}) {
+        app.getPresetSettings(app.currentPreset.id);
+    }
 });
 
 socket.on('cueActionBtn', function (msg) {
@@ -306,6 +328,11 @@ socket.on('cueSettings', function (msg) {
     app.currentView = "cueSettings";
 });
 
+socket.on('presetSettings', function (msg) {
+    app.currentPreset = msg;
+    app.currentView = "presetSettings";
+});
+
 socket.on('resetView', function (msg) {
     if (msg.type == 'fixtures') {
         if (app.currentFixture.id == msg.eid) {
@@ -322,11 +349,17 @@ socket.on('resetView', function (msg) {
             app.currentView = 'cues';
             app.currentCue = {};
         }
+    } else if (msg.type == 'presets') {
+        if (app.currentPreset.id == msg.eid) {
+            app.currentView = 'presets';
+            app.currentPreset = {};
+        }
     } else if (msg.type == 'show') {
         app.currentView = 'fixtures';
         app.currentCue = {};
         app.currentFixture = {};
         app.currentEffect = {};
+        app.currentPreset = {};
     }
 });
 
