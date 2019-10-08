@@ -130,15 +130,15 @@ var app = new Vue({
         getPresetSettings: function (presetID) {
             socket.emit("getPresetSettings", presetID);
         },
-        changeFixtureParameterValue: function (parameter, index) {
-            socket.emit("changeFixtureParameterValue", { id: app.currentFixture.id, pid: index, value: parameter.value })
+        changeFixtureParameterValue: function (parameter) {
+            socket.emit("changeFixtureParameterValue", { id: app.currentFixture.id, pid: parameter.id, value: parameter.value })
             parameter.displayValue = parseInt(app.mapRange(parameter.value, parameter.min, parameter.max, 0, 100));
         },
-        changeFixtureParameterLock: function (index) {
-            socket.emit("changeFixtureParameterLock", { id: app.currentFixture.id, pid: index })
+        changeFixtureParameterLock: function (param) {
+            socket.emit("changeFixtureParameterLock", { id: app.currentFixture.id, pid: param.id })
         },
-        useParameterRange: function (pid, rid) {
-            socket.emit('useParameterRange', { id: app.currentFixture.id, pid: pid, rid: rid });
+        useParameterRange: function (param, rid) {
+            socket.emit('useParameterRange', { id: app.currentFixture.id, pid: param.id, rid: rid });
         },
         useFixtureChip: function (pid) {
             socket.emit('useFixtureChip', { id: app.currentFixture.id, pid: pid });
@@ -223,9 +223,9 @@ var app = new Vue({
                 }
             });
         },
-        setParameterValue(param, value, index) {
+        setParameterValue(param, value) {
             param.value = value;
-            app.changeFixtureParameterValue(param, index, value)
+            app.changeFixtureParameterValue(param);
         },
         changePresetActive() {
             socket.emit('changePresetActive', app.currentPreset.id);

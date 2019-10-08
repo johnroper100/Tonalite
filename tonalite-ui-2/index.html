@@ -187,21 +187,21 @@
                     </div>
                     <div id="fixtureParameters">
                         <div class="fixtureParameterTabButtons mb-3">
-                            <button class="btn btn-warning" @click="fixtureParametersTab = 'all'"
+                            <button class="btn btn-light" @click="fixtureParametersTab = 'all'"
                                 :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
-                            <button class="btn btn-warning" @click="fixtureParametersTab = 'intensity'"
+                            <button class="btn btn-light" @click="fixtureParametersTab = 'intensity'"
                                 :class="{'btn-success': fixtureParametersTab == 'intensity'}">Intensity</button>
-                            <button class="btn btn-warning" @click="fixtureParametersTab = 'color'"
+                            <button class="btn btn-light" @click="fixtureParametersTab = 'color'"
                                 :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
-                            <button class="btn btn-warning" @click="fixtureParametersTab = 'position'"
+                            <button class="btn btn-light" @click="fixtureParametersTab = 'position'"
                                 :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
-                            <button class="btn btn-warning" @click="fixtureParametersTab = 'parameter'"
+                            <button class="btn btn-light" @click="fixtureParametersTab = 'parameter'"
                                 :class="{'btn-success': fixtureParametersTab == 'parameter'}">Parameter</button>
 
                         </div>
-                        <div v-for="(parameter, index) in currentFixture.parameters"
-                            v-if="getParameterTabType(parameter)" :key="parameter.coarse">
-                            <button class="btn btn-info" @click="changeFixtureParameterLock(index)">
+                        <div v-for="parameter in currentFixture.parameters" v-if="getParameterTabType(parameter)"
+                            :key="parameter.id">
+                            <button class="btn btn-info" @click="changeFixtureParameterLock(parameter)">
                                 <div v-if="parameter.locked == true"><i class="far fa-lock-alt fa-sm"></i></div>
                                 <div>
                                     <div v-if="parameter.locked == false"><i class="far fa-lock-open-alt fa-sm"></i>
@@ -211,23 +211,25 @@
                             <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
                                 ({{parameter.displayValue}}%)</label>
                             <div class="float-right">
-                                <button class="btn btn-warning"
-                                    @click="setParameterValue(parameter, parameter.min, index)">
+                                <button class="btn btn-warning" @click="setParameterValue(parameter, parameter.min)">
                                     <i class="far fa-step-backward fa-sm"></i>
                                 </button>
-                                <button class="btn btn-warning"
-                                    @click="setParameterValue(parameter, parameter.max, index)">
+                                <button class="btn btn-warning" @click="setParameterValue(parameter, parseInt(parameter.max/2))">
+                                    50%
+                                </button>
+                                <button class="btn btn-warning" @click="setParameterValue(parameter, parameter.max)">
                                     <i class="far fa-step-forward fa-sm"></i>
                                 </button>
                             </div>
 
                             <input type="range" class="custom-range" v-bind:id="parameter.coarse"
                                 v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value"
-                                @input="changeFixtureParameterValue(parameter, index)">
+                                @input="changeFixtureParameterValue(parameter)">
                             <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
                                 <div class="channelRanges row flex-nowrap">
                                     <div class="channelRange col-2 col-md-1 mr-1 "
-                                        v-for="(range, id) in parameter.ranges" @click="useParameterRange(index, id)"
+                                        v-for="(range, id) in parameter.ranges"
+                                        @click="useParameterRange(parameter, id)"
                                         :class="{ 'bg-success': parameter.value >= mapRange(range.begin, 0, 255, 0, 65535) && parameter.value <= mapRange(range.end, 0, 255, 0, 65535), 'bg-danger': parameter.value < mapRange(range.begin, 0, 255, 0, 65535) || parameter.value > mapRange(range.end, 0, 255, 0, 65535)}">
                                         {{range.label}}</div>
                                 </div>
@@ -328,7 +330,7 @@
                                             Effect To:</label>
                                         <select class="form-control mb-1" id="fixtureEffectParametersList"
                                             name="fixtureEffectParametersList">
-                                            <option v-for="(parameter, index) in currentFixture.parameters" :key="index"
+                                            <option v-for="parameter in currentFixture.parameters" :key="parameter.id"
                                                 :value="parameter.name">
                                                 {{parameter.name}}</option>
                                         </select>

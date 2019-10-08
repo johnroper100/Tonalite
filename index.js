@@ -1265,7 +1265,7 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
-                var parameter = fixture.parameters[msg.pid];
+                var parameter = fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)];
                 parameter.value = parseInt(msg.value);
                 parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
                 socket.broadcast.emit('fixtures', { fixtures: cleanFixtures(), target: true });
@@ -1280,7 +1280,7 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
-                var parameter = fixture.parameters[msg.pid];
+                var parameter = fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)];
                 parameter.locked = !parameter.locked;
                 fixture.hasLockedParameters = false;
                 let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
@@ -1315,10 +1315,10 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
-                var parameter = fixture.parameters[msg.pid];
+                var parameter = fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)];
                 var range = parameter.ranges[msg.rid];
-                fixture.parameters[msg.pid].value = cppaddon.mapRange(range.default, 0, 255, parameter.min, parameter.max);
-                fixture.parameters[msg.pid].displayValue = cppaddon.mapRange(fixture.parameters[msg.pid].value, fixture.parameters[msg.pid].min, fixture.parameters[msg.pid].max, 0, 100);;
+                fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].value = cppaddon.mapRange(range.default, 0, 255, parameter.min, parameter.max);
+                fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].displayValue = cppaddon.mapRange(fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].value, fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].min, fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].max, 0, 100);;
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             }
         } else {
