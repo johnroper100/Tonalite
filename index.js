@@ -1710,7 +1710,7 @@ io.on('connection', function (socket) {
                 }
                 group.parameters[c].value = valAvg / valAvgCount;
             }
-            socket.emit('groupParameters', { id: group.id, name: group.name, parameters: group.parameters });
+            socket.emit('groupParameters', group);
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
@@ -1719,7 +1719,7 @@ io.on('connection', function (socket) {
     socket.on('changeGroupParameterValue', function (msg) {
         if (fixtures.length != 0 && groups.length != 0) {
             var group = groups[groups.map(el => el.id).indexOf(msg.id)];
-            var parameter = group.parameters[msg.pid];
+            var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
             parameter.value = parseInt(msg.value);
             parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
             setFixtureGroupValues(group, parameter);
@@ -1769,7 +1769,7 @@ io.on('connection', function (socket) {
                 group.parameters[c].displayValue = cppaddon.mapRange(group.parameters[c].value, group.parameters[c].min, group.parameters[c].max, 0, 100);
                 setFixtureGroupValues(group, group.parameters[c]);
             }
-            socket.emit('groupParameters', { id: group.id, name: group.name, parameters: group.parameters });
+            io.emit('groups', cleanGroups());
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Group parameters reset!" });
             saveShow();

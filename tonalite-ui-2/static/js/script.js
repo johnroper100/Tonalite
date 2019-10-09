@@ -23,7 +23,8 @@ var app = new Vue({
         currentFixture: {},
         version: "",
         currentEffect: {},
-        addGroupSelected: []
+        addGroupSelected: [],
+        currentGroup: {}
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -131,6 +132,12 @@ var app = new Vue({
                 app.fixtureParametersTab = 'all';
             }
         },
+        getGroupParameters: function (groupID, resetTab) {
+            socket.emit("getGroupParameters", groupID);
+            if (resetTab == true) {
+                app.fixtureParametersTab = 'all';
+            }
+        },
         getCueSettings: function (cueID) {
             socket.emit("getCueSettings", cueID);
         },
@@ -139,6 +146,10 @@ var app = new Vue({
         },
         changeFixtureParameterValue: function (parameter) {
             socket.emit("changeFixtureParameterValue", { id: app.currentFixture.id, pid: parameter.id, value: parameter.value })
+            parameter.displayValue = parseInt(app.mapRange(parameter.value, parameter.min, parameter.max, 0, 100));
+        },
+        changeGroupParameterValue: function (parameter) {
+            socket.emit("changeGroupParameterValue", { id: app.currentGroup.id, pid: parameter.id, value: parameter.value })
             parameter.displayValue = parseInt(app.mapRange(parameter.value, parameter.min, parameter.max, 0, 100));
         },
         changeFixtureParameterLock: function (param) {
@@ -157,6 +168,13 @@ var app = new Vue({
             bootbox.confirm("Are you sure you want to reset this fixture's parameter values?", function (result) {
                 if (result === true) {
                     socket.emit('resetFixture', app.currentFixture.id);
+                }
+            });
+        },
+        resetGroup: function () {
+            bootbox.confirm("Are you sure you want to reset this group's parameter values?", function (result) {
+                if (result === true) {
+                    socket.emit('resetGroup', app.currentGroup.id);
                 }
             });
         },
@@ -306,6 +324,7 @@ socket.on('connect', function () {
     app.version = "";
     app.effectProfiles = [];
     app.currentEffect = {};
+    app.currentGroup = {};
 });
 
 socket.on('fixtures', function (msg) {
@@ -319,6 +338,11 @@ socket.on('fixtures', function (msg) {
 
 socket.on('groups', function (msg) {
     app.groups = msg;
+    if (msg.target == true) {
+        if ((app.currentView == 'groupParameters' || app.currentView == 'groupSettings') && app.currentGroup != {}) {
+            app.getGroupParameters(app.currentGroup.id, false);
+        }
+    }
 });
 
 socket.on('cues', function (msg) {
@@ -365,6 +389,13 @@ socket.on('fixtureParameters', function (msg) {
     app.currentFixture = msg;
     if (app.currentView != "fixtureSettings" && app.currentView != "effectSettings") {
         app.currentView = "fixtureParameters";
+    }
+});
+
+socket.on('groupParameters', function (msg) {
+    app.currentGroup = msg;
+    if (app.currentView != "groupSettings") {
+        app.currentView = "groupParameters";
     }
 });
 

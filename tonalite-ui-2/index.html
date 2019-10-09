@@ -222,7 +222,6 @@
                                     <i class="far fa-step-forward fa-sm"></i>
                                 </button>
                             </div>
-
                             <input type="range" class="custom-range" v-bind:id="parameter.coarse"
                                 v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value"
                                 @input="changeFixtureParameterValue(parameter)">
@@ -452,7 +451,8 @@
                         </div>
                     </div>
                     <div class="row" id="groupsList">
-                        <div class="col-4 col-lg-2 mb-3" v-for="group in groups" :key="group.id">
+                        <div class="col-4 col-lg-2 mb-3" v-for="group in groups" :key="group.id"
+                            @click="getGroupParameters(group.id, true)">
                             <div class="groupItem">
                                 <p>{{group.name}}</p>
                             </div>
@@ -476,6 +476,60 @@
                                 </div>
                                 <button class="btn btn-success btn-full" @click="addGroup">Add Group</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="groupParametersPage" class="tabcontent" v-if="currentView == 'groupParameters'">
+                <div class="container">
+                    <div class="row topBtns">
+                        <div class="col-4">
+                            <h5 id="groupParametersName">{{currentGroup.name}}</h5>
+                        </div>
+                        <div class="col-4">
+                            <button id="groupSettingsBtn" class="btn btn-primary btn-block"
+                                @click="currentView = 'groupSettings'"><i
+                                    class="far fa-cog d-sm-none d-inline-block"></i><span
+                                    class="d-none d-sm-inline-block">Settings</span></button>
+                        </div>
+                        <div class="col-4">
+                            <div><button id="groupResetBtn" class="btn btn-danger btn-block" @click="resetGroup"><i
+                                        class="far fa-redo d-sm-none d-inline-block"></i><span
+                                        class="d-none d-sm-inline-block">Reset</span></button></div>
+                        </div>
+                    </div>
+                    <div id="groupParameters">
+                        <div class="groupParameterTabButtons mb-3">
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
+                                :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'intensity'"
+                                :class="{'btn-success': fixtureParametersTab == 'intensity'}">Intensity</button>
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'color'"
+                                :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'position'"
+                                :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'parameter'"
+                                :class="{'btn-success': fixtureParametersTab == 'parameter'}">Parameter</button>
+                        </div>
+                        <div v-for="parameter in currentGroup.parameters" v-if="getParameterTabType(parameter)"
+                            :key="parameter.id">
+                            <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
+                                ({{parameter.displayValue}}%)</label>
+                            <div class="float-right">
+                                <button class="btn btn-warning" @click="setParameterValue(parameter, parameter.min)">
+                                    <i class="far fa-step-backward fa-sm"></i>
+                                </button>
+                                <button class="btn btn-warning"
+                                    @click="setParameterValue(parameter, parseInt(parameter.max/2)+1)">
+                                    50%
+                                </button>
+                                <button class="btn btn-warning" @click="setParameterValue(parameter, parameter.max)">
+                                    <i class="far fa-step-forward fa-sm"></i>
+                                </button>
+                            </div>
+                            <input type="range" class="custom-range" v-bind:id="parameter.coarse"
+                                v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value"
+                                @input="changeGroupParameterValue(parameter)">
                         </div>
                     </div>
                 </div>
@@ -686,17 +740,20 @@
                     </div>
                 </div>
                 <div class="col-3" @click="currentView = 'groups'">
-                    <div class="tabitem tabitem-groups" :class="{ active: currentView == 'groups' }">
+                    <div class="tabitem tabitem-groups"
+                        :class="{ active: currentView == 'groups' || currentView == 'groupParameters' || currentView == 'groupSettings'}">
                         <i class="tablinks far fa-layer-group"></i><span class="tabtext">Groups</span>
                     </div>
                 </div>
                 <div class="col-3" @click="currentView = 'cues'">
-                    <div class="tabitem tabitem-cues" :class="{ active: currentView == 'cues' }">
+                    <div class="tabitem tabitem-cues"
+                        :class="{ active: currentView == 'cues' || currentView == 'cueSettings' }">
                         <i class="tablinks far fa-list"></i><span class="tabtext">Cues</span>
                     </div>
                 </div>
                 <div class="col-3" @click="currentView = 'presets'">
-                    <div class="tabitem tabitem-presets" :class="{ active: currentView == 'presets' }">
+                    <div class="tabitem tabitem-presets"
+                        :class="{ active: currentView == 'presets' || currentView == 'presetSettings'}">
                         <i class="tablinks far fa-swatchbook"></i><span class="tabtext">Presets</span>
                     </div>
                 </div>
