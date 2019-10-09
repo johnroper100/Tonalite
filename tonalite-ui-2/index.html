@@ -437,7 +437,8 @@
                 <div class="container">
                     <div class="row topBtns sticky-top">
                         <div class="col-6">
-                            <button :disabled="fixtures.length == 0" class="btn btn-success btn-block">Add
+                            <button :disabled="fixtures.length == 0" class="btn btn-success btn-block"
+                                @click="addGroupModal">Add
                                 Group</button>
                         </div>
                         <div class="col-6">
@@ -458,6 +459,23 @@
                         </div>
                         <div v-if="groups.length == 0" class="col-12">
                             <h5>There are no groups in this show!</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="addGroupModal" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="dark mr-2" for="groupFixtureIDs">Fixtures:</label>
+                                    <multiselect placeholder="Select some fixtures" :options="fixtures"
+                                        v-model="addGroupSelected" label="name" :multiple="true" :search="true"
+                                        style="width: 100%" track-by="id">
+                                        <template slot="option" slot-scope="props">{{props.option.name}}
+                                            ({{props.option.startDMXAddress}})</template></multiselect>
+                                </div>
+                                <button class="btn btn-success btn-full" @click="addGroup">Add Group</button>
+                            </div>
                         </div>
                     </div>
                 </div>

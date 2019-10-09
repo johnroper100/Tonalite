@@ -1,5 +1,4 @@
 var socket = io('http://' + document.domain + ':' + location.port);
-Vue.component('vue-multiselect', window.VueMultiselect.default);
 var app = new Vue({
     el: '#app',
     data: {
@@ -23,7 +22,11 @@ var app = new Vue({
         currentPreset: {},
         currentFixture: {},
         version: "",
-        currentEffect: {}
+        currentEffect: {},
+        addGroupSelected: []
+    },
+    components: {
+        Multiselect: window.VueMultiselect.default
     },
     computed: {
         filteredFixtureProfilesList() {
@@ -263,6 +266,19 @@ var app = new Vue({
                 return true;
             }
             return false;
+        },
+        addGroupModal: function () {
+            app.addGroupSelected = [];
+            $('#addGroupModal').modal("show");
+        },
+        addGroup: function () {
+            var list = [];
+            let f = 0; const fMax = app.addGroupSelected.length; for (; f < fMax; f++) {
+                list.push(app.addGroupSelected[f].id);
+            }
+            socket.emit('addGroup', list);
+            app.addGroupSelected = [];
+            $('#addGroupModal').modal("hide");
         }
     }
 });
@@ -271,6 +287,7 @@ socket.on('connect', function () {
     app.currentView = 'fixtures';
     app.fixtureParametersTab = 'all';
     app.fixtures = [];
+    app.addGroupSelected = [];
     app.groups = [];
     app.cues = [];
     app.presets = [];
@@ -389,6 +406,7 @@ socket.on('resetView', function (msg) {
         app.currentFixture = {};
         app.currentEffect = {};
         app.currentPreset = {};
+        app.addGroupSelected = [];
     }
 });
 
