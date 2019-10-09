@@ -248,9 +248,13 @@ var app = new Vue({
                 }
             });
         },
-        setParameterValue(param, value) {
+        setParameterValue(param, value, type) {
             param.value = value;
-            app.changeFixtureParameterValue(param);
+            if (type == 'fixture') {
+                app.changeFixtureParameterValue(param);
+            } else if (type == 'group') {
+                app.changeGroupParameterValue(param);
+            }
         },
         changePresetActive() {
             socket.emit('changePresetActive', app.currentPreset.id);

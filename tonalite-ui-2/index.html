@@ -211,14 +211,16 @@
                             <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
                                 ({{parameter.displayValue}}%)</label>
                             <div class="float-right">
-                                <button class="btn btn-warning" @click="setParameterValue(parameter, parameter.min)">
+                                <button class="btn btn-warning"
+                                    @click="setParameterValue(parameter, parameter.min, 'fixture')">
                                     <i class="far fa-step-backward fa-sm"></i>
                                 </button>
                                 <button class="btn btn-warning"
-                                    @click="setParameterValue(parameter, parseInt(parameter.max/2)+1)">
+                                    @click="setParameterValue(parameter, parseInt(parameter.max/2)+1, 'fixture')">
                                     50%
                                 </button>
-                                <button class="btn btn-warning" @click="setParameterValue(parameter, parameter.max)">
+                                <button class="btn btn-warning"
+                                    @click="setParameterValue(parameter, parameter.max, 'fixture')">
                                     <i class="far fa-step-forward fa-sm"></i>
                                 </button>
                             </div>
@@ -516,14 +518,16 @@
                             <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
                                 ({{parameter.displayValue}}%)</label>
                             <div class="float-right">
-                                <button class="btn btn-warning" @click="setParameterValue(parameter, parameter.min)">
+                                <button class="btn btn-warning"
+                                    @click="setParameterValue(parameter, parameter.min, 'group')">
                                     <i class="far fa-step-backward fa-sm"></i>
                                 </button>
                                 <button class="btn btn-warning"
-                                    @click="setParameterValue(parameter, parseInt(parameter.max/2)+1)">
+                                    @click="setParameterValue(parameter, parseInt(parameter.max/2)+1, 'group')">
                                     50%
                                 </button>
-                                <button class="btn btn-warning" @click="setParameterValue(parameter, parameter.max)">
+                                <button class="btn btn-warning"
+                                    @click="setParameterValue(parameter, parameter.max, 'group')">
                                     <i class="far fa-step-forward fa-sm"></i>
                                 </button>
                             </div>
