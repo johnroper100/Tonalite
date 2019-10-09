@@ -341,7 +341,7 @@ socket.on('fixtures', function (msg) {
 });
 
 socket.on('groups', function (msg) {
-    app.groups = msg;
+    app.groups = msg.groups;
     if (msg.target == true) {
         if ((app.currentView == 'groupParameters' || app.currentView == 'groupSettings') && app.currentGroup != {}) {
             app.getGroupParameters(app.currentGroup.id, false);

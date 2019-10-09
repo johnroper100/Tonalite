@@ -742,7 +742,7 @@ function openShow(file = "show.json") {
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
-        io.emit('groups', cleanGroups());
+        io.emit('groups', {groups: cleanGroups(), target: true });
     });
 };
 
@@ -848,7 +848,7 @@ io.on('connection', function (socket) {
     socket.emit('currentCue', currentCueID);
     socket.emit('fixtures', { fixtures: cleanFixtures(), target: true });
     socket.emit('cues', cleanCues());
-    socket.emit('groups', cleanGroups());
+    socket.emit('groups', {groups: cleanGroups(), target: true });
     socket.emit('presets', cleanPresets());
     socket.emit('blackout', blackout);
     socket.emit('grandmaster', grandmaster);
@@ -885,7 +885,7 @@ io.on('connection', function (socket) {
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
-        io.emit('groups', cleanGroups());
+        io.emit('groups', {groups: cleanGroups(), target: true });
         io.emit('cueActionBtn', false);
         io.emit('resetView', { type: 'show', eid: "" });
         io.emit('message', { type: "info", content: "A new show has been created!" });
@@ -1686,7 +1686,7 @@ io.on('connection', function (socket) {
             };
             newGroup.parameters = generateGroupParameters(newGroup);
             groups.push(newGroup);
-            io.emit('groups', cleanGroups());
+            io.emit('groups', {groups: cleanGroups(), target: true });
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No fixtures selected!" });
@@ -1742,8 +1742,7 @@ io.on('connection', function (socket) {
             var group = groups[groups.map(el => el.id).indexOf(msg.id)];
             group.name = msg.name;
             socket.emit('groupSettings', { group: group, groupFixtures: getGroupFixtures(group.id) });
-            socket.emit('message', { type: "info", content: "Group settings have been updated!" });
-            io.emit('groups', cleanGroups());
+            io.emit('groups', {groups: cleanGroups(), target: true });
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
@@ -1754,7 +1753,7 @@ io.on('connection', function (socket) {
         if (groups.length != 0) {
             groups.splice(groups.map(el => el.id).indexOf(groupID), 1);
             socket.emit('message', { type: "info", content: "Group has been removed!" });
-            io.emit('groups', cleanGroups());
+            io.emit('groups', {groups: cleanGroups(), target: true });
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
@@ -1769,8 +1768,8 @@ io.on('connection', function (socket) {
                 group.parameters[c].displayValue = cppaddon.mapRange(group.parameters[c].value, group.parameters[c].min, group.parameters[c].max, 0, 100);
                 setFixtureGroupValues(group, group.parameters[c]);
             }
-            io.emit('groups', cleanGroups());
-            io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            io.emit('groups', {groups: cleanGroups(), target: true });
+            io.emit('fixtures', { fixtures: cleanFixtures(), target: false });
             socket.emit('message', { type: "info", content: "Group parameters reset!" });
             saveShow();
         } else {
