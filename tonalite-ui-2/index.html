@@ -8,7 +8,7 @@
     <title>Tonalite - DMX Lighting Control System</title>
     <script defer src="/v2/static/js/all.min.js"></script>
     <link rel="stylesheet" href="/v2/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/v2/static/css/bootstrap-multiselect.css">
+    <link rel="stylesheet" href="/v2/static/css/vue-multiselect.min.css">
     <link rel="stylesheet" href="/v2/static/css/style.css">
     <link rel="apple-touch-icon" href="/v2/static/img/icon.png">
     <link rel="manifest" href="/v2/static/manifest.json">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="row" id="fixturesList">
                         <div class="col-4 col-sm-3 col-lg-2 mb-3" v-for="fixture in fixtures" :key="fixture.id"
-                            @click="getFixtureParameters(fixture.id)">
+                            @click="getFixtureParameters(fixture.id, true)">
                             <div class="fixtureItem">
                                 <h3 v-if="fixture.hasIntensity === true" class="fixtureValue">
                                     {{fixture.parameters[fixture.parameters.map(el => el.type).indexOf(1)].displayValue}}%
@@ -215,7 +215,7 @@
                                     <i class="far fa-step-backward fa-sm"></i>
                                 </button>
                                 <button class="btn btn-warning"
-                                    @click="setParameterValue(parameter, parseInt(parameter.max/2))">
+                                    @click="setParameterValue(parameter, parseInt(parameter.max/2)+1)">
                                     50%
                                 </button>
                                 <button class="btn btn-warning" @click="setParameterValue(parameter, parameter.max)">
@@ -695,7 +695,7 @@
     <script src="/v2/static/js/popper.min.js"></script>
     <script src="/v2/static/js/bootstrap.min.js"></script>
     <script src="/v2/static/js/socket.io.js"></script>
-    <script src="/v2/static/js/bootstrap-multiselect.js"></script>
+    <script src="/v2/static/js/vue-multiselect.min.js"></script>
     <script src="/v2/static/js/bootbox.min.js"></script>
     <script src="/v2/static/js/isMobile.min.js"></script>
     <script src="/v2/static/js/vue.js"></script>

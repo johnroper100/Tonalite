@@ -1,4 +1,5 @@
 var socket = io('http://' + document.domain + ':' + location.port);
+Vue.component('vue-multiselect', window.VueMultiselect.default);
 var app = new Vue({
     el: '#app',
     data: {
@@ -121,8 +122,11 @@ var app = new Vue({
             socket.emit("addFixture", { fixtureName: fixture, dcid: dcid, startDMXAddress: $('#newFixtureStartDMXAddress').val(), creationCount: $('#newFixtureCreationCount').val() });
             $('#fixtureProfilesModal').modal("hide");
         },
-        getFixtureParameters: function (fixtureID) {
+        getFixtureParameters: function (fixtureID, resetTab) {
             socket.emit("getFixtureParameters", fixtureID);
+            if (resetTab == true) {
+                app.fixtureParametersTab = 'all';
+            }
         },
         getCueSettings: function (cueID) {
             socket.emit("getCueSettings", cueID);
@@ -291,7 +295,7 @@ socket.on('fixtures', function (msg) {
     app.fixtures = msg.fixtures;
     if (msg.target == true) {
         if ((app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings' || app.currentView == 'effectSettings') && app.currentFixture != {}) {
-            app.getFixtureParameters(app.currentFixture.id);
+            app.getFixtureParameters(app.currentFixture.id, false);
         }
     }
 });
