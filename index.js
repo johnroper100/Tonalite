@@ -1724,6 +1724,8 @@ io.on('connection', function (socket) {
             parameter.value = parseInt(msg.value);
             parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
             setFixtureGroupValues(group, parameter);
+            socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
+            socket.emit('groups', { groups: cleanGroups(), target: false });
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         } else {
             socket.emit('message', { type: "error", content: "No fixtures and/or groups exist!" });
