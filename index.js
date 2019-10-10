@@ -294,6 +294,7 @@ function cleanFixtureForCue(fixture) {
     delete newFixture.chips;
     delete newFixture.dcid;
     delete newFixture.colortable;
+    delete newFixture.startDMXAddress;
     newFixture.effects = cleanEffectsForCue(newFixture.effects);
     let p = 0; const pMax = newFixture.parameters.length; for (; p < pMax; p++) {
         delete newFixture.parameters[p].name;
