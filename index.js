@@ -277,6 +277,7 @@ function cleanFixtures() {
         delete newFixtures[f].parameterTypes;
         delete newFixtures[f].dmxUniverse;
         delete newFixtures[f].dcid;
+        delete newFixtures[f].name;
         delete newFixtures[f].manufacturerName;
         delete newFixtures[f].maxOffset;
         delete newFixtures[f].modelName;
@@ -298,6 +299,10 @@ function cleanFixtures() {
             delete newFixtures[f].parameters[p].min;
             delete newFixtures[f].parameters[p].locked;
             delete newFixtures[f].parameters[p].id;
+            if (newFixtures[f].parameters[p].type != 1) {
+                delete newFixtures[f].parameters[p].type;
+                delete newFixtures[f].parameters[p].displayValue;
+            }
         }
     }
     return newFixtures;
