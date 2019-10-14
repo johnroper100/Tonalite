@@ -760,6 +760,19 @@
                 </div>
             </div>
         </div>
+        <div id="serverDisconnectedModal" data-backdrop="static" data-keyboard="false" class="modal" tabindex="-1"
+            role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center dark">
+                        <h5 class="red">Tonalite Server Disconnected!</h5>
+                        <p>If you have not stopped it manually, there may have been an error, or you may be on the wrong
+                            IP. Try
+                            rebooting the <span v-if="desktop">server</span><span v-if="!desktop">console</span>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="alert" class="fixed-bottom mb-5 alert alert-dismissible fade" role="alert">
             <div id="alertText"></div>
             <button type="button" class="close" aria-label="Close">

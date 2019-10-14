@@ -325,6 +325,11 @@ socket.on('connect', function () {
     app.effectProfiles = [];
     app.currentEffect = {};
     app.currentGroup = {};
+    $('#serverDisconnectedModal').modal("hide");
+});
+
+socket.on('connect_error', function () {
+    $('#serverDisconnectedModal').modal("show");
 });
 
 socket.on('fixtures', function (msg) {
