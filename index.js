@@ -277,7 +277,6 @@ function cleanFixtures() {
         delete newFixtures[f].parameterTypes;
         delete newFixtures[f].dmxUniverse;
         delete newFixtures[f].dcid;
-        delete newFixtures[f].name;
         delete newFixtures[f].manufacturerName;
         delete newFixtures[f].maxOffset;
         delete newFixtures[f].modelName;
