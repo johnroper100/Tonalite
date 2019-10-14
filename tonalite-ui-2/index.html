@@ -187,15 +187,15 @@
                         <div class="fixtureParameterTabButtons mb-3">
                             <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
                                 :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
-                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'intensity'"
-                                :class="{'btn-success': fixtureParametersTab == 'intensity'}">Intensity</button>
-                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'color'"
-                                :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
-                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'position'"
+                            <button v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0" class="btn btn-secondary"
+                                @click="fixtureParametersTab = 'position'"
                                 :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
-                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'parameter'"
-                                :class="{'btn-success': fixtureParametersTab == 'parameter'}">Parameter</button>
-
+                            <button v-if="currentFixture.parameterTypes.indexOf('Color') >= 0" class="btn btn-secondary"
+                                @click="fixtureParametersTab = 'color'"
+                                :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
+                            <button v-if="currentFixture.parameterTypes.indexOf('Parameter') >= 0"
+                                class="btn btn-secondary" @click="fixtureParametersTab = 'beam'"
+                                :class="{'btn-success': fixtureParametersTab == 'beam'}">Beam</button>
                         </div>
                         <div v-for="parameter in currentFixture.parameters" v-if="getParameterTabType(parameter)"
                             :key="parameter.id">
@@ -502,14 +502,12 @@
                         <div class="groupParameterTabButtons mb-3">
                             <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
                                 :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
-                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'intensity'"
-                                :class="{'btn-success': fixtureParametersTab == 'intensity'}">Intensity</button>
-                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'color'"
-                                :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
                             <button class="btn btn-secondary" @click="fixtureParametersTab = 'position'"
                                 :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
-                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'parameter'"
-                                :class="{'btn-success': fixtureParametersTab == 'parameter'}">Parameter</button>
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'color'"
+                                :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
+                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'beam'"
+                                :class="{'btn-success': fixtureParametersTab == 'beam'}">Beam</button>
                         </div>
                         <div v-for="parameter in currentGroup.parameters" v-if="getParameterTabType(parameter)"
                             :key="parameter.id">

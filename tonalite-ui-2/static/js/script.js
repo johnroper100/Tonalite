@@ -268,11 +268,7 @@ var app = new Vue({
             });
         },
         getParameterTabType: function (param) {
-            if (app.fixtureParametersTab == 'intensity') {
-                if (param.type == 1) {
-                    return true;
-                }
-            } else if (app.fixtureParametersTab == 'position') {
+            if (app.fixtureParametersTab == 'position') {
                 if (param.type == 2) {
                     return true;
                 }
@@ -280,7 +276,7 @@ var app = new Vue({
                 if (param.type == 5) {
                     return true;
                 }
-            } else if (app.fixtureParametersTab == 'parameter') {
+            } else if (app.fixtureParametersTab == 'beam') {
                 if (param.type == 4) {
                     return true;
                 }
