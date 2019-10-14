@@ -690,10 +690,7 @@ function calculateStack() {
         if (presets[p].active) {
             let c = 0; const cMax = presets[p].parameters.length; for (; c < cMax; c++) {
                 if (presets[p].parameters[c] != null) {
-                    var tempvalue = (presets[p].parameters[c] / 100.0) * presets[p].intensity;
-                    if (tempvalue > channels[c]) {
-                        channels[c] = tempvalue;
-                    }
+                    channels[c] = (presets[p].parameters[c] / 100.0) * presets[p].intensity;
                 }
             }
         }
