@@ -284,7 +284,6 @@ function cleanFixtures() {
         let p = 0; const pMax = newFixtures[f].parameters.length; for (; p < pMax; p++) {
             delete newFixtures[f].parameters[p].home;
             delete newFixtures[f].parameters[p].coarse;
-            //newFixtures[f].parameters[p].displayValue = Math.round(newFixtures[f].parameters[p].displayValue);
             delete newFixtures[f].parameters[p].ranges;
             delete newFixtures[f].parameters[p].fadeWithIntensity;
             delete newFixtures[f].parameters[p].fine;
