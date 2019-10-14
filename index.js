@@ -272,12 +272,32 @@ function generateGroupParameters(newGroup) {
 function cleanFixtures() {
     var newFixtures = JSON.parse(JSON.stringify(fixtures));
     let f = 0; const fMax = newFixtures.length; for (; f < fMax; f++) {
-        delete newFixtures.effects;
-        delete newFixtures.chips;
+        delete newFixtures[f].effects;
+        delete newFixtures[f].chips;
+        delete newFixtures[f].parameterTypes;
+        delete newFixtures[f].dmxUniverse;
+        delete newFixtures[f].dcid;
+        delete newFixtures[f].manufacturerName;
+        delete newFixtures[f].maxOffset;
+        delete newFixtures[f].modelName;
+        delete newFixtures[f].modeName;
         let p = 0; const pMax = newFixtures[f].parameters.length; for (; p < pMax; p++) {
             delete newFixtures[f].parameters[p].home;
             delete newFixtures[f].parameters[p].coarse;
-            newFixtures[f].parameters[p].displayValue = Math.round(newFixtures[f].parameters[p].displayValue);
+            //newFixtures[f].parameters[p].displayValue = Math.round(newFixtures[f].parameters[p].displayValue);
+            delete newFixtures[f].parameters[p].ranges;
+            delete newFixtures[f].parameters[p].fadeWithIntensity;
+            delete newFixtures[f].parameters[p].fine;
+            delete newFixtures[f].parameters[p].highlight;
+            delete newFixtures[f].parameters[p].invert;
+            delete newFixtures[f].parameters[p].name;
+            delete newFixtures[f].parameters[p].size;
+            delete newFixtures[f].parameters[p].snap;
+            delete newFixtures[f].parameters[p].value;
+            delete newFixtures[f].parameters[p].max;
+            delete newFixtures[f].parameters[p].min;
+            delete newFixtures[f].parameters[p].locked;
+            delete newFixtures[f].parameters[p].id;
         }
     }
     return newFixtures;
