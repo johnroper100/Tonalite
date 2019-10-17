@@ -255,10 +255,12 @@ function generateID() {
 function generateGroupParameters(newGroup) {
     var parameterCats = [];
     var parameters = [];
+    var fixture = null;
+    var newParameter = null;
     let i = 0; const iMax = newGroup.ids.length; for (; i < iMax; i++) {
-        var fixture = fixtures[fixtures.map(el => el.id).indexOf(newGroup.ids[i])];
+        fixture = fixtures[fixtures.map(el => el.id).indexOf(newGroup.ids[i])];
         let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
-            var newParameter = JSON.parse(JSON.stringify(fixture.parameters[c]));
+            newParameter = JSON.parse(JSON.stringify(fixture.parameters[c]));
             if (!parameterCats.includes(newParameter.name + ":" + newParameter.type)) {
                 newParameter.value = newParameter.home;
                 parameters.push(newParameter);
@@ -422,8 +424,9 @@ function cleanPresets() {
 function getGroupFixtures(groupID) {
     var group = groups[groups.map(el => el.id).indexOf(groupID)];
     var fixtureStarts = [];
+    var fixture = null;
     let i = 0; const iMax = group.ids.length; for (; i < iMax; i++) {
-        var fixture = fixtures[fixtures.map(el => el.id).indexOf(group.ids[i])];
+        fixture = fixtures[fixtures.map(el => el.id).indexOf(group.ids[i])];
         fixtureStarts.push([fixture.name, fixture.startDMXAddress, fixture.id]);
     }
     return fixtureStarts;
@@ -479,8 +482,11 @@ function calculateChannelsList() {
 // Set the cue's output channel values to the correct values from the fixtures. This is basically saving the cue.
 function calculateCue(cue) {
     var outputChannels = new Array(512).fill(0);
+    var startFixture = null;
+    var startParameter = null;
+    var endParameter = null;
     let f = 0; const fMax = cue.fixtures.length; for (; f < fMax; f++) {
-        var startFixture = fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)];
+        startFixture = fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)];
         let e = 0; const eMax = cue.fixtures[f].effects.length; for (; e < eMax; e++) {
             if (startFixture.effects[e].id == cue.fixtures[f].effects[e].id) {
                 startFixture.effects[e].fan = cue.fixtures[f].effects[e].fan;
@@ -498,8 +504,8 @@ function calculateCue(cue) {
         startFixture.hasActiveEffects = checkFixtureActiveEffects(startFixture.effects);
         let c = 0; const cMax = cue.fixtures[f].parameters.length; for (; c < cMax; c++) {
             if (startFixture.parameters[c].locked === false) {
-                var startParameter = startFixture.parameters[c].value;
-                var endParameter = cue.fixtures[f].parameters[c].value;
+                startParameter = startFixture.parameters[c].value;
+                endParameter = cue.fixtures[f].parameters[c].value;
                 // If the end parameter is greater than the start parameter, the value is going in, out is going out if less
                 if (endParameter >= startParameter) {
                     // Make sure that the step does not dip below 0 (finished)
@@ -549,7 +555,7 @@ function calculateCue(cue) {
                     }
                 }
             } else {
-                var startParameter = startFixture.parameters[c].value;
+                startParameter = startFixture.parameters[c].value;
                 outputChannels[(startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse] = (startParameter >> 8);
                 if (cue.fixtures[f].parameters[c].fine != null) {
                     outputChannels[(startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine] = (startParameter & 0xff);
@@ -596,9 +602,10 @@ function calculateStack() {
                 cue.active = false;
                 io.emit('cueActionBtn', false);
             }
+            var startFixtureParameters = null;
             // Set the fixture's display and real values to the correct values from the cue
             let f = 0; const fMax = cue.fixtures.length; for (; f < fMax; f++) {
-                var startFixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters;
+                startFixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters;
                 let c = 0; const cMax = cue.fixtures[f].parameters.length; for (; c < cMax; c++) {
                     if (startFixtureParameters[c].locked === false) {
                         startFixtureParameters[c].value = cue.fixtures[f].parameters[c].value;
@@ -635,14 +642,16 @@ function calculateStack() {
     }
     if (blackout === false) {
         var displayChanged = false;
+        var effectChanIndex = null;
+        var effectValue = null;
         let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
             let e = 0; const eMax = fixtures[f].effects.length; for (; e < eMax; e++) {
                 if (fixtures[f].effects[e].active == true) {
                     let p = 0; const pMax = fixtures[f].parameters.length; for (; p < pMax; p++) {
                         if (fixtures[f].parameters[p].locked === false) {
-                            var effectChanIndex = fixtures[f].effects[e].parameterNames.findIndex(function (element) { return element == fixtures[f].parameters[p].name });
+                            effectChanIndex = fixtures[f].effects[e].parameterNames.findIndex(function (element) { return element == fixtures[f].parameters[p].name });
                             if (effectChanIndex > -1) {
-                                var effectValue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex];
+                                effectValue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex];
                                 if (fixtures[f].effects[e].resolution == 8) {
                                     effectValue = cppaddon.mapRange(effectValue, 0, 255, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max);
                                 } else {
@@ -690,6 +699,12 @@ function calculateStack() {
         if (presets[p].active) {
             let c = 0; const cMax = presets[p].parameters.length; for (; c < cMax; c++) {
                 if (presets[p].parameters[c] != null) {
+                    /*
+                    var tempvalue = (presets[p].parameters[c] / 100.0) * presets[p].intensity;
+                    if (tempvalue > channels[c]) {
+                        channels[c] = tempvalue;
+                    }
+                    */
                     channels[c] = (presets[p].parameters[c] / 100.0) * presets[p].intensity;
                 }
             }
@@ -1000,9 +1015,11 @@ io.on('connection', function (socket) {
             }
         }
         if (startDMXAddress) {
+            var fixture = null;
+            var color = null;
             let i = 0; const iMax = parseInt(msg.creationCount); for (; i < iMax; i++) {
                 // Add a fixture using the fixture spec file in the fixtures folder
-                var fixture = require(process.cwd() + "/fixtures/" + msg.fixtureName);
+                fixture = require(process.cwd() + "/fixtures/" + msg.fixtureName);
                 fixture = fixture.personalities[fixture.personalities.map(el => el.dcid).indexOf(msg.dcid)];
                 fixture.startDMXAddress = startDMXAddress;
                 fixture.dmxUniverse = 0;
@@ -1017,7 +1034,7 @@ io.on('connection', function (socket) {
                     // RGB
                     colortable = JSON.parse(JSON.stringify(require(process.cwd() + "/chips/rgb.json")));
                     let col = 0; const colMax = colortable.length; for (; col < colMax; col++) {
-                        var color = { color: colortable[col].color, parameters: [] };
+                        color = { color: colortable[col].color, parameters: [] };
 
                         color.parameters.push({ name: "Red", value: colortable[col].parameters[0] });
                         color.parameters.push({ name: "Green", value: colortable[col].parameters[1] });
@@ -1029,7 +1046,7 @@ io.on('connection', function (socket) {
                     // RGBW
                     colortable = JSON.parse(JSON.stringify(require(process.cwd() + "/chips/rgb.json")));
                     let col = 0; const colMax = colortable.length; for (; col < colMax; col++) {
-                        var color = { color: colortable[col].color, parameters: [] };
+                        color = { color: colortable[col].color, parameters: [] };
 
                         w = Math.min(colortable[col].parameters[0], colortable[col].parameters[1], colortable[col].parameters[2]);
 
@@ -1044,7 +1061,7 @@ io.on('connection', function (socket) {
                     // RGBA
                     colortable = JSON.parse(JSON.stringify(require(process.cwd() + "/chips/rgb.json")));
                     let col = 0; const colMax = colortable.length; for (; col < colMax; col++) {
-                        var color = { color: colortable[col].color, parameters: [] };
+                        color = { color: colortable[col].color, parameters: [] };
 
                         w = Math.min(colortable[col].parameters[0], colortable[col].parameters[1], colortable[col].parameters[2]);
                         a = cppaddon.getAFromRGB(colortable[col].parameters[0], colortable[col].parameters[1], colortable[col].parameters[2]);
@@ -1060,7 +1077,7 @@ io.on('connection', function (socket) {
                     // RGBAW
                     colortable = JSON.parse(JSON.stringify(require(process.cwd() + "/chips/rgb.json")));
                     let col = 0; const colMax = colortable.length; for (; col < colMax; col++) {
-                        var color = { color: colortable[col].color, parameters: [] };
+                        color = { color: colortable[col].color, parameters: [] };
 
                         w = Math.min(colortable[col].parameters[0], colortable[col].parameters[1], colortable[col].parameters[2]);
                         a = cppaddon.getAFromRGB(colortable[col].parameters[0], colortable[col].parameters[1], colortable[col].parameters[2]);
@@ -1077,7 +1094,7 @@ io.on('connection', function (socket) {
                     // CMY
                     colortable = JSON.parse(JSON.stringify(require(process.cwd() + "/chips/rgb.json")));
                     let col = 0; const colMax = colortable.length; for (; col < colMax; col++) {
-                        var color = { color: colortable[col].color, parameters: [] };
+                        color = { color: colortable[col].color, parameters: [] };
 
                         color.parameters.push({ name: "Cyan", value: 100 - colortable[col].parameters[0] });
                         color.parameters.push({ name: "Magenta", value: 100 - colortable[col].parameters[1] });
@@ -1158,9 +1175,10 @@ io.on('connection', function (socket) {
     socket.on('removeEffect', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
+                var fixture = null;
                 let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
                     if (cues[c].fixtures.some(e => e.id === msg.fixtureID)) {
-                        var fixture = cues[c].fixtures[cues[c].fixtures.map(el => el.id).indexOf(msg.fixtureID)];
+                        fixture = cues[c].fixtures[cues[c].fixtures.map(el => el.id).indexOf(msg.fixtureID)];
                         if (fixture.effects.some(e => e.id === msg.effectID)) {
                             fixture.effects.splice(fixture.effects.map(el => el.id).indexOf(msg.effectID), 1);
                         }
@@ -1396,10 +1414,11 @@ io.on('connection', function (socket) {
                     effect.name = effect.name + " (" + msg.parameterName + ")";
                 }
                 fixture.effects.push(effect);
+                var topush = null;
                 let cc = 0; const ccMax = cues.length; for (; cc < ccMax; cc++) {
                     let f = 0; const fMax = cues[cc].fixtures.length; for (; f < fMax; f++) {
                         if (cues[cc].fixtures[f].id == fixture.id) {
-                            var topush = cleanEffectForCue(effect);
+                            topush = cleanEffectForCue(effect);
                             topush.active = false;
                             cues[cc].fixtures[f].effects.push(topush);
                         }
@@ -1569,8 +1588,9 @@ io.on('connection', function (socket) {
             } else {
                 lastCue = cues[0].id;
             }
+            var fixtureParameters = null;
             let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-                var fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
+                fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
                 let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
                     if (fixtureParameters[c].locked === false) {
                         fixtureParameters[c].value = cppaddon.mapRange(fixtureParameters[c].displayValue, 0, 100, fixtureParameters[c].min, fixtureParameters[c].max);
@@ -1603,8 +1623,9 @@ io.on('connection', function (socket) {
             } else {
                 lastCue = cues[cues.length - 1].id;
             }
+            var fixtureParameters = null;
             let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-                var fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
+                fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
                 let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
                     if (fixtureParameters[c].locked === false) {
                         fixtureParameters[c].value = cppaddon.mapRange(fixtureParameters[c].displayValue, 0, 100, fixtureParameters[c].min, fixtureParameters[c].max);
@@ -1624,8 +1645,9 @@ io.on('connection', function (socket) {
 
     socket.on('stopCue', function () {
         if (cues.length != 0) {
+            var fixtureParameters = null;
             let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-                var fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
+                fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
                 let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
                     if (fixtureParameters[c].locked === false) {
                         fixtureParameters[c].value = cppaddon.mapRange(fixtureParameters[c].displayValue, 0, 100, fixtureParameters[c].min, fixtureParameters[c].max);
@@ -1653,8 +1675,9 @@ io.on('connection', function (socket) {
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
                 cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
             }
+            var fixtureParameters = null;
             let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-                var fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
+                fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
                 let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
                     if (fixtureParameters[c].locked === false) {
                         fixtureParameters[c].value = cppaddon.mapRange(fixtureParameters[c].displayValue, 0, 100, fixtureParameters[c].min, fixtureParameters[c].max);
@@ -1717,11 +1740,12 @@ io.on('connection', function (socket) {
     socket.on('getGroupParameters', function (groupID) {
         if (groups.length != 0) {
             var group = groups[groups.map(el => el.id).indexOf(groupID)];
+            var fixture = null;
             let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
                 var valAvg = 0;
                 var valAvgCount = 0;
                 let i = 0; const iMax = group.ids.length; for (; i < iMax; i++) {
-                    var fixture = fixtures[fixtures.map(el => el.id).indexOf(group.ids[i])];
+                    fixture = fixtures[fixtures.map(el => el.id).indexOf(group.ids[i])];
                     let fc = 0; const fcMax = fixture.parameters.length; for (; fc < fcMax; fc++) {
                         if (fixture.parameters[fc].name === group.parameters[c].name && fixture.parameters[fc].type === group.parameters[c].type) {
                             valAvg = valAvg + fixture.parameters[fc].value;
