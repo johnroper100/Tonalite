@@ -1350,7 +1350,7 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('useParameterRange', function (msg) {
+    socket.on('useFixtureParameterRange', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
@@ -1359,6 +1359,27 @@ io.on('connection', function (socket) {
                 fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].value = cppaddon.mapRange(range.default, 0, 255, parameter.min, parameter.max);
                 fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].displayValue = cppaddon.mapRange(fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].value, fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].min, fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].max, 0, 100);;
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('useGroupParameterRange', function (msg) {
+        if (fixtures.length != 0) {
+            if (groups.length != 0) {
+                if (groups.some(e => e.id === msg.id)) {
+                    var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                    var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
+                    var range = parameter.ranges[msg.rid];
+                    group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].value = cppaddon.mapRange(range.default, 0, 255, parameter.min, parameter.max);
+                    group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].displayValue = cppaddon.mapRange(group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].value, group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].min, group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].max, 0, 100);;
+                    setFixtureGroupValues(group, parameter);
+                    io.emit('groups', { groups: cleanGroups(), target: true });
+                    io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No groups exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });

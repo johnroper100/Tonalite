@@ -155,8 +155,11 @@ var app = new Vue({
         changeFixtureParameterLock: function (param) {
             socket.emit("changeFixtureParameterLock", { id: app.currentFixture.id, pid: param.id })
         },
-        useParameterRange: function (param, rid) {
-            socket.emit('useParameterRange', { id: app.currentFixture.id, pid: param.id, rid: rid });
+        useFixtureParameterRange: function (param, rid) {
+            socket.emit('useFixtureParameterRange', { id: app.currentFixture.id, pid: param.id, rid: rid });
+        },
+        useGroupParameterRange: function (param, rid) {
+            socket.emit('useGroupParameterRange', { id: app.currentGroup.id, pid: param.id, rid: rid });
         },
         useFixtureChip: function (pid) {
             socket.emit('useFixtureChip', { id: app.currentFixture.id, pid: pid });
