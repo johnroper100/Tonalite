@@ -309,6 +309,12 @@ function cleanFixtures() {
     return newFixtures;
 };
 
+function cleanFixture(fixture) {
+    var newFixture = JSON.parse(JSON.stringify(fixture));
+    newFixture.effects = cleanEffects(newFixture.effects);
+    return newFixture;
+}
+
 function cleanFixtureForCue(fixture) {
     var newFixture = JSON.parse(JSON.stringify(fixture));
     delete newFixture.name;
@@ -1268,7 +1274,7 @@ io.on('connection', function (socket) {
     socket.on('getFixtureParameters', function (fixtureID) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
-                socket.emit('fixtureParameters', fixtures[fixtures.map(el => el.id).indexOf(fixtureID)]);
+                socket.emit('fixtureParameters', cleanFixture(fixtures[fixtures.map(el => el.id).indexOf(fixtureID)]));
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
