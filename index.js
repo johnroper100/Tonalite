@@ -427,6 +427,12 @@ function cleanPresets() {
     return newPresets;
 };
 
+function cleanPreset(preset) {
+    var newPreset = JSON.parse(JSON.stringify(preset));
+    delete newPresets[p].parameters;
+    return newPreset;
+};
+
 function getGroupFixtures(groupID) {
     var group = groups[groups.map(el => el.id).indexOf(groupID)];
     var fixtureStarts = [];
@@ -1938,7 +1944,7 @@ io.on('connection', function (socket) {
         if (presets.length != 0) {
             var preset = presets[presets.map(el => el.id).indexOf(presetID)];
             preset.fixtures = JSON.parse(JSON.stringify(fixtures));
-            socket.emit('presetSettings', preset);
+            socket.emit('presetSettings', cleanPreset(preset));
             io.emit('presets', cleanPresets());
             socket.emit('message', { type: "info", content: "Preset parameters have been updated!" });
             savePresets();
