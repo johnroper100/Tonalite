@@ -1913,6 +1913,7 @@ io.on('connection', function (socket) {
                 active: false,
                 intensity: 0,
                 displayAsDimmer: false,
+                mode: "ltp",
                 parameters: JSON.parse(JSON.stringify(calculateChannelsList()))
             };
             presets.push(newPreset);
