@@ -1150,6 +1150,18 @@ io.on('connection', function (socket) {
                     if (groups[g].ids.some(e => e === fixtureID)) {
                         groups[g].ids.splice(groups[g].ids.map(el => el).indexOf(fixtureID), 1);
                         groups[g].parameters = generateGroupParameters(groups[g]);
+                        groups[g].parameterTypes = [];
+                        let c = 0; const cMax = groups[g].parameters.length; for (; c < cMax; c++) {
+                            if (groups[g].parameters[c].type == 2) {
+                                groups[g].parameterTypes.push("Shape");
+                            } else if (groups[g].parameters[c].type == 5) {
+                                groups[g].parameterTypes.push("Color");
+                            } else if (groups[g].parameters[c].type == 4) {
+                                groups[g].parameterTypes.push("Parameter");
+                            } else if (groups[g].parameters[c].type == 1) {
+                                groups[g].parameterTypes.push("Intensity");
+                            }
+                        }
                     }
                 }
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(fixtureID)];
@@ -1748,6 +1760,7 @@ io.on('connection', function (socket) {
                 parameterTypes: []
             };
             newGroup.parameters = generateGroupParameters(newGroup);
+            newGroup.parameterTypes = [];
             let c = 0; const cMax = newGroup.parameters.length; for (; c < cMax; c++) {
                 if (newGroup.parameters[c].type == 2) {
                     newGroup.parameterTypes.push("Shape");
@@ -1860,6 +1873,18 @@ io.on('connection', function (socket) {
             if (group.ids.some(e => e === msg.fixture)) {
                 group.ids.splice(group.ids.map(el => el).indexOf(msg.fixture), 1);
                 group.parameters = generateGroupParameters(group);
+                group.parameterTypes = [];
+                let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
+                    if (group.parameters[c].type == 2) {
+                        group.parameterTypes.push("Shape");
+                    } else if (group.parameters[c].type == 5) {
+                        group.parameterTypes.push("Color");
+                    } else if (group.parameters[c].type == 4) {
+                        group.parameterTypes.push("Parameter");
+                    } else if (group.parameters[c].type == 1) {
+                        group.parameterTypes.push("Intensity");
+                    }
+                }
             }
             socket.emit('groupSettings', { group: group, groupFixtures: getGroupFixtures(group.id) });
             socket.emit('message', { type: "info", content: "Fixture removed from group!" });
