@@ -261,6 +261,7 @@ function generateGroupParameters(newGroup) {
         fixture = fixtures[fixtures.map(el => el.id).indexOf(newGroup.ids[i])];
         let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
             newParameter = JSON.parse(JSON.stringify(fixture.parameters[c]));
+            newParameter.id = generateID();
             if (!parameterCats.includes(newParameter.name + ":" + newParameter.type)) {
                 newParameter.value = newParameter.home;
                 parameters.push(newParameter);
