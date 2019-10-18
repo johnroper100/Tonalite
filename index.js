@@ -393,12 +393,8 @@ function cleanGroups() {
     var newGroups = JSON.parse(JSON.stringify(groups));
     let g = 0; const gMax = newGroups.length; for (; g < gMax; g++) {
         delete newGroups[g].ids;
-        let p = 0; const pMax = newGroups[g].parameters.length; for (; p < pMax; p++) {
-            delete newGroups[g].parameters[p].max;
-            delete newGroups[g].parameters[p].min;
-            delete newGroups[g].parameters[p].home;
-            delete newGroups[g].parameters[p].coarse;
-        }
+        delete newGroups[g].parameters;
+        delete newGroups[g].parameterTypes;
     }
     return newGroups;
 };
@@ -1748,9 +1744,21 @@ io.on('connection', function (socket) {
                 id: generateID(),
                 name: "Group " + (groups.length + 1),
                 ids: fixtureIDs,
-                parameters: []
+                parameters: [],
+                parameterTypes: []
             };
             newGroup.parameters = generateGroupParameters(newGroup);
+            let c = 0; const cMax = newGroup.parameters.length; for (; c < cMax; c++) {
+                if (newGroup.parameters[c].type == 2) {
+                    newGroup.parameterTypes.push("Shape");
+                } else if (newGroup.parameters[c].type == 5) {
+                    newGroup.parameterTypes.push("Color");
+                } else if (newGroup.parameters[c].type == 4) {
+                    newGroup.parameterTypes.push("Parameter");
+                } else if (newGroup.parameters[c].type == 1) {
+                    newGroup.parameterTypes.push("Intensity");
+                }
+            }
             groups.push(newGroup);
             io.emit('groups', { groups: cleanGroups(), target: true });
             saveShow();

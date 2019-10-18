@@ -503,11 +503,11 @@
                         <div class="groupParameterTabButtons mb-3">
                             <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
                                 :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
-                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'position'"
+                            <button v-if="currentGroup.parameterTypes.indexOf('Shape') >= 0" class="btn btn-secondary" @click="fixtureParametersTab = 'position'"
                                 :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
-                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'color'"
+                            <button v-if="currentGroup.parameterTypes.indexOf('Color') >= 0" class="btn btn-secondary" @click="fixtureParametersTab = 'color'"
                                 :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
-                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'beam'"
+                            <button v-if="currentGroup.parameterTypes.indexOf('Parameter') >= 0" class="btn btn-secondary" @click="fixtureParametersTab = 'beam'"
                                 :class="{'btn-success': fixtureParametersTab == 'beam'}">Beam</button>
                         </div>
                         <div v-for="parameter in currentGroup.parameters" v-if="getParameterTabType(parameter)"
