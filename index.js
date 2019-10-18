@@ -414,6 +414,9 @@ function cleanPresets() {
     var newPresets = JSON.parse(JSON.stringify(presets));
     let p = 0; const pMax = newPresets.length; for (; p < pMax; p++) {
         delete newPresets[p].parameters;
+        delete newPresets[p].displayAsDimmer;
+        delete newPresets[p].mode;
+        delete newPresets[p].intensity;
     }
     return newPresets;
 };
