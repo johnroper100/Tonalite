@@ -1901,6 +1901,11 @@ io.on('connection', function (socket) {
                     }
                 }
             }
+            if (group.ids.length == 0) {
+                groups.splice(groups.map(el => el.id).indexOf(group.id), 1);
+                socket.emit('message', { type: "info", content: "Group has been removed!" });
+                io.emit('resetView', { type: 'groups', eid: group.id });
+            }
             io.emit('groups', { groups: cleanGroups(), target: true });
             socket.emit('message', { type: "info", content: "Fixture removed from group!" });
             saveShow();
