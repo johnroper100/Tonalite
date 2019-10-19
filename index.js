@@ -439,7 +439,7 @@ function getGroupFixtures(groupID) {
     var fixture = null;
     let i = 0; const iMax = group.ids.length; for (; i < iMax; i++) {
         fixture = fixtures[fixtures.map(el => el.id).indexOf(group.ids[i])];
-        fixtureStarts.push([fixture.name, fixture.startDMXAddress, fixture.id]);
+        fixtureStarts.push({ name: fixture.name, address: fixture.startDMXAddress, id: fixture.id });
     }
     return fixtureStarts;
 };

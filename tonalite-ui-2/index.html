@@ -570,7 +570,13 @@
                         </div>
                     </div>
                     <b>Group Fixtures:</b>
-                    <div id="groupFixtures">{{currentGroupFixtures}}</div>
+                    <div id="groupFixtures">
+                        <div v-for="fixture in currentGroupFixtures" :key="fixture.id">
+                            {{fixture.name}} ({{fixture.address}})
+                            <button class="btn btn-danger btn-sm mb-1 ml-1"><i
+                                    class="far fa-sm fa-trash-alt"></i></button>
+                        </div>
+                    </div>
                 </div>
                 <div id="cues" class="tabcontent" v-if="currentView == 'cues'">
                     <div class="container">
