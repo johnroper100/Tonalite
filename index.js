@@ -2019,18 +2019,6 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('grandmaster', grandmaster);
     });
 
-    socket.on('getSettings', function () {
-        socket.emit('settings', SETTINGS);
-    });
-
-    socket.on('closeSettings', function () {
-        if (saveSettings()) {
-            socket.emit('message', { type: "info", content: "The Tonalite settings have been saved! Reboot if you changed the IP or uDMX settings." });
-        } else {
-            socket.emit('message', { type: "error", content: "The Tonalite settings file could not be saved on disk." });
-        }
-    });
-
     socket.on('saveSettings', function (msg) {
         SETTINGS.defaultUpTime = parseInt(msg.defaultUpTime);
         SETTINGS.defaultDownTime = parseInt(msg.defaultDownTime);
@@ -2069,54 +2057,6 @@ io.on('connection', function (socket) {
                 socket.emit('message', { type: "error", content: "The fixture profiles could not be imported! Is a USB connected?" });
             }
         });
-    });
-
-    socket.on('updateFixtureProfiles', function () {
-        fs.readdir(process.cwd() + "/fixtures", (err, files) => {
-            files.forEach(file => {
-                var fixtureProfile = require(process.cwd() + "/fixtures/" + file);
-                fixtures.forEach(function (fixture) {
-                    if (fixture.dcid == fixtureProfile.dcid) {
-                        fixture.manufacturerName = fixtureProfile.manufacturerName;
-                        fixture.maxOffset = fixtureProfile.maxOffset;
-                        fixture.parameters = fixtureProfile.parameters;
-                        let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
-                            fixture.parameters[c].value = fixture.parameters[c].home;
-                            fixture.parameters[c].displayValue = cppaddon.mapRange(fixture.parameters[c].home, fixture.parameters[c].min, fixture.parameters[c].max, 0, 100);
-                        }
-                    }
-                });
-            });
-        });
-        groups.forEach(function (group) {
-            group.parameters = [];
-            var parameterCats = [];
-            group.ids.forEach(function (fixtureID) {
-                var fixture = fixtures[fixtures.map(el => el.id).indexOf(fixtureID)];
-                fixture.parameters.forEach(function (parameter) {
-                    var newParameter = JSON.parse(JSON.stringify(parameter));
-                    if (!parameterCats.includes(newParameter.name + ":" + newParameter.type)) {
-                        newParameter.value = newParameter.home;
-                        group.parameters.push(newParameter);
-                        parameterCats.push(newParameter.name + ":" + newParameter.type);
-                    }
-                });
-            });
-        });
-        saveShow();
-    });
-
-    socket.on('shutdown', function () {
-        if (SETTINGS.desktop === true) {
-            if (SETTINGS.udmx === true) {
-                cp.kill();
-            }
-            process.exit();
-        }
-    });
-
-    socket.on('reboot', function () {
-        var cp = spawn('reboot');
     });
 
     socket.on('saveShowToUSB', function (showName) {
