@@ -222,8 +222,8 @@
                                     <i class="far fa-step-forward fa-sm"></i>
                                 </button>
                             </div>
-                            <input type="range" class="custom-range" v-bind:id="parameter.id"
-                                v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value"
+                            <input type="range" class="custom-range" v-bind:id="parameter.id" v-bind:max="parameter.max"
+                                v-bind:min="parameter.min" v-model="parameter.value"
                                 @input="changeFixtureParameterValue(parameter)">
                             <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
                                 <div class="channelRanges row flex-nowrap">
@@ -489,7 +489,7 @@
                         </div>
                         <div class="col-4">
                             <button id="groupSettingsBtn" class="btn btn-primary btn-block"
-                                @click="currentView = 'groupSettings'"><i
+                                @click="getGroupSettings"><i
                                     class="far fa-cog d-sm-none d-inline-block"></i><span
                                     class="d-none d-sm-inline-block">Settings</span></button>
                         </div>
@@ -503,11 +503,14 @@
                         <div class="groupParameterTabButtons mb-3">
                             <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
                                 :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
-                            <button v-if="currentGroup.parameterTypes.indexOf('Shape') >= 0" class="btn btn-secondary" @click="fixtureParametersTab = 'position'"
+                            <button v-if="currentGroup.parameterTypes.indexOf('Shape') >= 0" class="btn btn-secondary"
+                                @click="fixtureParametersTab = 'position'"
                                 :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
-                            <button v-if="currentGroup.parameterTypes.indexOf('Color') >= 0" class="btn btn-secondary" @click="fixtureParametersTab = 'color'"
+                            <button v-if="currentGroup.parameterTypes.indexOf('Color') >= 0" class="btn btn-secondary"
+                                @click="fixtureParametersTab = 'color'"
                                 :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
-                            <button v-if="currentGroup.parameterTypes.indexOf('Parameter') >= 0" class="btn btn-secondary" @click="fixtureParametersTab = 'beam'"
+                            <button v-if="currentGroup.parameterTypes.indexOf('Parameter') >= 0"
+                                class="btn btn-secondary" @click="fixtureParametersTab = 'beam'"
                                 :class="{'btn-success': fixtureParametersTab == 'beam'}">Beam</button>
                         </div>
                         <div v-for="parameter in currentGroup.parameters" v-if="getParameterTabType(parameter)"
@@ -528,8 +531,8 @@
                                     <i class="far fa-step-forward fa-sm"></i>
                                 </button>
                             </div>
-                            <input type="range" class="custom-range" v-bind:id="parameter.id"
-                                v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value"
+                            <input type="range" class="custom-range" v-bind:id="parameter.id" v-bind:max="parameter.max"
+                                v-bind:min="parameter.min" v-model="parameter.value"
                                 @input="changeGroupParameterValue(parameter)">
                             <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
                                 <div class="channelRanges row flex-nowrap">
@@ -544,260 +547,290 @@
                     </div>
                 </div>
             </div>
-            <div id="cues" class="tabcontent" v-if="currentView == 'cues'">
-                <div class="container">
-                    <div class="row topBtns sticky-top">
-                        <div class="col-4">
-                            <div>
-                                <button :disabled="cues.length == 0" class="btn btn-primary btn-block"
-                                    @click="lastCue"><i class="far fa-chevron-left"></i></button>
-                            </div>
-                        </div>
-                        <div class="col-4" v-if="cuePlaying == true">
-                            <div>
-                                <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                        class="btn btn-danger btn-block" @click="stopCue">Stop</button></div>
-                            </div>
-                        </div>
-                        <div class="col-4" v-if="cuePlaying == false">
-                            <div>
-                                <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                        class="btn btn-danger btn-block" @click="recordCue">Record</button></div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                <button :disabled="cues.length == 0" class="btn btn-primary btn-block"
-                                    @click="nextCue"><i class="far fa-chevron-right"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" id="cuesList">
-                        <div class="col-4 col-lg-2 mb-3" v-for="cue in cues" :key="cue.id"
-                            @click="getCueSettings(cue.id)">
-                            <div class="cueItem"
-                                :class="{ 'cueActive' : cue.active == true, 'cueCurrent' : cue.id == activeCue && cue.active != true}">
-                                <p>{{cue.name}}</p>
-                            </div>
-                        </div>
-                        <div v-if="cues.length == 0" class="col-12">
-                            <h5>There are no cues in this show!</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="cueSettingsPage" class="tabcontent" v-if="currentView == 'cueSettings'">
-                <div class="container">
-                    <div class="row topBtns">
-                        <div class="col-3">
-                            <button id="gotoCueBtn" class="btn btn-primary btn-block" @click="gotoCue">Go</button>
-                        </div>
-                        <div class="col-3">
-                            <button id="cueDeleteBtn" class="btn btn-danger btn-block" @click="removeCue"><i
-                                    class="far fa-trash-alt d-sm-none d-inline-block"></i><span
-                                    class="d-none d-sm-inline-block">Delete</span></button>
-                        </div>
-                        <div class="col-3">
-                            <button id="cueCloneEndBtn" class="btn btn-info btn-block" @click="cloneCueEnd"><i
-                                    class="far fa-clone d-sm-none d-inline-block"></i> <span
-                                    class="d-inline-block d-sm-none">E</span><span
-                                    class="d-none d-sm-inline-block">Clone To End</span></button>
-                        </div>
-                        <div class="col-3">
-                            <div>
-                                <div><button id="cueCloneNextBtn" class="btn btn-info btn-block"
-                                        @click="cloneCueNext"><i class="far fa-clone d-sm-none d-inline-block"></i>
-                                        <span class="d-inline-block d-sm-none">N</span><span
-                                            class="d-none d-sm-inline-block">Clone To Next</span></button></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row topBtns">
-                        <div class="col-4">
-                            <div><button id="cueUpdateBtn" class="btn btn-warning btn-block" @click="updateCue"><i
-                                        class="far fa-pencil d-sm-none d-inline-block"></i><span
-                                        class="d-none d-sm-inline-block">Update
-                                        Params.</span></button></div>
-                        </div>
-                        <div class="col-4">
-                            <button id="moveCueUpBtn" class="btn btn-success btn-block" @click="moveCueUp"><i
-                                    class="far fa-chevron-up d-sm-none d-inline-block"></i><span
-                                    class="d-none d-sm-inline-block">Move Up In Stack</span></button>
-                        </div>
-                        <div class="col-4">
-                            <button id="moveCueDownBtn" class="btn btn-success btn-block" @click="moveCueDown"><i
-                                    class="far fa-chevron-down d-sm-none d-inline-block"></i><span
-                                    class="d-none d-sm-inline-block">Move Down In Stack</span></button>
-                        </div>
-                    </div>
-                    <div class="row" id="cueSettings">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="cueNameInput">Name:</label>
-                                <input class="form-control" type="text" id="cueNameInput" placeholder="Cue Name"
-                                    @input="editCueSettings" v-model="currentCue.name">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="cueUpTimeInput">Up Time:</label>
-                                <input class="form-control" min="0" type="number" id="cueUpTimeInput"
-                                    placeholder="Cue Up Length In Seconds" @input="editCueSettings"
-                                    v-model="currentCue.upTime">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="cueDownTimeInput">Down Time:</label>
-                                <input @input="editCueSettings" class="form-control" min="0" type="number"
-                                    id="cueDownTimeInput" placeholder="Cue Down Length In Seconds"
-                                    v-model="currentCue.downTime">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="cueFollowInput">Follow:</label>
-                                <input @input="editCueSettings" class="form-control" type="number" min="-1"
-                                    id="cueFollowInput" placeholder="Cue Follow Time In Seconds"
-                                    v-model="currentCue.follow">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="presets" class="tabcontent" v-if="currentView == 'presets'">
-                <div class="container">
-                    <div class="row topBtns sticky-top">
-                        <div class="col-12">
-                            <button :disabled="fixtures.length == 0" class="btn btn-success btn-block"
-                                @click="recordPreset">Record Preset</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <button id="blackoutBtn" class="btn"
-                                :class="{ 'btn-primary' : blackout == false, 'btn-danger' : blackout == true}"
-                                @click="toggleBlackout">Blackout</button>
-                            <label class="ml-2" for="grandmaster">Grandmaster:</label>
-                            <input type="range" class="custom-range" id="grandmaster" min="0" max="100"
-                                v-on:input="changeGrandMasterValue" v-model="grandmaster">
-                        </div>
-                    </div>
-                    <div class="row" id="presetsList">
-                        <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id"
-                            @click="getPresetSettings(preset.id)">
-                            <div :class="{ 'presetActive' : preset.active == true}" class="presetItem">
-                                <p>{{preset.name}}</p>
-                            </div>
-                        </div>
-                        <div v-if="presets.length == 0" class="col-12">
-                            <h5>There are no presets in this show!</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="presetSettingsPage" class="tabcontent" v-if="currentView == 'presetSettings'">
+            <div id="groupSettingsPage" class="tabcontent" v-if="currentView == 'groupSettings'">
                 <div class="container">
                     <div class="row topBtns">
                         <div class="col-6">
-                            <div><button id="presetDeleteBtn" class="btn btn-danger btn-block" @click="removePreset"><i
-                                        class="far fa-trash-alt d-sm-none d-inline-block"></i><span
-                                        class="d-none d-sm-inline-block">Delete</span></button></div>
-
+                            <button id="groupParametersBackBtn" class="btn btn-primary btn-block"
+                                @click="currentView = 'groupParameters'">Back</button>
                         </div>
                         <div class="col-6">
-                            <button v-if="currentPreset.active == false" id="presetActiveBtn"
-                                class="btn btn-warning btn-block" @click="changePresetActive">Activate</button>
-                            <button v-if="currentPreset.active == true" id="presetActiveBtn"
-                                class="btn btn-warning btn-block" @click="changePresetActive">Deactivate</button>
-                        </div>
-                    </div>
-                    <div class="row" id="presetSettings">
-                        <div class="col-md-8 col-12">
-                            <div class="form-group">
-                                <label for="presetNameInput">Name:</label>
-                                <input class="form-control" type="text" id="presetNameInput" placeholder="Preset Name"
-                                    @input="editPresetSettings" v-model="currentPreset.name">
+                            <div>
+                                <button id="groupDeleteBtn" class="btn btn-danger btn-block"
+                                    @click="removeGroup">Delete</button>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group mt-0 mt-md-4">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editPresetSettings" type="checkbox" class="custom-control-input"
-                                        id="displayPresetAsDimmer" v-model="currentPreset.displayAsDimmer">
-                                    <label class="custom-control-label" for="displayPresetAsDimmer">Display As
-                                        Dimmer</label>
+                    </div>
+                    <div class="row" id="groupSettings">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="groupNameInput">Name:</label>
+                                <input class="form-control" type="text" id="groupNameInput" placeholder="Group Name"
+                                    v-model="currentGroup.name">
+                            </div>
+                        </div>
+                    </div>
+                    <b>Group Fixtures:</b>
+                    <div id="groupFixtures">{{currentGroupFixtures}}</div>
+                </div>
+                <div id="cues" class="tabcontent" v-if="currentView == 'cues'">
+                    <div class="container">
+                        <div class="row topBtns sticky-top">
+                            <div class="col-4">
+                                <div>
+                                    <button :disabled="cues.length == 0" class="btn btn-primary btn-block"
+                                        @click="lastCue"><i class="far fa-chevron-left"></i></button>
+                                </div>
+                            </div>
+                            <div class="col-4" v-if="cuePlaying == true">
+                                <div>
+                                    <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                            class="btn btn-danger btn-block" @click="stopCue">Stop</button></div>
+                                </div>
+                            </div>
+                            <div class="col-4" v-if="cuePlaying == false">
+                                <div>
+                                    <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                            class="btn btn-danger btn-block" @click="recordCue">Record</button></div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <button :disabled="cues.length == 0" class="btn btn-primary btn-block"
+                                        @click="nextCue"><i class="far fa-chevron-right"></i></button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="ml-2" for="presetIntensityInput">Intensity:</label>
-                                <input type="range" @input="editPresetSettings" class="custom-range"
-                                    id="presetIntensityInput" min="0" max="100" v-model="currentPreset.intensity">
+                        <div class="row" id="cuesList">
+                            <div class="col-4 col-lg-2 mb-3" v-for="cue in cues" :key="cue.id"
+                                @click="getCueSettings(cue.id)">
+                                <div class="cueItem"
+                                    :class="{ 'cueActive' : cue.active == true, 'cueCurrent' : cue.id == activeCue && cue.active != true}">
+                                    <p>{{cue.name}}</p>
+                                </div>
+                            </div>
+                            <div v-if="cues.length == 0" class="col-12">
+                                <h5>There are no cues in this show!</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="cueSettingsPage" class="tabcontent" v-if="currentView == 'cueSettings'">
+                    <div class="container">
+                        <div class="row topBtns">
+                            <div class="col-3">
+                                <button id="gotoCueBtn" class="btn btn-primary btn-block" @click="gotoCue">Go</button>
+                            </div>
+                            <div class="col-3">
+                                <button id="cueDeleteBtn" class="btn btn-danger btn-block" @click="removeCue"><i
+                                        class="far fa-trash-alt d-sm-none d-inline-block"></i><span
+                                        class="d-none d-sm-inline-block">Delete</span></button>
+                            </div>
+                            <div class="col-3">
+                                <button id="cueCloneEndBtn" class="btn btn-info btn-block" @click="cloneCueEnd"><i
+                                        class="far fa-clone d-sm-none d-inline-block"></i> <span
+                                        class="d-inline-block d-sm-none">E</span><span
+                                        class="d-none d-sm-inline-block">Clone To End</span></button>
+                            </div>
+                            <div class="col-3">
+                                <div>
+                                    <div><button id="cueCloneNextBtn" class="btn btn-info btn-block"
+                                            @click="cloneCueNext"><i class="far fa-clone d-sm-none d-inline-block"></i>
+                                            <span class="d-inline-block d-sm-none">N</span><span
+                                                class="d-none d-sm-inline-block">Clone To Next</span></button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row topBtns">
+                            <div class="col-4">
+                                <div><button id="cueUpdateBtn" class="btn btn-warning btn-block" @click="updateCue"><i
+                                            class="far fa-pencil d-sm-none d-inline-block"></i><span
+                                            class="d-none d-sm-inline-block">Update
+                                            Params.</span></button></div>
+                            </div>
+                            <div class="col-4">
+                                <button id="moveCueUpBtn" class="btn btn-success btn-block" @click="moveCueUp"><i
+                                        class="far fa-chevron-up d-sm-none d-inline-block"></i><span
+                                        class="d-none d-sm-inline-block">Move Up In Stack</span></button>
+                            </div>
+                            <div class="col-4">
+                                <button id="moveCueDownBtn" class="btn btn-success btn-block" @click="moveCueDown"><i
+                                        class="far fa-chevron-down d-sm-none d-inline-block"></i><span
+                                        class="d-none d-sm-inline-block">Move Down In Stack</span></button>
+                            </div>
+                        </div>
+                        <div class="row" id="cueSettings">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="cueNameInput">Name:</label>
+                                    <input class="form-control" type="text" id="cueNameInput" placeholder="Cue Name"
+                                        @input="editCueSettings" v-model="currentCue.name">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="cueUpTimeInput">Up Time:</label>
+                                    <input class="form-control" min="0" type="number" id="cueUpTimeInput"
+                                        placeholder="Cue Up Length In Seconds" @input="editCueSettings"
+                                        v-model="currentCue.upTime">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="cueDownTimeInput">Down Time:</label>
+                                    <input @input="editCueSettings" class="form-control" min="0" type="number"
+                                        id="cueDownTimeInput" placeholder="Cue Down Length In Seconds"
+                                        v-model="currentCue.downTime">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="cueFollowInput">Follow:</label>
+                                    <input @input="editCueSettings" class="form-control" type="number" min="-1"
+                                        id="cueFollowInput" placeholder="Cue Follow Time In Seconds"
+                                        v-model="currentCue.follow">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="presets" class="tabcontent" v-if="currentView == 'presets'">
+                    <div class="container">
+                        <div class="row topBtns sticky-top">
+                            <div class="col-12">
+                                <button :disabled="fixtures.length == 0" class="btn btn-success btn-block"
+                                    @click="recordPreset">Record Preset</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button id="blackoutBtn" class="btn"
+                                    :class="{ 'btn-primary' : blackout == false, 'btn-danger' : blackout == true}"
+                                    @click="toggleBlackout">Blackout</button>
+                                <label class="ml-2" for="grandmaster">Grandmaster:</label>
+                                <input type="range" class="custom-range" id="grandmaster" min="0" max="100"
+                                    v-on:input="changeGrandMasterValue" v-model="grandmaster">
+                            </div>
+                        </div>
+                        <div class="row" id="presetsList">
+                            <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id"
+                                @click="getPresetSettings(preset.id)">
+                                <div :class="{ 'presetActive' : preset.active == true}" class="presetItem">
+                                    <p>{{preset.name}}</p>
+                                </div>
+                            </div>
+                            <div v-if="presets.length == 0" class="col-12">
+                                <h5>There are no presets in this show!</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="presetSettingsPage" class="tabcontent" v-if="currentView == 'presetSettings'">
+                    <div class="container">
+                        <div class="row topBtns">
+                            <div class="col-6">
+                                <div><button id="presetDeleteBtn" class="btn btn-danger btn-block"
+                                        @click="removePreset"><i
+                                            class="far fa-trash-alt d-sm-none d-inline-block"></i><span
+                                            class="d-none d-sm-inline-block">Delete</span></button></div>
+
+                            </div>
+                            <div class="col-6">
+                                <button v-if="currentPreset.active == false" id="presetActiveBtn"
+                                    class="btn btn-warning btn-block" @click="changePresetActive">Activate</button>
+                                <button v-if="currentPreset.active == true" id="presetActiveBtn"
+                                    class="btn btn-warning btn-block" @click="changePresetActive">Deactivate</button>
+                            </div>
+                        </div>
+                        <div class="row" id="presetSettings">
+                            <div class="col-md-8 col-12">
+                                <div class="form-group">
+                                    <label for="presetNameInput">Name:</label>
+                                    <input class="form-control" type="text" id="presetNameInput"
+                                        placeholder="Preset Name" @input="editPresetSettings"
+                                        v-model="currentPreset.name">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <div class="form-group mt-0 mt-md-4">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editPresetSettings" type="checkbox" class="custom-control-input"
+                                            id="displayPresetAsDimmer" v-model="currentPreset.displayAsDimmer">
+                                        <label class="custom-control-label" for="displayPresetAsDimmer">Display As
+                                            Dimmer</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="ml-2" for="presetIntensityInput">Intensity:</label>
+                                    <input type="range" @input="editPresetSettings" class="custom-range"
+                                        id="presetIntensityInput" min="0" max="100" v-model="currentPreset.intensity">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="tab">
-            <div class="row">
-                <div class="col-3" @click="currentView = 'fixtures'">
-                    <div class="tabitem tabitem-fixtures"
-                        :class="{ active: currentView == 'fixtures' || currentView == 'fixtureParameters' || currentView == 'fixtureSettings' }">
-                        <i class="tablinks far fa-lightbulb"></i><span class="tabtext">Fixtures</span>
+            <div class="tab">
+                <div class="row">
+                    <div class="col-3" @click="currentView = 'fixtures'">
+                        <div class="tabitem tabitem-fixtures"
+                            :class="{ active: currentView == 'fixtures' || currentView == 'fixtureParameters' || currentView == 'fixtureSettings' }">
+                            <i class="tablinks far fa-lightbulb"></i><span class="tabtext">Fixtures</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-3" @click="currentView = 'groups'">
-                    <div class="tabitem tabitem-groups"
-                        :class="{ active: currentView == 'groups' || currentView == 'groupParameters' || currentView == 'groupSettings'}">
-                        <i class="tablinks far fa-layer-group"></i><span class="tabtext">Groups</span>
+                    <div class="col-3" @click="currentView = 'groups'">
+                        <div class="tabitem tabitem-groups"
+                            :class="{ active: currentView == 'groups' || currentView == 'groupParameters' || currentView == 'groupSettings'}">
+                            <i class="tablinks far fa-layer-group"></i><span class="tabtext">Groups</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-3" @click="currentView = 'cues'">
-                    <div class="tabitem tabitem-cues"
-                        :class="{ active: currentView == 'cues' || currentView == 'cueSettings' }">
-                        <i class="tablinks far fa-list"></i><span class="tabtext">Cues</span>
+                    <div class="col-3" @click="currentView = 'cues'">
+                        <div class="tabitem tabitem-cues"
+                            :class="{ active: currentView == 'cues' || currentView == 'cueSettings' }">
+                            <i class="tablinks far fa-list"></i><span class="tabtext">Cues</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-3" @click="currentView = 'presets'">
-                    <div class="tabitem tabitem-presets"
-                        :class="{ active: currentView == 'presets' || currentView == 'presetSettings'}">
-                        <i class="tablinks far fa-swatchbook"></i><span class="tabtext">Presets</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="serverDisconnectedModal" data-backdrop="static" data-keyboard="false" class="modal" tabindex="-1"
-            role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body text-center dark">
-                        <h5 class="red">Tonalite Server Disconnected!</h5>
-                        <p>If you have not stopped it manually, there may have been an error, or you may be on the wrong
-                            IP. Try
-                            rebooting the <span v-if="desktop">server</span><span v-if="!desktop">console</span>.</p>
+                    <div class="col-3" @click="currentView = 'presets'">
+                        <div class="tabitem tabitem-presets"
+                            :class="{ active: currentView == 'presets' || currentView == 'presetSettings'}">
+                            <i class="tablinks far fa-swatchbook"></i><span class="tabtext">Presets</span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div id="serverDisconnectedModal" data-backdrop="static" data-keyboard="false" class="modal" tabindex="-1"
+                role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body text-center dark">
+                            <h5 class="red">Tonalite Server Disconnected!</h5>
+                            <p>If you have not stopped it manually, there may have been an error, or you may be on the
+                                wrong
+                                IP. Try
+                                rebooting the <span v-if="desktop">server</span><span v-if="!desktop">console</span>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="alert" class="fixed-bottom mb-5 alert alert-dismissible fade" role="alert">
+                <div id="alertText"></div>
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
-        <div id="alert" class="fixed-bottom mb-5 alert alert-dismissible fade" role="alert">
-            <div id="alertText"></div>
-            <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    </div>
-    <script src="/v2/static/js/jquery-3.4.1.min.js"></script>
-    <script src="/v2/static/js/popper.min.js"></script>
-    <script src="/v2/static/js/bootstrap.min.js"></script>
-    <script src="/v2/static/js/socket.io.js"></script>
-    <script src="/v2/static/js/vue-multiselect.min.js"></script>
-    <script src="/v2/static/js/bootbox.min.js"></script>
-    <script src="/v2/static/js/isMobile.min.js"></script>
-    <script src="/v2/static/js/vue.js"></script>
-    <script src="/v2/static/js/script.js"></script>
+        <script src="/v2/static/js/jquery-3.4.1.min.js"></script>
+        <script src="/v2/static/js/popper.min.js"></script>
+        <script src="/v2/static/js/bootstrap.min.js"></script>
+        <script src="/v2/static/js/socket.io.js"></script>
+        <script src="/v2/static/js/vue-multiselect.min.js"></script>
+        <script src="/v2/static/js/bootbox.min.js"></script>
+        <script src="/v2/static/js/isMobile.min.js"></script>
+        <script src="/v2/static/js/vue.js"></script>
+        <script src="/v2/static/js/script.js"></script>
 </body>
 
 </html>

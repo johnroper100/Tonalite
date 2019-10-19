@@ -1834,9 +1834,9 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('getGroupSettings', function (groupID) {
+    socket.on('getGroupFixtures', function (groupID) {
         if (groups.length != 0) {
-            socket.emit('groupSettings', { group: groups[groups.map(el => el.id).indexOf(groupID)], groupFixtures: getGroupFixtures(groupID) });
+            socket.emit('groupFixtures', getGroupFixtures(groupID));
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
@@ -1846,7 +1846,6 @@ io.on('connection', function (socket) {
         if (groups.length != 0) {
             var group = groups[groups.map(el => el.id).indexOf(msg.id)];
             group.name = msg.name;
-            socket.emit('groupSettings', { group: group, groupFixtures: getGroupFixtures(group.id) });
             io.emit('groups', { groups: cleanGroups(), target: true });
             saveShow();
         } else {
@@ -1858,6 +1857,7 @@ io.on('connection', function (socket) {
         if (groups.length != 0) {
             groups.splice(groups.map(el => el.id).indexOf(groupID), 1);
             socket.emit('message', { type: "info", content: "Group has been removed!" });
+            io.emit('resetView', { type: 'groups', eid: groupID });
             io.emit('groups', { groups: cleanGroups(), target: true });
             saveShow();
         } else {
@@ -1901,7 +1901,7 @@ io.on('connection', function (socket) {
                     }
                 }
             }
-            socket.emit('groupSettings', { group: group, groupFixtures: getGroupFixtures(group.id) });
+            socket.emit('groupFixtures', getGroupFixtures(group.id)); // check on this
             socket.emit('message', { type: "info", content: "Fixture removed from group!" });
             saveShow();
         } else {

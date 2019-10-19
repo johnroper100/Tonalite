@@ -24,7 +24,8 @@ var app = new Vue({
         version: "",
         currentEffect: {},
         addGroupSelected: [],
-        currentGroup: {}
+        currentGroup: {},
+        currentGroupFixtures: {}
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -138,6 +139,9 @@ var app = new Vue({
                 app.fixtureParametersTab = 'all';
             }
         },
+        getGroupFixtures: function (groupID) {
+            socket.emit("getGroupFixtures", groupID);
+        },
         getCueSettings: function (cueID) {
             socket.emit("getCueSettings", cueID);
         },
@@ -192,6 +196,9 @@ var app = new Vue({
         },
         editPresetSettings: function () {
             socket.emit('editPresetSettings', { id: app.currentPreset.id, name: app.currentPreset.name, displayAsDimmer: app.currentPreset.displayAsDimmer, intensity: app.currentPreset.intensity });
+        },
+        editGroupSettings: function () {
+            socket.emit('editGroupSettings', { id: app.currentGroup.id, name: app.currentGroup.name });
         },
         removeFixture: function () {
             bootbox.confirm("Are you sure you want to delete this fixture?", function (result) {
@@ -300,6 +307,18 @@ var app = new Vue({
             socket.emit('addGroup', list);
             app.addGroupSelected = [];
             $('#addGroupModal').modal("hide");
+        },
+        getGroupSettings: function () {
+            app.getGroupFixtures(app.currentGroup.id);
+            app.currentView = 'groupSettings';
+        },
+        removeGroup: function () {
+            bootbox.confirm("Are you sure you want to delete this group?", function (result) {
+                if (result === true) {
+                    app.currentView = 'groups';
+                    socket.emit('removeGroup', app.currentGroup.id);
+                }
+            });
         }
     }
 });
@@ -328,6 +347,7 @@ socket.on('connect', function () {
     app.effectProfiles = [];
     app.currentEffect = {};
     app.currentGroup = {};
+    app.currentGroupFixtures = {};
     $('#serverDisconnectedModal').modal("hide");
 });
 
@@ -349,6 +369,9 @@ socket.on('groups', function (msg) {
     if (msg.target == true) {
         if ((app.currentView == 'groupParameters' || app.currentView == 'groupSettings') && app.currentGroup != {}) {
             app.getGroupParameters(app.currentGroup.id, false);
+            if (app.currentView == 'groupSettings') {
+                app.getGroupFixtures(app.currentGroup.id);
+            }
         }
     }
 });
@@ -407,6 +430,10 @@ socket.on('groupParameters', function (msg) {
     }
 });
 
+socket.on('groupFixtures', function (msg) {
+    app.currentGroupFixtures = msg;
+});
+
 socket.on('cueSettings', function (msg) {
     app.currentCue = msg;
     app.currentView = "cueSettings";
@@ -446,6 +473,12 @@ socket.on('resetView', function (msg) {
         app.currentEffect = {};
         app.currentPreset = {};
         app.addGroupSelected = [];
+    } else if (msg.type == 'groups') {
+        if (app.currentGroup.id == msg.eid) {
+            app.currentView = 'groups';
+            app.currentGroup = {};
+            app.currentGroupFixtures = {};
+        }
     }
 });
 
