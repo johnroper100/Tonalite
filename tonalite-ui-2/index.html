@@ -785,16 +785,16 @@
                             <i class="tablinks far fa-lightbulb"></i><span class="tabtext">Fixtures</span>
                         </div>
                     </div>
-                    <div class="col-3" @click="currentView = 'groups'">
-                        <div class="tabitem tabitem-groups"
-                            :class="{ active: currentView == 'groups' || currentView == 'groupParameters' || currentView == 'groupSettings'}">
-                            <i class="tablinks far fa-layer-group"></i><span class="tabtext">Groups</span>
-                        </div>
-                    </div>
                     <div class="col-3" @click="currentView = 'cues'">
                         <div class="tabitem tabitem-cues"
                             :class="{ active: currentView == 'cues' || currentView == 'cueSettings' }">
                             <i class="tablinks far fa-list"></i><span class="tabtext">Cues</span>
+                        </div>
+                    </div>
+                    <div class="col-3" @click="currentView = 'groups'">
+                        <div class="tabitem tabitem-groups"
+                            :class="{ active: currentView == 'groups' || currentView == 'groupParameters' || currentView == 'groupSettings'}">
+                            <i class="tablinks far fa-layer-group"></i><span class="tabtext">Groups</span>
                         </div>
                     </div>
                     <div class="col-3" @click="currentView = 'presets'">
