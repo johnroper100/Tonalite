@@ -2009,8 +2009,22 @@ io.on('connection', function (socket) {
                 preset.intensity = 0;
             }
             socket.emit('presetSettings', preset);
-            socket.emit('presets', cleanPresets());
             io.emit('presets', cleanPresets());
+        } else {
+            socket.emit('message', { type: "error", content: "No presets exist!" });
+        }
+    });
+
+    socket.on('changePresetIntensity', function (msg) {
+        if (presets.length != 0) {
+            var preset = presets[presets.map(el => el.id).indexOf(msg.presetID)];
+            preset.intensity = parseInt(msg.intensity);
+            if (preset.intensity == 0) {
+                preset.active = false;
+            } else {
+                preset.active = true;
+            }
+            socket.broadcast.emit('presets', cleanPresets());
         } else {
             socket.emit('message', { type: "error", content: "No presets exist!" });
         }

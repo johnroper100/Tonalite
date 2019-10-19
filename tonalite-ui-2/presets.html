@@ -37,13 +37,12 @@
             <div class="row" id="presetsDimmerList">
                 <div class="col-12 mb-3" v-for="preset in presets" :key="preset.id"
                     v-if="preset.displayAsDimmer == true">
-                    <label v-bind:for="'P'+preset.id">{{preset.name}}:</label>
-                    <input type="range" class="custom-range preset-range" v-bind:id="'P'+preset.id" min="0" max="100"
-                        @input="updatePresetIntensity(preset.id)" v-bind:value="preset.intensity">
+                    <label>{{preset.name}}:</label>
+                    <input type="range" class="custom-range preset-range" min="0" max="100"
+                        @input="updatePresetIntensity(preset)" v-model="preset.intensity">
                 </div>
             </div>
         </div>
-
         <div id="serverDisconnectedModal" data-backdrop="static" data-keyboard="false" class="modal" tabindex="-1"
             role="dialog">
             <div class="modal-dialog" role="document">

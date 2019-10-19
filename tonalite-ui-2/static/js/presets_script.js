@@ -14,8 +14,8 @@ var app = new Vue({
         changeGrandmasterValue: function () {
             socket.emit('changeGrandmasterValue', app.grandmaster);
         },
-        updatePresetIntensity: function (presetID) {
-            socket.emit('changePresetIntensity', { presetID: presetID, intensity: $("#P" + presetID).val() });
+        updatePresetIntensity: function (preset) {
+            socket.emit('changePresetIntensity', { presetID: preset.id, intensity: preset.intensity });
         },
         resetFixtures: function () {
             bootbox.confirm("Are you sure you want to reset all fixture parameter values?", function (result) {
