@@ -488,8 +488,7 @@
                             <h5 id="groupParametersName">{{currentGroup.name}}</h5>
                         </div>
                         <div class="col-4">
-                            <button id="groupSettingsBtn" class="btn btn-primary btn-block"
-                                @click="getGroupSettings"><i
+                            <button id="groupSettingsBtn" class="btn btn-primary btn-block" @click="getGroupSettings"><i
                                     class="far fa-cog d-sm-none d-inline-block"></i><span
                                     class="d-none d-sm-inline-block">Settings</span></button>
                         </div>
@@ -566,7 +565,7 @@
                             <div class="form-group">
                                 <label for="groupNameInput">Name:</label>
                                 <input class="form-control" type="text" id="groupNameInput" placeholder="Group Name"
-                                    v-model="currentGroup.name">
+                                    v-model="currentGroup.name" @input="editGroupSettings">
                             </div>
                         </div>
                     </div>
