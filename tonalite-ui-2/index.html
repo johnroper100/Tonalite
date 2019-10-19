@@ -470,7 +470,7 @@
                                     <label class="dark mr-2" for="groupFixtureIDs">Fixtures:</label>
                                     <multiselect placeholder="Select some fixtures" :options="fixtures"
                                         v-model="addGroupSelected" label="name" :multiple="true" :search="true"
-                                        style="width: 100%" track-by="id" :close-on-select="false"
+                                        style="width: 100%" track-by="id" :close-on-select="false" :show-pointer="false"
                                         :hide-selected="true">
                                         <template slot="option" slot-scope="props">{{props.option.name}}
                                             ({{props.option.startDMXAddress}})</template></multiselect>
