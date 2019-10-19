@@ -319,6 +319,13 @@ var app = new Vue({
                     socket.emit('removeGroup', app.currentGroup.id);
                 }
             });
+        },
+        removeGroupFixture: function (fixtureID) {
+            bootbox.confirm("Are you sure you want remove this fixture from the group?", function (result) {
+                if (result === true) {
+                    socket.emit('removeGroupFixture', { group: app.currentGroup.id, fixture: fixtureID });
+                }
+            });
         }
     }
 });

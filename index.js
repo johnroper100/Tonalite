@@ -1901,7 +1901,7 @@ io.on('connection', function (socket) {
                     }
                 }
             }
-            socket.emit('groupFixtures', getGroupFixtures(group.id)); // check on this
+            io.emit('groups', { groups: cleanGroups(), target: true });
             socket.emit('message', { type: "info", content: "Fixture removed from group!" });
             saveShow();
         } else {

@@ -573,7 +573,7 @@
                     <div id="groupFixtures">
                         <div v-for="fixture in currentGroupFixtures" :key="fixture.id">
                             {{fixture.name}} ({{fixture.address}})
-                            <button class="btn btn-danger btn-sm mb-1 ml-1"><i
+                            <button class="btn btn-danger btn-sm mb-1 ml-1" @click="removeGroupFixture(fixture.id)"><i
                                     class="far fa-sm fa-trash-alt"></i></button>
                         </div>
                     </div>
