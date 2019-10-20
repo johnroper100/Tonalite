@@ -17,6 +17,7 @@ var app = new Vue({
         effectProfiles: [],
         startDMXAddress: 1,
         newFixtureCreationCount: 1,
+        newFixtureUniverse: 0,
         fixtureProfilesSearch: "",
         currentCue: {},
         currentPreset: {},
@@ -119,12 +120,13 @@ var app = new Vue({
         getFixtureProfiles: function () {
             socket.emit("getFixtureProfiles");
             app.newFixtureCreationCount = 1;
+            app.newFixtureUniverse = 0;
             app.startDMXAddress = 1;
             app.fixtureProfilesSearch = "";
             $('#fixtureProfilesModal').modal("show");
         },
         addFixture: function (fixture, dcid) {
-            socket.emit("addFixture", { fixtureName: fixture, dcid: dcid, startDMXAddress: $('#newFixtureStartDMXAddress').val(), creationCount: $('#newFixtureCreationCount').val() });
+            socket.emit("addFixture", { fixtureName: fixture, dcid: dcid, startDMXAddress: app.startDMXAddress, creationCount: app.newFixtureCreationCount, universe: app.newFixtureUniverse });
             $('#fixtureProfilesModal').modal("hide");
         },
         getFixtureParameters: function (fixtureID, resetTab) {
@@ -191,7 +193,7 @@ var app = new Vue({
             });
         },
         editFixtureSettings: function () {
-            socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress });
+            socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse });
         },
         editEffectSettings: function () {
             socket.emit('editEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, fan: app.currentEffect.fan });
@@ -355,6 +357,7 @@ socket.on('connect', function () {
     app.fixtureProfiles = [];
     app.startDMXAddress = 1;
     app.newFixtureCreationCount = 1;
+    app.newFixtureUniverse = 0;
     app.fixtureProfilesSearch = "";
     app.currentCue = {};
     app.currentPreset = {};
