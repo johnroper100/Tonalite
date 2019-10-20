@@ -163,7 +163,12 @@ var app = new Vue({
             socket.emit('useFixtureParameterRange', { id: app.currentFixture.id, pid: param.id, rid: rid });
         },
         useGroupParameterRange: function (param, rid) {
-            socket.emit('useGroupParameterRange', { id: app.currentGroup.id, pid: param.id, rid: rid });
+            if (param.locked == false) {
+                socket.emit('useGroupParameterRange', { id: app.currentGroup.id, pid: param.id, rid: rid });
+            }
+        },
+        changeGroupParameterLock: function (param) {
+            socket.emit("changeGroupParameterLock", { id: app.currentGroup.id, pid: param.id })
         },
         useFixtureChip: function (pid) {
             socket.emit('useFixtureChip', { id: app.currentFixture.id, pid: pid });
@@ -259,11 +264,15 @@ var app = new Vue({
             });
         },
         setParameterValue(param, value, type) {
-            param.value = value;
+            if (param.locked == false) {
+                param.value = value;
+            }
             if (type == 'fixture') {
                 app.changeFixtureParameterValue(param);
             } else if (type == 'group') {
-                app.changeGroupParameterValue(param);
+                if (param.locked == false) {
+                    app.changeGroupParameterValue(param);
+                }
             }
         },
         changePresetActive() {

@@ -1836,6 +1836,7 @@ io.on('connection', function (socket) {
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
+
     });
 
     socket.on('changeGroupParameterValue', function (msg) {
@@ -1860,8 +1861,7 @@ io.on('connection', function (socket) {
                 var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
                 parameter.locked = !parameter.locked;
                 setFixtureGroupValues(group, parameter);
-                socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
-                socket.emit('groups', { groups: cleanGroups(), target: false });
+                io.emit('groups', { groups: cleanGroups(), target: true });
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             }
         } else {
