@@ -704,18 +704,20 @@ function calculateStack() {
             }
         }
     }
-    // Allow presets to overide everything else for channels in which they have higher values
+    // Allow presets to overide everything else for channels if they are set to ltp
+    var tempvalue = null;
     let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
         if (presets[p].active) {
             let c = 0; const cMax = presets[p].parameters.length; for (; c < cMax; c++) {
                 if (presets[p].parameters[c] != null) {
-                    /*
-                    var tempvalue = (presets[p].parameters[c] / 100.0) * presets[p].intensity;
-                    if (tempvalue > channels[c]) {
-                        channels[c] = tempvalue;
+                    if (presets[p].mode == 'ltp') {
+                        channels[c] = (presets[p].parameters[c] / 100.0) * presets[p].intensity;
+                    } else if (presets[p].mode == 'htp') {
+                        tempvalue = (presets[p].parameters[c] / 100.0) * presets[p].intensity;
+                        if (tempvalue > channels[c]) {
+                            channels[c] = tempvalue;
+                        }
                     }
-                    */
-                    channels[c] = (presets[p].parameters[c] / 100.0) * presets[p].intensity;
                 }
             }
         }
@@ -726,12 +728,17 @@ function calculateStack() {
 function setFixtureGroupValues(group, parameter) {
     let i = 0; const iMax = group.ids.length; for (; i < iMax; i++) {
         var fixture = fixtures[fixtures.map(el => el.id).indexOf(group.ids[i])];
+        fixture.hasLockedParameters = false;
         let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
             if (fixture.parameters[c].name === parameter.name && fixture.parameters[c].type === parameter.type) {
+                fixture.parameters[c].locked = parameter.locked;
                 if (fixture.parameters[c].locked != true) {
                     fixture.parameters[c].value = parameter.value;
                     fixture.parameters[c].displayValue = cppaddon.mapRange(fixture.parameters[c].value, fixture.parameters[c].min, fixture.parameters[c].max, 0, 100);
                 }
+            }
+            if (fixture.parameters[c].locked) {
+                fixture.hasLockedParameters = true;
             }
         }
     }
@@ -958,8 +965,9 @@ io.on('connection', function (socket) {
         }
         fs.readdir(process.cwd() + "/fixtures", (err, files) => {
             var fixturesList = [];
+            var fixture = null;
             files.forEach(file => {
-                var fixture = require(process.cwd() + "/fixtures/" + file);
+                fixture = require(process.cwd() + "/fixtures/" + file);
                 fixture.personalities.forEach(function (personality) {
                     fixturesList.push([personality.modelName, personality.modeName, personality.manufacturerName, file, personality.dcid]);
                 });
@@ -971,8 +979,9 @@ io.on('connection', function (socket) {
     socket.on('getEffects', function (fixtureid) {
         fs.readdir(process.cwd() + "/effects", (err, files) => {
             var effectsList = [];
+            var effect = null;
             files.forEach(file => {
-                var effect = require(process.cwd() + "/effects/" + file).effectTable;
+                effect = require(process.cwd() + "/effects/" + file).effectTable;
                 if (JSON.stringify(effect.parameterNames).indexOf("Red") >= 0 || JSON.stringify(effect.parameterNames).indexOf("Green") >= 0 || JSON.stringify(effect.parameterNames).indexOf("Blue") >= 0) {
                     effect.type = "Color";
                 } else if (JSON.stringify(effect.parameterNames).indexOf("Intensity") >= 0) {
@@ -995,11 +1004,12 @@ io.on('connection', function (socket) {
                 if (error) {
                     logError(error);
                 }
+                var showsList = null;
                 drives.forEach((drive) => {
                     if (done == false) {
                         if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
                             fs.readdir(drive.mountpoints[0].path, (err, files) => {
-                                var showsList = [];
+                                showsList = [];
                                 files.forEach(file => {
                                     if (file.slice(-8) === "tonalite") {
                                         showsList.push(file);
@@ -1801,19 +1811,26 @@ io.on('connection', function (socket) {
         if (groups.length != 0) {
             var group = groups[groups.map(el => el.id).indexOf(groupID)];
             var fixture = null;
+            var valAvg = null;
+            var valAvgCount = null;
+            var shouldLock = false;
             let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
-                var valAvg = 0;
-                var valAvgCount = 0;
+                valAvg = 0;
+                valAvgCount = 0;
                 let i = 0; const iMax = group.ids.length; for (; i < iMax; i++) {
                     fixture = fixtures[fixtures.map(el => el.id).indexOf(group.ids[i])];
                     let fc = 0; const fcMax = fixture.parameters.length; for (; fc < fcMax; fc++) {
                         if (fixture.parameters[fc].name === group.parameters[c].name && fixture.parameters[fc].type === group.parameters[c].type) {
                             valAvg = valAvg + fixture.parameters[fc].value;
                             valAvgCount++;
+                            if (fixture.parameters[fc].locked == true) {
+                                shouldLock = true;
+                            }
                         }
                     }
                 }
                 group.parameters[c].value = valAvg / valAvgCount;
+                group.parameters[c].locked = shouldLock;
             }
             socket.emit('groupParameters', group);
         } else {
@@ -1831,6 +1848,22 @@ io.on('connection', function (socket) {
             socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
             socket.emit('groups', { groups: cleanGroups(), target: false });
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures and/or groups exist!" });
+        }
+    });
+
+    socket.on('changeGroupParameterLock', function (msg) {
+        if (fixtures.length != 0 && groups.length != 0) {
+            if (groups.some(e => e.id === msg.id)) {
+                var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
+                parameter.locked = !parameter.locked;
+                setFixtureGroupValues(group, parameter);
+                socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
+                socket.emit('groups', { groups: cleanGroups(), target: false });
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures and/or groups exist!" });
         }
@@ -2086,11 +2119,11 @@ io.on('connection', function (socket) {
             if (error) {
                 logError(error);
             }
-
+            var filepath = null;
             drives.forEach((drive) => {
                 if (done == false) {
                     if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
-                        var filepath = drive.mountpoints[0].path + "/" + showName + ".tonalite";
+                        filepath = drive.mountpoints[0].path + "/" + showName + ".tonalite";
                         fs.exists(filepath, function (exists) {
                             if (exists) {
                                 socket.emit('message', { type: "error", content: "A show file with that name already exists!" });
