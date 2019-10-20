@@ -775,6 +775,16 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
+                                <label for="presetModeInput">Mode:</label>
+                                <select class="form-control" type="text" id="presetModeInput" placeholder="Preset Mode"
+                                    @change="editPresetSettings" v-model="currentPreset.mode">
+                                    <option value="ltp">Latest Takes Precedence</option>
+                                    <option value="htp">Highest Takes Precedence</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
                                 <label class="ml-2" for="presetIntensityInput">Intensity:</label>
                                 <input type="range" @input="editPresetSettings" class="custom-range"
                                     id="presetIntensityInput" min="0" max="100" v-model="currentPreset.intensity">

@@ -2007,6 +2007,7 @@ io.on('connection', function (socket) {
             var preset = presets[presets.map(el => el.id).indexOf(msg.id)];
             preset.name = msg.name;
             preset.displayAsDimmer = msg.displayAsDimmer;
+            preset.mode = msg.mode;
             var intensity = parseInt(msg.intensity);
             if (intensity > 0) {
                 preset.active = true;
