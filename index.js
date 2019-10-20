@@ -1831,6 +1831,7 @@ io.on('connection', function (socket) {
                 }
                 group.parameters[c].value = valAvg / valAvgCount;
                 group.parameters[c].locked = shouldLock;
+                shouldLock = false;
             }
             socket.emit('groupParameters', group);
         } else {
