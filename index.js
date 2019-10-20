@@ -78,6 +78,7 @@ var SETTINGS = {
     port: 3000,
     defaultUpTime: 3,
     defaultDownTime: 3,
+    defaultPresetMode: 'ltp',
     desktop: false, // desktop vs embeded
     udmx: false,
     automark: true,
@@ -1969,7 +1970,7 @@ io.on('connection', function (socket) {
                 active: false,
                 intensity: 0,
                 displayAsDimmer: false,
-                mode: "ltp",
+                mode: SETTINGS.defaultPresetMode,
                 parameters: JSON.parse(JSON.stringify(calculateChannelsList()))
             };
             presets.push(newPreset);
