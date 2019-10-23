@@ -1210,6 +1210,7 @@ io.on('connection', function (socket) {
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
+                io.emit('groups', { groups: cleanGroups(), target: true });
                 saveShow();
             }
         } else {
