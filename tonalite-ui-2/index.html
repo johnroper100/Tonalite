@@ -31,18 +31,18 @@
                             <a class="dropdown-item" @click="resetPresets">Reset Presets</a>
                             <div class="dropdown-divider"></div>
                             <a v-if="desktop == false" class="dropdown-item">Save Show To USB</a>
-                            <a v-if="desktop == false" class="dropdown-item">Open Show From USB</a>
+                            <!--<a v-if="desktop == false" class="dropdown-item">Open Show From USB</a>-->
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item" href="/showFile" download>Save
                                 Show To
                                 File</a>
-                            <a v-if="ifMobile() || desktop == true" class="dropdown-item">Open
+                            <!--<a v-if="ifMobile() || desktop == true" class="dropdown-item">Open
                                 Show From
-                                File</a>
-                            <div class="dropdown-divider"></div>
+                                File</a>-->
+                            <!--<div class="dropdown-divider"></div>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item">Import
                                 Fixture Definitions From File</a>
                             <a v-if="desktop == false" class="dropdown-item" @click="importFixturesFromUSB">Import
-                                Fixture Definitions From USB</a>
+                                Fixture Definitions From USB</a>-->
                         </div>
                     </li>
                     <li class="nav-item dropdown">
