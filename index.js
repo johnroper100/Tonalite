@@ -943,6 +943,22 @@ io.on('connection', function (socket) {
     });
 
     socket.on('resetShow', function () {
+        resetFixtures();
+        cues = [];
+        groups = [];
+        currentCue = "";
+        lastCue = "";
+        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+        io.emit('activeCue', currentCueID);
+        io.emit('cues', cleanCues());
+        io.emit('groups', { groups: cleanGroups(), target: true });
+        io.emit('cueActionBtn', false);
+        io.emit('resetView', { type: 'show', eid: "" });
+        io.emit('message', { type: "info", content: "A new show has been created!" });
+        saveShow();
+    });
+
+    socket.on('resetShowAndPatch', function () {
         fixtures = [];
         cues = [];
         groups = [];

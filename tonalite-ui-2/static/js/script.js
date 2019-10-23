@@ -66,6 +66,13 @@ var app = new Vue({
                 }
             });
         },
+        resetShowAndPatch: function () {
+            bootbox.confirm("Are you sure you want a new show? This will reset everything (including the patch).", function (result) {
+                if (result === true) {
+                    socket.emit("resetShowAndPatch");
+                }
+            });
+        },
         resetPresets: function () {
             bootbox.confirm("Are you sure you want to reset the presets?", function (result) {
                 if (result === true) {
