@@ -207,7 +207,8 @@
                                 class="btn btn-secondary" @click="fixtureParametersTab = 'beam'"
                                 :class="{'btn-success': fixtureParametersTab == 'beam'}">Beam</button>
                         </div>
-                        <div v-for="parameter in currentFixture.parameters" v-if="getParameterTabType(parameter)"
+                        <div class="row">
+                            <div class="col-lg-12" v-for="parameter in currentFixture.parameters" v-if="getParameterTabType(parameter)"
                             :key="parameter.id">
                             <button class="btn btn-info" @click="changeFixtureParameterLock(parameter)">
                                 <div v-if="parameter.locked == true"><i class="far fa-lock-alt fa-sm"></i></div>
@@ -245,6 +246,8 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
+                        
                         <div
                             v-if="currentFixture.chips.length > 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
                             <div class="fixtureChips">
