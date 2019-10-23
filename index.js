@@ -1979,6 +1979,7 @@ io.on('connection', function (socket) {
                 active: false,
                 intensity: 0,
                 displayAsDimmer: false,
+                patchChanged: false,
                 mode: SETTINGS.defaultPresetMode,
                 parameters: JSON.parse(JSON.stringify(calculateChannelsList()))
             };
