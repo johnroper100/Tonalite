@@ -1223,6 +1223,7 @@ io.on('connection', function (socket) {
                     }
                 }
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(fixtureID)];
+                // check on this
                 let cc = 0; const ccMax = fixture.parameters.length; for (; cc < ccMax; cc++) {
                     fixture.parameters[cc][((fixture.startDMXAddress - 1) + fixture.parameters[cc].coarse) + (512 * fixture.dmxUniverse)] = 0;
                 }
@@ -1234,6 +1235,8 @@ io.on('connection', function (socket) {
                 io.emit('cues', cleanCues());
                 io.emit('groups', { groups: cleanGroups(), target: true });
                 saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1249,6 +1252,9 @@ io.on('connection', function (socket) {
                         fixture = cues[c].fixtures[cues[c].fixtures.map(el => el.id).indexOf(msg.fixtureID)];
                         if (fixture.effects.some(e => e.id === msg.effectID)) {
                             fixture.effects.splice(fixture.effects.map(el => el.id).indexOf(msg.effectID), 1);
+                        } else {
+                            socket.emit('message', { type: "error", content: "This effect does not exist!" });
+                            break;
                         }
                     }
                 }
@@ -1263,7 +1269,11 @@ io.on('connection', function (socket) {
                     io.emit('resetView', { type: 'effect', eid: msg.effectID });
                     socket.emit('message', { type: "info", content: "Fixture effect has been removed!" });
                     saveShow();
+                } else {
+                    socket.emit('message', { type: "error", content: "This effect does not exist!" });
                 }
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1276,7 +1286,11 @@ io.on('connection', function (socket) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
                 if (fixture.effects.some(e => e.id === msg.effectID)) {
                     socket.emit('effectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
+                } else {
+                    socket.emit('message', { type: "error", content: "This effect does not exist!" });
                 }
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1297,6 +1311,8 @@ io.on('connection', function (socket) {
                 fixture.startDMXAddress = parseInt(msg.startDMXAddress);
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                 saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1315,7 +1331,11 @@ io.on('connection', function (socket) {
                     socket.broadcast.emit('effectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                     saveShow();
+                } else {
+                    socket.emit('message', { type: "error", content: "This effect does not exist!" });
                 }
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1326,6 +1346,8 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
                 socket.emit('fixtureParameters', cleanFixture(fixtures[fixtures.map(el => el.id).indexOf(fixtureID)]));
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1363,6 +1385,8 @@ io.on('connection', function (socket) {
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                 socket.emit('message', { type: "info", content: "Fixture values reset!" });
                 saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1378,6 +1402,8 @@ io.on('connection', function (socket) {
                 parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
                 socket.broadcast.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                 socket.emit('fixtures', { fixtures: cleanFixtures(), target: false });
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1397,6 +1423,8 @@ io.on('connection', function (socket) {
                     }
                 }
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1413,6 +1441,8 @@ io.on('connection', function (socket) {
                     fixture.parameters[fixture.parameters.map(el => el.name).indexOf(chip.parameters[c].name)].displayValue = chip.parameters[c].value;
                 }
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1428,6 +1458,8 @@ io.on('connection', function (socket) {
                 fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].value = cppaddon.mapRange(range.default, 0, 255, parameter.min, parameter.max);
                 fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].displayValue = cppaddon.mapRange(fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].value, fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].min, fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].max, 0, 100);;
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1446,6 +1478,8 @@ io.on('connection', function (socket) {
                     setFixtureGroupValues(group, parameter);
                     io.emit('groups', { groups: cleanGroups(), target: true });
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                } else {
+                    socket.emit('message', { type: "error", content: "This group does not exist!" });
                 }
             } else {
                 socket.emit('message', { type: "error", content: "No groups exist!" });
@@ -1471,7 +1505,11 @@ io.on('connection', function (socket) {
                     }
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                     saveShow();
+                } else {
+                    socket.emit('message', { type: "error", content: "This effect does not exist!" });
                 }
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1518,6 +1556,8 @@ io.on('connection', function (socket) {
                 saveShow();
                 socket.emit('message', { type: "info", content: "Effect has been added to fixture!" });
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -1556,6 +1596,8 @@ io.on('connection', function (socket) {
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue parameters have been updated!" });
                 saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This cue does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No cues exist!" });
@@ -1572,6 +1614,8 @@ io.on('connection', function (socket) {
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue has been cloned!" });
                 saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This cue does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No cues exist!" });
@@ -1589,6 +1633,8 @@ io.on('connection', function (socket) {
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue has been cloned!" });
                 saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This cue does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No cues exist!" });
@@ -1599,6 +1645,8 @@ io.on('connection', function (socket) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 socket.emit('cueSettings', cues[cues.map(el => el.id).indexOf(cueID)]);
+            } else {
+                socket.emit('message', { type: "error", content: "This cue does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No cues exist!" });
@@ -1637,6 +1685,8 @@ io.on('connection', function (socket) {
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This cue does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No cues exist!" });
@@ -1657,6 +1707,8 @@ io.on('connection', function (socket) {
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This cue does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No cues exist!" });
@@ -1737,8 +1789,8 @@ io.on('connection', function (socket) {
         if (cues.length != 0) {
             var fixtureParameters = null;
             let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-                fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
-                let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
+                fixtureParameters = fixtures[f].parameters;
+                let c = 0; const cMax = fixtureParameters.length; for (; c < cMax; c++) {
                     if (fixtureParameters[c].locked === false) {
                         fixtureParameters[c].value = cppaddon.mapRange(fixtureParameters[c].displayValue, 0, 100, fixtureParameters[c].min, fixtureParameters[c].max);
                     }
