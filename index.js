@@ -1199,6 +1199,12 @@ io.on('connection', function (socket) {
                             }
                         }
                     }
+                    if (groups[g].ids.length == 0) {
+                        gtid = groups[g].id;
+                        groups.splice(g, 1);
+                        socket.emit('message', { type: "info", content: "Group has been removed!" });
+                        io.emit('resetView', { type: 'groups', eid: gtid });
+                    }
                 }
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(fixtureID)];
                 let cc = 0; const ccMax = fixture.parameters.length; for (; cc < ccMax; cc++) {
