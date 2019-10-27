@@ -309,6 +309,8 @@ function cleanFixtures() {
         delete newFixtures[f].maxOffset;
         delete newFixtures[f].modelName;
         delete newFixtures[f].modeName;
+        delete newFixtures[f].invertPan;
+        delete newFixtures[f].invertTilt;
         let p = 0; const pMax = newFixtures[f].parameters.length; for (; p < pMax; p++) {
             delete newFixtures[f].parameters[p].home;
             delete newFixtures[f].parameters[p].coarse;
@@ -352,6 +354,8 @@ function cleanFixtureForCue(fixture) {
     delete newFixture.dcid;
     delete newFixture.colortable;
     delete newFixture.startDMXAddress;
+    delete newFixture.invertPan;
+    delete newFixture.invertTilt;
     newFixture.effects = cleanEffectsForCue(newFixture.effects);
     let p = 0; const pMax = newFixture.parameters.length; for (; p < pMax; p++) {
         delete newFixture.parameters[p].name;
@@ -1087,6 +1091,8 @@ io.on('connection', function (socket) {
                 fixture.chips = [];
                 fixture.effects = [];
                 fixture.parameterTypes = [];
+                fixture.invertPan = false;
+                fixture.invertTilt = false;
 
                 if (fixture.colortable == "3874B444-A11E-47D9-8295-04556EAEBEA7") {
                     // RGB
