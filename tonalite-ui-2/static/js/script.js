@@ -385,6 +385,7 @@ socket.on('connect', function () {
     app.currentGroupFixtures = {};
     app.usbData = [];
     app.usbPath = "";
+    $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
     $('#fixtureAddEffectsModal').modal("hide");
     $('#fixtureProfilesModal').modal("hide");
@@ -393,6 +394,7 @@ socket.on('connect', function () {
 });
 
 socket.on('connect_error', function () {
+    $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
     $('#fixtureAddEffectsModal').modal("hide");
     $('#fixtureProfilesModal').modal("hide");
