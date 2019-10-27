@@ -36,7 +36,8 @@
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item" href="/showFile" download>Save
                                 Show To
                                 File</a>
-                            <a v-if="ifMobile() || desktop == true" class="dropdown-item" data-toggle="modal" data-target="#openShowModal">Open
+                            <a v-if="ifMobile() || desktop == true" class="dropdown-item" data-toggle="modal"
+                                data-target="#openShowModal">Open
                                 Show From
                                 File</a>
                             <!--<div class="dropdown-divider"></div>
@@ -892,7 +893,8 @@
                         <form action="/showFile" method='post' enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="showFile" id="showFile">
+                                    <input type="file" class="custom-file-input" name="showFile" id="showFile"
+                                        accept=".tonalite">
                                     <label class="dark custom-file-label" for="showFile">Choose file</label>
                                 </div>
                             </div>

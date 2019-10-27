@@ -900,13 +900,16 @@ app.post('/showFile', (req, res) => {
         return res.status(400).send('No files were uploaded.');
     }
     let showFile = req.files.showFile;
-
-    showFile.mv(process.cwd() + '/show.json', function (err) {
-        if (err)
-            return res.status(500).send(err);
-        openShow();
-        res.redirect('/');
-    });
+    if (showFile.name.includes(".tonalite")) {
+        showFile.mv(process.cwd() + '/show.json', function (err) {
+            if (err)
+                return res.status(500).send(err);
+            openShow();
+            res.redirect('/');
+        });
+    } else {
+        return res.status(500).send("wrong filetype");
+    }
 });
 
 app.post('/importFixtureDefinition', (req, res) => {

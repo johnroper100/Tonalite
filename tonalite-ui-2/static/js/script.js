@@ -563,3 +563,8 @@ socket.on('message', function (msg) {
     });
 
 });
+
+$('.custom-file-input').change(function () {
+    let fileName = $(this).val().split('\\').pop();
+    $(this).next('.custom-file-label').html(fileName);
+});
