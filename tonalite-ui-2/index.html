@@ -30,8 +30,8 @@
                             <a class="dropdown-item" @click="resetShowAndPatch">New Show And Patch</a>
                             <a class="dropdown-item" @click="resetPresets">Reset Presets</a>
                             <div class="dropdown-divider"></div>
-                            <!--<a v-if="desktop == false" class="dropdown-item">Save Show To USB</a>-->
-                            <a v-if="desktop == false" class="dropdown-item" @click="getShowsFromUSB">Open Show From
+                            <!--<a class="dropdown-item">Save Show To USB</a>-->
+                            <a class="dropdown-item" @click="getShowsFromUSB">Open Show From
                                 USB</a>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item" href="/showFile" download>Save
                                 Show To
