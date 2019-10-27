@@ -215,12 +215,15 @@ async function getShowsFromUSB(callback) {
                         }
                     });
                     done = true;
+                    io.emit('shows', { shows: showsList, drive: drive.mountpoints[0].path });
                     return callback({ shows: showsList, drive: drive.mountpoints[0].path });
                 });
             }
         }
     });
-    return callback({ shows: showsList, drive: "" });
+    if (showsList == null) {
+        io.emit('message', { type: "error", content: "Shows could not be read of of a USB drive. Is there one connected?" });
+    }
 };
 
 async function importFixtures(callback) {
@@ -1012,7 +1015,7 @@ app.post('/showFile', (req, res) => {
             res.redirect('/');
         });
     } else {
-        return res.status(500).send("wrong filetype");
+        io.emit('message', { type: "error", content: "The file was not a tonalite show file!" });
     }
 });
 
@@ -1022,10 +1025,11 @@ app.post('/importFixtureDefinition', (req, res) => {
     }
     let fixtureDefinition = req.files.fixtureDefinition;
 
-    if (fixtureDefinition.mimetype == "application/json") {
+    if (fixtureDefinition.mimetype == "application/json" || fixtureDefinition.mimetype == "application/x-wine-extension-jlib") {
         fixtureDefinition.mv(process.cwd() + '/fixtures/' + req.files.fixtureDefinition.name, function (err) {
             if (err)
                 return res.status(500).send(err);
+            res.redirect('/');
             io.emit('message', { type: "info", content: "The fixture profile has been imported!" });
         });
     } else {
@@ -1154,13 +1158,7 @@ io.on('connection', function (socket) {
 
     socket.on('getShowsFromUSB', function () {
         if (SETTINGS.desktop === false) {
-            getShowsFromUSB(function (result) {
-                if (result && result.shows != null) {
-                    socket.emit('shows', result);
-                } else {
-                    socket.emit('message', { type: "error", content: "Shows could not be read of of a USB drive. Is there one connected?" });
-                }
-            });
+            getShowsFromUSB();
         } else {
             socket.emit('message', { type: "error", content: "The console is currently in desktop mode!" });
         }

@@ -41,9 +41,9 @@
                                 Show From
                                 File</a>
                             <div class="dropdown-divider"></div>
-                            <!--<a v-if="ifMobile() || desktop == true" class="dropdown-item">Import
-                                Fixture Definitions From File</a>
-                            -->
+                            <a v-if="ifMobile() || desktop == true" class="dropdown-item" data-toggle="modal"
+                            data-target="#openFixtureDefinitionModal">Import
+                                Fixture Definition From File</a>
                             <a class="dropdown-item" @click="importFixturesFromUSB">Import
                                 Fixture Definitions From USB</a>
                         </div>
@@ -917,6 +917,24 @@
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-success" value="Open Show File">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="openFixtureDefinitionModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form action="/importFixtureDefinition" method='post' enctype="multipart/form-data">
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="fixtureDefinition"
+                                        id="fixtureDefinition" accept=".jlib,.json">
+                                    <label class="dark custom-file-label" for="fixtureDefinition">Choose file</label>
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-success" value="Import Fixture Definition">
                         </form>
                     </div>
                 </div>
