@@ -522,11 +522,27 @@ function calculateChannels() {
 
 function calculateChannelsList() {
     var chans = [];
+    var invert = null;
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
         let p = 0; const pMax = fixtures[f].parameters.length; for (; p < pMax; p++) {
-            chans[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].value >> 8);
-            if (fixtures[f].parameters[p].fine != null) {
-                chans[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].value & 0xff);
+            invert = false;
+            if (fixtures[f].parameters[p].type == 2 && (fixtures[f].invertPan == true || fixtures[f].invertTilt == true)) {
+                if (fixtures[f].parameters[p].name == "Pan" && fixtures[f].invertPan == true) {
+                    invert = true;
+                } else if (fixtures[f].parameters[p].name == "Tilt" && fixtures[f].invertTilt == true) {
+                    invert = true;
+                }
+            }
+            if (invert == true) {
+                chans[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (cppaddon.reverseNumber(fixtures[f].parameters[p].value, 0, 65535) >> 8);
+                if (fixtures[f].parameters[p].fine != null) {
+                    chans[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (cppaddon.reverseNumber(fixtures[f].parameters[p].value, 0, 65535) & 0xff);
+                }
+            } else {
+                chans[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].value >> 8);
+                if (fixtures[f].parameters[p].fine != null) {
+                    chans[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].value & 0xff);
+                }
             }
         }
     }
