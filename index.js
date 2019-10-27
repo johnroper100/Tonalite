@@ -358,7 +358,6 @@ function cleanFixtureForCue(fixture) {
     delete newFixture.invertTilt;
     newFixture.effects = cleanEffectsForCue(newFixture.effects);
     let p = 0; const pMax = newFixture.parameters.length; for (; p < pMax; p++) {
-        delete newFixture.parameters[p].name;
         delete newFixture.parameters[p].displayValue;
         delete newFixture.parameters[p].home;
         delete newFixture.parameters[p].locked;
@@ -481,6 +480,7 @@ function checkFixtureActiveEffects(effects) {
 
 // Set the output channel values to those of the current fixture values
 function calculateChannels() {
+    var invert = null;
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
         let p = 0; const pMax = fixtures[f].parameters.length; for (; p < pMax; p++) {
             if (fixtures[f].parameters[p].fadeWithIntensity == true || fixtures[f].parameters[p].type == 1) {
@@ -496,9 +496,24 @@ function calculateChannels() {
                     }
                 }
             } else {
-                channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].value >> 8);
-                if (fixtures[f].parameters[p].fine != null) {
-                    channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].value & 0xff);
+                invert = false;
+                if (fixtures[f].parameters[p].type == 2 && (fixtures[f].invertPan == true || fixtures[f].invertTilt == true)) {
+                    if (fixtures[f].parameters[p].name == "Pan" && fixtures[f].invertPan == true) {
+                        invert = true;
+                    } else if (fixtures[f].parameters[p].name == "Tilt" && fixtures[f].invertTilt == true) {
+                        invert = true;
+                    }
+                }
+                if (invert == true) {
+                    channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (cppaddon.reverseNumber(fixtures[f].parameters[p].value, 0, 65535) >> 8);
+                    if (fixtures[f].parameters[p].fine != null) {
+                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (cppaddon.reverseNumber(fixtures[f].parameters[p].value, 0, 65535) & 0xff);
+                    }
+                } else {
+                    channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].value >> 8);
+                    if (fixtures[f].parameters[p].fine != null) {
+                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].value & 0xff);
+                    }
                 }
             }
         }
@@ -524,6 +539,7 @@ function calculateCue(cue) {
     var startFixture = null;
     var startParameter = null;
     var endParameter = null;
+    var invert = null;
     let f = 0; const fMax = cue.fixtures.length; for (; f < fMax; f++) {
         startFixture = fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)];
         let e = 0; const eMax = cue.fixtures[f].effects.length; for (; e < eMax; e++) {
@@ -562,9 +578,24 @@ function calculateCue(cue) {
                                 }
                             }
                         } else {
-                            outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) >> 8);
-                            if (cue.fixtures[f].parameters[c].fine != null) {
-                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) & 0xff);
+                            invert = false;
+                            if (cue.fixtures[f].parameters[p].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
+                                if (cue.fixtures[f].parameters[p].name == "Pan" && startFixture.invertPan == true) {
+                                    invert = true;
+                                } else if (cue.fixtures[f].parameters[p].name == "Tilt" && startFixture.invertTilt == true) {
+                                    invert = true;
+                                }
+                            }
+                            if (invert == true) {
+                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)), 0, 65535) >> 8);
+                                if (cue.fixtures[f].parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)), 0, 65535) & 0xff);
+                                }
+                            } else {
+                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) >> 8);
+                                if (cue.fixtures[f].parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) & 0xff);
+                                }
                             }
                         }
                         fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(cue.fixtures[f].parameters[c].value + (((startFixture.parameters[c].value - cue.fixtures[f].parameters[c].value) / (cue.upTime * 40)) * cue.upStep), cue.fixtures[f].parameters[c].min, cue.fixtures[f].parameters[c].max, 0, 100);
@@ -585,20 +616,52 @@ function calculateCue(cue) {
                                 }
                             }
                         } else {
-                            outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) >> 8);
-                            if (cue.fixtures[f].parameters[c].fine != null) {
-                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) & 0xff);
+                            invert = false;
+                            if (cue.fixtures[f].parameters[p].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
+                                if (cue.fixtures[f].parameters[p].name == "Pan" && startFixture.invertPan == true) {
+                                    invert = true;
+                                } else if (cue.fixtures[f].parameters[p].name == "Tilt" && startFixture.invertTilt == true) {
+                                    invert = true;
+                                }
                             }
+                            if (invert == true) {
+                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)), 0, 65535) >> 8);
+                                if (cue.fixtures[f].parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)), 0, 65535) & 0xff);
+                                }
+                            } else {
+                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) >> 8);
+                                if (cue.fixtures[f].parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) & 0xff);
+                                }
+                            }
+
                         }
                         fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(cue.fixtures[f].parameters[c].value + (((startFixture.parameters[c].value - cue.fixtures[f].parameters[c].value) / (cue.downTime * 40)) * cue.downStep), cue.fixtures[f].parameters[c].min, cue.fixtures[f].parameters[c].max, 0, 100);
                     }
                 }
             } else {
                 startParameter = startFixture.parameters[c].value;
-                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (startParameter >> 8);
-                if (cue.fixtures[f].parameters[c].fine != null) {
-                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startParameter & 0xff);
+                invert = false;
+                if (cue.fixtures[f].parameters[p].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
+                    if (cue.fixtures[f].parameters[p].name == "Pan" && startFixture.invertPan == true) {
+                        invert = true;
+                    } else if (cue.fixtures[f].parameters[p].name == "Tilt" && startFixture.invertTilt == true) {
+                        invert = true;
+                    }
                 }
+                if (invert == true) {
+                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber(startParameter, 0, 65535) >> 8);
+                    if (cue.fixtures[f].parameters[c].fine != null) {
+                        outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber(startParameter, 0, 65535) & 0xff);
+                    }
+                } else {
+                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (startParameter >> 8);
+                    if (cue.fixtures[f].parameters[c].fine != null) {
+                        outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startParameter & 0xff);
+                    }
+                }
+
             }
         }
     }

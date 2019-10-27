@@ -68,6 +68,7 @@ Napi::Object functions::Init(Napi::Env env, Napi::Object exports)
 {
 
   exports.Set("mapRange", Napi::Function::New(env, functions::MapRangeWrapped));
+  exports.Set("reverseNumber", Napi::Function::New(env, functions::ReverseNumberWrapped));
   exports.Set("getAFromRGB", Napi::Function::New(env, functions::getAFromRGBWrapped));
   return exports;
 }
