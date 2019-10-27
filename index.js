@@ -762,6 +762,7 @@ function calculateStack() {
         var displayChanged = false;
         var effectChanIndex = null;
         var effectValue = null;
+        var invert = null;
         let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
             let e = 0; const eMax = fixtures[f].effects.length; for (; e < eMax; e++) {
                 if (fixtures[f].effects[e].active == true) {
@@ -785,14 +786,34 @@ function calculateStack() {
                                 if (fixtures[f].parameters[p].fadeWithIntensity == true || fixtures[f].parameters[p].type == 1) {
                                     effectValue = (effectValue / 100.0) * grandmaster;
                                 }
-                                if (fixtures[f].effects[e].resolution == 16) {
-                                    channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (effectValue >> 8);
-                                    //channels[(fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse] = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex];
-                                    if (fixtures[f].parameters[p].fine != null) {
-                                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (effectValue & 0xff);
+                                invert = false;
+                                if (fixtures[f].parameters[p].type == 2 && (fixtures[f].invertPan == true || fixtures[f].invertTilt == true)) {
+                                    if (fixtures[f].parameters[p].name == "Pan" && fixtures[f].invertPan == true) {
+                                        invert = true;
+                                    } else if (fixtures[f].parameters[p].name == "Tilt" && fixtures[f].invertTilt == true) {
+                                        invert = true;
                                     }
+                                }
+
+                                if (fixtures[f].effects[e].resolution == 16) {
+                                    if (invert == true) {
+                                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (cppaddon.reverseNumber(effectValue, 0, 65535) >> 8);
+                                        if (fixtures[f].parameters[p].fine != null) {
+                                            channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (cppaddon.reverseNumber(effectValue, 0, 65535) & 0xff);
+                                        }
+                                    } else {
+                                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (effectValue >> 8);
+                                        if (fixtures[f].parameters[p].fine != null) {
+                                            channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (effectValue & 0xff);
+                                        }
+                                    }
+
                                 } else if (fixtures[f].effects[e].resolution == 8) {
-                                    channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = effectValue;
+                                    if (invert == true) {
+                                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = cppaddon.reverseNumber(effectValue, 0, 255);
+                                    } else {
+                                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = effectValue;
+                                    }
                                 }
                             }
 
