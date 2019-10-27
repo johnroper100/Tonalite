@@ -412,6 +412,24 @@
                                     v-model="currentFixture.dmxUniverse">
                             </div>
                         </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editFixtureSettings" type="checkbox" class="custom-control-input"
+                                        id="invertPan" v-model="currentFixture.invertPan">
+                                    <label class="custom-control-label" for="invertPan">Invert Pan</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editFixtureSettings" type="checkbox" class="custom-control-input"
+                                        id="invertTilt" v-model="currentFixture.invertTilt">
+                                    <label class="custom-control-label" for="invertTilt">Invert Tilt</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

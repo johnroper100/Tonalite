@@ -1422,6 +1422,8 @@ io.on('connection', function (socket) {
                     fixture.shortName = msg.shortName;
                 }
                 fixture.name = msg.name;
+                fixture.invertPan = msg.invertPan;
+                fixture.invertTilt = msg.invertTilt;
                 fixture.dmxUniverse = parseInt(msg.dmxUniverse);
                 fixture.startDMXAddress = parseInt(msg.startDMXAddress);
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
