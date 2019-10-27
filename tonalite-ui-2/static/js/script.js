@@ -26,7 +26,9 @@ var app = new Vue({
         currentEffect: {},
         addGroupSelected: [],
         currentGroup: {},
-        currentGroupFixtures: {}
+        currentGroupFixtures: {},
+        usbData: [],
+        usbPath: ""
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -344,6 +346,13 @@ var app = new Vue({
                     socket.emit('removeGroupFixture', { group: app.currentGroup.id, fixture: fixtureID });
                 }
             });
+        },
+        getShowsFromUSB: function () {
+            socket.emit('getShowsFromUSB');
+        },
+        openShowFromUSB: function (file) {
+            socket.emit('openShowFromUSB', { file: file, path: app.usbPath });
+            $('#showFilesModal').modal("hide");
         }
     }
 });
@@ -374,11 +383,27 @@ socket.on('connect', function () {
     app.currentEffect = {};
     app.currentGroup = {};
     app.currentGroupFixtures = {};
+    app.usbData = [];
+    app.usbPath = "";
+    $('#addGroupModal').modal("hide");
+    $('#fixtureAddEffectsModal').modal("hide");
+    $('#fixtureProfilesModal').modal("hide");
+    $('#showFilesModal').modal("hide");
     $('#serverDisconnectedModal').modal("hide");
 });
 
 socket.on('connect_error', function () {
+    $('#addGroupModal').modal("hide");
+    $('#fixtureAddEffectsModal').modal("hide");
+    $('#fixtureProfilesModal').modal("hide");
+    $('#showFilesModal').modal("hide");
     $('#serverDisconnectedModal').modal("show");
+});
+
+socket.on('shows', function (msg) {
+    app.usbData = msg.shows;
+    app.usbPath = msg.drive;
+    $('#showFilesModal').modal("show");
 });
 
 socket.on('fixtures', function (msg) {

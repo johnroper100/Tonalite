@@ -30,8 +30,9 @@
                             <a class="dropdown-item" @click="resetShowAndPatch">New Show And Patch</a>
                             <a class="dropdown-item" @click="resetPresets">Reset Presets</a>
                             <div class="dropdown-divider"></div>
-                            <a v-if="desktop == false" class="dropdown-item">Save Show To USB</a>
-                            <!--<a v-if="desktop == false" class="dropdown-item">Open Show From USB</a>-->
+                            <!--<a v-if="desktop == false" class="dropdown-item">Save Show To USB</a>-->
+                            <a v-if="desktop == false" class="dropdown-item" @click="getShowsFromUSB">Open Show From
+                                USB</a>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item" href="/showFile" download>Save
                                 Show To
                                 File</a>
@@ -41,8 +42,9 @@
                             <!--<div class="dropdown-divider"></div>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item">Import
                                 Fixture Definitions From File</a>
-                            <a v-if="desktop == false" class="dropdown-item" @click="importFixturesFromUSB">Import
-                                Fixture Definitions From USB</a>-->
+                            -->
+                            <a class="dropdown-item" @click="importFixturesFromUSB">Import
+                                Fixture Definitions From USB</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -208,46 +210,46 @@
                                 :class="{'btn-success': fixtureParametersTab == 'beam'}">Beam</button>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12" v-for="parameter in currentFixture.parameters" v-if="getParameterTabType(parameter)"
-                            :key="parameter.id">
-                            <button class="btn btn-info" @click="changeFixtureParameterLock(parameter)">
-                                <div v-if="parameter.locked == true"><i class="far fa-lock-alt fa-sm"></i></div>
-                                <div>
-                                    <div v-if="parameter.locked == false"><i class="far fa-lock-open-alt fa-sm"></i>
+                            <div class="col-lg-12" v-for="parameter in currentFixture.parameters"
+                                v-if="getParameterTabType(parameter)" :key="parameter.id">
+                                <button class="btn btn-info" @click="changeFixtureParameterLock(parameter)">
+                                    <div v-if="parameter.locked == true"><i class="far fa-lock-alt fa-sm"></i></div>
+                                    <div>
+                                        <div v-if="parameter.locked == false"><i class="far fa-lock-open-alt fa-sm"></i>
+                                        </div>
+                                    </div>
+                                </button>
+                                <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
+                                    ({{parameter.displayValue}}%)</label>
+                                <div class="float-right">
+                                    <button class="btn btn-warning"
+                                        @click="setParameterValue(parameter, parameter.min, 'fixture')">
+                                        <i class="far fa-step-backward fa-sm"></i>
+                                    </button>
+                                    <button v-if="!('ranges' in parameter)" class="btn btn-warning"
+                                        @click="setParameterValue(parameter, parseInt(parameter.max/2)+1, 'fixture')">
+                                        50%
+                                    </button>
+                                    <button class="btn btn-warning"
+                                        @click="setParameterValue(parameter, parameter.max, 'fixture')">
+                                        <i class="far fa-step-forward fa-sm"></i>
+                                    </button>
+                                </div>
+                                <input type="range" class="custom-range" v-bind:id="parameter.id"
+                                    v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value"
+                                    @input="changeFixtureParameterValue(parameter)">
+                                <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
+                                    <div class="channelRanges row flex-nowrap">
+                                        <div class="channelRange col-2 col-md-1 mr-1 "
+                                            v-for="(range, id) in parameter.ranges"
+                                            @click="useFixtureParameterRange(parameter, id)"
+                                            :class="{ 'bg-success': parameter.value >= mapRange(range.begin, 0, 255, 0, 65535) && parameter.value <= mapRange(range.end, 0, 255, 0, 65535), 'bg-danger': parameter.value < mapRange(range.begin, 0, 255, 0, 65535) || parameter.value > mapRange(range.end, 0, 255, 0, 65535)}">
+                                            {{range.label}}</div>
                                     </div>
                                 </div>
-                            </button>
-                            <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
-                                ({{parameter.displayValue}}%)</label>
-                            <div class="float-right">
-                                <button class="btn btn-warning"
-                                    @click="setParameterValue(parameter, parameter.min, 'fixture')">
-                                    <i class="far fa-step-backward fa-sm"></i>
-                                </button>
-                                <button v-if="!('ranges' in parameter)" class="btn btn-warning"
-                                    @click="setParameterValue(parameter, parseInt(parameter.max/2)+1, 'fixture')">
-                                    50%
-                                </button>
-                                <button class="btn btn-warning"
-                                    @click="setParameterValue(parameter, parameter.max, 'fixture')">
-                                    <i class="far fa-step-forward fa-sm"></i>
-                                </button>
-                            </div>
-                            <input type="range" class="custom-range" v-bind:id="parameter.id" v-bind:max="parameter.max"
-                                v-bind:min="parameter.min" v-model="parameter.value"
-                                @input="changeFixtureParameterValue(parameter)">
-                            <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
-                                <div class="channelRanges row flex-nowrap">
-                                    <div class="channelRange col-2 col-md-1 mr-1 "
-                                        v-for="(range, id) in parameter.ranges"
-                                        @click="useFixtureParameterRange(parameter, id)"
-                                        :class="{ 'bg-success': parameter.value >= mapRange(range.begin, 0, 255, 0, 65535) && parameter.value <= mapRange(range.end, 0, 255, 0, 65535), 'bg-danger': parameter.value < mapRange(range.begin, 0, 255, 0, 65535) || parameter.value > mapRange(range.end, 0, 255, 0, 65535)}">
-                                        {{range.label}}</div>
-                                </div>
                             </div>
                         </div>
-                        </div>
-                        
+
                         <div
                             v-if="currentFixture.chips.length > 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
                             <div class="fixtureChips">
@@ -865,6 +867,21 @@
             <button type="button" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
+        </div>
+        <div id="showFilesModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h5 class="dark">All show files on the USB:</h5>
+                        <ul class="list-group" id="showsList">
+                            <li @click="openShowFromUSB(show)" class="list-group-item showFileItem" v-for="show in usbData">
+                                {{show.slice(0, -9)}}</li>
+                        </ul>
+                        <div v-if="usbData.length == 0" class="text-danger"> There are no shows on the connected USB
+                            drive! </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="/v2/static/js/jquery-3.4.1.min.js"></script>

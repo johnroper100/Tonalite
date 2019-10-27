@@ -200,6 +200,29 @@ async function updateFirmware(callback) {
     return callback(uploadComplete);
 };
 
+async function getShowsFromUSB(callback) {
+    var showsList = null;
+    var done = false;
+    var drives = await drivelist.list();
+    drives.forEach((drive) => {
+        if (done == false) {
+            if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
+                fs.readdir(drive.mountpoints[0].path, (err, files) => {
+                    showsList = [];
+                    files.forEach(file => {
+                        if (file.slice(-8) === "tonalite") {
+                            showsList.push(file);
+                        }
+                    });
+                    done = true;
+                    return callback({ shows: showsList, drive: drive.mountpoints[0].path });
+                });
+            }
+        }
+    });
+    return callback({ shows: showsList, drive: "" });
+};
+
 async function importFixtures(callback) {
     var importComplete = false;
 
@@ -931,7 +954,7 @@ io.on('connection', function (socket) {
     }
 
     socket.on('openShowFromUSB', function (data) {
-        fs.copyFile(data[1] + '/' + data[0], process.cwd() + '/show.json', function (err) {
+        fs.copyFile(data.path + '/' + data.file, process.cwd() + '/show.json', function (err) {
             if (err) {
                 logError(err);
                 socket.emit('message', { type: "error", content: "The show could not be opened!" });
@@ -1024,32 +1047,15 @@ io.on('connection', function (socket) {
 
     socket.on('getShowsFromUSB', function () {
         if (SETTINGS.desktop === false) {
-            drivelist.list((error, drives) => {
-                var done = false;
-                if (error) {
-                    logError(error);
-                }
-                var showsList = null;
-                drives.forEach((drive) => {
-                    if (done == false) {
-                        if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
-                            fs.readdir(drive.mountpoints[0].path, (err, files) => {
-                                showsList = [];
-                                files.forEach(file => {
-                                    if (file.slice(-8) === "tonalite") {
-                                        showsList.push(file);
-                                    }
-                                });
-                                socket.emit('shows', [showsList, drive.mountpoints[0].path]);
-                            });
-                            done = true;
-                        }
-                    }
-                });
-                if (done == false) {
+            getShowsFromUSB(function (result) {
+                if (result && result.shows != null) {
+                    socket.emit('shows', result);
+                } else {
                     socket.emit('message', { type: "error", content: "Shows could not be read of of a USB drive. Is there one connected?" });
                 }
             });
+        } else {
+            socket.emit('message', { type: "error", content: "The console is currently in desktop mode!" });
         }
     });
 
