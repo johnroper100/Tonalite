@@ -414,7 +414,7 @@
                                     v-model="currentFixture.dmxUniverse">
                             </div>
                         </div>
-                        <div class="col-md-6 col-12">
+                        <div class="col-md-4 col-12" v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editFixtureSettings" type="checkbox" class="custom-control-input"
@@ -423,12 +423,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-12">
+                        <div class="col-md-4 col-12" v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editFixtureSettings" type="checkbox" class="custom-control-input"
                                         id="invertTilt" v-model="currentFixture.invertTilt">
                                     <label class="custom-control-label" for="invertTilt">Invert Tilt</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12" v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editFixtureSettings" type="checkbox" class="custom-control-input"
+                                        id="swapPanTilt" v-model="currentFixture.swapPanTilt">
+                                    <label class="custom-control-label" for="swapPanTilt">Swap Pan/Tilt</label>
                                 </div>
                             </div>
                         </div>

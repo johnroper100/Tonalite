@@ -202,7 +202,7 @@ var app = new Vue({
             });
         },
         editFixtureSettings: function () {
-            socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse, invertPan: app.currentFixture.invertPan, invertTilt: app.currentFixture.invertTilt });
+            socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse, invertPan: app.currentFixture.invertPan, invertTilt: app.currentFixture.invertTilt, swapPanTilt: app.currentFixture.swapPanTilt });
         },
         editEffectSettings: function () {
             socket.emit('editEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, fan: app.currentEffect.fan });
@@ -354,7 +354,7 @@ var app = new Vue({
             socket.emit('openShowFromUSB', { file: file, path: app.usbPath });
             $('#showFilesModal').modal("hide");
         },
-        saveShowToUSB: function() {
+        saveShowToUSB: function () {
             bootbox.prompt("Show Name: ", function (result) {
                 if (result.trim() != "") {
                     socket.emit('saveShowToUSB', result);
