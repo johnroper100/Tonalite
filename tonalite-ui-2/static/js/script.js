@@ -353,6 +353,15 @@ var app = new Vue({
         openShowFromUSB: function (file) {
             socket.emit('openShowFromUSB', { file: file, path: app.usbPath });
             $('#showFilesModal').modal("hide");
+        },
+        saveShowToUSB: function() {
+            bootbox.prompt("Show Name: ", function (result) {
+                if (result.trim() != "") {
+                    socket.emit('saveShowToUSB', result);
+                } else {
+                    bootbox.alert("You must enter a show name!");
+                }
+            });
         }
     }
 });
