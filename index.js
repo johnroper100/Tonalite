@@ -1273,6 +1273,9 @@ io.on('connection', function (socket) {
                         r = colortable[col].parameters[0];
                         g = colortable[col].parameters[1];
                         b = colortable[col].parameters[2];
+                        r = r/ (r+g+b);
+                        g = g/(r+g+b);
+                        b = b/(r+g+b);
                         i = (r + g + b) / 3.0;
                         rn = r / (r + g + b);
                         gn = g / (r + g + b);
