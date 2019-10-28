@@ -1191,6 +1191,7 @@ io.on('connection', function (socket) {
                 fixture.parameterTypes = [];
                 fixture.invertPan = false;
                 fixture.invertTilt = false;
+                fixture.swapPanTilt = false;
 
                 if (fixture.colortable == "3874B444-A11E-47D9-8295-04556EAEBEA7") {
                     // RGB
