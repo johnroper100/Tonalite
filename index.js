@@ -314,6 +314,7 @@ function cleanFixtures() {
         delete newFixtures[f].modeName;
         delete newFixtures[f].invertPan;
         delete newFixtures[f].invertTilt;
+        delete newFixtures[f].swapPanTilt;
         let p = 0; const pMax = newFixtures[f].parameters.length; for (; p < pMax; p++) {
             delete newFixtures[f].parameters[p].home;
             delete newFixtures[f].parameters[p].coarse;
@@ -359,6 +360,7 @@ function cleanFixtureForCue(fixture) {
     delete newFixture.startDMXAddress;
     delete newFixture.invertPan;
     delete newFixture.invertTilt;
+    delete newFixture.swapPanTilt;
     newFixture.effects = cleanEffectsForCue(newFixture.effects);
     let p = 0; const pMax = newFixture.parameters.length; for (; p < pMax; p++) {
         delete newFixture.parameters[p].displayValue;
