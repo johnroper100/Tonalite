@@ -2350,12 +2350,19 @@ io.on('connection', function (socket) {
     socket.on('saveSettings', function (msg) {
         SETTINGS.defaultUpTime = parseInt(msg.defaultUpTime);
         SETTINGS.defaultDownTime = parseInt(msg.defaultDownTime);
+        SETTINGS.defaultPresetMode = msg.defaultPresetMode;
         SETTINGS.udmx = msg.udmx;
         SETTINGS.automark = msg.automark;
+        SETTINGS.displayEffectsRealtime = msg.displayEffectsRealtime;
         if (msg.artnetIP != "") {
             SETTINGS.artnetIP = msg.artnetIP;
         } else {
             SETTINGS.artnetIP = null;
+        }
+        if (msg.artnetHost != "") {
+            SETTINGS.artnetHost = msg.artnetHost;
+        } else {
+            SETTINGS.artnetIP = "255.255.255.255";
         }
         if (msg.sacnIP != "") {
             SETTINGS.sacnIP = msg.sacnIP;
