@@ -1475,7 +1475,6 @@ io.on('connection', function (socket) {
                     var effect = fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)];
                     effect.name = msg.name;
                     effect.depth = parseFloat(msg.depth);
-                    effect.fan = parseInt(msg.fan);
                     socket.broadcast.emit('effectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                     saveShow();
