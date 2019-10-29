@@ -252,6 +252,34 @@ async function importFixtures(callback) {
     return callback(importComplete);
 };
 
+async function saveShowToUSB(showName) {
+    var drives = await drivelist.list();
+    var done = false;
+    var filepath = null;
+    drives.forEach((drive) => {
+        if (done == false) {
+            if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
+                filepath = drive.mountpoints[0].path + "/" + showName + ".tonalite";
+                fs.exists(filepath, function (exists) {
+                    if (exists) {
+                        io.emit('message', { type: "error", content: "A show file with that name already exists!" });
+                    } else {
+                        fs.writeFile(filepath, JSON.stringify([fixtures, cues, groups]), (err) => {
+                            if (err) {
+                                logError(err);
+                                done = false;
+                                socket.emit('message', { type: "error", content: "The current show could not be saved onto a USB drive. Is there one connected?" });
+                            };
+                            done = true;
+                            io.emit('message', { type: "info", content: "The current show was successfully saved to the connected USB drive!" });
+                        });
+                    }
+                });
+            }
+        }
+    });
+};
+
 function logError(msg) {
     var datetime = new Date();
     fs.appendFile('error-' + datetime + '.txt', msg, (err) => {
@@ -2355,33 +2383,6 @@ io.on('connection', function (socket) {
     });
 
     socket.on('saveShowToUSB', function (showName) {
-        drivelist.list((error, drives) => {
-            var done = false;
-            if (error) {
-                logError(error);
-            }
-            var filepath = null;
-            drives.forEach((drive) => {
-                if (done == false) {
-                    if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
-                        filepath = drive.mountpoints[0].path + "/" + showName + ".tonalite";
-                        fs.exists(filepath, function (exists) {
-                            if (exists) {
-                                socket.emit('message', { type: "error", content: "A show file with that name already exists!" });
-                            } else {
-                                fs.writeFile(filepath, JSON.stringify([fixtures, cues, groups]), (err) => {
-                                    if (err) {
-                                        logError(err);
-                                        done = false;
-                                        socket.emit('message', { type: "error", content: "The current show could not be saved onto a USB drive. Is there one connected?" });
-                                    };
-                                    socket.emit('message', { type: "info", content: "The current show was successfully saved to the connected USB drive!" });
-                                });
-                            }
-                        });
-                    }
-                }
-            });
-        });
+        saveShowToUSB(showName);
     });
 });
