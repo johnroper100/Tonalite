@@ -252,7 +252,7 @@ async function importFixtures(callback) {
     return callback(importComplete);
 };
 
-async function saveShowToUSB(showName) {
+async function saveShowToUSB(showName, callback) {
     var drives = await drivelist.list();
     var done = false;
     var filepath = null;
@@ -278,6 +278,7 @@ async function saveShowToUSB(showName) {
             }
         }
     });
+    return callback(done);
 };
 
 function logError(msg) {
@@ -2383,6 +2384,10 @@ io.on('connection', function (socket) {
     });
 
     socket.on('saveShowToUSB', function (showName) {
-        saveShowToUSB(showName);
+        saveShowToUSB(showName, function (result) {
+            if (!result) {
+                socket.emit('message', { type: "error", content: "The show could not be saved! Is a USB connected?" });
+            }
+        });
     });
 });
