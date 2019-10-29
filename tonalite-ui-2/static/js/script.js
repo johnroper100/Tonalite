@@ -362,6 +362,15 @@ var app = new Vue({
                     bootbox.alert("You must enter a show name!");
                 }
             });
+        },
+        calculateParamName: function(param, flipPanTilt) {
+            if (param.type == 2 && param.name == "Pan" && flipPanTilt == true) {
+                return "Tilt";
+            } else if (param.type == 2 && param.name == "Tilt" && flipPanTilt == true) {
+                return "Pan";
+            } else {
+                return param.name;
+            }
         }
     }
 });
