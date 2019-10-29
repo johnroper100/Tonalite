@@ -1300,7 +1300,7 @@ io.on('connection', function (socket) {
 
                         fixture.chips.push(color);
                     }
-                } else if (fixture.colortable == "B074A2D3-0C40-45A7-844A-7C2721E0B267") {
+                } /*else if (fixture.colortable == "B074A2D3-0C40-45A7-844A-7C2721E0B267") {
                     // HSI
                     colortable = JSON.parse(JSON.stringify(require(process.cwd() + "/chips.json")));
                     let col = 0; const colMax = colortable.length; for (; col < colMax; col++) {
@@ -1309,21 +1309,23 @@ io.on('connection', function (socket) {
                         r = colortable[col].parameters[0];
                         g = colortable[col].parameters[1];
                         b = colortable[col].parameters[2];
-                        r = r / (r + g + b);
-                        g = g / (r + g + b);
-                        b = b / (r + g + b);
-                        if (b <= g) {
-                            h = Math.acos((0.5 * ((r - g) + (r + b))) / Math.pow(Math.sqrt(r - g) + (r - b) * (g - b), 0.5));
-                        } else {
-                            h = 2 * Math.PI - Math.acos((0.5 * ((r - g) + (r - b))) / Math.pow(Math.sqrt(r - g) + (r - b) * (g - b), 0.5));
+
+                        r = cppaddon.mapRange(r, 0, 100, 0, 1);
+                        g = cppaddon.mapRange(g, 0, 100, 0, 1);
+                        b = cppaddon.mapRange(b, 0, 100, 0, 1);
+                        i = (r + g + b) / 3.0;
+
+                        rn = r / (r + g + b);
+                        gn = g / (r + g + b);
+                        bn = b / (r + g + b);
+
+                        h = Math.acos((0.5 * ((rn - gn) + (rn - bn))) / (Math.sqrt((rn - gn) * (rn - gn) + (rn - bn) * (gn - bn))));
+                        if(b > g)
+                        {
+                            h = 2 * Math.PI - h;	
                         }
 
-                        s = 1 - 3 * Math.min(r, g, b);
-                        i = (r + g + b) / (3 * 255);
-
-                        h = h*180/Math.PI;
-                        s = s*100;
-                        i = i*255;
+                        s = 1 - 3 * Math.min(rn, Math.min(gn, bn));
 
                         color.parameters.push({ name: "Hue", value: h });
                         color.parameters.push({ name: "Saturation", value: s });
@@ -1331,7 +1333,7 @@ io.on('connection', function (socket) {
 
                         fixture.chips.push(color);
                     }
-                }
+                }*/
                 let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
                     fixture.parameters[c].value = fixture.parameters[c].home;
                     fixture.parameters[c].max = 65535;
