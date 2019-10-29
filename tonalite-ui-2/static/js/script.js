@@ -205,7 +205,7 @@ var app = new Vue({
             socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse, invertPan: app.currentFixture.invertPan, invertTilt: app.currentFixture.invertTilt, swapPanTilt: app.currentFixture.swapPanTilt });
         },
         editEffectSettings: function () {
-            socket.emit('editEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth });
+            socket.emit('editEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed });
         },
         editCueSettings: function () {
             socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow });
