@@ -567,7 +567,7 @@ function calculateCue(cue) {
             if (startFixture.effects[e].id == cue.fixtures[f].effects[e].id) {
                 startFixture.effects[e].fan = cue.fixtures[f].effects[e].fan;
                 if (cue.fixtures[f].effects[e].active != startFixture.effects[e].active) {
-                    startFixture.effects[e].step = startFixture.effects[e].fan;
+                    startFixture.effects[e].step = 0;
                 }
                 startFixture.effects[e].depth = cue.fixtures[f].effects[e].depth;
                 startFixture.effects[e].speed = cue.fixtures[f].effects[e].speed;
@@ -825,7 +825,7 @@ function calculateStack() {
                         }
                     }
                     if (fixtures[f].effects[e].step + fixtures[f].effects[e].speed >= fixtures[f].effects[e].steps.length - 1) {
-                        fixtures[f].effects[e].step = fixtures[f].effects[e].fan;
+                        fixtures[f].effects[e].step = 0;
                     } else {
                         fixtures[f].effects[e].step = fixtures[f].effects[e].step + fixtures[f].effects[e].speed;
                     }
@@ -1643,7 +1643,7 @@ io.on('connection', function (socket) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
                 if (fixture.effects.some(e => e.id === msg.effectid)) {
                     var effect = fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectid)];
-                    effect.step = effect.fan;
+                    effect.step = 0;
                     effect.active = !effect.active;
                     fixture.hasActiveEffects = checkFixtureActiveEffects(fixture.effects);
                     if (effect.active == false) {
@@ -1672,7 +1672,7 @@ io.on('connection', function (socket) {
                 effect.active = true;
                 effect.step = 0;
                 effect.depth = 1.0;
-                effect.speed = 1;
+                effect.speed = 1.0;
                 effect.chroma = 1;
                 effect.fan = 0;
                 effect.aspect = 1;
