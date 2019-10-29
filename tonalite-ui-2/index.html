@@ -54,9 +54,9 @@
                         <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">Edit</a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item">Settings</a>
+                            <!--<a class="dropdown-item">Settings</a>-->
                             <a v-if="desktop == false" class="dropdown-item" @click="updateFirmware">Update Firmware</a>
-                            <div class="dropdown-divider"></div>
+                            <div v-if="desktop == false" class="dropdown-divider"></div>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item" @click="launchFullScreen">Full
                                 Screen</a>
                             <a class="dropdown-item" href="/presets">Presets View</a>
