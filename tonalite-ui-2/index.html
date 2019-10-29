@@ -479,8 +479,8 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="mb-0" for="effectDepthInput">Depth ({{currentEffect.depth}})</label>
-                                <input type="range" step="0.01" min="0.0" max="1.0" class="custom-range"
+                                <label for="effectDepthInput">Depth:</label>
+                                <input type="number" step="0.1" placeholder="Effect Depth" min="0.0" max="1.0" class="form-control"
                                     id="effectDepthInput" @input="editEffectSettings"
                                     v-model="currentEffect.depth">
                             </div>
