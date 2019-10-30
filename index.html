@@ -89,9 +89,11 @@
                         </div>
                         <div class="col-6">
                             <div>
-                                <div><button :disabled="fixtures.length == 0" class="btn btn-danger btn-block"
-                                        @click="resetFixtures">Reset
-                                        Values</button></div>
+                                <div>
+                                    <div><button :disabled="fixtures.length == 0" class="btn btn-danger btn-block"
+                                            @click="resetFixtures">Reset
+                                            Values</button></div>
+                                </div>
                             </div>
 
                         </div>
@@ -841,6 +843,12 @@
                                 class="btn btn-warning btn-block" @click="changePresetActive">Activate</button>
                             <button v-if="currentPreset.active == true" id="presetActiveBtn"
                                 class="btn btn-warning btn-block" @click="changePresetActive">Deactivate</button>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div><button id="presetUpdateBtn" class="btn btn-success btn-block" @click="updatePreset"><i
+                                        class="far fa-pencil d-sm-none d-inline-block"></i><span
+                                        class="d-none d-sm-inline-block">Update Params.</span></button></div>
+
                         </div>
                     </div>
                     <div class="row" id="presetSettings">

@@ -216,6 +216,9 @@ var app = new Vue({
         editPresetSettings: function () {
             socket.emit('editPresetSettings', { id: app.currentPreset.id, name: app.currentPreset.name, displayAsDimmer: app.currentPreset.displayAsDimmer, intensity: app.currentPreset.intensity, mode: app.currentPreset.mode });
         },
+        updatePreset: function () {
+            socket.emit('updatePreset', app.currentPreset.id);
+        },
         editGroupSettings: function () {
             socket.emit('editGroupSettings', { id: app.currentGroup.id, name: app.currentGroup.name });
         },

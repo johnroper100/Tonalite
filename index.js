@@ -652,8 +652,6 @@ function calculateCue(cue) {
                                     outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) & 0xff);
                                 }
                             }
-                        } else {
-                            console.log(cue.fixtures[f].parameters[c].name);
                         }
                         fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(cue.fixtures[f].parameters[c].value + (((startFixture.parameters[c].value - cue.fixtures[f].parameters[c].value) / (cue.upTime * 40)) * cue.upStep), cue.fixtures[f].parameters[c].min, cue.fixtures[f].parameters[c].max, 0, 100);
                     }
@@ -692,8 +690,6 @@ function calculateCue(cue) {
                                     outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) & 0xff);
                                 }
                             }
-                        } else {
-                            console.log(cue.fixtures[f].parameters[c].name);
                         }
                         fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(cue.fixtures[f].parameters[c].value + (((startFixture.parameters[c].value - cue.fixtures[f].parameters[c].value) / (cue.downTime * 40)) * cue.downStep), cue.fixtures[f].parameters[c].min, cue.fixtures[f].parameters[c].max, 0, 100);
                     }
@@ -2259,8 +2255,7 @@ io.on('connection', function (socket) {
     socket.on('updatePreset', function (presetID) {
         if (presets.length != 0) {
             var preset = presets[presets.map(el => el.id).indexOf(presetID)];
-            preset.fixtures = JSON.parse(JSON.stringify(fixtures));
-            socket.emit('presetSettings', cleanPreset(preset));
+            preset.parameters = JSON.parse(JSON.stringify(calculateChannelsList()));
             io.emit('presets', cleanPresets());
             socket.emit('message', { type: "info", content: "Preset parameters have been updated!" });
             savePresets();
