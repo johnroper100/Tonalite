@@ -1,704 +1,604 @@
 var socket = io('http://' + document.domain + ':' + location.port);
-var currentTab = "fixtures";
-document.getElementById("fixturesTab").click();
-var backupFixtures = [];
 var app = new Vue({
     el: '#app',
     data: {
-        fixtures: [],
-        fixtureParameters: [],
-        groups: [],
-        presets: [],
-        cues: [],
-        showFiles: [],
-        fixtureProfiles: [],
-        fixtureEffects: [],
-        effectFixture: "",
-        usbPath: "",
+        currentView: 'fixtures',
+        fixtureParametersTab: 'all',
         desktop: false,
-        version: "2.0.0 Beta 6",
-        qrcode: "",
-        appURL: "",
-        currentCue: "",
+        fixtures: [],
+        groups: [],
+        cues: [],
+        presets: [],
+        cuePlaying: false,
+        activeCue: "",
         blackout: false,
+        grandmaster: 100,
+        fixtureProfiles: [],
+        effectProfiles: [],
         startDMXAddress: 1,
         newFixtureCreationCount: 1,
-        grandmaster: 0.0
+        newFixtureUniverse: 0,
+        fixtureProfilesSearch: "",
+        currentCue: {},
+        currentPreset: {},
+        currentFixture: {},
+        version: "",
+        currentEffect: {},
+        addGroupSelected: [],
+        currentGroup: {},
+        currentGroupFixtures: {},
+        usbData: [],
+        usbPath: "",
+        settings: {},
+        qrcode: "",
+        url: ""
+    },
+    components: {
+        Multiselect: window.VueMultiselect.default
+    },
+    computed: {
+        filteredFixtureProfilesList() {
+            return this.fixtureProfiles.filter(profile => {
+                return (profile[2] + " " + profile[0] + " " + profile[1]).toLowerCase().includes(this.fixtureProfilesSearch.toLowerCase());
+            });
+        }
     },
     methods: {
-        changePresetActive: function (presetID) {
-            socket.emit('changePresetActive', presetID);
+        mapRange: function (num, inMin, inMax, outMin, outMax) {
+            return (num - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
         },
-        viewPresetSettings: function (presetID) {
-            socket.emit('getPresetSettings', presetID);
-        },
-        viewFixtureParameters: function (fixtureID) {
-            socket.emit('getFixtureParameters', fixtureID);
-        },
-        viewGroupParameters: function (groupID) {
-            socket.emit('getGroupParameters', groupID);
-        },
-        viewCueSettings: function (cueID) {
-            socket.emit('getCueSettings', cueID);
-        },
-        lockedFixtureParameters: function (locked) {
-            if (locked === true)
-                return "<i class=\"ml-1 far fa-lock-alt fa-sm\"></i>";
-            return "";
-        },
-        activeFixtureEffects: function (active) {
-            if (active === true)
-                return "<i class=\"ml-1 far fa-hurricane fa-sm\"></i>";
-            return "";
-        },
-        openShowFromUSB: function (showFile) {
-            socket.emit('openShowFromUSB', [showFile, app.usbPath]);
-            $('#showFilesModal').modal("hide");
+        launchFullScreen: function () {
+            var element = document.documentElement;
+            if (element.requestFullScreen) {
+                element.requestFullScreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullScreen) {
+                element.webkitRequestFullScreen();
+            } else if (element.msRequestFullScreen) {
+                element.msRequestFullScreen();
+            } else {
+                element.webkitEnterFullScreen();
+            }
         },
         ifMobile: function () {
             return isMobile.any;
         },
-        addFixture: function (fixture, dcid) {
-            socket.emit('addFixture', { fixtureName: fixture, dcid: dcid, startDMXAddress: $('#newFixtureStartDMXAddress').val(), creationCount: $('#newFixtureCreationCount').val() });
-            $('#fixtureProfilesModal').modal("hide");
+        resetShow: function () {
+            bootbox.confirm("Are you sure you want a new show? This will reset everything.", function (result) {
+                if (result === true) {
+                    socket.emit("resetShow");
+                }
+            });
         },
-        addEffect: function (effectFile) {
-            socket.emit('addEffect', { effectFile: effectFile, fixtureID: app.effectFixture, parameterName: $('#fixtureEffectParametersList').val() });
-            $('#fixtureAddEffectsModal').modal("hide");
+        resetShowAndPatch: function () {
+            bootbox.confirm("Are you sure you want a new show? This will reset everything (including the patch).", function (result) {
+                if (result === true) {
+                    socket.emit("resetShowAndPatch");
+                }
+            });
         },
-        upperCase: function (str) {
-            return str.toUpperCase().replace(/-/g, " ");
+        resetPresets: function () {
+            bootbox.confirm("Are you sure you want to reset the presets?", function (result) {
+                if (result === true) {
+                    socket.emit("resetPresets");
+                    app.currentView = "presets";
+                }
+            });
         },
-        titleCase: function (str) {
-            return str.toLowerCase().split(' ').map(function (word) {
-                return (word.charAt(0).toUpperCase() + word.slice(1));
-            }).join(' ');
+        resetFixtures: function () {
+            bootbox.confirm("Are you sure you want to reset all fixture parameter values?", function (result) {
+                if (result === true) {
+                    socket.emit("resetFixtures");
+                }
+            });
         },
-        changeGrandmasterValue: function () {
-            socket.emit('changeGrandmasterValue', app.grandmaster);
+        resetGroups: function () {
+            bootbox.confirm("Are you sure you want to reset all group parameter values?", function (result) {
+                if (result === true) {
+                    socket.emit("resetGroups");
+                }
+            });
         },
-        updatePresetIntensity: function () {
-            socket.emit('changePresetIntensity', { presetID: $("#presetIntensityInput").prop('presetID'), intensity: $("#presetIntensityInput").val() });
+        recordCue: function () {
+            if (app.cuePlaying == false) {
+                socket.emit("recordCue");
+            }
         },
-        toggleBlackout: function () {
-            socket.emit('toggleBlackout');
+        nextCue: function () {
+            socket.emit("nextCue");
+        },
+        lastCue: function () {
+            socket.emit("lastCue");
+        },
+        stopCue: function () {
+            socket.emit("stopCue");
         },
         recordPreset: function () {
-            socket.emit('recordPreset');
+            socket.emit("recordPreset");
         },
-        closeSettings: function () {
-            socket.emit('closeSettings');
-            $('#openSettingsModal').modal("hide");
+        toggleBlackout: function () {
+            socket.emit("toggleBlackout");
+        },
+        updateFirmware: function () {
+            socket.emit("updateFirmware");
+        },
+        importFixturesFromUSB: function () {
+            socket.emit("importFixturesFromUSB");
+        },
+        changeGrandMasterValue: function () {
+            socket.emit("changeGrandmasterValue", app.grandmaster);
+        },
+        getFixtureProfiles: function () {
+            socket.emit("getFixtureProfiles");
+            app.newFixtureCreationCount = 1;
+            app.newFixtureUniverse = 0;
+            app.startDMXAddress = 1;
+            app.fixtureProfilesSearch = "";
+            $('#fixtureProfilesModal').modal("show");
+        },
+        addFixture: function (fixture, dcid) {
+            socket.emit("addFixture", { fixtureName: fixture, dcid: dcid, startDMXAddress: app.startDMXAddress, creationCount: app.newFixtureCreationCount, universe: app.newFixtureUniverse });
+            $('#fixtureProfilesModal').modal("hide");
+        },
+        getFixtureParameters: function (fixtureID, resetTab) {
+            socket.emit("getFixtureParameters", fixtureID);
+            if (resetTab == true) {
+                app.fixtureParametersTab = 'all';
+            }
+        },
+        getGroupParameters: function (groupID, resetTab) {
+            socket.emit("getGroupParameters", groupID);
+            if (resetTab == true) {
+                app.fixtureParametersTab = 'all';
+            }
+        },
+        getGroupFixtures: function (groupID) {
+            socket.emit("getGroupFixtures", groupID);
+        },
+        getCueSettings: function (cueID) {
+            socket.emit("getCueSettings", cueID);
+        },
+        getPresetSettings: function (presetID) {
+            socket.emit("getPresetSettings", presetID);
+        },
+        changeFixtureParameterValue: function (parameter) {
+            socket.emit("changeFixtureParameterValue", { id: app.currentFixture.id, pid: parameter.id, value: parameter.value })
+            parameter.displayValue = parseInt(app.mapRange(parameter.value, parameter.min, parameter.max, 0, 100));
+        },
+        changeGroupParameterValue: function (parameter) {
+            socket.emit("changeGroupParameterValue", { id: app.currentGroup.id, pid: parameter.id, value: parameter.value })
+            parameter.displayValue = parseInt(app.mapRange(parameter.value, parameter.min, parameter.max, 0, 100));
+        },
+        changeFixtureParameterLock: function (param) {
+            socket.emit("changeFixtureParameterLock", { id: app.currentFixture.id, pid: param.id })
+        },
+        useFixtureParameterRange: function (param, rid) {
+            socket.emit('useFixtureParameterRange', { id: app.currentFixture.id, pid: param.id, rid: rid });
+        },
+        useGroupParameterRange: function (param, rid) {
+            if (param.locked == false) {
+                socket.emit('useGroupParameterRange', { id: app.currentGroup.id, pid: param.id, rid: rid });
+            }
+        },
+        changeGroupParameterLock: function (param) {
+            socket.emit("changeGroupParameterLock", { id: app.currentGroup.id, pid: param.id })
+        },
+        useFixtureChip: function (pid) {
+            socket.emit('useFixtureChip', { id: app.currentFixture.id, pid: pid });
+        },
+        changeFixtureEffectState: function (eid) {
+            socket.emit('changeFixtureEffectState', { id: app.currentFixture.id, effectid: eid })
+        },
+        resetFixture: function () {
+            bootbox.confirm("Are you sure you want to reset this fixture's parameter values?", function (result) {
+                if (result === true) {
+                    socket.emit('resetFixture', app.currentFixture.id);
+                }
+            });
+        },
+        resetGroup: function () {
+            bootbox.confirm("Are you sure you want to reset this group's parameter values?", function (result) {
+                if (result === true) {
+                    socket.emit('resetGroup', app.currentGroup.id);
+                }
+            });
+        },
+        editFixtureSettings: function () {
+            socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse, invertPan: app.currentFixture.invertPan, invertTilt: app.currentFixture.invertTilt, swapPanTilt: app.currentFixture.swapPanTilt });
+        },
+        editEffectSettings: function () {
+            socket.emit('editEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed });
+        },
+        editCueSettings: function () {
+            socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow });
+        },
+        editPresetSettings: function () {
+            socket.emit('editPresetSettings', { id: app.currentPreset.id, name: app.currentPreset.name, displayAsDimmer: app.currentPreset.displayAsDimmer, intensity: app.currentPreset.intensity, mode: app.currentPreset.mode });
+        },
+        editGroupSettings: function () {
+            socket.emit('editGroupSettings', { id: app.currentGroup.id, name: app.currentGroup.name });
+        },
+        removeFixture: function () {
+            bootbox.confirm("Are you sure you want to delete this fixture?", function (result) {
+                if (result === true) {
+                    app.currentView = 'fixtures';
+                    socket.emit('removeFixture', app.currentFixture.id);
+                }
+            });
+        },
+        removeCue: function () {
+            bootbox.confirm("Are you sure you want to delete this cue?", function (result) {
+                if (result === true) {
+                    app.currentView = 'cues';
+                    socket.emit('removeCue', app.currentCue.id);
+                }
+            });
+        },
+        gotoCue: function () {
+            socket.emit('gotoCue', app.currentCue.id);
+        },
+        moveCueUp: function () {
+            socket.emit('moveCueUp', app.currentCue.id);
+        },
+        moveCueDown: function () {
+            socket.emit('moveCueDown', app.currentCue.id);
+        },
+        cloneCueNext: function () {
+            socket.emit('cloneCueNext', app.currentCue.id);
+        },
+        cloneCueEnd: function () {
+            socket.emit('cloneCueEnd', app.currentCue.id);
+        },
+        updateCue: function () {
+            socket.emit('updateCue', app.currentCue.id);
+        },
+        getEffects: function () {
+            socket.emit('getEffects', app.currentFixture.id);
+            $('#fixtureAddEffectsModal').modal("show");
+        },
+        addEffect: function (file, type) {
+            var paramName = "";
+            if (type == 'Parameter') {
+                paramName = $("#fixtureEffectParametersList").val()
+            }
+            socket.emit('addEffect', { fixtureID: app.currentFixture.id, effectFile: file, parameterName: paramName });
+            $('#fixtureAddEffectsModal').modal("hide");
+        },
+        getEffectSettings: function (effectID) {
+            socket.emit('getEffectSettings', { fixtureID: app.currentFixture.id, effectID: effectID });
+            app.currentView = 'effectSettings';
+        },
+        removeEffect: function () {
+            bootbox.confirm("Are you sure you want to delete this effect?", function (result) {
+                if (result === true) {
+                    app.currentView = 'fixtureParameters';
+                    socket.emit('removeEffect', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id });
+                }
+            });
+        },
+        setParameterValue(param, value, type) {
+            if (param.locked == false) {
+                param.value = value;
+            }
+            if (type == 'fixture') {
+                app.changeFixtureParameterValue(param);
+            } else if (type == 'group') {
+                if (param.locked == false) {
+                    app.changeGroupParameterValue(param);
+                }
+            }
+        },
+        changePresetActive() {
+            socket.emit('changePresetActive', app.currentPreset.id);
+        },
+        removePreset: function () {
+            bootbox.confirm("Are you sure you want to delete this preset?", function (result) {
+                if (result === true) {
+                    app.currentView = 'presets';
+                    socket.emit('removePreset', app.currentPreset.id);
+                }
+            });
+        },
+        getParameterTabType: function (param) {
+            if (app.fixtureParametersTab == 'position') {
+                if (param.type == 2) {
+                    return true;
+                }
+            } else if (app.fixtureParametersTab == 'color') {
+                if (param.type == 5) {
+                    return true;
+                }
+            } else if (app.fixtureParametersTab == 'beam') {
+                if (param.type == 4) {
+                    return true;
+                }
+            } else if (app.fixtureParametersTab == 'all') {
+                return true;
+            }
+            return false;
+        },
+        addGroupModal: function () {
+            app.addGroupSelected = [];
+            $('#addGroupModal').modal("show");
+        },
+        addGroup: function () {
+            var list = [];
+            let f = 0; const fMax = app.addGroupSelected.length; for (; f < fMax; f++) {
+                list.push(app.addGroupSelected[f].id);
+            }
+            socket.emit('addGroup', list);
+            app.addGroupSelected = [];
+            $('#addGroupModal').modal("hide");
+        },
+        getGroupSettings: function () {
+            app.getGroupFixtures(app.currentGroup.id);
+            app.currentView = 'groupSettings';
+        },
+        removeGroup: function () {
+            bootbox.confirm("Are you sure you want to delete this group?", function (result) {
+                if (result === true) {
+                    app.currentView = 'groups';
+                    socket.emit('removeGroup', app.currentGroup.id);
+                }
+            });
+        },
+        removeGroupFixture: function (fixtureID) {
+            bootbox.confirm("Are you sure you want remove this fixture from the group?", function (result) {
+                if (result === true) {
+                    socket.emit('removeGroupFixture', { group: app.currentGroup.id, fixture: fixtureID });
+                }
+            });
+        },
+        getShowsFromUSB: function () {
+            socket.emit('getShowsFromUSB');
+        },
+        openShowFromUSB: function (file) {
+            socket.emit('openShowFromUSB', { file: file, path: app.usbPath });
+            $('#showFilesModal').modal("hide");
+        },
+        saveShowToUSB: function () {
+            bootbox.prompt("Show Name: ", function (result) {
+                if (result.trim() != "") {
+                    socket.emit('saveShowToUSB', result);
+                } else {
+                    bootbox.alert("You must enter a show name!");
+                }
+            });
+        },
+        calculateParamName: function (param, flipPanTilt) {
+            if (param.type == 2 && param.name == "Pan" && flipPanTilt == true) {
+                return "Tilt";
+            } else if (param.type == 2 && param.name == "Tilt" && flipPanTilt == true) {
+                return "Pan";
+            } else {
+                return param.name;
+            }
+        },
+        saveSettings: function () {
+            socket.emit('saveSettings', { defaultUpTime: app.settings.defaultUpTime, defaultDownTime: app.settings.defaultDownTime, defaultPresetMode: app.settings.defaultPresetMode, udmx: app.settings.udmx, automark: app.settings.automark, displayEffectsRealtime: app.settings.displayEffectsRealtime, artnetIP: app.settings.artnetIP, artnetHost: app.settings.artnetHost, sacnIP: app.settings.sacnIP });
         }
     }
 });
 
-Mousetrap.bind('r', function () { recordCue(); });
-Mousetrap.bind('end', function () { stopCue(); });
-Mousetrap.bind('right', function () { nextCue(); });
-Mousetrap.bind('left', function () { lastCue(); });
-Mousetrap.bind('ctrl+n', function () { resetShow(); return false; });
-Mousetrap.bind('shift+a', function () { addFixtureModal(); return false; });
-Mousetrap.bind('ctrl+s', function () { window.location = "/showFile"; return false; });
+socket.on('connect', function () {
+    app.currentView = 'fixtures';
+    app.fixtureParametersTab = 'all';
+    app.fixtures = [];
+    app.addGroupSelected = [];
+    app.groups = [];
+    app.cues = [];
+    app.presets = [];
+    app.activeCue = "";
+    app.cuePlaying = false;
+    app.desktop = false;
+    app.blackout = false;
+    app.grandmaster = 100;
+    app.fixtureProfiles = [];
+    app.startDMXAddress = 1;
+    app.newFixtureCreationCount = 1;
+    app.newFixtureUniverse = 0;
+    app.fixtureProfilesSearch = "";
+    app.currentCue = {};
+    app.currentPreset = {};
+    app.currentFixture = {};
+    app.version = "";
+    app.effectProfiles = [];
+    app.currentEffect = {};
+    app.currentGroup = {};
+    app.currentGroupFixtures = {};
+    app.usbData = [];
+    app.usbPath = "";
+    app.settings = {};
+    app.qrcode = "";
+    app.desktop = false;
+    app.version = "";
+    app.url = "";
+    $('#openFixtureDefinitionModal').modal("hide");
+    $('#openShowModal').modal("hide");
+    $('#addGroupModal').modal("hide");
+    $('#fixtureAddEffectsModal').modal("hide");
+    $('#fixtureProfilesModal').modal("hide");
+    $('#showFilesModal').modal("hide");
+    $('#serverDisconnectedModal').modal("hide");
+});
 
-function launchFullScreen(element) {
-    if (element.requestFullScreen) {
-        element.requestFullScreen();
-    } else if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullScreen) {
-        element.webkitRequestFullScreen();
-    } else if (element.msRequestFullScreen) {
-        element.msRequestFullScreen();
-    } else {
-        element.webkitEnterFullScreen();
-    }
-}
+socket.on('connect_error', function () {
+    $('#openFixtureDefinitionModal').modal("hide");
+    $('#openShowModal').modal("hide");
+    $('#addGroupModal').modal("hide");
+    $('#fixtureAddEffectsModal').modal("hide");
+    $('#fixtureProfilesModal').modal("hide");
+    $('#showFilesModal').modal("hide");
+    $('#serverDisconnectedModal').modal("show");
+});
 
-socket.on('message', function (msg) {
-    $("#alertText").text(msg.content);
-    $("#alert").addClass("show");
-    $("#alert").fadeTo(1000, 500).slideUp(500, function () {
-        $("#alert").removeClass('show');
-        $("#alert").removeClass('alert-info');
-        $("#alert").removeClass('alert-danger');
-    });
-    if (msg.type == "info") {
-        $("#alert").addClass("alert-info");
-    } else {
-        $("#alert").addClass("alert-danger");
+socket.on('shows', function (msg) {
+    app.usbData = msg.shows;
+    app.usbPath = msg.drive;
+    $('#showFilesModal').modal("show");
+});
+
+socket.on('fixtures', function (msg) {
+    app.fixtures = msg.fixtures;
+    if (msg.target == true) {
+        if ((app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings' || app.currentView == 'effectSettings') && app.currentFixture != {}) {
+            app.getFixtureParameters(app.currentFixture.id, false);
+        }
     }
+});
+
+socket.on('groups', function (msg) {
+    app.groups = msg.groups;
+    if (msg.target == true) {
+        if ((app.currentView == 'groupParameters' || app.currentView == 'groupSettings') && app.currentGroup != {}) {
+            app.getGroupParameters(app.currentGroup.id, false);
+            if (app.currentView == 'groupSettings') {
+                app.getGroupFixtures(app.currentGroup.id);
+            }
+        }
+    }
+});
+
+socket.on('cues', function (msg) {
+    app.cues = msg;
+    if (app.currentView == 'cueSettings' && app.currentCue != {}) {
+        app.getCueSettings(app.currentCue.id);
+    }
+});
+
+socket.on('presets', function (msg) {
+    app.presets = msg;
+    if (app.currentView == 'presetSettings' && app.currentPreset != {}) {
+        app.getPresetSettings(app.currentPreset.id);
+    }
+});
+
+socket.on('cueActionBtn', function (msg) {
+    app.cuePlaying = msg;
+});
+
+socket.on('activeCue', function (msg) {
+    app.activeCue = msg;
 });
 
 socket.on('blackout', function (msg) {
     app.blackout = msg;
 });
 
-socket.on('grandmaster', function (value) {
-    app.grandmaster = value;
+socket.on('grandmaster', function (msg) {
+    app.grandmaster = msg;
 });
 
-socket.on('currentCue', function (value) {
-    app.currentCue = value;
+socket.on('meta', function (msg) {
+    app.desktop = msg.desktop;
+    app.version = msg.version;
+    app.qrcode = msg.qrcode;
+    app.settings = msg.settings;
+    app.url = msg.url;
 });
 
-socket.on('fixtures', function (fixtures) {
-    backupFixtures = fixtures;
-    if (currentTab === "fixtures") {
-        app.fixtures = fixtures;
-    }
-});
-
-socket.on('fixtureProfiles', function (profiles) {
-    app.newFixtureCreationCount = 1;
-    app.startDMXAddress = profiles[1];
-    app.fixtureProfiles = profiles[0];
-    $('#searchFixtureProfiles').val("");
-    searchFixtureProfiles();
-    $('#fixtureProfilesModal').modal("show");
-});
-
-socket.on('fixtureEffects', function (effects) {
-    app.fixtureEffects = effects[1];
-    app.effectFixture = effects[0];
-    $('#fixtureAddEffectsModal').modal("show");
-});
-
-socket.on('shows', function (shows) {
-    app.showFiles = shows[0];
-    app.usbPath = shows[1];
-    $('#showFilesModal').modal("show");
+socket.on('fixtureProfiles', function (msg) {
+    app.fixtureProfiles = msg[0];
+    app.startDMXAddress = msg[1];
 });
 
 socket.on('fixtureParameters', function (msg) {
-    app.fixtureParameters = msg.parameters;
-    openTab('fixtureParametersPage');
-    $("#fixtureParameters").empty();
-    $("#fixtureParametersName").text(msg.name + " (" + msg.startDMXAddress + ")");
-    $("#fixtureSettingsBtn").off().on("click", function () { viewFixtureSettings(msg.id); });
-    $("#fixtureAddEffectBtn").off().on("click", function () { getEffects(msg.id); });
-    $("#fixtureResetBtn").off().on("click", function () { resetFixture(msg.id); });
-    var c = 0; const cMax = msg.parameters.length; for (; c < cMax; c++) {
-        chanString = "";
-        if (msg.parameters[c].locked) {
-            chanString += "<button class=\"btn btn-info\" onclick=\"updateFixtureParameterLock(this, '" + msg.id + "', " + c + ")\"><i class=\"far fa-lock-alt fa-sm\"></i></button>";
-        } else {
-            chanString += "<button class=\"btn btn-info\" onclick=\"updateFixtureParameterLock(this, '" + msg.id + "', " + c + ")\"><i class=\"far fa-lock-open-alt fa-sm \"></i></button>";
-        }
-        chanString += "<label class=\"ml-2\" ";
-        chanString += "for=\"" + msg.parameters[c].type + "\">" + msg.parameters[c].name + ":</label><input type=\"range\" class=\"custom-range\" id=\"" + msg.parameters[c].type + "\" max=\"" + msg.parameters[c].max + "\" min=\"" + msg.parameters[c].min + "\" value=\"" + msg.parameters[c].value + "\" oninput=\"updateFixtureParameterValue(this, '" + msg.id + "', " + c + ")\">";
-        if ('ranges' in msg.parameters[c] && msg.parameters[c].ranges.length > 0) {
-            chanString += "<div class=\"channelRanges row flex-nowrap\">";
-            var r = 0; const rMax = msg.parameters[c].ranges.length; for (; r < rMax; r++) {
-                chanString += "<div class=\"channelRange col-2 col-md-1 mr-1 bg-danger\" onclick=\"useParameterRange(this, '" + msg.id + "', " + c + ", " + r + ")\">" + msg.parameters[c].ranges[r].label + "</div>";
-            }
-            chanString += "</div>";
-        }
-        $("#fixtureParameters").append(chanString);
-    }
-
-    if (msg.chips.length != 0) {
-        var div = "<div class=\"fixtureChips\"><h5>Fixture Chips:</h5>";
-
-        var ch = 0; const chMax = msg.chips.length; for (; ch < chMax; ch++) {
-            div += "<div class=\"fixtureChip d-inline-block mr-2\" style=\"background-color: " + msg.chips[ch].color + "\" onclick=\"useFixtureChip(this, '" + msg.id + "', " + ch + ")\"></div>";
-        }
-        div += "</div>";
-        $("#fixtureParameters").append(div);
-    }
-
-    if (msg.effects.length != 0) {
-        var div = "<div class=\"fixtureEffects\"><h5>Fixture Effects:</h5><ul class=\"list-group\">";
-        var e = msg.effects.length - 1; const eMax = 0; for (; e >= eMax; e--) {
-            var icon = "";
-            if (msg.effects[e].type == "Color") {
-                icon = "fa-palette";
-            } else if (msg.effects[e].type == "Shape") {
-                icon = "fa-running";
-            } else if (msg.effects[e].type == "Intensity") {
-                icon = "fa-lightbulb";
-            } else if (msg.effects[e].type == "Parameter") {
-                icon = "fa-cog";
-            }
-            if (msg.effects[e].active == true) {
-                div += "<li class=\"list-group-item fixtureEffect\"><i class=\"mr-1 far " + icon + "\"></i>" + msg.effects[e].name + "<button class=\"float-right btn btn-sm btn-primary d-inline-block\" onclick=\"viewEffectSettings(this, '" + msg.id + "', '" + msg.effects[e].id + "')\">Settings</button><button class=\"float-right btn btn-sm btn-success d-inline-block mr-1\" onclick=\"changeFixtureEffectState(this, '" + msg.id + "', '" + msg.effects[e].id + "')\">Deactivate</button></li>";
-            } else {
-                div += "<li class=\"list-group-item fixtureEffect\"><i class=\"mr-1 far " + icon + "\"></i>" + msg.effects[e].name + "<button class=\"float-right btn btn-sm btn-primary d-inline-block\" onclick=\"viewEffectSettings(this, '" + msg.id + "', '" + msg.effects[e].id + "')\">Settings</button><button class=\"float-right btn btn-sm btn-warning d-inline-block mr-1\" onclick=\"changeFixtureEffectState(this, '" + msg.id + "', '" + msg.effects[e].id + "')\">Activate</button></li>";
-            }
-        }
-        div += "</ul></div>";
-        $("#fixtureParameters").append(div);
-    }
-});
-
-socket.on('fixtureSettings', function (fixture) {
-    openTab('fixtureSettingsPage');
-    $("#fixtureParametersBackBtn").off().on("click", function () { app.viewFixtureParameters(fixture.id); });
-    $("#fixtureDeleteBtn").off().on("click", function () { removeFixture(fixture.id); });
-    $("#fixtureSaveBtn").off().on("click", function () { saveFixtureSettings(fixture.id); });
-    $("#fixtureNameInput").val(fixture.name);
-    $("#fixtureShortNameInput").val(fixture.shortName);
-    $("#fixtureDMXAddressInput").val(fixture.startDMXAddress);
-});
-
-socket.on('effectSettings', function (msg) {
-    openTab('effectSettingsPage');
-    $("#fixtureParametersEffectBackBtn").off().on("click", function () { app.viewFixtureParameters(msg.fixtureID); });
-    $("#effectDeleteBtn").off().on("click", function () { removeEffect(msg.fixtureID, msg.effect.id); });
-    $("#effectSaveBtn").off().on("click", function () { saveEffectSettings(msg.fixtureID, msg.effect.id); });
-    $("#effectNameInput").val(msg.effect.name);
-    $("#effectDepthInput").val(msg.effect.depth);
-    $("#effectFanInput").val(msg.effect.fan);
-});
-
-socket.on('cues', function (cues) {
-    app.cues = cues;
-});
-
-socket.on('presets', function (presets) {
-    app.presets = presets;
-});
-
-socket.on('presetSettings', function (preset) {
-    openTab('presetSettingsPage');
-    $("#presetDeleteBtn").off().on("click", function () { removePreset(preset.id); });
-    $("#presetSaveBtn").off().on("click", function () { savePresetSettings(preset.id); });
-    $("#presetActiveBtn").off().on("click", function () { app.changePresetActive(preset.id); });
-    $("#presetNameInput").val(preset.name);
-    $("#presetIntensityInput").val(preset.intensity);
-    if (preset.active) {
-        $("#presetActiveBtn").html("Deactivate");
-    } else {
-        $("#presetActiveBtn").html("Activate");
-    }
-    $("#displayPresetAsDimmer").prop('checked', preset.displayAsDimmer);
-    $("#presetIntensityInput").prop('presetID', preset.id);
-});
-
-socket.on('cueSettings', function (cue) {
-    openTab('cueSettingsPage');
-    $("#cueDeleteBtn").off().on("click", function () { removeCue(cue.id); });
-    $("#cueSaveBtn").off().on("click", function () { saveCueSettings(cue.id); });
-    $("#gotoCueBtn").off().on("click", function () { gotoCue(cue.id); });
-    $("#cueUpdateBtn").off().on("click", function () { updateCue(cue.id); });
-    $("#cueCloneEndBtn").off().on("click", function () { cloneCueEnd(cue.id); });
-    $("#cueCloneNextBtn").off().on("click", function () { cloneCueNext(cue.id); });
-    $("#moveCueUpBtn").off().on("click", function () { moveCueUp(cue.id); });
-    $("#moveCueDownBtn").off().on("click", function () { moveCueDown(cue.id); });
-    $("#cueNameInput").val(cue.name);
-    $("#cueUpTimeInput").val(cue.upTime);
-    $("#cueDownTimeInput").val(cue.downTime);
-    $("#cueFollowInput").val(cue.follow);
-});
-
-socket.on('cueActionBtn', function (btnMode) {
-    $("#cueActionBtn").empty();
-    if (btnMode == false) {
-        $("#cueActionBtn").off().on("click", function () { recordCue(); });
-        $("#cueActionBtn").append("Record");
-    } else {
-        $("#cueActionBtn").off().on("click", function () { stopCue(); });
-        $("#cueActionBtn").append("Stop");
-    }
-});
-
-socket.on('groups', function (groups) {
-    app.groups = groups;
-});
-
-socket.on('groupSettings', function (msg) {
-    openTab('groupSettingsPage');
-    $("#groupParametersBackBtn").off().on("click", function () { app.viewGroupParameters(msg.group.id); });
-    $("#groupDeleteBtn").off().on("click", function () { removeGroup(msg.group.id); });
-    $("#groupSaveBtn").off().on("click", function () { saveGroupSettings(msg.group.id); });
-    $("#groupNameInput").val(msg.group.name);
-    $("#groupFixtures").empty();
-    let f = 0; const fMax = msg.groupFixtures.length; for (; f < fMax; f++) {
-        $("#groupFixtures").append(msg.groupFixtures[f][0] + " (" + msg.groupFixtures[f][1] + ")");
-        if (msg.groupFixtures.length > 1) {
-            $("#groupFixtures").append(" <button class=\"btn btn-danger btn-sm mb-1\" onclick=\"removeGroupFixture('" + msg.group.id + "','" + msg.groupFixtures[f][2] + "')\"><i class=\"far fa-sm fa-trash-alt\"></i></button><br>");
-        }
+    app.currentFixture = msg;
+    if (app.currentView != "fixtureSettings" && app.currentView != "effectSettings") {
+        app.currentView = "fixtureParameters";
     }
 });
 
 socket.on('groupParameters', function (msg) {
-    openTab('groupParametersPage');
-    $("#groupParameters").empty();
-    $("#groupParametersName").text(msg.name);
-    $("#groupSettingsBtn").off().on("click", function () { viewGroupSettings(msg.id); });
-    $("#groupResetBtn").off().on("click", function () { resetGroup(msg.id); });
-    let c = 0; const cMax = msg.parameters.length; for (; c < cMax; c++) {
-        $("#groupParameters").append("<label class=\"ml-2\" for=\"" + msg.parameters[c].type + "\">" + msg.parameters[c].name + ":</label><input type=\"range\" class=\"custom-range\" id=\"groupChan" + c + "\" max=\"" + msg.parameters[c].max + "\" min=\"" + msg.parameters[c].min + "\" value=\"" + msg.parameters[c].value + "\" oninput=\"updateGroupParameterValue(this, '" + msg.id + "', " + c + ")\">");
+    app.currentGroup = msg;
+    if (app.currentView != "groupSettings") {
+        app.currentView = "groupParameters";
     }
 });
 
-socket.on('settings', function (settings) {
-    $("#defaultUpTime").val(settings.defaultUpTime);
-    $("#defaultDownTime").val(settings.defaultDownTime);
-    $("#useUDMX").prop('checked', settings.udmx);
-    $("#useAutomark").prop('checked', settings.automark);
-    $("#sacnIP").val(settings.sacnIP);
-    $("#artnetIP").val(settings.artnetIP);
-    $('#openSettingsModal').modal("show");
+socket.on('groupFixtures', function (msg) {
+    app.currentGroupFixtures = msg;
 });
 
-socket.on('meta', function (metadata) {
-    app.desktop = metadata.desktop;
-    app.version = metadata.version;
-    app.qrcode = metadata.qrcode;
-    app.appURL = metadata.url;
+socket.on('cueSettings', function (msg) {
+    app.currentCue = msg;
+    app.currentView = "cueSettings";
 });
 
-socket.on('connect', function () {
-    $('#serverDisconnectedModal').modal("hide");
+socket.on('presetSettings', function (msg) {
+    app.currentPreset = msg;
+    app.currentView = "presetSettings";
 });
 
-socket.on('connect_error', function () {
-    $('#serverDisconnectedModal').modal("show");
+socket.on('resetView', function (msg) {
+    if (msg.type == 'fixtures') {
+        if (app.currentFixture.id == msg.eid) {
+            app.currentView = 'fixtures';
+            app.currentFixture = {};
+        }
+    } else if (msg.type == 'effect') {
+        if (app.currentEffect.id == msg.eid) {
+            app.currentView = 'fixtureParameters';
+            app.fixtureParametersTab = 'all';
+            app.currentEffect = {};
+        }
+    } else if (msg.type == 'cues') {
+        if (app.currentCue.id == msg.eid) {
+            app.currentView = 'cues';
+            app.currentCue = {};
+        }
+    } else if (msg.type == 'presets') {
+        if (app.currentPreset.id == msg.eid) {
+            app.currentView = 'presets';
+            app.currentPreset = {};
+        }
+    } else if (msg.type == 'show') {
+        app.currentView = 'fixtures';
+        app.currentCue = {};
+        app.currentFixture = {};
+        app.currentEffect = {};
+        app.currentPreset = {};
+        app.addGroupSelected = [];
+    } else if (msg.type == 'groups') {
+        if (app.currentGroup.id == msg.eid) {
+            app.currentView = 'groups';
+            app.currentGroup = {};
+            app.currentGroupFixtures = {};
+        }
+    }
 });
 
-function resetFixtures() {
-    bootbox.confirm("Are you sure you want to reset all fixture parameter values?", function (result) {
-        if (result === true) {
-            socket.emit('resetFixtures');
-        }
-    });
-};
+socket.on('fixtureEffects', function (msg) {
+    if (msg.fixtureID == app.currentFixture.id) {
+        app.effectProfiles = msg.effects;
+    }
+});
 
-function resetFixture(fixtureID) {
-    bootbox.confirm("Are you sure you want to reset this fixture's parameter values?", function (result) {
-        if (result === true) {
-            socket.emit('resetFixture', fixtureID);
-        }
-    });
-};
+socket.on('effectSettings', function (msg) {
+    if (msg.fixtureID == app.currentFixture.id) {
+        app.currentEffect = msg.effect;
+        app.currentView = "effectSettings";
+    }
+});
 
-function addFixtureModal() {
-    socket.emit('getFixtureProfiles');
-}
-
-function getShowModal() {
-    socket.emit('getShowsFromUSB');
-}
-
-function openFixtureDefinitionModal() {
-    $('#openFixtureDefinitionModal').modal("show");
-}
-
-function viewFixtureSettings(fixtureID) {
-    socket.emit('getFixtureSettings', fixtureID);
-}
-
-function viewEffectSettings(self, fixtureID, effectID) {
-    socket.emit('getEffectSettings', { fixtureID: fixtureID, effectID: effectID });
-}
-
-function getEffects(fixtureID) {
-    socket.emit('getEffects', fixtureID);
-}
-
-function updateFixtureParameterValue(self, fixtureID, parameterID) {
-    socket.emit('changeFixtureParameterValue', { id: fixtureID, pid: parameterID, value: self.value });
-}
-
-function updateFixtureParameterLock(self, fixtureID, parameterID) {
-    socket.emit('changeFixtureParameterLock', { id: fixtureID, pid: parameterID });
-}
-
-function useFixtureChip(self, fixtureID, chipID) {
-    socket.emit('useFixtureChip', { id: fixtureID, pid: chipID });
-}
-
-function useParameterRange(self, fixtureID, parameterID, rangeID) {
-    socket.emit('useParameterRange', { id: fixtureID, pid: parameterID, rid: rangeID });
-}
-
-function changeFixtureEffectState(self, fixtureID, effectID) {
-    socket.emit('changeFixtureEffectState', { id: fixtureID, effectid: effectID });
-}
-
-function removeFixture(fixtureID) {
-    bootbox.confirm("Are you sure you want to delete this fixture?", function (result) {
-        if (result === true) {
-            socket.emit('removeFixture', fixtureID);
-            openTab('fixtures');
-        }
-    });
-}
-
-function removeEffect(fixtureID, effectID) {
-    bootbox.confirm("Are you sure you want to delete this effect?", function (result) {
-        if (result === true) {
-            socket.emit('removeEffect', { fixtureID: fixtureID, effectID: effectID });
-            app.viewFixtureParameters(fixtureID);
-        }
-    });
-}
-
-function saveFixtureSettings(fixtureID) {
-    socket.emit('editFixtureSettings', { id: fixtureID, name: $("#fixtureNameInput").val(), shortName: $("#fixtureShortNameInput").val(), startDMXAddress: $("#fixtureDMXAddressInput").val() });
-}
-
-function saveEffectSettings(fixtureID, effectID) {
-    socket.emit('editEffectSettings', { fixtureID: fixtureID, effectID: effectID, name: $("#effectNameInput").val(), depth: $("#effectDepthInput").val(), fan: $("#effectFanInput").val() });
-}
-
-function removeCue(cueID) {
-    bootbox.confirm("Are you sure you want to delete this cue?", function (result) {
-        if (result === true) {
-            socket.emit('removeCue', cueID);
-            openTab('cues');
-        }
-    });
-}
-
-function saveCueSettings(cueID) {
-    socket.emit('editCueSettings', { id: cueID, name: $("#cueNameInput").val(), upTime: $("#cueUpTimeInput").val(), downTime: $("#cueDownTimeInput").val(), follow: $("#cueFollowInput").val() });
-}
-
-function recordCue() {
-    socket.emit('recordCue');
-}
-
-function nextCue() {
-    socket.emit('nextCue');
-}
-
-function lastCue() {
-    socket.emit('lastCue');
-}
-
-function stopCue() {
-    socket.emit('stopCue');
-}
-
-function gotoCue(cueID) {
-    socket.emit('gotoCue', cueID);
-}
-
-function updateCue(cueID) {
-    socket.emit('updateCue', cueID);
-}
-
-function cloneCueEnd(cueID) {
-    socket.emit('cloneCueEnd', cueID);
-}
-
-function cloneCueNext(cueID) {
-    socket.emit('cloneCueNext', cueID);
-}
-
-function moveCueUp(cueID) {
-    socket.emit('moveCueUp', cueID);
-}
-
-function moveCueDown(cueID) {
-    socket.emit('moveCueDown', cueID);
-}
-
-function removePreset(presetID) {
-    bootbox.confirm("Are you sure you want to delete this preset?", function (result) {
-        if (result === true) {
-            socket.emit('removePreset', presetID);
-            openTab('presets');
-        }
-    });
-}
-
-function viewPresetSettings(presetID) {
-    socket.emit('getPresetSettings', presetID);
-}
-
-function savePresetSettings(presetID) {
-    socket.emit('editPresetSettings', { id: presetID, name: $("#presetNameInput").val(), displayAsDimmer: $("#displayPresetAsDimmer").prop('checked') });
-}
-
-function resetGroup(groupID) {
-    bootbox.confirm("Are you sure you want to reset this group's parameter values?", function (result) {
-        if (result === true) {
-            socket.emit('resetGroup', groupID);
-        }
-    });
-};
-
-function resetGroups() {
-    bootbox.confirm("Are you sure you want to reset all group parameter values?", function (result) {
-        if (result === true) {
-            socket.emit('resetGroups');
-        }
-    });
-};
-
-function addGroupModal() {
-    $('#groupFixtureIDs').multiselect('deselectAll');
-    $('#addGroupModal').modal("show");
-}
-
-function updateGroupParameterValue(self, groupID, parameterID) {
-    socket.emit('changeGroupParameterValue', { id: groupID, pid: parameterID, value: self.value });
-}
-
-function removeGroup(groupID) {
-    bootbox.confirm("Are you sure you want to delete this group?", function (result) {
-        if (result === true) {
-            socket.emit('removeGroup', groupID);
-            openTab('groups');
-        }
-    });
-}
-
-function saveGroupSettings(groupID) {
-    socket.emit('editGroupSettings', { id: groupID, name: $("#groupNameInput").val(), fixtureIDs: $("#groupFixtureIDsInput").val() });
-}
-
-function addGroup() {
-    socket.emit('addGroup', $("#groupFixtureIDs").val());
-    document.getElementById("groupFixtureIDs").selectedIndex = "-1";
-    $('#addGroupModal').modal("hide");
-}
-
-function viewGroupSettings(groupID) {
-    socket.emit('getGroupSettings', groupID);
-}
-
-function openShowFileModal() {
-    $('#openShowModal').modal("show");
-}
-
-function openAboutModal() {
-    $('#openAboutModal').modal("show");
-}
-
-function openSettingsModal() {
-    socket.emit('getSettings');
-    $('#openSettingsModal').modal("show");
-}
-
-function removeGroupFixture(groupID, fixtureID) {
-    bootbox.confirm("Are you sure you want to remove this fixture from this group?", function (result) {
-        if (result === true) {
-            socket.emit('removeGroupFixture', { group: groupID, fixture: fixtureID });
-        }
-    });
-}
-
-function resetShow() {
-    bootbox.confirm("Are you sure you want a new show? This will reset everything.", function (result) {
-        if (result === true) {
-            socket.emit('resetShow');
-            openTab('fixtures');
-        }
-    });
-}
-
-function resetPresets() {
-    bootbox.confirm("Are you sure you want to reset the presets?", function (result) {
-        if (result === true) {
-            socket.emit('resetPresets');
-            openTab('presets');
-        }
-    });
-}
-
-function updateFixtureProfiles() {
-    bootbox.confirm("Are you sure you want to update your show's fixture profiles? You should save the current show first. This will probably cause a blackout", function (result) {
-        if (result === true) {
-            socket.emit('updateFixtureProfiles');
-            openTab('fixtures');
-        }
-    });
-}
-
-function saveSettingsBackground() {
-    socket.emit('saveSettings', { defaultUpTime: $("#defaultUpTime").val(), defaultDownTime: $("#defaultDownTime").val(), udmx: $("#useUDMX").prop('checked'), automark: $("#useAutomark").prop('checked'), sacnIP: $("#sacnIP").val(), artnetIP: $("#artnetIP").val() });
-}
-
-function updateFirmware() {
-    socket.emit('updateFirmware');
-}
-
-function saveShowToUSB() {
-    bootbox.prompt("Show Name: ", function (result) {
-        if (result.trim() != "") {
-            socket.emit('saveShowToUSB', result);
-        } else {
-            bootbox.alert("You must enter a show name!");
-        }
-    });
-}
-
-function shutdown() {
-    socket.emit('shutdown');
-}
-
-function reboot() {
-    socket.emit('reboot');
-}
-
-function closeAlert() {
-    $("#alert").removeClass("show");
-    if ($("#alert").hasClass("alert-info")) {
-        $("#alert").removeClass("alert-info")
+socket.on('message', function (msg) {
+    $("#alertText").text(msg.content);
+    $("#alert").addClass("show");
+    if (msg.type == "info") {
+        $("#alert").addClass("alert-info");
     } else {
-        $("#alert").removeClass("alert-danger")
+        $("#alert").addClass("alert-danger");
     }
-}
+    $("#alert").fadeTo(1000, 500).slideUp(500, function () {
+        $("#alert").removeClass('show');
+        $("#alert").removeClass('alert-info');
+        $("#alert").removeClass('alert-danger');
+    });
 
-function openTab(tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    if (document.getElementsByClassName("tabitem-" + tabName)[0]) {
-        // Get all elements with class="tablinks" and remove the class "active"
-        tablinks = document.getElementsByClassName("tabitem");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].classList.remove("active");
-        }
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    currentTab = tabName;
-    if (currentTab == "fixtures") {
-        app.fixtures = backupFixtures;
-    }
-
-    if (document.getElementsByClassName("tabitem-" + tabName)[0]) {
-        document.getElementsByClassName("tabitem-" + tabName)[0].classList.add("active");
-    }
-
-    closeAlert();
-    if (tabName == 'groups') {
-        $('#groupFixtureIDs').multiselect('rebuild');
-    }
-}
-
-function searchFixtureProfiles() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById('searchFixtureProfiles');
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("fixtureProfilesList");
-    li = ul.getElementsByTagName('li');
-
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < li.length; i++) {
-        a = li[i];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
-}
+});
 
 $('.custom-file-input').change(function () {
-    var fileName = $(this).val().split('\\').pop();
+    let fileName = $(this).val().split('\\').pop();
     $(this).next('.custom-file-label').html(fileName);
 });

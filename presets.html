@@ -14,13 +14,12 @@
     <link rel="stylesheet" href="static/css/style.css">
 
     <link rel="apple-touch-icon" href="static/img/icon.png">
-    <link rel="manifest" href="/static/manifest.json">
 </head>
 
 <body>
     <div id="app">
         <a href="/" class="mt-1 ml-1 btn btn-small btn-light"><i class="far fa-pencil-alt"></i></a>
-        <button class="mt-1 btn btn-small btn-light" onclick="resetFixtures()"><i class="far fa-sync"></i></button>
+        <button class="mt-1 btn btn-small btn-light" @click="resetFixtures"><i class="far fa-sync"></i></button>
         <a href="/docs" class="mt-1 mr-1 btn btn-small btn-light float-right"><i class="far fa-book"></i></a>
         <div class="container mt-4">
             <div class="row" id="presetsButtonList">
@@ -38,20 +37,19 @@
             <div class="row" id="presetsDimmerList">
                 <div class="col-12 mb-3" v-for="preset in presets" :key="preset.id"
                     v-if="preset.displayAsDimmer == true">
-                    <label v-bind:for="'P'+preset.id">{{preset.name}}:</label>
-                    <input type="range" class="custom-range preset-range" v-bind:id="'P'+preset.id" min="0" max="100"
-                        v-on:input="updatePresetIntensity(preset.id)" v-bind:value="preset.intensity">
+                    <label>{{preset.name}}:</label>
+                    <input type="range" class="custom-range preset-range" min="0" max="100"
+                        @input="updatePresetIntensity(preset)" v-model="preset.intensity">
                 </div>
             </div>
         </div>
-
         <div id="serverDisconnectedModal" data-backdrop="static" data-keyboard="false" class="modal" tabindex="-1"
             role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body text-center dark">
                         <h5 class="red">Tonalite Server Disconnected!</h5>
-                        <p>If you have not stopped it manually, there may have been an error or you may be on the
+                        <p class="mb-0">If you have not stopped it manually there may have been an error or you may be on the
                             wrong IP. Try rebooting the <span v-if="desktop"></span>server</span><span
                                 v-if="!desktop">console</span>.</p>
                     </div>
@@ -59,7 +57,7 @@
             </div>
         </div>
     </div>
-    <script src="static/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="static/js/jquery-3.4.1.min.js"></script>
     <script src="static/js/popper.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
     <script src="static/js/socket.io.js"></script>
