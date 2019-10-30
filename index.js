@@ -475,6 +475,9 @@ function cleanCues() {
         delete newCues[c].downStep;
         delete newCues[c].following;
         delete newCues[c].fixtures;
+        delete newCues[c].includeIntensityColor;
+        delete newCues[c].includePosition;
+        delete newCues[c].includeBeam;
     }
     return newCues;
 };
@@ -1753,7 +1756,10 @@ io.on('connection', function (socket) {
                 downStep: SETTINGS.defaultDownTime * 40,
                 active: false,
                 following: false,
-                fixtures: cleanFixturesForCue()
+                fixtures: cleanFixturesForCue(),
+                includeIntensityColor: true,
+                includePosition: true,
+                includeBeam: true
             };
             cues.push(newCue);
             io.emit('activeCue', currentCueID);
