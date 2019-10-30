@@ -634,10 +634,10 @@ function calculateCue(cue) {
                             }
                         } else if ((cue.fixtures[f].parameters[c].type == 2 && cue.includePosition == true) || (cue.fixtures[f].parameters[c].type == 4 && cue.includeBeam == true) || (cue.fixtures[f].parameters[c].type == 5 && cue.includeIntensityColor == true)) {
                             invert = false;
-                            if (cue.fixtures[f].parameters[p].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
-                                if (cue.fixtures[f].parameters[p].name == "Pan" && startFixture.invertPan == true) {
+                            if (cue.fixtures[f].parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
+                                if (cue.fixtures[f].parameters[c].name == "Pan" && startFixture.invertPan == true) {
                                     invert = true;
-                                } else if (cue.fixtures[f].parameters[p].name == "Tilt" && startFixture.invertTilt == true) {
+                                } else if (cue.fixtures[f].parameters[c].name == "Tilt" && startFixture.invertTilt == true) {
                                     invert = true;
                                 }
                             }
@@ -660,7 +660,7 @@ function calculateCue(cue) {
                 } else {
                     // Make sure that the step does not dip below 0 (finished)
                     if (cue.downStep >= 0) {
-                        if (cue.fixtures[f].parameters[c].fadeWithIntensity == true || cue.fixtures[f].parameters[c].type == 1) {
+                        if ((cue.fixtures[f].parameters[c].fadeWithIntensity == true || cue.fixtures[f].parameters[c].type == 1) && cue.includeIntensityColor == true) {
                             if (blackout === false) {
                                 outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) >> 8) / 100.0) * grandmaster;
                                 if (cue.fixtures[f].parameters[c].fine != null) {
@@ -672,12 +672,12 @@ function calculateCue(cue) {
                                     outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min & 0xff);
                                 }
                             }
-                        } else {
+                        } else if ((cue.fixtures[f].parameters[c].type == 2 && cue.includePosition == true) || (cue.fixtures[f].parameters[c].type == 4 && cue.includeBeam == true) || (cue.fixtures[f].parameters[c].type == 5 && cue.includeIntensityColor == true)) {
                             invert = false;
-                            if (cue.fixtures[f].parameters[p].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
-                                if (cue.fixtures[f].parameters[p].name == "Pan" && startFixture.invertPan == true) {
+                            if (cue.fixtures[f].parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
+                                if (cue.fixtures[f].parameters[c].name == "Pan" && startFixture.invertPan == true) {
                                     invert = true;
-                                } else if (cue.fixtures[f].parameters[p].name == "Tilt" && startFixture.invertTilt == true) {
+                                } else if (cue.fixtures[f].parameters[c].name == "Tilt" && startFixture.invertTilt == true) {
                                     invert = true;
                                 }
                             }
@@ -692,7 +692,8 @@ function calculateCue(cue) {
                                     outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) & 0xff);
                                 }
                             }
-
+                        } else {
+                            console.log(cue.fixtures[f].parameters[c].name);
                         }
                         fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(cue.fixtures[f].parameters[c].value + (((startFixture.parameters[c].value - cue.fixtures[f].parameters[c].value) / (cue.downTime * 40)) * cue.downStep), cue.fixtures[f].parameters[c].min, cue.fixtures[f].parameters[c].max, 0, 100);
                     }
@@ -700,10 +701,10 @@ function calculateCue(cue) {
             } else {
                 startParameter = startFixture.parameters[c].value;
                 invert = false;
-                if (cue.fixtures[f].parameters[p].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
-                    if (cue.fixtures[f].parameters[p].name == "Pan" && startFixture.invertPan == true) {
+                if (cue.fixtures[f].parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
+                    if (cue.fixtures[f].parameters[c].name == "Pan" && startFixture.invertPan == true) {
                         invert = true;
-                    } else if (cue.fixtures[f].parameters[p].name == "Tilt" && startFixture.invertTilt == true) {
+                    } else if (cue.fixtures[f].parameters[c].name == "Tilt" && startFixture.invertTilt == true) {
                         invert = true;
                     }
                 }
@@ -1847,6 +1848,9 @@ io.on('connection', function (socket) {
                     changed = false;
                 }
                 cue.name = msg.name;
+                cue.includeIntensityColor = msg.includeIntensityColor;
+                cue.includePosition = msg.includePosition;
+                cue.includeBeam = msg.includeBeam;
                 cue.upTime = parseInt(msg.upTime);
                 cue.downTime = parseInt(msg.downTime);
                 if (cue.upTime == 0) {

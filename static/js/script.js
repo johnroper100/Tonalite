@@ -211,7 +211,7 @@ var app = new Vue({
             socket.emit('editEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed });
         },
         editCueSettings: function () {
-            socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow });
+            socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow, includeIntensityColor: app.currentCue.includeIntensityColor, includePosition: app.currentCue.includePosition, includeBeam: app.currentCue.includeBeam });
         },
         editPresetSettings: function () {
             socket.emit('editPresetSettings', { id: app.currentPreset.id, name: app.currentPreset.name, displayAsDimmer: app.currentPreset.displayAsDimmer, intensity: app.currentPreset.intensity, mode: app.currentPreset.mode });
