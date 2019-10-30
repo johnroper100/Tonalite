@@ -28,7 +28,9 @@ var app = new Vue({
         currentGroup: {},
         currentGroupFixtures: {},
         usbData: [],
-        usbPath: ""
+        usbPath: "",
+        settings: {},
+        qrcode: ""
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -363,7 +365,7 @@ var app = new Vue({
                 }
             });
         },
-        calculateParamName: function(param, flipPanTilt) {
+        calculateParamName: function (param, flipPanTilt) {
             if (param.type == 2 && param.name == "Pan" && flipPanTilt == true) {
                 return "Tilt";
             } else if (param.type == 2 && param.name == "Tilt" && flipPanTilt == true) {
@@ -371,6 +373,9 @@ var app = new Vue({
             } else {
                 return param.name;
             }
+        },
+        saveSettings: function () {
+            socket.emit('saveSettings', { defaultUpTime: app.settings.defaultUpTime, defaultDownTime: app.settings.defaultDownTime, defaultPresetMode: app.settings.defaultPresetMode, udmx: app.settings.udmx, automark: app.settings.automark, displayEffectsRealtime: app.settings.displayEffectsRealtime, artnetIP: app.settings.artnetIP, artnetHost: app.settings.artnetHost, sacnIP: app.settings.sacnIP });
         }
     }
 });
@@ -403,6 +408,10 @@ socket.on('connect', function () {
     app.currentGroupFixtures = {};
     app.usbData = [];
     app.usbPath = "";
+    app.settings = {};
+    app.qrcode = "";
+    app.desktop = false;
+    app.version = "";
     $('#openFixtureDefinitionModal').modal("hide");
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
@@ -482,6 +491,8 @@ socket.on('grandmaster', function (msg) {
 socket.on('meta', function (msg) {
     app.desktop = msg.desktop;
     app.version = msg.version;
+    app.qrcode = msg.qrcode;
+    app.settings = msg.settings;
 });
 
 socket.on('fixtureProfiles', function (msg) {

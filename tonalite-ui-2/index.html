@@ -54,7 +54,7 @@
                         <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">Edit</a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <!--<a class="dropdown-item">Settings</a>-->
+                            <a class="dropdown-item" data-toggle="modal" data-target="#openSettingsModal">Settings</a>
                             <a v-if="desktop == false" class="dropdown-item" @click="updateFirmware">Update Firmware</a>
                             <div v-if="desktop == false" class="dropdown-divider"></div>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item" @click="launchFullScreen">Full
@@ -950,6 +950,102 @@
                             </div>
                             <input type="submit" class="btn btn-success" value="Import Fixture Definition">
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="openSettingsModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="dark" for="defaultUpTime">Default Up Time:</label>
+                                    <input @input="saveSettings()" v-model="settings.defaultUpTime" min="0"
+                                        class="form-control" type="number" id="defaultUpTime"
+                                        placeholder="Default Cue Up Time">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="dark" for="defaultDownTime">Default Down Time:</label>
+                                    <input @input="saveSettings()" v-model="settings.defaultDownTime" min="0"
+                                        class="form-control" type="number" id="defaultDownTime"
+                                        placeholder="Default Cue Up Time">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="dark" for="defaultDownTime">Default Preset Mode:</label>
+                                    <select @change="saveSettings()" v-model="settings.defaultPresetMode"
+                                        class="form-control" id="defaultPresetMode" placeholder="Default Preset Mode">
+                                        <option value="ltp">Latest Takes Precedence</option>
+                                        <option value="htp">Highest Takes Precedence</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="saveSettings()" v-model="settings.udmx" type="checkbox"
+                                            class="custom-control-input" id="useUDMX">
+                                        <label class="custom-control-label dark" for="useUDMX">Use uDMX</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="saveSettings()" v-model="settings.automark" type="checkbox"
+                                            class="custom-control-input" id="useAutomark">
+                                        <label class="custom-control-label dark" for="useAutomark">Use Automark</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="saveSettings()" v-model="settings.displayEffectsRealtime"
+                                            type="checkbox" class="custom-control-input" id="displayEffectsRealtime">
+                                        <label class="custom-control-label dark" for="displayEffectsRealtime">Display
+                                            Effects Realtime</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="dark" for="artnetIP">ArtNet IP:</label>
+                                    <input @input="saveSettings()" v-model="settings.artnetIP" class="form-control"
+                                        type="text" id="artnetIP" placeholder="ArtNet IP is localhost">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="dark" for="artnetHost">ArtNet Host:</label>
+                                    <input @input="saveSettings()" v-model="settings.artnetHost" class="form-control"
+                                        type="text" id="artnetHost" placeholder="ArtNet host is 255.255.255.255">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label class="dark" for="sacnIP">sACN IP:</label>
+                                    <input @input="saveSettings()" v-model="settings.sacnIP" class="form-control"
+                                        type="text" id="sacnIP" placeholder="sACN IP is localhost">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success" data-dismiss="modal" aria-label="Close">Close</button>
                     </div>
                 </div>
             </div>
