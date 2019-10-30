@@ -616,11 +616,11 @@ function calculateCue(cue) {
             if (startFixture.parameters[c].locked === false) {
                 startParameter = startFixture.parameters[c].value;
                 endParameter = cue.fixtures[f].parameters[c].value;
-                // If the end parameter is greater than the start parameter, the value is going in, out is going out if less
+                // If the end parameter is greater than the start parameter, the value is going in, and is going out if less
                 if (endParameter >= startParameter) {
                     // Make sure that the step does not dip below 0 (finished)
                     if (cue.upStep >= 0) {
-                        if (cue.fixtures[f].parameters[c].fadeWithIntensity == true || cue.fixtures[f].parameters[c].type == 1) {
+                        if ((cue.fixtures[f].parameters[c].fadeWithIntensity == true || cue.fixtures[f].parameters[c].type == 1) && cue.includeIntensityColor == true) {
                             if (blackout === false) {
                                 outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) >> 8) / 100.0) * grandmaster;
                                 if (cue.fixtures[f].parameters[c].fine != null) {
@@ -632,7 +632,7 @@ function calculateCue(cue) {
                                     outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min & 0xff);
                                 }
                             }
-                        } else {
+                        } else if ((cue.fixtures[f].parameters[c].type == 2 && cue.includePosition == true) || (cue.fixtures[f].parameters[c].type == 4 && cue.includeBeam == true) || (cue.fixtures[f].parameters[c].type == 5 && cue.includeIntensityColor == true)) {
                             invert = false;
                             if (cue.fixtures[f].parameters[p].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
                                 if (cue.fixtures[f].parameters[p].name == "Pan" && startFixture.invertPan == true) {
@@ -652,6 +652,8 @@ function calculateCue(cue) {
                                     outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) & 0xff);
                                 }
                             }
+                        } else {
+                            console.log(cue.fixtures[f].parameters[c].name);
                         }
                         fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(cue.fixtures[f].parameters[c].value + (((startFixture.parameters[c].value - cue.fixtures[f].parameters[c].value) / (cue.upTime * 40)) * cue.upStep), cue.fixtures[f].parameters[c].min, cue.fixtures[f].parameters[c].max, 0, 100);
                     }
