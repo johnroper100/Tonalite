@@ -241,6 +241,11 @@ var app = new Vue({
         gotoCue: function () {
             socket.emit('gotoCue', app.currentCue.id);
         },
+        gotoSpecificCue: function (index) {
+            if (app.cues.length - 1 >= index) {
+                socket.emit('gotoCue', app.cues[index].id);
+            }
+        },
         moveCueUp: function () {
             socket.emit('moveCueUp', app.currentCue.id);
         },
@@ -383,6 +388,15 @@ var app = new Vue({
         }
     }
 });
+
+Mousetrap.bind('r', function () { app.recordCue(); });
+Mousetrap.bind('end', function () { app.stopCue(); });
+Mousetrap.bind('home', function () { app.gotoSpecificCue(0); });
+Mousetrap.bind('pageup', function () { app.nextCue(); });
+Mousetrap.bind('pagedown', function () { app.lastCue(); });
+Mousetrap.bind('ctrl+n', function () { app.resetShow(); return false; });
+Mousetrap.bind('shift+a', function () { app.getFixtureProfiles(); app.currentView = 'fixtures'; return false; });
+Mousetrap.bind('ctrl+s', function () { window.location = "/showFile"; return false; });
 
 socket.on('connect', function () {
     app.currentView = 'fixtures';
