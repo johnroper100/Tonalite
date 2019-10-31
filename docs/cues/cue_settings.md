@@ -6,35 +6,31 @@ You can access the settings for a cue by clicking on it in the list on the `Cues
 
 ## Buttons
 
-### Save
+### Go
 
-Save the changes you have made to this cue. Make sure you always press this button after making any edits.
+Transition to this cue specific cue in the time stated in the cue's `Length` setting.
 
 ### Delete
 
 Remove this cue from the show. You will be prompted to make sure that you really want to do this.
 
-### Clone End
+### Clone To End
 
 Make a duplicate of this cue and place it at the end of the cue list. The new cloned cue will have the same settings and fixture values as the cue that is being cloned.
 
-### Go
+### Clone To Next
 
-Transition to this cue specific cue in the time stated in the cue's `Length` setting.
+Make a duplicate of this cue and place it after this cue in the cue list. The new cloned cue will have the same settings and fixture values as the cue that is being cloned.
 
 ### Update Parameters
 
 Update this cue to use the current values of the show's fixture's parameters.
 
-### Clone Next
-
-Make a duplicate of this cue and place it after this cue in the cue list. The new cloned cue will have the same settings and fixture values as the cue that is being cloned.
-
-### Up
+### Move Up In Stack
 
 Move this cue forward in the cue list.
 
-### Down
+### Move Down In Stack
 
 Move this cue backward in the cue list.
 
@@ -55,3 +51,15 @@ The time it takes for fixture values to change between cues if they are decreasi
 ### Follow
 
 If this is set to a value greater than `-1`, once the cue has been run, the cue following it will be run after the time specified here (in seconds).
+
+### Include Intensitity/Color
+
+TODO
+
+### Include Position
+
+TODO
+
+### Include Beam
+
+TODO

@@ -11,10 +11,6 @@ You can access a fixture's setting page by clicking the `Settings` button on the
 
 Go back to the fixture's parameters.
 
-### Save
-
-Save the changes you have made to the fixture. Make sure you do this every time you make a change or your edits won't apply!
-
 ### Delete
 
 Remove the fixture from the show. You will be prompted to make sure you really want to do this.
@@ -32,3 +28,19 @@ A shorter version of the fixture's name for display in the interface.
 ### Starting DMX Address
 
 The base DMX address that the parameters for the fixture are based on. See description in `Adding a Fixture`.
+
+### DMX Universe
+
+The DMX universe that the fixture lives in. Tonalite allows for 2 universes of DMX to be output. See description in `Adding a Fixture`.
+
+### Invert Pan
+
+TODO
+
+### Invert Tilt
+
+TODO
+
+### Swap Pan/Tilt
+
+TODO
