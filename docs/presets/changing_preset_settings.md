@@ -7,10 +7,6 @@ You can access a preset's setting page by clicking on a preset item on the `Pres
 
 ## Buttons
 
-### Save
-
-Save the changes you have made to the preset. Make sure you do this every time you make a change or your edits won't apply!
-
 ### Delete
 
 Remove the preset from the show. You will be prompted to make sure you really want to do this.
@@ -18,6 +14,11 @@ Remove the preset from the show. You will be prompted to make sure you really wa
 ### Activate
 
 Active the current preset. When activated, this button witll switch to `Deactivate` which does the opposite.
+
+
+### Update Params
+
+TODO
 
 ## Inputs
 
@@ -28,6 +29,10 @@ The full name of the preset. This can be any length needed to be descriptive tho
 ### Display As Dimmer
 
 Display the preset as a dimmable value rather than as an on/off button in the interface.
+
+### Mode
+
+TODO
 
 ### Intensity
 

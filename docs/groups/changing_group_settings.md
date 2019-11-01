@@ -11,10 +11,6 @@ You can access a group's setting page by clicking the `Settings` button on the g
 
 Go back to the group's parameters.
 
-### Save
-
-Save the changes you have made to the group. Make sure you do this every time you make a change or your edits won't apply!
-
 ### Delete
 
 Remove the group from the show. You will be prompted to make sure you really want to do this.
@@ -23,4 +19,4 @@ Remove the group from the show. You will be prompted to make sure you really wan
 
 ### Name
 
-The full name of the group. This can be any length needed to be descriptive though you should keep it short enought so as to fit into the interface easily.
+The full name of the group. This can be any length needed to be descriptive though you should keep it short enough so as to fit into the interface easily.

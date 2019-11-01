@@ -35,6 +35,10 @@ The default up time used for new cues.
 
 The default down time used for cues.
 
+## defaultPresetMode
+
+TODO
+
 ## desktop
 
 The platform Tonalite is running on.
@@ -57,17 +61,6 @@ Options:
 
 Reboot required after change.
 
-## udmx
-
-Whether or not to output to uDMX.
-
-Options:
-
-- `true` - Enables uDMX-Artnet
-- `false` - disables uDMX-Artnet
-
-Reboot required after change.
-
 ## automark
 
 Whether or not to use automark while transitioning cues.
@@ -76,6 +69,10 @@ Options:
 
 - `true` - Enables automark
 - `false` - disables automark
+
+## displayEffectsRealtime
+
+TODO
 
 ## artnetIP
 
