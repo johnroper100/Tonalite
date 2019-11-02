@@ -5,7 +5,6 @@ after_script:
   - sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
   - npm install -g gitbook-cli
   - cd docs && gitbook install && cd ../
-  - npm run build-docs
   - npm run build-docs-pdf
   - npm run build-linux
   - cp node_modules/sleep/build/Release/node_sleep.node node_sleep.node
