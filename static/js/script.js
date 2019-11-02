@@ -8,6 +8,7 @@ var app = new Vue({
         fixtures: [],
         groups: [],
         cues: [],
+        sequences: [],
         presets: [],
         cuePlaying: false,
         activeCue: "",
@@ -20,6 +21,7 @@ var app = new Vue({
         newFixtureUniverse: 0,
         fixtureProfilesSearch: "",
         currentCue: {},
+        currentSequence: {},
         currentPreset: {},
         currentFixture: {},
         version: "",
@@ -405,6 +407,7 @@ socket.on('connect', function () {
     app.addGroupSelected = [];
     app.groups = [];
     app.cues = [];
+    app.sequences = [];
     app.presets = [];
     app.activeCue = "";
     app.cuePlaying = false;
@@ -417,6 +420,7 @@ socket.on('connect', function () {
     app.newFixtureUniverse = 0;
     app.fixtureProfilesSearch = "";
     app.currentCue = {};
+    app.currentSequence = {};
     app.currentPreset = {};
     app.currentFixture = {};
     app.version = "";
@@ -481,6 +485,13 @@ socket.on('cues', function (msg) {
     app.cues = msg;
     if (app.currentView == 'cueSettings' && app.currentCue != {}) {
         app.getCueSettings(app.currentCue.id);
+    }
+});
+
+socket.on('sequences', function (msg) {
+    app.sequences = msg;
+    if (app.currentView == 'sequenceSettings' && app.currentSequence != {}) {
+        //app.getSequenceSettings(app.currentSequence.id);
     }
 });
 
