@@ -4,6 +4,7 @@ var app = new Vue({
     data: {
         currentView: 'fixtures',
         fixtureParametersTab: 'all',
+        cuesTab: 'cues',
         desktop: false,
         fixtures: [],
         groups: [],
@@ -403,6 +404,7 @@ Mousetrap.bind('ctrl+s', function () { window.location = "/showFile"; return fal
 socket.on('connect', function () {
     app.currentView = 'fixtures';
     app.fixtureParametersTab = 'all';
+    app.cuesTab = 'cues';
     app.fixtures = [];
     app.addGroupSelected = [];
     app.groups = [];
@@ -574,7 +576,14 @@ socket.on('resetView', function (msg) {
     } else if (msg.type == 'cues') {
         if (app.currentCue.id == msg.eid) {
             app.currentView = 'cues';
+            app.cuesTab = 'cues';
             app.currentCue = {};
+        }
+    } else if (msg.type == 'sequences') {
+        if (app.currentSequence.id == msg.eid) {
+            app.currentView = 'cues';
+            app.cuesTab = 'sequences';
+            app.currentSequence = {};
         }
     } else if (msg.type == 'presets') {
         if (app.currentPreset.id == msg.eid) {
