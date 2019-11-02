@@ -74,6 +74,10 @@ Options:
 
 TODO
 
+## interfaceMode
+
+TODO
+
 ## artnetIP
 
 The IP on which to output ArtNet data.
