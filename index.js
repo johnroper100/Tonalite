@@ -993,7 +993,7 @@ function openShow(file = "show.json") {
 
 // Save the fixtures, cues, and groups of the show to file
 function saveShow() {
-    fs.writeFile(process.cwd() + "/show.json", JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences }), (err) => {
+    fs.writeFile(process.cwd() + "/show.json", JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, tonaliteVersion: VERSION }), (err) => {
         if (err) {
             logError(err);
             return false;
