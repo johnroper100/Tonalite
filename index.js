@@ -484,6 +484,18 @@ function cleanCues() {
     return newCues;
 };
 
+function cleanSequences() {
+    var newSequences = JSON.parse(JSON.stringify(sequences));
+    let s = 0; const sMax = newSequences.length; for (; s < sMax; s++) {
+        delete newSequences[s].steps;
+        delete newSequences[s].includeIntensityColor;
+        delete newSequences[s].includePosition;
+        delete newSequences[s].includeBeam;
+        delete newSequences[s].ids;
+    }
+    return newSequences;
+};
+
 function cleanPresets() {
     var newPresets = JSON.parse(JSON.stringify(presets));
     let p = 0; const pMax = newPresets.length; for (; p < pMax; p++) {
@@ -974,6 +986,7 @@ function openShow(file = "show.json") {
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
+        io.emit('sequences', cleanSequences());
         io.emit('groups', { groups: cleanGroups(), target: true });
     });
 };
@@ -1111,6 +1124,7 @@ io.on('connection', function (socket) {
         resetFixtures();
         cues = [];
         groups = [];
+        sequences = [];
         currentCue = "";
         lastCue = "";
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
@@ -1118,6 +1132,7 @@ io.on('connection', function (socket) {
         io.emit('cues', cleanCues());
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('cueActionBtn', false);
+        io.emit('sequences', cleanSequences());
         io.emit('resetView', { type: 'show', eid: "" });
         io.emit('message', { type: "info", content: "A new show has been created!" });
         saveShow();
@@ -1127,11 +1142,13 @@ io.on('connection', function (socket) {
         fixtures = [];
         cues = [];
         groups = [];
+        sequences = [];
         currentCue = "";
         lastCue = "";
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
+        io.emit('sequences', cleanSequences());
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('cueActionBtn', false);
         io.emit('resetView', { type: 'show', eid: "" });
@@ -2047,6 +2064,26 @@ io.on('connection', function (socket) {
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No cues exist!" });
+        }
+    });
+
+    socket.on('addSequence', function (fixtureIDs) {
+        if (fixtures.length != 0) {
+            var newSequence = {
+                id: generateID(),
+                name: "Sequence " + (sequences.length + 1),
+                active: false,
+                steps: [],
+                ids: fixtureIDs,
+                includeIntensityColor: true,
+                includePosition: true,
+                includeBeam: true
+            };
+            sequences.push(newSequence);
+            io.emit('sequences', cleanSequences());
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
     });
 
