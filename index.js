@@ -102,6 +102,7 @@ fs.exists(process.cwd() + '/settings.json', function (exists) {
 
 var fixtures = [];
 var cues = [];
+var sequences = [];
 var groups = [];
 var presets = [];
 var currentCue = "";
@@ -966,9 +967,10 @@ function openShow(file = "show.json") {
     fs.readFile(process.cwd() + '/' + file, (err, data) => {
         if (err) logError(err);
         let show = JSON.parse(data);
-        fixtures = show[0];
-        cues = show[1];
-        groups = show[2];
+        fixtures = show.fixtures;
+        cues = show.cues;
+        groups = show.groups;
+        sequences = show.sequences;
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
@@ -978,7 +980,7 @@ function openShow(file = "show.json") {
 
 // Save the fixtures, cues, and groups of the show to file
 function saveShow() {
-    fs.writeFile(process.cwd() + "/show.json", JSON.stringify([fixtures, cues, groups]), (err) => {
+    fs.writeFile(process.cwd() + "/show.json", JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences }), (err) => {
         if (err) {
             logError(err);
             return false;
