@@ -79,7 +79,7 @@ var SETTINGS = {
     defaultUpTime: 3,
     defaultDownTime: 3,
     defaultPresetMode: 'ltp',
-    desktop: false, // desktop vs embeded
+    desktop: true, // desktop vs embeded
     udmx: false,
     automark: true,
     displayEffectsRealtime: true,
