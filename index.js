@@ -83,6 +83,7 @@ var SETTINGS = {
     udmx: false,
     automark: true,
     displayEffectsRealtime: true,
+    interfaceMode: 'normal',
     artnetIP: null, // ArtNet output IP
     artnetHost: '255.255.255.255', // Artnet network host
     sacnIP: null // sACN output IP
