@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "11"
+  - "13"
 after_script:
   - sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
   - npm install -g gitbook-cli
@@ -16,9 +16,7 @@ after_script:
   - rm .travis.yml
   - rm index.html
   - rm index.js
-  - rm index.min.html
   - rm presets.html
-  - rm presets.min.html
   - rm open-source-licenses.txt
   - rm logo.png
   - rm package-lock.json
