@@ -347,6 +347,15 @@ var app = new Vue({
             app.addGroupSelected = [];
             $('#addGroupModal').modal("hide");
         },
+        addSequence: function () {
+            var list = [];
+            let f = 0; const fMax = app.addSequenceSelected.length; for (; f < fMax; f++) {
+                list.push(app.addSequenceSelected[f].id);
+            }
+            socket.emit('addSequence', list);
+            app.addSequenceSelected = [];
+            $('#addSequenceModal').modal("hide");
+        },
         getGroupSettings: function () {
             app.getGroupFixtures(app.currentGroup.id);
             app.currentView = 'groupSettings';

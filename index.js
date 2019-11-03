@@ -640,7 +640,7 @@ function calculateChannelsList() {
 };
 
 // Set the cue's output channel values to the correct values from the fixtures. This is basically saving the cue.
-function calculateCue(cue, includeIntensityColor, includePosition, includeBeam) {
+function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, sequence) {
     var outputChannels = new Array(1024).fill(0);
     var startFixture = null;
     var startParameter = null;
@@ -771,6 +771,10 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam) 
             }
         }
     }
+    let s = 0; const sMax = cue.sequences.length; for (; s < sMax; s++) {
+        startSequence = sequences[sequences.map(el => el.id).indexOf(cue.sequences[s].id)];
+        startSequence.active = cue.sequences[s].active;
+    }
     return outputChannels;
 };
 
@@ -779,7 +783,7 @@ function calculateStack() {
     if (currentCue != "") {
         // Get the current cue
         cue = cues[cues.map(el => el.id).indexOf(currentCue)];
-        channels = calculateCue(cue, cue.includeIntensityColor, cue.includePosition, cue.includeBeam);
+        channels = calculateCue(cue, cue.includeIntensityColor, cue.includePosition, cue.includeBeam, false);
         cue.upStep -= 1;
         cue.downStep -= 1;
         // Check if the cue needs to be followed by another cue
@@ -845,6 +849,7 @@ function calculateStack() {
             }
             io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
+            io.emit('sequences', cleanSequences());
         }
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
     }
@@ -1130,6 +1135,7 @@ io.on('connection', function (socket) {
     socket.emit('currentCue', currentCueID);
     socket.emit('fixtures', { fixtures: cleanFixtures(), target: true });
     socket.emit('cues', cleanCues());
+    socket.emit('sequences', cleanSequences());
     socket.emit('groups', { groups: cleanGroups(), target: true });
     socket.emit('presets', cleanPresets());
     socket.emit('blackout', blackout);

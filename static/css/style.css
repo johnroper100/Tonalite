@@ -7,8 +7,7 @@ body {
   color: #f8f9fa;
 }
 
-.nav-item.dropdown,
-.dropdown-item:hover {
+.nav-item.dropdown, .dropdown-item:hover {
   cursor: pointer;
 }
 
@@ -16,10 +15,7 @@ body {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.fixtureItem,
-.cueItem,
-.groupItem,
-.presetItem {
+.fixtureItem, .cueItem, .groupItem, .sequenceItem, .presetItem {
   width: 100%;
   background-color: #228be6;
   color: #f8f9fa;
@@ -43,7 +39,7 @@ body {
   font-size: 1.5rem;
 }
 
-.fixtureItem:hover {
+.fixtureItem:hover, .sequenceItem:hover {
   background-color: #1971c2;
   cursor: pointer;
 }
@@ -75,9 +71,7 @@ body {
   background-color: #ae3ec9;
 }
 
-#fixturesList,
-#cuesList,
-#groupsList {
+#fixturesList, #cuesList, #groupsList {
   margin-bottom: 3rem;
 }
 
@@ -116,10 +110,7 @@ body {
   margin-top: 1rem;
 }
 
-.list-group-item,
-.dark,
-.bootbox-body,
-.modal-title {
+.list-group-item, .dark, .bootbox-body, .modal-title {
   color: #343a40;
 }
 
@@ -173,11 +164,11 @@ body {
   background-color: #fa5252;
 }
 
-.cueActive {
+.cueActive, .sequenceActive {
   background-color: #f59f00;
 }
 
-.cueActive:hover {
+.cueActive:hover, .sequenceActive:hover {
   cursor: pointer;
   background-color: #fa5252;
 }
@@ -267,9 +258,7 @@ body::-webkit-scrollbar {
   margin-top: 1.5rem;
 }
 
-.fixtureChips,
-.fixtureEffects,
-.channelRanges {
+.fixtureChips, .fixtureEffects, .channelRanges {
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
 }
@@ -299,12 +288,11 @@ body::-webkit-scrollbar {
   cursor: pointer;
 }
 
-.fixtureChip:hover,
-.fixtureEffect:hover {
+.fixtureChip:hover, .fixtureEffect:hover {
   cursor: pointer;
 }
 
-.bootbox > .modal-dialog > .modal-content > .modal-header {
+.bootbox>.modal-dialog>.modal-content>.modal-header {
   display: block;
 }
 
