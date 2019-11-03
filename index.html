@@ -613,6 +613,23 @@
                     </div>
                 </div>
             </div>
+            <div id="sequenceParametersPage" class="tabcontent" v-if="currentView == 'sequenceParameters'">
+                <div class="container">
+                    <div class="row topBtns">
+                        <div class="col-4">
+                            <h5 id="sequenceParametersName">{{currentSequence.name}}</h5>
+                        </div>
+                        <div class="col-8">
+                            <button id="sequenceSettingsBtn" class="btn btn-primary btn-block"
+                                @click="getSequenceSettings"><i class="far fa-cog d-sm-none d-inline-block"></i><span
+                                    class="d-none d-sm-inline-block">Settings</span></button>
+                        </div>
+                    </div>
+                    <div id="sequenceParameters">
+                        Nothing here yet.
+                    </div>
+                </div>
+            </div>
             <div id="groupSettingsPage" class="tabcontent" v-if="currentView == 'groupSettings'">
                 <div class="container">
                     <div class="row topBtns">
@@ -701,11 +718,13 @@
                     <div v-if="cuesTab == 'sequences'">
                         <div class="row topBtns sticky-top">
                             <div class="col-12">
-                                <button class="btn btn-success btn-block" @click="addSequenceModal">Add Sequence</button>
+                                <button class="btn btn-success btn-block" @click="addSequenceModal">Add
+                                    Sequence</button>
                             </div>
                         </div>
                         <div class="row" id="sequencesList">
-                            <div class="col-4 col-lg-2 mb-3" v-for="sequence in sequences" :key="sequence.id">
+                            <div class="col-4 col-lg-2 mb-3" @click="getSequenceParameters(sequence.id)"
+                                v-for="sequence in sequences" :key="sequence.id">
                                 <div class="sequenceItem" :class="{ 'sequenceActive' : sequence.active == true}">
                                     <p>{{sequence.name}}</p>
                                 </div>
@@ -721,16 +740,52 @@
                                         <div class="form-group">
                                             <label class="dark mr-2" for="sequenceFixtureIDs">Fixtures:</label>
                                             <multiselect placeholder="Select some fixtures" :options="fixtures"
-                                                v-model="addSequenceSelected" label="name" :multiple="true" :search="true"
-                                                style="width: 100%" track-by="id" :close-on-select="false" :show-pointer="false"
-                                                :hide-selected="true">
+                                                v-model="addSequenceSelected" label="name" :multiple="true"
+                                                :search="true" style="width: 100%" track-by="id"
+                                                :close-on-select="false" :show-pointer="false" :hide-selected="true">
                                                 <template slot="option" slot-scope="props">{{props.option.name}}
                                                     ({{props.option.startDMXAddress}})</template></multiselect>
                                         </div>
-                                        <button class="btn btn-success btn-full" @click="addSequence">Add Sequence</button>
+                                        <button class="btn btn-success btn-full" @click="addSequence">Add
+                                            Sequence</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sequenceSettingsPage" class="tabcontent" v-if="currentView == 'sequenceSettings'">
+                <div class="container">
+                    <div class="row topBtns">
+                        <div class="col-6">
+                            <button id="sequenceParametersBackBtn" class="btn btn-primary btn-block"
+                                @click="currentView = 'sequenceParameters'">Back</button>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <button id="sequenceDeleteBtn" class="btn btn-danger btn-block"
+                                    @click="removeSequence">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="sequenceSettings">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="sequenceNameInput">Name:</label>
+                                <input class="form-control" type="text" id="sequenceNameInput"
+                                    placeholder="Sequence Name" v-model="currentSequence.name"
+                                    @input="editSequenceSettings">
+                            </div>
+                        </div>
+                    </div>
+                    <b>Sequence Fixtures:</b>
+                    <div id="sequenceFixtures">
+                        <div v-for="fixture in currentSequenceFixtures" :key="fixture.id">
+                            {{fixture.name}} ({{fixture.address}})
+                            <button class="btn btn-danger btn-sm mb-1 ml-1"
+                                @click="removeSequenceFixture(fixture.id)"><i
+                                    class="far fa-sm fa-trash-alt"></i></button>
                         </div>
                     </div>
                 </div>

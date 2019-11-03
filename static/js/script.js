@@ -31,6 +31,7 @@ var app = new Vue({
         addSequenceSelected: [],
         currentGroup: {},
         currentGroupFixtures: {},
+        currentSequenceFixtures: {},
         usbData: [],
         usbPath: "",
         settings: {},
@@ -157,8 +158,14 @@ var app = new Vue({
                 app.fixtureParametersTab = 'all';
             }
         },
+        getSequenceParameters: function (sequenceID) {
+            socket.emit("getSequenceParameters", sequenceID);
+        },
         getGroupFixtures: function (groupID) {
             socket.emit("getGroupFixtures", groupID);
+        },
+        getSequenceFixtures: function (sequenceID) {
+            socket.emit("getSequenceFixtures", sequenceID);
         },
         getCueSettings: function (cueID) {
             socket.emit("getCueSettings", cueID);
@@ -225,6 +232,9 @@ var app = new Vue({
         },
         editGroupSettings: function () {
             socket.emit('editGroupSettings', { id: app.currentGroup.id, name: app.currentGroup.name });
+        },
+        editSequenceSettings: function () {
+            socket.emit('editSequenceSettings', { id: app.currentSequence.id, name: app.currentSequence.name });
         },
         removeFixture: function () {
             bootbox.confirm("Are you sure you want to delete this fixture?", function (result) {
@@ -360,6 +370,10 @@ var app = new Vue({
             app.getGroupFixtures(app.currentGroup.id);
             app.currentView = 'groupSettings';
         },
+        getSequenceSettings: function () {
+            app.getSequenceFixtures(app.currentSequence.id);
+            app.currentView = 'sequenceSettings';
+        },
         removeGroup: function () {
             bootbox.confirm("Are you sure you want to delete this group?", function (result) {
                 if (result === true) {
@@ -368,10 +382,26 @@ var app = new Vue({
                 }
             });
         },
+        removeSequence: function () {
+            bootbox.confirm("Are you sure you want to delete this sequence?", function (result) {
+                if (result === true) {
+                    app.currentView = 'cues';
+                    app.cuesTab = 'sequences';
+                    socket.emit('removeSequence', app.currentSequence.id);
+                }
+            });
+        },
         removeGroupFixture: function (fixtureID) {
             bootbox.confirm("Are you sure you want remove this fixture from the group?", function (result) {
                 if (result === true) {
                     socket.emit('removeGroupFixture', { group: app.currentGroup.id, fixture: fixtureID });
+                }
+            });
+        },
+        removeSequenceFixture: function (fixtureID) {
+            bootbox.confirm("Are you sure you want remove this fixture from the sequence?", function (result) {
+                if (result === true) {
+                    socket.emit('removeSequenceFixture', { sequence: app.currentSequence.id, fixture: fixtureID });
                 }
             });
         },
@@ -445,6 +475,7 @@ socket.on('connect', function () {
     app.currentEffect = {};
     app.currentGroup = {};
     app.currentGroupFixtures = {};
+    app.currentSequenceFixtures = {};
     app.usbData = [];
     app.usbPath = "";
     app.settings = {};
@@ -562,8 +593,19 @@ socket.on('groupParameters', function (msg) {
     }
 });
 
+socket.on('sequenceParameters', function (msg) {
+    app.currentSequence = msg;
+    if (app.currentView != "sequenceSettings") {
+        app.currentView = "sequenceParameters";
+    }
+});
+
 socket.on('groupFixtures', function (msg) {
     app.currentGroupFixtures = msg;
+});
+
+socket.on('sequenceFixtures', function (msg) {
+    app.currentSequenceFixtures = msg;
 });
 
 socket.on('cueSettings', function (msg) {

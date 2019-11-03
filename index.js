@@ -560,6 +560,17 @@ function getGroupFixtures(groupID) {
     return fixtureStarts;
 };
 
+function getSequenceFixtures(sequenceID) {
+    var sequence = sequences[sequences.map(el => el.id).indexOf(sequenceID)];
+    var fixtureStarts = [];
+    var fixture = null;
+    let i = 0; const iMax = sequence.ids.length; for (; i < iMax; i++) {
+        fixture = fixtures[fixtures.map(el => el.id).indexOf(sequence.ids[i])];
+        fixtureStarts.push({ name: fixture.name, address: fixture.startDMXAddress, id: fixture.id });
+    }
+    return fixtureStarts;
+};
+
 function checkFixtureActiveEffects(effects) {
     let e = 0; const eMax = effects.length; for (; e < eMax; e++) {
         if (effects[e].active == true) {
@@ -2219,6 +2230,15 @@ io.on('connection', function (socket) {
 
     });
 
+    socket.on('getSequenceParameters', function (sequenceID) {
+        if (sequences.length != 0) {
+            socket.emit('sequenceParameters', sequences[sequences.map(el => el.id).indexOf(sequenceID)]);
+        } else {
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
+        }
+
+    });
+
     socket.on('changeGroupParameterValue', function (msg) {
         if (fixtures.length != 0 && groups.length != 0) {
             var group = groups[groups.map(el => el.id).indexOf(msg.id)];
@@ -2257,11 +2277,30 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('getSequenceFixtures', function (sequenceID) {
+        if (sequences.length != 0) {
+            socket.emit('sequenceFixtures', getSequenceFixtures(sequenceID));
+        } else {
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
+        }
+    });
+
     socket.on('editGroupSettings', function (msg) {
         if (groups.length != 0) {
             var group = groups[groups.map(el => el.id).indexOf(msg.id)];
             group.name = msg.name;
             io.emit('groups', { groups: cleanGroups(), target: true });
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No groups exist!" });
+        }
+    });
+
+    socket.on('editSequenceSettings', function (msg) {
+        if (sequences.length != 0) {
+            var sequence = sequences[sequences.map(el => el.id).indexOf(msg.id)];
+            sequence.name = msg.name;
+            io.emit('sequences', cleanSequences());
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
@@ -2277,6 +2316,18 @@ io.on('connection', function (socket) {
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
+        }
+    });
+
+    socket.on('removeSequence', function (sequenceID) {
+        if (sequences.length != 0) {
+            sequences.splice(sequences.map(el => el.id).indexOf(sequenceID), 1);
+            socket.emit('message', { type: "info", content: "Sequence has been removed!" });
+            io.emit('resetView', { type: 'sequences', eid: sequenceID });
+            io.emit('sequences', cleanSequences());
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
     });
 
@@ -2326,6 +2377,25 @@ io.on('connection', function (socket) {
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
+        }
+    });
+
+    socket.on('removeSequenceFixture', function (msg) {
+        if (sequences.length != 0) {
+            var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
+            if (sequence.ids.some(e => e === msg.fixture)) {
+                sequence.ids.splice(sequence.ids.map(el => el).indexOf(msg.fixture), 1);
+            }
+            if (sequence.ids.length == 0) {
+                sequences.splice(sequences.map(el => el.id).indexOf(sequence.id), 1);
+                socket.emit('message', { type: "info", content: "Sequence has been removed!" });
+                io.emit('resetView', { type: 'sequences', eid: sequence.id });
+            }
+            io.emit('sequences', cleanSequences());
+            socket.emit('message', { type: "info", content: "Fixture removed from sequence!" });
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
     });
 
