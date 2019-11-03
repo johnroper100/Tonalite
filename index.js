@@ -795,6 +795,7 @@ function calculateStack() {
         // Get the current cue
         cue = cues[cues.map(el => el.id).indexOf(currentCue)];
         channels = calculateCue(cue, cue.includeIntensityColor, cue.includePosition, cue.includeBeam, false);
+        io.emit('sequences', cleanSequences());
         cue.upStep -= 1;
         cue.downStep -= 1;
         // Check if the cue needs to be followed by another cue
@@ -860,7 +861,6 @@ function calculateStack() {
             }
             io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
-            io.emit('sequences', cleanSequences());
         }
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
     }

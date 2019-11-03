@@ -626,7 +626,15 @@
                         </div>
                     </div>
                     <div id="sequenceParameters">
-                        Nothing here yet.
+                        <div class="col-md-4 col-12">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
+                                        id="active" v-model="currentSequence.active">
+                                    <label class="custom-control-label" for="active">Active</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -776,6 +784,34 @@
                                 <input class="form-control" type="text" id="sequenceNameInput"
                                     placeholder="Sequence Name" v-model="currentSequence.name"
                                     @input="editSequenceSettings">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
+                                        id="includeIntensityColor" v-model="currentSequence.includeIntensityColor">
+                                    <label class="custom-control-label" for="includeIntensityColor">Include
+                                        Intensity/Color</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
+                                        id="includePosition" v-model="currentSequence.includePosition">
+                                    <label class="custom-control-label" for="includePosition">Include Position</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
+                                        id="includeBeam" v-model="currentSequence.includeBeam">
+                                    <label class="custom-control-label" for="includeBeam">Include Beam</label>
+                                </div>
                             </div>
                         </div>
                     </div>
