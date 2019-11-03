@@ -2149,7 +2149,7 @@ io.on('connection', function (socket) {
             var sequence = sequences[sequences.map(el => el.id).indexOf(sequenceID)];
             var newStep = {
                 id: generateID(),
-                name: "Step " + (sequence.steps.length + 1),
+                name: "" + (sequence.steps.length + 1),
                 upTime: SETTINGS.defaultUpTime,
                 downTime: SETTINGS.defaultDownTime,
                 follow: -1,
