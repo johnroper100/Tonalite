@@ -649,10 +649,10 @@
             <div id="cues" class="tabcontent" v-if="currentView == 'cues'">
                 <div class="container">
                     <div class="row topBtns sticky-top">
-                        <div class="col-6"><button class="btn btn-success btn-sm btn-block"
+                        <div class="col-6"><button class="btn btn-warning btn-sm btn-block"
                                 :class="{'disabled': cuesTab == 'sequences'}" @click="cuesTab = 'cues'">Cues</button>
                         </div>
-                        <div class="col-6"><button class="btn btn-success btn-sm btn-block"
+                        <div class="col-6"><button class="btn btn-warning btn-sm btn-block"
                                 :class="{'disabled': cuesTab == 'cues'}"
                                 @click="cuesTab = 'sequences'">Sequences</button>
                         </div>
@@ -695,6 +695,23 @@
                             </div>
                             <div v-if="cues.length == 0" class="col-12">
                                 <h5>There are no cues in this show!</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="cuesTab == 'sequences'">
+                        <div class="row topBtns sticky-top">
+                            <div class="col-12">
+                                <button class="btn btn-success btn-block">Add Sequence</button>
+                            </div>
+                        </div>
+                        <div class="row" id="sequencesList">
+                            <div class="col-4 col-lg-2 mb-3" v-for="sequence in sequences" :key="sequence.id">
+                                <div class="sequenceItem" :class="{ 'sequenceActive' : sequence.active == true}">
+                                    <p>{{sequence.name}}</p>
+                                </div>
+                            </div>
+                            <div v-if="sequences.length == 0" class="col-12">
+                                <h5>There are no sequences in this show!</h5>
                             </div>
                         </div>
                     </div>
