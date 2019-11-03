@@ -473,7 +473,7 @@ function cleanFixturesForCue() {
 
 function cleanSequencesForCue() {
     var newSequences = [];
-    let s = 0; const sMax = sequence.length; for (; s < sMax; s++) {
+    let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
         newSequences.push(cleanSequenceForCue(sequences[s]));
     }
     return newSequences;
