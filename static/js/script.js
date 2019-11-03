@@ -28,6 +28,7 @@ var app = new Vue({
         version: "",
         currentEffect: {},
         addGroupSelected: [],
+        addSequenceSelected: [],
         currentGroup: {},
         currentGroupFixtures: {},
         usbData: [],
@@ -333,6 +334,10 @@ var app = new Vue({
             app.addGroupSelected = [];
             $('#addGroupModal').modal("show");
         },
+        addSequenceModal: function () {
+            app.addSequenceSelected = [];
+            $('#addSequenceModal').modal("show");
+        },
         addGroup: function () {
             var list = [];
             let f = 0; const fMax = app.addGroupSelected.length; for (; f < fMax; f++) {
@@ -407,6 +412,7 @@ socket.on('connect', function () {
     app.cuesTab = 'cues';
     app.fixtures = [];
     app.addGroupSelected = [];
+    app.addSequenceSelected = [];
     app.groups = [];
     app.cues = [];
     app.sequences = [];
@@ -597,6 +603,7 @@ socket.on('resetView', function (msg) {
         app.currentEffect = {};
         app.currentPreset = {};
         app.addGroupSelected = [];
+        app.addSequenceSelected = [];
     } else if (msg.type == 'groups') {
         if (app.currentGroup.id == msg.eid) {
             app.currentView = 'groups';
