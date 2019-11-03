@@ -602,7 +602,7 @@ function calculateChannelsList() {
 };
 
 // Set the cue's output channel values to the correct values from the fixtures. This is basically saving the cue.
-function calculateCue(cue) {
+function calculateCue(cue, includeIntensityColor, includePosition, includeBeam) {
     var outputChannels = new Array(1024).fill(0);
     var startFixture = null;
     var startParameter = null;
@@ -634,7 +634,7 @@ function calculateCue(cue) {
                 if (endParameter >= startParameter) {
                     // Make sure that the step does not dip below 0 (finished)
                     if (cue.upStep >= 0) {
-                        if ((cue.fixtures[f].parameters[c].fadeWithIntensity == true || cue.fixtures[f].parameters[c].type == 1) && cue.includeIntensityColor == true) {
+                        if ((cue.fixtures[f].parameters[c].fadeWithIntensity == true || cue.fixtures[f].parameters[c].type == 1) && includeIntensityColor == true) {
                             if (blackout === false) {
                                 outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) >> 8) / 100.0) * grandmaster;
                                 if (cue.fixtures[f].parameters[c].fine != null) {
@@ -646,7 +646,7 @@ function calculateCue(cue) {
                                     outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min & 0xff);
                                 }
                             }
-                        } else if ((cue.fixtures[f].parameters[c].type == 2 && cue.includePosition == true) || (cue.fixtures[f].parameters[c].type == 4 && cue.includeBeam == true) || (cue.fixtures[f].parameters[c].type == 5 && cue.includeIntensityColor == true)) {
+                        } else if ((cue.fixtures[f].parameters[c].type == 2 && includePosition == true) || (cue.fixtures[f].parameters[c].type == 4 && includeBeam == true) || (cue.fixtures[f].parameters[c].type == 5 && includeIntensityColor == true)) {
                             invert = false;
                             if (cue.fixtures[f].parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
                                 if (cue.fixtures[f].parameters[c].name == "Pan" && startFixture.invertPan == true) {
@@ -684,7 +684,7 @@ function calculateCue(cue) {
                                     outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min & 0xff);
                                 }
                             }
-                        } else if ((cue.fixtures[f].parameters[c].type == 2 && cue.includePosition == true) || (cue.fixtures[f].parameters[c].type == 4 && cue.includeBeam == true) || (cue.fixtures[f].parameters[c].type == 5 && cue.includeIntensityColor == true)) {
+                        } else if ((cue.fixtures[f].parameters[c].type == 2 && includePosition == true) || (cue.fixtures[f].parameters[c].type == 4 && includeBeam == true) || (cue.fixtures[f].parameters[c].type == 5 && includeIntensityColor == true)) {
                             invert = false;
                             if (cue.fixtures[f].parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
                                 if (cue.fixtures[f].parameters[c].name == "Pan" && startFixture.invertPan == true) {
@@ -741,7 +741,7 @@ function calculateStack() {
     if (currentCue != "") {
         // Get the current cue
         cue = cues[cues.map(el => el.id).indexOf(currentCue)];
-        channels = calculateCue(cue);
+        channels = calculateCue(cue, cue.includeIntensityColor, cue.includePosition, cue.includeBeam);
         cue.upStep -= 1;
         cue.downStep -= 1;
         // Check if the cue needs to be followed by another cue
