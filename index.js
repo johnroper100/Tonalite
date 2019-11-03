@@ -405,6 +405,17 @@ function cleanFixtureForCue(fixture) {
     return newFixture;
 };
 
+function cleanSequenceForCue(sequence) {
+    var newSequence = JSON.parse(JSON.stringify(sequence));
+    delete newSequence.name;
+    delete newSequence.steps;
+    delete newSequence.ids;
+    delete newSequence.includeIntensityColor;
+    delete newSequence.includePosition;
+    delete newSequence.includeBeam;
+    return newSequence;
+};
+
 function cleanEffect(effect) {
     var newEffect = JSON.parse(JSON.stringify(effect));
     delete newEffect.steps;
@@ -458,6 +469,14 @@ function cleanFixturesForCue() {
         newFixtures.push(cleanFixtureForCue(fixtures[f]));
     }
     return newFixtures;
+};
+
+function cleanSequencesForCue() {
+    var newSequences = [];
+    let s = 0; const sMax = sequence.length; for (; s < sMax; s++) {
+        newSequences.push(cleanSequenceForCue(sequences[s]));
+    }
+    return newSequences;
 };
 
 function cleanFixturesForSequence(fixtureIDs) {
@@ -1785,6 +1804,7 @@ io.on('connection', function (socket) {
                 active: false,
                 following: false,
                 fixtures: cleanFixturesForCue(),
+                sequences: cleanSequencesForCue(),
                 includeIntensityColor: true,
                 includePosition: true,
                 includeBeam: true
@@ -1803,6 +1823,7 @@ io.on('connection', function (socket) {
             if (cues.some(e => e.id === cueID)) {
                 var cue = cues[cues.map(el => el.id).indexOf(cueID)];
                 cue.fixtures = cleanFixturesForCue();
+                cue.sequences = cleanSequencesForCue();
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue parameters have been updated!" });
