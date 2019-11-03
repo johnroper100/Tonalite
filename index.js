@@ -782,10 +782,6 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
             }
         }
     }
-    let s = 0; const sMax = cue.sequences.length; for (; s < sMax; s++) {
-        startSequence = sequences[sequences.map(el => el.id).indexOf(cue.sequences[s].id)];
-        startSequence.active = cue.sequences[s].active;
-    }
     return outputChannels;
 };
 
@@ -795,6 +791,10 @@ function calculateStack() {
         // Get the current cue
         cue = cues[cues.map(el => el.id).indexOf(currentCue)];
         channels = calculateCue(cue, cue.includeIntensityColor, cue.includePosition, cue.includeBeam, false);
+        let s = 0; const sMax = cue.sequences.length; for (; s < sMax; s++) {
+            startSequence = sequences[sequences.map(el => el.id).indexOf(cue.sequences[s].id)];
+            startSequence.active = cue.sequences[s].active;
+        }
         io.emit('sequences', cleanSequences());
         cue.upStep -= 1;
         cue.downStep -= 1;
