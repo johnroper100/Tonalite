@@ -2300,6 +2300,10 @@ io.on('connection', function (socket) {
         if (sequences.length != 0) {
             var sequence = sequences[sequences.map(el => el.id).indexOf(msg.id)];
             sequence.name = msg.name;
+            sequence.active = msg.active;
+            sequence.includeIntensityColor = msg.includeIntensityColor;
+            sequence.includePosition = msg.includePosition;
+            sequence.includeBeam = msg.includeBeam;
             io.emit('sequences', cleanSequences());
             saveShow();
         } else {

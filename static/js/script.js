@@ -234,7 +234,7 @@ var app = new Vue({
             socket.emit('editGroupSettings', { id: app.currentGroup.id, name: app.currentGroup.name });
         },
         editSequenceSettings: function () {
-            socket.emit('editSequenceSettings', { id: app.currentSequence.id, name: app.currentSequence.name });
+            socket.emit('editSequenceSettings', { id: app.currentSequence.id, name: app.currentSequence.name, active: app.currentSequence.active, includeIntensityColor: app.currentSequence.includeIntensityColor, includePosition: app.currentSequence.includePosition, includeBeam: app.currentSequence.includeBeam });
         },
         removeFixture: function () {
             bootbox.confirm("Are you sure you want to delete this fixture?", function (result) {
