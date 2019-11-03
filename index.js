@@ -460,6 +460,15 @@ function cleanFixturesForCue() {
     return newFixtures;
 };
 
+function cleanFixturesForSequence(fixtureIDs) {
+    var newFixtures = [];
+    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+        if (fixtureIDs.indexOf(fixtures[f].id) >= 0)
+            newFixtures.push(cleanFixtureForCue(fixtures[f]));
+    }
+    return newFixtures;
+};
+
 function cleanGroups() {
     var newGroups = JSON.parse(JSON.stringify(groups));
     let g = 0; const gMax = newGroups.length; for (; g < gMax; g++) {
@@ -2080,6 +2089,29 @@ io.on('connection', function (socket) {
                 includeBeam: true
             };
             sequences.push(newSequence);
+            io.emit('sequences', cleanSequences());
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('recordSequenceStep', function (sequenceID) {
+        if (fixtures.length != 0) {
+            var sequence = sequences[sequences.map(el => el.id).indexOf(sequenceID)];
+            var newStep = {
+                id: generateID(),
+                name: "Step " + (sequence.steps.length + 1),
+                upTime: SETTINGS.defaultUpTime,
+                downTime: SETTINGS.defaultDownTime,
+                follow: -1,
+                upStep: SETTINGS.defaultUpTime * 40,
+                downStep: SETTINGS.defaultDownTime * 40,
+                active: false,
+                following: false,
+                fixtures: cleanFixturesForSequence(sequence.ids)
+            };
+            sequence.steps.push(newStep);
             io.emit('sequences', cleanSequences());
             saveShow();
         } else {
