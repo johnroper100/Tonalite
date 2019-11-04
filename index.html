@@ -620,42 +620,60 @@
                             <h5 id="sequenceParametersName">{{currentSequence.name}}</h5>
                         </div>
                         <div class="col-8">
-                            <button id="sequenceSettingsBtn" class="btn btn-primary btn-block"
-                                @click="getSequenceSettings"><i class="far fa-cog d-sm-none d-inline-block"></i><span
-                                    class="d-none d-sm-inline-block">Settings</span></button>
-                        </div>
-                    </div>
-                    <div id="sequenceParameters">
-                        <div class="col-md-4 col-12">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
-                                        id="active" v-model="currentSequence.active">
-                                    <label class="custom-control-label" for="active">Active</label>
+                            <div>
+                                <div>
+                                    <button id="sequenceSettingsBtn" class="btn btn-primary btn-block"
+                                        @click="getSequenceSettings"><i
+                                            class="far fa-cog d-sm-none d-inline-block"></i><span
+                                            class="d-none d-sm-inline-block">Settings</span></button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <table class="table bg-light">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Up Time</th>
-                                        <th scope="col">Down Time</th>
-                                        <th scope="col">Follow</th>
-                                        <th scope="col">Remove</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>hi</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    </div>
+                    <div id="sequenceParameters">
+                        <div class="row">
+                            <div class="col-md-4 col-12 mb-3">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editSequenceSettings" type="checkbox"
+                                            class="custom-control-input" id="active" v-model="currentSequence.active">
+                                        <label class="custom-control-label" for="active">Active</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-12 mb-3">
+                                <button class="btn btn-success btn-full" @click="recordSequenceStep">Record
+                                    Step</button>
+                            </div>
+                            <div class="col-12">
+                                <div class="card">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Up Time</th>
+                                                <th scope="col">Down Time</th>
+                                                <th scope="col">Follow</th>
+                                                <th scope="col">Remove</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="step in currentSequence.steps" :key="step.id"
+                                                :class="{'bg-warning': step.active == true}">
+                                                <th scope="row">{{step.name}}</th>
+                                                <td><input type="number" class="form-control" v-model="step.upTime">
+                                                </td>
+                                                <td><input type="number" class="form-control" v-model="step.downTime">
+                                                </td>
+                                                <td><input type="number" class="form-control" v-model="step.follow">
+                                                </td>
+                                                <td><button class="btn btn-danger btn-sm">Delete</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>

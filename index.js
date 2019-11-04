@@ -795,7 +795,7 @@ function calculateStack() {
             startSequence = sequences[sequences.map(el => el.id).indexOf(cue.sequences[s].id)];
             startSequence.active = cue.sequences[s].active;
         }
-        io.emit('sequences', cleanSequences());
+        io.emit('sequences', { sequences: cleanSequences(), target: true });
         cue.upStep -= 1;
         cue.downStep -= 1;
         // Check if the cue needs to be followed by another cue
@@ -1040,7 +1040,7 @@ function openShow(file = "show.json") {
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
-        io.emit('sequences', cleanSequences());
+        io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('groups', { groups: cleanGroups(), target: true });
     });
 };
@@ -1146,7 +1146,7 @@ io.on('connection', function (socket) {
     socket.emit('currentCue', currentCueID);
     socket.emit('fixtures', { fixtures: cleanFixtures(), target: true });
     socket.emit('cues', cleanCues());
-    socket.emit('sequences', cleanSequences());
+    socket.emit('sequences', { sequences: cleanSequences(), target: true });
     socket.emit('groups', { groups: cleanGroups(), target: true });
     socket.emit('presets', cleanPresets());
     socket.emit('blackout', blackout);
@@ -1187,7 +1187,7 @@ io.on('connection', function (socket) {
         io.emit('cues', cleanCues());
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('cueActionBtn', false);
-        io.emit('sequences', cleanSequences());
+        io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('resetView', { type: 'show', eid: "" });
         io.emit('message', { type: "info", content: "A new show has been created!" });
         saveShow();
@@ -1203,7 +1203,7 @@ io.on('connection', function (socket) {
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
-        io.emit('sequences', cleanSequences());
+        io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('cueActionBtn', false);
         io.emit('resetView', { type: 'show', eid: "" });
@@ -2152,7 +2152,7 @@ io.on('connection', function (socket) {
                 includeBeam: true
             };
             sequences.push(newSequence);
-            io.emit('sequences', cleanSequences());
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -2175,7 +2175,7 @@ io.on('connection', function (socket) {
                 fixtures: cleanFixturesForSequence(sequence.ids)
             };
             sequence.steps.push(newStep);
-            io.emit('sequences', cleanSequences());
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -2319,7 +2319,7 @@ io.on('connection', function (socket) {
             sequence.includeIntensityColor = msg.includeIntensityColor;
             sequence.includePosition = msg.includePosition;
             sequence.includeBeam = msg.includeBeam;
-            io.emit('sequences', cleanSequences());
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
@@ -2343,7 +2343,7 @@ io.on('connection', function (socket) {
             sequences.splice(sequences.map(el => el.id).indexOf(sequenceID), 1);
             socket.emit('message', { type: "info", content: "Sequence has been removed!" });
             io.emit('resetView', { type: 'sequences', eid: sequenceID });
-            io.emit('sequences', cleanSequences());
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No sequences exist!" });
@@ -2410,7 +2410,7 @@ io.on('connection', function (socket) {
                 socket.emit('message', { type: "info", content: "Sequence has been removed!" });
                 io.emit('resetView', { type: 'sequences', eid: sequence.id });
             }
-            io.emit('sequences', cleanSequences());
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
             socket.emit('message', { type: "info", content: "Fixture removed from sequence!" });
             saveShow();
         } else {

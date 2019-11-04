@@ -110,6 +110,9 @@ var app = new Vue({
                 socket.emit("recordCue");
             }
         },
+        recordSequenceStep: function () {
+            socket.emit("recordSequenceStep", app.currentSequence.id);
+        },
         nextCue: function () {
             socket.emit("nextCue");
         },
@@ -537,9 +540,14 @@ socket.on('cues', function (msg) {
 });
 
 socket.on('sequences', function (msg) {
-    app.sequences = msg;
-    if (app.currentView == 'sequenceSettings' && app.currentSequence != {}) {
-        //app.getSequenceSettings(app.currentSequence.id);
+    app.sequences = msg.sequences;
+    if (msg.target == true) {
+        if ((app.currentView == 'sequenceParameters' || app.currentView == 'sequenceSettings') && app.currentSequence != {}) {
+            app.getSequenceParameters(app.currentSequence.id, false);
+            if (app.currentView == 'sequenceSettings') {
+                app.getSequenceFixtures(app.currentSequence.id);
+            }
+        }
     }
 });
 
