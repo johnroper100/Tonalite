@@ -411,6 +411,8 @@ function cleanFixtureForCue(fixture) {
         delete newFixture.parameters[p].fadeWithIntensity;
         delete newFixture.parameters[p].invert;
         delete newFixture.parameters[p].name;
+        delete newFixture.parameters[p].max;
+        delete newFixture.parameters[p].min;
     }
     return newFixture;
 };
@@ -833,7 +835,7 @@ function calculateStack() {
                 let c = 0; const cMax = cue.fixtures[f].parameters.length; for (; c < cMax; c++) {
                     if (startFixtureParameters[c].locked === false) {
                         startFixtureParameters[c].value = cue.fixtures[f].parameters[c].value;
-                        startFixtureParameters[c].displayValue = cppaddon.mapRange(cue.fixtures[f].parameters[c].value, cue.fixtures[f].parameters[c].min, cue.fixtures[f].parameters[c].max, 0, 100);
+                        startFixtureParameters[c].displayValue = cppaddon.mapRange(cue.fixtures[f].parameters[c].value, startFixtureParameters[c].min, startFixtureParameters[c].max, 0, 100);
                     }
                 }
             }
@@ -852,7 +854,7 @@ function calculateStack() {
                             c = 0; const cMax1 = nextCueFixtureParameters.length; for (; c < cMax1; c++) {
                                 if (startFixtureParameters[c].locked === false && startFixtureParameters[c].type != 1) {
                                     startFixtureParameters[c].value = nextCueFixtureParameters[c].value;
-                                    startFixtureParameters[c].displayValue = cppaddon.mapRange(nextCueFixtureParameters[c].value, nextCueFixtureParameters[c].min, nextCueFixtureParameters[c].max, 0, 100);
+                                    startFixtureParameters[c].displayValue = cppaddon.mapRange(nextCueFixtureParameters[c].value, startFixtureParameters[c].min, startFixtureParameters[c].max, 0, 100);
                                 }
                             }
                         }
@@ -899,7 +901,7 @@ function calculateStack() {
                         let c = 0; const cMax = step.fixtures[f].parameters.length; for (; c < cMax; c++) {
                             if (startFixtureParameters[c].locked === false) {
                                 startFixtureParameters[c].value = step.fixtures[f].parameters[c].value;
-                                startFixtureParameters[c].displayValue = cppaddon.mapRange(step.fixtures[f].parameters[c].value, step.fixtures[f].parameters[c].min, step.fixtures[f].parameters[c].max, 0, 100);
+                                startFixtureParameters[c].displayValue = cppaddon.mapRange(step.fixtures[f].parameters[c].value, startFixtureParameters[c].min, startFixtureParameters[c].max, 0, 100);
                             }
                         }
                     }
@@ -918,7 +920,7 @@ function calculateStack() {
                                     c = 0; const cMax1 = nextCueFixtureParameters.length; for (; c < cMax1; c++) {
                                         if (startFixtureParameters[c].locked === false && startFixtureParameters[c].type != 1) {
                                             startFixtureParameters[c].value = nextCueFixtureParameters[c].value;
-                                            startFixtureParameters[c].displayValue = cppaddon.mapRange(nextCueFixtureParameters[c].value, nextCueFixtureParameters[c].min, nextCueFixtureParameters[c].max, 0, 100);
+                                            startFixtureParameters[c].displayValue = cppaddon.mapRange(nextCueFixtureParameters[c].value, startFixtureParameters[c].min, startFixtureParameters[c].max, 0, 100);
                                         }
                                     }
                                 }
