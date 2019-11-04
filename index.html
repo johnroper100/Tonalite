@@ -613,6 +613,78 @@
                     </div>
                 </div>
             </div>
+            <div id="sequenceParametersPage" class="tabcontent" v-if="currentView == 'sequenceParameters'">
+                <div class="container">
+                    <div class="row topBtns">
+                        <div class="col-4">
+                            <h5 id="sequenceParametersName">{{currentSequence.name}}</h5>
+                        </div>
+                        <div class="col-4">
+                            <div>
+                                <div>
+                                    <button id="sequenceSettingsBtn" class="btn btn-primary btn-block"
+                                        @click="getSequenceSettings"><i
+                                            class="far fa-cog d-sm-none d-inline-block"></i><span
+                                            class="d-none d-sm-inline-block">Settings</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div>
+                                <div>
+                                    <button class="btn btn-success btn-block" @click="recordSequenceStep">Record
+                                        Step</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sequenceParameters">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editSequenceSettings" type="checkbox"
+                                            class="custom-control-input" id="active" v-model="currentSequence.active">
+                                        <label class="custom-control-label" for="active">Active</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Up Time</th>
+                                                <th scope="col">Down Time</th>
+                                                <th scope="col">Follow</th>
+                                                <th scope="col">Remove</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="step in currentSequence.steps" :key="step.id"
+                                                :class="{'bg-warning': step.active == true}">
+                                                <th scope="row">{{step.name}}</th>
+                                                <td><input type="number" class="form-control" min="0"
+                                                        v-model="step.upTime" @input="editSequenceStepSettings(step)">
+                                                </td>
+                                                <td><input type="number" class="form-control" min="0"
+                                                        v-model="step.downTime" @input="editSequenceStepSettings(step)">
+                                                </td>
+                                                <td><input type="number" class="form-control" min="0"
+                                                        v-model="step.follow" @input="editSequenceStepSettings(step)">
+                                                </td>
+                                                <td><button class="btn btn-danger btn-sm"
+                                                        @click="removeSequenceStep(step.id)">Delete</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div id="groupSettingsPage" class="tabcontent" v-if="currentView == 'groupSettings'">
                 <div class="container">
                     <div class="row topBtns">
@@ -649,42 +721,154 @@
             <div id="cues" class="tabcontent" v-if="currentView == 'cues'">
                 <div class="container">
                     <div class="row topBtns sticky-top">
-                        <div class="col-4">
-                            <div>
-                                <button :disabled="cues.length == 0" class="btn btn-primary btn-block"
-                                    @click="lastCue"><i class="far fa-chevron-left"></i></button>
-                            </div>
+                        <div class="col-6"><button class="btn btn-warning btn-sm btn-block"
+                                :class="{'disabled': cuesTab == 'sequences'}" @click="cuesTab = 'cues'">Cues</button>
                         </div>
-                        <div class="col-4" v-if="cuePlaying == true">
-                            <div>
-                                <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                        class="btn btn-danger btn-block" @click="stopCue">Stop</button></div>
-                            </div>
+                        <div class="col-6"><button class="btn btn-warning btn-sm btn-block"
+                                :class="{'disabled': cuesTab == 'cues'}"
+                                @click="cuesTab = 'sequences'">Sequences</button>
                         </div>
-                        <div class="col-4" v-if="cuePlaying == false">
-                            <div>
-                                <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                        class="btn btn-danger btn-block" @click="recordCue">Record</button></div>
+                    </div>
+                    <div v-if="cuesTab == 'cues'">
+                        <div class="row topBtns sticky-top">
+                            <div class="col-4">
+                                <div>
+                                    <button :disabled="cues.length == 0" class="btn btn-primary btn-block"
+                                        @click="lastCue"><i class="far fa-chevron-left"></i></button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                <div><button :disabled="cues.length == 0" class="btn btn-primary btn-block"
-                                        @click="nextCue"><i class="far fa-chevron-right"></i></button></div>
+                            <div class="col-4" v-if="cuePlaying == true">
+                                <div>
+                                    <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                            class="btn btn-danger btn-block" @click="stopCue">Stop</button></div>
+                                </div>
+                            </div>
+                            <div class="col-4" v-if="cuePlaying == false">
+                                <div>
+                                    <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                            class="btn btn-danger btn-block" @click="recordCue">Record</button></div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <div><button :disabled="cues.length == 0" class="btn btn-primary btn-block"
+                                            @click="nextCue"><i class="far fa-chevron-right"></i></button></div>
 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="cuesList">
+                            <div class="col-4 col-lg-2 mb-3" v-for="cue in cues" :key="cue.id"
+                                @click="getCueSettings(cue.id)">
+                                <div class="cueItem"
+                                    :class="{ 'cueActive' : cue.active == true, 'cueCurrent' : cue.id == activeCue && cue.active != true}">
+                                    <p>{{cue.name}}</p>
+                                </div>
+                            </div>
+                            <div v-if="cues.length == 0" class="col-12">
+                                <h5>There are no cues in this show!</h5>
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="cuesList">
-                        <div class="col-4 col-lg-2 mb-3" v-for="cue in cues" :key="cue.id"
-                            @click="getCueSettings(cue.id)">
-                            <div class="cueItem"
-                                :class="{ 'cueActive' : cue.active == true, 'cueCurrent' : cue.id == activeCue && cue.active != true}">
-                                <p>{{cue.name}}</p>
+                    <div v-if="cuesTab == 'sequences'">
+                        <div class="row topBtns sticky-top">
+                            <div class="col-12">
+                                <button class="btn btn-success btn-block" @click="addSequenceModal">Add
+                                    Sequence</button>
                             </div>
                         </div>
-                        <div v-if="cues.length == 0" class="col-12">
-                            <h5>There are no cues in this show!</h5>
+                        <div class="row" id="sequencesList">
+                            <div class="col-4 col-lg-2 mb-3" @click="getSequenceParameters(sequence.id)"
+                                v-for="sequence in sequences" :key="sequence.id">
+                                <div class="sequenceItem" :class="{ 'sequenceActive' : sequence.active == true}">
+                                    <p>{{sequence.name}}</p>
+                                </div>
+                            </div>
+                            <div v-if="sequences.length == 0" class="col-12">
+                                <h5>There are no sequences in this show!</h5>
+                            </div>
+                        </div>
+                        <div id="addSequenceModal" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label class="dark mr-2" for="sequenceFixtureIDs">Fixtures:</label>
+                                            <multiselect placeholder="Select some fixtures" :options="fixtures"
+                                                v-model="addSequenceSelected" label="name" :multiple="true"
+                                                :search="true" style="width: 100%" track-by="id"
+                                                :close-on-select="false" :show-pointer="false" :hide-selected="true">
+                                                <template slot="option" slot-scope="props">{{props.option.name}}
+                                                    ({{props.option.startDMXAddress}})</template></multiselect>
+                                        </div>
+                                        <button class="btn btn-success btn-full" @click="addSequence">Add
+                                            Sequence</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sequenceSettingsPage" class="tabcontent" v-if="currentView == 'sequenceSettings'">
+                <div class="container">
+                    <div class="row topBtns">
+                        <div class="col-6">
+                            <button id="sequenceParametersBackBtn" class="btn btn-primary btn-block"
+                                @click="currentView = 'sequenceParameters'">Back</button>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <button id="sequenceDeleteBtn" class="btn btn-danger btn-block"
+                                    @click="removeSequence">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="sequenceSettings">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="sequenceNameInput">Name:</label>
+                                <input class="form-control" type="text" id="sequenceNameInput"
+                                    placeholder="Sequence Name" v-model="currentSequence.name"
+                                    @input="editSequenceSettings">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
+                                        id="includeIntensityColor" v-model="currentSequence.includeIntensityColor">
+                                    <label class="custom-control-label" for="includeIntensityColor">Include
+                                        Intensity/Color</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
+                                        id="includePosition" v-model="currentSequence.includePosition">
+                                    <label class="custom-control-label" for="includePosition">Include Position</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
+                                        id="includeBeam" v-model="currentSequence.includeBeam">
+                                    <label class="custom-control-label" for="includeBeam">Include Beam</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <b>Sequence Fixtures:</b>
+                    <div id="sequenceFixtures">
+                        <div v-for="fixture in currentSequenceFixtures" :key="fixture.id">
+                            {{fixture.name}} ({{fixture.address}})
+                            <button class="btn btn-danger btn-sm mb-1 ml-1"
+                                @click="removeSequenceFixture(fixture.id)"><i
+                                    class="far fa-sm fa-trash-alt"></i></button>
                         </div>
                     </div>
                 </div>

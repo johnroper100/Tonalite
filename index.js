@@ -392,6 +392,11 @@ function cleanFixtureForCue(fixture) {
     delete newFixture.invertPan;
     delete newFixture.invertTilt;
     delete newFixture.swapPanTilt;
+    delete newFixture.hasIntensity;
+    delete newFixture.maxOffset;
+    delete newFixture.modeName;
+    delete newFixture.dmxUniverse;
+    delete newFixture.parameterTypes;
     newFixture.effects = cleanEffectsForCue(newFixture.effects);
     let p = 0; const pMax = newFixture.parameters.length; for (; p < pMax; p++) {
         delete newFixture.parameters[p].displayValue;
@@ -401,8 +406,24 @@ function cleanFixtureForCue(fixture) {
         delete newFixture.parameters[p].highlight;
         delete newFixture.parameters[p].snap;
         delete newFixture.parameters[p].size;
+        delete newFixture.parameters[p].coarse;
+        delete newFixture.parameters[p].fine;
+        delete newFixture.parameters[p].fadeWithIntensity;
+        delete newFixture.parameters[p].invert;
+        delete newFixture.parameters[p].name;
     }
     return newFixture;
+};
+
+function cleanSequenceForCue(sequence) {
+    var newSequence = JSON.parse(JSON.stringify(sequence));
+    delete newSequence.name;
+    delete newSequence.steps;
+    delete newSequence.ids;
+    delete newSequence.includeIntensityColor;
+    delete newSequence.includePosition;
+    delete newSequence.includeBeam;
+    return newSequence;
 };
 
 function cleanEffect(effect) {
@@ -456,6 +477,23 @@ function cleanFixturesForCue() {
     var newFixtures = [];
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
         newFixtures.push(cleanFixtureForCue(fixtures[f]));
+    }
+    return newFixtures;
+};
+
+function cleanSequencesForCue() {
+    var newSequences = [];
+    let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
+        newSequences.push(cleanSequenceForCue(sequences[s]));
+    }
+    return newSequences;
+};
+
+function cleanFixturesForSequence(fixtureIDs) {
+    var newFixtures = [];
+    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+        if (fixtureIDs.indexOf(fixtures[f].id) >= 0)
+            newFixtures.push(cleanFixtureForCue(fixtures[f]));
     }
     return newFixtures;
 };
@@ -517,6 +555,17 @@ function getGroupFixtures(groupID) {
     var fixture = null;
     let i = 0; const iMax = group.ids.length; for (; i < iMax; i++) {
         fixture = fixtures[fixtures.map(el => el.id).indexOf(group.ids[i])];
+        fixtureStarts.push({ name: fixture.name, address: fixture.startDMXAddress, id: fixture.id });
+    }
+    return fixtureStarts;
+};
+
+function getSequenceFixtures(sequenceID) {
+    var sequence = sequences[sequences.map(el => el.id).indexOf(sequenceID)];
+    var fixtureStarts = [];
+    var fixture = null;
+    let i = 0; const iMax = sequence.ids.length; for (; i < iMax; i++) {
+        fixture = fixtures[fixtures.map(el => el.id).indexOf(sequence.ids[i])];
         fixtureStarts.push({ name: fixture.name, address: fixture.startDMXAddress, id: fixture.id });
     }
     return fixtureStarts;
@@ -602,7 +651,7 @@ function calculateChannelsList() {
 };
 
 // Set the cue's output channel values to the correct values from the fixtures. This is basically saving the cue.
-function calculateCue(cue) {
+function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, sequence) {
     var outputChannels = new Array(1024).fill(0);
     var startFixture = null;
     var startParameter = null;
@@ -634,99 +683,99 @@ function calculateCue(cue) {
                 if (endParameter >= startParameter) {
                     // Make sure that the step does not dip below 0 (finished)
                     if (cue.upStep >= 0) {
-                        if ((cue.fixtures[f].parameters[c].fadeWithIntensity == true || cue.fixtures[f].parameters[c].type == 1) && cue.includeIntensityColor == true) {
+                        if ((startFixture.parameters[c].fadeWithIntensity == true || startFixture.parameters[c].type == 1) && includeIntensityColor == true) {
                             if (blackout === false) {
-                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) >> 8) / 100.0) * grandmaster;
-                                if (cue.fixtures[f].parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) & 0xff) / 100.0) * grandmaster;
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) >> 8) / 100.0) * grandmaster;
+                                if (startFixture.parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) & 0xff) / 100.0) * grandmaster;
                                 }
                             } else {
-                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min >> 8);
-                                if (cue.fixtures[f].parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min & 0xff);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min >> 8);
+                                if (startFixture.parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min & 0xff);
                                 }
                             }
-                        } else if ((cue.fixtures[f].parameters[c].type == 2 && cue.includePosition == true) || (cue.fixtures[f].parameters[c].type == 4 && cue.includeBeam == true) || (cue.fixtures[f].parameters[c].type == 5 && cue.includeIntensityColor == true)) {
+                        } else if ((startFixture.parameters[c].type == 2 && includePosition == true) || (startFixture.parameters[c].type == 4 && includeBeam == true) || (startFixture.parameters[c].type == 5 && includeIntensityColor == true)) {
                             invert = false;
-                            if (cue.fixtures[f].parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
-                                if (cue.fixtures[f].parameters[c].name == "Pan" && startFixture.invertPan == true) {
+                            if (startFixture.parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
+                                if (startFixture.parameters[c].name == "Pan" && startFixture.invertPan == true) {
                                     invert = true;
-                                } else if (cue.fixtures[f].parameters[c].name == "Tilt" && startFixture.invertTilt == true) {
+                                } else if (startFixture.parameters[c].name == "Tilt" && startFixture.invertTilt == true) {
                                     invert = true;
                                 }
                             }
                             if (invert == true) {
-                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)), 0, 65535) >> 8);
-                                if (cue.fixtures[f].parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)), 0, 65535) & 0xff);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)), 0, 65535) >> 8);
+                                if (startFixture.parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)), 0, 65535) & 0xff);
                                 }
                             } else {
-                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) >> 8);
-                                if (cue.fixtures[f].parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) & 0xff);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) >> 8);
+                                if (startFixture.parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) & 0xff);
                                 }
                             }
                         }
-                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(cue.fixtures[f].parameters[c].value + (((startFixture.parameters[c].value - cue.fixtures[f].parameters[c].value) / (cue.upTime * 40)) * cue.upStep), cue.fixtures[f].parameters[c].min, cue.fixtures[f].parameters[c].max, 0, 100);
+                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep), startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
                     }
                 } else {
                     // Make sure that the step does not dip below 0 (finished)
                     if (cue.downStep >= 0) {
-                        if ((cue.fixtures[f].parameters[c].fadeWithIntensity == true || cue.fixtures[f].parameters[c].type == 1) && cue.includeIntensityColor == true) {
+                        if ((startFixture.parameters[c].fadeWithIntensity == true || startFixture.parameters[c].type == 1) && cue.includeIntensityColor == true) {
                             if (blackout === false) {
-                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) >> 8) / 100.0) * grandmaster;
-                                if (cue.fixtures[f].parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) & 0xff) / 100.0) * grandmaster;
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) >> 8) / 100.0) * grandmaster;
+                                if (startFixture.parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) & 0xff) / 100.0) * grandmaster;
                                 }
                             } else {
-                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min >> 8);
-                                if (cue.fixtures[f].parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min & 0xff);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min >> 8);
+                                if (startFixture.parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min & 0xff);
                                 }
                             }
-                        } else if ((cue.fixtures[f].parameters[c].type == 2 && cue.includePosition == true) || (cue.fixtures[f].parameters[c].type == 4 && cue.includeBeam == true) || (cue.fixtures[f].parameters[c].type == 5 && cue.includeIntensityColor == true)) {
+                        } else if ((startFixture.parameters[c].type == 2 && includePosition == true) || (startFixture.parameters[c].type == 4 && includeBeam == true) || (startFixture.parameters[c].type == 5 && includeIntensityColor == true)) {
                             invert = false;
-                            if (cue.fixtures[f].parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
-                                if (cue.fixtures[f].parameters[c].name == "Pan" && startFixture.invertPan == true) {
+                            if (startFixture.parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
+                                if (startFixture.parameters[c].name == "Pan" && startFixture.invertPan == true) {
                                     invert = true;
-                                } else if (cue.fixtures[f].parameters[c].name == "Tilt" && startFixture.invertTilt == true) {
+                                } else if (startFixture.parameters[c].name == "Tilt" && startFixture.invertTilt == true) {
                                     invert = true;
                                 }
                             }
                             if (invert == true) {
-                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)), 0, 65535) >> 8);
-                                if (cue.fixtures[f].parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)), 0, 65535) & 0xff);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)), 0, 65535) >> 8);
+                                if (startFixture.parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)), 0, 65535) & 0xff);
                                 }
                             } else {
-                                outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) >> 8);
-                                if (cue.fixtures[f].parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) & 0xff);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) >> 8);
+                                if (startFixture.parameters[c].fine != null) {
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) & 0xff);
                                 }
                             }
                         }
-                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(cue.fixtures[f].parameters[c].value + (((startFixture.parameters[c].value - cue.fixtures[f].parameters[c].value) / (cue.downTime * 40)) * cue.downStep), cue.fixtures[f].parameters[c].min, cue.fixtures[f].parameters[c].max, 0, 100);
+                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep), startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
                     }
                 }
             } else {
                 startParameter = startFixture.parameters[c].value;
                 invert = false;
-                if (cue.fixtures[f].parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
-                    if (cue.fixtures[f].parameters[c].name == "Pan" && startFixture.invertPan == true) {
+                if (startFixture.parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
+                    if (startFixture.parameters[c].name == "Pan" && startFixture.invertPan == true) {
                         invert = true;
-                    } else if (cue.fixtures[f].parameters[c].name == "Tilt" && startFixture.invertTilt == true) {
+                    } else if (startFixture.parameters[c].name == "Tilt" && startFixture.invertTilt == true) {
                         invert = true;
                     }
                 }
                 if (invert == true) {
-                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber(startParameter, 0, 65535) >> 8);
-                    if (cue.fixtures[f].parameters[c].fine != null) {
-                        outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber(startParameter, 0, 65535) & 0xff);
+                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber(startParameter, 0, 65535) >> 8);
+                    if (startFixture.parameters[c].fine != null) {
+                        outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber(startParameter, 0, 65535) & 0xff);
                     }
                 } else {
-                    outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (startParameter >> 8);
-                    if (cue.fixtures[f].parameters[c].fine != null) {
-                        outputChannels[((startFixture.startDMXAddress - 1) + cue.fixtures[f].parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startParameter & 0xff);
+                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (startParameter >> 8);
+                    if (startFixture.parameters[c].fine != null) {
+                        outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (startParameter & 0xff);
                     }
                 }
 
@@ -741,7 +790,12 @@ function calculateStack() {
     if (currentCue != "") {
         // Get the current cue
         cue = cues[cues.map(el => el.id).indexOf(currentCue)];
-        channels = calculateCue(cue);
+        channels = calculateCue(cue, cue.includeIntensityColor, cue.includePosition, cue.includeBeam, false);
+        let s = 0; const sMax = cue.sequences.length; for (; s < sMax; s++) {
+            startSequence = sequences[sequences.map(el => el.id).indexOf(cue.sequences[s].id)];
+            startSequence.active = cue.sequences[s].active;
+        }
+        io.emit('sequences', { sequences: cleanSequences(), target: true });
         cue.upStep -= 1;
         cue.downStep -= 1;
         // Check if the cue needs to be followed by another cue
@@ -809,6 +863,73 @@ function calculateStack() {
             io.emit('cues', cleanCues());
         }
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+    }
+    let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
+        if (sequences[s].active == true) {
+            sequence = sequences[sequences.map(el => el.id).indexOf(sequences[s].id)];
+            if (sequence.currentStep != "") {
+                step = sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.currentStep)];
+                channels = calculateCue(step, sequence.includeIntensityColor, sequence.includePosition, sequence.includeBeam, true);
+                step.upStep -= 1;
+                step.downStep -= 1;
+                // Check if the cue needs to be followed by another cue
+                if (step.upStep < 0 && step.downStep < 0) {
+                    step.active = false;
+                    if (step.following === false) {
+                        step.upStep = step.follow * 40;
+                        step.downStep = step.follow * 40;
+                        step.following = true;
+                    } else {
+                        step.upStep = step.upTime * 40;
+                        step.downStep = step.downTime * 40;
+                        step.following = false;
+                        if (sequence.steps.map(el => el.id).indexOf(sequence.currentStep) === sequence.steps.length - 1) {
+                            sequence.currentStep = sequence.steps[0].id;
+                        } else {
+                            sequence.currentStep = sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.currentStep) + 1].id;
+                        }
+                        sequence.lastStep = sequence.currentStep;
+                        sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.currentStep)].active = true;
+                        sequence.currentStepID = sequence.currentStep;
+                    }
+                    var startFixtureParameters = null;
+                    // Set the fixture's display and real values to the correct values from the cue
+                    let f = 0; const fMax = step.fixtures.length; for (; f < fMax; f++) {
+                        startFixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(step.fixtures[f].id)].parameters;
+                        let c = 0; const cMax = step.fixtures[f].parameters.length; for (; c < cMax; c++) {
+                            if (startFixtureParameters[c].locked === false) {
+                                startFixtureParameters[c].value = step.fixtures[f].parameters[c].value;
+                                startFixtureParameters[c].displayValue = cppaddon.mapRange(step.fixtures[f].parameters[c].value, step.fixtures[f].parameters[c].min, step.fixtures[f].parameters[c].max, 0, 100);
+                            }
+                        }
+                    }
+
+                    if (SETTINGS.automark === true) {
+                        if (sequence.steps.map(el => el.id).indexOf(sequence.lastCue) + 1 === sequence.steps.length) {
+                            var nextCue = sequence.steps[0];
+                        } else {
+                            var nextCue = sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.lastCue) + 1];
+                        }
+                        f = 0; const fMax1 = nextCue.fixtures.length; for (; f < fMax1; f++) {
+                            startFixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].parameters;
+                            nextCueFixtureParameters = nextCue.fixtures[f].parameters;
+                            if (fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].hasIntensity == true) {
+                                if (startFixtureParameters[startFixtureParameters.map(el => el.type).indexOf(1)].value === 0 && nextCueFixtureParameters[nextCueFixtureParameters.map(el => el.type).indexOf(1)].value > 0) {
+                                    c = 0; const cMax1 = nextCueFixtureParameters.length; for (; c < cMax1; c++) {
+                                        if (startFixtureParameters[c].locked === false && startFixtureParameters[c].type != 1) {
+                                            startFixtureParameters[c].value = nextCueFixtureParameters[c].value;
+                                            startFixtureParameters[c].displayValue = cppaddon.mapRange(nextCueFixtureParameters[c].value, nextCueFixtureParameters[c].min, nextCueFixtureParameters[c].max, 0, 100);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                io.emit('sequences', { sequences: cleanSequences(), target: true });
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            }
+        }
     }
     if (blackout === false) {
         var displayChanged = false;
@@ -986,7 +1107,7 @@ function openShow(file = "show.json") {
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
-        io.emit('sequences', cleanSequences());
+        io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('groups', { groups: cleanGroups(), target: true });
     });
 };
@@ -1092,6 +1213,7 @@ io.on('connection', function (socket) {
     socket.emit('currentCue', currentCueID);
     socket.emit('fixtures', { fixtures: cleanFixtures(), target: true });
     socket.emit('cues', cleanCues());
+    socket.emit('sequences', { sequences: cleanSequences(), target: true });
     socket.emit('groups', { groups: cleanGroups(), target: true });
     socket.emit('presets', cleanPresets());
     socket.emit('blackout', blackout);
@@ -1132,7 +1254,7 @@ io.on('connection', function (socket) {
         io.emit('cues', cleanCues());
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('cueActionBtn', false);
-        io.emit('sequences', cleanSequences());
+        io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('resetView', { type: 'show', eid: "" });
         io.emit('message', { type: "info", content: "A new show has been created!" });
         saveShow();
@@ -1148,7 +1270,7 @@ io.on('connection', function (socket) {
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
-        io.emit('sequences', cleanSequences());
+        io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('cueActionBtn', false);
         io.emit('resetView', { type: 'show', eid: "" });
@@ -1393,6 +1515,25 @@ io.on('connection', function (socket) {
                         }
                     }
                 }
+                var sequence = null;
+                let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
+                    sequence = sequences[s];
+                    if (sequence.ids.some(e => e === fixtureID)) {
+                        sequence.ids.splice(sequence.ids.map(el => el).indexOf(fixtureID), 1);
+                        let st = 0; const stMax = sequence.steps.length; for (; st < stMax; st++) {
+                            if (sequence.steps[st].fixtures.some(e => e.id === fixtureID)) {
+                                sequence.steps[st].fixtures.splice(sequence.steps[st].fixtures.map(el => el.id).indexOf(fixtureID), 1);
+                                if (sequence.steps[st].fixtures.length == 0) {
+                                    sequence.steps.splice(sequence.steps.map(el => el.id).indexOf(sequence.steps[st].id), 1);
+                                }
+                            }
+                        }
+                    }
+                    if (sequence.ids.length == 0) {
+                        sequences.splice(sequences.map(el => el.id).indexOf(sequence.id), 1);
+                        io.emit('resetView', { type: 'sequences', eid: sequence.id });
+                    }
+                }
                 let g = 0; const gMax = groups.length; for (; g < gMax; g++) {
                     if (groups[g].ids.some(e => e === fixtureID)) {
                         groups[g].ids.splice(groups[g].ids.map(el => el).indexOf(fixtureID), 1);
@@ -1429,6 +1570,7 @@ io.on('connection', function (socket) {
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 io.emit('groups', { groups: cleanGroups(), target: true });
+                io.emit('sequences', { sequences: cleanSequences(), target: true });
                 saveShow();
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
@@ -1776,6 +1918,7 @@ io.on('connection', function (socket) {
                 active: false,
                 following: false,
                 fixtures: cleanFixturesForCue(),
+                sequences: cleanSequencesForCue(),
                 includeIntensityColor: true,
                 includePosition: true,
                 includeBeam: true
@@ -1794,6 +1937,7 @@ io.on('connection', function (socket) {
             if (cues.some(e => e.id === cueID)) {
                 var cue = cues[cues.map(el => el.id).indexOf(cueID)];
                 cue.fixtures = cleanFixturesForCue();
+                cue.sequences = cleanSequencesForCue();
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue parameters have been updated!" });
@@ -2077,10 +2221,36 @@ io.on('connection', function (socket) {
                 ids: fixtureIDs,
                 includeIntensityColor: true,
                 includePosition: true,
-                includeBeam: true
+                includeBeam: true,
+                currentStep: "",
+                currentStepID: "",
+                lastStep: ""
             };
             sequences.push(newSequence);
-            io.emit('sequences', cleanSequences());
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('recordSequenceStep', function (sequenceID) {
+        if (fixtures.length != 0) {
+            var sequence = sequences[sequences.map(el => el.id).indexOf(sequenceID)];
+            var newStep = {
+                id: generateID(),
+                name: "" + (sequence.steps.length + 1),
+                upTime: SETTINGS.defaultUpTime,
+                downTime: SETTINGS.defaultDownTime,
+                follow: 0,
+                upStep: SETTINGS.defaultUpTime * 40,
+                downStep: SETTINGS.defaultDownTime * 40,
+                active: false,
+                following: false,
+                fixtures: cleanFixturesForSequence(sequence.ids)
+            };
+            sequence.steps.push(newStep);
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -2150,6 +2320,15 @@ io.on('connection', function (socket) {
 
     });
 
+    socket.on('getSequenceParameters', function (sequenceID) {
+        if (sequences.length != 0) {
+            socket.emit('sequenceParameters', sequences[sequences.map(el => el.id).indexOf(sequenceID)]);
+        } else {
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
+        }
+
+    });
+
     socket.on('changeGroupParameterValue', function (msg) {
         if (fixtures.length != 0 && groups.length != 0) {
             var group = groups[groups.map(el => el.id).indexOf(msg.id)];
@@ -2188,11 +2367,83 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('getSequenceFixtures', function (sequenceID) {
+        if (sequences.length != 0) {
+            socket.emit('sequenceFixtures', getSequenceFixtures(sequenceID));
+        } else {
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
+        }
+    });
+
     socket.on('editGroupSettings', function (msg) {
         if (groups.length != 0) {
             var group = groups[groups.map(el => el.id).indexOf(msg.id)];
             group.name = msg.name;
             io.emit('groups', { groups: cleanGroups(), target: true });
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No groups exist!" });
+        }
+    });
+
+    socket.on('editSequenceSettings', function (msg) {
+        if (sequences.length != 0) {
+            var sequence = sequences[sequences.map(el => el.id).indexOf(msg.id)];
+            sequence.name = msg.name;
+            if (sequence.active == false && msg.active == true) {
+                sequence.active = msg.active;
+                if (sequence.steps.length > 0) {
+                    sequence.currentStep = sequence.steps[0].id;
+                    sequence.currentStepID = sequence.steps[0].id;
+                    sequence.steps[0].active = true;
+                }
+            } else if (sequence.active == true && msg.active == false) {
+                sequence.active = msg.active;
+                sequence.currentStep = "";
+                sequence.currentStepID = "";
+                let s = 0; const sMax = sequence.steps.length; for (; s < sMax; s++) {
+                    sequence.steps[s].active = false;
+                }
+            }
+            sequence.includeIntensityColor = msg.includeIntensityColor;
+            sequence.includePosition = msg.includePosition;
+            sequence.includeBeam = msg.includeBeam;
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No groups exist!" });
+        }
+    });
+
+    socket.on('editSequenceStepSettings', function (msg) {
+        if (sequences.length != 0) {
+            var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
+            var step = sequence.steps[sequence.steps.map(el => el.id).indexOf(msg.step)];
+            var changed = true;
+            if (parseInt(msg.upTime) == step.upTime && parseInt(msg.downTime) == step.downTime) {
+                changed = false;
+            }
+            step.upTime = parseInt(msg.upTime);
+            step.downTime = parseInt(msg.downTime);
+            if (step.upTime == 0) {
+                step.upTime = 0.001;
+            }
+            if (step.downTime == 0) {
+                step.downTime = 0.001;
+            }
+            if (msg.follow < -1) {
+                step.follow = -1;
+            } else {
+                step.follow = msg.follow;
+            }
+            if (step.follow === 0) {
+                step.follow = 0.001;
+            }
+            if (changed == true) {
+                step.upStep = step.upTime * 40;
+                step.downStep = step.downTime * 40;
+            }
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
@@ -2208,6 +2459,18 @@ io.on('connection', function (socket) {
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
+        }
+    });
+
+    socket.on('removeSequence', function (sequenceID) {
+        if (sequences.length != 0) {
+            sequences.splice(sequences.map(el => el.id).indexOf(sequenceID), 1);
+            socket.emit('message', { type: "info", content: "Sequence has been removed!" });
+            io.emit('resetView', { type: 'sequences', eid: sequenceID });
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
     });
 
@@ -2257,6 +2520,39 @@ io.on('connection', function (socket) {
             saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
+        }
+    });
+
+    socket.on('removeSequenceFixture', function (msg) {
+        if (sequences.length != 0) {
+            var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
+            if (sequence.ids.some(e => e === msg.fixture)) {
+                sequence.ids.splice(sequence.ids.map(el => el).indexOf(msg.fixture), 1);
+            }
+            if (sequence.ids.length == 0) {
+                sequences.splice(sequences.map(el => el.id).indexOf(sequence.id), 1);
+                socket.emit('message', { type: "info", content: "Sequence has been removed!" });
+                io.emit('resetView', { type: 'sequences', eid: sequence.id });
+            }
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
+            socket.emit('message', { type: "info", content: "Fixture removed from sequence!" });
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
+        }
+    });
+
+    socket.on('removeSequenceStep', function (msg) {
+        if (sequences.length != 0) {
+            var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
+            if (sequence.steps.some(e => e.id === msg.step)) {
+                sequence.steps.splice(sequence.steps.map(el => el.id).indexOf(msg.step), 1);
+            }
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
+            socket.emit('message', { type: "info", content: "Step removed from sequence!" });
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
     });
 

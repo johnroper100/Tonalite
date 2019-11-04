@@ -4,6 +4,7 @@ var app = new Vue({
     data: {
         currentView: 'fixtures',
         fixtureParametersTab: 'all',
+        cuesTab: 'cues',
         desktop: false,
         fixtures: [],
         groups: [],
@@ -27,8 +28,10 @@ var app = new Vue({
         version: "",
         currentEffect: {},
         addGroupSelected: [],
+        addSequenceSelected: [],
         currentGroup: {},
         currentGroupFixtures: {},
+        currentSequenceFixtures: {},
         usbData: [],
         usbPath: "",
         settings: {},
@@ -107,6 +110,9 @@ var app = new Vue({
                 socket.emit("recordCue");
             }
         },
+        recordSequenceStep: function () {
+            socket.emit("recordSequenceStep", app.currentSequence.id);
+        },
         nextCue: function () {
             socket.emit("nextCue");
         },
@@ -155,8 +161,14 @@ var app = new Vue({
                 app.fixtureParametersTab = 'all';
             }
         },
+        getSequenceParameters: function (sequenceID) {
+            socket.emit("getSequenceParameters", sequenceID);
+        },
         getGroupFixtures: function (groupID) {
             socket.emit("getGroupFixtures", groupID);
+        },
+        getSequenceFixtures: function (sequenceID) {
+            socket.emit("getSequenceFixtures", sequenceID);
         },
         getCueSettings: function (cueID) {
             socket.emit("getCueSettings", cueID);
@@ -223,6 +235,12 @@ var app = new Vue({
         },
         editGroupSettings: function () {
             socket.emit('editGroupSettings', { id: app.currentGroup.id, name: app.currentGroup.name });
+        },
+        editSequenceSettings: function () {
+            socket.emit('editSequenceSettings', { id: app.currentSequence.id, name: app.currentSequence.name, active: app.currentSequence.active, includeIntensityColor: app.currentSequence.includeIntensityColor, includePosition: app.currentSequence.includePosition, includeBeam: app.currentSequence.includeBeam });
+        },
+        editSequenceStepSettings: function (step) {
+            socket.emit('editSequenceStepSettings', { sequence: app.currentSequence.id, step: step.id, upTime: step.upTime, downTime: step.downTime, follow: step.follow });
         },
         removeFixture: function () {
             bootbox.confirm("Are you sure you want to delete this fixture?", function (result) {
@@ -332,6 +350,10 @@ var app = new Vue({
             app.addGroupSelected = [];
             $('#addGroupModal').modal("show");
         },
+        addSequenceModal: function () {
+            app.addSequenceSelected = [];
+            $('#addSequenceModal').modal("show");
+        },
         addGroup: function () {
             var list = [];
             let f = 0; const fMax = app.addGroupSelected.length; for (; f < fMax; f++) {
@@ -341,9 +363,22 @@ var app = new Vue({
             app.addGroupSelected = [];
             $('#addGroupModal').modal("hide");
         },
+        addSequence: function () {
+            var list = [];
+            let f = 0; const fMax = app.addSequenceSelected.length; for (; f < fMax; f++) {
+                list.push(app.addSequenceSelected[f].id);
+            }
+            socket.emit('addSequence', list);
+            app.addSequenceSelected = [];
+            $('#addSequenceModal').modal("hide");
+        },
         getGroupSettings: function () {
             app.getGroupFixtures(app.currentGroup.id);
             app.currentView = 'groupSettings';
+        },
+        getSequenceSettings: function () {
+            app.getSequenceFixtures(app.currentSequence.id);
+            app.currentView = 'sequenceSettings';
         },
         removeGroup: function () {
             bootbox.confirm("Are you sure you want to delete this group?", function (result) {
@@ -353,10 +388,33 @@ var app = new Vue({
                 }
             });
         },
+        removeSequence: function () {
+            bootbox.confirm("Are you sure you want to delete this sequence?", function (result) {
+                if (result === true) {
+                    app.currentView = 'cues';
+                    app.cuesTab = 'sequences';
+                    socket.emit('removeSequence', app.currentSequence.id);
+                }
+            });
+        },
         removeGroupFixture: function (fixtureID) {
             bootbox.confirm("Are you sure you want remove this fixture from the group?", function (result) {
                 if (result === true) {
                     socket.emit('removeGroupFixture', { group: app.currentGroup.id, fixture: fixtureID });
+                }
+            });
+        },
+        removeSequenceFixture: function (fixtureID) {
+            bootbox.confirm("Are you sure you want remove this fixture from the sequence?", function (result) {
+                if (result === true) {
+                    socket.emit('removeSequenceFixture', { sequence: app.currentSequence.id, fixture: fixtureID });
+                }
+            });
+        },
+        removeSequenceStep: function (stepID) {
+            bootbox.confirm("Are you sure you want remove this step from the sequence?", function (result) {
+                if (result === true) {
+                    socket.emit('removeSequenceStep', { sequence: app.currentSequence.id, step: stepID });
                 }
             });
         },
@@ -403,8 +461,10 @@ Mousetrap.bind('ctrl+s', function () { window.location = "/showFile"; return fal
 socket.on('connect', function () {
     app.currentView = 'fixtures';
     app.fixtureParametersTab = 'all';
+    app.cuesTab = 'cues';
     app.fixtures = [];
     app.addGroupSelected = [];
+    app.addSequenceSelected = [];
     app.groups = [];
     app.cues = [];
     app.sequences = [];
@@ -428,6 +488,7 @@ socket.on('connect', function () {
     app.currentEffect = {};
     app.currentGroup = {};
     app.currentGroupFixtures = {};
+    app.currentSequenceFixtures = {};
     app.usbData = [];
     app.usbPath = "";
     app.settings = {};
@@ -489,9 +550,14 @@ socket.on('cues', function (msg) {
 });
 
 socket.on('sequences', function (msg) {
-    app.sequences = msg;
-    if (app.currentView == 'sequenceSettings' && app.currentSequence != {}) {
-        //app.getSequenceSettings(app.currentSequence.id);
+    app.sequences = msg.sequences;
+    if (msg.target == true) {
+        if ((app.currentView == 'sequenceParameters' || app.currentView == 'sequenceSettings') && app.currentSequence != {}) {
+            app.getSequenceParameters(app.currentSequence.id, false);
+            if (app.currentView == 'sequenceSettings') {
+                app.getSequenceFixtures(app.currentSequence.id);
+            }
+        }
     }
 });
 
@@ -545,8 +611,19 @@ socket.on('groupParameters', function (msg) {
     }
 });
 
+socket.on('sequenceParameters', function (msg) {
+    app.currentSequence = msg;
+    if (app.currentView != "sequenceSettings") {
+        app.currentView = "sequenceParameters";
+    }
+});
+
 socket.on('groupFixtures', function (msg) {
     app.currentGroupFixtures = msg;
+});
+
+socket.on('sequenceFixtures', function (msg) {
+    app.currentSequenceFixtures = msg;
 });
 
 socket.on('cueSettings', function (msg) {
@@ -574,7 +651,14 @@ socket.on('resetView', function (msg) {
     } else if (msg.type == 'cues') {
         if (app.currentCue.id == msg.eid) {
             app.currentView = 'cues';
+            app.cuesTab = 'cues';
             app.currentCue = {};
+        }
+    } else if (msg.type == 'sequences') {
+        if (app.currentSequence.id == msg.eid) {
+            app.currentView = 'cues';
+            app.cuesTab = 'sequences';
+            app.currentSequence = {};
         }
     } else if (msg.type == 'presets') {
         if (app.currentPreset.id == msg.eid) {
@@ -588,6 +672,7 @@ socket.on('resetView', function (msg) {
         app.currentEffect = {};
         app.currentPreset = {};
         app.addGroupSelected = [];
+        app.addSequenceSelected = [];
     } else if (msg.type == 'groups') {
         if (app.currentGroup.id == msg.eid) {
             app.currentView = 'groups';
