@@ -1462,6 +1462,10 @@ io.on('connection', function (socket) {
                             }
                         }
                     }
+                    if (sequence.ids.length == 0) {
+                        sequences.splice(sequences.map(el => el.id).indexOf(sequence.id), 1);
+                        io.emit('resetView', { type: 'sequences', eid: sequence.id });
+                    }
                 }
                 let g = 0; const gMax = groups.length; for (; g < gMax; g++) {
                     if (groups[g].ids.some(e => e === fixtureID)) {
@@ -1499,6 +1503,7 @@ io.on('connection', function (socket) {
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 io.emit('groups', { groups: cleanGroups(), target: true });
+                io.emit('sequences', { sequences: cleanSequences(), target: true });
                 saveShow();
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
