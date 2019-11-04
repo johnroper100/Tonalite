@@ -1,6 +1,6 @@
 # Cue Settings
 
-You can access the settings for a cue by clicking on it in the list on the `Cues` tab.
+You can access the settings for a cue by clicking on it in the list on the `Cues > Cues` tab.
 
 ![Cue settings](../images/cue_settings.png)
 

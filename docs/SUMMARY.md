@@ -15,6 +15,8 @@
     * [Recording Cues](cues/recording_cues.md)
     * [Cue Settings](cues/cue_settings.md)
     * [Moving Between Cues](cues/moving_between_cues.md)
+* [Sequences](sequences/README.md)
+    * [Sequence Settings](sequences/sequence_settings.md)
 * [Groups](groups/README.md)
     * [Adding Groups](groups/adding_groups.md)
     * [Parameters](groups/parameters/README.md)
