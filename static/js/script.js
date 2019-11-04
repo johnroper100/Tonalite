@@ -408,6 +408,13 @@ var app = new Vue({
                 }
             });
         },
+        removeSequenceStep: function (stepID) {
+            bootbox.confirm("Are you sure you want remove this step from the sequence?", function (result) {
+                if (result === true) {
+                    socket.emit('removeSequenceStep', { sequence: app.currentSequence.id, step: stepID });
+                }
+            });
+        },
         getShowsFromUSB: function () {
             socket.emit('getShowsFromUSB');
         },

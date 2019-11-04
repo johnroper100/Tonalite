@@ -667,7 +667,7 @@
                                                 </td>
                                                 <td><input type="number" class="form-control" v-model="step.follow">
                                                 </td>
-                                                <td><button class="btn btn-danger btn-sm">Delete</button></td>
+                                                <td><button class="btn btn-danger btn-sm" @click="removeSequenceStep(step.id)">Delete</button></td>
                                             </tr>
                                         </tbody>
                                     </table>
