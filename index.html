@@ -662,9 +662,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="step in currentSequence.steps" :key="step.id"
+                                            <tr v-for="(step, index) in currentSequence.steps" :key="step.id"
                                                 :class="{'bg-warning': step.active == true}">
-                                                <th scope="row">{{step.name}}</th>
+                                                <th scope="row">{{index+1}}</th>
                                                 <td><input type="number" class="form-control" min="0"
                                                         v-model="step.upTime" @input="editSequenceStepSettings(step)">
                                                 </td>
