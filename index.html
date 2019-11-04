@@ -724,9 +724,16 @@
                         <div class="col-6"><button class="btn btn-warning btn-sm btn-block"
                                 :class="{'disabled': cuesTab == 'sequences'}" @click="cuesTab = 'cues'">Cues</button>
                         </div>
-                        <div class="col-6"><button class="btn btn-warning btn-sm btn-block"
-                                :class="{'disabled': cuesTab == 'cues'}"
-                                @click="cuesTab = 'sequences'">Sequences</button>
+                        <div class="col-6">
+                            <div>
+                                <div>
+                                    <div>
+                                        <button class="btn btn-warning btn-sm btn-block"
+                                            :class="{'disabled': cuesTab == 'cues'}"
+                                            @click="cuesTab = 'sequences'">Sequences</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div v-if="cuesTab == 'cues'">
