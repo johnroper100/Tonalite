@@ -2331,6 +2331,41 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('editSequenceStepSettings', function (msg) {
+        if (sequences.length != 0) {
+            var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
+            var step = sequence.steps[sequence.steps.map(el => el.id).indexOf(msg.step)];
+            var changed = true;
+            if (parseInt(msg.upTime) == step.upTime && parseInt(msg.downTime) == step.downTime) {
+                changed = false;
+            }
+            step.upTime = parseInt(msg.upTime);
+            step.downTime = parseInt(msg.downTime);
+            if (step.upTime == 0) {
+                step.upTime = 0.001;
+            }
+            if (step.downTime == 0) {
+                step.downTime = 0.001;
+            }
+            if (msg.follow < -1) {
+                step.follow = -1;
+            } else {
+                step.follow = msg.follow;
+            }
+            if (step.follow === 0) {
+                step.follow = 0.001;
+            }
+            if (changed == true) {
+                step.upStep = step.upTime * 40;
+                step.downStep = step.downTime * 40;
+            }
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No groups exist!" });
+        }
+    });
+
     socket.on('removeGroup', function (groupID) {
         if (groups.length != 0) {
             groups.splice(groups.map(el => el.id).indexOf(groupID), 1);

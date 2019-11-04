@@ -239,6 +239,9 @@ var app = new Vue({
         editSequenceSettings: function () {
             socket.emit('editSequenceSettings', { id: app.currentSequence.id, name: app.currentSequence.name, active: app.currentSequence.active, includeIntensityColor: app.currentSequence.includeIntensityColor, includePosition: app.currentSequence.includePosition, includeBeam: app.currentSequence.includeBeam });
         },
+        editSequenceStepSettings: function (step) {
+            socket.emit('editSequenceStepSettings', { sequence: app.currentSequence.id, step: step.id, upTime: step.upTime, downTime: step.downTime, follow: step.follow });
+        },
         removeFixture: function () {
             bootbox.confirm("Are you sure you want to delete this fixture?", function (result) {
                 if (result === true) {
