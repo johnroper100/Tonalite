@@ -864,6 +864,73 @@ function calculateStack() {
         }
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
     }
+    let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
+        if (sequences[s].active == true) {
+            sequence = sequences[sequences.map(el => el.id).indexOf(sequences[s].id)];
+            if (sequence.currentStep != "") {
+                step = sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.currentStep)];
+                channels = calculateCue(step, sequence.includeIntensityColor, sequence.includePosition, sequence.includeBeam, true);
+                step.upStep -= 1;
+                step.downStep -= 1;
+                // Check if the cue needs to be followed by another cue
+                if (step.upStep < 0 && step.downStep < 0) {
+                    step.active = false;
+                    if (step.following === false) {
+                        step.upStep = step.follow * 40;
+                        step.downStep = step.follow * 40;
+                        step.following = true;
+                    } else {
+                        step.upStep = step.upTime * 40;
+                        step.downStep = step.downTime * 40;
+                        step.following = false;
+                        if (sequence.steps.map(el => el.id).indexOf(sequence.currentStep) === sequence.steps.length - 1) {
+                            sequence.currentStep = sequence.steps[0].id;
+                        } else {
+                            sequence.currentStep = sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.currentStep) + 1].id;
+                        }
+                        sequence.lastStep = sequence.currentStep;
+                        sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.currentStep)].active = true;
+                        sequence.currentStepID = sequence.currentStep;
+                    }
+                    var startFixtureParameters = null;
+                    // Set the fixture's display and real values to the correct values from the cue
+                    let f = 0; const fMax = step.fixtures.length; for (; f < fMax; f++) {
+                        startFixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(step.fixtures[f].id)].parameters;
+                        let c = 0; const cMax = step.fixtures[f].parameters.length; for (; c < cMax; c++) {
+                            if (startFixtureParameters[c].locked === false) {
+                                startFixtureParameters[c].value = step.fixtures[f].parameters[c].value;
+                                startFixtureParameters[c].displayValue = cppaddon.mapRange(step.fixtures[f].parameters[c].value, step.fixtures[f].parameters[c].min, step.fixtures[f].parameters[c].max, 0, 100);
+                            }
+                        }
+                    }
+
+                    if (SETTINGS.automark === true) {
+                        if (sequence.steps.map(el => el.id).indexOf(sequence.lastCue) + 1 === sequence.steps.length) {
+                            var nextCue = sequence.steps[0];
+                        } else {
+                            var nextCue = sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.lastCue) + 1];
+                        }
+                        f = 0; const fMax1 = nextCue.fixtures.length; for (; f < fMax1; f++) {
+                            startFixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].parameters;
+                            nextCueFixtureParameters = nextCue.fixtures[f].parameters;
+                            if (fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].hasIntensity == true) {
+                                if (startFixtureParameters[startFixtureParameters.map(el => el.type).indexOf(1)].value === 0 && nextCueFixtureParameters[nextCueFixtureParameters.map(el => el.type).indexOf(1)].value > 0) {
+                                    c = 0; const cMax1 = nextCueFixtureParameters.length; for (; c < cMax1; c++) {
+                                        if (startFixtureParameters[c].locked === false && startFixtureParameters[c].type != 1) {
+                                            startFixtureParameters[c].value = nextCueFixtureParameters[c].value;
+                                            startFixtureParameters[c].displayValue = cppaddon.mapRange(nextCueFixtureParameters[c].value, nextCueFixtureParameters[c].min, nextCueFixtureParameters[c].max, 0, 100);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    io.emit('sequences', { sequences: cleanSequences(), target: true });
+                }
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            }
+        }
+    }
     if (blackout === false) {
         var displayChanged = false;
         var effectChanIndex = null;
@@ -2154,7 +2221,10 @@ io.on('connection', function (socket) {
                 ids: fixtureIDs,
                 includeIntensityColor: true,
                 includePosition: true,
-                includeBeam: true
+                includeBeam: true,
+                currentStep: "",
+                currentStepID: "",
+                lastStep: ""
             };
             sequences.push(newSequence);
             io.emit('sequences', { sequences: cleanSequences(), target: true });
@@ -2172,7 +2242,7 @@ io.on('connection', function (socket) {
                 name: "" + (sequence.steps.length + 1),
                 upTime: SETTINGS.defaultUpTime,
                 downTime: SETTINGS.defaultDownTime,
-                follow: -1,
+                follow: 0,
                 upStep: SETTINGS.defaultUpTime * 40,
                 downStep: SETTINGS.defaultDownTime * 40,
                 active: false,
@@ -2320,7 +2390,17 @@ io.on('connection', function (socket) {
         if (sequences.length != 0) {
             var sequence = sequences[sequences.map(el => el.id).indexOf(msg.id)];
             sequence.name = msg.name;
-            sequence.active = msg.active;
+            if (sequence.active == false && msg.active == true) {
+                sequence.active = msg.active;
+                if (sequence.steps.length > 0) {
+                    sequence.currentStep = sequence.steps[0].id;
+                    sequence.currentStepID = sequence.steps[0].id;
+                }
+            } else if (sequence.active == true && msg.active == false) {
+                sequence.active = msg.active;
+                sequence.currentStep = "";
+                sequence.currentStepID = "";
+            }
             sequence.includeIntensityColor = msg.includeIntensityColor;
             sequence.includePosition = msg.includePosition;
             sequence.includeBeam = msg.includeBeam;
