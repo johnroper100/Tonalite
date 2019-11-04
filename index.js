@@ -1448,6 +1448,21 @@ io.on('connection', function (socket) {
                         }
                     }
                 }
+                var sequence = null;
+                let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
+                    sequence = sequences[s];
+                    if (sequence.ids.some(e => e === fixtureID)) {
+                        sequence.ids.splice(sequence.ids.map(el => el).indexOf(fixtureID), 1);
+                        let st = 0; const stMax = sequence.steps.length; for (; st < stMax; st++) {
+                            if (sequence.steps[st].fixtures.some(e => e.id === fixtureID)) {
+                                sequence.steps[st].fixtures.splice(sequence.steps[st].fixtures.map(el => el.id).indexOf(fixtureID), 1);
+                                if (sequence.steps[st].fixtures.length == 0) {
+                                    sequence.steps.splice(sequence.steps.map(el => el.id).indexOf(sequence.steps[st].id), 1);
+                                }
+                            }
+                        }
+                    }
+                }
                 let g = 0; const gMax = groups.length; for (; g < gMax; g++) {
                     if (groups[g].ids.some(e => e === fixtureID)) {
                         groups[g].ids.splice(groups[g].ids.map(el => el).indexOf(fixtureID), 1);
