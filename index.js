@@ -2424,11 +2424,6 @@ io.on('connection', function (socket) {
             if (sequence.steps.some(e => e.id === msg.step)) {
                 sequence.steps.splice(sequence.steps.map(el => el.id).indexOf(msg.step), 1);
             }
-            if (sequence.steps.length == 0) {
-                sequences.splice(sequences.map(el => el.id).indexOf(sequence.id), 1);
-                socket.emit('message', { type: "info", content: "Sequence has been removed!" });
-                io.emit('resetView', { type: 'sequences', eid: sequence.id });
-            }
             io.emit('sequences', { sequences: cleanSequences(), target: true });
             socket.emit('message', { type: "info", content: "Step removed from sequence!" });
             saveShow();
