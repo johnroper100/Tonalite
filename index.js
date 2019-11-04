@@ -480,6 +480,13 @@ function cleanFixturesForCue() {
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
         newFixtures.push(cleanFixtureForCue(fixtures[f]));
     }
+    let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
+        if (sequences[s].active == true) {
+            let i = 0; const iMax = sequences[s].ids.length; for (; i < iMax; i++) {
+                newFixtures.splice(newFixtures.map(el => el.id).indexOf(sequences[s].ids[i]), 1);
+            }
+        }
+    }
     return newFixtures;
 };
 
@@ -795,7 +802,21 @@ function calculateStack() {
         channels = calculateCue(cue, cue.includeIntensityColor, cue.includePosition, cue.includeBeam, false);
         let s = 0; const sMax = cue.sequences.length; for (; s < sMax; s++) {
             startSequence = sequences[sequences.map(el => el.id).indexOf(cue.sequences[s].id)];
-            startSequence.active = cue.sequences[s].active;
+            if (startSequence.active == false && cue.sequences[s].active == true) {
+                startSequence.active = cue.sequences[s].active;
+                if (startSequence.steps.length > 0) {
+                    startSequence.currentStep = startSequence.steps[0].id;
+                    startSequence.currentStepID = startSequence.steps[0].id;
+                    startSequence.steps[0].active = true;
+                }
+            } else if (startSequence.active == true && cue.sequences[s].active == false) {
+                startSequence.active = cue.sequences[s].active;
+                startSequence.currentStep = "";
+                startSequence.currentStepID = "";
+                let st = 0; const stMax = startSequence.steps.length; for (; st < stMax; st++) {
+                    startSequence.steps[st].active = false;
+                }
+            }
         }
         io.emit('sequences', { sequences: cleanSequences(), target: true });
         cue.upStep -= 1;
