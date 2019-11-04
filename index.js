@@ -925,8 +925,8 @@ function calculateStack() {
                             }
                         }
                     }
-                    io.emit('sequences', { sequences: cleanSequences(), target: true });
                 }
+                io.emit('sequences', { sequences: cleanSequences(), target: true });
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             }
         }
@@ -2395,11 +2395,15 @@ io.on('connection', function (socket) {
                 if (sequence.steps.length > 0) {
                     sequence.currentStep = sequence.steps[0].id;
                     sequence.currentStepID = sequence.steps[0].id;
+                    sequence.steps[0].active = true;
                 }
             } else if (sequence.active == true && msg.active == false) {
                 sequence.active = msg.active;
                 sequence.currentStep = "";
                 sequence.currentStepID = "";
+                let s = 0; const sMax = sequence.steps.length; for (; s < sMax; s++) {
+                    sequence.steps[s].active = false;
+                }
             }
             sequence.includeIntensityColor = msg.includeIntensityColor;
             sequence.includePosition = msg.includePosition;
