@@ -9,13 +9,14 @@ Tonalite is lighting control software that uses a web interface accessible from 
 
 - Add fixtures and map them to DMX addresses
 - Control the value of each fixture's parameters (attributes)
+- Add and control effects on fixtures
 - Add cues and cycle through them
+- Add sequences and cycle through them
 - Add groups to control multiple fixtures at once
 - Record presets for easy system overrides
 - Support RGB, RGBW, RGBA, RGBAW, CMY leds, and moving lights
 - Support automark
 - Support ETC's fixture profile format
-- Add and control effects on fixtures
   
 All these features make Tonalite a direct competetor to other well-known theater lighting consoles.
 
