@@ -44,7 +44,7 @@ var app = new Vue({
     computed: {
         filteredFixtureProfilesList() {
             return this.fixtureProfiles.filter(profile => {
-                return (profile[2] + " " + profile[0] + " " + profile[1]).toLowerCase().includes(this.fixtureProfilesSearch.toLowerCase());
+                return (profile.manufacturerName + " " + profile.modelName + " " + profile.modeName).toLowerCase().includes(this.fixtureProfilesSearch.toLowerCase());
             });
         }
     },

@@ -1318,17 +1318,21 @@ io.on('connection', function (socket) {
         fs.readdir(process.cwd() + "/fixtures", (err, files) => {
             var fixturesList = [];
             var fixture = null;
+            var push = false;
             files.forEach(file => {
                 fixture = require(process.cwd() + "/fixtures/" + file);
                 fixture.personalities.forEach(function (personality) {
+                    push = false;
                     if (SETTINGS.interfaceMode == 'dimmer') {
                         if (personality.modelName.indexOf("Dimmer") >= 0) {
-                            fixturesList.push([personality.modelName, personality.modeName, personality.manufacturerName, file, personality.dcid]);
+                            push = true;
                         }
                     } else {
-                        fixturesList.push([personality.modelName, personality.modeName, personality.manufacturerName, file, personality.dcid]);
+                        push = true;
                     }
-
+                    if (push == true) {
+                        fixturesList.push({modelName: personality.modelName, modeName: personality.modeName, manufacturerName: personality.manufacturerName, file: file, dcid: personality.dcid});
+                    }
                 });
             });
             socket.emit('fixtureProfiles', [fixturesList, startDMXAddress]);

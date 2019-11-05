@@ -164,9 +164,10 @@
                                 <ul class="list-group" id="fixtureProfilesList">
                                     <li class="list-group-item fixtureProfileItem"
                                         v-for="profile in filteredFixtureProfilesList"
-                                        @click="addFixture(profile[3], profile[4])">{{profile[2]}} {{profile[0]}}
-                                        <span v-if="profile[1] != '-'">-
-                                            {{profile[1]}}</span> </li>
+                                        @click="addFixture(profile.file, profile.dcid)">{{profile.manufacturerName}}
+                                        {{profile.modelName}}
+                                        <span v-if="profile.modeName != '-'">-
+                                            {{profile.modeName}}</span> </li>
                                 </ul>
                                 <div v-if="fixtureProfiles.length == 0" class="text-danger"> There are no fixture
                                     profiles in your library!
