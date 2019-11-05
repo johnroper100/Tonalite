@@ -35,12 +35,12 @@ The DMX universe that the fixture lives in. Tonalite allows for 2 universes of D
 
 ### Invert Pan
 
-TODO
+If enabled, the values for the pan parameter (if the fixture has one) will be outputted backward in their range. This is to allow for fixtures that have been mounted in a reverse manner.
 
 ### Invert Tilt
 
-TODO
+If enabled, the values for the tilt parameter (if the fixture has one) will be outputted backward in their range. This is to allow for fixtures that have been mounted in a reverse manner.
 
 ### Swap Pan/Tilt
 
-TODO
+The controls for pan and tilt will output to each's opposite channel.
