@@ -13,31 +13,48 @@ Options:
 - `macos` - macOS 64bit
 - `rpi` - Raspberry Pi
 
+Default: `linux`
+
 Reboot required after change.
 
 ## url
 
-The IP address of the web server that runs the control page. This is also used as the ArtNet and sACN output IPs.
+The IP address of the webserver that runs the control page. This is also used as the ArtNet and sACN output IPs.
+
+Default: `localhost`
 
 Reboot required after change.
 
 ## port
 
-The IP port of the web server that runs the control page.
+The IP port of the webserver that runs the control page.
+
+Default: `3000`
 
 Reboot required after change.
 
 ## defaultUpTime
 
-The default up time used for new cues.
+The default up time used for new cues and sequence steps.
+
+Default: `3000`
 
 ## defaultDownTime
 
-The default down time used for cues.
+The default down time used for new cues and sequence steps.
+
+Default: `3000`
 
 ## defaultPresetMode
 
-TODO
+The default mode used for new presets.
+
+Options:
+
+- `ltp` - Latest Takes Precedence
+- `htp` - Highest Takes Precedence
+
+Default: `ltp`
 
 ## desktop
 
@@ -46,7 +63,9 @@ The platform Tonalite is running on.
 Options:
 
 - `true` - Tonalite is running in desktop mode
-- `false` - Tonalite is running in embeded mode (used for the touchscreen model)
+- `false` - Tonalite is running in embedded mode (used for the touchscreen model)
+
+Default: `true`
   
 Reboot required after change.
 
@@ -59,6 +78,8 @@ Options:
 - `true` - Enables uDMX-Artnet
 - `false` - disables uDMX-Artnet
 
+Default: `false`
+
 Reboot required after change.
 
 ## automark
@@ -68,15 +89,26 @@ Whether or not to use automark while transitioning cues.
 Options:
 
 - `true` - Enables automark
-- `false` - disables automark
+- `false` - Disables automark
+
+Default: `true`
 
 ## displayEffectsRealtime
 
-TODO
+Display effect values in the UI as they run while active. This can slow down the interface.
+
+Default: `true`
 
 ## interfaceMode
 
-TODO
+Allows you to choose to see all controls or only those needed for an all-dimmer rig.
+
+Options:
+
+- `normal` - Displays all available controls in the UI
+- `dimmer` - Only displays controls needed for dimmers
+
+Default: `normal`
 
 ## artnetIP
 
