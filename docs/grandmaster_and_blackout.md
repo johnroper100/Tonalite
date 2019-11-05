@@ -1,6 +1,6 @@
 # Grandmaster and Blackout
 
-The grasndmaster and the blackout button are the master overides for the entire lighting system. The only thing they can not control are the presets.
+The grandmaster and the blackout button are the master overrides for the entire lighting system. The only things they can not control are the presets.
 
 ![Grandmaster](images/grandmaster.png)
 
