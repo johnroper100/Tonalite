@@ -266,7 +266,7 @@ async function saveShowToUSB(showName, callback) {
                     if (exists) {
                         io.emit('message', { type: "error", content: "A show file with that name already exists!" });
                     } else {
-                        fs.writeFile(filepath, JSON.stringify([fixtures, cues, groups]), (err) => {
+                        fs.writeFile(filepath, JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, tonaliteVersion: VERSION, lastSaved: moment().format() }), (err) => {
                             if (err) {
                                 logError(err);
                                 done = false;
