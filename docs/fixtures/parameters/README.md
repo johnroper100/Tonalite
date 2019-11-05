@@ -6,19 +6,19 @@ Each of a fixture's parameters can be controlled individually. To access the fix
 
 ### Lock
 
-Beside each parameter there is a lock icon. It switches from unlocked to locked when you click on it. When a parameter is locked, the value you set manually on the slider will override values for the parameter that are saved in cues.
+Besides each parameter, there is a lock icon. It switches from unlocked to locked when you click on it. When a parameter is locked, the value you set manually on the slider will override values for the parameter that are saved in cues.
 
 ### Left
 
-TODO
+Set this parameter to 0%.
 
 ### 50%
 
-TODO
+Set this parameter to 50%;
 
 ### Right
 
-TODO
+Set this parameter to 100%;
 
 ## Buttons
 
