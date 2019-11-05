@@ -1,6 +1,6 @@
 # Fixture Effects
 
-Tonalite supports a number of fixture effects. Each of these fixture effects fall into a specific category based on what parameter(s) of a fixture they control. These cateogories are:
+Tonalite supports several fixture effects. Each of these fixture effects falls into a specific category based on what parameter(s) of a fixture they control. These categories are:
 
 - Color
 - Intensity
@@ -19,13 +19,13 @@ When a fixture has effects added to it, they are displayed at the bottom of the 
 
 ![Effect display deactive](../../../images/effect_display_deactive.png)
 
-Activate the selected effect. When pressed, this button turns into a `Deactivate` button. The activation state of all cues on a fixture are saved to cues.
+Activate the selected effect. When pressed, this button turns into a `Deactivate` button. The activation state of all cues on a fixture is saved to cues.
 
 ### Deactivate
 
 ![Effect display active](../../../images/effect_display_active.png)
 
-Deactivate the selected effect. When pressed, this button turns into an `Activate` button. The activation state of all cues on a fixture are saved to cues.
+Deactivate the selected effect. When pressed, this button turns into an `Activate` button. The activation state of all cues on a fixture is saved to cues.
 
 ### Settings
 
