@@ -1,6 +1,6 @@
 # Adding Effects
 
-Add an effect to the current fixture by using the green `Add Effect` button on the topof the fixture's parameters view. This will open a modal that shows the available effect categories. You can select a category and it will display all the effects aviailable for that category.
+Add an effect to the current fixture by using the green `Add Effect` button on the top of the fixture's parameters view. This will open a modal that shows the available effect categories. You can select a category and it will display all the effects available for that category.
 
 ## Color
 
@@ -12,7 +12,7 @@ Color effects control the RGB values of a fixture. If more parameter colors than
 
 ![Add Effects Modal Intensity](../../../images/effects_modal_intensity.png)
 
-Intensity effects control the intensity values of a fixture. If an intensity parameter does not exist on the fixture, the effect will have no affect.
+Intensity effects control the intensity values of a fixture. If an intensity parameter does not exist on the fixture, the effect will have no effect.
 
 ## Shape
 
@@ -28,4 +28,4 @@ Parameter effects control any other value of a fixture. They can however also co
 
 ### Apply Effect To
 
-Use the dropdown to select which of this fixture's parameters to apply the parameter effect to.
+Use the dropdown to select which of these fixture's parameters to apply the parameter effect to.
