@@ -285,7 +285,7 @@ async function saveShowToUSB(showName, callback) {
 
 function logError(msg) {
     var datetime = new Date();
-    fs.appendFile('error-' + datetime + '.txt', msg, (err) => {
+    fs.writeFile('error-' + datetime + '.txt', msg, (err) => {
         if (err) logError(err);
     });
 };
