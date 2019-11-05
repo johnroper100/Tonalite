@@ -1,4 +1,4 @@
-# Welcome to the Tonalite v2.0.0 Beta 6 Documentation!
+# Welcome to the Tonalite v2.0.0 Beta 7 Documentation!
 
 This book will show you how to get started using Tonalite to create professional lighting quickly and easily.
 
