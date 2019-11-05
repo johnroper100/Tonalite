@@ -1127,6 +1127,9 @@ function openShow(file = "show.json") {
         cues = show.cues;
         groups = show.groups;
         sequences = show.sequences;
+        lastCue = "";
+        currentCue = "";
+        currentCueID = "";
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
