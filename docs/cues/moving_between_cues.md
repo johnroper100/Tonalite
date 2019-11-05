@@ -1,6 +1,6 @@
 # Moving Between Cues
 
-You transition between cues using the buttons at the top of the `Cues > Cues` tab.
+You can transition between cues using the buttons at the top of the `Cues > Cues` tab.
 
 ![Cue motion buttons](../images/cue_motion_buttons.png)
 
