@@ -2332,6 +2332,7 @@ io.on('connection', function (socket) {
                     }
                 }
                 group.parameters[c].value = valAvg / valAvgCount;
+                group.parameters[c].displayValue = cppaddon.mapRange(group.parameters[c].value, group.parameters[c].min, group.parameters[c].max, 0, 100);
                 group.parameters[c].locked = shouldLock;
                 shouldLock = false;
             }
