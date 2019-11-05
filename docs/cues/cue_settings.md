@@ -12,11 +12,11 @@ Transition to this cue specific cue in the time stated in the cue's `Length` set
 
 ### Delete
 
-Remove this cue from the show. You will be prompted to make sure that you really want to do this.
+Remove this cue from the show. You will be prompted to make sure that you want to do this.
 
 ### Clone To End
 
-Make a duplicate of this cue and place it at the end of the cue list. The new cloned cue will have the same settings and fixture values as the cue that is being cloned.
+Duplicate this cue and place it at the end of the cue list. The new cloned cue will have the same settings and fixture values as the cue that is being cloned.
 
 ### Clone To Next
 
@@ -54,12 +54,12 @@ If this is set to a value greater than `-1`, once the cue has been run, the cue 
 
 ### Include Intensitity/Color
 
-TODO
+Allow this cue to control the intensity and color parameters of fixtures.
 
 ### Include Position
 
-TODO
+Allow this cue to control the position parameters of fixtures.
 
 ### Include Beam
 
-TODO
+Allow this cue to control the beam parameters of fixtures.
