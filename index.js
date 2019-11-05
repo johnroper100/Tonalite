@@ -1321,7 +1321,14 @@ io.on('connection', function (socket) {
             files.forEach(file => {
                 fixture = require(process.cwd() + "/fixtures/" + file);
                 fixture.personalities.forEach(function (personality) {
-                    fixturesList.push([personality.modelName, personality.modeName, personality.manufacturerName, file, personality.dcid]);
+                    if (SETTINGS.interfaceMode == 'dimmer') {
+                        if (personality.modelName.indexOf("Dimmer") >= 0) {
+                            fixturesList.push([personality.modelName, personality.modeName, personality.manufacturerName, file, personality.dcid]);
+                        }
+                    } else {
+                        fixturesList.push([personality.modelName, personality.modeName, personality.manufacturerName, file, personality.dcid]);
+                    }
+
                 });
             });
             socket.emit('fixtureProfiles', [fixturesList, startDMXAddress]);
