@@ -202,7 +202,7 @@
                         </div>
                     </div>
                     <div id="fixtureParameters">
-                        <div class="fixtureParameterTabButtons mb-3">
+                        <div class="fixtureParameterTabButtons mb-3" v-if="settings.interfaceMode == 'normal'">
                             <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
                                 :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
                             <button v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0" class="btn btn-secondary"
@@ -304,11 +304,13 @@
                                             href="#intensityEffects" role="tab" aria-controls="intensityEffects"
                                             aria-selected="false">Intensity</a>
                                     </li>
-                                    <li class="nav-item" v-if="currentFixture.parameterTypes.indexOf('Color') >= 0">
+                                    <li v-if="settings.interfaceMode == 'normal'" class="nav-item"
+                                        v-if="currentFixture.parameterTypes.indexOf('Color') >= 0">
                                         <a class="nav-link" id="colorEffects-tab" data-toggle="tab" href="#colorEffects"
                                             role="tab" aria-controls="colorEffects" aria-selected="false">Color</a>
                                     </li>
-                                    <li class="nav-item" v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0">
+                                    <li v-if="settings.interfaceMode == 'normal'" class="nav-item"
+                                        v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0">
                                         <a class="nav-link" id="shapeEffects-tab" data-toggle="tab" href="#shapeEffects"
                                             role="tab" aria-controls="shapeEffects" aria-selected="false">Shape</a>
                                     </li>
@@ -328,8 +330,8 @@
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>
-                                    <div class="tab-pane" id="colorEffects" role="tabpanel"
-                                        aria-labelledby="colorEffects-tab">
+                                    <div v-if="settings.interfaceMode == 'normal'" class="tab-pane" id="colorEffects"
+                                        role="tabpanel" aria-labelledby="colorEffects-tab">
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
                                             <li class="list-group-item fixtureProfileItem"
                                                 v-for="effect in effectProfiles" v-if="effect.type == 'Color'"
@@ -337,8 +339,8 @@
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>
-                                    <div class="tab-pane" id="shapeEffects" role="tabpanel"
-                                        aria-labelledby="shapeEffects-tab">
+                                    <div v-if="settings.interfaceMode == 'normal'" class="tab-pane" id="shapeEffects"
+                                        role="tabpanel" aria-labelledby="shapeEffects-tab">
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListShape">
                                             <li class="list-group-item fixtureProfileItem"
                                                 v-for="effect in effectProfiles" v-if="effect.type == 'Shape'"
@@ -418,7 +420,8 @@
                                     v-model="currentFixture.dmxUniverse">
                             </div>
                         </div>
-                        <div class="col-md-4 col-12" v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0">
+                        <div class="col-md-4 col-12"
+                            v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0 && settings.interfaceMode == 'normal'">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editFixtureSettings" type="checkbox" class="custom-control-input"
@@ -427,7 +430,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12" v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0">
+                        <div class="col-md-4 col-12"
+                            v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0 && settings.interfaceMode == 'normal'">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editFixtureSettings" type="checkbox" class="custom-control-input"
@@ -436,7 +440,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12" v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0">
+                        <div class="col-md-4 col-12"
+                            v-if="currentFixture.parameterTypes.indexOf('Shape') >= 0 && settings.interfaceMode == 'normal'">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editFixtureSettings" type="checkbox" class="custom-control-input"
@@ -558,7 +563,7 @@
                         </div>
                     </div>
                     <div id="groupParameters">
-                        <div class="groupParameterTabButtons mb-3">
+                        <div class="groupParameterTabButtons mb-3" v-if="settings.interfaceMode == 'normal'">
                             <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
                                 :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
                             <button v-if="currentGroup.parameterTypes.indexOf('Shape') >= 0" class="btn btn-secondary"
@@ -840,7 +845,7 @@
                                     @input="editSequenceSettings">
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
@@ -850,7 +855,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
@@ -859,7 +864,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
@@ -958,7 +963,7 @@
                                     v-model="currentCue.follow">
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editCueSettings" type="checkbox" class="custom-control-input"
@@ -968,7 +973,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editCueSettings" type="checkbox" class="custom-control-input"
@@ -977,7 +982,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editCueSettings" type="checkbox" class="custom-control-input"
@@ -1192,7 +1197,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label class="dark" for="defaultUpTime">Default Up Time:</label>
-                                    <input @input="saveSettings()" v-model="settings.defaultUpTime" min="0"
+                                    <input @input="saveSettings" v-model="settings.defaultUpTime" min="0"
                                         class="form-control" type="number" id="defaultUpTime"
                                         placeholder="Default Cue Up Time">
                                 </div>
@@ -1200,20 +1205,30 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label class="dark" for="defaultDownTime">Default Down Time:</label>
-                                    <input @input="saveSettings()" v-model="settings.defaultDownTime" min="0"
+                                    <input @input="saveSettings" v-model="settings.defaultDownTime" min="0"
                                         class="form-control" type="number" id="defaultDownTime"
                                         placeholder="Default Cue Up Time">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-md-7 col-12">
                                 <div class="form-group">
-                                    <label class="dark" for="defaultDownTime">Default Preset Mode:</label>
-                                    <select @change="saveSettings()" v-model="settings.defaultPresetMode"
+                                    <label class="dark" for="defaultPresetMode">Default Preset Mode:</label>
+                                    <select @change="saveSettings" v-model="settings.defaultPresetMode"
                                         class="form-control" id="defaultPresetMode" placeholder="Default Preset Mode">
                                         <option value="ltp">Latest Takes Precedence</option>
                                         <option value="htp">Highest Takes Precedence</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-12">
+                                <div class="form-group">
+                                    <label class="dark" for="interfaceMode">Interface Mode:</label>
+                                    <select @change="saveSettings" v-model="settings.interfaceMode" class="form-control"
+                                        id="interfaceMode" placeholder="Interface Mode">
+                                        <option value="normal">Normal</option>
+                                        <option value="dimmer">Dimmer Only</option>
                                     </select>
                                 </div>
                             </div>
@@ -1222,7 +1237,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
-                                        <input @change="saveSettings()" v-model="settings.udmx" type="checkbox"
+                                        <input @change="saveSettings" v-model="settings.udmx" type="checkbox"
                                             class="custom-control-input" id="useUDMX">
                                         <label class="custom-control-label dark" for="useUDMX">Use uDMX</label>
                                     </div>
@@ -1233,7 +1248,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
-                                        <input @change="saveSettings()" v-model="settings.automark" type="checkbox"
+                                        <input @change="saveSettings" v-model="settings.automark" type="checkbox"
                                             class="custom-control-input" id="useAutomark">
                                         <label class="custom-control-label dark" for="useAutomark">Use Automark</label>
                                     </div>
@@ -1242,7 +1257,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
-                                        <input @change="saveSettings()" v-model="settings.displayEffectsRealtime"
+                                        <input @change="saveSettings" v-model="settings.displayEffectsRealtime"
                                             type="checkbox" class="custom-control-input" id="displayEffectsRealtime">
                                         <label class="custom-control-label dark" for="displayEffectsRealtime">Display
                                             Effects Realtime</label>
@@ -1254,14 +1269,14 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label class="dark" for="artnetIP">ArtNet IP:</label>
-                                    <input @input="saveSettings()" v-model="settings.artnetIP" class="form-control"
+                                    <input @input="saveSettings" v-model="settings.artnetIP" class="form-control"
                                         type="text" id="artnetIP" placeholder="ArtNet IP is localhost">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label class="dark" for="artnetHost">ArtNet Host:</label>
-                                    <input @input="saveSettings()" v-model="settings.artnetHost" class="form-control"
+                                    <input @input="saveSettings" v-model="settings.artnetHost" class="form-control"
                                         type="text" id="artnetHost" placeholder="ArtNet host is 255.255.255.255">
                                 </div>
                             </div>
@@ -1270,7 +1285,7 @@
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label class="dark" for="sacnIP">sACN IP:</label>
-                                    <input @input="saveSettings()" v-model="settings.sacnIP" class="form-control"
+                                    <input @input="saveSettings" v-model="settings.sacnIP" class="form-control"
                                         type="text" id="sacnIP" placeholder="sACN IP is localhost">
                                 </div>
                             </div>

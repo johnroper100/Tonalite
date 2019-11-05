@@ -2708,6 +2708,7 @@ io.on('connection', function (socket) {
         SETTINGS.defaultUpTime = parseInt(msg.defaultUpTime);
         SETTINGS.defaultDownTime = parseInt(msg.defaultDownTime);
         SETTINGS.defaultPresetMode = msg.defaultPresetMode;
+        SETTINGS.interfaceMode = msg.interfaceMode;
         SETTINGS.udmx = msg.udmx;
         SETTINGS.automark = msg.automark;
         SETTINGS.displayEffectsRealtime = msg.displayEffectsRealtime;
