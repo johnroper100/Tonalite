@@ -501,8 +501,9 @@ function cleanSequencesForCue() {
 function cleanFixturesForSequence(fixtureIDs) {
     var newFixtures = [];
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-        if (fixtureIDs.indexOf(fixtures[f].id) >= 0)
+        if (fixtureIDs.indexOf(fixtures[f].id) >= 0) {
             newFixtures.push(cleanFixtureForCue(fixtures[f]));
+        }
     }
     return newFixtures;
 };
@@ -1334,7 +1335,7 @@ io.on('connection', function (socket) {
                         push = true;
                     }
                     if (push == true) {
-                        fixturesList.push({modelName: personality.modelName, modeName: personality.modeName, manufacturerName: personality.manufacturerName, file: file, dcid: personality.dcid});
+                        fixturesList.push({ modelName: personality.modelName, modeName: personality.modeName, manufacturerName: personality.manufacturerName, file: file, dcid: personality.dcid });
                     }
                 });
             });
