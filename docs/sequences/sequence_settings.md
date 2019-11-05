@@ -22,12 +22,12 @@ The name of the sequence. You can use this to describe when the sequence should 
 
 ### Include Intensitity/Color
 
-TODO
+Allow this sequence to control the intensity and color parameters of fixtures.
 
 ### Include Position
 
-TODO
+Allow this sequence to control the position parameters of fixtures.
 
 ### Include Beam
 
-TODO
+Allow this sequence to control the beam parameters of fixtures
