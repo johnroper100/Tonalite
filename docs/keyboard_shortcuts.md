@@ -1,6 +1,6 @@
 # Keyboard Shortcuts
 
-There are a number of keyboard shortcuts built into Tonalite to make it easier to do certain actions while programming and/or running shows.
+There are several keyboard shortcuts built into Tonalite to make it easier to do certain actions while programming and/or running shows.
 
 | Key       | Action      |
 |:---------:|:-----------:|
