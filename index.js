@@ -490,22 +490,20 @@ function cleanFixturesForCue() {
     return newFixtures;
 };
 
+function getFixtureIDs() {
+    var ids = [];
+    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+        ids.push(fixtures[f].id);
+    }
+    return ids;
+};
+
 function cleanSequencesForCue() {
     var newSequences = [];
     let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
         newSequences.push(cleanSequenceForCue(sequences[s]));
     }
     return newSequences;
-};
-
-function cleanFixturesForSequence(fixtureIDs) {
-    var newFixtures = [];
-    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-        if (fixtureIDs.indexOf(fixtures[f].id) >= 0) {
-            newFixtures.push(cleanFixtureForCue(fixtures[f]));
-        }
-    }
-    return newFixtures;
 };
 
 function cleanGroups() {
@@ -661,7 +659,7 @@ function calculateChannelsList() {
 };
 
 // Set the cue's output channel values to the correct values from the fixtures. This is basically saving the cue.
-function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, sequence) {
+function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, ids) {
     var outputChannels = new Array(1024).fill(0);
     var startFixture = null;
     var startParameter = null;
@@ -686,7 +684,7 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
         }
         startFixture.hasActiveEffects = checkFixtureActiveEffects(startFixture.effects);
         let c = 0; const cMax = cue.fixtures[f].parameters.length; for (; c < cMax; c++) {
-            if (startFixture.parameters[c].locked === false) {
+            if (startFixture.parameters[c].locked === false && ids.indexOf(startFixture.id) >= 0) {
                 startParameter = startFixture.parameters[c].value;
                 endParameter = cue.fixtures[f].parameters[c].value;
                 // If the end parameter is greater than the start parameter, the value is going in, and is going out if less
@@ -800,7 +798,7 @@ function calculateStack() {
     if (currentCue != "") {
         // Get the current cue
         cue = cues[cues.map(el => el.id).indexOf(currentCue)];
-        channels = calculateCue(cue, cue.includeIntensityColor, cue.includePosition, cue.includeBeam, false);
+        channels = calculateCue(cue, cue.includeIntensityColor, cue.includePosition, cue.includeBeam, getFixtureIDs());
         let s = 0; const sMax = cue.sequences.length; for (; s < sMax; s++) {
             startSequence = sequences[sequences.map(el => el.id).indexOf(cue.sequences[s].id)];
             if (startSequence.active == false && cue.sequences[s].active == true) {
@@ -893,7 +891,7 @@ function calculateStack() {
             sequence = sequences[sequences.map(el => el.id).indexOf(sequences[s].id)];
             if (sequence.currentStep != "") {
                 step = sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.currentStep)];
-                channels = calculateCue(step, sequence.includeIntensityColor, sequence.includePosition, sequence.includeBeam, true);
+                channels = calculateCue(step, sequence.includeIntensityColor, sequence.includePosition, sequence.includeBeam, sequence.ids);
                 step.upStep -= 1;
                 step.downStep -= 1;
                 // Check if the cue needs to be followed by another cue
@@ -2284,7 +2282,7 @@ io.on('connection', function (socket) {
                 downStep: SETTINGS.defaultDownTime * 40,
                 active: false,
                 following: false,
-                fixtures: cleanFixturesForSequence(sequence.ids)
+                fixtures: cleanFixturesForCue()
             };
             sequence.steps.push(newStep);
             io.emit('sequences', { sequences: cleanSequences(), target: true });
