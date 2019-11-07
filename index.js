@@ -83,6 +83,7 @@ var SETTINGS = {
     udmx: false,
     automark: true,
     displayEffectsRealtime: true,
+    blackoutEnabled: true,
     interfaceMode: 'normal',
     artnetIP: null, // ArtNet output IP
     artnetHost: '255.255.255.255', // Artnet network host
@@ -2348,6 +2349,7 @@ io.on('connection', function (socket) {
             var valAvg = null;
             var valAvgCount = null;
             var shouldLock = false;
+            group.hasLockedParameters = false;
             let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
                 valAvg = 0;
                 valAvgCount = 0;
@@ -2366,6 +2368,9 @@ io.on('connection', function (socket) {
                 group.parameters[c].value = valAvg / valAvgCount;
                 group.parameters[c].displayValue = cppaddon.mapRange(group.parameters[c].value, group.parameters[c].min, group.parameters[c].max, 0, 100);
                 group.parameters[c].locked = shouldLock;
+                if (group.parameters[c].locked) {
+                    group.hasLockedParameters = true;
+                }
                 shouldLock = false;
             }
             socket.emit('groupParameters', group);
@@ -2754,8 +2759,10 @@ io.on('connection', function (socket) {
     });
 
     socket.on('toggleBlackout', function () {
-        blackout = !blackout;
-        io.emit('blackout', blackout);
+        if (SETTINGS.blackoutEnabled == true) {
+            blackout = !blackout;
+            io.emit('blackout', blackout);
+        }
     });
 
     socket.on('changeGrandmasterValue', function (value) {
@@ -2770,6 +2777,7 @@ io.on('connection', function (socket) {
         SETTINGS.interfaceMode = msg.interfaceMode;
         SETTINGS.udmx = msg.udmx;
         SETTINGS.automark = msg.automark;
+        SETTINGS.blackoutEnabled = msg.blackoutEnabled;
         SETTINGS.displayEffectsRealtime = msg.displayEffectsRealtime;
         if (msg.artnetIP != "") {
             SETTINGS.artnetIP = msg.artnetIP;

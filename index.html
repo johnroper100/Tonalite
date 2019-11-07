@@ -519,7 +519,14 @@
                         <div class="col-4 col-lg-2 mb-3" v-for="group in groups" :key="group.id"
                             @click="getGroupParameters(group.id, true)">
                             <div class="groupItem">
-                                <p>{{group.name}}</p>
+                                <p>{{group.name}} <span v-if="group.hasLockedParameters == true" class="d-inline"><i
+                                            class="ml-1 far fa-lock-alt fa-sm"></i>
+                                    </span>
+                                    <span class="d-inline">
+                                        <span v-if="group.hasActiveEffects == true" class="d-inline">
+                                            <i class="ml-1 far fa-hurricane fa-sm"></i>
+                                        </span>
+                                    </span></p>
                             </div>
                         </div>
                         <div v-if="groups.length == 0" class="col-12">
@@ -1007,7 +1014,7 @@
                         <div class="col-12">
                             <button id="blackoutBtn" class="btn"
                                 :class="{ 'btn-primary' : blackout == false, 'btn-danger' : blackout == true}"
-                                @click="toggleBlackout">Blackout</button>
+                                @click="toggleBlackout" :disabled="settings.blackoutEnabled == false">Blackout</button>
                             <label class="ml-2" for="grandmaster">Grandmaster:</label>
                             <input type="range" class="custom-range" id="grandmaster" min="0" max="100"
                                 v-on:input="changeGrandMasterValue" v-model="grandmaster">
