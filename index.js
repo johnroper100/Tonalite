@@ -491,18 +491,13 @@ function cleanFixturesForCue() {
 };
 
 function cleanGroupsForCue() {
-    var newFixtures = [];
-    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-        newFixtures.push(cleanFixtureForCue(fixtures[f]));
+    var newGroups = JSON.parse(JSON.stringify(groups));
+    let g = 0; const gMax = newGroups.length; for (; g < gMax; g++) {
+        delete newGroups[g].name;
+        delete newGroups[g].parameters;
+        delete newGroups[g].parameterTypes;
     }
-    let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
-        if (sequences[s].active == true) {
-            let i = 0; const iMax = sequences[s].ids.length; for (; i < iMax; i++) {
-                newFixtures.splice(newFixtures.map(el => el.id).indexOf(sequences[s].ids[i]), 1);
-            }
-        }
-    }
-    return newFixtures;
+    return newGroups;
 };
 
 function getFixtureIDs() {
