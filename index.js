@@ -2370,11 +2370,11 @@ io.on('connection', function (socket) {
                 group.parameters[c].locked = shouldLock;
                 if (group.parameters[c].locked) {
                     group.hasLockedParameters = true;
+                    io.emit('groups', { groups: cleanGroups(), target: false });
                 }
                 shouldLock = false;
             }
             socket.emit('groupParameters', group);
-            socket.emit('groups', { groups: cleanGroups(), target: false });
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
