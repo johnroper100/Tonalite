@@ -1242,12 +1242,21 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-md-6 col-12">
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
                                         <input @change="saveSettings" v-model="settings.udmx" type="checkbox"
                                             class="custom-control-input" id="useUDMX">
                                         <label class="custom-control-label dark" for="useUDMX">Use uDMX</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="saveSettings" v-model="settings.blackoutEnabled" type="checkbox"
+                                            class="custom-control-input" id="blackoutEnabled">
+                                        <label class="custom-control-label dark" for="blackoutEnabled">Blackout Enabled</label>
                                     </div>
                                 </div>
                             </div>
