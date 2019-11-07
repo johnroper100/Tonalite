@@ -512,6 +512,7 @@ function cleanGroups() {
         delete newGroups[g].ids;
         delete newGroups[g].parameters;
         delete newGroups[g].parameterTypes;
+        delete newGroups[g].effects;
     }
     return newGroups;
 };
@@ -2299,7 +2300,8 @@ io.on('connection', function (socket) {
                 name: "Group " + (groups.length + 1),
                 ids: fixtureIDs,
                 parameters: [],
-                parameterTypes: []
+                parameterTypes: [],
+                effects: []
             };
             newGroup.parameters = generateGroupParameters(newGroup);
             newGroup.parameterTypes = [];
