@@ -1903,7 +1903,7 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('addEffect', function (msg) {
+    socket.on('addFixtureEffect', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
