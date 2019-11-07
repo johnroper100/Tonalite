@@ -2374,6 +2374,7 @@ io.on('connection', function (socket) {
                 shouldLock = false;
             }
             socket.emit('groupParameters', group);
+            socket.emit('groups', { groups: cleanGroups(), target: false });
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
