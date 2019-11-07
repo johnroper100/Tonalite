@@ -497,6 +497,7 @@ function cleanGroupsForCue() {
         delete newGroups[g].parameters;
         delete newGroups[g].parameterTypes;
         delete newGroups[g].hasActiveEffects;
+        delete newGroups[g].hasLockedParameters;
     }
     return newGroups;
 };
@@ -2316,7 +2317,8 @@ io.on('connection', function (socket) {
                 parameters: [],
                 parameterTypes: [],
                 effects: [],
-                hasActiveEffects: false
+                hasActiveEffects: false,
+                hasLockedParameters: false
             };
             newGroup.parameters = generateGroupParameters(newGroup);
             newGroup.parameterTypes = [];
@@ -2403,6 +2405,12 @@ io.on('connection', function (socket) {
                 var group = groups[groups.map(el => el.id).indexOf(msg.id)];
                 var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
                 parameter.locked = !parameter.locked;
+                group.hasLockedParameters = false;
+                let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
+                    if (group.parameters[c].locked) {
+                        group.hasLockedParameters = true;
+                    }
+                }
                 setFixtureGroupValues(group, parameter);
                 io.emit('groups', { groups: cleanGroups(), target: true });
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
