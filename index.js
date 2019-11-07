@@ -490,6 +490,21 @@ function cleanFixturesForCue() {
     return newFixtures;
 };
 
+function cleanGroupsForCue() {
+    var newFixtures = [];
+    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+        newFixtures.push(cleanFixtureForCue(fixtures[f]));
+    }
+    let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
+        if (sequences[s].active == true) {
+            let i = 0; const iMax = sequences[s].ids.length; for (; i < iMax; i++) {
+                newFixtures.splice(newFixtures.map(el => el.id).indexOf(sequences[s].ids[i]), 1);
+            }
+        }
+    }
+    return newFixtures;
+};
+
 function getFixtureIDs() {
     var ids = [];
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
@@ -1956,6 +1971,7 @@ io.on('connection', function (socket) {
                 following: false,
                 fixtures: cleanFixturesForCue(),
                 sequences: cleanSequencesForCue(),
+                groups: cleanGroupsForCue(),
                 includeIntensityColor: true,
                 includePosition: true,
                 includeBeam: true
@@ -1975,6 +1991,7 @@ io.on('connection', function (socket) {
                 var cue = cues[cues.map(el => el.id).indexOf(cueID)];
                 cue.fixtures = cleanFixturesForCue();
                 cue.sequences = cleanSequencesForCue();
+                cue.groups = cleanGroupsForCue();
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue parameters have been updated!" });
@@ -2490,6 +2507,11 @@ io.on('connection', function (socket) {
 
     socket.on('removeGroup', function (groupID) {
         if (groups.length != 0) {
+            let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
+                if (cues[c].groups.some(e => e.id === groupID)) {
+                    cues[c].groups.splice(cues[c].groups.map(el => el.id).indexOf(groupID), 1);
+                }
+            }
             groups.splice(groups.map(el => el.id).indexOf(groupID), 1);
             socket.emit('message', { type: "info", content: "Group has been removed!" });
             io.emit('resetView', { type: 'groups', eid: groupID });
@@ -2502,6 +2524,11 @@ io.on('connection', function (socket) {
 
     socket.on('removeSequence', function (sequenceID) {
         if (sequences.length != 0) {
+            let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
+                if (cues[c].sequences.some(e => e.id === sequenceID)) {
+                    cues[c].sequences.splice(cues[c].sequences.map(el => el.id).indexOf(sequenceID), 1);
+                }
+            }
             sequences.splice(sequences.map(el => el.id).indexOf(sequenceID), 1);
             socket.emit('message', { type: "info", content: "Sequence has been removed!" });
             io.emit('resetView', { type: 'sequences', eid: sequenceID });
@@ -2549,6 +2576,11 @@ io.on('connection', function (socket) {
                 }
             }
             if (group.ids.length == 0) {
+                let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
+                    if (cues[c].groups.some(e => e.id === msg.group)) {
+                        cues[c].groups.splice(cues[c].groups.map(el => el.id).indexOf(msg.group), 1);
+                    }
+                }
                 groups.splice(groups.map(el => el.id).indexOf(group.id), 1);
                 socket.emit('message', { type: "info", content: "Group has been removed!" });
                 io.emit('resetView', { type: 'groups', eid: group.id });
@@ -2568,6 +2600,11 @@ io.on('connection', function (socket) {
                 sequence.ids.splice(sequence.ids.map(el => el).indexOf(msg.fixture), 1);
             }
             if (sequence.ids.length == 0) {
+                let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
+                    if (cues[c].sequences.some(e => e.id === msg.sequence)) {
+                        cues[c].sequences.splice(cues[c].sequences.map(el => el.id).indexOf(msg.sequence), 1);
+                    }
+                }
                 sequences.splice(sequences.map(el => el.id).indexOf(sequence.id), 1);
                 socket.emit('message', { type: "info", content: "Sequence has been removed!" });
                 io.emit('resetView', { type: 'sequences', eid: sequence.id });
