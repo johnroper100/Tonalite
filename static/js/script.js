@@ -297,11 +297,11 @@ var app = new Vue({
             socket.emit('getEffectSettings', { fixtureID: app.currentFixture.id, effectID: effectID });
             app.currentView = 'effectSettings';
         },
-        removeEffect: function () {
+        removeFixtureEffect: function () {
             bootbox.confirm("Are you sure you want to delete this effect?", function (result) {
                 if (result === true) {
                     app.currentView = 'fixtureParameters';
-                    socket.emit('removeEffect', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id });
+                    socket.emit('removeFixtureEffect', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id });
                 }
             });
         },

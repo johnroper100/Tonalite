@@ -496,6 +496,7 @@ function cleanGroupsForCue() {
         delete newGroups[g].name;
         delete newGroups[g].parameters;
         delete newGroups[g].parameterTypes;
+        delete newGroups[g].hasActiveEffects;
     }
     return newGroups;
 };
@@ -1104,6 +1105,7 @@ function resetGroups() {
             groups[g].parameters[c].value = groups[g].parameters[c].home;
             groups[g].parameters[c].displayValue = cppaddon.mapRange(groups[g].parameters[c].value, groups[g].parameters[c].min, groups[g].parameters[c].max, 0, 100);
             setFixtureGroupValues(groups[g], groups[g].parameters[c]);
+            groups[g].hasActiveEffects = checkFixtureActiveEffects(groups[g].effects);
         }
     }
 };
@@ -1627,7 +1629,7 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('removeEffect', function (msg) {
+    socket.on('removeFixtureEffect', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
                 var fixture = null;
@@ -2313,7 +2315,8 @@ io.on('connection', function (socket) {
                 ids: fixtureIDs,
                 parameters: [],
                 parameterTypes: [],
-                effects: []
+                effects: [],
+                hasActiveEffects: false
             };
             newGroup.parameters = generateGroupParameters(newGroup);
             newGroup.parameterTypes = [];
@@ -2537,6 +2540,7 @@ io.on('connection', function (socket) {
     socket.on('resetGroup', function (groupID) {
         if (groups.length != 0) {
             var group = groups[groups.map(el => el.id).indexOf(groupID)];
+            group.hasActiveEffects = false;
             let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
                 group.parameters[c].value = group.parameters[c].home;
                 group.parameters[c].displayValue = cppaddon.mapRange(group.parameters[c].value, group.parameters[c].min, group.parameters[c].max, 0, 100);
