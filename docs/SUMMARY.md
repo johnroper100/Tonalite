@@ -16,6 +16,7 @@
     * [Cue Settings](cues/cue_settings.md)
     * [Moving Between Cues](cues/moving_between_cues.md)
 * [Sequences](sequences/README.md)
+    * [Adding Sequences](sequences/adding_sequences.md)
     * [Sequence Settings](sequences/sequence_settings.md)
 * [Groups](groups/README.md)
     * [Adding Groups](groups/adding_groups.md)
