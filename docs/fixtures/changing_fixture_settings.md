@@ -5,7 +5,7 @@ You can access a fixture's setting page by clicking the `Settings` button on the
 
 ![Fixture settings page](../images/fixture_settings.png)
 
-## Buttons
+## Top Bar
 
 ### Back
 
@@ -23,7 +23,7 @@ The full name of the fixture. This can be any length needed to be descriptive.
 
 ### Short Name
 
-A shorter version of the fixture's name for display in the interface.
+A shorter version of the fixture's name for display in the interface. The software automatically generates this from the `Name` input to use the first word of it's data.
 
 ### Starting DMX Address
 
@@ -31,7 +31,7 @@ The base DMX address that the parameters for the fixture are based on. See descr
 
 ### DMX Universe
 
-The DMX universe that the fixture lives in. Tonalite allows for 2 universes of DMX to be output. See description in `Adding a Fixture`.
+The DMX universe that the fixture lives in. Tonalite allows for 2 universes of DMX to be outputted. See description in `Adding a Fixture`.
 
 ### Invert Pan
 
