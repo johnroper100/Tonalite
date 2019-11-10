@@ -206,8 +206,8 @@
                         <div class="fixtureParameterTabButtons mb-3" v-if="settings.interfaceMode == 'normal'">
                             <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
                                 :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
-                            <button v-if="currentFixture.parameterTypes.indexOf('Position') >= 0" class="btn btn-secondary"
-                                @click="fixtureParametersTab = 'position'"
+                            <button v-if="currentFixture.parameterTypes.indexOf('Position') >= 0"
+                                class="btn btn-secondary" @click="fixtureParametersTab = 'position'"
                                 :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
                             <button v-if="currentFixture.parameterTypes.indexOf('Color') >= 0" class="btn btn-secondary"
                                 @click="fixtureParametersTab = 'color'"
@@ -306,14 +306,15 @@
                                             aria-selected="false">Intensity</a>
                                     </li>
                                     <li v-if="settings.interfaceMode == 'normal'" class="nav-item"
+                                        v-if="currentFixture.parameterTypes.indexOf('Position') >= 0">
+                                        <a class="nav-link" id="positionEffects-tab" data-toggle="tab"
+                                            href="#positionEffects" role="tab" aria-controls="positionEffects"
+                                            aria-selected="false">Position</a>
+                                    </li>
+                                    <li v-if="settings.interfaceMode == 'normal'" class="nav-item"
                                         v-if="currentFixture.parameterTypes.indexOf('Color') >= 0">
                                         <a class="nav-link" id="colorEffects-tab" data-toggle="tab" href="#colorEffects"
                                             role="tab" aria-controls="colorEffects" aria-selected="false">Color</a>
-                                    </li>
-                                    <li v-if="settings.interfaceMode == 'normal'" class="nav-item"
-                                        v-if="currentFixture.parameterTypes.indexOf('Position') >= 0">
-                                        <a class="nav-link" id="positionEffects-tab" data-toggle="tab" href="#positionEffects"
-                                            role="tab" aria-controls="positionEffects" aria-selected="false">Position</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link active" id="parameterEffects-tab" data-toggle="tab"
@@ -331,20 +332,20 @@
                                                 {{effect.name}} </li>
                                         </ul>
                                     </div>
-                                    <div v-if="settings.interfaceMode == 'normal'" class="tab-pane" id="colorEffects"
-                                        role="tabpanel" aria-labelledby="colorEffects-tab">
-                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
-                                            <li class="list-group-item fixtureProfileItem"
-                                                v-for="effect in effectProfiles" v-if="effect.type == 'Color'"
-                                                @click="addFixtureEffect(effect.file, effect.type)">
-                                                {{effect.name}} </li>
-                                        </ul>
-                                    </div>
                                     <div v-if="settings.interfaceMode == 'normal'" class="tab-pane" id="positionEffects"
                                         role="tabpanel" aria-labelledby="positionEffects-tab">
                                         <ul class="list-group fixtureEffectsList" id="fixtureEffectsListPosition">
                                             <li class="list-group-item fixtureProfileItem"
                                                 v-for="effect in effectProfiles" v-if="effect.type == 'Position'"
+                                                @click="addFixtureEffect(effect.file, effect.type)">
+                                                {{effect.name}} </li>
+                                        </ul>
+                                    </div>
+                                    <div v-if="settings.interfaceMode == 'normal'" class="tab-pane" id="colorEffects"
+                                        role="tabpanel" aria-labelledby="colorEffects-tab">
+                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
+                                            <li class="list-group-item fixtureProfileItem"
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Color'"
                                                 @click="addFixtureEffect(effect.file, effect.type)">
                                                 {{effect.name}} </li>
                                         </ul>
@@ -574,8 +575,8 @@
                         <div class="groupParameterTabButtons mb-3" v-if="settings.interfaceMode == 'normal'">
                             <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
                                 :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
-                            <button v-if="currentGroup.parameterTypes.indexOf('Position') >= 0" class="btn btn-secondary"
-                                @click="fixtureParametersTab = 'position'"
+                            <button v-if="currentGroup.parameterTypes.indexOf('Position') >= 0"
+                                class="btn btn-secondary" @click="fixtureParametersTab = 'position'"
                                 :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
                             <button v-if="currentGroup.parameterTypes.indexOf('Color') >= 0" class="btn btn-secondary"
                                 @click="fixtureParametersTab = 'color'"
@@ -1256,7 +1257,8 @@
                                     <div class="custom-control custom-checkbox">
                                         <input @change="saveSettings" v-model="settings.blackoutEnabled" type="checkbox"
                                             class="custom-control-input" id="blackoutEnabled">
-                                        <label class="custom-control-label dark" for="blackoutEnabled">Blackout Enabled</label>
+                                        <label class="custom-control-label dark" for="blackoutEnabled">Blackout
+                                            Enabled</label>
                                     </div>
                                 </div>
                             </div>

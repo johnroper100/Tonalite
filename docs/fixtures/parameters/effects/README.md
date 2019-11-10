@@ -19,13 +19,13 @@ When a fixture has effects added to it, they are displayed at the bottom of the 
 
 ![Effect display deactive](../../../images/effect_display_deactive.png)
 
-Activate the selected effect. When pressed, this button turns into a `Deactivate` button. The activation state of all cues on a fixture is saved to cues.
+Activate the selected effect. When pressed, this button turns into a `Deactivate` button. The activation state of all effects on a fixture is saved into cues.
 
 ### Deactivate
 
 ![Effect display active](../../../images/effect_display_active.png)
 
-Deactivate the selected effect. When pressed, this button turns into an `Activate` button. The activation state of all cues on a fixture is saved to cues.
+Deactivate the selected effect. When pressed, this button turns into an `Activate` button. The activation state of all effects on a fixture is saved into cues.
 
 ### Settings
 

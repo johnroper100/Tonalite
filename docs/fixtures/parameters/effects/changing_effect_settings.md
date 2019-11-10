@@ -5,7 +5,7 @@ You can access an effect's setting page by clicking the `Settings` button on the
 
 ![Effects settings page](../../../images/effect_settings.png)
 
-## Buttons
+## Top Bar
 
 ### Back
 
