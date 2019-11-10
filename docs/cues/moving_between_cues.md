@@ -1,16 +1,16 @@
 # Moving Between Cues
 
-You can transition between cues using the buttons at the top of the `Cues > Cues` tab.
+You can transition between cues using the buttons at the top of the `Cues` > `Cues` sub-tab.
 
 ![Cue motion buttons](../images/cue_motion_buttons.png)
 
 ## Left
 
-Transition to the cue directly before the current or last-played cue. If no cue has been played or the last cue played was the first in the list, the last cue in the list will be played.
+Transition to the cue directly before the current (last-played) cue. If no cue has been played, or the last cue played was the first in the list, the last cue in the list will be played.
 
 ## Right
 
-Transition to the cue directly after the current or last-played cue. If no cue has been played or the last cue played was the last in the list, the first cue in the list will be played.
+Transition to the cue directly after the current (last-played) cue. If no cue has been played, or the last cue played was the last in the list, the first cue in the list will be played.
 
 ## Stop
 

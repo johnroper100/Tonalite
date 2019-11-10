@@ -1,14 +1,14 @@
 # Cue Settings
 
-You can access the settings for a cue by clicking on it in the list on the `Cues > Cues` tab.
+You can access the settings for a cue by clicking on it in the list on the `Cues` > `Cues` sub-tab.
 
 ![Cue settings](../images/cue_settings.png)
 
-## Buttons
+## Top Bar
 
 ### Go
 
-Transition to this cue specific cue in the time stated in the cue's `Length` setting.
+Transition to this specific cue.
 
 ### Delete
 
@@ -24,7 +24,7 @@ Make a duplicate of this cue and place it after this cue in the cue list. The ne
 
 ### Update Parameters
 
-Update this cue to use the current values of the show's fixture's parameters.
+Update this cue to use the current values of the show's fixture parameters.
 
 ### Move Up In Stack
 
