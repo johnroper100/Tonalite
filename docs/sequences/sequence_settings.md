@@ -8,7 +8,7 @@ You can access the settings for a sequence by clicking on it in the list on the 
 
 ### Back
 
-TODO
+Go back to the sequence's `Steps` view.
 
 ### Delete
 

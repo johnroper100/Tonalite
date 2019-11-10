@@ -18,7 +18,7 @@ Active the current preset. When activated, this button will switch to `Deactivat
 
 ### Update Params
 
-TODO
+Update the values that are stored in thie preset.
 
 ## Inputs
 
@@ -32,7 +32,16 @@ Display the preset as a dimmable value rather than as an on/off button in the in
 
 ### Mode
 
-TODO
+The overide mode that the preset is in.
+
+Options:
+
+- `Latest Takes Precedence` - This preset will overide everything
+- `Highest Takes Precedence` - This preset will ovveride everything when its values are higher
+
+Default: `Latest Takes Precedence`
+
+The default can be updated in settings.
 
 ### Intensity
 
