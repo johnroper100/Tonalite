@@ -1,6 +1,6 @@
-# Sequence Settings
+# Changing Sequence Settings
 
-You can access the settings for a sequence by clicking on it in the list on the `Cues` > `Sequences` sub-tab.
+You can access the settings for a sequence by clicking the `Settings` button on the sequence's steps page.
 
 ![Sequence settings](../images/sequence_settings.png)
 

@@ -1,4 +1,4 @@
-# Cue Settings
+# Changing Cue Settings
 
 You can access the settings for a cue by clicking on it in the list on the `Cues` > `Cues` sub-tab.
 
