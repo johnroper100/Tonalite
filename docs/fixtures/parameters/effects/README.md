@@ -2,9 +2,9 @@
 
 Tonalite supports several fixture effects. Each of these fixture effects falls into a specific category based on what parameter(s) of a fixture they control. These categories are:
 
-- Color
 - Intensity
-- Shape
+- Position
+- Color
 - Parameter
 
 ## Effect Display

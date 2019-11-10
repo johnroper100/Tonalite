@@ -27,4 +27,4 @@ A multiplier for the speed of the effect.
 
 ### Depth
 
-How much this effect affects the fixture that it is applied to. Depth is in a range of `0.0` to `1.0` where `0.0` is the least effect, and `1.0` means that this effect completely overrides the values from the fixture. If depth is between `0.0` and `1.0`, the values of the effect and the values of the fixture are mixed. This is useful when used on shape effects to scale the shape produced to fit your stage.
+How much this effect affects the fixture that it is applied to. Depth is in a range of `0.0` to `1.0` where `0.0` is the least effect, and `1.0` means that this effect completely overrides the values from the fixture. If depth is between `0.0` and `1.0`, the values of the effect and the values of the fixture are mixed. This is useful when used on position effects to scale the shape produced to fit your stage.

@@ -5,7 +5,7 @@
     * [Supported Software](supported_software.md)
 * [Fixtures](fixtures/README.md)
     * [Adding Fixtures](fixtures/adding_fixtures.md)
-    * [Resetting Parameter Values](fixtures/parameters/resetting_fixture_parameter_values.md)
+    * [Resetting Parameter Values](fixtures/resetting_fixture_parameter_values.md)
     * [Parameters](fixtures/parameters/README.md)
         * [Effects](fixtures/parameters/effects/README.md)
           * [Adding Effects](fixtures/parameters/effects/adding_effects.md)

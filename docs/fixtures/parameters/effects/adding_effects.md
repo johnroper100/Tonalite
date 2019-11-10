@@ -14,17 +14,17 @@ Color effects control the RGB values of a fixture. If more parameter colors than
 
 Intensity effects control the intensity values of a fixture. If an intensity parameter does not exist on the fixture, the effect will have no effect.
 
-## Shape
+## Position
 
-![Add Effects Modal Shape](../../../images/effects_modal_shape.png)
+![Add Effects Modal Position](../../../images/effects_modal_position.png)
 
-Shape effects control the pan and tilt values of a fixture (X and Y). If only the pan or tilt parameter exists on the fixture, it will still be affected by itself.
+Position effects control the pan and tilt values of a fixture (X and Y). If only the pan or tilt parameter exists on the fixture, it will still be affected by itself.
 
 ## Param.
 
 ![Add Effects Modal Param](../../../images/effects_modal_param.png)
 
-Parameter effects control any other value of a fixture. They can however also control color, intensity, and shape parameters as well.
+Parameter effects can control any parameter of a fixture.
 
 ### Apply Effect To
 

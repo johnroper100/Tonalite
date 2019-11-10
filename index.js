@@ -1366,7 +1366,7 @@ io.on('connection', function (socket) {
                 } else if (JSON.stringify(effect.parameterNames).indexOf("Intensity") >= 0) {
                     effect.type = "Intensity";
                 } else if (JSON.stringify(effect.parameterNames).indexOf("Pan") >= 0 || JSON.stringify(effect.parameterNames).indexOf("Tilt") >= 0) {
-                    effect.type = "Shape";
+                    effect.type = "Position";
                 } else if (JSON.stringify(effect.parameterNames).indexOf("Parameter") >= 0) {
                     effect.type = "Parameter";
                 }
@@ -1527,7 +1527,7 @@ io.on('connection', function (socket) {
                     fixture.parameters[c].locked = false;
                     fixture.parameters[c].id = generateID();
                     if (fixture.parameters[c].type == 2) {
-                        fixture.parameterTypes.push("Shape");
+                        fixture.parameterTypes.push("Position");
                     } else if (fixture.parameters[c].type == 5) {
                         fixture.parameterTypes.push("Color");
                     } else if (fixture.parameters[c].type == 4) {
@@ -1591,7 +1591,7 @@ io.on('connection', function (socket) {
                         groups[g].parameterTypes = [];
                         let c = 0; const cMax = groups[g].parameters.length; for (; c < cMax; c++) {
                             if (groups[g].parameters[c].type == 2) {
-                                groups[g].parameterTypes.push("Shape");
+                                groups[g].parameterTypes.push("Position");
                             } else if (groups[g].parameters[c].type == 5) {
                                 groups[g].parameterTypes.push("Color");
                             } else if (groups[g].parameters[c].type == 4) {
@@ -1926,7 +1926,7 @@ io.on('connection', function (socket) {
                 } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Intensity"])) {
                     effect.type = "Intensity";
                 } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Pan", "Tilt"])) {
-                    effect.type = "Shape";
+                    effect.type = "Position";
                 } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Parameter"])) {
                     effect.parameterNames = [msg.parameterName];
                     effect.type = "Parameter";
@@ -2324,7 +2324,7 @@ io.on('connection', function (socket) {
             newGroup.parameterTypes = [];
             let c = 0; const cMax = newGroup.parameters.length; for (; c < cMax; c++) {
                 if (newGroup.parameters[c].type == 2) {
-                    newGroup.parameterTypes.push("Shape");
+                    newGroup.parameterTypes.push("Position");
                 } else if (newGroup.parameters[c].type == 5) {
                     newGroup.parameterTypes.push("Color");
                 } else if (newGroup.parameters[c].type == 4) {
@@ -2577,7 +2577,7 @@ io.on('connection', function (socket) {
                 group.parameterTypes = [];
                 let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
                     if (group.parameters[c].type == 2) {
-                        group.parameterTypes.push("Shape");
+                        group.parameterTypes.push("Position");
                     } else if (group.parameters[c].type == 5) {
                         group.parameterTypes.push("Color");
                     } else if (group.parameters[c].type == 4) {
