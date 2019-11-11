@@ -86,12 +86,6 @@ function openSettings() {
 
             artnet = require('artnet')({ iface: SETTINGS.artnetIP, host: SETTINGS.artnetHost, sendAll: true });
 
-            fs.exists(process.cwd() + '/presets.json', function (exists) {
-                if (exists == true) {
-                    openPresets();
-                }
-            });
-
             http.listen(SETTINGS.port, SETTINGS.url, function () {
                 var msg = "Desktop";
                 if (SETTINGS.desktop === false)
@@ -650,8 +644,8 @@ function calculatePresetChannels(preset) {
                         channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = (preset.fixtures[f].parameters[p].value & 0xff);
                     }
                 } else if (preset.mode == 'htp') {
-                    tempvalue = (preset.fixtures[f].parameters[p].value >> 8);
-                    tempvalue2 = (preset.fixtures[f].parameters[p].value & 0xff);
+                    tempvalue = ((preset.fixtures[f].parameters[p].value >> 8) / 100.0) * preset.intensity;
+                    tempvalue2 = ((preset.fixtures[f].parameters[p].value & 0xff) / 100.0) * preset.intensity;
                     // may cause issues with 16bit
                     if (tempvalue > channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)]) {
                         channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = tempvalue;
@@ -1061,8 +1055,6 @@ function calculateStack() {
             }
         }
     }
-    // Allow presets to overide everything else for channels if they are set to ltp
-    var tempvalue = null;
     let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
         if (presets[p].active) {
             calculatePresetChannels(presets[p]);
@@ -1187,10 +1179,15 @@ function saveShow() {
 
 // Load the presets from file
 function openPresets() {
-    fs.readFile(process.cwd() + '/presets.json', (err, data) => {
-        if (err) logError(err);
-        presets = JSON.parse(data);
-        io.emit('presets', cleanPresets());
+    fs.exists(process.cwd() + '/presets.json', function (exists) {
+        if (exists == false) {
+            savePresets();
+        }
+        fs.readFile(process.cwd() + '/presets.json', (err, data) => {
+            if (err) logError(err);
+            presets = JSON.parse(data);
+            openShow();
+        });
     });
 };
 
@@ -1238,7 +1235,7 @@ app.post('/showFile', (req, res) => {
         showFile.mv(process.cwd() + '/show.json', function (err) {
             if (err)
                 return res.status(500).send(err);
-            openShow();
+            openPresets();
             res.redirect('/');
         });
     } else {
@@ -1268,7 +1265,7 @@ fs.exists(process.cwd() + '/show.json', function (exists) {
     if (exists == false) {
         saveShow();
     }
-    openShow();
+    openPresets();
 });
 
 io.on('connection', function (socket) {
@@ -1298,7 +1295,7 @@ io.on('connection', function (socket) {
                 logError(err);
                 socket.emit('message', { type: "error", content: "The show could not be opened!" });
             } else {
-                openShow();
+                openPresets();
                 io.emit('message', { type: "info", content: "The show has been opened!" });
             }
         });
