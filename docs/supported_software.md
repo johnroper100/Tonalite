@@ -12,4 +12,4 @@ It is possible to visualize your lighting using external software that supports 
 
 ## Fixture Profile Creation
 
-Tonalite allows you to use fixture profiles created by the ETC ColorSource Fixture Editor. the files may be in either `JSON` or `JLIB` formats.
+Tonalite allows you to use fixture profiles created by the ETC ColorSource Fixture Editor. The files may be in either `JSON` or `JLIB` formats.
