@@ -14,64 +14,6 @@ require('sanic.js').changeMyWorld();
 const cppaddon = require('./build/Release/cppaddon.node');
 const QRCode = require('qrcode');
 
-/*
-Features:
-- Get Fixtures - Done - Done UI
-- Get Fixture Profiles - Done - Done UI
-- Add Fixture - Done - Done UI
-- Remove Fixture - Done - Done UI
-- Get Fixture Settings - Done - Done UI
-- Edit Fixture Settings - Done - Done UI
-- Get Fixture Parameters - Done - Done UI
-- Change Fixture Parameter Value - Done - Done UI
-- Parameter Lock - Done - Done UI
-- Reset Fixtures - Done - Done UI
-- Get Cues - Done - Done UI
-- Record Cue - Done - Done UI
-- Get Cue Settings - Done - Done UI
-- Update Cue - Done - Done UI
-- Edit Cue Settings - Done - Done UI
-- Clone Cue Last - Done - Done UI
-- Clone Cue Next - Done - Done UI
-- Move Cue Up - Done - Done UI
-- Move Cue Down - Done - Done UI
-- Remove Cue - Done - Done UI
-- Go To Next Cue - Done - Done UI
-- Go To Last Cue - Done - Done UI
-- Go To Specific Cue - Done - Done UI
-- Stop Running Cue - Done - Done UI
-- Get Groups - Done - Done UI
-- Add Group - Done - Done UI
-- Get Group Parameters - Done - Done UI
-- Change Group Parameter Value - Done - Done UI
-- Get Group Settings - Done - Done UI
-- Edit Group Settings - Done - Done UI
-- Remove Group - Done - Done UI
-- Reset Group - Done - Done UI
-- Reset Groups - Done - Done UI
-- Remove Group Fixture - Done - Done UI
-- Save Show - Done - Done UI
-- Open Show From File - Done - Done UI
-- Save Show To File - Done - Done UI
-- Save Show To USB - Done - Done UI
-- Import Fixture Definition From File - Done - Done UI
-- View Docs - Done - Done UI
-- View Settings - Done - Done UI
-- Save Settings - Done - Done UI
-- Update Firmware - Done - Done UI
-- View Presets - Done - Done UI
-- Record Preset - Done - Done UI
-- Edit Preset - Done - Done UI
-- Activate/Deactivate Preset - Done UI
-- Remove Preset - Done - Done UI
-- Preset Kiosk Page - Done - Done UI
-- Grandmaster - Done - Done UI
-- Blackout - Done - Done UI
-- Auto Mark - Done - Done UI
-- Fine Control - Done - Done UI
-- Reset Presets - Done - Done UI
-*/
-
 var SETTINGS = {
     device: "linux", // linux, rpi, win, macos
     url: "localhost", // http web UI location
@@ -87,7 +29,8 @@ var SETTINGS = {
     interfaceMode: 'normal',
     artnetIP: null, // ArtNet output IP
     artnetHost: '255.255.255.255', // Artnet network host
-    sacnIP: null // sACN output IP
+    sacnIP: null, // sACN output IP
+    sacnPriority: 100 // sACN device priority
 }
 
 var STARTED = false;
@@ -136,8 +79,8 @@ function openSettings() {
             e131 = require('e131');
             client = new e131.Client(SETTINGS.sacnIP);
             packet = client.createPacket(512);
+            packet.setPriority(SETTINGS.sacnPriority);
             slotsData = packet.getSlotsData();
-            //channels = slotsData;
             channels = new Array(1024).fill(0);
             cp = cp;
 

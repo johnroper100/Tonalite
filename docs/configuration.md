@@ -137,3 +137,13 @@ Default: `null`
 When the value is `null`, sACN will choose where to output automatically.
 
 Reboot required after change.
+
+## sacnPriority
+
+The device priority for the sACN output.
+
+Default: `100`
+
+The device priotity can be in a range from `1` to `200`.
+
+Reboot required after change.
