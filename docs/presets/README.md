@@ -6,7 +6,7 @@ When used for a permanent installation, there needs to be a way for users who do
 
 ![Presets page](../images/presets_page.png)
 
-On the presets page, tab a preset to turn it on (it will turn red) and tap again to turn it off (it will go back to purple).
+On the presets page, tap a preset to turn it on (it will turn red) and tap again to turn it off (it will go back to purple).
 
 ## Display
 
