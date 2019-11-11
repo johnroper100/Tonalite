@@ -384,7 +384,6 @@ function cleanFixtureForPreset(fixture) {
         delete newFixture.parameters[p].highlight;
         delete newFixture.parameters[p].snap;
         delete newFixture.parameters[p].size;
-        delete newFixture.parameters[p].fadeWithIntensity;
         delete newFixture.parameters[p].invert;
         delete newFixture.parameters[p].name;
     }
@@ -638,33 +637,52 @@ function calculateChannels() {
     }
 };
 
-function calculateChannelsList() {
-    var chans = [];
+function calculatePresetChannels(preset) {
     var invert = null;
-    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-        let p = 0; const pMax = fixtures[f].parameters.length; for (; p < pMax; p++) {
-            invert = false;
-            if (fixtures[f].parameters[p].type == 2 && (fixtures[f].invertPan == true || fixtures[f].invertTilt == true)) {
-                if (fixtures[f].parameters[p].name == "Pan" && fixtures[f].invertPan == true) {
-                    invert = true;
-                } else if (fixtures[f].parameters[p].name == "Tilt" && fixtures[f].invertTilt == true) {
-                    invert = true;
-                }
-            }
-            if (invert == true) {
-                chans[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (cppaddon.reverseNumber(fixtures[f].parameters[p].value, 0, 65535) >> 8);
-                if (fixtures[f].parameters[p].fine != null) {
-                    chans[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (cppaddon.reverseNumber(fixtures[f].parameters[p].value, 0, 65535) & 0xff);
+    var tempvalue = null;
+    var tempvalue2 = null;
+    let f = 0; const fMax = preset.fixtures.length; for (; f < fMax; f++) {
+        let p = 0; const pMax = preset.fixtures[f].parameters.length; for (; p < pMax; p++) {
+            if (preset.fixtures[f].parameters[p].fadeWithIntensity == true || preset.fixtures[f].parameters[p].type == 1) {
+                if (preset.mode == 'ltp') {
+                    channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = (preset.fixtures[f].parameters[p].value >> 8);
+                    if (preset.fixtures[f].parameters[p].fine != null) {
+                        channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = (preset.fixtures[f].parameters[p].value & 0xff);
+                    }
+                } else if (preset.mode == 'htp') {
+                    tempvalue = (preset.fixtures[f].parameters[p].value >> 8);
+                    tempvalue2 = (preset.fixtures[f].parameters[p].value & 0xff);
+                    // may cause issues with 16bit
+                    if (tempvalue > channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)]) {
+                        channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = tempvalue;
+                        if (preset.fixtures[f].parameters[p].fine != null) {
+                            channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = tempvalue2;
+                        }
+                    }
                 }
             } else {
-                chans[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].value >> 8);
-                if (fixtures[f].parameters[p].fine != null) {
-                    chans[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].value & 0xff);
+                invert = false;
+                if (preset.fixtures[f].parameters[p].type == 2 && (preset.fixtures[f].invertPan == true || preset.fixtures[f].invertTilt == true)) {
+                    if (preset.fixtures[f].parameters[p].name == "Pan" && preset.fixtures[f].invertPan == true) {
+                        invert = true;
+                    } else if (preset.fixtures[f].parameters[p].name == "Tilt" && preset.fixtures[f].invertTilt == true) {
+                        invert = true;
+                    }
+                }
+                if (invert == true) {
+                    channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = (cppaddon.reverseNumber(preset.fixtures[f].parameters[p].value, 0, 65535) >> 8);
+                    if (preset.fixtures[f].parameters[p].fine != null) {
+                        channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = (cppaddon.reverseNumber(preset.fixtures[f].parameters[p].value, 0, 65535) & 0xff);
+                    }
+                } else {
+                    channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = (preset.fixtures[f].parameters[p].value >> 8);
+                    if (preset.fixtures[f].parameters[p].fine != null) {
+                        channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = (preset.fixtures[f].parameters[p].value & 0xff);
+                    }
                 }
             }
         }
     }
-    return chans;
 };
 
 // Set the cue's output channel values to the correct values from the fixtures. This is basically saving the cue.
@@ -1047,18 +1065,7 @@ function calculateStack() {
     var tempvalue = null;
     let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
         if (presets[p].active) {
-            let c = 0; const cMax = presets[p].fixtures.length; for (; c < cMax; c++) {
-                if (presets[p].fixtures[c] != null) {
-                    if (presets[p].mode == 'ltp') {
-                        channels[c] = (presets[p].fixtures[c] / 100.0) * presets[p].intensity;
-                    } else if (presets[p].mode == 'htp') {
-                        tempvalue = (presets[p].fixtures[c] / 100.0) * presets[p].intensity;
-                        if (tempvalue > channels[c]) {
-                            channels[c] = tempvalue;
-                        }
-                    }
-                }
-            }
+            calculatePresetChannels(presets[p]);
         }
     }
 };
