@@ -1593,7 +1593,7 @@ io.on('connection', function (socket) {
                 io.emit('groups', { groups: cleanGroups(), target: true });
                 io.emit('sequences', { sequences: cleanSequences(), target: true });
                 saveShow();
-                savePreset();
+                savePresets();
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -2722,7 +2722,7 @@ io.on('connection', function (socket) {
             }
             io.emit('presets', cleanPresets());
             socket.emit('message', { type: "info", content: "Fixture removed from preset!" });
-            savePreset();
+            savePresets();
         } else {
             socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
