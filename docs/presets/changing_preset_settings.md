@@ -5,7 +5,7 @@ You can access a preset's setting page by clicking on a preset item in the `Pres
 
 ![Preset settings page](../images/preset_settings.png)
 
-## Buttons
+## Top Bar
 
 ### Delete
 

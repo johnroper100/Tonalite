@@ -7,3 +7,17 @@ When used for a permanent installation, there needs to be a way for users who do
 ![Presets page](../images/presets_page.png)
 
 On the presets page, tab a preset to turn it on (it will turn red) and tap again to turn it off (it will go back to purple).
+
+## Display
+
+### Active
+
+Active presets display as a red box with the preset's name.
+
+![Preset active](../images/preset_active.png)
+
+### Inactive
+
+Inactive presets display as a purple box with the preset's name.
+
+![Preset inactive](../images/preset_inactive.png)
