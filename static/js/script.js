@@ -243,7 +243,11 @@ var app = new Vue({
             socket.emit('editPresetSettings', { id: app.currentPreset.id, name: app.currentPreset.name, displayAsDimmer: app.currentPreset.displayAsDimmer, intensity: app.currentPreset.intensity, mode: app.currentPreset.mode });
         },
         updatePreset: function () {
-            socket.emit('updatePreset', app.currentPreset.id);
+            bootbox.confirm("Are you sure you want to update this preset? It may remove the preset if the fixtures it stores doen't exist in the patch.", function (result) {
+                if (result === true) {
+                    socket.emit('updatePreset', app.currentPreset.id);
+                }
+            });
         },
         editGroupSettings: function () {
             socket.emit('editGroupSettings', { id: app.currentGroup.id, name: app.currentGroup.name });
