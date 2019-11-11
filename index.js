@@ -2711,7 +2711,8 @@ io.on('connection', function (socket) {
     socket.on('updatePreset', function (presetID) {
         if (presets.length != 0) {
             var preset = presets[presets.map(el => el.id).indexOf(presetID)];
-            let i = 0; const iMax = preset.ids.length; for (; i < iMax; i++) {
+            let i = preset.ids.length;
+            while (i--) {
                 if (fixtures.some(e => e.id === preset.ids[i]) == false) {
                     preset.fixtures.splice(preset.fixtures.map(el => el).indexOf(preset.ids[i]), 1);
                 }
