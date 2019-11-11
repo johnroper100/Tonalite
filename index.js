@@ -2711,10 +2711,24 @@ io.on('connection', function (socket) {
     socket.on('updatePreset', function (presetID) {
         if (presets.length != 0) {
             var preset = presets[presets.map(el => el.id).indexOf(presetID)];
-            preset.fixtures = cleanFixturesForPreset();
-            preset.patchChanged = false;
+            let i = 0; const iMax = preset.ids.length; for (; i < iMax; i++) {
+                if (fixtures.some(e => e.id === preset.ids[i]) == false) {
+                    preset.fixtures.splice(preset.fixtures.map(el => el).indexOf(preset.ids[i]), 1);
+                }
+                if (fixtures.some(e => e.id === preset.ids[i]) == false) {
+                    preset.ids.splice(preset.ids.map(el => el).indexOf(preset.ids[i]), 1);
+                }
+            }
+            if (preset.ids.length > 0) {
+                preset.fixtures = cleanFixturesForPreset();
+                preset.patchChanged = false;
+                socket.emit('message', { type: "info", content: "Preset parameters have been updated!" });
+            } else {
+                presets.splice(presets.map(el => el.id).indexOf(preset.id), 1);
+                socket.emit('message', { type: "info", content: "Preset has been removed!" });
+                io.emit('resetView', { type: 'presets', eid: preset.id });
+            }
             io.emit('presets', cleanPresets());
-            socket.emit('message', { type: "info", content: "Preset parameters have been updated!" });
             savePresets();
         } else {
             socket.emit('message', { type: "error", content: "No presets exist!" });
@@ -2772,6 +2786,9 @@ io.on('connection', function (socket) {
     socket.on('removePresetFixture', function (msg) {
         if (presets.length != 0) {
             var preset = presets[presets.map(el => el.id).indexOf(msg.preset)];
+            if (preset.fixtures.some(e => e === msg.fixture)) {
+                preset.fixtures.splice(preset.fixtures.map(el => el).indexOf(msg.fixture), 1);
+            }
             if (preset.ids.some(e => e === msg.fixture)) {
                 preset.ids.splice(preset.ids.map(el => el).indexOf(msg.fixture), 1);
             }
