@@ -1258,9 +1258,11 @@ io.on('connection', function (socket) {
         cues = [];
         groups = [];
         sequences = [];
-        presets = [];
         currentCue = "";
         lastCue = "";
+        let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
+            presets[p].patchChanged = true;
+        }
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());

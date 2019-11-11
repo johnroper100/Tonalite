@@ -1026,7 +1026,7 @@
                     <div class="row" id="presetsList">
                         <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id"
                             @click="getPresetSettings(preset.id)">
-                            <div :class="{ 'presetActive' : preset.active == true}" class="presetItem">
+                            <div :class="{ 'presetActive' : preset.active == true, 'presetPatchChanged': preset.patchChanged == true}" class="presetItem">
                                 <p>{{preset.name}}</p>
                             </div>
                         </div>

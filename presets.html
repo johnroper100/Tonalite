@@ -25,7 +25,7 @@
             <div class="row" id="presetsButtonList">
                 <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id"
                     v-if="preset.displayAsDimmer == false">
-                    <div :class="{ 'presetActive' : preset.active == true}" class="presetViewItem presetItem"
+                    <div :class="{ 'presetActive' : preset.active == true, 'presetPatchChanged': preset.patchChanged == true}" class="presetViewItem presetItem"
                         v-on:click="changePresetActive(preset.id)">
                         <p>{{preset.name}}</p>
                     </div>
