@@ -32,6 +32,7 @@ var app = new Vue({
         addPresetSelected: [],
         currentGroup: {},
         currentGroupFixtures: {},
+        currentPresetFixtures: {},
         currentSequenceFixtures: {},
         usbData: [],
         usbPath: "",
@@ -174,6 +175,9 @@ var app = new Vue({
         getGroupFixtures: function (groupID) {
             socket.emit("getGroupFixtures", groupID);
         },
+        getPresetFixtures: function (presetID) {
+            socket.emit("getPresetFixtures", presetID);
+        },
         getSequenceFixtures: function (sequenceID) {
             socket.emit("getSequenceFixtures", sequenceID);
         },
@@ -181,6 +185,7 @@ var app = new Vue({
             socket.emit("getCueSettings", cueID);
         },
         getPresetSettings: function (presetID) {
+            app.getPresetFixtures(presetID);
             socket.emit("getPresetSettings", presetID);
         },
         changeFixtureParameterValue: function (parameter) {
@@ -415,6 +420,13 @@ var app = new Vue({
                 }
             });
         },
+        removePresetFixture: function (fixtureID) {
+            bootbox.confirm("Are you sure you want remove this fixture from the preset?", function (result) {
+                if (result === true) {
+                    socket.emit('removePresetFixture', { preset: app.currentPreset.id, fixture: fixtureID });
+                }
+            });
+        },
         removeSequenceFixture: function (fixtureID) {
             bootbox.confirm("Are you sure you want remove this fixture from the sequence?", function (result) {
                 if (result === true) {
@@ -500,6 +512,7 @@ socket.on('connect', function () {
     app.currentEffect = {};
     app.currentGroup = {};
     app.currentGroupFixtures = {};
+    app.currentPresetFixtures = {};
     app.currentSequenceFixtures = {};
     app.usbData = [];
     app.usbPath = "";
@@ -634,6 +647,10 @@ socket.on('groupFixtures', function (msg) {
     app.currentGroupFixtures = msg;
 });
 
+socket.on('presetFixtures', function (msg) {
+    app.currentPresetFixtures = msg;
+});
+
 socket.on('sequenceFixtures', function (msg) {
     app.currentSequenceFixtures = msg;
 });
@@ -676,6 +693,7 @@ socket.on('resetView', function (msg) {
         if (app.currentPreset.id == msg.eid) {
             app.currentView = 'presets';
             app.currentPreset = {};
+            app.currentPresetFixtures = {};
         }
     } else if (msg.type == 'show') {
         app.currentView = 'fixtures';

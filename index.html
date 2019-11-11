@@ -1111,6 +1111,17 @@
                                     id="presetIntensityInput" min="0" max="100" v-model="currentPreset.intensity">
                             </div>
                         </div>
+                        <div class="col-12">
+                            <b>Preset Fixtures:</b>
+                            <div id="presetFixtures">
+                                <div v-for="fixture in currentPresetFixtures" :key="fixture.id">
+                                    {{fixture.name}} ({{fixture.address}})
+                                    <button class="btn btn-danger btn-sm mb-1 ml-1"
+                                        @click="removePresetFixture(fixture.id)"><i
+                                            class="far fa-sm fa-trash-alt"></i></button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
