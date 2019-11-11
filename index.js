@@ -361,6 +361,36 @@ function cleanFixtureForCue(fixture) {
     return newFixture;
 };
 
+function cleanFixtureForPreset(fixture) {
+    var newFixture = JSON.parse(JSON.stringify(fixture));
+    delete newFixture.modelName;
+    delete newFixture.shortName;
+    delete newFixture.manufacturerName;
+    delete newFixture.hasLockedParameters;
+    delete newFixture.hasActiveEffects;
+    delete newFixture.chips;
+    delete newFixture.dcid;
+    delete newFixture.colortable;
+    delete newFixture.swapPanTilt;
+    delete newFixture.hasIntensity;
+    delete newFixture.maxOffset;
+    delete newFixture.modeName;
+    newFixture.effects = cleanEffectsForCue(newFixture.effects);
+    let p = 0; const pMax = newFixture.parameters.length; for (; p < pMax; p++) {
+        delete newFixture.parameters[p].displayValue;
+        delete newFixture.parameters[p].home;
+        delete newFixture.parameters[p].locked;
+        delete newFixture.parameters[p].ranges;
+        delete newFixture.parameters[p].highlight;
+        delete newFixture.parameters[p].snap;
+        delete newFixture.parameters[p].size;
+        delete newFixture.parameters[p].fadeWithIntensity;
+        delete newFixture.parameters[p].invert;
+        delete newFixture.parameters[p].name;
+    }
+    return newFixture;
+};
+
 function cleanSequenceForCue(sequence) {
     var newSequence = JSON.parse(JSON.stringify(sequence));
     delete newSequence.name;
@@ -430,6 +460,22 @@ function cleanFixturesForCue() {
                 newFixtures.splice(newFixtures.map(el => el.id).indexOf(sequences[s].ids[i]), 1);
             }
         }
+    }
+    return newFixtures;
+};
+
+function cleanFixturesForSequence() {
+    var newFixtures = [];
+    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+        newFixtures.push(cleanFixtureForCue(fixtures[f]));
+    }
+    return newFixtures;
+};
+
+function cleanFixturesForPreset() {
+    var newFixtures = [];
+    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+        newFixtures.push(cleanFixtureForPreset(fixtures[f]));
     }
     return newFixtures;
 };
@@ -536,7 +582,7 @@ function getPresetFixtures(presetID) {
     var fixtureStarts = [];
     var fixture = null;
     let i = 0; const iMax = preset.ids.length; for (; i < iMax; i++) {
-        fixture = fixtures[fixtures.map(el => el.id).indexOf(preset.ids[i])];
+        fixture = preset.fixtures[preset.fixtures.map(el => el.id).indexOf(preset.ids[i])];
         fixtureStarts.push({ name: fixture.name, address: fixture.startDMXAddress, id: fixture.id });
     }
     return fixtureStarts;
@@ -1542,16 +1588,7 @@ io.on('connection', function (socket) {
                 }
                 let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
                     if (presets[p].ids.some(e => e === fixtureID)) {
-                        presets[p].ids.splice(presets[p].ids.map(el => el).indexOf(fixtureID), 1);
                         presets[p].patchChanged = true;
-                        if (presets[p].fixtures.some(e => e.id === fixtureID)) {
-                            presets[p].patchChanged = true;
-                            presets[p].fixtures.splice(presets[p].fixtures.map(el => el.id).indexOf(fixtureID), 1);
-                        }
-                    }
-                    if (presets[p].ids.length == 0) {
-                        io.emit('resetView', { type: 'presets', eid: presets[p].id });
-                        presets.splice(presets.map(el => el.id).indexOf(presets[p].id), 1);
                     }
                 }
                 var sequence = null;
@@ -2289,7 +2326,7 @@ io.on('connection', function (socket) {
                 downStep: SETTINGS.defaultDownTime * 40,
                 active: false,
                 following: false,
-                fixtures: cleanFixturesForCue()
+                fixtures: cleanFixturesForSequence()
             };
             sequence.steps.push(newStep);
             io.emit('sequences', { sequences: cleanSequences(), target: true });
@@ -2656,7 +2693,7 @@ io.on('connection', function (socket) {
                 displayAsDimmer: false,
                 patchChanged: false,
                 mode: SETTINGS.defaultPresetMode,
-                fixtures: cleanFixturesForCue()
+                fixtures: cleanFixturesForPreset()
             };
             presets.push(newPreset);
             io.emit('presets', cleanPresets());
@@ -2670,7 +2707,7 @@ io.on('connection', function (socket) {
     socket.on('updatePreset', function (presetID) {
         if (presets.length != 0) {
             var preset = presets[presets.map(el => el.id).indexOf(presetID)];
-            preset.fixtures = cleanFixturesForCue();
+            preset.fixtures = cleanFixturesForPreset();
             preset.patchChanged = false;
             io.emit('presets', cleanPresets());
             socket.emit('message', { type: "info", content: "Preset parameters have been updated!" });
