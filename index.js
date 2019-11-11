@@ -531,6 +531,17 @@ function getSequenceFixtures(sequenceID) {
     return fixtureStarts;
 };
 
+function getPresetFixtures(presetID) {
+    var preset = presets[presets.map(el => el.id).indexOf(presetID)];
+    var fixtureStarts = [];
+    var fixture = null;
+    let i = 0; const iMax = preset.ids.length; for (; i < iMax; i++) {
+        fixture = fixtures[fixtures.map(el => el.id).indexOf(preset.ids[i])];
+        fixtureStarts.push({ name: fixture.name, address: fixture.startDMXAddress, id: fixture.id });
+    }
+    return fixtureStarts;
+};
+
 function checkFixtureActiveEffects(effects) {
     let e = 0; const eMax = effects.length; for (; e < eMax; e++) {
         if (effects[e].active == true) {
@@ -1247,17 +1258,20 @@ io.on('connection', function (socket) {
         cues = [];
         groups = [];
         sequences = [];
+        presets = [];
         currentCue = "";
         lastCue = "";
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
+        io.emit('presets', cleanPresets());
         io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('cueActionBtn', false);
         io.emit('resetView', { type: 'show', eid: "" });
         io.emit('message', { type: "info", content: "A new show has been created!" });
         saveShow();
+        savePresets();
     });
 
     socket.on('resetPresets', function () {
@@ -1508,6 +1522,20 @@ io.on('connection', function (socket) {
                         }
                     }
                 }
+                let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
+                    if (presets[p].ids.some(e => e === fixtureID)) {
+                        presets[p].ids.splice(presets[p].ids.map(el => el).indexOf(fixtureID), 1);
+                        presets[p].patchChanged = true;
+                        if (presets[p].fixtures.some(e => e.id === fixtureID)) {
+                            presets[p].patchChanged = true;
+                            presets[p].fixtures.splice(presets[p].fixtures.map(el => el.id).indexOf(fixtureID), 1);
+                        }
+                    }
+                    if (presets[p].ids.length == 0) {
+                        io.emit('resetView', { type: 'presets', eid: presets[p].id });
+                        presets.splice(presets.map(el => el.id).indexOf(presets[p].id), 1);
+                    }
+                }
                 var sequence = null;
                 let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
                     sequence = sequences[s];
@@ -1565,6 +1593,7 @@ io.on('connection', function (socket) {
                 io.emit('groups', { groups: cleanGroups(), target: true });
                 io.emit('sequences', { sequences: cleanSequences(), target: true });
                 saveShow();
+                savePreset();
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -2623,6 +2652,7 @@ io.on('connection', function (socket) {
         if (presets.length != 0) {
             var preset = presets[presets.map(el => el.id).indexOf(presetID)];
             preset.fixtures = cleanFixturesForCue();
+            preset.patchChanged = false;
             io.emit('presets', cleanPresets());
             socket.emit('message', { type: "info", content: "Preset parameters have been updated!" });
             savePresets();
@@ -2659,6 +2689,14 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('getPresetFixtures', function (presetID) {
+        if (presets.length != 0) {
+            socket.emit('presetFixtures', getPresetFixtures(presetID));
+        } else {
+            socket.emit('message', { type: "error", content: "No presets exist!" });
+        }
+    });
+
     socket.on('removePreset', function (presetID) {
         if (presets.length != 0) {
             presets.splice(presets.map(el => el.id).indexOf(presetID), 1);
@@ -2668,6 +2706,25 @@ io.on('connection', function (socket) {
             savePresets();
         } else {
             socket.emit('message', { type: "error", content: "No presets exist!" });
+        }
+    });
+
+    socket.on('removePresetFixture', function (msg) {
+        if (presets.length != 0) {
+            var preset = presets[presets.map(el => el.id).indexOf(msg.preset)];
+            if (preset.ids.some(e => e === msg.fixture)) {
+                preset.ids.splice(preset.ids.map(el => el).indexOf(msg.fixture), 1);
+            }
+            if (preset.ids.length == 0) {
+                presets.splice(presets.map(el => el.id).indexOf(preset.id), 1);
+                socket.emit('message', { type: "info", content: "Preset has been removed!" });
+                io.emit('resetView', { type: 'presets', eid: preset.id });
+            }
+            io.emit('presets', cleanPresets());
+            socket.emit('message', { type: "info", content: "Fixture removed from preset!" });
+            savePreset();
+        } else {
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
     });
 
