@@ -266,6 +266,7 @@ function generateGroupParameters(newGroup) {
             }
         }
     }
+    parameters.sort((a, b) => (a.coarse > b.coarse) ? 1 : -1);
     return parameters;
 };
 
