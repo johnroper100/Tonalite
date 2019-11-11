@@ -502,7 +502,7 @@ function cleanSequences() {
 function cleanPresets() {
     var newPresets = JSON.parse(JSON.stringify(presets));
     let p = 0; const pMax = newPresets.length; for (; p < pMax; p++) {
-        delete newPresets[p].parameters;
+        delete newPresets[p].fixtures;
         delete newPresets[p].mode;
         delete newPresets[p].ids;
     }
@@ -990,12 +990,12 @@ function calculateStack() {
     var tempvalue = null;
     let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
         if (presets[p].active) {
-            let c = 0; const cMax = presets[p].parameters.length; for (; c < cMax; c++) {
-                if (presets[p].parameters[c] != null) {
+            let c = 0; const cMax = presets[p].fixtures.length; for (; c < cMax; c++) {
+                if (presets[p].fixtures[c] != null) {
                     if (presets[p].mode == 'ltp') {
-                        channels[c] = (presets[p].parameters[c] / 100.0) * presets[p].intensity;
+                        channels[c] = (presets[p].fixtures[c] / 100.0) * presets[p].intensity;
                     } else if (presets[p].mode == 'htp') {
-                        tempvalue = (presets[p].parameters[c] / 100.0) * presets[p].intensity;
+                        tempvalue = (presets[p].fixtures[c] / 100.0) * presets[p].intensity;
                         if (tempvalue > channels[c]) {
                             channels[c] = tempvalue;
                         }
@@ -2597,18 +2597,18 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('recordPreset', function () {
+    socket.on('recordPreset', function (list) {
         if (fixtures.length != 0) {
             var newPreset = {
                 id: generateID(),
                 name: "Preset " + (presets.length + 1),
                 active: false,
-                ids: [],
+                ids: list,
                 intensity: 0,
                 displayAsDimmer: false,
                 patchChanged: false,
                 mode: SETTINGS.defaultPresetMode,
-                parameters: JSON.parse(JSON.stringify(calculateChannelsList()))
+                fixtures: cleanFixturesForCue()
             };
             presets.push(newPreset);
             io.emit('presets', cleanPresets());
@@ -2622,7 +2622,7 @@ io.on('connection', function (socket) {
     socket.on('updatePreset', function (presetID) {
         if (presets.length != 0) {
             var preset = presets[presets.map(el => el.id).indexOf(presetID)];
-            preset.parameters = JSON.parse(JSON.stringify(calculateChannelsList()));
+            preset.fixtures = cleanFixturesForCue();
             io.emit('presets', cleanPresets());
             socket.emit('message', { type: "info", content: "Preset parameters have been updated!" });
             savePresets();

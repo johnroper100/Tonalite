@@ -29,6 +29,7 @@ var app = new Vue({
         currentEffect: {},
         addGroupSelected: [],
         addSequenceSelected: [],
+        addPresetSelected: [],
         currentGroup: {},
         currentGroupFixtures: {},
         currentSequenceFixtures: {},
@@ -123,7 +124,13 @@ var app = new Vue({
             socket.emit("stopCue");
         },
         recordPreset: function () {
-            socket.emit("recordPreset");
+            var list = [];
+            let f = 0; const fMax = app.addPresetSelected.length; for (; f < fMax; f++) {
+                list.push(app.addPresetSelected[f].id);
+            }
+            socket.emit('recordPreset', list);
+            app.addPresetSelected = [];
+            $('#addPresetModal').modal("hide");
         },
         toggleBlackout: function () {
             socket.emit("toggleBlackout");
@@ -354,6 +361,10 @@ var app = new Vue({
             app.addSequenceSelected = [];
             $('#addSequenceModal').modal("show");
         },
+        addPresetModal: function () {
+            app.addPresetSelected = [];
+            $('#addPresetModal').modal("show");
+        },
         addGroup: function () {
             var list = [];
             let f = 0; const fMax = app.addGroupSelected.length; for (; f < fMax; f++) {
@@ -464,6 +475,7 @@ socket.on('connect', function () {
     app.cuesTab = 'cues';
     app.fixtures = [];
     app.addGroupSelected = [];
+    app.addPresetSelected = [];
     app.addSequenceSelected = [];
     app.groups = [];
     app.cues = [];
@@ -673,6 +685,7 @@ socket.on('resetView', function (msg) {
         app.currentPreset = {};
         app.addGroupSelected = [];
         app.addSequenceSelected = [];
+        app.addPresetSelected = [];
     } else if (msg.type == 'groups') {
         if (app.currentGroup.id == msg.eid) {
             app.currentView = 'groups';

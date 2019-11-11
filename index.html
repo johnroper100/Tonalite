@@ -1010,7 +1010,7 @@
                     <div class="row topBtns sticky-top">
                         <div class="col-12">
                             <button :disabled="fixtures.length == 0" class="btn btn-success btn-block"
-                                @click="recordPreset">Record Preset</button>
+                                @click="addPresetModal">Record Preset</button>
                         </div>
                     </div>
                     <div class="row">
@@ -1032,6 +1032,24 @@
                         </div>
                         <div v-if="presets.length == 0" class="col-12">
                             <h5>There are no presets in this show!</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="addPresetModal" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="dark mr-2" for="presetFixtureIDs">Fixtures:</label>
+                                    <multiselect placeholder="Select some fixtures" :options="fixtures"
+                                        v-model="addPresetSelected" label="name" :multiple="true" :search="true"
+                                        style="width: 100%" track-by="id" :close-on-select="false" :show-pointer="false"
+                                        :hide-selected="true">
+                                        <template slot="option" slot-scope="props">{{props.option.name}}
+                                            ({{props.option.startDMXAddress}})</template></multiselect>
+                                </div>
+                                <button class="btn btn-success btn-full" @click="recordPreset">Record Preset</button>
+                            </div>
                         </div>
                     </div>
                 </div>
