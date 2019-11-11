@@ -537,8 +537,8 @@ Mousetrap.bind('shift+a', function(e) {
         // internet explorer
         e.returnValue = false;
     }
-    app.getFixtureProfiles();
     app.currentView = 'fixtures';
+    app.getFixtureProfiles();
 });
 Mousetrap.bind('ctrl+s', function(e) {
     if (e.preventDefault) {
