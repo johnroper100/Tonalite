@@ -466,10 +466,12 @@ function cleanFixturesForSequence() {
     return newFixtures;
 };
 
-function cleanFixturesForPreset() {
+function cleanFixturesForPreset(ids) {
     var newFixtures = [];
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-        newFixtures.push(cleanFixtureForPreset(fixtures[f]));
+        if (ids.some(e => e === fixtures[f].id)) {
+            newFixtures.push(cleanFixtureForPreset(fixtures[f]));
+        }
     }
     return newFixtures;
 };
@@ -2698,7 +2700,7 @@ io.on('connection', function (socket) {
                 displayAsDimmer: false,
                 patchChanged: false,
                 mode: SETTINGS.defaultPresetMode,
-                fixtures: cleanFixturesForPreset()
+                fixtures: cleanFixturesForPreset(list)
             };
             presets.push(newPreset);
             io.emit('presets', cleanPresets());
@@ -2722,7 +2724,7 @@ io.on('connection', function (socket) {
                 }
             }
             if (preset.ids.length > 0) {
-                preset.fixtures = cleanFixturesForPreset();
+                preset.fixtures = cleanFixturesForPreset(preset.ids);
                 preset.patchChanged = false;
                 socket.emit('message', { type: "info", content: "Preset parameters have been updated!" });
             } else {
