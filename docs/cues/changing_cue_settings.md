@@ -1,6 +1,6 @@
 # Changing Cue Settings
 
-You can access the settings for a cue by clicking on it in the list on the `Cues` > `Cues` sub-tab.
+You can access the settings for a cue by clicking on it in the list in the `Cues` > `Cues` sub-tab.
 
 ![Cue settings](../images/cue_settings.png)
 

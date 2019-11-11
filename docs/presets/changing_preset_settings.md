@@ -1,7 +1,7 @@
 # Changing Preset Settings
 
 You can change the various settings of a preset.
-You can access a preset's setting page by clicking on a preset item on the `Presets` page.
+You can access a preset's setting page by clicking on a preset item in the `Presets` page.
 
 ![Preset settings page](../images/preset_settings.png)
 
