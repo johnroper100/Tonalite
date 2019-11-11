@@ -1097,11 +1097,27 @@ function openShow(file = "show.json") {
         lastCue = "";
         currentCue = "";
         currentCueID = "";
+        var changed = false;
+        let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
+            let i = 0; const iMax = presets[p].ids.length; for (; i < iMax; i++) {
+                if (fixtures.some(e => e.id === presets[p].ids[i]) == false) {
+                    changed = true;
+                }
+            }
+            if (changed == false) {
+                presets[p].patchChanged = false;
+            } else {
+                presets[p].patchChanged = true;
+            }
+            changed = false;
+        }
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
         io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('groups', { groups: cleanGroups(), target: true });
+        io.emit('presets', cleanPresets());
+        savePresets();
     });
 };
 
