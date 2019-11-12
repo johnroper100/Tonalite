@@ -476,7 +476,7 @@ var app = new Vue({
     }
 });
 
-Mousetrap.bind('r', function(e) {
+Mousetrap.bind('r', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
@@ -485,7 +485,7 @@ Mousetrap.bind('r', function(e) {
     }
     app.recordCue();
 });
-Mousetrap.bind('end', function(e) {
+Mousetrap.bind('end', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
@@ -494,7 +494,7 @@ Mousetrap.bind('end', function(e) {
     }
     app.stopCue();
 });
-Mousetrap.bind('home', function(e) {
+Mousetrap.bind('home', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
@@ -503,7 +503,7 @@ Mousetrap.bind('home', function(e) {
     }
     app.gotoSpecificCue(0);
 });
-Mousetrap.bind('pageup', function(e) {
+Mousetrap.bind('pageup', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
@@ -512,7 +512,7 @@ Mousetrap.bind('pageup', function(e) {
     }
     app.nextCue();
 });
-Mousetrap.bind('pagedown', function(e) {
+Mousetrap.bind('pagedown', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
@@ -521,7 +521,7 @@ Mousetrap.bind('pagedown', function(e) {
     }
     app.lastCue();
 });
-Mousetrap.bind('ctrl+alt+n', function(e) {
+Mousetrap.bind('ctrl+alt+n', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
@@ -530,7 +530,7 @@ Mousetrap.bind('ctrl+alt+n', function(e) {
     }
     app.resetShow();
 });
-Mousetrap.bind('shift+a', function(e) {
+Mousetrap.bind('shift+a', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
@@ -540,7 +540,7 @@ Mousetrap.bind('shift+a', function(e) {
     app.currentView = 'fixtures';
     app.getFixtureProfiles();
 });
-Mousetrap.bind('ctrl+s', function(e) {
+Mousetrap.bind('ctrl+s', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
@@ -548,6 +548,47 @@ Mousetrap.bind('ctrl+s', function(e) {
         e.returnValue = false;
     }
     window.location = "/showFile";
+});
+Mousetrap.bind('right', function (e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
+    if (app.currentView == 'fixtures' || app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings') {
+        app.currentView = 'cues';
+        app.cuesTab = 'cues';
+    } else if (app.currentView == 'cues' && app.cuesTab == 'cues') {
+        app.cuesTab = 'sequences';
+    } else if (app.currentView == 'cues' && app.cuesTab == 'sequences') {
+        app.cuesTab = 'cues';
+        app.currentView = 'groups';
+    } else if (app.currentView == 'groups' || app.currentView == 'groupParameters' || app.currentView == 'groupSettings') {
+        app.currentView = 'presets';
+    } else if (app.currentView == 'presets' || app.currentView == 'presetSettings') {
+        app.currentView = 'fixtures';
+    }
+});
+Mousetrap.bind('left', function (e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
+    if (app.currentView == 'fixtures' || app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings') {
+        app.currentView = 'presets';
+    } else if (app.currentView == 'cues' && app.cuesTab == 'cues') {
+        app.currentView = 'fixtures';
+    } else if (app.currentView == 'cues' && app.cuesTab == 'sequences') {
+        app.cuesTab = 'cues';
+    } else if (app.currentView == 'groups' || app.currentView == 'groupParameters' || app.currentView == 'groupSettings') {
+        app.currentView = 'cues';
+        app.cuesTab = 'sequences';
+    } else if (app.currentView == 'presets' || app.currentView == 'presetSettings') {
+        app.currentView = 'groups';
+    }
 });
 
 socket.on('connect', function () {
