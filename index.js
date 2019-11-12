@@ -2010,6 +2010,14 @@ io.on('connection', function (socket) {
                 includeBeam: true
             };
             cues.push(newCue);
+            cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * 40;
+            cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * 40;
+            cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
+            cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
+            lastCue = newCue.id;
+            currentCue = lastCue;
+            cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
+            currentCueID = lastCue;
             io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
             saveShow();
@@ -2025,6 +2033,14 @@ io.on('connection', function (socket) {
                 cue.fixtures = cleanFixturesForCue();
                 cue.sequences = cleanSequencesForCue();
                 cue.groups = cleanGroupsForCue();
+                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * 40;
+                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * 40;
+                cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
+                cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
+                lastCue = cue.id;
+                currentCue = lastCue;
+                cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
+                currentCueID = lastCue;
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 socket.emit('message', { type: "info", content: "Cue parameters have been updated!" });
