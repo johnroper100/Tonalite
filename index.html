@@ -78,6 +78,9 @@
                         </div>
                     </li>
                 </ul>
+                <div v-if="activeCue!= ''">
+                    <span :class="{'text-warning': cues[cues.map(el => el.id).indexOf(activeCue)].active}">{{cues[cues.map(el => el.id).indexOf(activeCue)].name}}</span>
+                </div>
             </div>
         </nav>
         <div id="tabs">
