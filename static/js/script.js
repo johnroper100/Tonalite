@@ -564,7 +564,7 @@ Mousetrap.bind('right', function (e) {
         if (app.currentView == 'cueSettings') {
             app.currentView = 'cues';
         }
-    } else if ((app.currentView == 'cues' || app.currentView == 'sequencparameterse' || app.currentView == 'sequenceSettings') && app.cuesTab == 'sequences') {
+    } else if ((app.currentView == 'cues' || app.currentView == 'sequencParameters' || app.currentView == 'sequenceSettings') && app.cuesTab == 'sequences') {
         app.cuesTab = 'cues';
         app.currentView = 'groups';
     } else if (app.currentView == 'groups' || app.currentView == 'groupParameters' || app.currentView == 'groupSettings') {

@@ -1026,7 +1026,8 @@
                     <div class="row" id="presetsList">
                         <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id"
                             @click="getPresetSettings(preset.id)">
-                            <div :class="{ 'presetActive' : preset.active == true, 'presetPatchChanged': preset.patchChanged == true}" class="presetItem">
+                            <div :class="{ 'presetActive' : preset.active == true, 'presetPatchChanged': preset.patchChanged == true}"
+                                class="presetItem">
                                 <p>{{preset.name}}</p>
                             </div>
                         </div>
@@ -1136,7 +1137,7 @@
                 </div>
                 <div class="col-3" @click="currentView = 'cues'">
                     <div class="tabitem tabitem-cues"
-                        :class="{ active: currentView == 'cues' || currentView == 'cueSettings' }">
+                        :class="{ active: currentView == 'cues' || currentView == 'cueSettings' || currentView == 'sequenceSettings' || currentView == 'sequenceParameters' }">
                         <i class="tablinks far fa-list"></i><span class="tabtext">Cues</span>
                     </div>
                 </div>
