@@ -518,10 +518,15 @@ function cleanGroups() {
 function cleanCues() {
     var newCues = JSON.parse(JSON.stringify(cues));
     let c = 0; const cMax = newCues.length; for (; c < cMax; c++) {
-        delete newCues[c].upStep;
+        delete newCues[c].upTime;
+        delete newCues[c].downTime;
         delete newCues[c].downStep;
+        delete newCues[c].upStep;
         delete newCues[c].following;
+        delete newCues[c].follow;
         delete newCues[c].fixtures;
+        delete newCues[c].sequences;
+        delete newCues[c].groups;
         delete newCues[c].includeIntensityColor;
         delete newCues[c].includePosition;
         delete newCues[c].includeBeam;
