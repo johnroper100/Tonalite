@@ -642,9 +642,9 @@ function calculatePresetChannels(preset) {
         let p = 0; const pMax = preset.fixtures[f].parameters.length; for (; p < pMax; p++) {
             if (preset.fixtures[f].parameters[p].fadeWithIntensity == true || preset.fixtures[f].parameters[p].type == 1) {
                 if (preset.mode == 'ltp') {
-                    channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = (preset.fixtures[f].parameters[p].value >> 8);
+                    channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = ((preset.fixtures[f].parameters[p].value >> 8) / 100.0) * preset.intensity;
                     if (preset.fixtures[f].parameters[p].fine != null) {
-                        channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = (preset.fixtures[f].parameters[p].value & 0xff);
+                        channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = ((preset.fixtures[f].parameters[p].value & 0xff) / 100.0) * preset.intensity;
                     }
                 } else if (preset.mode == 'htp') {
                     tempvalue = ((preset.fixtures[f].parameters[p].value >> 8) / 100.0) * preset.intensity;
