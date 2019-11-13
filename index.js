@@ -649,7 +649,7 @@ function calculatePresetChannels(preset) {
                 } else if (preset.mode == 'htp') {
                     tempvalue = ((preset.fixtures[f].parameters[p].value >> 8) / 100.0) * preset.intensity;
                     tempvalue2 = ((preset.fixtures[f].parameters[p].value & 0xff) / 100.0) * preset.intensity;
-                    // may cause issues with 16bit
+                    // may cause issues with 16bit (doesn't check if 16 bit is bigger or not)
                     if (tempvalue > channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)]) {
                         channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = tempvalue;
                         if (preset.fixtures[f].parameters[p].fine != null) {
