@@ -1106,6 +1106,23 @@ function resetFixtures() {
     }
 };
 
+function resetFixturesIntensity() {
+    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+        let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
+            if (fixtures[f].parameters[c].locked != true) {
+                if (fixtures[f].parameters[c].type == 1 || fixtures[f].parameters[c].fadeWithIntensity == true) {
+                    fixtures[f].parameters[c].value = fixtures[f].parameters[c].home;
+                    fixtures[f].parameters[c].displayValue = cppaddon.mapRange(fixtures[f].parameters[c].value, fixtures[f].parameters[c].min, fixtures[f].parameters[c].max, 0, 100);
+                }
+            }
+        }
+        let e = 0; const eMax = fixtures[f].effects.length; for (; e < eMax; e++) {
+            fixtures[f].effects[e].active = false;
+        }
+        fixtures[f].hasActiveEffects = checkFixtureActiveEffects(fixtures[f].effects);
+    }
+};
+
 // Reset the parameter values for each group
 function resetGroups() {
     let g = 0; const gMax = groups.length; for (; g < gMax; g++) {
@@ -1315,6 +1332,7 @@ io.on('connection', function (socket) {
         groups = [];
         sequences = [];
         currentCue = "";
+        currentCueID = "";
         lastCue = "";
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
@@ -1333,6 +1351,7 @@ io.on('connection', function (socket) {
         groups = [];
         sequences = [];
         currentCue = "";
+        currentCueID = "";
         lastCue = "";
         let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
             presets[p].patchChanged = true;
@@ -1798,6 +1817,20 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('resetFixturesIntensity', function () {
+        if (fixtures.length != 0) {
+            resetFixturesIntensity();
+            currentCue = "";
+            currentCueID = "";
+            io.emit('activeCue', currentCueID);
+            io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            socket.emit('message', { type: "info", content: "Fixture values have been reset!" });
+            saveShow();
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
     socket.on('resetFixture', function (fixtureID) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
@@ -2022,7 +2055,6 @@ io.on('connection', function (socket) {
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
                 cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
             }
-
             lastCue = newCue.id;
             currentCueID = lastCue;
             io.emit('activeCue', currentCueID);
@@ -2160,6 +2192,7 @@ io.on('connection', function (socket) {
                 cues.splice(cues.map(el => el.id).indexOf(cueID), 1);
                 if (currentCue == cueID || lastCue == cueID) {
                     lastCue = "";
+                    currentCueID = lastCue;
                     currentCue = lastCue;
                     io.emit('cueActionBtn', false);
                 }
