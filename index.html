@@ -79,7 +79,8 @@
                     </li>
                 </ul>
                 <div v-if="activeCue!= ''">
-                    <span :class="{'text-warning': cues[cues.map(el => el.id).indexOf(activeCue)].active}">{{cues[cues.map(el => el.id).indexOf(activeCue)].name}}</span>
+                    <span
+                        :class="{'text-warning': cues[cues.map(el => el.id).indexOf(activeCue)].active}">{{cues[cues.map(el => el.id).indexOf(activeCue)].name}}</span>
                 </div>
             </div>
         </nav>
@@ -87,10 +88,18 @@
             <div id="fixtures" class="tabcontent" v-if="currentView == 'fixtures'">
                 <div class="container">
                     <div class="row topBtns sticky-top">
-                        <div class="col-6">
+                        <div class="col-4">
                             <button class="btn btn-success btn-block" @click="getFixtureProfiles">Add Fixture</button>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
+                            <div>
+                                <div>
+                                    <div><button :disabled="fixtures.length == 0" class="btn btn-warning btn-block"
+                                            @click="resetFixturesIntensity">Reset Intensity</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
                             <div>
                                 <div>
                                     <div><button :disabled="fixtures.length == 0" class="btn btn-danger btn-block"
@@ -98,7 +107,6 @@
                                             Values</button></div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="row" id="fixturesList">

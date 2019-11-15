@@ -100,6 +100,13 @@ var app = new Vue({
                 }
             });
         },
+        resetFixturesIntensity: function () {
+            bootbox.confirm("Are you sure you want to reset all fixture intensity values?", function (result) {
+                if (result === true) {
+                    socket.emit("resetFixturesIntensity");
+                }
+            });
+        },
         resetGroups: function () {
             bootbox.confirm("Are you sure you want to reset all group parameter values?", function (result) {
                 if (result === true) {
