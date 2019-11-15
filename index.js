@@ -1811,7 +1811,7 @@ io.on('connection', function (socket) {
             io.emit('activeCue', currentCueID);
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Fixture values have been reset!" });
-            saveShow();
+            //saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
@@ -1825,7 +1825,7 @@ io.on('connection', function (socket) {
             io.emit('activeCue', currentCueID);
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Fixture values have been reset!" });
-            saveShow();
+            //saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
@@ -1847,7 +1847,7 @@ io.on('connection', function (socket) {
                 fixture.hasActiveEffects = false;
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                 socket.emit('message', { type: "info", content: "Fixture values reset!" });
-                saveShow();
+                //saveShow();
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -1967,7 +1967,7 @@ io.on('connection', function (socket) {
                         }
                     }
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-                    saveShow();
+                    //saveShow();
                 } else {
                     socket.emit('message', { type: "error", content: "This effect does not exist!" });
                 }
@@ -2017,9 +2017,9 @@ io.on('connection', function (socket) {
                     }
                 }
                 fixture.hasActiveEffects = true;
-                saveShow();
-                socket.emit('message', { type: "info", content: "Effect has been added to fixture!" });
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                socket.emit('message', { type: "info", content: "Effect has been added to fixture!" });
+                saveShow();
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -2657,7 +2657,7 @@ io.on('connection', function (socket) {
             io.emit('groups', { groups: cleanGroups(), target: true });
             io.emit('fixtures', { fixtures: cleanFixtures(), target: false });
             socket.emit('message', { type: "info", content: "Group parameters reset!" });
-            saveShow();
+            //saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
@@ -2743,7 +2743,7 @@ io.on('connection', function (socket) {
             resetGroups();
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Group values have been reset!" });
-            saveShow();
+            //saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
@@ -2764,8 +2764,8 @@ io.on('connection', function (socket) {
             };
             presets.push(newPreset);
             io.emit('presets', cleanPresets());
-            savePresets();
             socket.emit('message', { type: "info", content: "The preset has been recorded!" });
+            savePresets();
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
@@ -2880,6 +2880,7 @@ io.on('connection', function (socket) {
             }
             socket.emit('presetSettings', preset);
             io.emit('presets', cleanPresets());
+            savePresets();
         } else {
             socket.emit('message', { type: "error", content: "No presets exist!" });
         }
