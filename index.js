@@ -2125,20 +2125,20 @@ io.on('connection', function (socket) {
                 cue.includeBeam = msg.includeBeam;
                 cue.upTime = parseInt(msg.upTime);
                 cue.downTime = parseInt(msg.downTime);
-                if (cue.upTime == 0) {
+                /*if (cue.upTime == 0) {
                     cue.upTime = 0.001;
                 }
                 if (cue.downTime == 0) {
                     cue.downTime = 0.001;
-                }
+                }*/
                 if (msg.follow < -1) {
                     cue.follow = -1;
                 } else {
                     cue.follow = msg.follow;
                 }
-                if (cue.follow === 0) {
+                /*if (cue.follow === 0) {
                     cue.follow = 0.001;
-                }
+                }*/
                 if (changed == true) {
                     cue.upStep = cue.upTime * 40;
                     cue.downStep = cue.downTime * 40;
