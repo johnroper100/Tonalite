@@ -1807,7 +1807,7 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             resetFixtures();
             currentCue = "";
-            currentCueID = "";
+            currentCueID = ""; // maybe remove?
             io.emit('activeCue', currentCueID);
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Fixture values have been reset!" });
@@ -1821,7 +1821,6 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             resetFixturesIntensity();
             currentCue = "";
-            currentCueID = "";
             io.emit('activeCue', currentCueID);
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Fixture values have been reset!" });
