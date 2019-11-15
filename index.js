@@ -2551,20 +2551,22 @@ io.on('connection', function (socket) {
             }
             step.upTime = parseInt(msg.upTime);
             step.downTime = parseInt(msg.downTime);
+            /*
             if (step.upTime == 0) {
                 step.upTime = 0.001;
             }
             if (step.downTime == 0) {
                 step.downTime = 0.001;
             }
+            */
             if (msg.follow < -1) {
                 step.follow = -1;
             } else {
                 step.follow = msg.follow;
             }
-            if (step.follow === 0) {
+            /*if (step.follow === 0) {
                 step.follow = 0.001;
-            }
+            }*/
             if (changed == true) {
                 step.upStep = step.upTime * 40;
                 step.downStep = step.downTime * 40;
