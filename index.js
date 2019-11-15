@@ -2148,15 +2148,15 @@ io.on('connection', function (socket) {
             if (cues.some(e => e.id === msg.id)) {
                 var cue = cues[cues.map(el => el.id).indexOf(msg.id)];
                 var changed = true;
-                if (parseInt(msg.upTime) == cue.upTime && parseInt(msg.downTime) == cue.downTime) {
+                if (parseFloat(msg.upTime) == cue.upTime && parseFloat(msg.downTime) == cue.downTime) {
                     changed = false;
                 }
                 cue.name = msg.name;
                 cue.includeIntensityColor = msg.includeIntensityColor;
                 cue.includePosition = msg.includePosition;
                 cue.includeBeam = msg.includeBeam;
-                cue.upTime = parseInt(msg.upTime);
-                cue.downTime = parseInt(msg.downTime);
+                cue.upTime = parseFloat(msg.upTime);
+                cue.downTime = parseFloat(msg.downTime);
                 /*if (cue.upTime == 0) {
                     cue.upTime = 0.001;
                 }
@@ -2166,7 +2166,7 @@ io.on('connection', function (socket) {
                 if (msg.follow < -1) {
                     cue.follow = -1;
                 } else {
-                    cue.follow = msg.follow;
+                    cue.follow = parseFloat(msg.follow);
                 }
                 /*if (cue.follow === 0) {
                     cue.follow = 0.001;
@@ -2579,11 +2579,11 @@ io.on('connection', function (socket) {
             var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
             var step = sequence.steps[sequence.steps.map(el => el.id).indexOf(msg.step)];
             var changed = true;
-            if (parseInt(msg.upTime) == step.upTime && parseInt(msg.downTime) == step.downTime) {
+            if (parseFloat(msg.upTime) == step.upTime && parseFloat(msg.downTime) == step.downTime) {
                 changed = false;
             }
-            step.upTime = parseInt(msg.upTime);
-            step.downTime = parseInt(msg.downTime);
+            step.upTime = parseFloat(msg.upTime);
+            step.downTime = parseFloat(msg.downTime);
             /*
             if (step.upTime == 0) {
                 step.upTime = 0.001;
@@ -2595,7 +2595,7 @@ io.on('connection', function (socket) {
             if (msg.follow < -1) {
                 step.follow = -1;
             } else {
-                step.follow = msg.follow;
+                step.follow = parseFloat(msg.follow);
             }
             /*if (step.follow === 0) {
                 step.follow = 0.001;
@@ -2913,8 +2913,8 @@ io.on('connection', function (socket) {
     });
 
     socket.on('saveSettings', function (msg) {
-        SETTINGS.defaultUpTime = parseInt(msg.defaultUpTime);
-        SETTINGS.defaultDownTime = parseInt(msg.defaultDownTime);
+        SETTINGS.defaultUpTime = parseFloat(msg.defaultUpTime);
+        SETTINGS.defaultDownTime = parseFloat(msg.defaultDownTime);
         SETTINGS.defaultPresetMode = msg.defaultPresetMode;
         SETTINGS.interfaceMode = msg.interfaceMode;
         SETTINGS.udmx = msg.udmx;
