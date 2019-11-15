@@ -1811,7 +1811,7 @@ io.on('connection', function (socket) {
             io.emit('activeCue', currentCueID);
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Fixture values have been reset!" });
-            //saveShow();
+            saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
