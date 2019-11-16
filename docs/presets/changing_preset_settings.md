@@ -46,3 +46,17 @@ The default can be updated in settings.
 ### Intensity
 
 Control the overall intensity of this preset.
+
+### Preset Fixtures
+
+This is a list of each fixture that belongs to a preset.
+
+![Preset fixture](../images/sequence_fixture.png)
+
+If the fixture in the preset does not exist in the current show, it will be displayed in yellow.
+
+![Preset fixture patch changed](../images/preset_fixture_patch_changed.png)
+
+#### Delete
+
+Use this button to remove the fixture from the preset. If the deleted fixture was the last in the preset, the preset will be deleted because it is now empty.

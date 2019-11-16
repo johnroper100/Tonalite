@@ -8,7 +8,7 @@
     * [Resetting Fixture Intensity Parameter Values](fixtures/resetting_fixture_intensity_parameter_values.md)
     * [Resetting Fixture Parameter Values](fixtures/resetting_fixture_parameter_values.md)
     * [Updating Fixture Parameters](fixtures/parameters/README.md)
-        * [Effects](fixtures/parameters/effects/README.md)
+        * [Using Fixture Effects](fixtures/parameters/effects/README.md)
           * [Adding Effects](fixtures/parameters/effects/adding_effects.md)
           * [Changing Effect Settings](fixtures/parameters/effects/changing_effect_settings.md)
     * [Changing Fixture Settings](fixtures/changing_fixture_settings.md)

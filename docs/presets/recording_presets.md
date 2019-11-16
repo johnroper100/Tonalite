@@ -1,7 +1,9 @@
-# Record Presets
+# Recording Presets
 
-Record a preset using the green `Record Preset` button on the top of the `Presets` tab. Note that a preset stores the current output DMX values, and not output fixtures. This is so that presets will still work even if you don't have some or all fixtures needed for the preset in the current show. A preset will only override DMX output parameters when the channel saved in the preset has a higher value than the current channel.
+Record a preset using the green `Record Preset` button on the top of the `Presets` tab. This will open a modal that shows the available fixtures in the show and allows you to select which ones you would like to control with this preset.
+
+![Preset fixtures modal](../images/preset_fixtures_modal.png)
+
+To select a fixture, click on it in the list, and the new group will control this fixture along with any others you select. You can select multiple on this list.
 
 ![Preset recorded](../images/preset_recorded.png)
-
-To edit a preset's settings, tap on it in this list.

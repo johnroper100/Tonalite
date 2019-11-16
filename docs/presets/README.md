@@ -21,3 +21,9 @@ Active presets display as a red box with the preset's name.
 Inactive presets display as a purple box with the preset's name.
 
 ![Preset inactive](../images/preset_inactive.png)
+
+### Patch Changed
+
+Presets that have a different patch than the current show display as a yellow box with the preset's name.
+
+![Preset patch changed](../images/preset_patch_changed.png)
