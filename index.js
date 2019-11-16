@@ -2862,6 +2862,18 @@ io.on('connection', function (socket) {
                 presets.splice(presets.map(el => el.id).indexOf(preset.id), 1);
                 socket.emit('message', { type: "info", content: "Preset has been removed!" });
                 io.emit('resetView', { type: 'presets', eid: preset.id });
+            } else {
+                var changed = false;
+                let i = 0; const iMax = preset.ids.length; for (; i < iMax; i++) {
+                    if (fixtures.some(e => e.id === preset.ids[i]) == false) {
+                        changed = true;
+                    }
+                }
+                if (changed == false) {
+                    preset.patchChanged = false;
+                } else {
+                    preset.patchChanged = true;
+                }
             }
             io.emit('presets', cleanPresets());
             socket.emit('message', { type: "info", content: "Fixture removed from preset!" });
