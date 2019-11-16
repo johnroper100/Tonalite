@@ -5,6 +5,7 @@
     * [Supported Software](supported_software.md)
 * [Fixtures](fixtures/README.md)
     * [Adding Fixtures](fixtures/adding_fixtures.md)
+    * [Resetting Fixture Intensity Parameter Values](fixtures/resetting_fixture_intensity_parameter_values.md)
     * [Resetting Fixture Parameter Values](fixtures/resetting_fixture_parameter_values.md)
     * [Updating Fixture Parameters](fixtures/parameters/README.md)
         * [Effects](fixtures/parameters/effects/README.md)
