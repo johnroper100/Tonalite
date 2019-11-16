@@ -35,6 +35,8 @@ var SETTINGS = {
 
 var STARTED = false;
 
+const FPS = 40;
+
 const VERSION = "2.0.0 Beta 7";
 
 fs.exists(process.cwd() + '/settings.json', function (exists) {
@@ -106,8 +108,8 @@ function openSettings() {
                 }
             }
 
-            // Output DMX frames 40 times a second
-            setInterval(dmxLoop, 25);
+            // Output DMX frames FPS times a second
+            setInterval(dmxLoop, (1000/FPS));
         }
     });
 }
@@ -726,9 +728,9 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                     if (cue.upStep >= 0) {
                         if ((startFixture.parameters[c].fadeWithIntensity == true || startFixture.parameters[c].type == 1) && includeIntensityColor == true) {
                             if (blackout === false) {
-                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) >> 8) / 100.0) * grandmaster;
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.upTime * FPS)) * cue.upStep)) >> 8) / 100.0) * grandmaster;
                                 if (startFixture.parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) & 0xff) / 100.0) * grandmaster;
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.upTime * FPS)) * cue.upStep)) & 0xff) / 100.0) * grandmaster;
                                 }
                             } else {
                                 outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min >> 8);
@@ -746,27 +748,27 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                                 }
                             }
                             if (invert == true) {
-                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)), 0, 65535) >> 8);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.upTime * FPS)) * cue.upStep)), 0, 65535) >> 8);
                                 if (startFixture.parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)), 0, 65535) & 0xff);
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.upTime * FPS)) * cue.upStep)), 0, 65535) & 0xff);
                                 }
                             } else {
-                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) >> 8);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * FPS)) * cue.upStep)) >> 8);
                                 if (startFixture.parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep)) & 0xff);
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.upTime * FPS)) * cue.upStep)) & 0xff);
                                 }
                             }
                         }
-                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(endParameter + (((startParameter - endParameter) / (cue.upTime * 40)) * cue.upStep), startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
+                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(endParameter + (((startParameter - endParameter) / (cue.upTime * FPS)) * cue.upStep), startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
                     }
                 } else {
                     // Make sure that the step does not dip below 0 (finished)
                     if (cue.downStep >= 0) {
                         if ((startFixture.parameters[c].fadeWithIntensity == true || startFixture.parameters[c].type == 1) && cue.includeIntensityColor == true) {
                             if (blackout === false) {
-                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) >> 8) / 100.0) * grandmaster;
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)) >> 8) / 100.0) * grandmaster;
                                 if (startFixture.parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) & 0xff) / 100.0) * grandmaster;
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)) & 0xff) / 100.0) * grandmaster;
                                 }
                             } else {
                                 outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (startFixture.parameters[c].min >> 8);
@@ -784,18 +786,18 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                                 }
                             }
                             if (invert == true) {
-                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)), 0, 65535) >> 8);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)), 0, 65535) >> 8);
                                 if (startFixture.parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)), 0, 65535) & 0xff);
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)), 0, 65535) & 0xff);
                                 }
                             } else {
-                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) >> 8);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)) >> 8);
                                 if (startFixture.parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep)) & 0xff);
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)) & 0xff);
                                 }
                             }
                         }
-                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(endParameter + (((startParameter - endParameter) / (cue.downTime * 40)) * cue.downStep), startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
+                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep), startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
                     }
                 }
             } else {
@@ -858,12 +860,12 @@ function calculateStack() {
             if (cue.follow != -1) {
                 cue.active = false;
                 if (cue.following === false) {
-                    cue.upStep = cue.follow * 40;
-                    cue.downStep = cue.follow * 40;
+                    cue.upStep = cue.follow * FPS;
+                    cue.downStep = cue.follow * FPS;
                     cue.following = true;
                 } else {
-                    cue.upStep = cue.upTime * 40;
-                    cue.downStep = cue.downTime * 40;
+                    cue.upStep = cue.upTime * FPS;
+                    cue.downStep = cue.downTime * FPS;
                     cue.following = false;
                     if (cues.map(el => el.id).indexOf(currentCue) === cues.length - 1) {
                         currentCue = cues[0].id;
@@ -876,8 +878,8 @@ function calculateStack() {
                 }
             } else {
                 currentCue = "";
-                cue.upStep = cue.upTime * 40;
-                cue.downStep = cue.downTime * 40;
+                cue.upStep = cue.upTime * FPS;
+                cue.downStep = cue.downTime * FPS;
                 cue.active = false;
                 io.emit('cueActionBtn', false);
             }
@@ -931,12 +933,12 @@ function calculateStack() {
                 if (step.upStep < 0 && step.downStep < 0) {
                     step.active = false;
                     if (step.following === false) {
-                        step.upStep = step.follow * 40;
-                        step.downStep = step.follow * 40;
+                        step.upStep = step.follow * FPS;
+                        step.downStep = step.follow * FPS;
                         step.following = true;
                     } else {
-                        step.upStep = step.upTime * 40;
-                        step.downStep = step.downTime * 40;
+                        step.upStep = step.upTime * FPS;
+                        step.downStep = step.downTime * FPS;
                         step.following = false;
                         if (sequence.steps.map(el => el.id).indexOf(sequence.currentStep) === sequence.steps.length - 1) {
                             sequence.currentStep = sequence.steps[0].id;
@@ -2039,8 +2041,8 @@ io.on('connection', function (socket) {
                 upTime: SETTINGS.defaultUpTime,
                 downTime: SETTINGS.defaultDownTime,
                 follow: -1,
-                upStep: SETTINGS.defaultUpTime * 40,
-                downStep: SETTINGS.defaultDownTime * 40,
+                upStep: SETTINGS.defaultUpTime * FPS,
+                downStep: SETTINGS.defaultDownTime * FPS,
                 active: false,
                 following: false,
                 fixtures: cleanFixturesForCue(),
@@ -2053,8 +2055,8 @@ io.on('connection', function (socket) {
             cues.push(newCue);
             currentCue = "";
             if (lastCue != "") {
-                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * 40;
-                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * 40;
+                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
+                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
                 cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
             }
@@ -2077,8 +2079,8 @@ io.on('connection', function (socket) {
                 cue.groups = cleanGroupsForCue();
                 currentCue = "";
                 if (lastCue != "") {
-                    cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * 40;
-                    cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * 40;
+                    cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
+                    cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
                     cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
                     cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
                 }
@@ -2175,8 +2177,8 @@ io.on('connection', function (socket) {
                     cue.follow = 0.001;
                 }
                 if (changed == true) {
-                    cue.upStep = cue.upTime * 40;
-                    cue.downStep = cue.downTime * 40;
+                    cue.upStep = cue.upTime * FPS;
+                    cue.downStep = cue.downTime * FPS;
                 }
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
@@ -2215,8 +2217,8 @@ io.on('connection', function (socket) {
     socket.on('nextCue', function () {
         if (cues.length != 0) {
             if (cues.some(e => e.id === lastCue)) {
-                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * 40;
-                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * 40;
+                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
+                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
                 cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
                 if (cues.map(el => el.id).indexOf(lastCue) == cues.length - 1) {
@@ -2250,8 +2252,8 @@ io.on('connection', function (socket) {
     socket.on('lastCue', function () {
         if (cues.length != 0) {
             if (lastCue != "") {
-                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * 40;
-                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * 40;
+                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
+                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
                 cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
                 if (cues.map(el => el.id).indexOf(lastCue) == 0) {
@@ -2294,8 +2296,8 @@ io.on('connection', function (socket) {
                 }
             }
             currentCue = "";
-            cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * 40;
-            cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * 40;
+            cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
+            cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
             cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
             cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
             io.emit('activeCue', currentCueID);
@@ -2309,8 +2311,8 @@ io.on('connection', function (socket) {
     socket.on('gotoCue', function (cueID) {
         if (cues.length != 0) {
             if (lastCue != "") {
-                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * 40;
-                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * 40;
+                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
+                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
                 cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
             }
@@ -2390,8 +2392,8 @@ io.on('connection', function (socket) {
                 upTime: SETTINGS.defaultUpTime,
                 downTime: SETTINGS.defaultDownTime,
                 follow: 0,
-                upStep: SETTINGS.defaultUpTime * 40,
-                downStep: SETTINGS.defaultDownTime * 40,
+                upStep: SETTINGS.defaultUpTime * FPS,
+                downStep: SETTINGS.defaultDownTime * FPS,
                 active: false,
                 following: false,
                 fixtures: cleanFixturesForSequence()
@@ -2602,8 +2604,8 @@ io.on('connection', function (socket) {
                 step.follow = 0.001;
             }
             if (changed == true) {
-                step.upStep = step.upTime * 40;
-                step.downStep = step.downTime * 40;
+                step.upStep = step.upTime * FPS;
+                step.downStep = step.downTime * FPS;
             }
             io.emit('sequences', { sequences: cleanSequences(), target: true });
             saveShow();
