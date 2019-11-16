@@ -481,8 +481,8 @@ var app = new Vue({
                 return param.name;
             }
         },
-        saveSettings: function () {
-            socket.emit('saveSettings', { defaultUpTime: app.settings.defaultUpTime, defaultDownTime: app.settings.defaultDownTime, defaultPresetMode: app.settings.defaultPresetMode, udmx: app.settings.udmx, automark: app.settings.automark, displayEffectsRealtime: app.settings.displayEffectsRealtime, artnetIP: app.settings.artnetIP, artnetHost: app.settings.artnetHost, sacnIP: app.settings.sacnIP, interfaceMode: app.settings.interfaceMode, blackoutEnabled: app.settings.blackoutEnabled });
+        editSettings: function () {
+            socket.emit('editSettings', { defaultUpTime: app.settings.defaultUpTime, defaultDownTime: app.settings.defaultDownTime, defaultPresetMode: app.settings.defaultPresetMode, udmx: app.settings.udmx, automark: app.settings.automark, displayEffectsRealtime: app.settings.displayEffectsRealtime, artnetIP: app.settings.artnetIP, artnetHost: app.settings.artnetHost, sacnIP: app.settings.sacnIP, interfaceMode: app.settings.interfaceMode, blackoutEnabled: app.settings.blackoutEnabled, sacnPriority: app.settings.sacnPriority });
         },
         customMultiselectLabel({ name, startDMXAddress }) {
             return `${name} (${startDMXAddress})`

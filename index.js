@@ -2910,9 +2910,15 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('grandmaster', grandmaster);
     });
 
-    socket.on('saveSettings', function (msg) {
+    socket.on('editSettings', function (msg) {
         SETTINGS.defaultUpTime = parseFloat(msg.defaultUpTime);
         SETTINGS.defaultDownTime = parseFloat(msg.defaultDownTime);
+        SETTINGS.sacnPriority = parseInt(msg.sacnPriority);
+        if (SETTINGS.sacnPriority < 1) {
+            SETTINGS.sacnPriority = 1;
+        } else if (SETTINGS.sacnPriority > 200) {
+            SETTINGS.sacnPriority = 200;
+        }
         SETTINGS.defaultPresetMode = msg.defaultPresetMode;
         SETTINGS.interfaceMode = msg.interfaceMode;
         SETTINGS.udmx = msg.udmx;
