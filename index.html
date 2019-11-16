@@ -937,21 +937,24 @@
                         </div>
                     </div>
                     <div class="row topBtns">
-                        <div class="col-4">
+                        <div class="col-3">
+                            <button id="gotoCueInstantBtn" class="btn btn-info btn-block" @click="gotoCueInstant">Go I.</button>
+                        </div>
+                        <div class="col-3">
                             <div><button id="cueUpdateBtn" class="btn btn-warning btn-block" @click="updateCue"><i
                                         class="far fa-pencil d-sm-none d-inline-block"></i><span
                                         class="d-none d-sm-inline-block">Update
                                         Params.</span></button></div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <button id="moveCueUpBtn" class="btn btn-success btn-block" @click="moveCueUp"><i
                                     class="far fa-chevron-up d-sm-none d-inline-block"></i><span
-                                    class="d-none d-sm-inline-block">Move Up In Stack</span></button>
+                                    class="d-none d-sm-inline-block">Move Up</span></button>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <button id="moveCueDownBtn" class="btn btn-success btn-block" @click="moveCueDown"><i
                                     class="far fa-chevron-down d-sm-none d-inline-block"></i><span
-                                    class="d-none d-sm-inline-block">Move Down In Stack</span></button>
+                                    class="d-none d-sm-inline-block">Move Down</span></button>
                         </div>
                     </div>
                     <div class="row" id="cueSettings">
@@ -1127,7 +1130,8 @@
                         <div class="col-12">
                             <b>Preset Fixtures:</b>
                             <div id="presetFixtures">
-                                <div v-for="fixture in currentPresetFixtures" :key="fixture.id" :class="{'text-warning': fixture.patchChanged == true}">
+                                <div v-for="fixture in currentPresetFixtures" :key="fixture.id"
+                                    :class="{'text-warning': fixture.patchChanged == true}">
                                     {{fixture.name}} ({{fixture.address}})
                                     <button class="btn btn-danger btn-sm mb-1 ml-1"
                                         @click="removePresetFixture(fixture.id)"><i

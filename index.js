@@ -2336,6 +2336,37 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('gotoCueInstant', function (cueID) {
+        if (cues.length != 0) {
+            if (lastCue != "") {
+                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
+                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
+                cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
+                cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
+            }
+            var fixtureParameters = null;
+            let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+                fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
+                let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
+                    if (fixtureParameters[c].locked === false) {
+                        fixtureParameters[c].value = cppaddon.mapRange(fixtureParameters[c].displayValue, 0, 100, fixtureParameters[c].min, fixtureParameters[c].max);
+                    }
+                }
+            }
+            lastCue = cues[cues.map(el => el.id).indexOf(cueID)].id;
+            currentCue = lastCue;
+            cues[cues.map(el => el.id).indexOf(lastCue)].upStep = 0;
+            cues[cues.map(el => el.id).indexOf(lastCue)].downStep = 0;
+            cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
+            currentCueID = lastCue;
+            io.emit('activeCue', currentCueID);
+            io.emit('cues', cleanCues());
+            io.emit('cueActionBtn', true);
+        } else {
+            socket.emit('message', { type: "error", content: "No cues exist!" });
+        }
+    });
+
     socket.on('moveCueUp', function (cueID) {
         if (cues.length != 0) {
             moveArrayItem(cues, cues.map(el => el.id).indexOf(cueID), cues.map(el => el.id).indexOf(cueID) - 1);

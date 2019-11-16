@@ -284,6 +284,9 @@ var app = new Vue({
         gotoCue: function () {
             socket.emit('gotoCue', app.currentCue.id);
         },
+        gotoCueInstant: function () {
+            socket.emit('gotoCueInstant', app.currentCue.id);
+        },
         gotoSpecificCue: function (index) {
             if (app.cues.length - 1 >= index) {
                 socket.emit('gotoCue', app.cues[index].id);

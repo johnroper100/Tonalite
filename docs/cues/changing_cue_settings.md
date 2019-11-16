@@ -22,15 +22,19 @@ Duplicate this cue and place it at the end of the cue list. The new cloned cue w
 
 Make a duplicate of this cue and place it after this cue in the cue list. The new cloned cue will have the same settings and fixture values as the cue that is being cloned.
 
+### Go Instantly
+
+Transition to this specific cue instantly, don't take into account the up and down times.
+
 ### Update Parameters
 
 Update this cue to use the current values of the show's fixture parameters.
 
-### Move Up In Stack
+### Move Up
 
 Move this cue forward in the cue list.
 
-### Move Down In Stack
+### Move Down
 
 Move this cue backward in the cue list.
 
