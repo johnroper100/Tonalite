@@ -379,7 +379,6 @@ function cleanFixtureForPreset(fixture) {
         delete newFixture.parameters[p].highlight;
         delete newFixture.parameters[p].snap;
         delete newFixture.parameters[p].size;
-        delete newFixture.parameters[p].invert;
         delete newFixture.parameters[p].name;
     }
     return newFixture;
