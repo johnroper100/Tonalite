@@ -109,7 +109,7 @@ function openSettings() {
             }
 
             // Output DMX frames FPS times a second
-            setInterval(dmxLoop, (1000/FPS));
+            setInterval(dmxLoop, (1000 / FPS));
         }
     });
 }
@@ -1377,7 +1377,6 @@ io.on('connection', function (socket) {
 
     socket.on('resetPresets', function () {
         presets = [];
-        socket.emit('presets', cleanPresets());
         io.emit('presets', cleanPresets());
         io.emit('message', { type: "info", content: "The presets have been cleared!" });
         savePresets();
@@ -2407,35 +2406,39 @@ io.on('connection', function (socket) {
     });
 
     socket.on('addGroup', function (fixtureIDs) {
-        if (fixtureIDs.length > 0) {
-            var newGroup = {
-                id: generateID(),
-                name: "Group " + (groups.length + 1),
-                ids: fixtureIDs,
-                parameters: [],
-                parameterTypes: [],
-                effects: [],
-                hasActiveEffects: false,
-                hasLockedParameters: false
-            };
-            newGroup.parameters = generateGroupParameters(newGroup);
-            newGroup.parameterTypes = [];
-            let c = 0; const cMax = newGroup.parameters.length; for (; c < cMax; c++) {
-                if (newGroup.parameters[c].type == 2) {
-                    newGroup.parameterTypes.push("Position");
-                } else if (newGroup.parameters[c].type == 5) {
-                    newGroup.parameterTypes.push("Color");
-                } else if (newGroup.parameters[c].type == 4) {
-                    newGroup.parameterTypes.push("Parameter");
-                } else if (newGroup.parameters[c].type == 1) {
-                    newGroup.parameterTypes.push("Intensity");
+        if (fixtures.length > 0) {
+            if (fixtureIDs.length > 0) {
+                var newGroup = {
+                    id: generateID(),
+                    name: "Group " + (groups.length + 1),
+                    ids: fixtureIDs,
+                    parameters: [],
+                    parameterTypes: [],
+                    effects: [],
+                    hasActiveEffects: false,
+                    hasLockedParameters: false
+                };
+                newGroup.parameters = generateGroupParameters(newGroup);
+                newGroup.parameterTypes = [];
+                let c = 0; const cMax = newGroup.parameters.length; for (; c < cMax; c++) {
+                    if (newGroup.parameters[c].type == 2) {
+                        newGroup.parameterTypes.push("Position");
+                    } else if (newGroup.parameters[c].type == 5) {
+                        newGroup.parameterTypes.push("Color");
+                    } else if (newGroup.parameters[c].type == 4) {
+                        newGroup.parameterTypes.push("Parameter");
+                    } else if (newGroup.parameters[c].type == 1) {
+                        newGroup.parameterTypes.push("Intensity");
+                    }
                 }
+                groups.push(newGroup);
+                io.emit('groups', { groups: cleanGroups(), target: true });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "No fixtures selected!" });
             }
-            groups.push(newGroup);
-            io.emit('groups', { groups: cleanGroups(), target: true });
-            saveShow();
         } else {
-            socket.emit('message', { type: "error", content: "No fixtures selected!" });
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
     });
 
