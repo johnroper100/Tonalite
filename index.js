@@ -582,9 +582,14 @@ function getPresetFixtures(presetID) {
     var preset = presets[presets.map(el => el.id).indexOf(presetID)];
     var fixtureStarts = [];
     var fixture = null;
+    var changed = false;
     let i = 0; const iMax = preset.ids.length; for (; i < iMax; i++) {
         fixture = preset.fixtures[preset.fixtures.map(el => el.id).indexOf(preset.ids[i])];
-        fixtureStarts.push({ name: fixture.name, address: fixture.startDMXAddress, id: fixture.id });
+        if (fixtures.some(e => e.id === fixture.id) == false) {
+            changed = true;
+        }
+        fixtureStarts.push({ name: fixture.name, address: fixture.startDMXAddress, id: fixture.id, patchChanged: changed });
+        changed = false;
     }
     return fixtureStarts;
 };

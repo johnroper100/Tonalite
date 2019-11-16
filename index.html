@@ -1127,7 +1127,7 @@
                         <div class="col-12">
                             <b>Preset Fixtures:</b>
                             <div id="presetFixtures">
-                                <div v-for="fixture in currentPresetFixtures" :key="fixture.id">
+                                <div v-for="fixture in currentPresetFixtures" :key="fixture.id" :class="{'text-warning': fixture.patchChanged == true}">
                                     {{fixture.name}} ({{fixture.address}})
                                     <button class="btn btn-danger btn-sm mb-1 ml-1"
                                         @click="removePresetFixture(fixture.id)"><i
