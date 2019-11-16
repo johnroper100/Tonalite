@@ -302,7 +302,11 @@ var app = new Vue({
             socket.emit('cloneCueEnd', app.currentCue.id);
         },
         updateCue: function () {
-            socket.emit('updateCue', app.currentCue.id);
+            bootbox.confirm("Are you sure you want to update this cue?", function (result) {
+                if (result === true) {
+                    socket.emit('updateCue', app.currentCue.id);
+                }
+            });
         },
         getEffects: function () {
             socket.emit('getEffects', app.currentFixture.id);
