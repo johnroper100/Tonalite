@@ -557,7 +557,7 @@
                                     <multiselect placeholder="Select some fixtures" :options="fixtures"
                                         v-model="addGroupSelected" label="name" :multiple="true" :search="true"
                                         style="width: 100%" track-by="id" :close-on-select="false" :show-pointer="false"
-                                        :hide-selected="true">
+                                        :hide-selected="true" :custom-label="customMultiselectLabel">
                                         <template slot="option" slot-scope="props">{{props.option.name}}
                                             ({{props.option.startDMXAddress}})</template></multiselect>
                                 </div>
@@ -831,7 +831,8 @@
                                             <multiselect placeholder="Select some fixtures" :options="fixtures"
                                                 v-model="addSequenceSelected" label="name" :multiple="true"
                                                 :search="true" style="width: 100%" track-by="id"
-                                                :close-on-select="false" :show-pointer="false" :hide-selected="true">
+                                                :close-on-select="false" :show-pointer="false" :hide-selected="true"
+                                                :custom-label="customMultiselectLabel">
                                                 <template slot="option" slot-scope="props">{{props.option.name}}
                                                     ({{props.option.startDMXAddress}})</template></multiselect>
                                         </div>
@@ -1056,7 +1057,7 @@
                                     <multiselect placeholder="Select some fixtures" :options="fixtures"
                                         v-model="addPresetSelected" label="name" :multiple="true" :search="true"
                                         style="width: 100%" track-by="id" :close-on-select="false" :show-pointer="false"
-                                        :hide-selected="true">
+                                        :hide-selected="true" :custom-label="customMultiselectLabel">
                                         <template slot="option" slot-scope="props">{{props.option.name}}
                                             ({{props.option.startDMXAddress}})</template></multiselect>
                                 </div>
