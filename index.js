@@ -2156,20 +2156,20 @@ io.on('connection', function (socket) {
                 cue.includeBeam = msg.includeBeam;
                 cue.upTime = parseFloat(msg.upTime);
                 cue.downTime = parseFloat(msg.downTime);
-                /*if (cue.upTime == 0) {
+                if (cue.upTime == 0) {
                     cue.upTime = 0.001;
                 }
                 if (cue.downTime == 0) {
                     cue.downTime = 0.001;
-                }*/
+                }
                 if (msg.follow < -1) {
                     cue.follow = -1;
                 } else {
                     cue.follow = parseFloat(msg.follow);
                 }
-                /*if (cue.follow === 0) {
+                if (cue.follow === 0) {
                     cue.follow = 0.001;
-                }*/
+                }
                 if (changed == true) {
                     cue.upStep = cue.upTime * 40;
                     cue.downStep = cue.downTime * 40;
@@ -2583,22 +2583,20 @@ io.on('connection', function (socket) {
             }
             step.upTime = parseFloat(msg.upTime);
             step.downTime = parseFloat(msg.downTime);
-            /*
             if (step.upTime == 0) {
                 step.upTime = 0.001;
             }
             if (step.downTime == 0) {
                 step.downTime = 0.001;
             }
-            */
             if (msg.follow < -1) {
                 step.follow = -1;
             } else {
                 step.follow = parseFloat(msg.follow);
             }
-            /*if (step.follow === 0) {
+            if (step.follow === 0) {
                 step.follow = 0.001;
-            }*/
+            }
             if (changed == true) {
                 step.upStep = step.upTime * 40;
                 step.downStep = step.downTime * 40;
