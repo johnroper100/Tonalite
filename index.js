@@ -894,7 +894,6 @@ function calculateStack() {
                     }
                 }
             }
-
             if (SETTINGS.automark === true) {
                 if (cues.map(el => el.id).indexOf(lastCue) + 1 === cues.length) {
                     var nextCue = cues[0];
@@ -962,7 +961,6 @@ function calculateStack() {
                             }
                         }
                     }
-
                     if (SETTINGS.automark === true) {
                         if (sequence.steps.map(el => el.id).indexOf(sequence.lastCue) + 1 === sequence.steps.length) {
                             var nextCue = sequence.steps[0];
@@ -1028,7 +1026,6 @@ function calculateStack() {
                                         invert = true;
                                     }
                                 }
-
                                 if (fixtures[f].effects[e].resolution == 16) {
                                     if (invert == true) {
                                         channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (cppaddon.reverseNumber(effectValue, 0, 65535) >> 8);
@@ -1041,7 +1038,6 @@ function calculateStack() {
                                             channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (effectValue & 0xff);
                                         }
                                     }
-
                                 } else if (fixtures[f].effects[e].resolution == 8) {
                                     if (invert == true) {
                                         channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = cppaddon.reverseNumber(effectValue, 0, 255);
@@ -1050,7 +1046,6 @@ function calculateStack() {
                                     }
                                 }
                             }
-
                         }
                     }
                     if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed * fixtures[f].effects[e].index) >= fixtures[f].effects[e].steps.length - 1) {
