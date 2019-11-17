@@ -1704,7 +1704,7 @@ io.on('connection', function (socket) {
                         }
                     }
                 }
-                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
+                fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
                 if (fixture.effects.some(e => e.id === msg.effectID)) {
                     fixture.effects.splice(fixture.effects.map(el => el.id).indexOf(msg.effectID), 1);
                     fixture.hasActiveEffects = checkFixtureActiveEffects(fixture.effects);
@@ -1859,11 +1859,15 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
-                var parameter = fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)];
-                parameter.value = parseInt(msg.value);
-                parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
-                socket.broadcast.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-                socket.emit('fixtures', { fixtures: cleanFixtures(), target: false });
+                if (fixture.parameters.some(e => e.id === msg.pid)) {
+                    var parameter = fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)];
+                    parameter.value = parseInt(msg.value);
+                    parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
+                    socket.broadcast.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                    socket.emit('fixtures', { fixtures: cleanFixtures(), target: false });
+                } else {
+                    socket.emit('message', { type: "error", content: "This parameter does not exist!" });
+                }
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -1876,15 +1880,19 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
-                var parameter = fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)];
-                parameter.locked = !parameter.locked;
-                fixture.hasLockedParameters = false;
-                let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
-                    if (fixture.parameters[c].locked) {
-                        fixture.hasLockedParameters = true;
+                if (fixture.parameters.some(e => e.id === msg.pid)) {
+                    var parameter = fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)];
+                    parameter.locked = !parameter.locked;
+                    fixture.hasLockedParameters = false;
+                    let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
+                        if (fixture.parameters[c].locked) {
+                            fixture.hasLockedParameters = true;
+                        }
                     }
+                    io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                } else {
+                    socket.emit('message', { type: "error", content: "This parameter does not exist!" });
                 }
-                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -1915,11 +1923,15 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
-                var parameter = fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)];
-                var range = parameter.ranges[msg.rid];
-                fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].value = cppaddon.mapRange(range.default, 0, 255, parameter.min, parameter.max);
-                fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].displayValue = cppaddon.mapRange(fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].value, fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].min, fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].max, 0, 100);;
-                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                if (fixture.parameters.some(e => e.id === msg.pid)) {
+                    var parameter = fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)];
+                    var range = parameter.ranges[msg.rid];
+                    fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].value = cppaddon.mapRange(range.default, 0, 255, parameter.min, parameter.max);
+                    fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].displayValue = cppaddon.mapRange(fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].value, fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].min, fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)].max, 0, 100);;
+                    io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                } else {
+                    socket.emit('message', { type: "error", content: "This parameter does not exist!" });
+                }
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -1933,13 +1945,17 @@ io.on('connection', function (socket) {
             if (groups.length != 0) {
                 if (groups.some(e => e.id === msg.id)) {
                     var group = groups[groups.map(el => el.id).indexOf(msg.id)];
-                    var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
-                    var range = parameter.ranges[msg.rid];
-                    group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].value = cppaddon.mapRange(range.default, 0, 255, parameter.min, parameter.max);
-                    group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].displayValue = cppaddon.mapRange(group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].value, group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].min, group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].max, 0, 100);;
-                    setFixtureGroupValues(group, parameter);
-                    io.emit('groups', { groups: cleanGroups(), target: true });
-                    io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                    if (group.parameters.some(e => e.id === msg.pid)) {
+                        var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
+                        var range = parameter.ranges[msg.rid];
+                        group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].value = cppaddon.mapRange(range.default, 0, 255, parameter.min, parameter.max);
+                        group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].displayValue = cppaddon.mapRange(group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].value, group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].min, group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)].max, 0, 100);;
+                        setFixtureGroupValues(group, parameter);
+                        io.emit('groups', { groups: cleanGroups(), target: true });
+                        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                    } else {
+                        socket.emit('message', { type: "error", content: "This parameter does not exist!" });
+                    }
                 } else {
                     socket.emit('message', { type: "error", content: "This group does not exist!" });
                 }
@@ -2304,28 +2320,32 @@ io.on('connection', function (socket) {
 
     socket.on('gotoCue', function (cueID) {
         if (cues.length != 0) {
-            if (lastCue != "") {
-                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
-                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
-                cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
-                cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
-            }
-            var fixtureParameters = null;
-            let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-                fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
-                let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
-                    if (fixtureParameters[c].locked === false) {
-                        fixtureParameters[c].value = cppaddon.mapRange(fixtureParameters[c].displayValue, 0, 100, fixtureParameters[c].min, fixtureParameters[c].max);
+            if (cues.some(e => e.id === cueID)) {
+                if (lastCue != "") {
+                    cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
+                    cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
+                    cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
+                    cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
+                }
+                var fixtureParameters = null;
+                let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+                    fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
+                    let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
+                        if (fixtureParameters[c].locked === false) {
+                            fixtureParameters[c].value = cppaddon.mapRange(fixtureParameters[c].displayValue, 0, 100, fixtureParameters[c].min, fixtureParameters[c].max);
+                        }
                     }
                 }
+                lastCue = cues[cues.map(el => el.id).indexOf(cueID)].id;
+                currentCue = lastCue;
+                cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
+                currentCueID = lastCue;
+                io.emit('activeCue', currentCueID);
+                io.emit('cues', cleanCues());
+                io.emit('cueActionBtn', true);
+            } else {
+                socket.emit('message', { type: "error", content: "This cue doesn't exist!" });
             }
-            lastCue = cues[cues.map(el => el.id).indexOf(cueID)].id;
-            currentCue = lastCue;
-            cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
-            currentCueID = lastCue;
-            io.emit('activeCue', currentCueID);
-            io.emit('cues', cleanCues());
-            io.emit('cueActionBtn', true);
         } else {
             socket.emit('message', { type: "error", content: "No cues exist!" });
         }
@@ -2333,30 +2353,34 @@ io.on('connection', function (socket) {
 
     socket.on('gotoCueInstant', function (cueID) {
         if (cues.length != 0) {
-            if (lastCue != "") {
-                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
-                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
-                cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
-                cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
-            }
-            var fixtureParameters = null;
-            let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-                fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
-                let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
-                    if (fixtureParameters[c].locked === false) {
-                        fixtureParameters[c].value = cppaddon.mapRange(fixtureParameters[c].displayValue, 0, 100, fixtureParameters[c].min, fixtureParameters[c].max);
+            if (cues.some(e => e.id === cueID)) {
+                if (lastCue != "") {
+                    cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
+                    cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
+                    cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
+                    cues[cues.map(el => el.id).indexOf(lastCue)].following = false;
+                }
+                var fixtureParameters = null;
+                let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+                    fixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(fixtures[f].id)].parameters;
+                    let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
+                        if (fixtureParameters[c].locked === false) {
+                            fixtureParameters[c].value = cppaddon.mapRange(fixtureParameters[c].displayValue, 0, 100, fixtureParameters[c].min, fixtureParameters[c].max);
+                        }
                     }
                 }
+                lastCue = cues[cues.map(el => el.id).indexOf(cueID)].id;
+                currentCue = lastCue;
+                cues[cues.map(el => el.id).indexOf(lastCue)].upStep = 0;
+                cues[cues.map(el => el.id).indexOf(lastCue)].downStep = 0;
+                cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
+                currentCueID = lastCue;
+                io.emit('activeCue', currentCueID);
+                io.emit('cues', cleanCues());
+                io.emit('cueActionBtn', true);
+            } else {
+                socket.emit('message', { type: "error", content: "This cue doesn't exist!" });
             }
-            lastCue = cues[cues.map(el => el.id).indexOf(cueID)].id;
-            currentCue = lastCue;
-            cues[cues.map(el => el.id).indexOf(lastCue)].upStep = 0;
-            cues[cues.map(el => el.id).indexOf(lastCue)].downStep = 0;
-            cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
-            currentCueID = lastCue;
-            io.emit('activeCue', currentCueID);
-            io.emit('cues', cleanCues());
-            io.emit('cueActionBtn', true);
         } else {
             socket.emit('message', { type: "error", content: "No cues exist!" });
         }
@@ -2364,11 +2388,15 @@ io.on('connection', function (socket) {
 
     socket.on('moveCueUp', function (cueID) {
         if (cues.length != 0) {
-            moveArrayItem(cues, cues.map(el => el.id).indexOf(cueID), cues.map(el => el.id).indexOf(cueID) - 1);
-            io.emit('activeCue', currentCueID);
-            io.emit('cues', cleanCues());
-            socket.emit('message', { type: "info", content: "Cue moved up." });
-            saveShow();
+            if (cues.some(e => e.id === cueID)) {
+                moveArrayItem(cues, cues.map(el => el.id).indexOf(cueID), cues.map(el => el.id).indexOf(cueID) - 1);
+                io.emit('activeCue', currentCueID);
+                io.emit('cues', cleanCues());
+                socket.emit('message', { type: "info", content: "Cue moved up." });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This cue doesn't exist!" });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No cues exist!" });
         }
@@ -2376,11 +2404,15 @@ io.on('connection', function (socket) {
 
     socket.on('moveCueDown', function (cueID) {
         if (cues.length != 0) {
-            moveArrayItem(cues, cues.map(el => el.id).indexOf(cueID), cues.map(el => el.id).indexOf(cueID) + 1);
-            io.emit('activeCue', currentCueID);
-            io.emit('cues', cleanCues());
-            socket.emit('message', { type: "info", content: "Cue moved down." });
-            saveShow();
+            if (cues.some(e => e.id === cueID)) {
+                moveArrayItem(cues, cues.map(el => el.id).indexOf(cueID), cues.map(el => el.id).indexOf(cueID) + 1);
+                io.emit('activeCue', currentCueID);
+                io.emit('cues', cleanCues());
+                socket.emit('message', { type: "info", content: "Cue moved down." });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This cue doesn't exist!" });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No cues exist!" });
         }
@@ -2411,21 +2443,25 @@ io.on('connection', function (socket) {
 
     socket.on('recordSequenceStep', function (sequenceID) {
         if (fixtures.length != 0) {
-            var sequence = sequences[sequences.map(el => el.id).indexOf(sequenceID)];
-            var newStep = {
-                id: generateID(),
-                upTime: SETTINGS.defaultUpTime,
-                downTime: SETTINGS.defaultDownTime,
-                follow: 0,
-                upStep: SETTINGS.defaultUpTime * FPS,
-                downStep: SETTINGS.defaultDownTime * FPS,
-                active: false,
-                following: false,
-                fixtures: cleanFixturesForSequence()
-            };
-            sequence.steps.push(newStep);
-            io.emit('sequences', { sequences: cleanSequences(), target: true });
-            saveShow();
+            if (sequences.some(e => e.id === sequenceID)) {
+                var sequence = sequences[sequences.map(el => el.id).indexOf(sequenceID)];
+                var newStep = {
+                    id: generateID(),
+                    upTime: SETTINGS.defaultUpTime,
+                    downTime: SETTINGS.defaultDownTime,
+                    follow: 0,
+                    upStep: SETTINGS.defaultUpTime * FPS,
+                    downStep: SETTINGS.defaultDownTime * FPS,
+                    active: false,
+                    following: false,
+                    fixtures: cleanFixturesForSequence()
+                };
+                sequence.steps.push(newStep);
+                io.emit('sequences', { sequences: cleanSequences(), target: true });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This sequence doesn't exist!" });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
@@ -2470,37 +2506,41 @@ io.on('connection', function (socket) {
 
     socket.on('getGroupParameters', function (groupID) {
         if (groups.length != 0) {
-            var group = groups[groups.map(el => el.id).indexOf(groupID)];
-            var fixture = null;
-            var valAvg = null;
-            var valAvgCount = null;
-            var shouldLock = false;
-            group.hasLockedParameters = false;
-            let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
-                valAvg = 0;
-                valAvgCount = 0;
-                let i = 0; const iMax = group.ids.length; for (; i < iMax; i++) {
-                    fixture = fixtures[fixtures.map(el => el.id).indexOf(group.ids[i])];
-                    let fc = 0; const fcMax = fixture.parameters.length; for (; fc < fcMax; fc++) {
-                        if (fixture.parameters[fc].name === group.parameters[c].name && fixture.parameters[fc].type === group.parameters[c].type) {
-                            valAvg = valAvg + fixture.parameters[fc].value;
-                            valAvgCount++;
-                            if (fixture.parameters[fc].locked == true) {
-                                shouldLock = true;
+            if (groups.some(e => e.id === groupID)) {
+                var group = groups[groups.map(el => el.id).indexOf(groupID)];
+                var fixture = null;
+                var valAvg = null;
+                var valAvgCount = null;
+                var shouldLock = false;
+                group.hasLockedParameters = false;
+                let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
+                    valAvg = 0;
+                    valAvgCount = 0;
+                    let i = 0; const iMax = group.ids.length; for (; i < iMax; i++) {
+                        fixture = fixtures[fixtures.map(el => el.id).indexOf(group.ids[i])];
+                        let fc = 0; const fcMax = fixture.parameters.length; for (; fc < fcMax; fc++) {
+                            if (fixture.parameters[fc].name === group.parameters[c].name && fixture.parameters[fc].type === group.parameters[c].type) {
+                                valAvg = valAvg + fixture.parameters[fc].value;
+                                valAvgCount++;
+                                if (fixture.parameters[fc].locked == true) {
+                                    shouldLock = true;
+                                }
                             }
                         }
                     }
+                    group.parameters[c].value = valAvg / valAvgCount;
+                    group.parameters[c].displayValue = cppaddon.mapRange(group.parameters[c].value, group.parameters[c].min, group.parameters[c].max, 0, 100);
+                    group.parameters[c].locked = shouldLock;
+                    if (group.parameters[c].locked) {
+                        group.hasLockedParameters = true;
+                        io.emit('groups', { groups: cleanGroups(), target: false });
+                    }
+                    shouldLock = false;
                 }
-                group.parameters[c].value = valAvg / valAvgCount;
-                group.parameters[c].displayValue = cppaddon.mapRange(group.parameters[c].value, group.parameters[c].min, group.parameters[c].max, 0, 100);
-                group.parameters[c].locked = shouldLock;
-                if (group.parameters[c].locked) {
-                    group.hasLockedParameters = true;
-                    io.emit('groups', { groups: cleanGroups(), target: false });
-                }
-                shouldLock = false;
+                socket.emit('groupParameters', group);
+            } else {
+                socket.emit('message', { type: "error", content: "This group doesn't exist!" });
             }
-            socket.emit('groupParameters', group);
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
@@ -2509,7 +2549,11 @@ io.on('connection', function (socket) {
 
     socket.on('getSequenceParameters', function (sequenceID) {
         if (sequences.length != 0) {
-            socket.emit('sequenceParameters', sequences[sequences.map(el => el.id).indexOf(sequenceID)]);
+            if (sequences.some(e => e.id === sequenceID)) {
+                socket.emit('sequenceParameters', sequences[sequences.map(el => el.id).indexOf(sequenceID)]);
+            } else {
+                socket.emit('message', { type: "error", content: "This sequence doesn't exist!" });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
@@ -2517,44 +2561,70 @@ io.on('connection', function (socket) {
     });
 
     socket.on('changeGroupParameterValue', function (msg) {
-        if (fixtures.length != 0 && groups.length != 0) {
-            var group = groups[groups.map(el => el.id).indexOf(msg.id)];
-            var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
-            parameter.value = parseInt(msg.value);
-            parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
-            setFixtureGroupValues(group, parameter);
-            socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
-            socket.emit('groups', { groups: cleanGroups(), target: false });
-            io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+        if (fixtures.length > 0) {
+            if (groups.length > 0) {
+                if (groups.some(e => e.id === msg.id)) {
+                    var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                    if (group.parameters.some(e => e.id === msg.pid)) {
+                        var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
+                        parameter.value = parseInt(msg.value);
+                        parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
+                        setFixtureGroupValues(group, parameter);
+                        socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
+                        socket.emit('groups', { groups: cleanGroups(), target: false });
+                        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                    } else {
+                        socket.emit('message', { type: "error", content: "This parameter doesn't exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "This group doesn't exist!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No groups exist!" });
+            }
         } else {
-            socket.emit('message', { type: "error", content: "No fixtures and/or groups exist!" });
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
     });
 
     socket.on('changeGroupParameterLock', function (msg) {
-        if (fixtures.length != 0 && groups.length != 0) {
-            if (groups.some(e => e.id === msg.id)) {
-                var group = groups[groups.map(el => el.id).indexOf(msg.id)];
-                var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
-                parameter.locked = !parameter.locked;
-                group.hasLockedParameters = false;
-                let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
-                    if (group.parameters[c].locked) {
-                        group.hasLockedParameters = true;
+        if (fixtures.length > 0) {
+            if (groups.length > 0) {
+                if (groups.some(e => e.id === msg.id)) {
+                    var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                    if (group.parameters.some(e => e.id === msg.pid)) {
+                        var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
+                        parameter.locked = !parameter.locked;
+                        group.hasLockedParameters = false;
+                        let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
+                            if (group.parameters[c].locked) {
+                                group.hasLockedParameters = true;
+                            }
+                        }
+                        setFixtureGroupValues(group, parameter);
+                        io.emit('groups', { groups: cleanGroups(), target: true });
+                        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                    } else {
+                        socket.emit('message', { type: "error", content: "This parameter doesn't exist!" });
                     }
+                } else {
+                    socket.emit('message', { type: "error", content: "This group doesn't exist!" });
                 }
-                setFixtureGroupValues(group, parameter);
-                io.emit('groups', { groups: cleanGroups(), target: true });
-                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            } else {
+                socket.emit('message', { type: "error", content: "No groups exist!" });
             }
         } else {
-            socket.emit('message', { type: "error", content: "No fixtures and/or groups exist!" });
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
     });
 
     socket.on('getGroupFixtures', function (groupID) {
         if (groups.length != 0) {
-            socket.emit('groupFixtures', getGroupFixtures(groupID));
+            if (groups.some(e => e.id === groupID)) {
+                socket.emit('groupFixtures', getGroupFixtures(groupID));
+            } else {
+                socket.emit('message', { type: "error", content: "This group doesn't exist!" });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
@@ -2562,7 +2632,11 @@ io.on('connection', function (socket) {
 
     socket.on('getSequenceFixtures', function (sequenceID) {
         if (sequences.length != 0) {
-            socket.emit('sequenceFixtures', getSequenceFixtures(sequenceID));
+            if (sequences.some(e => e.id === sequenceID)) {
+                socket.emit('sequenceFixtures', getSequenceFixtures(sequenceID));
+            } else {
+                socket.emit('message', { type: "error", content: "This sequence doesn't exist!" });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
@@ -2570,10 +2644,14 @@ io.on('connection', function (socket) {
 
     socket.on('editGroupSettings', function (msg) {
         if (groups.length != 0) {
-            var group = groups[groups.map(el => el.id).indexOf(msg.id)];
-            group.name = msg.name;
-            io.emit('groups', { groups: cleanGroups(), target: true });
-            saveShow();
+            if (groups.some(e => e.id === msg.id)) {
+                var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                group.name = msg.name;
+                io.emit('groups', { groups: cleanGroups(), target: true });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This group doesn't exist!" });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
@@ -2581,80 +2659,96 @@ io.on('connection', function (socket) {
 
     socket.on('editSequenceSettings', function (msg) {
         if (sequences.length != 0) {
-            var sequence = sequences[sequences.map(el => el.id).indexOf(msg.id)];
-            sequence.name = msg.name;
-            if (sequence.active == false && msg.active == true) {
-                sequence.active = msg.active;
-                if (sequence.steps.length > 0) {
-                    sequence.currentStep = sequence.steps[0].id;
-                    sequence.currentStepID = sequence.steps[0].id;
-                    sequence.steps[0].active = true;
+            if (sequences.some(e => e.id === msg.id)) {
+                var sequence = sequences[sequences.map(el => el.id).indexOf(msg.id)];
+                sequence.name = msg.name;
+                if (sequence.active == false && msg.active == true) {
+                    sequence.active = msg.active;
+                    if (sequence.steps.length > 0) {
+                        sequence.currentStep = sequence.steps[0].id;
+                        sequence.currentStepID = sequence.steps[0].id;
+                        sequence.steps[0].active = true;
+                    }
+                } else if (sequence.active == true && msg.active == false) {
+                    sequence.active = msg.active;
+                    sequence.currentStep = "";
+                    sequence.currentStepID = "";
+                    let s = 0; const sMax = sequence.steps.length; for (; s < sMax; s++) {
+                        sequence.steps[s].active = false;
+                    }
                 }
-            } else if (sequence.active == true && msg.active == false) {
-                sequence.active = msg.active;
-                sequence.currentStep = "";
-                sequence.currentStepID = "";
-                let s = 0; const sMax = sequence.steps.length; for (; s < sMax; s++) {
-                    sequence.steps[s].active = false;
-                }
+                sequence.includeIntensityColor = msg.includeIntensityColor;
+                sequence.includePosition = msg.includePosition;
+                sequence.includeBeam = msg.includeBeam;
+                io.emit('sequences', { sequences: cleanSequences(), target: true });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This sequence doesn't exist!" });
             }
-            sequence.includeIntensityColor = msg.includeIntensityColor;
-            sequence.includePosition = msg.includePosition;
-            sequence.includeBeam = msg.includeBeam;
-            io.emit('sequences', { sequences: cleanSequences(), target: true });
-            saveShow();
         } else {
-            socket.emit('message', { type: "error", content: "No groups exist!" });
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
     });
 
     socket.on('editSequenceStepSettings', function (msg) {
         if (sequences.length != 0) {
-            var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
-            var step = sequence.steps[sequence.steps.map(el => el.id).indexOf(msg.step)];
-            var changed = true;
-            if (parseFloat(msg.upTime) == step.upTime && parseFloat(msg.downTime) == step.downTime) {
-                changed = false;
-            }
-            step.upTime = parseFloat(msg.upTime);
-            step.downTime = parseFloat(msg.downTime);
-            if (step.upTime == 0) {
-                step.upTime = 0.001;
-            }
-            if (step.downTime == 0) {
-                step.downTime = 0.001;
-            }
-            if (msg.follow < -1) {
-                step.follow = -1;
+            if (sequences.some(e => e.id === msg.sequence)) {
+                var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
+                if (sequence.steps.some(e => e.id === msg.step)) {
+                    var step = sequence.steps[sequence.steps.map(el => el.id).indexOf(msg.step)];
+                    var changed = true;
+                    if (parseFloat(msg.upTime) == step.upTime && parseFloat(msg.downTime) == step.downTime) {
+                        changed = false;
+                    }
+                    step.upTime = parseFloat(msg.upTime);
+                    step.downTime = parseFloat(msg.downTime);
+                    if (step.upTime == 0) {
+                        step.upTime = 0.001;
+                    }
+                    if (step.downTime == 0) {
+                        step.downTime = 0.001;
+                    }
+                    if (msg.follow < -1) {
+                        step.follow = -1;
+                    } else {
+                        step.follow = parseFloat(msg.follow);
+                    }
+                    if (step.follow === 0) {
+                        step.follow = 0.001;
+                    }
+                    if (changed == true) {
+                        step.upStep = step.upTime * FPS;
+                        step.downStep = step.downTime * FPS;
+                    }
+                    io.emit('sequences', { sequences: cleanSequences(), target: true });
+                    saveShow();
+                } else {
+                    socket.emit('message', { type: "error", content: "This step doesn't exist!" });
+                }
             } else {
-                step.follow = parseFloat(msg.follow);
+                socket.emit('message', { type: "error", content: "This sequence doesn't exist!" });
             }
-            if (step.follow === 0) {
-                step.follow = 0.001;
-            }
-            if (changed == true) {
-                step.upStep = step.upTime * FPS;
-                step.downStep = step.downTime * FPS;
-            }
-            io.emit('sequences', { sequences: cleanSequences(), target: true });
-            saveShow();
         } else {
-            socket.emit('message', { type: "error", content: "No groups exist!" });
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
     });
 
     socket.on('removeGroup', function (groupID) {
         if (groups.length != 0) {
-            let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
-                if (cues[c].groups.some(e => e.id === groupID)) {
-                    cues[c].groups.splice(cues[c].groups.map(el => el.id).indexOf(groupID), 1);
+            if (groups.some(e => e.id === groupID)) {
+                let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
+                    if (cues[c].groups.some(e => e.id === groupID)) {
+                        cues[c].groups.splice(cues[c].groups.map(el => el.id).indexOf(groupID), 1);
+                    }
                 }
+                groups.splice(groups.map(el => el.id).indexOf(groupID), 1);
+                socket.emit('message', { type: "info", content: "Group has been removed!" });
+                io.emit('resetView', { type: 'groups', eid: groupID });
+                io.emit('groups', { groups: cleanGroups(), target: true });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This group doesn't exist!" });
             }
-            groups.splice(groups.map(el => el.id).indexOf(groupID), 1);
-            socket.emit('message', { type: "info", content: "Group has been removed!" });
-            io.emit('resetView', { type: 'groups', eid: groupID });
-            io.emit('groups', { groups: cleanGroups(), target: true });
-            saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
@@ -2662,16 +2756,20 @@ io.on('connection', function (socket) {
 
     socket.on('removeSequence', function (sequenceID) {
         if (sequences.length != 0) {
-            let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
-                if (cues[c].sequences.some(e => e.id === sequenceID)) {
-                    cues[c].sequences.splice(cues[c].sequences.map(el => el.id).indexOf(sequenceID), 1);
+            if (sequences.some(e => e.id === sequenceID)) {
+                let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
+                    if (cues[c].sequences.some(e => e.id === sequenceID)) {
+                        cues[c].sequences.splice(cues[c].sequences.map(el => el.id).indexOf(sequenceID), 1);
+                    }
                 }
+                sequences.splice(sequences.map(el => el.id).indexOf(sequenceID), 1);
+                socket.emit('message', { type: "info", content: "Sequence has been removed!" });
+                io.emit('resetView', { type: 'sequences', eid: sequenceID });
+                io.emit('sequences', { sequences: cleanSequences(), target: true });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This sequence doesn't exist!" });
             }
-            sequences.splice(sequences.map(el => el.id).indexOf(sequenceID), 1);
-            socket.emit('message', { type: "info", content: "Sequence has been removed!" });
-            io.emit('resetView', { type: 'sequences', eid: sequenceID });
-            io.emit('sequences', { sequences: cleanSequences(), target: true });
-            saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
@@ -2679,17 +2777,21 @@ io.on('connection', function (socket) {
 
     socket.on('resetGroup', function (groupID) {
         if (groups.length != 0) {
-            var group = groups[groups.map(el => el.id).indexOf(groupID)];
-            group.hasActiveEffects = false;
-            let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
-                group.parameters[c].value = group.parameters[c].home;
-                group.parameters[c].displayValue = cppaddon.mapRange(group.parameters[c].value, group.parameters[c].min, group.parameters[c].max, 0, 100);
-                setFixtureGroupValues(group, group.parameters[c]);
+            if (groups.some(e => e.id === groupID)) {
+                var group = groups[groups.map(el => el.id).indexOf(groupID)];
+                group.hasActiveEffects = false;
+                let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
+                    group.parameters[c].value = group.parameters[c].home;
+                    group.parameters[c].displayValue = cppaddon.mapRange(group.parameters[c].value, group.parameters[c].min, group.parameters[c].max, 0, 100);
+                    setFixtureGroupValues(group, group.parameters[c]);
+                }
+                io.emit('groups', { groups: cleanGroups(), target: true });
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: false });
+                socket.emit('message', { type: "info", content: "Group parameters reset!" });
+                //saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This group doesn't exist!" });
             }
-            io.emit('groups', { groups: cleanGroups(), target: true });
-            io.emit('fixtures', { fixtures: cleanFixtures(), target: false });
-            socket.emit('message', { type: "info", content: "Group parameters reset!" });
-            //saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
@@ -2697,36 +2799,40 @@ io.on('connection', function (socket) {
 
     socket.on('removeGroupFixture', function (msg) {
         if (groups.length != 0) {
-            var group = groups[groups.map(el => el.id).indexOf(msg.group)];
-            if (group.ids.some(e => e === msg.fixture)) {
-                group.ids.splice(group.ids.map(el => el).indexOf(msg.fixture), 1);
-                group.parameters = generateGroupParameters(group);
-                group.parameterTypes = [];
-                let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
-                    if (group.parameters[c].type == 2) {
-                        group.parameterTypes.push("Position");
-                    } else if (group.parameters[c].type == 5) {
-                        group.parameterTypes.push("Color");
-                    } else if (group.parameters[c].type == 4) {
-                        group.parameterTypes.push("Parameter");
-                    } else if (group.parameters[c].type == 1) {
-                        group.parameterTypes.push("Intensity");
+            if (groups.some(e => e.id === msg.group)) {
+                var group = groups[groups.map(el => el.id).indexOf(msg.group)];
+                if (group.ids.some(e => e === msg.fixture)) {
+                    group.ids.splice(group.ids.map(el => el).indexOf(msg.fixture), 1);
+                    group.parameters = generateGroupParameters(group);
+                    group.parameterTypes = [];
+                    let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
+                        if (group.parameters[c].type == 2) {
+                            group.parameterTypes.push("Position");
+                        } else if (group.parameters[c].type == 5) {
+                            group.parameterTypes.push("Color");
+                        } else if (group.parameters[c].type == 4) {
+                            group.parameterTypes.push("Parameter");
+                        } else if (group.parameters[c].type == 1) {
+                            group.parameterTypes.push("Intensity");
+                        }
                     }
                 }
-            }
-            if (group.ids.length == 0) {
-                let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
-                    if (cues[c].groups.some(e => e.id === msg.group)) {
-                        cues[c].groups.splice(cues[c].groups.map(el => el.id).indexOf(msg.group), 1);
+                if (group.ids.length == 0) {
+                    let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
+                        if (cues[c].groups.some(e => e.id === msg.group)) {
+                            cues[c].groups.splice(cues[c].groups.map(el => el.id).indexOf(msg.group), 1);
+                        }
                     }
+                    groups.splice(groups.map(el => el.id).indexOf(group.id), 1);
+                    socket.emit('message', { type: "info", content: "Group has been removed!" });
+                    io.emit('resetView', { type: 'groups', eid: group.id });
                 }
-                groups.splice(groups.map(el => el.id).indexOf(group.id), 1);
-                socket.emit('message', { type: "info", content: "Group has been removed!" });
-                io.emit('resetView', { type: 'groups', eid: group.id });
+                io.emit('groups', { groups: cleanGroups(), target: true });
+                socket.emit('message', { type: "info", content: "Fixture removed from group!" });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This group doesn't exist!" });
             }
-            io.emit('groups', { groups: cleanGroups(), target: true });
-            socket.emit('message', { type: "info", content: "Fixture removed from group!" });
-            saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
@@ -2734,23 +2840,27 @@ io.on('connection', function (socket) {
 
     socket.on('removeSequenceFixture', function (msg) {
         if (sequences.length != 0) {
-            var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
-            if (sequence.ids.some(e => e === msg.fixture)) {
-                sequence.ids.splice(sequence.ids.map(el => el).indexOf(msg.fixture), 1);
-            }
-            if (sequence.ids.length == 0) {
-                let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
-                    if (cues[c].sequences.some(e => e.id === msg.sequence)) {
-                        cues[c].sequences.splice(cues[c].sequences.map(el => el.id).indexOf(msg.sequence), 1);
-                    }
+            if (sequences.some(e => e.id === msg.sequence)) {
+                var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
+                if (sequence.ids.some(e => e === msg.fixture)) {
+                    sequence.ids.splice(sequence.ids.map(el => el).indexOf(msg.fixture), 1);
                 }
-                sequences.splice(sequences.map(el => el.id).indexOf(sequence.id), 1);
-                socket.emit('message', { type: "info", content: "Sequence has been removed!" });
-                io.emit('resetView', { type: 'sequences', eid: sequence.id });
+                if (sequence.ids.length == 0) {
+                    let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
+                        if (cues[c].sequences.some(e => e.id === msg.sequence)) {
+                            cues[c].sequences.splice(cues[c].sequences.map(el => el.id).indexOf(msg.sequence), 1);
+                        }
+                    }
+                    sequences.splice(sequences.map(el => el.id).indexOf(sequence.id), 1);
+                    socket.emit('message', { type: "info", content: "Sequence has been removed!" });
+                    io.emit('resetView', { type: 'sequences', eid: sequence.id });
+                }
+                io.emit('sequences', { sequences: cleanSequences(), target: true });
+                socket.emit('message', { type: "info", content: "Fixture removed from sequence!" });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This sequence doesn't exist!" });
             }
-            io.emit('sequences', { sequences: cleanSequences(), target: true });
-            socket.emit('message', { type: "info", content: "Fixture removed from sequence!" });
-            saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
@@ -2758,13 +2868,17 @@ io.on('connection', function (socket) {
 
     socket.on('removeSequenceStep', function (msg) {
         if (sequences.length != 0) {
-            var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
-            if (sequence.steps.some(e => e.id === msg.step)) {
-                sequence.steps.splice(sequence.steps.map(el => el.id).indexOf(msg.step), 1);
+            if (sequences.some(e => e.id === msg.sequence)) {
+                var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
+                if (sequence.steps.some(e => e.id === msg.step)) {
+                    sequence.steps.splice(sequence.steps.map(el => el.id).indexOf(msg.step), 1);
+                }
+                io.emit('sequences', { sequences: cleanSequences(), target: true });
+                socket.emit('message', { type: "info", content: "Step removed from sequence!" });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This sequence doesn't exist!" });
             }
-            io.emit('sequences', { sequences: cleanSequences(), target: true });
-            socket.emit('message', { type: "info", content: "Step removed from sequence!" });
-            saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
@@ -2805,27 +2919,31 @@ io.on('connection', function (socket) {
 
     socket.on('updatePreset', function (presetID) {
         if (presets.length != 0) {
-            var preset = presets[presets.map(el => el.id).indexOf(presetID)];
-            let i = preset.ids.length;
-            while (i--) {
-                if (fixtures.some(e => e.id === preset.ids[i]) == false) {
-                    preset.fixtures.splice(preset.fixtures.map(el => el).indexOf(preset.ids[i]), 1);
+            if (presets.some(e => e.id === presetID)) {
+                var preset = presets[presets.map(el => el.id).indexOf(presetID)];
+                let i = preset.ids.length;
+                while (i--) {
+                    if (fixtures.some(e => e.id === preset.ids[i]) == false) {
+                        preset.fixtures.splice(preset.fixtures.map(el => el).indexOf(preset.ids[i]), 1);
+                    }
+                    if (fixtures.some(e => e.id === preset.ids[i]) == false) {
+                        preset.ids.splice(preset.ids.map(el => el).indexOf(preset.ids[i]), 1);
+                    }
                 }
-                if (fixtures.some(e => e.id === preset.ids[i]) == false) {
-                    preset.ids.splice(preset.ids.map(el => el).indexOf(preset.ids[i]), 1);
+                if (preset.ids.length > 0) {
+                    preset.fixtures = cleanFixturesForPreset(preset.ids);
+                    preset.patchChanged = false;
+                    socket.emit('message', { type: "info", content: "Preset parameters have been updated!" });
+                } else {
+                    presets.splice(presets.map(el => el.id).indexOf(preset.id), 1);
+                    socket.emit('message', { type: "info", content: "Preset has been removed!" });
+                    io.emit('resetView', { type: 'presets', eid: preset.id });
                 }
-            }
-            if (preset.ids.length > 0) {
-                preset.fixtures = cleanFixturesForPreset(preset.ids);
-                preset.patchChanged = false;
-                socket.emit('message', { type: "info", content: "Preset parameters have been updated!" });
+                io.emit('presets', cleanPresets());
+                savePresets();
             } else {
-                presets.splice(presets.map(el => el.id).indexOf(preset.id), 1);
-                socket.emit('message', { type: "info", content: "Preset has been removed!" });
-                io.emit('resetView', { type: 'presets', eid: preset.id });
+                socket.emit('message', { type: "error", content: "This preset doesn't exist!" });
             }
-            io.emit('presets', cleanPresets());
-            savePresets();
         } else {
             socket.emit('message', { type: "error", content: "No presets exist!" });
         }
@@ -2833,7 +2951,11 @@ io.on('connection', function (socket) {
 
     socket.on('getPresetSettings', function (presetID) {
         if (presets.length != 0) {
-            socket.emit('presetSettings', presets[presets.map(el => el.id).indexOf(presetID)]);
+            if (presets.some(e => e.id === presetID)) {
+                socket.emit('presetSettings', presets[presets.map(el => el.id).indexOf(presetID)]);
+            } else {
+                socket.emit('message', { type: "error", content: "This preset doesn't exist!" });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No presets exist!" });
         }
@@ -2841,19 +2963,23 @@ io.on('connection', function (socket) {
 
     socket.on('editPresetSettings', function (msg) {
         if (presets.length != 0) {
-            var preset = presets[presets.map(el => el.id).indexOf(msg.id)];
-            preset.name = msg.name;
-            preset.displayAsDimmer = msg.displayAsDimmer;
-            preset.mode = msg.mode;
-            var intensity = parseInt(msg.intensity);
-            if (intensity > 0) {
-                preset.active = true;
+            if (presets.some(e => e.id === msg.id)) {
+                var preset = presets[presets.map(el => el.id).indexOf(msg.id)];
+                preset.name = msg.name;
+                preset.displayAsDimmer = msg.displayAsDimmer;
+                preset.mode = msg.mode;
+                var intensity = parseInt(msg.intensity);
+                if (intensity > 0) {
+                    preset.active = true;
+                } else {
+                    preset.active = false;
+                }
+                preset.intensity = intensity;
+                io.emit('presets', cleanPresets());
+                savePresets();
             } else {
-                preset.active = false;
+                socket.emit('message', { type: "error", content: "This preset doesn't exist!" });
             }
-            preset.intensity = intensity;
-            io.emit('presets', cleanPresets());
-            savePresets();
         } else {
             socket.emit('message', { type: "error", content: "No presets exist!" });
         }
@@ -2861,7 +2987,11 @@ io.on('connection', function (socket) {
 
     socket.on('getPresetFixtures', function (presetID) {
         if (presets.length != 0) {
-            socket.emit('presetFixtures', getPresetFixtures(presetID));
+            if (presets.some(e => e.id === presetID)) {
+                socket.emit('presetFixtures', getPresetFixtures(presetID));
+            } else {
+                socket.emit('message', { type: "error", content: "This preset doesn't exist!" });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No presets exist!" });
         }
@@ -2869,11 +2999,15 @@ io.on('connection', function (socket) {
 
     socket.on('removePreset', function (presetID) {
         if (presets.length != 0) {
-            presets.splice(presets.map(el => el.id).indexOf(presetID), 1);
-            socket.emit('message', { type: "info", content: "Preset has been removed!" });
-            io.emit('resetView', { type: 'presets', eid: presetID });
-            io.emit('presets', cleanPresets());
-            savePresets();
+            if (presets.some(e => e.id === presetID)) {
+                presets.splice(presets.map(el => el.id).indexOf(presetID), 1);
+                socket.emit('message', { type: "info", content: "Preset has been removed!" });
+                io.emit('resetView', { type: 'presets', eid: presetID });
+                io.emit('presets', cleanPresets());
+                savePresets();
+            } else {
+                socket.emit('message', { type: "error", content: "This preset doesn't exist!" });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No presets exist!" });
         }
@@ -2881,33 +3015,37 @@ io.on('connection', function (socket) {
 
     socket.on('removePresetFixture', function (msg) {
         if (presets.length != 0) {
-            var preset = presets[presets.map(el => el.id).indexOf(msg.preset)];
-            if (preset.fixtures.some(e => e === msg.fixture)) {
-                preset.fixtures.splice(preset.fixtures.map(el => el).indexOf(msg.fixture), 1);
-            }
-            if (preset.ids.some(e => e === msg.fixture)) {
-                preset.ids.splice(preset.ids.map(el => el).indexOf(msg.fixture), 1);
-            }
-            if (preset.ids.length == 0) {
-                presets.splice(presets.map(el => el.id).indexOf(preset.id), 1);
-                socket.emit('message', { type: "info", content: "Preset has been removed!" });
-                io.emit('resetView', { type: 'presets', eid: preset.id });
-            } else {
-                var changed = false;
-                let i = 0; const iMax = preset.ids.length; for (; i < iMax; i++) {
-                    if (fixtures.some(e => e.id === preset.ids[i]) == false) {
-                        changed = true;
+            if (presets.some(e => e.id === msg.preset)) {
+                var preset = presets[presets.map(el => el.id).indexOf(msg.preset)];
+                if (preset.fixtures.some(e => e === msg.fixture)) {
+                    preset.fixtures.splice(preset.fixtures.map(el => el).indexOf(msg.fixture), 1);
+                }
+                if (preset.ids.some(e => e === msg.fixture)) {
+                    preset.ids.splice(preset.ids.map(el => el).indexOf(msg.fixture), 1);
+                }
+                if (preset.ids.length == 0) {
+                    presets.splice(presets.map(el => el.id).indexOf(preset.id), 1);
+                    socket.emit('message', { type: "info", content: "Preset has been removed!" });
+                    io.emit('resetView', { type: 'presets', eid: preset.id });
+                } else {
+                    var changed = false;
+                    let i = 0; const iMax = preset.ids.length; for (; i < iMax; i++) {
+                        if (fixtures.some(e => e.id === preset.ids[i]) == false) {
+                            changed = true;
+                        }
+                    }
+                    if (changed == false) {
+                        preset.patchChanged = false;
+                    } else {
+                        preset.patchChanged = true;
                     }
                 }
-                if (changed == false) {
-                    preset.patchChanged = false;
-                } else {
-                    preset.patchChanged = true;
-                }
+                io.emit('presets', cleanPresets());
+                socket.emit('message', { type: "info", content: "Fixture removed from preset!" });
+                savePresets();
+            } else {
+                socket.emit('message', { type: "error", content: "This preset doesn't exist!" });
             }
-            io.emit('presets', cleanPresets());
-            socket.emit('message', { type: "info", content: "Fixture removed from preset!" });
-            savePresets();
         } else {
             socket.emit('message', { type: "error", content: "No sequences exist!" });
         }
@@ -2915,16 +3053,20 @@ io.on('connection', function (socket) {
 
     socket.on('changePresetActive', function (presetID) {
         if (presets.length != 0) {
-            var preset = presets[presets.map(el => el.id).indexOf(presetID)];
-            preset.active = !preset.active;
-            if (preset.active == true) {
-                preset.intensity = 100;
+            if (presets.some(e => e.id === presetID)) {
+                var preset = presets[presets.map(el => el.id).indexOf(presetID)];
+                preset.active = !preset.active;
+                if (preset.active == true) {
+                    preset.intensity = 100;
+                } else {
+                    preset.intensity = 0;
+                }
+                socket.emit('presetSettings', preset);
+                io.emit('presets', cleanPresets());
+                savePresets();
             } else {
-                preset.intensity = 0;
+                socket.emit('message', { type: "error", content: "This preset doesn't exist!" });
             }
-            socket.emit('presetSettings', preset);
-            io.emit('presets', cleanPresets());
-            savePresets();
         } else {
             socket.emit('message', { type: "error", content: "No presets exist!" });
         }
@@ -2932,14 +3074,18 @@ io.on('connection', function (socket) {
 
     socket.on('changePresetIntensity', function (msg) {
         if (presets.length != 0) {
-            var preset = presets[presets.map(el => el.id).indexOf(msg.presetID)];
-            preset.intensity = parseInt(msg.intensity);
-            if (preset.intensity == 0) {
-                preset.active = false;
+            if (presets.some(e => e.id === msg.presetID)) {
+                var preset = presets[presets.map(el => el.id).indexOf(msg.presetID)];
+                preset.intensity = parseInt(msg.intensity);
+                if (preset.intensity == 0) {
+                    preset.active = false;
+                } else {
+                    preset.active = true;
+                }
+                socket.broadcast.emit('presets', cleanPresets());
             } else {
-                preset.active = true;
+                socket.emit('message', { type: "error", content: "This preset doesn't exist!" });
             }
-            socket.broadcast.emit('presets', cleanPresets());
         } else {
             socket.emit('message', { type: "error", content: "No presets exist!" });
         }
