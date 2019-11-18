@@ -1391,12 +1391,24 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body text-center dark">
-                        <h5>{{showInfo.showName}}</h5>
-                        <p>Fixtures: {{showInfo.fixtures}}</p>
-                        <p>Cues: {{showInfo.cues}}</p>
-                        <p>Sequences: {{showInfo.sequences}}</p>
-                        <p>Groups: {{showInfo.groups}}</p>
-                        <p>Show Length: {{showInfo.showLength}} seconds</p>
+                        <h5>{{showInfo.showName}} Info</h5>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Fixtures: {{showInfo.fixtures}}</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Cues: {{showInfo.cues}}</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Sequences: {{showInfo.sequences}}</p>
+                            </div>
+                            <div class="col-6">
+                                <p>Groups: {{showInfo.groups}}</p>
+                            </div>
+                            <div class="col-12">
+                                <p>Show Length: {{showInfo.showLength}} seconds</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

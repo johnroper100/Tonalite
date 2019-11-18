@@ -662,6 +662,7 @@ socket.on('connect', function () {
     $('#fixtureAddEffectsModal').modal("hide");
     $('#fixtureProfilesModal').modal("hide");
     $('#showFilesModal').modal("hide");
+    $('#showInfoModal').modal("hide");
     $('#serverDisconnectedModal').modal("hide");
 });
 
@@ -672,6 +673,7 @@ socket.on('connect_error', function () {
     $('#fixtureAddEffectsModal').modal("hide");
     $('#fixtureProfilesModal').modal("hide");
     $('#showFilesModal').modal("hide");
+    $('#showInfoModal').modal("hide");
     $('#serverDisconnectedModal').modal("show");
 });
 
