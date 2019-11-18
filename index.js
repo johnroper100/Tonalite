@@ -56,6 +56,7 @@ var lastCue = "";
 var currentCueID = "";
 var blackout = false;
 var grandmaster = 100;
+var currentShowName = "Show";
 
 // Set up dmx variables for integrations used later on
 var e131 = null;
@@ -1165,6 +1166,7 @@ function openShow(file = "show.json") {
         cues = show.cues;
         groups = show.groups;
         sequences = show.sequences;
+        currentShowName = show.showName;
         lastCue = "";
         currentCue = "";
         currentCueID = "";
@@ -1194,7 +1196,7 @@ function openShow(file = "show.json") {
 
 // Save the fixtures, cues, and groups of the show to file
 function saveShow() {
-    fs.writeFile(process.cwd() + "/show.json", JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, tonaliteVersion: VERSION, lastSaved: moment().format() }), (err) => {
+    fs.writeFile(process.cwd() + "/show.json", JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, tonaliteVersion: VERSION, lastSaved: moment().format(), showName: currentShowName }), (err) => {
         if (err) {
             logError(err);
             return false;
@@ -3101,6 +3103,29 @@ io.on('connection', function (socket) {
     socket.on('changeGrandmasterValue', function (value) {
         grandmaster = parseInt(value);
         socket.broadcast.emit('grandmaster', grandmaster);
+    });
+
+    socket.on('getShowInfo', function () {
+        var info = {
+            fixtures: fixtures.length,
+            cues: cues.length,
+            sequences: sequences.length,
+            groups: groups.length,
+            showName: currentShowName,
+            showLength: 0
+        };
+        let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
+            if (cues[c].upTime > cues[c].downTime) {
+                info.showLength += cues[c].upTime;
+            } else {
+                info.showLength += cues[c].downTime;
+            }
+            if (cues[c].follow > 0) {
+                info.showLength += cues[c].follow;
+            }
+        }
+        info.showLength = Math.round(info.showLength);
+        socket.emit('showInfo', info);
     });
 
     socket.on('editSettings', function (msg) {

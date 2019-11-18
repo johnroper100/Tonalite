@@ -68,6 +68,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" data-toggle="modal" data-target="#openAboutModal">About
                                 Tonalite</a>
+                            <a class="dropdown-item" @click="getShowInfo">Show Info</a>
                             <a class="dropdown-item" href="/docs">Documentation</a>
                             <div v-if="ifMobile() || desktop == true" class="dropdown-divider"></div>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item"
@@ -938,7 +939,8 @@
                     </div>
                     <div class="row topBtns">
                         <div class="col-3">
-                            <button id="gotoCueInstantBtn" class="btn btn-info btn-block" @click="gotoCueInstant">Go I.</button>
+                            <button id="gotoCueInstantBtn" class="btn btn-info btn-block" @click="gotoCueInstant">Go
+                                I.</button>
                         </div>
                         <div class="col-3">
                             <div><button id="cueUpdateBtn" class="btn btn-warning btn-block" @click="updateCue"><i
@@ -1381,6 +1383,20 @@
                         <p v-if="!desktop && !ifMobile()" class="mb-0"><small>OSS Licences Available Online</small></p>
                         <img :src="qrcode"><br>
                         <small>{{url}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="showInfoModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center dark">
+                        <h5>{{showInfo.showName}}</h5>
+                        <p>Fixtures: {{showInfo.fixtures}}</p>
+                        <p>Cues: {{showInfo.cues}}</p>
+                        <p>Sequences: {{showInfo.sequences}}</p>
+                        <p>Groups: {{showInfo.groups}}</p>
+                        <p>Show Length: {{showInfo.showLength}} seconds</p>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ var app = new Vue({
         fixtureParametersTab: 'all',
         cuesTab: 'cues',
         desktop: false,
+        showInfo: {},
         fixtures: [],
         groups: [],
         cues: [],
@@ -487,6 +488,9 @@ var app = new Vue({
         editSettings: function () {
             socket.emit('editSettings', { defaultUpTime: app.settings.defaultUpTime, defaultDownTime: app.settings.defaultDownTime, defaultPresetMode: app.settings.defaultPresetMode, udmx: app.settings.udmx, automark: app.settings.automark, displayEffectsRealtime: app.settings.displayEffectsRealtime, artnetIP: app.settings.artnetIP, artnetHost: app.settings.artnetHost, sacnIP: app.settings.sacnIP, interfaceMode: app.settings.interfaceMode, blackoutEnabled: app.settings.blackoutEnabled, sacnPriority: app.settings.sacnPriority });
         },
+        getShowInfo: function () {
+            socket.emit('getShowInfo');
+        },
         customMultiselectLabel({ name, startDMXAddress }) {
             return `${name} (${startDMXAddress})`
         }
@@ -615,6 +619,7 @@ socket.on('connect', function () {
     app.currentView = 'fixtures';
     app.fixtureParametersTab = 'all';
     app.cuesTab = 'cues';
+    app.showInfo = {};
     app.fixtures = [];
     app.addGroupSelected = [];
     app.addPresetSelected = [];
@@ -674,6 +679,11 @@ socket.on('shows', function (msg) {
     app.usbData = msg.shows;
     app.usbPath = msg.drive;
     $('#showFilesModal').modal("show");
+});
+
+socket.on('showInfo', function (msg) {
+    app.showInfo = msg;
+    $('#showInfoModal').modal("show");
 });
 
 socket.on('fixtures', function (msg) {
