@@ -1430,12 +1430,8 @@ io.on('connection', function (socket) {
         });
     });
 
-    socket.on('getShowsFromUSB', function () {
-        if (SETTINGS.desktop === false) {
-            getShowsFromUSB();
-        } else {
-            socket.emit('message', { type: "error", content: "The console is currently in desktop mode!" });
-        }
+    socket.on('getShowsFromUSB', function () 
+        getShowsFromUSB();
     });
 
     socket.on('addFixture', function (msg) {
