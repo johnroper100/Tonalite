@@ -2181,9 +2181,6 @@ io.on('connection', function (socket) {
                 } else {
                     cue.follow = parseFloat(msg.follow);
                 }
-                if (cue.follow === 0) {
-                    cue.follow = 0.001;
-                }
                 if (changed == true) {
                     cue.upStep = cue.upTime * FPS;
                     cue.downStep = cue.downTime * FPS;
@@ -2710,9 +2707,6 @@ io.on('connection', function (socket) {
                         step.follow = -1;
                     } else {
                         step.follow = parseFloat(msg.follow);
-                    }
-                    if (step.follow === 0) {
-                        step.follow = 0.001;
                     }
                     if (changed == true) {
                         step.upStep = step.upTime * FPS;
