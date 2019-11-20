@@ -1297,7 +1297,6 @@ fs.exists(process.cwd() + '/show.json', function (exists) {
 });
 
 io.on('connection', function (socket) {
-    socket.emit('currentCue', currentCueID);
     socket.emit('fixtures', { fixtures: cleanFixtures(), target: true });
     socket.emit('cues', cleanCues());
     socket.emit('sequences', { sequences: cleanSequences(), target: true });
@@ -1316,6 +1315,8 @@ io.on('connection', function (socket) {
     } else {
         socket.emit('cueActionBtn', true);
     }
+
+    socket.emit('currentCue', currentCueID);
 
     socket.on('openShowFromUSB', function (data) {
         fs.copyFile(data.path + '/' + data.file, process.cwd() + '/show.json', function (err) {
