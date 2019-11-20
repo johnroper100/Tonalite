@@ -257,7 +257,7 @@
                                 </div>
                                 <input type="range" class="custom-range" v-bind:id="parameter.id"
                                     v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value"
-                                    @input="changeFixtureParameterValue(parameter)">
+                                    @input="changeFixtureParameterValue(parameter)" step="1">
                                 <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
                                     <div class="channelRanges row flex-nowrap">
                                         <div class="channelRange col-2 col-md-1 mr-1 "
@@ -627,7 +627,7 @@
                             </div>
                             <input type="range" :disabled="parameter.locked == true" class="custom-range"
                                 v-bind:id="parameter.id" v-bind:max="parameter.max" v-bind:min="parameter.min"
-                                v-model="parameter.value" @input="changeGroupParameterValue(parameter)">
+                                v-model="parameter.value" @input="changeGroupParameterValue(parameter)" step="1">
                             <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
                                 <div class="channelRanges row flex-nowrap">
                                     <div class="channelRange col-2 col-md-1 mr-1 "
@@ -1037,7 +1037,7 @@
                                 @click="toggleBlackout" :disabled="settings.blackoutEnabled == false">Blackout</button>
                             <label class="ml-2" for="grandmaster">Grandmaster:</label>
                             <input type="range" class="custom-range" id="grandmaster" min="0" max="100"
-                                v-on:input="changeGrandMasterValue" v-model="grandmaster">
+                                v-on:input="changeGrandMasterValue" v-model="grandmaster" step="1">
                         </div>
                     </div>
                     <div class="row" id="presetsList">
@@ -1126,7 +1126,7 @@
                             <div class="form-group">
                                 <label class="ml-2" for="presetIntensityInput">Intensity:</label>
                                 <input type="range" @input="editPresetSettings" class="custom-range"
-                                    id="presetIntensityInput" min="0" max="100" v-model="currentPreset.intensity">
+                                    id="presetIntensityInput" min="0" max="100" v-model="currentPreset.intensity" step="1">
                             </div>
                         </div>
                         <div class="col-12">
