@@ -1430,8 +1430,14 @@ io.on('connection', function (socket) {
         });
     });
 
-    socket.on('getShowsFromUSB', function () 
-        getShowsFromUSB();
+    socket.on('getShowsFromUSB', function () {
+        getShowsFromUSB(function (result) {
+            if (result) {
+                // TODO
+            } else {
+                // TODO
+            }
+        });
     });
 
     socket.on('addFixture', function (msg) {
