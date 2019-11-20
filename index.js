@@ -1432,10 +1432,8 @@ io.on('connection', function (socket) {
 
     socket.on('getShowsFromUSB', function () {
         getShowsFromUSB(function (result) {
-            if (result) {
-                // TODO
-            } else {
-                // TODO
+            if (!result) {
+                console.log("Error gettings shows from USB");
             }
         });
     });
