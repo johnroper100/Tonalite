@@ -114,8 +114,8 @@
                         <div class="col-4 col-sm-3 col-lg-2 mb-3" v-for="fixture in fixtures" :key="fixture.id"
                             @click="getFixtureParameters(fixture.id, true)">
                             <div class="fixtureItem">
-                                <h3 v-if="fixture.hasIntensity === true" class="fixtureValue">
-                                    {{fixture.parameters[fixture.parameters.map(el => el.type).indexOf(1)].displayValue}}%
+                                <h3 class="fixtureValue">
+                                    {{fixture.intensityDisplay}}%
                                 </h3>
                                 <p>{{fixture.shortName}} ({{fixture.startDMXAddress}})
                                     <span v-if="fixture.hasLockedParameters == true" class="d-inline"><i

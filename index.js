@@ -275,6 +275,8 @@ function generateGroupParameters(newGroup) {
 
 function cleanFixtures() {
     var newFixtures = JSON.parse(JSON.stringify(fixtures));
+    var valAvg = 0;
+    var valAvgCount = 0;
     let f = 0; const fMax = newFixtures.length; for (; f < fMax; f++) {
         delete newFixtures[f].effects;
         delete newFixtures[f].chips;
@@ -289,6 +291,10 @@ function cleanFixtures() {
         delete newFixtures[f].invertTilt;
         delete newFixtures[f].swapPanTilt;
         let p = 0; const pMax = newFixtures[f].parameters.length; for (; p < pMax; p++) {
+            if (newFixtures[f].parameters[p].fadeWithIntensity == true || newFixtures[f].parameters[p].type == 1) {
+                valAvgCount++;
+                valAvg += newFixtures[f].parameters[p].displayValue;
+            }
             delete newFixtures[f].parameters[p].home;
             delete newFixtures[f].parameters[p].coarse;
             delete newFixtures[f].parameters[p].ranges;
@@ -304,11 +310,10 @@ function cleanFixtures() {
             delete newFixtures[f].parameters[p].min;
             delete newFixtures[f].parameters[p].locked;
             delete newFixtures[f].parameters[p].id;
-            if (newFixtures[f].parameters[p].type != 1) {
-                delete newFixtures[f].parameters[p].type;
-                delete newFixtures[f].parameters[p].displayValue;
-            }
         }
+        newFixtures[f].intensityDisplay = Math.round(valAvg/valAvgCount);
+        valAvg = 0;
+        valAvgCount = 0;
     }
     return newFixtures;
 };
