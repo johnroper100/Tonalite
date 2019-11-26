@@ -412,7 +412,6 @@ function cleanEffect(effect) {
     delete newEffect.parameterNames;
     delete newEffect.step;
     delete newEffect.speed;
-    delete newEffect.index;
     delete newEffect.depth;
     delete newEffect.chroma;
     delete newEffect.fan;
@@ -713,7 +712,6 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                 startFixture.effects[e].fan = cue.fixtures[f].effects[e].fan;
                 if (cue.fixtures[f].effects[e].active != startFixture.effects[e].active) {
                     startFixture.effects[e].step = 0;
-                    startFixture.effects[e].index = 0;
                 }
                 startFixture.effects[e].depth = cue.fixtures[f].effects[e].depth;
                 startFixture.effects[e].speed = cue.fixtures[f].effects[e].speed;
@@ -1054,12 +1052,11 @@ function calculateStack() {
                             }
                         }
                     }
-                    if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed * fixtures[f].effects[e].index) >= fixtures[f].effects[e].steps.length - 1) {
+                    if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed) >= fixtures[f].effects[e].steps.length - 1) {
                         fixtures[f].effects[e].step = 0;
-                        fixtures[f].effects[e].index = 0;
                     } else {
-                        fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed * fixtures[f].effects[e].index);
-                        fixtures[f].effects[e].index++;
+                        if (index > 1) {}
+                        fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
                     }
                 }
             }
@@ -2011,7 +2008,6 @@ io.on('connection', function (socket) {
                 effect.step = 0;
                 effect.depth = 1.0;
                 effect.speed = 0.5;
-                effect.index = 0;
                 effect.chroma = 1;
                 effect.fan = 0;
                 effect.aspect = 1;
