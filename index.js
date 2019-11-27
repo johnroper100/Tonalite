@@ -311,7 +311,7 @@ function cleanFixtures() {
             delete newFixtures[f].parameters[p].locked;
             delete newFixtures[f].parameters[p].id;
         }
-        newFixtures[f].intensityDisplay = Math.round(valAvg/valAvgCount);
+        newFixtures[f].intensityDisplay = Math.round(valAvg / valAvgCount);
         valAvg = 0;
         valAvgCount = 0;
     }
@@ -925,7 +925,7 @@ function calculateStack() {
                                 valNum += 1;
                             }
                         }
-                        if (valNumAvg/valNum <= 0.0) {
+                        if (valNumAvg / valNum <= 0.0) {
                             c = 0; const cMax1 = startFixtureParameters.length; for (; c < cMax1; c++) {
                                 if (startFixtureParameters[c].locked === false && startFixtureParameters[c].type != 1) {
                                     startFixtureParameters[c].value = nextCueFixtureParameters[c].value;
@@ -988,14 +988,31 @@ function calculateStack() {
                         } else {
                             var nextCue = sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.lastCue) + 1];
                         }
+                        var valNum = 0;
+                        var valNumAvg = 0;
                         f = 0; const fMax1 = nextCue.fixtures.length; for (; f < fMax1; f++) {
                             if (sequence.ids.indexOf(nextCue.fixtures[f].id) >= 0) {
                                 startFixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].parameters;
                                 nextCueFixtureParameters = nextCue.fixtures[f].parameters;
-                                if (fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].hasIntensity == true) {
+                                if (fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].hasIntensity == true && startFixtureParameters.some(e => e.fadeWithIntensity === true) == -1) {
                                     if (startFixtureParameters[startFixtureParameters.map(el => el.type).indexOf(1)].value === 0) {
                                         c = 0; const cMax1 = nextCueFixtureParameters.length; for (; c < cMax1; c++) {
                                             if (startFixtureParameters[c].locked === false && startFixtureParameters[c].type != 1 && startFixtureParameters[c].fadeWithIntensity != true) {
+                                                startFixtureParameters[c].value = nextCueFixtureParameters[c].value;
+                                                startFixtureParameters[c].displayValue = cppaddon.mapRange(nextCueFixtureParameters[c].value, startFixtureParameters[c].min, startFixtureParameters[c].max, 0, 100);
+                                            }
+                                        }
+                                    }
+                                } else if (startFixtureParameters.some(e => e.fadeWithIntensity === true)) {
+                                    c = 0; const cMax1 = startFixtureParameters.length; for (; c < cMax1; c++) {
+                                        if (startFixtureParameters[c].fadeWithIntensity == true || startFixtureParameters[c].type == 1) {
+                                            valNumAvg += startFixtureParameters[c].value;
+                                            valNum += 1;
+                                        }
+                                    }
+                                    if (valNumAvg / valNum <= 0.0) {
+                                        c = 0; const cMax1 = startFixtureParameters.length; for (; c < cMax1; c++) {
+                                            if (startFixtureParameters[c].locked === false && startFixtureParameters[c].type != 1) {
                                                 startFixtureParameters[c].value = nextCueFixtureParameters[c].value;
                                                 startFixtureParameters[c].displayValue = cppaddon.mapRange(nextCueFixtureParameters[c].value, startFixtureParameters[c].min, startFixtureParameters[c].max, 0, 100);
                                             }
@@ -1070,7 +1087,7 @@ function calculateStack() {
                     if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed) >= fixtures[f].effects[e].steps.length - 1) {
                         fixtures[f].effects[e].step = 0;
                     } else {
-                        if (index > 1) {}
+                        if (index > 1) { }
                         fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
                     }
                 }
