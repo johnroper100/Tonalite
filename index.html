@@ -174,11 +174,18 @@
                                     </div>
                                 </div>
                                 <div class="dark mb-1">
-                                    <span @click="clearFixtureProfilesSelection">All Fixtures</span> <span
-                                        v-if="fixtureProfilesManufacturer != ''" @click="fixtureProfilesModel = ''">>
-                                        {{fixtureProfilesManufacturer}}</span> <span
-                                        v-if="fixtureProfilesModel != '' && fixtureProfilesManufacturer != ''">>
-                                        {{fixtureProfilesModel}}</span>
+                                    <span @click="clearFixtureProfilesSelection('manufacturers')">
+                                        <span class="text-primary">All Fixtures</span>
+                                    </span>
+                                    <span v-if="fixtureProfilesManufacturer != ''">
+                                        >
+                                        <span class="text-primary"
+                                            @click="clearFixtureProfilesSelection('models')">{{fixtureProfilesManufacturer}}</span>
+                                    </span>
+                                    <span v-if="fixtureProfilesModel != '' && fixtureProfilesManufacturer != ''">
+                                        >
+                                        <span class="text-primary">{{fixtureProfilesModel}}</span>
+                                    </span>
                                 </div>
                                 <ul class="list-group" id="fixtureProfilesList">
                                     <li class="list-group-item fixtureProfileItem"

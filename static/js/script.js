@@ -86,9 +86,14 @@ var app = new Vue({
             }
             app.fixtureProfilesSearch = "";
         },
-        clearFixtureProfilesSelection: function () {
-            app.fixtureProfilesManufacturer = "";
-            app.fixtureProfilesModel = "";
+        clearFixtureProfilesSelection: function (type) {
+            if (type == 'manufacturers') {
+                app.fixtureProfilesManufacturer = "";
+                app.fixtureProfilesModel = "";
+            } else if (type == 'models') {
+                app.fixtureProfilesModel = "";
+            }
+            app.fixtureProfilesSearch = "";
         },
         isEmpty: function (obj) {
             for (var key in obj) {
