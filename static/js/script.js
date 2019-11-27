@@ -16,7 +16,7 @@ var app = new Vue({
         activeCue: "",
         blackout: false,
         grandmaster: 100,
-        fixtureProfiles: [],
+        fixtureProfiles: {},
         effectProfiles: [],
         startDMXAddress: 1,
         newFixtureCreationCount: 1,
@@ -39,19 +39,64 @@ var app = new Vue({
         usbPath: "",
         settings: {},
         qrcode: "",
-        url: ""
+        url: "",
+        fixtureProfilesManufacturer: "",
+        fixtureProfilesModel: ""
     },
     components: {
         Multiselect: window.VueMultiselect.default
     },
     computed: {
         filteredFixtureProfilesList() {
-            return this.fixtureProfiles.filter(profile => {
-                return (profile.manufacturerName + " " + profile.modelName + " " + profile.modeName).toLowerCase().includes(this.fixtureProfilesSearch.toLowerCase());
-            });
+            if (this.isEmpty(this.fixtureProfiles) == false) {
+                if (app.fixtureProfilesManufacturer != "") {
+                    if (app.fixtureProfilesModel != "") {
+                        return {
+                            'objs': this.fixtureProfiles[app.fixtureProfilesManufacturer][app.fixtureProfilesModel].filter(profile => {
+                                return profile.modeName.toLowerCase().includes(this.fixtureProfilesSearch.toLowerCase());
+                            }), 'type': 'modes'
+                        };
+                    } else {
+                        var keys = Object.keys(this.fixtureProfiles[app.fixtureProfilesManufacturer]);
+                        return {
+                            'objs': keys.filter(profile => {
+                                return profile.toLowerCase().includes(this.fixtureProfilesSearch.toLowerCase());
+                            }), 'type': 'models'
+                        };
+                    }
+                } else {
+                    var keys = Object.keys(this.fixtureProfiles);
+                    return {
+                        'objs': keys.filter(profile => {
+                            return profile.toLowerCase().includes(this.fixtureProfilesSearch.toLowerCase());
+                        }), 'type': 'manufacturers'
+                    };
+                }
+            } else {
+                return { 'objs': [], 'type': 'manufacturers' };
+            }
         }
     },
     methods: {
+        setFixtureProfilesSelection: function (obj, type) {
+            if (type == 'manufacturers') {
+                app.fixtureProfilesManufacturer = obj;
+            } else if (type == 'models') {
+                app.fixtureProfilesModel = obj;
+            }
+            app.fixtureProfilesSearch = "";
+        },
+        clearFixtureProfilesSelection: function () {
+            app.fixtureProfilesManufacturer = "";
+            app.fixtureProfilesModel = "";
+        },
+        isEmpty: function (obj) {
+            for (var key in obj) {
+                if (obj.hasOwnProperty(key))
+                    return false;
+            }
+            return true;
+        },
         mapRange: function (num, inMin, inMax, outMin, outMax) {
             return (num - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
         },
@@ -159,10 +204,14 @@ var app = new Vue({
             app.newFixtureUniverse = 0;
             app.startDMXAddress = 1;
             app.fixtureProfilesSearch = "";
+            app.fixtureProfilesManufacturer = "";
+            app.fixtureProfilesModel = "";
             $('#fixtureProfilesModal').modal("show");
         },
         addFixture: function (fixture, dcid) {
             socket.emit("addFixture", { fixtureName: fixture, dcid: dcid, startDMXAddress: app.startDMXAddress, creationCount: app.newFixtureCreationCount, universe: app.newFixtureUniverse });
+            app.fixtureProfilesManufacturer = "";
+            app.fixtureProfilesModel = "";
             $('#fixtureProfilesModal').modal("hide");
         },
         getFixtureParameters: function (fixtureID, resetTab) {
@@ -633,7 +682,7 @@ socket.on('connect', function () {
     app.desktop = false;
     app.blackout = false;
     app.grandmaster = 100;
-    app.fixtureProfiles = [];
+    app.fixtureProfiles = {};
     app.startDMXAddress = 1;
     app.newFixtureCreationCount = 1;
     app.newFixtureUniverse = 0;
@@ -656,6 +705,8 @@ socket.on('connect', function () {
     app.desktop = false;
     app.version = "";
     app.url = "";
+    app.fixtureProfilesManufacturer = "";
+    app.fixtureProfilesModel = "";
     $('#openFixtureDefinitionModal').modal("hide");
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");

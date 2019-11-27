@@ -173,13 +173,33 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="dark mb-1">
+                                    <span @click="clearFixtureProfilesSelection">All Fixtures</span> <span
+                                        v-if="fixtureProfilesManufacturer != ''" @click="fixtureProfilesModel = ''">>
+                                        {{fixtureProfilesManufacturer}}</span> <span
+                                        v-if="fixtureProfilesModel != '' && fixtureProfilesManufacturer != ''">>
+                                        {{fixtureProfilesModel}}</span>
+                                </div>
                                 <ul class="list-group" id="fixtureProfilesList">
                                     <li class="list-group-item fixtureProfileItem"
-                                        v-for="profile in filteredFixtureProfilesList"
-                                        @click="addFixture(profile.file, profile.dcid)">{{profile.manufacturerName}}
-                                        {{profile.modelName}}
-                                        <span v-if="profile.modeName != '-'">-
-                                            {{profile.modeName}}</span> </li>
+                                        v-for="profile in filteredFixtureProfilesList['objs']"
+                                        @click="addFixture(profile.file, profile.dcid)"
+                                        v-if="filteredFixtureProfilesList['type'] == 'modes'">
+                                        <span v-if="profile.modeName != '-'">{{profile.modeName}}</span>
+                                        <span v-if="profile.modeName == '-'">Default Mode</span>
+                                    </li>
+                                    <li class="list-group-item fixtureProfileItem"
+                                        v-for="manufacturer in filteredFixtureProfilesList['objs']"
+                                        v-if="filteredFixtureProfilesList['type'] == 'manufacturers'"
+                                        @click="setFixtureProfilesSelection(manufacturer, filteredFixtureProfilesList['type'])">
+                                        {{manufacturer}}
+                                    </li>
+                                    <li class="list-group-item fixtureProfileItem"
+                                        v-for="model in filteredFixtureProfilesList['objs']"
+                                        v-if="filteredFixtureProfilesList['type'] == 'models'"
+                                        @click="setFixtureProfilesSelection(model, filteredFixtureProfilesList['type'])">
+                                        {{model}}
+                                    </li>
                                 </ul>
                                 <div v-if="fixtureProfiles.length == 0" class="text-danger"> There are no fixture
                                     profiles in your library!
@@ -1126,7 +1146,8 @@
                             <div class="form-group">
                                 <label class="ml-2" for="presetIntensityInput">Intensity:</label>
                                 <input type="range" @input="editPresetSettings" class="custom-range"
-                                    id="presetIntensityInput" min="0" max="100" v-model="currentPreset.intensity" step="1">
+                                    id="presetIntensityInput" min="0" max="100" v-model="currentPreset.intensity"
+                                    step="1">
                             </div>
                         </div>
                         <div class="col-12">

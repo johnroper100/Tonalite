@@ -1421,7 +1421,7 @@ io.on('connection', function (socket) {
             startDMXAddress += fixtures[f].maxOffset + 1;
         }
         fs.readdir(process.cwd() + "/fixtures", (err, files) => {
-            var fixturesList = [];
+            var fixturesList = {};
             var fixture = null;
             var push = false;
             files.forEach(file => {
@@ -1436,7 +1436,13 @@ io.on('connection', function (socket) {
                         push = true;
                     }
                     if (push == true) {
-                        fixturesList.push({ modelName: personality.modelName, modeName: personality.modeName, manufacturerName: personality.manufacturerName, file: file, dcid: personality.dcid });
+                        if (personality.manufacturerName in fixturesList == false) {
+                            fixturesList[personality.manufacturerName] = {};
+                        }
+                        if (personality.modelName in fixturesList[personality.manufacturerName] == false) {
+                            fixturesList[personality.manufacturerName][personality.modelName] = [];
+                        }
+                        fixturesList[personality.manufacturerName][personality.modelName].push({ modelName: personality.modelName, modeName: personality.modeName, manufacturerName: personality.manufacturerName, file: file, dcid: personality.dcid });
                     }
                 });
             });
