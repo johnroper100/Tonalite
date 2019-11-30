@@ -299,14 +299,22 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div
-                            v-if="currentFixture.chips.length > 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
-                            <div class="fixtureChips">
-                                <h5>Fixture Chips:</h5>
-                                <div v-for="(chip, id) in currentFixture.chips" :key="id"
-                                    class="fixtureChip d-inline-block mr-2"
-                                    v-bind:style="{ backgroundColor: chip.color }" @click="useFixtureChip(id)"></div>
+                        <div v-if="currentFixture.parameterTypes.indexOf('Color') >= 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
+                            <div class="fixturePalettes">
+                                <h5>Fixture Color Palettes:</h5>
+                                <div v-for="(palette, id) in colorPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2"
+                                    v-bind:style="{ backgroundColor: palette.color }"
+                                    @click="useFixtureColorPalette(id)"></div>
+                            </div>
+                        </div>
+                        <div v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && (fixtureParametersTab == 'position' || fixtureParametersTab == 'all')">
+                            <div class="fixturePalettes">
+                                <h5>Fixture Position Palettes:</h5>
+                                <div v-for="(palette, id) in positionPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2"
+                                    v-bind:style="{ backgroundColor: 'gray' }" @click="useFixturePositionPalette(id)">
+                                </div>
                             </div>
                         </div>
                         <div v-if="currentFixture.effects.length > 0">

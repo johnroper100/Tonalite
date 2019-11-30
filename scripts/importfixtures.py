@@ -40,6 +40,8 @@ with open('Carallon.def') as f:
                     if parameter != {}:
                         if rangeItem != {}:
                             parameter["ranges"].append(rangeItem)
+                            if parameter["type"] == 5:
+                                parameter["type"] = 4
                         parameter["ranges"] = sorted(
                             parameter["ranges"], key=lambda i: i['begin'])
                         personality["parameters"].append(parameter)
@@ -57,8 +59,8 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
-                    if os.path.exists("../fixtures/"+filename):
-                        print(filename)
+                    #if os.path.exists("../fixtures/"+filename):
+                    #    print(filename)
                     with open("../fixtures/"+filename, 'w', encoding='utf-8') as f:
                         json.dump(fixtureProfile, f,
                                   ensure_ascii=False, indent=4)
@@ -80,6 +82,8 @@ with open('Carallon.def') as f:
                     if parameter != {}:
                         if rangeItem != {}:
                             parameter["ranges"].append(rangeItem)
+                            if parameter["type"] == 5:
+                                parameter["type"] = 4
                         parameter["ranges"] = sorted(
                             parameter["ranges"], key=lambda i: i['begin'])
                         personality["parameters"].append(parameter)
@@ -97,8 +101,8 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
-                    if os.path.exists("../fixtures/"+filename):
-                        print(filename)
+                    #if os.path.exists("../fixtures/"+filename):
+                    #    print(filename)
                     with open("../fixtures/"+filename, 'w', encoding='utf-8') as f:
                         json.dump(fixtureProfile, f,
                                   ensure_ascii=False, indent=4)
@@ -144,6 +148,8 @@ with open('Carallon.def') as f:
                     if parameter != {}:
                         if rangeItem != {}:
                             parameter["ranges"].append(rangeItem)
+                            if parameter["type"] == 5:
+                                parameter["type"] = 4
                         parameter["ranges"] = sorted(
                             parameter["ranges"], key=lambda i: i['begin'])
                         personality["parameters"].append(parameter)
@@ -192,6 +198,8 @@ with open('Carallon.def') as f:
             if "$$TABLE" in line:
                 if rangeItem != {}:
                     parameter["ranges"].append(rangeItem)
+                    if parameter["type"] == 5:
+                        parameter["type"] = 4
                     rangeItem = {}
                 rangeItem = {
                     "begin": 0,

@@ -11,6 +11,8 @@ var app = new Vue({
         groups: [],
         cues: [],
         sequences: [],
+        colorPalettes: [],
+        positionPalettes: [],
         presets: [],
         cuePlaying: false,
         activeCue: "",
@@ -274,8 +276,11 @@ var app = new Vue({
         changeGroupParameterLock: function (param) {
             socket.emit("changeGroupParameterLock", { id: app.currentGroup.id, pid: param.id })
         },
-        useFixtureChip: function (pid) {
-            socket.emit('useFixtureChip', { id: app.currentFixture.id, pid: pid });
+        useFixtureColorPalette: function (pid) {
+            socket.emit('useFixtureColorPalette', { id: app.currentFixture.id, pid: pid });
+        },
+        useFixturePositionPalette: function (pid) {
+            socket.emit('useFixturePositionPalette', { id: app.currentFixture.id, pid: pid });
         },
         changeFixtureEffectState: function (eid) {
             socket.emit('changeFixtureEffectState', { id: app.currentFixture.id, effectid: eid })
@@ -681,6 +686,8 @@ socket.on('connect', function () {
     app.settingsModalTab = "ui";
     app.showInfo = {};
     app.fixtures = [];
+    app.colorPalettes = [];
+    app.positionPalettes = [];
     app.addGroupSelected = [];
     app.addPresetSelected = [];
     app.addSequenceSelected = [];
@@ -737,6 +744,11 @@ socket.on('connect_error', function () {
     $('#showFilesModal').modal("hide");
     $('#showInfoModal').modal("hide");
     $('#serverDisconnectedModal').modal("show");
+});
+
+socket.on('palettes', function (msg) {
+    app.colorPalettes = msg.colorPalettes;
+    app.positionPalettes = msg.positionPalettes;
 });
 
 socket.on('shows', function (msg) {
