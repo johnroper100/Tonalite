@@ -1447,7 +1447,7 @@ io.on('connection', function (socket) {
                         if (personality.modelName in fixturesList[personality.manufacturerName] == false) {
                             fixturesList[personality.manufacturerName][personality.modelName] = [];
                         }
-                        fixturesList[personality.manufacturerName][personality.modelName].push({ modelName: personality.modelName, modeName: personality.modeName, manufacturerName: personality.manufacturerName, file: file, dcid: personality.dcid });
+                        fixturesList[personality.manufacturerName][personality.modelName].push({ modeName: personality.modeName, file: file, dcid: personality.dcid });
                     }
                 });
             });
@@ -1496,7 +1496,6 @@ io.on('connection', function (socket) {
         }
         if (startDMXAddress) {
             var fixture = null;
-            var color = null;
             let i = 0; const iMax = parseInt(msg.creationCount); for (; i < iMax; i++) {
                 // Add a fixture using the fixture spec file in the fixtures folder
                 fixture = require(process.cwd() + "/fixtures/" + msg.fixtureName);
@@ -1736,7 +1735,7 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
                 socket.emit('fixtureParameters', cleanFixture(fixtures[fixtures.map(el => el.id).indexOf(fixtureID)]));
-                socket.emit('palettes', {colorPalettes: colorPalettes, positionPalettes: positionPalettes});
+                socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -2458,7 +2457,7 @@ io.on('connection', function (socket) {
                     shouldLock = false;
                 }
                 socket.emit('groupParameters', group);
-                socket.emit('palettes', {colorPalettes: colorPalettes, positionPalettes: positionPalettes});
+                socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
             } else {
                 socket.emit('message', { type: "error", content: "This group doesn't exist!" });
             }
