@@ -299,16 +299,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="currentFixture.parameterTypes.indexOf('Color') >= 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
+                        <div
+                            v-if="currentFixture.parameterTypes.indexOf('Color') >= 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
                             <div class="fixturePalettes">
                                 <h5>Fixture Color Palettes:</h5>
                                 <div v-for="(palette, id) in colorPalettes" :key="id"
                                     class="fixturePalette d-inline-block mr-2"
                                     v-bind:style="{ backgroundColor: palette.color }"
                                     @click="useFixtureColorPalette(id)"></div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center"
+                                    v-bind:style="{ backgroundColor: 'gray' }"><i class="far fa-plus mt-3"></i></div>
                             </div>
                         </div>
-                        <div v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && (fixtureParametersTab == 'position' || fixtureParametersTab == 'all')">
+                        <div
+                            v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && (fixtureParametersTab == 'position' || fixtureParametersTab == 'all')">
                             <div class="fixturePalettes">
                                 <h5>Fixture Position Palettes:</h5>
                                 <div v-for="(palette, id) in positionPalettes" :key="id"
