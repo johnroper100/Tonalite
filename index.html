@@ -174,7 +174,8 @@
                                     </div>
                                 </div>
                                 <div class="dark mb-1">
-                                    <span @click="clearFixtureProfilesSelection('manufacturers')" v-if="filteredFixtureProfilesList['objs'].length > 0">
+                                    <span @click="clearFixtureProfilesSelection('manufacturers')"
+                                        v-if="filteredFixtureProfilesList['objs'].length > 0">
                                         <span class="text-primary">All Fixtures</span>
                                     </span>
                                     <span v-if="fixtureProfilesManufacturer != ''">
@@ -186,7 +187,8 @@
                                         >
                                         <span class="text-primary">{{fixtureProfilesModel}}</span>
                                     </span>
-                                    <span v-if="filteredFixtureProfilesList['objs'].length == 0">Loading fixture profiles...</span>
+                                    <span v-if="filteredFixtureProfilesList['objs'].length == 0">Loading fixture
+                                        profiles...</span>
                                 </div>
                                 <ul class="list-group" id="fixtureProfilesList">
                                     <li class="list-group-item fixtureProfileItem"
@@ -1420,7 +1422,9 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body text-center dark">
-                        <h5>{{showInfo.showName}} Info</h5>
+                        <input type="text" class="form-control mb-2" style="max-width: 50%; display: inline;"
+                            v-model="showInfo.showName" @input="editShowName">
+                        <h5 style="display: inline;">Info</h5>
                         <div class="row">
                             <div class="col-6">
                                 <p>Fixtures: {{showInfo.fixtures}}</p>

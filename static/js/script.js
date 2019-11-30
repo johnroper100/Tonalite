@@ -548,7 +548,10 @@ var app = new Vue({
         },
         customMultiselectLabel({ name, startDMXAddress }) {
             return `${name} (${startDMXAddress})`
-        }
+        },
+        editShowName: function () {
+            socket.emit('editShowName', app.showInfo.showName);
+        },
     }
 });
 

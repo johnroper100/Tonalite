@@ -3201,6 +3201,11 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('editShowName', function (msg) {
+        currentShowName = msg;
+        saveShow();
+    });
+
     socket.on('updateFirmware', function () {
         updateFirmware(function (result) {
             if (result) {
