@@ -235,6 +235,6 @@ with open('Carallon.def') as f:
                 if not swatch in swatches:
                     swatches.append(swatch)
 
-swatches = sorted(swatches, key=lambda i: get_hsv(i['color']))
-with open("../swatches.json", 'w') as f:
-    json.dump(swatches, f, indent=4)
+#swatches = sorted(swatches, key=lambda i: get_hsv(i['color']))
+#with open("../swatches.json", 'w') as f:
+#    json.dump(swatches, f, indent=4)
