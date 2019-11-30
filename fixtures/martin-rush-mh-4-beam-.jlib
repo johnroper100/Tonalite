@@ -1,0 +1,996 @@
+{
+    "date": "2019-10-17 09:08",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "5ABE7170-D404-424B-9090-CA5321884DE9",
+            "hasIntensity": false,
+            "manufacturerName": "Martin",
+            "maxOffset": 12,
+            "modeName": "-",
+            "modelName": "Rush MH 4 Beam",
+            "colortable": "",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 131,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 167,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 168,
+                            "default": 168,
+                            "end": 203,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 204,
+                            "default": 204,
+                            "end": 239,
+                            "label": "Pulse"
+                        },
+                        {
+                            "begin": 243,
+                            "default": 243,
+                            "end": 243,
+                            "label": "Rnd 100"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 4,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 5,
+                            "default": 15,
+                            "end": 15,
+                            "label": "Red",
+                            "media": {
+                                "dcid": "C9B61021-3EB9-5540-A817-B5D5738873CE",
+                                "name": "Red"
+                            }
+                        },
+                        {
+                            "begin": 16,
+                            "default": 26,
+                            "end": 26,
+                            "label": "Amber",
+                            "media": {
+                                "dcid": "1DCD576A-523A-8040-882F-199B45ECC559",
+                                "name": "Amber"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 37,
+                            "end": 37,
+                            "label": "Blue",
+                            "media": {
+                                "dcid": "F2327B80-ED03-9E4F-B37E-C6056FC25BA1",
+                                "name": "Blue"
+                            }
+                        },
+                        {
+                            "begin": 38,
+                            "default": 47,
+                            "end": 47,
+                            "label": "Green",
+                            "media": {
+                                "dcid": "190645A1-9DB0-B948-8330-B4908607A4DA",
+                                "name": "Green"
+                            }
+                        },
+                        {
+                            "begin": 48,
+                            "default": 58,
+                            "end": 58,
+                            "label": "Light Green",
+                            "media": {
+                                "dcid": "A5F2935C-520D-7146-8C9F-F0BA96FAC182",
+                                "name": "Light Green"
+                            }
+                        },
+                        {
+                            "begin": 59,
+                            "default": 69,
+                            "end": 69,
+                            "label": "Lavender",
+                            "media": {
+                                "dcid": "D9DF88F2-9484-E648-9509-55A1B30510C5",
+                                "name": "Lavender"
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 80,
+                            "end": 80,
+                            "label": "Pink",
+                            "media": {
+                                "dcid": "7E004DF1-2059-0C4E-A201-AECECA44D333",
+                                "name": "Pink"
+                            }
+                        },
+                        {
+                            "begin": 81,
+                            "default": 90,
+                            "end": 90,
+                            "label": "Light Yellow",
+                            "media": {
+                                "dcid": "43BE2940-5CB4-914B-B6C8-2CE21E70A6CA",
+                                "name": "Light Yellow"
+                            }
+                        },
+                        {
+                            "begin": 91,
+                            "default": 101,
+                            "end": 101,
+                            "label": "Magenta",
+                            "media": {
+                                "dcid": "1E77C579-8001-6B4F-B588-F5B7F974F6DE",
+                                "name": "Magenta"
+                            }
+                        },
+                        {
+                            "begin": 102,
+                            "default": 112,
+                            "end": 112,
+                            "label": "Deep Blue",
+                            "media": {
+                                "dcid": "C4E6F6BE-68B1-DA47-9B20-171718CFF917",
+                                "name": "Deep Blue"
+                            }
+                        },
+                        {
+                            "begin": 113,
+                            "default": 122,
+                            "end": 122,
+                            "label": "Yellow",
+                            "media": {
+                                "dcid": "A57FD690-68D4-8E4C-908F-E5A35C0494DE",
+                                "name": "Yellow"
+                            }
+                        },
+                        {
+                            "begin": 123,
+                            "default": 133,
+                            "end": 133,
+                            "label": "CTO",
+                            "media": {
+                                "dcid": "77AA019F-9A45-C840-B522-85383D80F854",
+                                "name": "CTO"
+                            }
+                        },
+                        {
+                            "begin": 134,
+                            "default": 144,
+                            "end": 144,
+                            "label": "CTB",
+                            "media": {
+                                "dcid": "35418917-E299-B749-AC98-4CD94AF7BF22",
+                                "name": "CTB"
+                            }
+                        },
+                        {
+                            "begin": 145,
+                            "default": 155,
+                            "end": 155,
+                            "label": "Violet",
+                            "media": {
+                                "dcid": "D2D0B7FD-83A8-FF44-84DA-61A9BDA6D156",
+                                "name": "Violet"
+                            }
+                        },
+                        {
+                            "begin": 156,
+                            "default": 158,
+                            "end": 160,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 161,
+                            "default": 161,
+                            "end": 161,
+                            "label": "(Red)",
+                            "media": {
+                                "dcid": "C9B61021-3EB9-5540-A817-B5D5738873CE",
+                                "name": "(Red)"
+                            }
+                        },
+                        {
+                            "begin": 163,
+                            "default": 163,
+                            "end": 163,
+                            "label": "(Amber)",
+                            "media": {
+                                "dcid": "1DCD576A-523A-8040-882F-199B45ECC559",
+                                "name": "(Amber)"
+                            }
+                        },
+                        {
+                            "begin": 165,
+                            "default": 165,
+                            "end": 165,
+                            "label": "(Blue)",
+                            "media": {
+                                "dcid": "F2327B80-ED03-9E4F-B37E-C6056FC25BA1",
+                                "name": "(Blue)"
+                            }
+                        },
+                        {
+                            "begin": 167,
+                            "default": 167,
+                            "end": 167,
+                            "label": "(Green)",
+                            "media": {
+                                "dcid": "190645A1-9DB0-B948-8330-B4908607A4DA",
+                                "name": "(Green)"
+                            }
+                        },
+                        {
+                            "begin": 169,
+                            "default": 169,
+                            "end": 169,
+                            "label": "(Light Green)",
+                            "media": {
+                                "dcid": "A5F2935C-520D-7146-8C9F-F0BA96FAC182",
+                                "name": "(Light Green)"
+                            }
+                        },
+                        {
+                            "begin": 171,
+                            "default": 171,
+                            "end": 171,
+                            "label": "(Lavender)",
+                            "media": {
+                                "dcid": "D9DF88F2-9484-E648-9509-55A1B30510C5",
+                                "name": "(Lavender)"
+                            }
+                        },
+                        {
+                            "begin": 173,
+                            "default": 173,
+                            "end": 173,
+                            "label": "(Pink)",
+                            "media": {
+                                "dcid": "7E004DF1-2059-0C4E-A201-AECECA44D333",
+                                "name": "(Pink)"
+                            }
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "(Light Yellow)",
+                            "media": {
+                                "dcid": "43BE2940-5CB4-914B-B6C8-2CE21E70A6CA",
+                                "name": "(Light Yellow)"
+                            }
+                        },
+                        {
+                            "begin": 177,
+                            "default": 177,
+                            "end": 177,
+                            "label": "(Magenta)",
+                            "media": {
+                                "dcid": "1E77C579-8001-6B4F-B588-F5B7F974F6DE",
+                                "name": "(Magenta)"
+                            }
+                        },
+                        {
+                            "begin": 179,
+                            "default": 179,
+                            "end": 179,
+                            "label": "(Deep Blue)",
+                            "media": {
+                                "dcid": "C4E6F6BE-68B1-DA47-9B20-171718CFF917",
+                                "name": "(Deep Blue)"
+                            }
+                        },
+                        {
+                            "begin": 181,
+                            "default": 181,
+                            "end": 181,
+                            "label": "(Yellow)",
+                            "media": {
+                                "dcid": "A57FD690-68D4-8E4C-908F-E5A35C0494DE",
+                                "name": "(Yellow)"
+                            }
+                        },
+                        {
+                            "begin": 183,
+                            "default": 183,
+                            "end": 183,
+                            "label": "(CTO)",
+                            "media": {
+                                "dcid": "77AA019F-9A45-C840-B522-85383D80F854",
+                                "name": "(CTO)"
+                            }
+                        },
+                        {
+                            "begin": 185,
+                            "default": 185,
+                            "end": 185,
+                            "label": "(CTB)",
+                            "media": {
+                                "dcid": "35418917-E299-B749-AC98-4CD94AF7BF22",
+                                "name": "(CTB)"
+                            }
+                        },
+                        {
+                            "begin": 187,
+                            "default": 187,
+                            "end": 187,
+                            "label": "(Violet)",
+                            "media": {
+                                "dcid": "D2D0B7FD-83A8-FF44-84DA-61A9BDA6D156",
+                                "name": "(Violet)"
+                            }
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 190,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 193,
+                            "default": 203,
+                            "end": 214,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 218,
+                            "default": 218,
+                            "end": 218,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 222,
+                            "default": 222,
+                            "end": 243,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 245,
+                            "default": 245,
+                            "end": 245,
+                            "label": "Rnd 100"
+                        },
+                        {
+                            "begin": 249,
+                            "default": 249,
+                            "end": 249,
+                            "label": "Rnd 50"
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Rnd 1"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 3,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 4,
+                            "default": 12,
+                            "end": 12,
+                            "label": "Aperture 4"
+                        },
+                        {
+                            "begin": 13,
+                            "default": 21,
+                            "end": 21,
+                            "label": "Aperture 5"
+                        },
+                        {
+                            "begin": 22,
+                            "default": 30,
+                            "end": 30,
+                            "label": "Aperture 6"
+                        },
+                        {
+                            "begin": 31,
+                            "default": 38,
+                            "end": 38,
+                            "label": "Gear"
+                        },
+                        {
+                            "begin": 39,
+                            "default": 47,
+                            "end": 47,
+                            "label": "Fan"
+                        },
+                        {
+                            "begin": 48,
+                            "default": 56,
+                            "end": 56,
+                            "label": "Splash 1"
+                        },
+                        {
+                            "begin": 57,
+                            "default": 64,
+                            "end": 64,
+                            "label": "Triangle"
+                        },
+                        {
+                            "begin": 65,
+                            "default": 73,
+                            "end": 73,
+                            "label": "Splash 2"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 82,
+                            "end": 82,
+                            "label": "Star 2"
+                        },
+                        {
+                            "begin": 83,
+                            "default": 91,
+                            "end": 91,
+                            "label": "Pinwheel"
+                        },
+                        {
+                            "begin": 92,
+                            "default": 99,
+                            "end": 99,
+                            "label": "173"
+                        },
+                        {
+                            "begin": 100,
+                            "default": 108,
+                            "end": 108,
+                            "label": "Dots 3"
+                        },
+                        {
+                            "begin": 109,
+                            "default": 117,
+                            "end": 117,
+                            "label": "Spin"
+                        },
+                        {
+                            "begin": 118,
+                            "default": 125,
+                            "end": 125,
+                            "label": "Bar V"
+                        },
+                        {
+                            "begin": 126,
+                            "default": 134,
+                            "end": 134,
+                            "label": "Triangles 2"
+                        },
+                        {
+                            "begin": 135,
+                            "default": 143,
+                            "end": 143,
+                            "label": "Triangle Lines"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 152,
+                            "end": 152,
+                            "label": "Stars"
+                        },
+                        {
+                            "begin": 153,
+                            "default": 154,
+                            "end": 156,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 157,
+                            "default": 157,
+                            "end": 157,
+                            "label": "(Open)"
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "(Aperture 4)"
+                        },
+                        {
+                            "begin": 161,
+                            "default": 161,
+                            "end": 161,
+                            "label": "(Aperture 5)"
+                        },
+                        {
+                            "begin": 163,
+                            "default": 163,
+                            "end": 163,
+                            "label": "(Aperture 6)"
+                        },
+                        {
+                            "begin": 165,
+                            "default": 165,
+                            "end": 165,
+                            "label": "(Gear)"
+                        },
+                        {
+                            "begin": 167,
+                            "default": 167,
+                            "end": 167,
+                            "label": "(Fan)"
+                        },
+                        {
+                            "begin": 169,
+                            "default": 169,
+                            "end": 169,
+                            "label": "(Splash 1)"
+                        },
+                        {
+                            "begin": 171,
+                            "default": 171,
+                            "end": 171,
+                            "label": "(Triangle)"
+                        },
+                        {
+                            "begin": 173,
+                            "default": 173,
+                            "end": 173,
+                            "label": "(Splash 2)"
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "(Star 2)"
+                        },
+                        {
+                            "begin": 177,
+                            "default": 177,
+                            "end": 177,
+                            "label": "(Pinwheel)"
+                        },
+                        {
+                            "begin": 179,
+                            "default": 179,
+                            "end": 179,
+                            "label": "(173)"
+                        },
+                        {
+                            "begin": 181,
+                            "default": 181,
+                            "end": 181,
+                            "label": "(Dots 3)"
+                        },
+                        {
+                            "begin": 183,
+                            "default": 183,
+                            "end": 183,
+                            "label": "(Spin)"
+                        },
+                        {
+                            "begin": 185,
+                            "default": 185,
+                            "end": 185,
+                            "label": "(Bar V)"
+                        },
+                        {
+                            "begin": 187,
+                            "default": 187,
+                            "end": 187,
+                            "label": "(Triangles 2)"
+                        },
+                        {
+                            "begin": 189,
+                            "default": 189,
+                            "end": 189,
+                            "label": "(Triangle Lines)"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "(Stars)"
+                        },
+                        {
+                            "begin": 193,
+                            "default": 203,
+                            "end": 214,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 218,
+                            "default": 218,
+                            "end": 218,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 222,
+                            "default": 222,
+                            "end": 243,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 245,
+                            "default": 245,
+                            "end": 245,
+                            "label": "Rnd 100"
+                        },
+                        {
+                            "begin": 249,
+                            "default": 249,
+                            "end": 249,
+                            "label": "Rnd 50"
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Rnd 1"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open) [FX Idx]"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "(6 Prism) [FX Idx]"
+                        },
+                        {
+                            "begin": 197,
+                            "default": 197,
+                            "end": 197,
+                            "label": "(6 Prism) [FX Rot]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 2,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 3,
+                            "default": 64,
+                            "end": 126,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 127,
+                            "default": 129,
+                            "end": 129,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 253,
+                            "label": "Rot <<"
+                        },
+                        {
+                            "begin": 254,
+                            "default": 254,
+                            "end": 255,
+                            "label": "Rot Stop"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": []
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 32767,
+                    "home": 32767,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 9
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 11
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "Int Reset [Shutter Reset]"
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 22,
+                            "label": "Color Reset"
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "Gobo Reset"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 32,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 37,
+                            "default": 37,
+                            "end": 37,
+                            "label": "Focus Reset"
+                        },
+                        {
+                            "begin": 57,
+                            "default": 57,
+                            "end": 57,
+                            "label": "Enable calibration"
+                        },
+                        {
+                            "begin": 82,
+                            "default": 82,
+                            "end": 82,
+                            "label": "Focus 80"
+                        },
+                        {
+                            "begin": 87,
+                            "default": 87,
+                            "end": 87,
+                            "label": "Focus Track"
+                        },
+                        {
+                            "begin": 92,
+                            "default": 92,
+                            "end": 92,
+                            "label": "Focus 1"
+                        },
+                        {
+                            "begin": 97,
+                            "default": 97,
+                            "end": 97,
+                            "label": "Scut On"
+                        },
+                        {
+                            "begin": 102,
+                            "default": 102,
+                            "end": 102,
+                            "label": "Scut Off"
+                        },
+                        {
+                            "begin": 147,
+                            "default": 147,
+                            "end": 147,
+                            "label": "BlackMove On"
+                        },
+                        {
+                            "begin": 152,
+                            "default": 152,
+                            "end": 152,
+                            "label": "BlackMove Off"
+                        },
+                        {
+                            "begin": 157,
+                            "default": 157,
+                            "end": 157,
+                            "label": "Display On"
+                        },
+                        {
+                            "begin": 162,
+                            "default": 162,
+                            "end": 162,
+                            "label": "Display Off"
+                        },
+                        {
+                            "begin": 212,
+                            "default": 212,
+                            "end": 212,
+                            "label": "Store dimmer calibration"
+                        },
+                        {
+                            "begin": 217,
+                            "default": 217,
+                            "end": 217,
+                            "label": "Store gobo calibration"
+                        },
+                        {
+                            "begin": 222,
+                            "default": 222,
+                            "end": 222,
+                            "label": "Store focus calibration"
+                        },
+                        {
+                            "begin": 227,
+                            "default": 227,
+                            "end": 227,
+                            "label": "Store Color wheel calibration"
+                        },
+                        {
+                            "begin": 232,
+                            "default": 232,
+                            "end": 232,
+                            "label": "Store effect calibration"
+                        },
+                        {
+                            "begin": 237,
+                            "default": 237,
+                            "end": 237,
+                            "label": "Store pan calibration"
+                        },
+                        {
+                            "begin": 242,
+                            "default": 242,
+                            "end": 242,
+                            "label": "Store tilt calibration"
+                        },
+                        {
+                            "begin": 247,
+                            "default": 247,
+                            "end": 247,
+                            "label": "Reset calibration"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

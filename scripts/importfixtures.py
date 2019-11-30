@@ -57,15 +57,15 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
-                    if not os.path.exists("../fixtures/"+filename):
-                        with open("../fixtures/"+filename, 'w') as f:
-                            json.dump(fixtureProfile, f, indent=4)
-                        pass
-                    else:
+                    if os.path.exists("../fixtures/"+filename):
                         print(filename)
+                    with open("../fixtures/"+filename, 'w', encoding='utf-8') as f:
+                        json.dump(fixtureProfile, f,
+                                  ensure_ascii=False, indent=4)
 
                     parameter = {}
                     rangeItem = {}
+                    needsFade = True
 
                     fixtureProfile = {
                         "date": "",
@@ -97,13 +97,11 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
-                    if not os.path.exists("../fixtures/"+filename):
-                        with open('../fixtures/'+filename, 'w', encoding='utf-8') as f:
-                            json.dump(fixtureProfile, f,
-                                      ensure_ascii=False, indent=4)
-                        pass
-                    else:
+                    if os.path.exists("../fixtures/"+filename):
                         print(filename)
+                    with open("../fixtures/"+filename, 'w', encoding='utf-8') as f:
+                        json.dump(fixtureProfile, f,
+                                  ensure_ascii=False, indent=4)
             if "$$MANUFACTURER" in line:
                 personality = {
                     "dcid": "",

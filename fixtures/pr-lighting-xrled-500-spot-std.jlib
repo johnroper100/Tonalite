@@ -1,0 +1,720 @@
+{
+    "date": "2019-10-17 09:08",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "9B9C3CC1-A76B-0D40-BA40-A299B7277A97",
+            "hasIntensity": false,
+            "manufacturerName": "PR Lighting",
+            "maxOffset": 22,
+            "modeName": "Std",
+            "modelName": "XRLED 500 Spot",
+            "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 127,
+                            "label": "Pulse"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 191,
+                            "end": 255,
+                            "label": "Strobe"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Temp",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Color Temp Control Disabled"
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 3,
+                            "label": "2700K"
+                        },
+                        {
+                            "begin": 4,
+                            "default": 4,
+                            "end": 10,
+                            "label": "2800K"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 17,
+                            "label": "3000K"
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 22,
+                            "label": "3200K"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 31,
+                            "label": "3350K"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 45,
+                            "label": "3600K"
+                        },
+                        {
+                            "begin": 46,
+                            "default": 46,
+                            "end": 62,
+                            "label": "4000K"
+                        },
+                        {
+                            "begin": 63,
+                            "default": 63,
+                            "end": 80,
+                            "label": "4500K"
+                        },
+                        {
+                            "begin": 81,
+                            "default": 81,
+                            "end": 100,
+                            "label": "5000K"
+                        },
+                        {
+                            "begin": 101,
+                            "default": 101,
+                            "end": 114,
+                            "label": "5600K"
+                        },
+                        {
+                            "begin": 115,
+                            "default": 115,
+                            "end": 132,
+                            "label": "6000K"
+                        },
+                        {
+                            "begin": 133,
+                            "default": 133,
+                            "end": 149,
+                            "label": "6500K"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 184,
+                            "label": "7000K"
+                        },
+                        {
+                            "begin": 185,
+                            "default": 185,
+                            "end": 219,
+                            "label": "8000K"
+                        },
+                        {
+                            "begin": 220,
+                            "default": 220,
+                            "end": 255,
+                            "label": "9000K"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 16,
+                            "label": "Red"
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 47,
+                            "label": "Green"
+                        },
+                        {
+                            "begin": 79,
+                            "default": 79,
+                            "end": 79,
+                            "label": "Blue"
+                        },
+                        {
+                            "begin": 111,
+                            "default": 111,
+                            "end": 111,
+                            "label": "White"
+                        },
+                        {
+                            "begin": 143,
+                            "default": 143,
+                            "end": 143,
+                            "label": "Yellow"
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "Cyan"
+                        },
+                        {
+                            "begin": 207,
+                            "default": 207,
+                            "end": 207,
+                            "label": "RGBW 100%"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 255,
+                            "label": "MixCycle"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Green",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Blue",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "White",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Iris",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 207,
+                            "label": "Iris"
+                        },
+                        {
+                            "begin": 215,
+                            "default": 215,
+                            "end": 215,
+                            "label": "Iris effect 1"
+                        },
+                        {
+                            "begin": 231,
+                            "default": 231,
+                            "end": 231,
+                            "label": "Iris effect 2"
+                        },
+                        {
+                            "begin": 247,
+                            "default": 247,
+                            "end": 247,
+                            "label": "Iris effect 3"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "(181)"
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "(016)"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 55,
+                            "label": "(179)"
+                        },
+                        {
+                            "begin": 71,
+                            "default": 71,
+                            "end": 71,
+                            "label": "(178)"
+                        },
+                        {
+                            "begin": 87,
+                            "default": 87,
+                            "end": 87,
+                            "label": "(017)"
+                        },
+                        {
+                            "begin": 103,
+                            "default": 103,
+                            "end": 103,
+                            "label": "(018)"
+                        },
+                        {
+                            "begin": 119,
+                            "default": 119,
+                            "end": 119,
+                            "label": "(140)"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 143,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 159,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 167,
+                            "default": 167,
+                            "end": 167,
+                            "label": "(181) [Shk]"
+                        },
+                        {
+                            "begin": 183,
+                            "default": 183,
+                            "end": 183,
+                            "label": "(016) [Shk]"
+                        },
+                        {
+                            "begin": 199,
+                            "default": 199,
+                            "end": 199,
+                            "label": "(179) [Shk]"
+                        },
+                        {
+                            "begin": 215,
+                            "default": 215,
+                            "end": 215,
+                            "label": "(178) [Shk]"
+                        },
+                        {
+                            "begin": 232,
+                            "default": 232,
+                            "end": 232,
+                            "label": "(017) [Shk]"
+                        },
+                        {
+                            "begin": 248,
+                            "default": 248,
+                            "end": 248,
+                            "label": "(018) [Shk]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "(019)"
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "(050)"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 55,
+                            "label": "(204)"
+                        },
+                        {
+                            "begin": 71,
+                            "default": 71,
+                            "end": 71,
+                            "label": "(020)"
+                        },
+                        {
+                            "begin": 87,
+                            "default": 87,
+                            "end": 87,
+                            "label": "(138)"
+                        },
+                        {
+                            "begin": 103,
+                            "default": 103,
+                            "end": 103,
+                            "label": "(021)"
+                        },
+                        {
+                            "begin": 119,
+                            "default": 119,
+                            "end": 119,
+                            "label": "(022)"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 143,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 159,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 167,
+                            "default": 167,
+                            "end": 167,
+                            "label": "(019) [S]"
+                        },
+                        {
+                            "begin": 183,
+                            "default": 183,
+                            "end": 183,
+                            "label": "(050) [S]"
+                        },
+                        {
+                            "begin": 199,
+                            "default": 199,
+                            "end": 199,
+                            "label": "(204) [S]"
+                        },
+                        {
+                            "begin": 215,
+                            "default": 215,
+                            "end": 215,
+                            "label": "(020) [S]"
+                        },
+                        {
+                            "begin": 232,
+                            "default": 232,
+                            "end": 232,
+                            "label": "(138) [S]"
+                        },
+                        {
+                            "begin": 248,
+                            "default": 248,
+                            "end": 248,
+                            "label": "(021) [S]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2 <>",
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 207,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 208,
+                            "default": 208,
+                            "end": 223,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 231,
+                            "default": 231,
+                            "end": 231,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 240,
+                            "default": 240,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ],
+                    "fine": 12
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)"
+                        },
+                        {
+                            "begin": 137,
+                            "default": 137,
+                            "end": 137,
+                            "label": "(3 Prism)"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 127,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Rot"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": []
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Zoom",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": []
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 18
+                },
+                {
+                    "coarse": 19,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 20
+                },
+                {
+                    "coarse": 21,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": []
+                },
+                {
+                    "coarse": 22,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Global Reset",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

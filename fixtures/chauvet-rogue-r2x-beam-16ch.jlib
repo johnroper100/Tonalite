@@ -1,0 +1,939 @@
+{
+    "date": "2019-10-17 09:08",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "109BD51D-9CFD-4D29-B638-826E1A223888",
+            "hasIntensity": false,
+            "manufacturerName": "Chauvet",
+            "maxOffset": 15,
+            "modeName": "16ch",
+            "modelName": "Rogue R2X Beam",
+            "colortable": "",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 131,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 167,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 168,
+                            "default": 168,
+                            "end": 203,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 204,
+                            "default": 204,
+                            "end": 239,
+                            "label": "Pulse"
+                        },
+                        {
+                            "begin": 240,
+                            "default": 240,
+                            "end": 250,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 6,
+                            "default": 6,
+                            "end": 6,
+                            "label": "(Red)",
+                            "media": {
+                                "dcid": "3FE42EC5-9848-4F4E-AEB0-8C28F7FF9950",
+                                "name": "(Red)"
+                            }
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 10,
+                            "label": "(Deep Yellow)",
+                            "media": {
+                                "dcid": "145A982B-E779-674E-BB3E-3F7938022422",
+                                "name": "(Deep Yellow)"
+                            }
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "(Turquoise)",
+                            "media": {
+                                "dcid": "862D99DA-5E16-E44E-9E0F-4C8BB93D43F5",
+                                "name": "(Turquoise)"
+                            }
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 18,
+                            "label": "(Green)",
+                            "media": {
+                                "dcid": "CF02595E-C197-824C-9B9F-189ED80876BE",
+                                "name": "(Green)"
+                            }
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 22,
+                            "label": "(Light Green)",
+                            "media": {
+                                "dcid": "2711080E-5275-3F40-A546-3D4B94A9F31C",
+                                "name": "(Light Green)"
+                            }
+                        },
+                        {
+                            "begin": 26,
+                            "default": 26,
+                            "end": 26,
+                            "label": "(Light Purple)",
+                            "media": {
+                                "dcid": "F84B25EF-98C9-664A-8DFA-35B72989AAF5",
+                                "name": "(Light Purple)"
+                            }
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "(Pink)",
+                            "media": {
+                                "dcid": "FBE17A80-5A59-B344-A2EA-67B7827CF95E",
+                                "name": "(Pink)"
+                            }
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 34,
+                            "label": "(Light Yellow)",
+                            "media": {
+                                "dcid": "D108B6EE-E0B4-F640-A1A8-D43802A426C7",
+                                "name": "(Light Yellow)"
+                            }
+                        },
+                        {
+                            "begin": 38,
+                            "default": 38,
+                            "end": 38,
+                            "label": "(Magenta)",
+                            "media": {
+                                "dcid": "AA6A5DA8-5D76-734C-883E-2E67B8E3FB6F",
+                                "name": "(Magenta)"
+                            }
+                        },
+                        {
+                            "begin": 42,
+                            "default": 42,
+                            "end": 42,
+                            "label": "(Blue)",
+                            "media": {
+                                "dcid": "2C5E7866-78A0-374A-AD34-75B0AB2CDF89",
+                                "name": "(Blue)"
+                            }
+                        },
+                        {
+                            "begin": 46,
+                            "default": 46,
+                            "end": 46,
+                            "label": "(CTO 3200K)",
+                            "media": {
+                                "dcid": "4735834B-4FFB-EA46-9557-A9159C93F795",
+                                "name": "(CTO 3200K)"
+                            }
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 50,
+                            "label": "(CTO 5600K)",
+                            "media": {
+                                "dcid": "B9C19945-51A1-8646-9B3B-4B9A659D5FB1",
+                                "name": "(CTO 5600K)"
+                            }
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "(CTO 6500K)",
+                            "media": {
+                                "dcid": "252F61A9-78D0-8F41-817C-C6F659413651",
+                                "name": "(CTO 6500K)"
+                            }
+                        },
+                        {
+                            "begin": 58,
+                            "default": 58,
+                            "end": 58,
+                            "label": "(UV)",
+                            "media": {
+                                "dcid": "14493259-B260-D943-9B0F-449470A2AAF3",
+                                "name": "(UV)"
+                            }
+                        },
+                        {
+                            "begin": 61,
+                            "default": 61,
+                            "end": 67,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 68,
+                            "default": 72,
+                            "end": 72,
+                            "label": "Red",
+                            "media": {
+                                "dcid": "3FE42EC5-9848-4F4E-AEB0-8C28F7FF9950",
+                                "name": "Red"
+                            }
+                        },
+                        {
+                            "begin": 73,
+                            "default": 76,
+                            "end": 76,
+                            "label": "Deep Yellow",
+                            "media": {
+                                "dcid": "145A982B-E779-674E-BB3E-3F7938022422",
+                                "name": "Deep Yellow"
+                            }
+                        },
+                        {
+                            "begin": 77,
+                            "default": 80,
+                            "end": 80,
+                            "label": "Turquoise",
+                            "media": {
+                                "dcid": "862D99DA-5E16-E44E-9E0F-4C8BB93D43F5",
+                                "name": "Turquoise"
+                            }
+                        },
+                        {
+                            "begin": 81,
+                            "default": 84,
+                            "end": 84,
+                            "label": "Green",
+                            "media": {
+                                "dcid": "CF02595E-C197-824C-9B9F-189ED80876BE",
+                                "name": "Green"
+                            }
+                        },
+                        {
+                            "begin": 85,
+                            "default": 89,
+                            "end": 89,
+                            "label": "Light Green",
+                            "media": {
+                                "dcid": "2711080E-5275-3F40-A546-3D4B94A9F31C",
+                                "name": "Light Green"
+                            }
+                        },
+                        {
+                            "begin": 90,
+                            "default": 93,
+                            "end": 93,
+                            "label": "Light Purple",
+                            "media": {
+                                "dcid": "F84B25EF-98C9-664A-8DFA-35B72989AAF5",
+                                "name": "Light Purple"
+                            }
+                        },
+                        {
+                            "begin": 94,
+                            "default": 97,
+                            "end": 97,
+                            "label": "Pink",
+                            "media": {
+                                "dcid": "FBE17A80-5A59-B344-A2EA-67B7827CF95E",
+                                "name": "Pink"
+                            }
+                        },
+                        {
+                            "begin": 98,
+                            "default": 101,
+                            "end": 101,
+                            "label": "Light Yellow",
+                            "media": {
+                                "dcid": "D108B6EE-E0B4-F640-A1A8-D43802A426C7",
+                                "name": "Light Yellow"
+                            }
+                        },
+                        {
+                            "begin": 102,
+                            "default": 106,
+                            "end": 106,
+                            "label": "Magenta",
+                            "media": {
+                                "dcid": "AA6A5DA8-5D76-734C-883E-2E67B8E3FB6F",
+                                "name": "Magenta"
+                            }
+                        },
+                        {
+                            "begin": 107,
+                            "default": 110,
+                            "end": 110,
+                            "label": "Blue",
+                            "media": {
+                                "dcid": "2C5E7866-78A0-374A-AD34-75B0AB2CDF89",
+                                "name": "Blue"
+                            }
+                        },
+                        {
+                            "begin": 111,
+                            "default": 114,
+                            "end": 114,
+                            "label": "CTO 3200K",
+                            "media": {
+                                "dcid": "4735834B-4FFB-EA46-9557-A9159C93F795",
+                                "name": "CTO 3200K"
+                            }
+                        },
+                        {
+                            "begin": 115,
+                            "default": 118,
+                            "end": 118,
+                            "label": "CTO 5600K",
+                            "media": {
+                                "dcid": "B9C19945-51A1-8646-9B3B-4B9A659D5FB1",
+                                "name": "CTO 5600K"
+                            }
+                        },
+                        {
+                            "begin": 119,
+                            "default": 123,
+                            "end": 123,
+                            "label": "CTO 6500K",
+                            "media": {
+                                "dcid": "252F61A9-78D0-8F41-817C-C6F659413651",
+                                "name": "CTO 6500K"
+                            }
+                        },
+                        {
+                            "begin": 124,
+                            "default": 127,
+                            "end": 127,
+                            "label": "UV",
+                            "media": {
+                                "dcid": "14493259-B260-D943-9B0F-449470A2AAF3",
+                                "name": "UV"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)"
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 5,
+                            "label": "(Iris 10)"
+                        },
+                        {
+                            "begin": 8,
+                            "default": 8,
+                            "end": 8,
+                            "label": "(Iris 20)"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "(Iris 30)"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "(Iris 40)"
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "(Iris 50)"
+                        },
+                        {
+                            "begin": 20,
+                            "default": 20,
+                            "end": 20,
+                            "label": "(Iris 60)"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "(Tunnel)"
+                        },
+                        {
+                            "begin": 26,
+                            "default": 26,
+                            "end": 26,
+                            "label": "(027)"
+                        },
+                        {
+                            "begin": 29,
+                            "default": 29,
+                            "end": 29,
+                            "label": "(067)"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 32,
+                            "label": "(243)"
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "(253)"
+                        },
+                        {
+                            "begin": 38,
+                            "default": 38,
+                            "end": 38,
+                            "label": "(245)"
+                        },
+                        {
+                            "begin": 41,
+                            "default": 41,
+                            "end": 41,
+                            "label": "(246)"
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 44,
+                            "label": "(211)"
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 47,
+                            "label": "(49)"
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 50,
+                            "label": "(Triangle)"
+                        },
+                        {
+                            "begin": 53,
+                            "default": 53,
+                            "end": 53,
+                            "label": "(169)"
+                        },
+                        {
+                            "begin": 56,
+                            "default": 59,
+                            "end": 59,
+                            "label": "(Open) [S]"
+                        },
+                        {
+                            "begin": 60,
+                            "default": 63,
+                            "end": 63,
+                            "label": "(Iris 10) [S]"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 67,
+                            "end": 67,
+                            "label": "(Iris 20) [S]"
+                        },
+                        {
+                            "begin": 68,
+                            "default": 71,
+                            "end": 71,
+                            "label": "(Iris 30) [S]"
+                        },
+                        {
+                            "begin": 72,
+                            "default": 75,
+                            "end": 75,
+                            "label": "(Iris 40) [S]"
+                        },
+                        {
+                            "begin": 76,
+                            "default": 79,
+                            "end": 79,
+                            "label": "(Iris 50) [S]"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 83,
+                            "end": 83,
+                            "label": "(Iris 60) [S]"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 87,
+                            "end": 87,
+                            "label": "(Tunnel) [S]"
+                        },
+                        {
+                            "begin": 88,
+                            "default": 91,
+                            "end": 91,
+                            "label": "(027) [S]"
+                        },
+                        {
+                            "begin": 92,
+                            "default": 95,
+                            "end": 95,
+                            "label": "(067) [S]"
+                        },
+                        {
+                            "begin": 96,
+                            "default": 99,
+                            "end": 99,
+                            "label": "(243) [S]"
+                        },
+                        {
+                            "begin": 100,
+                            "default": 103,
+                            "end": 103,
+                            "label": "(253) [S]"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 107,
+                            "end": 107,
+                            "label": "(245) [S]"
+                        },
+                        {
+                            "begin": 108,
+                            "default": 111,
+                            "end": 111,
+                            "label": "(246) [S]"
+                        },
+                        {
+                            "begin": 112,
+                            "default": 115,
+                            "end": 115,
+                            "label": "(211) [S]"
+                        },
+                        {
+                            "begin": 116,
+                            "default": 119,
+                            "end": 119,
+                            "label": "(49) [S]"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 123,
+                            "end": 123,
+                            "label": "(Triangle) [S]"
+                        },
+                        {
+                            "begin": 124,
+                            "default": 127,
+                            "end": 127,
+                            "label": "(169) [S]"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)"
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "(5 Prism)"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX 2",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)"
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "(8 Prism)"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX 2 <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": []
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Frost",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": []
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "BlackMove On"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "BlackMove Off"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 94,
+                            "label": "Color Blink On"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 104,
+                            "label": "Color Blink Off"
+                        },
+                        {
+                            "begin": 114,
+                            "default": 114,
+                            "end": 114,
+                            "label": "Gobo Blink On"
+                        },
+                        {
+                            "begin": 124,
+                            "default": 124,
+                            "end": 124,
+                            "label": "Gobo Blink Off"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 144,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "Color Reset"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "Gobo Reset"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 174,
+                            "label": "FX Reset [FX 2 & Shutter Reset]"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 194,
+                            "label": "Shutter Reset [Focus Reset]"
+                        },
+                        {
+                            "begin": 214,
+                            "default": 214,
+                            "end": 214,
+                            "label": "BlackMove On"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 224,
+                            "label": "BlackMove Off"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

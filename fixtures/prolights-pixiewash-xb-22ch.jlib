@@ -1,0 +1,653 @@
+{
+    "date": "2019-10-17 09:08",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "0A5F7BEF-1034-47B2-8BDC-08EF47DC91F1",
+            "hasIntensity": false,
+            "manufacturerName": "Prolights",
+            "maxOffset": 21,
+            "modeName": "22ch",
+            "modelName": "Pixiewash XB",
+            "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 82,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 88,
+                            "default": 88,
+                            "end": 88,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 163,
+                            "label": "Pulse"
+                        },
+                        {
+                            "begin": 169,
+                            "default": 169,
+                            "end": 169,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 244,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [],
+                    "fine": 7
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Int Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": []
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix Mode",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "White presets"
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "Forward spin"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 55,
+                            "label": "Reverse spin"
+                        },
+                        {
+                            "begin": 71,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Continuous"
+                        },
+                        {
+                            "begin": 95,
+                            "default": 95,
+                            "end": 95,
+                            "label": "CTC"
+                        },
+                        {
+                            "begin": 183,
+                            "default": 183,
+                            "end": 183,
+                            "label": "off"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 21,
+                            "label": "2000K"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "MixCycle"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "MixCycle"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off [Mix Pos]"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 21,
+                            "label": "2000K"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 1,
+                            "label": "Red"
+                        },
+                        {
+                            "begin": 2,
+                            "default": 2,
+                            "end": 2,
+                            "label": "Green"
+                        },
+                        {
+                            "begin": 3,
+                            "default": 3,
+                            "end": 3,
+                            "label": "Blue"
+                        },
+                        {
+                            "begin": 4,
+                            "default": 4,
+                            "end": 4,
+                            "label": "White"
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 46,
+                            "label": "Red 0%/green up/blue 100%/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 43,
+                            "label": "2100K"
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 43,
+                            "label": "2100K"
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 65,
+                            "label": "2200K"
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 65,
+                            "label": "2200K"
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 88,
+                            "label": "Red 0%/green full/blue down/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 66,
+                            "default": 66,
+                            "end": 87,
+                            "label": "2300K"
+                        },
+                        {
+                            "begin": 66,
+                            "default": 66,
+                            "end": 87,
+                            "label": "2300K"
+                        },
+                        {
+                            "begin": 88,
+                            "default": 88,
+                            "end": 109,
+                            "label": "2400K"
+                        },
+                        {
+                            "begin": 88,
+                            "default": 88,
+                            "end": 109,
+                            "label": "2400K"
+                        },
+                        {
+                            "begin": 89,
+                            "default": 89,
+                            "end": 130,
+                            "label": "Red up/green full/blue 0%/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 110,
+                            "default": 110,
+                            "end": 131,
+                            "label": "2500K"
+                        },
+                        {
+                            "begin": 110,
+                            "default": 110,
+                            "end": 131,
+                            "label": "2500K"
+                        },
+                        {
+                            "begin": 131,
+                            "default": 131,
+                            "end": 172,
+                            "label": "Red full/green down/blue 0%/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 154,
+                            "label": "2600K"
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 154,
+                            "label": "2600K"
+                        },
+                        {
+                            "begin": 155,
+                            "default": 155,
+                            "end": 157,
+                            "label": "2700K"
+                        },
+                        {
+                            "begin": 155,
+                            "default": 155,
+                            "end": 157,
+                            "label": "2700K"
+                        },
+                        {
+                            "begin": 158,
+                            "default": 158,
+                            "end": 165,
+                            "label": "2800K"
+                        },
+                        {
+                            "begin": 158,
+                            "default": 158,
+                            "end": 165,
+                            "label": "2800K"
+                        },
+                        {
+                            "begin": 166,
+                            "default": 166,
+                            "end": 173,
+                            "label": "3000K"
+                        },
+                        {
+                            "begin": 166,
+                            "default": 166,
+                            "end": 173,
+                            "label": "3000K"
+                        },
+                        {
+                            "begin": 173,
+                            "default": 173,
+                            "end": 214,
+                            "label": "Red full/green 0%/blue up/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 176,
+                            "label": "3200K"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 176,
+                            "label": "3200K"
+                        },
+                        {
+                            "begin": 177,
+                            "default": 177,
+                            "end": 181,
+                            "label": "3350K"
+                        },
+                        {
+                            "begin": 177,
+                            "default": 177,
+                            "end": 181,
+                            "label": "3350K"
+                        },
+                        {
+                            "begin": 182,
+                            "default": 182,
+                            "end": 189,
+                            "label": "3600K"
+                        },
+                        {
+                            "begin": 182,
+                            "default": 182,
+                            "end": 189,
+                            "label": "3600K"
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 197,
+                            "label": "4000K"
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 197,
+                            "label": "4000K"
+                        },
+                        {
+                            "begin": 198,
+                            "default": 198,
+                            "end": 205,
+                            "label": "4500K"
+                        },
+                        {
+                            "begin": 198,
+                            "default": 198,
+                            "end": 205,
+                            "label": "4500K"
+                        },
+                        {
+                            "begin": 206,
+                            "default": 206,
+                            "end": 214,
+                            "label": "5000K"
+                        },
+                        {
+                            "begin": 206,
+                            "default": 206,
+                            "end": 214,
+                            "label": "5000K"
+                        },
+                        {
+                            "begin": 215,
+                            "default": 215,
+                            "end": 217,
+                            "label": "5600K"
+                        },
+                        {
+                            "begin": 215,
+                            "default": 215,
+                            "end": 255,
+                            "label": "Red down/green 0%/blue full/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 215,
+                            "default": 215,
+                            "end": 217,
+                            "label": "5600K"
+                        },
+                        {
+                            "begin": 218,
+                            "default": 218,
+                            "end": 221,
+                            "label": "6000K"
+                        },
+                        {
+                            "begin": 218,
+                            "default": 218,
+                            "end": 221,
+                            "label": "6000K"
+                        },
+                        {
+                            "begin": 222,
+                            "default": 222,
+                            "end": 225,
+                            "label": "6500K"
+                        },
+                        {
+                            "begin": 222,
+                            "default": 222,
+                            "end": 225,
+                            "label": "6500K"
+                        },
+                        {
+                            "begin": 226,
+                            "default": 226,
+                            "end": 233,
+                            "label": "7000K"
+                        },
+                        {
+                            "begin": 226,
+                            "default": 226,
+                            "end": 233,
+                            "label": "7000K"
+                        },
+                        {
+                            "begin": 234,
+                            "default": 234,
+                            "end": 243,
+                            "label": "8000K"
+                        },
+                        {
+                            "begin": 234,
+                            "default": 234,
+                            "end": 243,
+                            "label": "8000K"
+                        },
+                        {
+                            "begin": 244,
+                            "default": 244,
+                            "end": 255,
+                            "label": "9000K"
+                        },
+                        {
+                            "begin": 244,
+                            "default": 244,
+                            "end": 255,
+                            "label": "9000K"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 16,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": [],
+                    "fine": 12
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Green",
+                    "size": 16,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": [],
+                    "fine": 14
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Blue",
+                    "size": 16,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": [],
+                    "fine": 16
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "White",
+                    "size": 16,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": [],
+                    "fine": 18
+                },
+                {
+                    "coarse": 19,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Zoom",
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [],
+                    "fine": 20
+                },
+                {
+                    "coarse": 21,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "Zoom Reset"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

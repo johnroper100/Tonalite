@@ -1,0 +1,781 @@
+{
+    "date": "2019-10-17 09:08",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "5664B31C-75D2-4BB2-9F43-52E8E643C288",
+            "hasIntensity": false,
+            "manufacturerName": "Prolights",
+            "maxOffset": 14,
+            "modeName": "Ext",
+            "modelName": "Jetspot 2",
+            "colortable": "",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 20,
+                            "default": 20,
+                            "end": 20,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 31,
+                            "default": 31,
+                            "end": 85,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 95,
+                            "default": 95,
+                            "end": 95,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 106,
+                            "default": 106,
+                            "end": 160,
+                            "label": "Pulse"
+                        },
+                        {
+                            "begin": 170,
+                            "default": 170,
+                            "end": 170,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 181,
+                            "default": 181,
+                            "end": 235,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 5,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 9,
+                            "default": 9,
+                            "end": 9,
+                            "label": "(Dark Red)",
+                            "media": {
+                                "dcid": "99356F66-72BE-A84B-AC73-B0D0907B7D63",
+                                "name": "(Dark Red)"
+                            }
+                        },
+                        {
+                            "begin": 12,
+                            "default": 12,
+                            "end": 12,
+                            "label": "Dark Red",
+                            "media": {
+                                "dcid": "99356F66-72BE-A84B-AC73-B0D0907B7D63",
+                                "name": "Dark Red"
+                            }
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 16,
+                            "label": "(Dark Blue)",
+                            "media": {
+                                "dcid": "95FF2457-4F22-B64F-9900-AED65F8C440D",
+                                "name": "(Dark Blue)"
+                            }
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "Dark Blue",
+                            "media": {
+                                "dcid": "95FF2457-4F22-B64F-9900-AED65F8C440D",
+                                "name": "Dark Blue"
+                            }
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "(Yellow)",
+                            "media": {
+                                "dcid": "DC9DA9A6-56B9-FB4E-829E-F51C553A4BD3",
+                                "name": "(Yellow)"
+                            }
+                        },
+                        {
+                            "begin": 26,
+                            "default": 26,
+                            "end": 26,
+                            "label": "Yellow",
+                            "media": {
+                                "dcid": "DC9DA9A6-56B9-FB4E-829E-F51C553A4BD3",
+                                "name": "Yellow"
+                            }
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "(Green)",
+                            "media": {
+                                "dcid": "858BD6B1-1C09-ED40-8286-020C54F54BEF",
+                                "name": "(Green)"
+                            }
+                        },
+                        {
+                            "begin": 33,
+                            "default": 33,
+                            "end": 33,
+                            "label": "Green",
+                            "media": {
+                                "dcid": "858BD6B1-1C09-ED40-8286-020C54F54BEF",
+                                "name": "Green"
+                            }
+                        },
+                        {
+                            "begin": 37,
+                            "default": 37,
+                            "end": 37,
+                            "label": "(Light Orange)",
+                            "media": {
+                                "dcid": "672A2739-E189-A344-BC81-835F9964B769",
+                                "name": "(Light Orange)"
+                            }
+                        },
+                        {
+                            "begin": 40,
+                            "default": 40,
+                            "end": 40,
+                            "label": "Light Orange",
+                            "media": {
+                                "dcid": "672A2739-E189-A344-BC81-835F9964B769",
+                                "name": "Light Orange"
+                            }
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 44,
+                            "label": "(Magenta)",
+                            "media": {
+                                "dcid": "F35F8093-8DAC-6641-B3A9-7B874F1C5F95",
+                                "name": "(Magenta)"
+                            }
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 47,
+                            "label": "Magenta",
+                            "media": {
+                                "dcid": "F35F8093-8DAC-6641-B3A9-7B874F1C5F95",
+                                "name": "Magenta"
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "(CTO)",
+                            "media": {
+                                "dcid": "E6019D33-B3C2-4C45-8FF3-38BB15FEB7BE",
+                                "name": "(CTO)"
+                            }
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "CTO",
+                            "media": {
+                                "dcid": "E6019D33-B3C2-4C45-8FF3-38BB15FEB7BE",
+                                "name": "CTO"
+                            }
+                        },
+                        {
+                            "begin": 58,
+                            "default": 58,
+                            "end": 58,
+                            "label": "(UV)",
+                            "media": {
+                                "dcid": "10A87279-84DA-1B43-B68F-00075795B780",
+                                "name": "(UV)"
+                            }
+                        },
+                        {
+                            "begin": 61,
+                            "default": 61,
+                            "end": 61,
+                            "label": "UV",
+                            "media": {
+                                "dcid": "10A87279-84DA-1B43-B68F-00075795B780",
+                                "name": "UV"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 95,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 96,
+                            "default": 96,
+                            "end": 127,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 134,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 135,
+                            "default": 148,
+                            "end": 148,
+                            "label": "Dark Red",
+                            "media": {
+                                "dcid": "99356F66-72BE-A84B-AC73-B0D0907B7D63",
+                                "name": "Dark Red"
+                            }
+                        },
+                        {
+                            "begin": 149,
+                            "default": 163,
+                            "end": 163,
+                            "label": "Dark Blue",
+                            "media": {
+                                "dcid": "95FF2457-4F22-B64F-9900-AED65F8C440D",
+                                "name": "Dark Blue"
+                            }
+                        },
+                        {
+                            "begin": 164,
+                            "default": 177,
+                            "end": 177,
+                            "label": "Yellow",
+                            "media": {
+                                "dcid": "DC9DA9A6-56B9-FB4E-829E-F51C553A4BD3",
+                                "name": "Yellow"
+                            }
+                        },
+                        {
+                            "begin": 178,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Green",
+                            "media": {
+                                "dcid": "858BD6B1-1C09-ED40-8286-020C54F54BEF",
+                                "name": "Green"
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 205,
+                            "end": 205,
+                            "label": "Light Orange",
+                            "media": {
+                                "dcid": "672A2739-E189-A344-BC81-835F9964B769",
+                                "name": "Light Orange"
+                            }
+                        },
+                        {
+                            "begin": 206,
+                            "default": 219,
+                            "end": 219,
+                            "label": "Magenta",
+                            "media": {
+                                "dcid": "F35F8093-8DAC-6641-B3A9-7B874F1C5F95",
+                                "name": "Magenta"
+                            }
+                        },
+                        {
+                            "begin": 220,
+                            "default": 227,
+                            "end": 234,
+                            "label": "CTO",
+                            "media": {
+                                "dcid": "E6019D33-B3C2-4C45-8FF3-38BB15FEB7BE",
+                                "name": "CTO"
+                            }
+                        },
+                        {
+                            "begin": 235,
+                            "default": 248,
+                            "end": 248,
+                            "label": "UV",
+                            "media": {
+                                "dcid": "10A87279-84DA-1B43-B68F-00075795B780",
+                                "name": "UV"
+                            }
+                        },
+                        {
+                            "begin": 249,
+                            "default": 252,
+                            "end": 255,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)"
+                        },
+                        {
+                            "begin": 8,
+                            "default": 8,
+                            "end": 8,
+                            "label": "(125)"
+                        },
+                        {
+                            "begin": 13,
+                            "default": 13,
+                            "end": 13,
+                            "label": "(126)"
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 18,
+                            "label": "(95)"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "(113)"
+                        },
+                        {
+                            "begin": 28,
+                            "default": 28,
+                            "end": 28,
+                            "label": "(29)"
+                        },
+                        {
+                            "begin": 33,
+                            "default": 33,
+                            "end": 33,
+                            "label": "(127)"
+                        },
+                        {
+                            "begin": 38,
+                            "default": 38,
+                            "end": 38,
+                            "label": "(85)"
+                        },
+                        {
+                            "begin": 41,
+                            "default": 55,
+                            "end": 55,
+                            "label": "(125) [S]"
+                        },
+                        {
+                            "begin": 56,
+                            "default": 70,
+                            "end": 70,
+                            "label": "(126) [S]"
+                        },
+                        {
+                            "begin": 71,
+                            "default": 85,
+                            "end": 85,
+                            "label": "(95) [S]"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 100,
+                            "end": 100,
+                            "label": "(113) [S]"
+                        },
+                        {
+                            "begin": 101,
+                            "default": 115,
+                            "end": 115,
+                            "label": "(29) [S]"
+                        },
+                        {
+                            "begin": 116,
+                            "default": 130,
+                            "end": 130,
+                            "label": "(127) [S]"
+                        },
+                        {
+                            "begin": 131,
+                            "default": 145,
+                            "end": 145,
+                            "label": "(85) [S]"
+                        },
+                        {
+                            "begin": 146,
+                            "default": 146,
+                            "end": 200,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 201,
+                            "default": 201,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 191,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 221,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 223,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 226,
+                            "default": 240,
+                            "end": 255,
+                            "label": "Rot >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)"
+                        },
+                        {
+                            "begin": 7,
+                            "default": 7,
+                            "end": 7,
+                            "label": "(128)"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "(129)"
+                        },
+                        {
+                            "begin": 15,
+                            "default": 15,
+                            "end": 15,
+                            "label": "(67)"
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "(46)"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "(130)"
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "(110)"
+                        },
+                        {
+                            "begin": 31,
+                            "default": 31,
+                            "end": 31,
+                            "label": "(131)"
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "(132)"
+                        },
+                        {
+                            "begin": 38,
+                            "default": 51,
+                            "end": 51,
+                            "label": "(128) [S]"
+                        },
+                        {
+                            "begin": 52,
+                            "default": 65,
+                            "end": 65,
+                            "label": "(129) [S]"
+                        },
+                        {
+                            "begin": 66,
+                            "default": 79,
+                            "end": 79,
+                            "label": "(67) [S]"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 93,
+                            "end": 93,
+                            "label": "(46) [S]"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 107,
+                            "end": 107,
+                            "label": "(130) [S]"
+                        },
+                        {
+                            "begin": 108,
+                            "default": 121,
+                            "end": 121,
+                            "label": "(110) [S]"
+                        },
+                        {
+                            "begin": 122,
+                            "default": 135,
+                            "end": 135,
+                            "label": "(131) [S]"
+                        },
+                        {
+                            "begin": 136,
+                            "default": 149,
+                            "end": 149,
+                            "label": "(132) [S]"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 202,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 203,
+                            "default": 229,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)"
+                        },
+                        {
+                            "begin": 6,
+                            "default": 191,
+                            "end": 191,
+                            "label": "(3 Prism) [Index]"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 223,
+                            "end": 223,
+                            "label": "(3 Prism) [>>]"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(3 Prism) [>>]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [],
+                    "fine": 13
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
