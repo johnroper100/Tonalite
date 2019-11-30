@@ -299,8 +299,9 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Remove length check when you can add color palettes -->
                         <div
-                            v-if="currentFixture.parameterTypes.indexOf('Color') >= 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
+                            v-if="colorPalettes.length > 0 && currentFixture.parameterTypes.indexOf('Color') >= 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
                             <div class="fixturePalettes">
                                 <h5>Fixture Color Palettes:</h5>
                                 <div v-for="(palette, id) in colorPalettes" :key="id"
