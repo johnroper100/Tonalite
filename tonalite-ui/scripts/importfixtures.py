@@ -9,7 +9,8 @@ def get_hsv(hexrgb):
     hexrgb = hexrgb.lstrip("#")   # in case you have Web color specs
     lh = len(hexrgb)
     # Allow short and long hex codes
-    r, g, b = (int(hexrgb[i:i+int(lh/3)], 16) / 255.0 for i in range(0, lh, int(lh/3)))
+    r, g, b = (int(hexrgb[i:i+int(lh/3)], 16) /
+               255.0 for i in range(0, lh, int(lh/3)))
     return colorsys.rgb_to_hsv(r, g, b)
 
 
@@ -31,13 +32,19 @@ with open('Carallon.def') as f:
     swatches = []
     rangeItem = {}
     filename = ""
-    #lineNum = 0
     needsFade = True
-    for line in f:
-        #lineNum += 1
-        if len(line) > 1:
+    for line in f.readlines():
+        if len(line) > 0:
             if "$TEMPLATE" in line:
                 if personality != {}:
+                    if parameter != {}:
+                        if rangeItem != {}:
+                            parameter["ranges"].append(rangeItem)
+                        parameter["ranges"] = sorted(
+                            parameter["ranges"], key=lambda i: i['begin'])
+                        personality["parameters"].append(parameter)
+                        rangeItem = {}
+                        parameter = {}
                     if personality["modeName"] == "":
                         personality["modeName"] = "-"
                     filename = personality["manufacturerName"]+"-" + \
@@ -51,11 +58,14 @@ with open('Carallon.def') as f:
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
                     if not os.path.exists("../fixtures/"+filename):
-                        # with open("../fixtures/"+filename, 'w') as f:
-                        #    json.dump(fixtureProfile, f, indent=4)
+                        with open("../fixtures/"+filename, 'w') as f:
+                            json.dump(fixtureProfile, f, indent=4)
                         pass
                     else:
                         print(filename)
+
+                    parameter = {}
+                    rangeItem = {}
 
                     fixtureProfile = {
                         "date": "",
@@ -65,8 +75,16 @@ with open('Carallon.def') as f:
                     filename = ""
 
                 personality = {}
-            elif "ENDDATA" in line:
+            if "ENDDATA" in line:
                 if personality != {}:
+                    if parameter != {}:
+                        if rangeItem != {}:
+                            parameter["ranges"].append(rangeItem)
+                        parameter["ranges"] = sorted(
+                            parameter["ranges"], key=lambda i: i['begin'])
+                        personality["parameters"].append(parameter)
+                        rangeItem = {}
+                        parameter = {}
                     if personality["modeName"] == "":
                         personality["modeName"] = "-"
                     filename = personality["manufacturerName"]+"-" + \
@@ -80,13 +98,13 @@ with open('Carallon.def') as f:
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
                     if not os.path.exists("../fixtures/"+filename):
-                        # with open('../fixtures/'+filename, 'w', encoding='utf-8') as f:
-                        #    json.dump(fixtureProfile, f,
-                        #              ensure_ascii=False, indent=4)
+                        with open('../fixtures/'+filename, 'w', encoding='utf-8') as f:
+                            json.dump(fixtureProfile, f,
+                                      ensure_ascii=False, indent=4)
                         pass
                     else:
                         print(filename)
-            elif "$$MANUFACTURER" in line:
+            if "$$MANUFACTURER" in line:
                 personality = {
                     "dcid": "",
                     "hasIntensity": False,
@@ -101,29 +119,29 @@ with open('Carallon.def') as f:
                     2].strip()
                 if personality["manufacturerName"] == "":
                     personality["manufacturerName"] = "-"
-            elif "$$MODELNAME" in line:
+            if "$$MODELNAME" in line:
                 personality["modelName"] = line.partition("$$MODELNAME")[
                     2].strip()
                 if personality["modelName"] == "":
                     personality["modelName"] = "-"
-            elif "$$MODENAME" in line:
+            if "$$MODENAME" in line:
                 personality["modeName"] = line.partition("$$MODENAME")[
                     2].strip()
                 if personality["modeName"] == "":
                     personality["modeName"] = "-"
-            elif "$$DCID" in line:
+            if "$$DCID" in line:
                 personality["dcid"] = line.partition("$$DCID")[
                     2].strip()
-            elif "$$FOOTPRINT" in line:
+            if "$$FOOTPRINT" in line:
                 personality["maxOffset"] = int(line.partition("$$FOOTPRINT")[
                     2].strip())-1
-            elif "$$COLORTABLE" in line:
+            if "$$COLORTABLE" in line:
                 personality["colortable"] = line.partition("$$COLORTABLE")[
                     2].strip()
-            elif "$$TIMESTAMP" in line:
+            if "$$TIMESTAMP" in line:
                 fixtureProfile["date"] = line.partition("$$TIMESTAMP")[
                     2].strip()
-            elif "$$PARAMETER" in line:
+            if "$$PARAMETER" in line:
                 if not "GROUP" in line:
                     if parameter != {}:
                         if rangeItem != {}:
@@ -132,6 +150,7 @@ with open('Carallon.def') as f:
                             parameter["ranges"], key=lambda i: i['begin'])
                         personality["parameters"].append(parameter)
                         rangeItem = {}
+                        parameter = {}
                     parameter = {
                         "coarse": 0,
                         "fadeWithIntensity": False,
@@ -144,35 +163,38 @@ with open('Carallon.def') as f:
                         "type": 1,
                         "ranges": []
                     }
+
                     parameter["name"] = " ".join(line.partition("$$PARAMETER")[
                         2].strip().split(" ")[5:])
-            elif "$$OFFSET" in line:
+
+            if "$$OFFSET" in line:
                 parameter["coarse"] = int(line.partition("$$OFFSET")[
                     2].strip().split(" ")[0])
                 if line.partition("$$OFFSET")[2].strip().split(" ")[1] != "0":
                     parameter["size"] = 16
                     parameter["fine"] = int(line.partition(
                         "$$OFFSET")[2].strip().split(" ")[1])
-            elif "$$DEFAULT" in line:
+            if "$$DEFAULT" in line:
                 parameter["home"] = int(line.partition("$$DEFAULT")[
                     2].strip())
-            elif "$$HIGHLIGHT" in line:
+            if "$$HIGHLIGHT" in line:
                 parameter["highlight"] = int(line.partition("$$HIGHLIGHT")[
                     2].strip())
-            elif "$$PARAMETERGROUP" in line:
+            if "$$PARAMETERGROUP" in line:
                 number = int(line.partition("$$PARAMETERGROUP")[2].strip())
                 if number == 3:
                     parameter["type"] = 5
-                elif number == 1:
+                if number == 1:
                     parameter["type"] = 1
                     needsFade = False
-                elif number == 4:
+                if number == 4:
                     parameter["type"] = 4
-                elif number == 2:
+                if number == 2:
                     parameter["type"] = 2
-            elif "$$TABLE" in line:
+            if "$$TABLE" in line:
                 if rangeItem != {}:
                     parameter["ranges"].append(rangeItem)
+                    rangeItem = {}
                 rangeItem = {
                     "begin": 0,
                     "default": 0,
@@ -185,19 +207,19 @@ with open('Carallon.def') as f:
                 rangeItem["label"] = " ".join(tableInfo[3:])
                 if int(tableInfo[2]) == 0:
                     rangeItem["default"] = rangeItem["begin"]
-                elif int(tableInfo[2]) == 2:
+                if int(tableInfo[2]) == 2:
                     rangeItem["default"] = rangeItem["end"]
-                elif int(tableInfo[2]) == 1:
+                if int(tableInfo[2]) == 1:
                     rangeItem["default"] = int(
                         (rangeItem["begin"]+rangeItem["end"])/2)
-            elif "$$GEL" in line:
+            if "$$GEL" in line:
                 rangeItem["media"] = {
                     "dcid": "",
                     "name": ""
                 }
                 rangeItem["media"]["name"] = rangeItem["label"]
                 rangeItem["media"]["dcid"] = line.partition("$$GEL")[2].strip()
-            elif "$$SWATCH" in line:
+            if "$$SWATCH" in line:
                 swatch = {
                     "name": "",
                     "color": "",
