@@ -1283,117 +1283,146 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label class="dark" for="defaultUpTime">Default Up Time:</label>
-                                    <input @input="editSettings" v-model="settings.defaultUpTime" min="0"
-                                        class="form-control" type="number" id="defaultUpTime"
-                                        placeholder="Default Cue Up Time">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'ui'}"
+                                    @click="settingsModalTab = 'ui'">UI</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'defaults'}"
+                                    @click="settingsModalTab = 'defaults'">Defaults</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'outputs'}"
+                                    @click="settingsModalTab = 'outputs'">Outputs</a>
+                            </li>
+                        </ul>
+                        <div v-if="settingsModalTab == 'defaults'">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="dark" for="defaultUpTime">Default Up Time:</label>
+                                        <input @input="editSettings" v-model="settings.defaultUpTime" min="0"
+                                            class="form-control" type="number" id="defaultUpTime"
+                                            placeholder="Default Cue Up Time">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label class="dark" for="defaultDownTime">Default Down Time:</label>
-                                    <input @input="editSettings" v-model="settings.defaultDownTime" min="0"
-                                        class="form-control" type="number" id="defaultDownTime"
-                                        placeholder="Default Cue Up Time">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-7 col-12">
-                                <div class="form-group">
-                                    <label class="dark" for="defaultPresetMode">Default Preset Mode:</label>
-                                    <select @change="editSettings" v-model="settings.defaultPresetMode"
-                                        class="form-control" id="defaultPresetMode" placeholder="Default Preset Mode">
-                                        <option value="ltp">Latest Takes Precedence</option>
-                                        <option value="htp">Highest Takes Precedence</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-5 col-12">
-                                <div class="form-group">
-                                    <label class="dark" for="interfaceMode">Interface Mode:</label>
-                                    <select @change="editSettings" v-model="settings.interfaceMode" class="form-control"
-                                        id="interfaceMode" placeholder="Interface Mode">
-                                        <option value="normal">Normal</option>
-                                        <option value="dimmer">Dimmer Only</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-12">
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input @change="editSettings" v-model="settings.udmx" type="checkbox"
-                                            class="custom-control-input" id="useUDMX">
-                                        <label class="custom-control-label dark" for="useUDMX">Use uDMX</label>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="dark" for="defaultDownTime">Default Down Time:</label>
+                                        <input @input="editSettings" v-model="settings.defaultDownTime" min="0"
+                                            class="form-control" type="number" id="defaultDownTime"
+                                            placeholder="Default Cue Up Time">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-12">
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input @change="editSettings" v-model="settings.blackoutEnabled" type="checkbox"
-                                            class="custom-control-input" id="blackoutEnabled">
-                                        <label class="custom-control-label dark" for="blackoutEnabled">Blackout
-                                            Enabled</label>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="dark" for="defaultPresetMode">Default Preset Mode:</label>
+                                        <select @change="editSettings" v-model="settings.defaultPresetMode"
+                                            class="form-control" id="defaultPresetMode"
+                                            placeholder="Default Preset Mode">
+                                            <option value="ltp">Latest Takes Precedence</option>
+                                            <option value="htp">Highest Takes Precedence</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input @change="editSettings" v-model="settings.automark" type="checkbox"
-                                            class="custom-control-input" id="useAutomark">
-                                        <label class="custom-control-label dark" for="useAutomark">Use Automark</label>
+                        <div v-if="settingsModalTab == 'ui'">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="dark" for="interfaceMode">Interface Mode:</label>
+                                        <select @change="editSettings" v-model="settings.interfaceMode"
+                                            class="form-control" id="interfaceMode" placeholder="Interface Mode">
+                                            <option value="normal">Normal</option>
+                                            <option value="dimmer">Dimmer Only</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input @change="editSettings" v-model="settings.displayEffectsRealtime"
-                                            type="checkbox" class="custom-control-input" id="displayEffectsRealtime">
-                                        <label class="custom-control-label dark" for="displayEffectsRealtime">Display
-                                            Effects Realtime</label>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input @change="editSettings" v-model="settings.automark" type="checkbox"
+                                                class="custom-control-input" id="useAutomark">
+                                            <label class="custom-control-label dark" for="useAutomark">Use
+                                                Automark</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input @change="editSettings" v-model="settings.displayEffectsRealtime"
+                                                type="checkbox" class="custom-control-input"
+                                                id="displayEffectsRealtime">
+                                            <label class="custom-control-label dark"
+                                                for="displayEffectsRealtime">Display
+                                                Effects Realtime</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input @change="editSettings" v-model="settings.blackoutEnabled"
+                                                type="checkbox" class="custom-control-input" id="blackoutEnabled">
+                                            <label class="custom-control-label dark" for="blackoutEnabled">Blackout
+                                                Enabled</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label class="dark" for="artnetIP">ArtNet IP:</label>
-                                    <input @input="editSettings" v-model="settings.artnetIP" class="form-control"
-                                        type="text" id="artnetIP" placeholder="ArtNet IP is localhost">
+                        <div v-if="settingsModalTab == 'outputs'">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="dark" for="artnetIP">ArtNet IP:</label>
+                                        <input @input="editSettings" v-model="settings.artnetIP" class="form-control"
+                                            type="text" id="artnetIP" placeholder="ArtNet IP is localhost">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="dark" for="artnetHost">ArtNet Host:</label>
+                                        <input @input="editSettings" v-model="settings.artnetHost" class="form-control"
+                                            type="text" id="artnetHost" placeholder="ArtNet host is 255.255.255.255">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label class="dark" for="artnetHost">ArtNet Host:</label>
-                                    <input @input="editSettings" v-model="settings.artnetHost" class="form-control"
-                                        type="text" id="artnetHost" placeholder="ArtNet host is 255.255.255.255">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="dark" for="sacnIP">sACN IP:</label>
+                                        <input @input="editSettings" v-model="settings.sacnIP" class="form-control"
+                                            type="text" id="sacnIP" placeholder="sACN IP is localhost">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="dark" for="sacnPriority">sACN Priority:</label>
+                                        <input @input="editSettings" v-model="settings.sacnPriority"
+                                            class="form-control" type="number" min="1" max="200" id="sacnPriority"
+                                            placeholder="sACN IP is 100">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label class="dark" for="sacnIP">sACN IP:</label>
-                                    <input @input="editSettings" v-model="settings.sacnIP" class="form-control"
-                                        type="text" id="sacnIP" placeholder="sACN IP is localhost">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label class="dark" for="sacnPriority">sACN Priority:</label>
-                                    <input @input="editSettings" v-model="settings.sacnPriority" class="form-control"
-                                        type="number" min="1" max="200" id="sacnPriority" placeholder="sACN IP is 100">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input @change="editSettings" v-model="settings.udmx" type="checkbox"
+                                                class="custom-control-input" id="useUDMX">
+                                            <label class="custom-control-label dark" for="useUDMX">Use uDMX</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

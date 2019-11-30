@@ -41,7 +41,8 @@ var app = new Vue({
         qrcode: "",
         url: "",
         fixtureProfilesManufacturer: "",
-        fixtureProfilesModel: ""
+        fixtureProfilesModel: "",
+        settingsModalTab: "ui"
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -677,6 +678,7 @@ socket.on('connect', function () {
     app.currentView = 'fixtures';
     app.fixtureParametersTab = 'all';
     app.cuesTab = 'cues';
+    app.settingsModalTab = "ui";
     app.showInfo = {};
     app.fixtures = [];
     app.addGroupSelected = [];
