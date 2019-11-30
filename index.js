@@ -1530,6 +1530,8 @@ io.on('connection', function (socket) {
                         param.value = cppaddon.mapRange(255 - palette.parameters[c].value, 0, 255, param.min, param.max);
                         param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
                     }
+                } else {
+                    socket.emit('message', { type: "error", content: "This fixture's colortable can not be controled!" });
                 }
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             } else {
