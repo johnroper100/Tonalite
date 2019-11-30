@@ -174,7 +174,7 @@
                                     </div>
                                 </div>
                                 <div class="dark mb-1">
-                                    <span @click="clearFixtureProfilesSelection('manufacturers')">
+                                    <span @click="clearFixtureProfilesSelection('manufacturers')" v-if="filteredFixtureProfilesList['objs'].length > 0">
                                         <span class="text-primary">All Fixtures</span>
                                     </span>
                                     <span v-if="fixtureProfilesManufacturer != ''">
@@ -186,6 +186,7 @@
                                         >
                                         <span class="text-primary">{{fixtureProfilesModel}}</span>
                                     </span>
+                                    <span v-if="filteredFixtureProfilesList['objs'].length == 0">Loading fixture profiles...</span>
                                 </div>
                                 <ul class="list-group" id="fixtureProfilesList">
                                     <li class="list-group-item fixtureProfileItem"
