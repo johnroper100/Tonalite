@@ -277,8 +277,7 @@ function generateGroupParameters(newGroup) {
 
 function cleanFixtures() {
     var newFixtures = JSON.parse(JSON.stringify(fixtures));
-    var valAvg = 0;
-    var valAvgCount = 0;
+    var valMax = 0;
     let f = 0; const fMax = newFixtures.length; for (; f < fMax; f++) {
         delete newFixtures[f].effects;
         delete newFixtures[f].parameterTypes;
@@ -293,8 +292,9 @@ function cleanFixtures() {
         delete newFixtures[f].swapPanTilt;
         let p = 0; const pMax = newFixtures[f].parameters.length; for (; p < pMax; p++) {
             if (newFixtures[f].parameters[p].fadeWithIntensity == true || newFixtures[f].parameters[p].type == 1) {
-                valAvgCount++;
-                valAvg += newFixtures[f].parameters[p].displayValue;
+                if (newFixtures[f].parameters[p].displayValue > valMax) {
+                    valMax = newFixtures[f].parameters[p].displayValue;
+                }
             }
             delete newFixtures[f].parameters[p].home;
             delete newFixtures[f].parameters[p].coarse;
@@ -312,9 +312,8 @@ function cleanFixtures() {
             delete newFixtures[f].parameters[p].locked;
             delete newFixtures[f].parameters[p].id;
         }
-        newFixtures[f].intensityDisplay = Math.round(valAvg / valAvgCount);
-        valAvg = 0;
-        valAvgCount = 0;
+        newFixtures[f].intensityDisplay = valMax;
+        valMax = 0;
     }
     return newFixtures;
 };
@@ -1453,6 +1452,92 @@ io.on('connection', function (socket) {
             });
             socket.emit('fixtureProfiles', [fixturesList, startDMXAddress]);
         });
+    });
+
+    socket.on('useFixtureColorPalette', function (msg) {
+        if (fixtures.length != 0) {
+            if (fixtures.some(e => e.id === msg.id)) {
+                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
+                var palette = colorPalettes[msg.pid];
+                var param = null;
+                if (fixture.colortable == "3874B444-A11E-47D9-8295-04556EAEBEA7") {
+                    // RGB
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        param.value = cppaddon.mapRange(palette.parameters[c].value, 0, 255, param.min, param.max);
+                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                    }
+                } else if (fixture.colortable == "77A82F8A-9B24-4C3F-98FC-B6A29FB1AAE6" || fixture.colortable == "77597794-7BFF-46A3-878B-906D3780E6C9") {
+                    // RGBW
+                    w = Math.min(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        param.value = cppaddon.mapRange(palette.parameters[c].value - w, 0, 255, param.min, param.max);
+                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                    }
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("White")];
+                    param.value = cppaddon.mapRange(w, 0, 255, param.min, param.max);
+                    param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                } else if (fixture.colortable == "D3E71EC8-3406-4572-A64C-52A38649C795") {
+                    // RGBA
+                    a = cppaddon.getAFromRGB(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        if (param.name == "Red") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value - a, 0, 255, param.min, param.max);
+                        } else if (param.name == "Green") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value - a / 2, 0, 255, param.min, param.max);
+                        } else if (param.name == "Blue") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value, 0, 255, param.min, param.max);
+                        }
+                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                    }
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Amber")];
+                    param.value = cppaddon.mapRange(a, 0, 255, param.min, param.max);
+                    param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                } else if (fixture.colortable == "C7A1FB0A-AA23-468F-9060-AC1625155DE8") {
+                    // RGBAW
+                    w = Math.min(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
+                    a = cppaddon.getAFromRGB(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        if (param.name == "Red") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value - w - a, 0, 255, param.min, param.max);
+                        } else if (param.name == "Green") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value - w - a / 2, 0, 255, param.min, param.max);
+                        } else if (param.name == "Blue") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value - w, 0, 255, param.min, param.max);
+                        }
+                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                    }
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Amber")];
+                    param.value = cppaddon.mapRange(a, 0, 255, param.min, param.max);
+                    param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("White")];
+                    param.value = cppaddon.mapRange(w, 0, 255, param.min, param.max);
+                    param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                } else if (fixture.colortable == "EF4970BA-2536-4725-9B0F-B2D7A021E139") {
+                    // CMY
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        if (palette.parameters[c].name == "Red") {
+                            param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Cyan")];
+                        } else if (palette.parameters[c].name == "Green") {
+                            param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Magenta")];
+                        } else if (palette.parameters[c].name == "Blue") {
+                            param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Yellow")];
+                        }
+                        param.value = cppaddon.mapRange(255 - palette.parameters[c].value, 0, 255, param.min, param.max);
+                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                    }
+                }
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
     });
 
     socket.on('getEffects', function (fixtureid) {
