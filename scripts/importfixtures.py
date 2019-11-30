@@ -4,6 +4,14 @@ import json
 import os
 import colorsys
 
+debugPrint = False
+
+if not os.path.exists(os.path.join("../", "fixtures")):
+    os.makedirs(os.path.join("../", "fixtures"))
+
+if not os.listdir('/home/varun/temp'):
+    debugPrint = True
+
 
 def get_hsv(hexrgb):
     hexrgb = hexrgb.lstrip("#")   # in case you have Web color specs
@@ -61,8 +69,9 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
-                    #if os.path.exists("../fixtures/"+filename):
-                    #    print(filename)
+                    if debugPrint == True:
+                        if os.path.exists("../fixtures/"+filename):
+                            print(filename)
                     with open("../fixtures/"+filename, 'w', encoding='utf-8') as f:
                         json.dump(fixtureProfile, f,
                                   ensure_ascii=False, indent=4)
@@ -105,8 +114,9 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
-                    #if os.path.exists("../fixtures/"+filename):
-                    #    print(filename)
+                    if debugPrint == True:
+                        if os.path.exists("../fixtures/"+filename):
+                            print(filename)
                     with open("../fixtures/"+filename, 'w', encoding='utf-8') as f:
                         json.dump(fixtureProfile, f,
                                   ensure_ascii=False, indent=4)
@@ -252,5 +262,5 @@ with open('Carallon.def') as f:
                     swatches.append(swatch)
 
 #swatches = sorted(swatches, key=lambda i: get_hsv(i['color']))
-#with open("../swatches.json", 'w') as f:
+# with open("../swatches.json", 'w') as f:
 #    json.dump(swatches, f, indent=4)
