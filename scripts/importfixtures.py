@@ -42,6 +42,8 @@ with open('Carallon.def') as f:
                             parameter["ranges"].append(rangeItem)
                             if parameter["type"] == 5:
                                 parameter["type"] = 4
+                            if parameter["type"] == 1 and parameter["name"] != "Intensity":
+                                parameter["type"] = 4
                         parameter["ranges"] = sorted(
                             parameter["ranges"], key=lambda i: i['begin'])
                         personality["parameters"].append(parameter)
@@ -83,6 +85,8 @@ with open('Carallon.def') as f:
                         if rangeItem != {}:
                             parameter["ranges"].append(rangeItem)
                             if parameter["type"] == 5:
+                                parameter["type"] = 4
+                            if parameter["type"] == 1 and parameter["name"] != "Intensity":
                                 parameter["type"] = 4
                         parameter["ranges"] = sorted(
                             parameter["ranges"], key=lambda i: i['begin'])
@@ -150,6 +154,8 @@ with open('Carallon.def') as f:
                             parameter["ranges"].append(rangeItem)
                             if parameter["type"] == 5:
                                 parameter["type"] = 4
+                            if parameter["type"] == 1 and parameter["name"] != "Intensity":
+                                parameter["type"] = 4
                         parameter["ranges"] = sorted(
                             parameter["ranges"], key=lambda i: i['begin'])
                         personality["parameters"].append(parameter)
@@ -199,6 +205,8 @@ with open('Carallon.def') as f:
                 if rangeItem != {}:
                     parameter["ranges"].append(rangeItem)
                     if parameter["type"] == 5:
+                        parameter["type"] = 4
+                    if parameter["type"] == 1 and parameter["name"] != "Intensity":
                         parameter["type"] = 4
                     rangeItem = {}
                 rangeItem = {
