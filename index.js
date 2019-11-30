@@ -1338,6 +1338,7 @@ io.on('connection', function (socket) {
     socket.emit('presets', cleanPresets());
     socket.emit('blackout', blackout);
     socket.emit('grandmaster', grandmaster);
+    socket.emit('activeCue', currentCueID);
 
     QRCode.toDataURL(`http://${SETTINGS.url}:${SETTINGS.port}`, function (err, url) {
         socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `http://${SETTINGS.url}:${SETTINGS.port}` });
@@ -1349,8 +1350,6 @@ io.on('connection', function (socket) {
     } else {
         socket.emit('cueActionBtn', true);
     }
-
-    socket.emit('currentCue', currentCueID);
 
     socket.on('openShowFromUSB', function (data) {
         fs.copyFile(data.path + '/' + data.file, process.cwd() + '/show.json', function (err) {
