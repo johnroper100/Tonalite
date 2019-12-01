@@ -175,7 +175,7 @@
                                 </div>
                                 <div class="dark mb-1">
                                     <span @click="clearFixtureProfilesSelection('manufacturers')"
-                                        v-if="filteredFixtureProfilesList['objs'].length > 0">
+                                        v-if="isEmpty(fixtureProfiles) == false">
                                         <span class="text-primary">All Fixtures</span>
                                     </span>
                                     <span v-if="fixtureProfilesManufacturer != ''">
@@ -187,10 +187,13 @@
                                         >
                                         <span class="text-primary">{{fixtureProfilesModel}}</span>
                                     </span>
-                                    <span v-if="filteredFixtureProfilesList['objs'].length == 0">Loading fixture
+                                    <span v-if="isEmpty(fixtureProfiles) == true">Loading fixture
                                         profiles...</span>
                                 </div>
                                 <ul class="list-group" id="fixtureProfilesList">
+                                    <span
+                                        v-if="filteredFixtureProfilesList['objs'].length == 0 && isEmpty(fixtureProfiles) == false && fixtureProfilesSearch != ''"
+                                        class="dark">Nothing matching this search parameter exists.</span>
                                     <li class="list-group-item fixtureProfileItem"
                                         v-for="profile in filteredFixtureProfilesList['objs']"
                                         @click="addFixture(profile.file, profile.dcid)"
