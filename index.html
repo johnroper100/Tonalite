@@ -328,7 +328,8 @@
                                 <div class="fixturePalette d-inline-block mr-2 text-center"
                                     v-bind:style="{ backgroundColor: 'gray' }"><i class="far fa-plus mt-3"></i></div>
                                 <div class="fixturePalette d-inline-block mr-2 text-center"
-                                    v-bind:style="{ backgroundColor: 'gray' }"><i class="far fa-trash-alt mt-3"></i></div>
+                                    v-bind:style="{ backgroundColor: 'gray' }"><i class="far fa-trash-alt mt-3"></i>
+                                </div>
                             </div>
                         </div>
                         <div v-if="currentFixture.effects.length > 0">
@@ -800,50 +801,64 @@
             </div>
             <div id="cues" class="tabcontent" v-if="currentView == 'cues'">
                 <div class="container">
-                    <div class="row topBtns sticky-top">
-                        <div class="col-6"><button class="btn btn-warning btn-sm btn-block"
-                                :class="{'disabled': cuesTab == 'sequences'}" @click="cuesTab = 'cues'">Cues</button>
-                        </div>
-                        <div class="col-6">
-                            <div>
+                    <div class="topBtns sticky-top">
+                        <div class="row mb-2">
+                            <div class="col-6"><button class="btn btn-warning btn-sm btn-block"
+                                    :class="{'disabled': cuesTab == 'sequences'}"
+                                    @click="cuesTab = 'cues'">Cues</button>
+                            </div>
+                            <div class="col-6">
                                 <div>
                                     <div>
-                                        <button class="btn btn-warning btn-sm btn-block"
-                                            :class="{'disabled': cuesTab == 'cues'}"
-                                            @click="cuesTab = 'sequences'">Sequences</button>
+                                        <div>
+                                            <button class="btn btn-warning btn-sm btn-block"
+                                                :class="{'disabled': cuesTab == 'cues'}"
+                                                @click="cuesTab = 'sequences'">Sequences</button>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="cuesTab == 'cues'">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div>
+                                        <button :disabled="cues.length == 0" class="btn btn-primary btn-block"
+                                            @click="lastCue"><i class="far fa-chevron-left"></i></button>
+                                    </div>
+                                </div>
+                                <div class="col-4" v-if="cuePlaying == true">
+                                    <div>
+                                        <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                                class="btn btn-danger btn-block" @click="stopCue">Stop</button></div>
+                                    </div>
+                                </div>
+                                <div class="col-4" v-if="cuePlaying == false">
+                                    <div>
+                                        <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                                class="btn btn-danger btn-block" @click="recordCue">Record</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div>
+                                        <div><button :disabled="cues.length == 0" class="btn btn-primary btn-block"
+                                                @click="nextCue"><i class="far fa-chevron-right"></i></button></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="cuesTab == 'sequences'">
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="btn btn-success btn-block" @click="addSequenceModal">Add
+                                        Sequence</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div v-if="cuesTab == 'cues'">
-                        <div class="row topBtns sticky-top">
-                            <div class="col-4">
-                                <div>
-                                    <button :disabled="cues.length == 0" class="btn btn-primary btn-block"
-                                        @click="lastCue"><i class="far fa-chevron-left"></i></button>
-                                </div>
-                            </div>
-                            <div class="col-4" v-if="cuePlaying == true">
-                                <div>
-                                    <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                            class="btn btn-danger btn-block" @click="stopCue">Stop</button></div>
-                                </div>
-                            </div>
-                            <div class="col-4" v-if="cuePlaying == false">
-                                <div>
-                                    <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                            class="btn btn-danger btn-block" @click="recordCue">Record</button></div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div>
-                                    <div><button :disabled="cues.length == 0" class="btn btn-primary btn-block"
-                                            @click="nextCue"><i class="far fa-chevron-right"></i></button></div>
-
-                                </div>
-                            </div>
-                        </div>
                         <div class="row" id="cuesList">
                             <div class="col-4 col-lg-2 mb-3" v-for="cue in cues" :key="cue.id"
                                 @click="getCueSettings(cue.id)">
@@ -858,12 +873,6 @@
                         </div>
                     </div>
                     <div v-if="cuesTab == 'sequences'">
-                        <div class="row topBtns sticky-top">
-                            <div class="col-12">
-                                <button class="btn btn-success btn-block" @click="addSequenceModal">Add
-                                    Sequence</button>
-                            </div>
-                        </div>
                         <div class="row" id="sequencesList">
                             <div class="col-4 col-lg-2 mb-3" @click="getSequenceParameters(sequence.id)"
                                 v-for="sequence in sequences" :key="sequence.id">
