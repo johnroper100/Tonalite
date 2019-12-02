@@ -322,11 +322,13 @@
                             <div class="fixturePalettes">
                                 <h5>Fixture Position Palettes:</h5>
                                 <div v-for="(palette, id) in positionPalettes" :key="id"
-                                    class="fixturePalette d-inline-block mr-2"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center"
                                     v-bind:style="{ backgroundColor: 'gray' }" @click="useFixturePositionPalette(id)">
+                                    {{palette.name}}
                                 </div>
                                 <div class="fixturePalette d-inline-block mr-2 text-center"
-                                    v-bind:style="{ backgroundColor: 'gray' }"><i class="far fa-plus mt-3"></i></div>
+                                    v-bind:style="{ backgroundColor: 'gray' }" @click="addPositionPaletteModal"><i
+                                        class="far fa-plus mt-3"></i></div>
                                 <div class="fixturePalette d-inline-block mr-2 text-center"
                                     v-bind:style="{ backgroundColor: 'gray' }"><i class="far fa-trash-alt mt-3"></i>
                                 </div>
@@ -1502,6 +1504,21 @@
                                 <p>Show Length: {{showInfo.showLength}} seconds</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="addPositionPaletteModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="dark mr-2" for="positionPaletteName">Position palette name:</label>
+                            <input type="text" class="form-control" placeholder="Name here" id="positionPaletteName"
+                                v-model="addPositionPaletteName" maxlength="10">
+                        </div>
+                        <button class="btn btn-success btn-full" @click="addPositionPalette">Add Position
+                            Palette</button>
                     </div>
                 </div>
             </div>

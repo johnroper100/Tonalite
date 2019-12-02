@@ -44,7 +44,8 @@ var app = new Vue({
         url: "",
         fixtureProfilesManufacturer: "",
         fixtureProfilesModel: "",
-        settingsModalTab: "ui"
+        settingsModalTab: "ui",
+        addPositionPaletteName: ""
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -450,6 +451,10 @@ var app = new Vue({
             app.addPresetSelected = [];
             $('#addPresetModal').modal("show");
         },
+        addPositionPaletteModal: function () {
+            app.addPositionPaletteName = "";
+            $('#addPositionPaletteModal').modal("show");
+        },
         addGroup: function () {
             var list = [];
             let f = 0; const fMax = app.addGroupSelected.length; for (; f < fMax; f++) {
@@ -467,6 +472,16 @@ var app = new Vue({
             socket.emit('addSequence', list);
             app.addSequenceSelected = [];
             $('#addSequenceModal').modal("hide");
+        },
+        addPositionPalette: function () {
+            if (app.currentView == 'fixtureParameters' && app.isEmpty(app.currentFixture) == false) {
+                socket.emit('addPositionPalette', { type: 'fixture', id: app.currentFixture.id, name: app.addPositionPaletteName });
+            }
+            if (app.currentView == 'groupParameters' && app.isEmpty(app.currentGroup) == false) {
+                socket.emit('addPositionPalette', { type: 'group', id: app.currentGroup.id, name: app.addPositionPaletteName });
+            }
+            app.addPositionPaletteName = "";
+            $('#addPositionPaletteModal').modal("hide");
         },
         getGroupSettings: function () {
             app.getGroupFixtures(app.currentGroup.id);
@@ -719,6 +734,7 @@ socket.on('connect', function () {
     $('#fixtureProfilesModal').modal("hide");
     $('#showFilesModal').modal("hide");
     $('#showInfoModal').modal("hide");
+    $('#addSequenceModal').modal("hide");
     $('#serverDisconnectedModal').modal("hide");
 });
 
@@ -730,6 +746,7 @@ socket.on('connect_error', function () {
     $('#fixtureProfilesModal').modal("hide");
     $('#showFilesModal').modal("hide");
     $('#showInfoModal').modal("hide");
+    $('#addSequenceModal').modal("hide");
     $('#serverDisconnectedModal').modal("show");
 });
 

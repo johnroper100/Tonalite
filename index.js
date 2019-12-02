@@ -1339,6 +1339,7 @@ io.on('connection', function (socket) {
     socket.emit('blackout', blackout);
     socket.emit('grandmaster', grandmaster);
     socket.emit('activeCue', currentCueID);
+    socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
 
     QRCode.toDataURL(`http://${SETTINGS.url}:${SETTINGS.port}`, function (err, url) {
         socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `http://${SETTINGS.url}:${SETTINGS.port}` });
@@ -1380,6 +1381,7 @@ io.on('connection', function (socket) {
         io.emit('cueActionBtn', false);
         io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('resetView', { type: 'show', eid: "" });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
         io.emit('message', { type: "info", content: "A new show has been created!" });
         saveShow();
     });
@@ -1404,6 +1406,7 @@ io.on('connection', function (socket) {
         io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('cueActionBtn', false);
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
         io.emit('resetView', { type: 'show', eid: "" });
         io.emit('message', { type: "info", content: "A new show has been created!" });
         saveShow();
@@ -1539,6 +1542,40 @@ io.on('connection', function (socket) {
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
+    });
+
+    socket.on('addPositionPalette', function (msg) {
+        if (msg.type == 'fixture') {
+            var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
+            var pan = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Pan")];
+            var tilt = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Tilt")];
+        }
+        if (pan == null) {
+            pan = 0;
+        } else {
+            pan = pan.value;
+        }
+        if (tilt == null) {
+            tilt = 0;
+        } else {
+            tilt = tilt.value;
+        }
+        var palette = {
+            name: msg.name,
+            parameters: [
+                {
+                    name: "Pan",
+                    value: pan
+                },
+                {
+                    name: "Tilt",
+                    value: tilt
+                }
+            ]
+        }
+        positionPalettes.push(palette);
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        saveShow();
     });
 
     socket.on('getEffects', function (fixtureid) {
@@ -1821,7 +1858,6 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
                 socket.emit('fixtureParameters', cleanFixture(fixtures[fixtures.map(el => el.id).indexOf(fixtureID)]));
-                socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
