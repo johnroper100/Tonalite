@@ -4,6 +4,6 @@ Add a fixture using the green `Add Fixture` button on the top of the `Fixtures` 
 
 ![Fixture profiles modal](../images/fixture_profiles_modal.png)
 
-To select a fixture profile, click on it in the list, and a new fixture will be created based on this profile. If you can't find what you are looking for, try using the `Search` box. If there isn't a profile in the library for the fixture you want to use, you can create one yourself or send a support message asking for one to be created for you.
+To select a fixture profile, navigate through the manufacturers and models to find the correct mode. Click on it in the list, and a new fixture will be created based on this profile. If you can't find what you are looking for, try using the `Search` box. If there isn't a profile in the library for the fixture you want to use, you can create one yourself or send a support message asking for one to be created for you.
 
 ![Fixture added](../images/fixture_added.png)
