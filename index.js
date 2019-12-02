@@ -1566,11 +1566,43 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('useGroupPositionPalette', function (msg) {
+        if (fixtures.length > 0) {
+            if (groups.length > 0) {
+                if (groups.some(e => e.id === msg.id)) {
+                    var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                    var palette = positionPalettes[msg.pid];
+                    var param = null;
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = group.parameters[group.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        if (param != null) {
+                            param.value = palette.parameters[c].value;
+                            param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                            setFixtureGroupValues(group, param);
+                        }
+                    }
+                    io.emit('groups', { groups: cleanGroups(), target: true });
+                    io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                } else {
+                    socket.emit('message', { type: "error", content: "This group doesn't exist!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No groups exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
     socket.on('addPositionPalette', function (msg) {
         if (msg.type == 'fixture') {
             var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
             var pan = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Pan")];
             var tilt = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Tilt")];
+        } else if (msg.type == 'group') {
+            var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+            var pan = group.parameters[group.parameters.map(el => el.name).indexOf("Pan")];
+            var tilt = group.parameters[group.parameters.map(el => el.name).indexOf("Tilt")];
         }
         if (pan == null) {
             pan = 0;

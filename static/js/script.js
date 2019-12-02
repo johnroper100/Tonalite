@@ -303,6 +303,18 @@ var app = new Vue({
                 });
             }
         },
+        useGroupPositionPalette: function (pid) {
+            if (app.removePositionPalette == false) {
+                socket.emit('useGroupPositionPalette', { id: app.currentGroup.id, pid: pid });
+            } else {
+                bootbox.confirm("Are you sure you want to remove this position palette?", function (result) {
+                    if (result === true) {
+                        socket.emit('removePositionPalette', { pid: pid });
+                    }
+                    app.removePositionPalette = false;
+                });
+            }
+        },
         changeFixtureEffectState: function (eid) {
             socket.emit('changeFixtureEffectState', { id: app.currentFixture.id, effectid: eid })
         },

@@ -703,6 +703,26 @@
                                 </div>
                             </div>
                         </div>
+                        <div
+                            v-if="currentGroup.parameterTypes.indexOf('Position') >= 0 && (fixtureParametersTab == 'position' || fixtureParametersTab == 'all')">
+                            <div class="fixturePalettes">
+                                <h5>Group Position Palettes:</h5>
+                                <div v-for="(palette, id) in positionPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
+                                    @click="useGroupPositionPalette(id)"
+                                    :class="{'pulse': removePositionPalette == true, 'redOutline': removePositionPalette == true}">
+                                    {{palette.name}}
+                                </div>
+                                <div v-if="removePositionPalette == false"
+                                    class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                    @click="addPositionPaletteModal"><i class="far fa-plus mt-3"></i></div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
+                                    @click="removePositionPalette=!removePositionPalette"
+                                    :class="{'pulse': removePositionPalette == true}"><i
+                                        class="far fa-trash-alt mt-3"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
