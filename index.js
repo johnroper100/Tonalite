@@ -1600,6 +1600,13 @@ io.on('connection', function (socket) {
         saveShow();
     });
 
+    socket.on('removePositionPalette', function (msg) {
+        positionPalettes.splice(msg.pid, 1);
+        socket.emit('message', { type: "info", content: "Position palette has been removed!" });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        saveShow();
+    });
+
     socket.on('getEffects', function (fixtureid) {
         fs.readdir(process.cwd() + "/effects", (err, files) => {
             var effectsList = [];

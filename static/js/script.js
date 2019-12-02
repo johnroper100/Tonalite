@@ -45,7 +45,8 @@ var app = new Vue({
         fixtureProfilesManufacturer: "",
         fixtureProfilesModel: "",
         settingsModalTab: "ui",
-        addPositionPaletteName: ""
+        addPositionPaletteName: "",
+        removePositionPalette: false
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -281,7 +282,16 @@ var app = new Vue({
             socket.emit('useFixtureColorPalette', { id: app.currentFixture.id, pid: pid });
         },
         useFixturePositionPalette: function (pid) {
-            socket.emit('useFixturePositionPalette', { id: app.currentFixture.id, pid: pid });
+            if (app.removePositionPalette == false) {
+                socket.emit('useFixturePositionPalette', { id: app.currentFixture.id, pid: pid });
+            } else {
+                bootbox.confirm("Are you sure you want to remove this position palette?", function (result) {
+                    if (result === true) {
+                        socket.emit('removePositionPalette', { pid: pid });
+                    }
+                    app.removePositionPalette = false;
+                });
+            }
         },
         changeFixtureEffectState: function (eid) {
             socket.emit('changeFixtureEffectState', { id: app.currentFixture.id, effectid: eid })
@@ -723,6 +733,7 @@ socket.on('connect', function () {
     app.settings = {};
     app.qrcode = "";
     app.desktop = false;
+    app.removePositionPalette = false;
     app.version = "";
     app.url = "";
     app.fixtureProfilesManufacturer = "";
