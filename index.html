@@ -314,7 +314,7 @@
                                     :class="{'pulse': removeColorPalette == true, 'redOutline': removeColorPalette == true}">
                                     {{palette.name}}</div>
                                 <!--
-                                <div class="fixturePalette d-inline-block mr-2 text-center"
+                                <div v-if="removeColorPalette == false" class="fixturePalette d-inline-block mr-2 text-center"
                                     v-bind:style="{ backgroundColor: 'gray' }"><i class="far fa-plus mt-3"></i></div>
                                 -->
                                 <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
@@ -333,7 +333,8 @@
                                     :class="{'pulse': removePositionPalette == true, 'redOutline': removePositionPalette == true}">
                                     {{palette.name}}
                                 </div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                <div v-if="removePositionPalette == false"
+                                    class="fixturePalette d-inline-block mr-2 text-center bg-success"
                                     @click="addPositionPaletteModal"><i class="far fa-plus mt-3"></i></div>
                                 <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
                                     @click="removePositionPalette=!removePositionPalette"
