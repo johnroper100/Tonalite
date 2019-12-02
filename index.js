@@ -1607,6 +1607,13 @@ io.on('connection', function (socket) {
         saveShow();
     });
 
+    socket.on('removeColorPalette', function (msg) {
+        colorPalettes.splice(msg.pid, 1);
+        socket.emit('message', { type: "info", content: "Color palette has been removed!" });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        saveShow();
+    });
+
     socket.on('getEffects', function (fixtureid) {
         fs.readdir(process.cwd() + "/effects", (err, files) => {
             var effectsList = [];

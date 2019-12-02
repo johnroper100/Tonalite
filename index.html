@@ -308,1234 +308,1272 @@
                             <div class="fixturePalettes">
                                 <h5>Fixture Color Palettes:</h5>
                                 <div v-for="(palette, id) in colorPalettes" :key="id"
-                                    class="fixturePalette d-inline-block mr-2"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center"
                                     v-bind:style="{ backgroundColor: palette.color }"
-                                    @click="useFixtureColorPalette(id)"></div>
+                                    @click="useFixtureColorPalette(id)"
+                                    :class="{'redOutline': removeColorPalette == true}">{{palette.name}}</div>
                                 <!--
                                 <div class="fixturePalette d-inline-block mr-2 text-center"
                                     v-bind:style="{ backgroundColor: 'gray' }"><i class="far fa-plus mt-3"></i></div>
                                 -->
-                            </div>
-                        </div>
-                        <div
-                            v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && (fixtureParametersTab == 'position' || fixtureParametersTab == 'all')">
-                            <div class="fixturePalettes">
-                                <h5>Fixture Position Palettes:</h5>
-                                <div v-for="(palette, id) in positionPalettes" :key="id"
-                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
-                                    @click="useFixturePositionPalette(id)"
-                                    :class="{'redOutline': removePositionPalette == true}">
-                                    {{palette.name}}
-                                </div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
-                                    @click="addPositionPaletteModal"><i class="far fa-plus mt-3"></i></div>
                                 <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
-                                    @click="removePositionPalette=!removePositionPalette"><i
+                                    @click="removeColorPalette=!removeColorPalette"><i
                                         class="far fa-trash-alt mt-3"></i>
                                 </div>
                             </div>
-                        </div>
-                        <div v-if="currentFixture.effects.length > 0">
-                            <div class="fixtureEffects">
-                                <h5>Fixture Effects:</h5>
-                                <ul class="list-group">
-                                    <li class="list-group-item fixtureEffect" v-for="effect in currentFixture.effects"
-                                        :key="effect.id">
-                                        <i class="mr-1 far"
-                                            :class="{'fa-palette': effect.type == 'Color', 'fa-running': effect.type == 'Position', 'fa-lightbulb': effect.type == 'Intensity', 'fa-cog': effect.type == 'Parameter'}"></i>
-                                        {{effect.name}}
-                                        <button class="float-right btn btn-sm btn-primary d-inline-block"
-                                            @click="getEffectSettings(effect.id)">Settings</button>
-                                        <span v-if="effect.active == true">
-                                            <button class="float-right btn btn-sm btn-success d-inline-block mr-1"
-                                                @click="changeFixtureEffectState(effect.id)">Deactivate</button>
-                                        </span>
-                                        <span>
-                                            <span v-if="effect.active == false">
-                                                <button class="float-right btn btn-sm btn-warning d-inline-block mr-1"
-                                                    @click="changeFixtureEffectState(effect.id)">Activate</button>
+                            <div
+                                v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && (fixtureParametersTab == 'position' || fixtureParametersTab == 'all')">
+                                <div class="fixturePalettes">
+                                    <h5>Fixture Position Palettes:</h5>
+                                    <div v-for="(palette, id) in positionPalettes" :key="id"
+                                        class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
+                                        @click="useFixturePositionPalette(id)"
+                                        :class="{'redOutline': removePositionPalette == true}">
+                                        {{palette.name}}
+                                    </div>
+                                    <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                        @click="addPositionPaletteModal"><i class="far fa-plus mt-3"></i></div>
+                                    <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
+                                        @click="removePositionPalette=!removePositionPalette"><i
+                                            class="far fa-trash-alt mt-3"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="currentFixture.effects.length > 0">
+                                <div class="fixtureEffects">
+                                    <h5>Fixture Effects:</h5>
+                                    <ul class="list-group">
+                                        <li class="list-group-item fixtureEffect"
+                                            v-for="effect in currentFixture.effects" :key="effect.id">
+                                            <i class="mr-1 far"
+                                                :class="{'fa-palette': effect.type == 'Color', 'fa-running': effect.type == 'Position', 'fa-lightbulb': effect.type == 'Intensity', 'fa-cog': effect.type == 'Parameter'}"></i>
+                                            {{effect.name}}
+                                            <button class="float-right btn btn-sm btn-primary d-inline-block"
+                                                @click="getEffectSettings(effect.id)">Settings</button>
+                                            <span v-if="effect.active == true">
+                                                <button class="float-right btn btn-sm btn-success d-inline-block mr-1"
+                                                    @click="changeFixtureEffectState(effect.id)">Deactivate</button>
                                             </span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="fixtureAddEffectsModal" class="modal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <ul class="nav nav-tabs" id="effectsTabs" role="tablist"
-                                    v-if="effectProfiles.length > 0">
-                                    <li class="nav-item" v-if="currentFixture.parameterTypes.indexOf('Intensity') >= 0">
-                                        <a class="nav-link" id="intensityEffects-tab" data-toggle="tab"
-                                            href="#intensityEffects" role="tab" aria-controls="intensityEffects"
-                                            aria-selected="false">Intensity</a>
-                                    </li>
-                                    <li v-if="settings.interfaceMode == 'normal'" class="nav-item"
-                                        v-if="currentFixture.parameterTypes.indexOf('Position') >= 0">
-                                        <a class="nav-link" id="positionEffects-tab" data-toggle="tab"
-                                            href="#positionEffects" role="tab" aria-controls="positionEffects"
-                                            aria-selected="false">Position</a>
-                                    </li>
-                                    <li v-if="settings.interfaceMode == 'normal'" class="nav-item"
-                                        v-if="currentFixture.parameterTypes.indexOf('Color') >= 0">
-                                        <a class="nav-link" id="colorEffects-tab" data-toggle="tab" href="#colorEffects"
-                                            role="tab" aria-controls="colorEffects" aria-selected="false">Color</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="parameterEffects-tab" data-toggle="tab"
-                                            href="#parameterEffects" role="tab" aria-controls="parameterEffects"
-                                            aria-selected="true">Param.</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" v-if="effectProfiles.length > 0">
-                                    <div class="tab-pane" id="intensityEffects" role="tabpanel"
-                                        aria-labelledby="intensityEffects-tab">
-                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListIntensity">
-                                            <li class="list-group-item fixtureProfileItem"
-                                                v-for="effect in effectProfiles" v-if="effect.type == 'Intensity'"
-                                                @click="addFixtureEffect(effect.file, effect.type)">
-                                                {{effect.name}} </li>
-                                        </ul>
-                                    </div>
-                                    <div v-if="settings.interfaceMode == 'normal'" class="tab-pane" id="positionEffects"
-                                        role="tabpanel" aria-labelledby="positionEffects-tab">
-                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListPosition">
-                                            <li class="list-group-item fixtureProfileItem"
-                                                v-for="effect in effectProfiles" v-if="effect.type == 'Position'"
-                                                @click="addFixtureEffect(effect.file, effect.type)">
-                                                {{effect.name}} </li>
-                                        </ul>
-                                    </div>
-                                    <div v-if="settings.interfaceMode == 'normal'" class="tab-pane" id="colorEffects"
-                                        role="tabpanel" aria-labelledby="colorEffects-tab">
-                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
-                                            <li class="list-group-item fixtureProfileItem"
-                                                v-for="effect in effectProfiles" v-if="effect.type == 'Color'"
-                                                @click="addFixtureEffect(effect.file, effect.type)">
-                                                {{effect.name}} </li>
-                                        </ul>
-                                    </div>
-                                    <div class="tab-pane active" id="parameterEffects" role="tabpanel"
-                                        aria-labelledby="parameterEffects-tab">
-                                        <label for="fixtureEffectParametersList" class="mb-0 text-dark mt-1">Apply
-                                            Effect To:</label>
-                                        <select class="form-control mb-1" id="fixtureEffectParametersList"
-                                            name="fixtureEffectParametersList">
-                                            <option v-for="parameter in currentFixture.parameters" :key="parameter.id"
-                                                :value="parameter.name">
-                                                {{parameter.name}}</option>
-                                        </select>
-                                        <ul class="list-group fixtureEffectsList" id="fixtureEffectsListParameter">
-                                            <li class="list-group-item fixtureProfileItem"
-                                                v-for="effect in effectProfiles" v-if="effect.type == 'Parameter'"
-                                                @click="addFixtureEffect(effect.file, effect.type)">
-                                                {{effect.name}} </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div v-if="effectProfiles.length == 0" class="text-danger"> There are no fixture effects
-                                    in your library!
+                                            <span>
+                                                <span v-if="effect.active == false">
+                                                    <button
+                                                        class="float-right btn btn-sm btn-warning d-inline-block mr-1"
+                                                        @click="changeFixtureEffectState(effect.id)">Activate</button>
+                                                </span>
+                                            </span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div id="fixtureAddEffectsModal" class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <ul class="nav nav-tabs" id="effectsTabs" role="tablist"
+                                        v-if="effectProfiles.length > 0">
+                                        <li class="nav-item"
+                                            v-if="currentFixture.parameterTypes.indexOf('Intensity') >= 0">
+                                            <a class="nav-link" id="intensityEffects-tab" data-toggle="tab"
+                                                href="#intensityEffects" role="tab" aria-controls="intensityEffects"
+                                                aria-selected="false">Intensity</a>
+                                        </li>
+                                        <li v-if="settings.interfaceMode == 'normal'" class="nav-item"
+                                            v-if="currentFixture.parameterTypes.indexOf('Position') >= 0">
+                                            <a class="nav-link" id="positionEffects-tab" data-toggle="tab"
+                                                href="#positionEffects" role="tab" aria-controls="positionEffects"
+                                                aria-selected="false">Position</a>
+                                        </li>
+                                        <li v-if="settings.interfaceMode == 'normal'" class="nav-item"
+                                            v-if="currentFixture.parameterTypes.indexOf('Color') >= 0">
+                                            <a class="nav-link" id="colorEffects-tab" data-toggle="tab"
+                                                href="#colorEffects" role="tab" aria-controls="colorEffects"
+                                                aria-selected="false">Color</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="parameterEffects-tab" data-toggle="tab"
+                                                href="#parameterEffects" role="tab" aria-controls="parameterEffects"
+                                                aria-selected="true">Param.</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" v-if="effectProfiles.length > 0">
+                                        <div class="tab-pane" id="intensityEffects" role="tabpanel"
+                                            aria-labelledby="intensityEffects-tab">
+                                            <ul class="list-group fixtureEffectsList" id="fixtureEffectsListIntensity">
+                                                <li class="list-group-item fixtureProfileItem"
+                                                    v-for="effect in effectProfiles" v-if="effect.type == 'Intensity'"
+                                                    @click="addFixtureEffect(effect.file, effect.type)">
+                                                    {{effect.name}} </li>
+                                            </ul>
+                                        </div>
+                                        <div v-if="settings.interfaceMode == 'normal'" class="tab-pane"
+                                            id="positionEffects" role="tabpanel" aria-labelledby="positionEffects-tab">
+                                            <ul class="list-group fixtureEffectsList" id="fixtureEffectsListPosition">
+                                                <li class="list-group-item fixtureProfileItem"
+                                                    v-for="effect in effectProfiles" v-if="effect.type == 'Position'"
+                                                    @click="addFixtureEffect(effect.file, effect.type)">
+                                                    {{effect.name}} </li>
+                                            </ul>
+                                        </div>
+                                        <div v-if="settings.interfaceMode == 'normal'" class="tab-pane"
+                                            id="colorEffects" role="tabpanel" aria-labelledby="colorEffects-tab">
+                                            <ul class="list-group fixtureEffectsList" id="fixtureEffectsListColor">
+                                                <li class="list-group-item fixtureProfileItem"
+                                                    v-for="effect in effectProfiles" v-if="effect.type == 'Color'"
+                                                    @click="addFixtureEffect(effect.file, effect.type)">
+                                                    {{effect.name}} </li>
+                                            </ul>
+                                        </div>
+                                        <div class="tab-pane active" id="parameterEffects" role="tabpanel"
+                                            aria-labelledby="parameterEffects-tab">
+                                            <label for="fixtureEffectParametersList" class="mb-0 text-dark mt-1">Apply
+                                                Effect To:</label>
+                                            <select class="form-control mb-1" id="fixtureEffectParametersList"
+                                                name="fixtureEffectParametersList">
+                                                <option v-for="parameter in currentFixture.parameters"
+                                                    :key="parameter.id" :value="parameter.name">
+                                                    {{parameter.name}}</option>
+                                            </select>
+                                            <ul class="list-group fixtureEffectsList" id="fixtureEffectsListParameter">
+                                                <li class="list-group-item fixtureProfileItem"
+                                                    v-for="effect in effectProfiles" v-if="effect.type == 'Parameter'"
+                                                    @click="addFixtureEffect(effect.file, effect.type)">
+                                                    {{effect.name}} </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div v-if="effectProfiles.length == 0" class="text-danger"> There are no fixture
+                                        effects
+                                        in your library!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div id="fixtureSettingsPage" class="tabcontent" v-if="currentView == 'fixtureSettings'">
-                <div class="container">
-                    <div class="row topBtns">
-                        <div class="col-6">
-                            <div><button id="fixtureParametersBackBtn" class="btn btn-primary btn-block"
-                                    @click="currentView = 'fixtureParameters'">Back</button></div>
+                <div id="fixtureSettingsPage" class="tabcontent" v-if="currentView == 'fixtureSettings'">
+                    <div class="container">
+                        <div class="row topBtns">
+                            <div class="col-6">
+                                <div><button id="fixtureParametersBackBtn" class="btn btn-primary btn-block"
+                                        @click="currentView = 'fixtureParameters'">Back</button></div>
 
-                        </div>
-                        <div class="col-6">
-                            <div><button id="fixtureDeleteBtn" class="btn btn-danger btn-block"
-                                    @click="removeFixture">Delete</button></div>
-                        </div>
-                    </div>
-                    <div class="row" id="fixtureSettings">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="fixtureNameInput">Name:</label>
-                                <input class="form-control" type="text" id="fixtureNameInput"
-                                    placeholder="Full Fixture Name" @input="editFixtureSettings"
-                                    v-model="currentFixture.name">
+                            </div>
+                            <div class="col-6">
+                                <div><button id="fixtureDeleteBtn" class="btn btn-danger btn-block"
+                                        @click="removeFixture">Delete</button></div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="fixtureShortNameInput">Short Name:</label>
-                                <input class="form-control" type="text" id="fixtureShortNameInput"
-                                    placeholder="Short Fixture Name" @input="editFixtureSettings"
-                                    v-model="currentFixture.shortName">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-group">
-                                <label for="fixtureDMXAddressInput">Starting DMX Address:</label>
-                                <input class="form-control" min="1" max="512" type="number" id="fixtureDMXAddressInput"
-                                    placeholder="Fixture Starting DMX Address" @input="editFixtureSettings"
-                                    v-model="currentFixture.startDMXAddress">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-group">
-                                <label for="fixtureDMXAddressInput">DMX Universe:</label>
-                                <input class="form-control" min="0" max="1" type="number" id="fixtureDMXUniverseInput"
-                                    placeholder="Fixture DMX Universe" @input="editFixtureSettings"
-                                    v-model="currentFixture.dmxUniverse">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12"
-                            v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && settings.interfaceMode == 'normal'">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editFixtureSettings" type="checkbox" class="custom-control-input"
-                                        id="invertPan" v-model="currentFixture.invertPan">
-                                    <label class="custom-control-label" for="invertPan">Invert Pan</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12"
-                            v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && settings.interfaceMode == 'normal'">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editFixtureSettings" type="checkbox" class="custom-control-input"
-                                        id="invertTilt" v-model="currentFixture.invertTilt">
-                                    <label class="custom-control-label" for="invertTilt">Invert Tilt</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12"
-                            v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && settings.interfaceMode == 'normal'">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editFixtureSettings" type="checkbox" class="custom-control-input"
-                                        id="swapPanTilt" v-model="currentFixture.swapPanTilt">
-                                    <label class="custom-control-label" for="swapPanTilt">Swap Pan/Tilt</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="effectSettingsPage" class="tabcontent" v-if="currentView == 'effectSettings'">
-                <div class="container">
-                    <div class="row topBtns">
-                        <div class="col-6">
-                            <button id="fixtureParametersEffectBackBtn" class="btn btn-primary btn-block"
-                                @click="currentView = 'fixtureParameters'">Back</button>
-                        </div>
-                        <div class="col-6">
-                            <div>
-                                <div><button id="effectDeleteBtn" class="btn btn-danger btn-block"
-                                        @click="removeFixtureEffect">Delete</button></div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row" id="effectSettings">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="effectNameInput">Name:</label>
-                                <input class="form-control" type="text" id="effectNameInput" placeholder="Effect Name"
-                                    v-model="currentEffect.name" @input="editEffectSettings">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-group">
-                                <label for="effectSpeedInput">Speed:</label>
-                                <input class="form-control" placeholder="Effect Speed" type="number" step="0.1"
-                                    min="0.0" id="effectSpeedInput" @input="editEffectSettings"
-                                    v-model="currentEffect.speed">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-group">
-                                <label for="effectDepthInput">Depth:</label>
-                                <input type="number" step="0.1" placeholder="Effect Depth" min="0.0" max="1.0"
-                                    class="form-control" id="effectDepthInput" @input="editEffectSettings"
-                                    v-model="currentEffect.depth">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div id="groups" class="tabcontent" v-if="currentView == 'groups'">
-                <div class="container">
-                    <div class="row topBtns sticky-top">
-                        <div class="col-6">
-                            <button :disabled="fixtures.length == 0" class="btn btn-success btn-block"
-                                @click="addGroupModal">Add
-                                Group</button>
-                        </div>
-                        <div class="col-6">
-                            <div>
-                                <div>
-                                    <div>
-                                        <button :disabled="groups.length == 0" class="btn btn-danger btn-block"
-                                            @click="resetGroups">Reset
-                                            Values</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" id="groupsList">
-                        <div class="col-4 col-lg-2 mb-3" v-for="group in groups" :key="group.id"
-                            @click="getGroupParameters(group.id, true)">
-                            <div class="groupItem">
-                                <p>{{group.name}} <span v-if="group.hasLockedParameters == true" class="d-inline"><i
-                                            class="ml-1 far fa-lock-alt fa-sm"></i>
-                                    </span>
-                                    <span class="d-inline">
-                                        <span v-if="group.hasActiveEffects == true" class="d-inline">
-                                            <i class="ml-1 far fa-hurricane fa-sm"></i>
-                                        </span>
-                                    </span></p>
-                            </div>
-                        </div>
-                        <div v-if="groups.length == 0" class="col-12">
-                            <h5>There are no groups in this show!</h5>
-                        </div>
-                    </div>
-                </div>
-                <div id="addGroupModal" class="modal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
+                        <div class="row" id="fixtureSettings">
+                            <div class="col-12">
                                 <div class="form-group">
-                                    <label class="dark mr-2" for="groupFixtureIDs">Fixtures:</label>
-                                    <multiselect placeholder="Select some fixtures" :options="fixtures"
-                                        v-model="addGroupSelected" label="name" :multiple="true" :search="true"
-                                        style="width: 100%" track-by="id" :close-on-select="false" :show-pointer="false"
-                                        :hide-selected="true" :custom-label="customMultiselectLabel">
-                                        <template slot="option" slot-scope="props">{{props.option.name}}
-                                            ({{props.option.startDMXAddress}})</template></multiselect>
-                                </div>
-                                <button class="btn btn-success btn-full" @click="addGroup">Add Group</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="groupParametersPage" class="tabcontent" v-if="currentView == 'groupParameters'">
-                <div class="container">
-                    <div class="row topBtns">
-                        <div class="col-4">
-                            <h5 id="groupParametersName">{{currentGroup.name}}</h5>
-                        </div>
-                        <div class="col-4">
-                            <button id="groupSettingsBtn" class="btn btn-primary btn-block" @click="getGroupSettings"><i
-                                    class="far fa-cog d-sm-none d-inline-block"></i><span
-                                    class="d-none d-sm-inline-block">Settings</span></button>
-                        </div>
-                        <div class="col-4">
-                            <div><button id="groupResetBtn" class="btn btn-danger btn-block" @click="resetGroup"><i
-                                        class="far fa-redo d-sm-none d-inline-block"></i><span
-                                        class="d-none d-sm-inline-block">Reset</span></button></div>
-                        </div>
-                    </div>
-                    <div id="groupParameters">
-                        <div class="groupParameterTabButtons mb-3" v-if="settings.interfaceMode == 'normal'">
-                            <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
-                                :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
-                            <button v-if="currentGroup.parameterTypes.indexOf('Position') >= 0"
-                                class="btn btn-secondary" @click="fixtureParametersTab = 'position'"
-                                :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
-                            <button v-if="currentGroup.parameterTypes.indexOf('Color') >= 0" class="btn btn-secondary"
-                                @click="fixtureParametersTab = 'color'"
-                                :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
-                            <button v-if="currentGroup.parameterTypes.indexOf('Parameter') >= 0"
-                                class="btn btn-secondary" @click="fixtureParametersTab = 'beam'"
-                                :class="{'btn-success': fixtureParametersTab == 'beam'}">Beam</button>
-                        </div>
-                        <div v-for="parameter in currentGroup.parameters" v-if="getParameterTabType(parameter)"
-                            :key="parameter.id">
-                            <button class="btn btn-info" @click="changeGroupParameterLock(parameter)">
-                                <div v-if="parameter.locked == true"><i class="far fa-lock-alt fa-sm"></i></div>
-                                <div>
-                                    <div v-if="parameter.locked == false"><i class="far fa-lock-open-alt fa-sm"></i>
-                                    </div>
-                                </div>
-                            </button>
-                            <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
-                                ({{parameter.displayValue}}%)</label>
-                            <div class="float-right">
-                                <button :disabled="parameter.locked == true" class="btn btn-warning"
-                                    @click="setParameterValue(parameter, parameter.min, 'group')">
-                                    <i class="far fa-step-backward fa-sm"></i>
-                                </button>
-                                <button :disabled="parameter.locked == true" v-if="!('ranges' in parameter)"
-                                    class="btn btn-warning"
-                                    @click="setParameterValue(parameter, parseInt(parameter.max/2)+1, 'group')">
-                                    50%
-                                </button>
-                                <button :disabled="parameter.locked == true" class="btn btn-warning"
-                                    @click="setParameterValue(parameter, parameter.max, 'group')">
-                                    <i class="far fa-step-forward fa-sm"></i>
-                                </button>
-                            </div>
-                            <input type="range" :disabled="parameter.locked == true" class="custom-range"
-                                v-bind:id="parameter.id" v-bind:max="parameter.max" v-bind:min="parameter.min"
-                                v-model="parameter.value" @input="changeGroupParameterValue(parameter)" step="1">
-                            <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
-                                <div class="channelRanges row flex-nowrap">
-                                    <div class="channelRange col-2 col-md-1 mr-1 "
-                                        v-for="(range, id) in parameter.ranges"
-                                        @click="useGroupParameterRange(parameter, id)"
-                                        :class="{ 'bg-success': parameter.value >= mapRange(range.begin, 0, 255, 0, 65535) && parameter.value <= mapRange(range.end, 0, 255, 0, 65535), 'bg-danger': parameter.value < mapRange(range.begin, 0, 255, 0, 65535) || parameter.value > mapRange(range.end, 0, 255, 0, 65535)}">
-                                        {{range.label}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="sequenceParametersPage" class="tabcontent" v-if="currentView == 'sequenceParameters'">
-                <div class="container">
-                    <div class="row topBtns">
-                        <div class="col-4">
-                            <h5 id="sequenceParametersName">{{currentSequence.name}}</h5>
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                <div>
-                                    <button id="sequenceSettingsBtn" class="btn btn-primary btn-block"
-                                        @click="getSequenceSettings"><i
-                                            class="far fa-cog d-sm-none d-inline-block"></i><span
-                                            class="d-none d-sm-inline-block">Settings</span></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                <div>
-                                    <button class="btn btn-success btn-block" @click="recordSequenceStep">Record
-                                        Step</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="sequenceParameters">
-                        <div class="row">
-                            <div class="col-12 mb-3">
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input @change="editSequenceSettings" type="checkbox"
-                                            class="custom-control-input" id="active" v-model="currentSequence.active">
-                                        <label class="custom-control-label" for="active">Active</label>
-                                    </div>
+                                    <label for="fixtureNameInput">Name:</label>
+                                    <input class="form-control" type="text" id="fixtureNameInput"
+                                        placeholder="Full Fixture Name" @input="editFixtureSettings"
+                                        v-model="currentFixture.name">
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="card">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Up Time</th>
-                                                <th scope="col">Down Time</th>
-                                                <th scope="col">Follow</th>
-                                                <th scope="col">Remove</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(step, index) in currentSequence.steps" :key="step.id"
-                                                :class="{'bg-warning': step.active == true}">
-                                                <th scope="row">{{index+1}}</th>
-                                                <td><input type="number" class="form-control" min="0"
-                                                        v-model="step.upTime" @input="editSequenceStepSettings(step)">
-                                                </td>
-                                                <td><input type="number" class="form-control" min="0"
-                                                        v-model="step.downTime" @input="editSequenceStepSettings(step)">
-                                                </td>
-                                                <td><input type="number" class="form-control" min="0"
-                                                        v-model="step.follow" @input="editSequenceStepSettings(step)">
-                                                </td>
-                                                <td><button class="btn btn-danger btn-sm"
-                                                        @click="removeSequenceStep(step.id)">Delete</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="form-group">
+                                    <label for="fixtureShortNameInput">Short Name:</label>
+                                    <input class="form-control" type="text" id="fixtureShortNameInput"
+                                        placeholder="Short Fixture Name" @input="editFixtureSettings"
+                                        v-model="currentFixture.shortName">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label for="fixtureDMXAddressInput">Starting DMX Address:</label>
+                                    <input class="form-control" min="1" max="512" type="number"
+                                        id="fixtureDMXAddressInput" placeholder="Fixture Starting DMX Address"
+                                        @input="editFixtureSettings" v-model="currentFixture.startDMXAddress">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label for="fixtureDMXAddressInput">DMX Universe:</label>
+                                    <input class="form-control" min="0" max="1" type="number"
+                                        id="fixtureDMXUniverseInput" placeholder="Fixture DMX Universe"
+                                        @input="editFixtureSettings" v-model="currentFixture.dmxUniverse">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12"
+                                v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && settings.interfaceMode == 'normal'">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editFixtureSettings" type="checkbox"
+                                            class="custom-control-input" id="invertPan"
+                                            v-model="currentFixture.invertPan">
+                                        <label class="custom-control-label" for="invertPan">Invert Pan</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12"
+                                v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && settings.interfaceMode == 'normal'">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editFixtureSettings" type="checkbox"
+                                            class="custom-control-input" id="invertTilt"
+                                            v-model="currentFixture.invertTilt">
+                                        <label class="custom-control-label" for="invertTilt">Invert Tilt</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12"
+                                v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && settings.interfaceMode == 'normal'">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editFixtureSettings" type="checkbox"
+                                            class="custom-control-input" id="swapPanTilt"
+                                            v-model="currentFixture.swapPanTilt">
+                                        <label class="custom-control-label" for="swapPanTilt">Swap Pan/Tilt</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="groupSettingsPage" class="tabcontent" v-if="currentView == 'groupSettings'">
-                <div class="container">
-                    <div class="row topBtns">
-                        <div class="col-6">
-                            <button id="groupParametersBackBtn" class="btn btn-primary btn-block"
-                                @click="currentView = 'groupParameters'">Back</button>
-                        </div>
-                        <div class="col-6">
-                            <div>
-                                <button id="groupDeleteBtn" class="btn btn-danger btn-block"
-                                    @click="removeGroup">Delete</button>
+                <div id="effectSettingsPage" class="tabcontent" v-if="currentView == 'effectSettings'">
+                    <div class="container">
+                        <div class="row topBtns">
+                            <div class="col-6">
+                                <button id="fixtureParametersEffectBackBtn" class="btn btn-primary btn-block"
+                                    @click="currentView = 'fixtureParameters'">Back</button>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <div><button id="effectDeleteBtn" class="btn btn-danger btn-block"
+                                            @click="removeFixtureEffect">Delete</button></div>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
-                    <div class="row" id="groupSettings">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="groupNameInput">Name:</label>
-                                <input class="form-control" type="text" id="groupNameInput" placeholder="Group Name"
-                                    v-model="currentGroup.name" @input="editGroupSettings">
+                        <div class="row" id="effectSettings">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="effectNameInput">Name:</label>
+                                    <input class="form-control" type="text" id="effectNameInput"
+                                        placeholder="Effect Name" v-model="currentEffect.name"
+                                        @input="editEffectSettings">
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <b>Group Fixtures:</b>
-                    <div id="groupFixtures">
-                        <div v-for="fixture in currentGroupFixtures" :key="fixture.id">
-                            {{fixture.name}} ({{fixture.address}})
-                            <button class="btn btn-danger btn-sm mb-1 ml-1" @click="removeGroupFixture(fixture.id)"><i
-                                    class="far fa-sm fa-trash-alt"></i></button>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label for="effectSpeedInput">Speed:</label>
+                                    <input class="form-control" placeholder="Effect Speed" type="number" step="0.1"
+                                        min="0.0" id="effectSpeedInput" @input="editEffectSettings"
+                                        v-model="currentEffect.speed">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label for="effectDepthInput">Depth:</label>
+                                    <input type="number" step="0.1" placeholder="Effect Depth" min="0.0" max="1.0"
+                                        class="form-control" id="effectDepthInput" @input="editEffectSettings"
+                                        v-model="currentEffect.depth">
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="cues" class="tabcontent" v-if="currentView == 'cues'">
-                <div class="container">
-                    <div class="topBtns sticky-top">
-                        <div class="row mb-2">
-                            <div class="col-6"><button class="btn btn-warning btn-sm btn-block"
-                                    :class="{'disabled': cuesTab == 'sequences'}"
-                                    @click="cuesTab = 'cues'">Cues</button>
+                <div id="groups" class="tabcontent" v-if="currentView == 'groups'">
+                    <div class="container">
+                        <div class="row topBtns sticky-top">
+                            <div class="col-6">
+                                <button :disabled="fixtures.length == 0" class="btn btn-success btn-block"
+                                    @click="addGroupModal">Add
+                                    Group</button>
                             </div>
                             <div class="col-6">
                                 <div>
                                     <div>
                                         <div>
-                                            <button class="btn btn-warning btn-sm btn-block"
-                                                :class="{'disabled': cuesTab == 'cues'}"
-                                                @click="cuesTab = 'sequences'">Sequences</button>
+                                            <button :disabled="groups.length == 0" class="btn btn-danger btn-block"
+                                                @click="resetGroups">Reset
+                                                Values</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div v-if="cuesTab == 'cues'">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div>
-                                        <button :disabled="cues.length == 0" class="btn btn-primary btn-block"
-                                            @click="lastCue"><i class="far fa-chevron-left"></i></button>
-                                    </div>
+                        <div class="row" id="groupsList">
+                            <div class="col-4 col-lg-2 mb-3" v-for="group in groups" :key="group.id"
+                                @click="getGroupParameters(group.id, true)">
+                                <div class="groupItem">
+                                    <p>{{group.name}} <span v-if="group.hasLockedParameters == true" class="d-inline"><i
+                                                class="ml-1 far fa-lock-alt fa-sm"></i>
+                                        </span>
+                                        <span class="d-inline">
+                                            <span v-if="group.hasActiveEffects == true" class="d-inline">
+                                                <i class="ml-1 far fa-hurricane fa-sm"></i>
+                                            </span>
+                                        </span></p>
                                 </div>
-                                <div class="col-4" v-if="cuePlaying == true">
-                                    <div>
-                                        <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                                class="btn btn-danger btn-block" @click="stopCue">Stop</button></div>
+                            </div>
+                            <div v-if="groups.length == 0" class="col-12">
+                                <h5>There are no groups in this show!</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="addGroupModal" class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label class="dark mr-2" for="groupFixtureIDs">Fixtures:</label>
+                                        <multiselect placeholder="Select some fixtures" :options="fixtures"
+                                            v-model="addGroupSelected" label="name" :multiple="true" :search="true"
+                                            style="width: 100%" track-by="id" :close-on-select="false"
+                                            :show-pointer="false" :hide-selected="true"
+                                            :custom-label="customMultiselectLabel">
+                                            <template slot="option" slot-scope="props">{{props.option.name}}
+                                                ({{props.option.startDMXAddress}})</template></multiselect>
                                     </div>
+                                    <button class="btn btn-success btn-full" @click="addGroup">Add Group</button>
                                 </div>
-                                <div class="col-4" v-if="cuePlaying == false">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="groupParametersPage" class="tabcontent" v-if="currentView == 'groupParameters'">
+                    <div class="container">
+                        <div class="row topBtns">
+                            <div class="col-4">
+                                <h5 id="groupParametersName">{{currentGroup.name}}</h5>
+                            </div>
+                            <div class="col-4">
+                                <button id="groupSettingsBtn" class="btn btn-primary btn-block"
+                                    @click="getGroupSettings"><i class="far fa-cog d-sm-none d-inline-block"></i><span
+                                        class="d-none d-sm-inline-block">Settings</span></button>
+                            </div>
+                            <div class="col-4">
+                                <div><button id="groupResetBtn" class="btn btn-danger btn-block" @click="resetGroup"><i
+                                            class="far fa-redo d-sm-none d-inline-block"></i><span
+                                            class="d-none d-sm-inline-block">Reset</span></button></div>
+                            </div>
+                        </div>
+                        <div id="groupParameters">
+                            <div class="groupParameterTabButtons mb-3" v-if="settings.interfaceMode == 'normal'">
+                                <button class="btn btn-secondary" @click="fixtureParametersTab = 'all'"
+                                    :class="{'btn-success': fixtureParametersTab == 'all'}">All</button>
+                                <button v-if="currentGroup.parameterTypes.indexOf('Position') >= 0"
+                                    class="btn btn-secondary" @click="fixtureParametersTab = 'position'"
+                                    :class="{'btn-success': fixtureParametersTab == 'position'}">Position</button>
+                                <button v-if="currentGroup.parameterTypes.indexOf('Color') >= 0"
+                                    class="btn btn-secondary" @click="fixtureParametersTab = 'color'"
+                                    :class="{'btn-success': fixtureParametersTab == 'color'}">Color</button>
+                                <button v-if="currentGroup.parameterTypes.indexOf('Parameter') >= 0"
+                                    class="btn btn-secondary" @click="fixtureParametersTab = 'beam'"
+                                    :class="{'btn-success': fixtureParametersTab == 'beam'}">Beam</button>
+                            </div>
+                            <div v-for="parameter in currentGroup.parameters" v-if="getParameterTabType(parameter)"
+                                :key="parameter.id">
+                                <button class="btn btn-info" @click="changeGroupParameterLock(parameter)">
+                                    <div v-if="parameter.locked == true"><i class="far fa-lock-alt fa-sm"></i></div>
                                     <div>
-                                        <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
-                                                class="btn btn-danger btn-block" @click="recordCue">Record</button>
+                                        <div v-if="parameter.locked == false"><i class="far fa-lock-open-alt fa-sm"></i>
                                         </div>
                                     </div>
+                                </button>
+                                <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
+                                    ({{parameter.displayValue}}%)</label>
+                                <div class="float-right">
+                                    <button :disabled="parameter.locked == true" class="btn btn-warning"
+                                        @click="setParameterValue(parameter, parameter.min, 'group')">
+                                        <i class="far fa-step-backward fa-sm"></i>
+                                    </button>
+                                    <button :disabled="parameter.locked == true" v-if="!('ranges' in parameter)"
+                                        class="btn btn-warning"
+                                        @click="setParameterValue(parameter, parseInt(parameter.max/2)+1, 'group')">
+                                        50%
+                                    </button>
+                                    <button :disabled="parameter.locked == true" class="btn btn-warning"
+                                        @click="setParameterValue(parameter, parameter.max, 'group')">
+                                        <i class="far fa-step-forward fa-sm"></i>
+                                    </button>
                                 </div>
-                                <div class="col-4">
-                                    <div>
-                                        <div><button :disabled="cues.length == 0" class="btn btn-primary btn-block"
-                                                @click="nextCue"><i class="far fa-chevron-right"></i></button></div>
-
+                                <input type="range" :disabled="parameter.locked == true" class="custom-range"
+                                    v-bind:id="parameter.id" v-bind:max="parameter.max" v-bind:min="parameter.min"
+                                    v-model="parameter.value" @input="changeGroupParameterValue(parameter)" step="1">
+                                <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
+                                    <div class="channelRanges row flex-nowrap">
+                                        <div class="channelRange col-2 col-md-1 mr-1 "
+                                            v-for="(range, id) in parameter.ranges"
+                                            @click="useGroupParameterRange(parameter, id)"
+                                            :class="{ 'bg-success': parameter.value >= mapRange(range.begin, 0, 255, 0, 65535) && parameter.value <= mapRange(range.end, 0, 255, 0, 65535), 'bg-danger': parameter.value < mapRange(range.begin, 0, 255, 0, 65535) || parameter.value > mapRange(range.end, 0, 255, 0, 65535)}">
+                                            {{range.label}}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div v-if="cuesTab == 'sequences'">
+                    </div>
+                </div>
+                <div id="sequenceParametersPage" class="tabcontent" v-if="currentView == 'sequenceParameters'">
+                    <div class="container">
+                        <div class="row topBtns">
+                            <div class="col-4">
+                                <h5 id="sequenceParametersName">{{currentSequence.name}}</h5>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <div>
+                                        <button id="sequenceSettingsBtn" class="btn btn-primary btn-block"
+                                            @click="getSequenceSettings"><i
+                                                class="far fa-cog d-sm-none d-inline-block"></i><span
+                                                class="d-none d-sm-inline-block">Settings</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <div>
+                                        <button class="btn btn-success btn-block" @click="recordSequenceStep">Record
+                                            Step</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="sequenceParameters">
                             <div class="row">
+                                <div class="col-12 mb-3">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input @change="editSequenceSettings" type="checkbox"
+                                                class="custom-control-input" id="active"
+                                                v-model="currentSequence.active">
+                                            <label class="custom-control-label" for="active">Active</label>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-12">
-                                    <button class="btn btn-success btn-block" @click="addSequenceModal">Add
-                                        Sequence</button>
+                                    <div class="card">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Up Time</th>
+                                                    <th scope="col">Down Time</th>
+                                                    <th scope="col">Follow</th>
+                                                    <th scope="col">Remove</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(step, index) in currentSequence.steps" :key="step.id"
+                                                    :class="{'bg-warning': step.active == true}">
+                                                    <th scope="row">{{index+1}}</th>
+                                                    <td><input type="number" class="form-control" min="0"
+                                                            v-model="step.upTime"
+                                                            @input="editSequenceStepSettings(step)">
+                                                    </td>
+                                                    <td><input type="number" class="form-control" min="0"
+                                                            v-model="step.downTime"
+                                                            @input="editSequenceStepSettings(step)">
+                                                    </td>
+                                                    <td><input type="number" class="form-control" min="0"
+                                                            v-model="step.follow"
+                                                            @input="editSequenceStepSettings(step)">
+                                                    </td>
+                                                    <td><button class="btn btn-danger btn-sm"
+                                                            @click="removeSequenceStep(step.id)">Delete</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div v-if="cuesTab == 'cues'">
-                        <div class="row" id="cuesList">
-                            <div class="col-4 col-lg-2 mb-3" v-for="cue in cues" :key="cue.id"
-                                @click="getCueSettings(cue.id)">
-                                <div class="cueItem"
-                                    :class="{ 'cueActive' : cue.active == true, 'cueCurrent' : cue.id == activeCue && cue.active != true}">
-                                    <p>{{cue.name}}</p>
+                </div>
+                <div id="groupSettingsPage" class="tabcontent" v-if="currentView == 'groupSettings'">
+                    <div class="container">
+                        <div class="row topBtns">
+                            <div class="col-6">
+                                <button id="groupParametersBackBtn" class="btn btn-primary btn-block"
+                                    @click="currentView = 'groupParameters'">Back</button>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <button id="groupDeleteBtn" class="btn btn-danger btn-block"
+                                        @click="removeGroup">Delete</button>
                                 </div>
                             </div>
-                            <div v-if="cues.length == 0" class="col-12">
-                                <h5>There are no cues in this show!</h5>
+                        </div>
+                        <div class="row" id="groupSettings">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="groupNameInput">Name:</label>
+                                    <input class="form-control" type="text" id="groupNameInput" placeholder="Group Name"
+                                        v-model="currentGroup.name" @input="editGroupSettings">
+                                </div>
+                            </div>
+                        </div>
+                        <b>Group Fixtures:</b>
+                        <div id="groupFixtures">
+                            <div v-for="fixture in currentGroupFixtures" :key="fixture.id">
+                                {{fixture.name}} ({{fixture.address}})
+                                <button class="btn btn-danger btn-sm mb-1 ml-1"
+                                    @click="removeGroupFixture(fixture.id)"><i
+                                        class="far fa-sm fa-trash-alt"></i></button>
                             </div>
                         </div>
                     </div>
-                    <div v-if="cuesTab == 'sequences'">
-                        <div class="row" id="sequencesList">
-                            <div class="col-4 col-lg-2 mb-3" @click="getSequenceParameters(sequence.id)"
-                                v-for="sequence in sequences" :key="sequence.id">
-                                <div class="sequenceItem" :class="{ 'sequenceActive' : sequence.active == true}">
-                                    <p>{{sequence.name}}</p>
+                </div>
+                <div id="cues" class="tabcontent" v-if="currentView == 'cues'">
+                    <div class="container">
+                        <div class="topBtns sticky-top">
+                            <div class="row mb-2">
+                                <div class="col-6"><button class="btn btn-warning btn-sm btn-block"
+                                        :class="{'disabled': cuesTab == 'sequences'}"
+                                        @click="cuesTab = 'cues'">Cues</button>
                                 </div>
-                            </div>
-                            <div v-if="sequences.length == 0" class="col-12">
-                                <h5>There are no sequences in this show!</h5>
-                            </div>
-                        </div>
-                        <div id="addSequenceModal" class="modal" tabindex="-1" role="dialog">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label class="dark mr-2" for="sequenceFixtureIDs">Fixtures:</label>
-                                            <multiselect placeholder="Select some fixtures" :options="fixtures"
-                                                v-model="addSequenceSelected" label="name" :multiple="true"
-                                                :search="true" style="width: 100%" track-by="id"
-                                                :close-on-select="false" :show-pointer="false" :hide-selected="true"
-                                                :custom-label="customMultiselectLabel">
-                                                <template slot="option" slot-scope="props">{{props.option.name}}
-                                                    ({{props.option.startDMXAddress}})</template></multiselect>
+                                <div class="col-6">
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <button class="btn btn-warning btn-sm btn-block"
+                                                    :class="{'disabled': cuesTab == 'cues'}"
+                                                    @click="cuesTab = 'sequences'">Sequences</button>
+                                            </div>
                                         </div>
-                                        <button class="btn btn-success btn-full" @click="addSequence">Add
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="cuesTab == 'cues'">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div>
+                                            <button :disabled="cues.length == 0" class="btn btn-primary btn-block"
+                                                @click="lastCue"><i class="far fa-chevron-left"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="col-4" v-if="cuePlaying == true">
+                                        <div>
+                                            <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                                    class="btn btn-danger btn-block" @click="stopCue">Stop</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4" v-if="cuePlaying == false">
+                                        <div>
+                                            <div><button :disabled="fixtures.length == 0" id="cueActionBtn"
+                                                    class="btn btn-danger btn-block" @click="recordCue">Record</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div>
+                                            <div><button :disabled="cues.length == 0" class="btn btn-primary btn-block"
+                                                    @click="nextCue"><i class="far fa-chevron-right"></i></button></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="cuesTab == 'sequences'">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button class="btn btn-success btn-block" @click="addSequenceModal">Add
                                             Sequence</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div id="sequenceSettingsPage" class="tabcontent" v-if="currentView == 'sequenceSettings'">
-                <div class="container">
-                    <div class="row topBtns">
-                        <div class="col-6">
-                            <button id="sequenceParametersBackBtn" class="btn btn-primary btn-block"
-                                @click="currentView = 'sequenceParameters'">Back</button>
-                        </div>
-                        <div class="col-6">
-                            <div>
-                                <button id="sequenceDeleteBtn" class="btn btn-danger btn-block"
-                                    @click="removeSequence">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" id="sequenceSettings">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="sequenceNameInput">Name:</label>
-                                <input class="form-control" type="text" id="sequenceNameInput"
-                                    placeholder="Sequence Name" v-model="currentSequence.name"
-                                    @input="editSequenceSettings">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
-                                        id="includeIntensityColor" v-model="currentSequence.includeIntensityColor">
-                                    <label class="custom-control-label" for="includeIntensityColor">Include
-                                        Intensity/Color</label>
+                        <div v-if="cuesTab == 'cues'">
+                            <div class="row" id="cuesList">
+                                <div class="col-4 col-lg-2 mb-3" v-for="cue in cues" :key="cue.id"
+                                    @click="getCueSettings(cue.id)">
+                                    <div class="cueItem"
+                                        :class="{ 'cueActive' : cue.active == true, 'cueCurrent' : cue.id == activeCue && cue.active != true}">
+                                        <p>{{cue.name}}</p>
+                                    </div>
+                                </div>
+                                <div v-if="cues.length == 0" class="col-12">
+                                    <h5>There are no cues in this show!</h5>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
-                                        id="includePosition" v-model="currentSequence.includePosition">
-                                    <label class="custom-control-label" for="includePosition">Include Position</label>
+                        <div v-if="cuesTab == 'sequences'">
+                            <div class="row" id="sequencesList">
+                                <div class="col-4 col-lg-2 mb-3" @click="getSequenceParameters(sequence.id)"
+                                    v-for="sequence in sequences" :key="sequence.id">
+                                    <div class="sequenceItem" :class="{ 'sequenceActive' : sequence.active == true}">
+                                        <p>{{sequence.name}}</p>
+                                    </div>
+                                </div>
+                                <div v-if="sequences.length == 0" class="col-12">
+                                    <h5>There are no sequences in this show!</h5>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editSequenceSettings" type="checkbox" class="custom-control-input"
-                                        id="includeBeam" v-model="currentSequence.includeBeam">
-                                    <label class="custom-control-label" for="includeBeam">Include Beam</label>
+                            <div id="addSequenceModal" class="modal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label class="dark mr-2" for="sequenceFixtureIDs">Fixtures:</label>
+                                                <multiselect placeholder="Select some fixtures" :options="fixtures"
+                                                    v-model="addSequenceSelected" label="name" :multiple="true"
+                                                    :search="true" style="width: 100%" track-by="id"
+                                                    :close-on-select="false" :show-pointer="false" :hide-selected="true"
+                                                    :custom-label="customMultiselectLabel">
+                                                    <template slot="option" slot-scope="props">{{props.option.name}}
+                                                        ({{props.option.startDMXAddress}})</template></multiselect>
+                                            </div>
+                                            <button class="btn btn-success btn-full" @click="addSequence">Add
+                                                Sequence</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <b>Sequence Fixtures:</b>
-                    <div id="sequenceFixtures">
-                        <div v-for="fixture in currentSequenceFixtures" :key="fixture.id">
-                            {{fixture.name}} ({{fixture.address}})
-                            <button class="btn btn-danger btn-sm mb-1 ml-1"
-                                @click="removeSequenceFixture(fixture.id)"><i
-                                    class="far fa-sm fa-trash-alt"></i></button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="cueSettingsPage" class="tabcontent" v-if="currentView == 'cueSettings'">
-                <div class="container">
-                    <div class="row topBtns">
-                        <div class="col-3">
-                            <button id="gotoCueBtn" class="btn btn-primary btn-block" @click="gotoCue">Go</button>
-                        </div>
-                        <div class="col-3">
-                            <button id="cueDeleteBtn" class="btn btn-danger btn-block" @click="removeCue"><i
-                                    class="far fa-trash-alt d-sm-none d-inline-block"></i><span
-                                    class="d-none d-sm-inline-block">Delete</span></button>
-                        </div>
-                        <div class="col-3">
-                            <button id="cueCloneEndBtn" class="btn btn-info btn-block" @click="cloneCueEnd"><i
-                                    class="far fa-clone d-sm-none d-inline-block"></i> <span
-                                    class="d-inline-block d-sm-none">E</span><span
-                                    class="d-none d-sm-inline-block">Clone To End</span></button>
-                        </div>
-                        <div class="col-3">
-                            <div>
+                <div id="sequenceSettingsPage" class="tabcontent" v-if="currentView == 'sequenceSettings'">
+                    <div class="container">
+                        <div class="row topBtns">
+                            <div class="col-6">
+                                <button id="sequenceParametersBackBtn" class="btn btn-primary btn-block"
+                                    @click="currentView = 'sequenceParameters'">Back</button>
+                            </div>
+                            <div class="col-6">
                                 <div>
-                                    <div><button id="cueCloneNextBtn" class="btn btn-info btn-block"
-                                            @click="cloneCueNext"><i class="far fa-clone d-sm-none d-inline-block"></i>
-                                            <span class="d-inline-block d-sm-none">N</span><span
-                                                class="d-none d-sm-inline-block">Clone To Next</span></button></div>
+                                    <button id="sequenceDeleteBtn" class="btn btn-danger btn-block"
+                                        @click="removeSequence">Delete</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row topBtns">
-                        <div class="col-3">
-                            <button id="gotoCueInstantBtn" class="btn btn-info btn-block" @click="gotoCueInstant">Go
-                                I.</button>
-                        </div>
-                        <div class="col-3">
-                            <div><button id="cueUpdateBtn" class="btn btn-warning btn-block" @click="updateCue"><i
-                                        class="far fa-pencil d-sm-none d-inline-block"></i><span
-                                        class="d-none d-sm-inline-block">Update
-                                        Params.</span></button></div>
-                        </div>
-                        <div class="col-3">
-                            <button id="moveCueUpBtn" class="btn btn-success btn-block" @click="moveCueUp"><i
-                                    class="far fa-chevron-up d-sm-none d-inline-block"></i><span
-                                    class="d-none d-sm-inline-block">Move Up</span></button>
-                        </div>
-                        <div class="col-3">
-                            <button id="moveCueDownBtn" class="btn btn-success btn-block" @click="moveCueDown"><i
-                                    class="far fa-chevron-down d-sm-none d-inline-block"></i><span
-                                    class="d-none d-sm-inline-block">Move Down</span></button>
-                        </div>
-                    </div>
-                    <div class="row" id="cueSettings">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="cueNameInput">Name:</label>
-                                <input class="form-control" type="text" id="cueNameInput" placeholder="Cue Name"
-                                    @input="editCueSettings" v-model="currentCue.name">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group">
-                                <label for="cueUpTimeInput">Up Time:</label>
-                                <input class="form-control" min="0" type="number" id="cueUpTimeInput"
-                                    placeholder="Cue Up Length In Seconds" @input="editCueSettings"
-                                    v-model="currentCue.upTime">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group">
-                                <label for="cueDownTimeInput">Down Time:</label>
-                                <input @input="editCueSettings" class="form-control" min="0" type="number"
-                                    id="cueDownTimeInput" placeholder="Cue Down Length In Seconds"
-                                    v-model="currentCue.downTime">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group">
-                                <label for="cueFollowInput">Follow:</label>
-                                <input @input="editCueSettings" class="form-control" type="number" min="-1"
-                                    id="cueFollowInput" placeholder="Cue Follow Time In Seconds"
-                                    v-model="currentCue.follow">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editCueSettings" type="checkbox" class="custom-control-input"
-                                        id="includeIntensityColor" v-model="currentCue.includeIntensityColor">
-                                    <label class="custom-control-label" for="includeIntensityColor">Include
-                                        Intensity/Color</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editCueSettings" type="checkbox" class="custom-control-input"
-                                        id="includePosition" v-model="currentCue.includePosition">
-                                    <label class="custom-control-label" for="includePosition">Include Position</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editCueSettings" type="checkbox" class="custom-control-input"
-                                        id="includeBeam" v-model="currentCue.includeBeam">
-                                    <label class="custom-control-label" for="includeBeam">Include Beam</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="presets" class="tabcontent" v-if="currentView == 'presets'">
-                <div class="container">
-                    <div class="row topBtns sticky-top">
-                        <div class="col-12">
-                            <button :disabled="fixtures.length == 0" class="btn btn-success btn-block"
-                                @click="addPresetModal">Record Preset</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <button id="blackoutBtn" class="btn"
-                                :class="{ 'btn-primary' : blackout == false, 'btn-danger' : blackout == true}"
-                                @click="toggleBlackout" :disabled="settings.blackoutEnabled == false">Blackout</button>
-                            <label class="ml-2" for="grandmaster">Grandmaster:</label>
-                            <input type="range" class="custom-range" id="grandmaster" min="0" max="100"
-                                v-on:input="changeGrandMasterValue" v-model="grandmaster" step="1">
-                        </div>
-                    </div>
-                    <div class="row" id="presetsList">
-                        <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id"
-                            @click="getPresetSettings(preset.id)">
-                            <div :class="{ 'presetActive' : preset.active == true, 'presetPatchChanged': preset.patchChanged == true}"
-                                class="presetItem">
-                                <p>{{preset.name}}</p>
-                            </div>
-                        </div>
-                        <div v-if="presets.length == 0" class="col-12">
-                            <h5>There are no presets in this show!</h5>
-                        </div>
-                    </div>
-                </div>
-                <div id="addPresetModal" class="modal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
+                        <div class="row" id="sequenceSettings">
+                            <div class="col-12">
                                 <div class="form-group">
-                                    <label class="dark mr-2" for="presetFixtureIDs">Fixtures:</label>
-                                    <multiselect placeholder="Select some fixtures" :options="fixtures"
-                                        v-model="addPresetSelected" label="name" :multiple="true" :search="true"
-                                        style="width: 100%" track-by="id" :close-on-select="false" :show-pointer="false"
-                                        :hide-selected="true" :custom-label="customMultiselectLabel">
-                                        <template slot="option" slot-scope="props">{{props.option.name}}
-                                            ({{props.option.startDMXAddress}})</template></multiselect>
+                                    <label for="sequenceNameInput">Name:</label>
+                                    <input class="form-control" type="text" id="sequenceNameInput"
+                                        placeholder="Sequence Name" v-model="currentSequence.name"
+                                        @input="editSequenceSettings">
                                 </div>
-                                <button class="btn btn-success btn-full" @click="recordPreset">Record Preset</button>
+                            </div>
+                            <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editSequenceSettings" type="checkbox"
+                                            class="custom-control-input" id="includeIntensityColor"
+                                            v-model="currentSequence.includeIntensityColor">
+                                        <label class="custom-control-label" for="includeIntensityColor">Include
+                                            Intensity/Color</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editSequenceSettings" type="checkbox"
+                                            class="custom-control-input" id="includePosition"
+                                            v-model="currentSequence.includePosition">
+                                        <label class="custom-control-label" for="includePosition">Include
+                                            Position</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editSequenceSettings" type="checkbox"
+                                            class="custom-control-input" id="includeBeam"
+                                            v-model="currentSequence.includeBeam">
+                                        <label class="custom-control-label" for="includeBeam">Include Beam</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <b>Sequence Fixtures:</b>
+                        <div id="sequenceFixtures">
+                            <div v-for="fixture in currentSequenceFixtures" :key="fixture.id">
+                                {{fixture.name}} ({{fixture.address}})
+                                <button class="btn btn-danger btn-sm mb-1 ml-1"
+                                    @click="removeSequenceFixture(fixture.id)"><i
+                                        class="far fa-sm fa-trash-alt"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="presetSettingsPage" class="tabcontent" v-if="currentView == 'presetSettings'">
-                <div class="container">
-                    <div class="row topBtns">
-                        <div class="col-6">
-                            <div><button id="presetDeleteBtn" class="btn btn-danger btn-block" @click="removePreset"><i
+                <div id="cueSettingsPage" class="tabcontent" v-if="currentView == 'cueSettings'">
+                    <div class="container">
+                        <div class="row topBtns">
+                            <div class="col-3">
+                                <button id="gotoCueBtn" class="btn btn-primary btn-block" @click="gotoCue">Go</button>
+                            </div>
+                            <div class="col-3">
+                                <button id="cueDeleteBtn" class="btn btn-danger btn-block" @click="removeCue"><i
                                         class="far fa-trash-alt d-sm-none d-inline-block"></i><span
-                                        class="d-none d-sm-inline-block">Delete</span></button></div>
-
-                        </div>
-                        <div class="col-6">
-                            <button v-if="currentPreset.active == false" id="presetActiveBtn"
-                                class="btn btn-warning btn-block" @click="changePresetActive">Activate</button>
-                            <button v-if="currentPreset.active == true" id="presetActiveBtn"
-                                class="btn btn-warning btn-block" @click="changePresetActive">Deactivate</button>
-                        </div>
-                        <div class="col-12 mt-2">
-                            <div><button id="presetUpdateBtn" class="btn btn-success btn-block" @click="updatePreset"><i
-                                        class="far fa-pencil d-sm-none d-inline-block"></i><span
-                                        class="d-none d-sm-inline-block">Update Params.</span></button></div>
-
-                        </div>
-                    </div>
-                    <div class="row" id="presetSettings">
-                        <div class="col-md-8 col-12">
-                            <div class="form-group">
-                                <label for="presetNameInput">Name:</label>
-                                <input class="form-control" type="text" id="presetNameInput" placeholder="Preset Name"
-                                    @input="editPresetSettings" v-model="currentPreset.name">
+                                        class="d-none d-sm-inline-block">Delete</span></button>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-12">
-                            <div class="form-group mt-0 mt-md-4">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editPresetSettings" type="checkbox" class="custom-control-input"
-                                        id="displayPresetAsDimmer" v-model="currentPreset.displayAsDimmer">
-                                    <label class="custom-control-label" for="displayPresetAsDimmer">Display As
-                                        Dimmer</label>
+                            <div class="col-3">
+                                <button id="cueCloneEndBtn" class="btn btn-info btn-block" @click="cloneCueEnd"><i
+                                        class="far fa-clone d-sm-none d-inline-block"></i> <span
+                                        class="d-inline-block d-sm-none">E</span><span
+                                        class="d-none d-sm-inline-block">Clone To End</span></button>
+                            </div>
+                            <div class="col-3">
+                                <div>
+                                    <div>
+                                        <div><button id="cueCloneNextBtn" class="btn btn-info btn-block"
+                                                @click="cloneCueNext"><i
+                                                    class="far fa-clone d-sm-none d-inline-block"></i>
+                                                <span class="d-inline-block d-sm-none">N</span><span
+                                                    class="d-none d-sm-inline-block">Clone To Next</span></button></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="presetModeInput">Mode:</label>
-                                <select class="form-control" type="text" id="presetModeInput" placeholder="Preset Mode"
-                                    @change="editPresetSettings" v-model="currentPreset.mode">
-                                    <option value="ltp">Latest Takes Precedence</option>
-                                    <option value="htp">Highest Takes Precedence</option>
-                                </select>
+                        <div class="row topBtns">
+                            <div class="col-3">
+                                <button id="gotoCueInstantBtn" class="btn btn-info btn-block" @click="gotoCueInstant">Go
+                                    I.</button>
+                            </div>
+                            <div class="col-3">
+                                <div><button id="cueUpdateBtn" class="btn btn-warning btn-block" @click="updateCue"><i
+                                            class="far fa-pencil d-sm-none d-inline-block"></i><span
+                                            class="d-none d-sm-inline-block">Update
+                                            Params.</span></button></div>
+                            </div>
+                            <div class="col-3">
+                                <button id="moveCueUpBtn" class="btn btn-success btn-block" @click="moveCueUp"><i
+                                        class="far fa-chevron-up d-sm-none d-inline-block"></i><span
+                                        class="d-none d-sm-inline-block">Move Up</span></button>
+                            </div>
+                            <div class="col-3">
+                                <button id="moveCueDownBtn" class="btn btn-success btn-block" @click="moveCueDown"><i
+                                        class="far fa-chevron-down d-sm-none d-inline-block"></i><span
+                                        class="d-none d-sm-inline-block">Move Down</span></button>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="ml-2" for="presetIntensityInput">Intensity:</label>
-                                <input type="range" @input="editPresetSettings" class="custom-range"
-                                    id="presetIntensityInput" min="0" max="100" v-model="currentPreset.intensity"
-                                    step="1">
+                        <div class="row" id="cueSettings">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="cueNameInput">Name:</label>
+                                    <input class="form-control" type="text" id="cueNameInput" placeholder="Cue Name"
+                                        @input="editCueSettings" v-model="currentCue.name">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <b>Preset Fixtures:</b>
-                            <div id="presetFixtures">
-                                <div v-for="fixture in currentPresetFixtures" :key="fixture.id"
-                                    :class="{'text-warning': fixture.patchChanged == true}">
-                                    {{fixture.name}} ({{fixture.address}})
-                                    <button class="btn btn-danger btn-sm mb-1 ml-1"
-                                        @click="removePresetFixture(fixture.id)"><i
-                                            class="far fa-sm fa-trash-alt"></i></button>
+                            <div class="col-md-4 col-12">
+                                <div class="form-group">
+                                    <label for="cueUpTimeInput">Up Time:</label>
+                                    <input class="form-control" min="0" type="number" id="cueUpTimeInput"
+                                        placeholder="Cue Up Length In Seconds" @input="editCueSettings"
+                                        v-model="currentCue.upTime">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <div class="form-group">
+                                    <label for="cueDownTimeInput">Down Time:</label>
+                                    <input @input="editCueSettings" class="form-control" min="0" type="number"
+                                        id="cueDownTimeInput" placeholder="Cue Down Length In Seconds"
+                                        v-model="currentCue.downTime">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <div class="form-group">
+                                    <label for="cueFollowInput">Follow:</label>
+                                    <input @input="editCueSettings" class="form-control" type="number" min="-1"
+                                        id="cueFollowInput" placeholder="Cue Follow Time In Seconds"
+                                        v-model="currentCue.follow">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editCueSettings" type="checkbox" class="custom-control-input"
+                                            id="includeIntensityColor" v-model="currentCue.includeIntensityColor">
+                                        <label class="custom-control-label" for="includeIntensityColor">Include
+                                            Intensity/Color</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editCueSettings" type="checkbox" class="custom-control-input"
+                                            id="includePosition" v-model="currentCue.includePosition">
+                                        <label class="custom-control-label" for="includePosition">Include
+                                            Position</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editCueSettings" type="checkbox" class="custom-control-input"
+                                            id="includeBeam" v-model="currentCue.includeBeam">
+                                        <label class="custom-control-label" for="includeBeam">Include Beam</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="tab">
-            <div class="row">
-                <div class="col-3" @click="currentView = 'fixtures'">
-                    <div class="tabitem tabitem-fixtures"
-                        :class="{ active: currentView == 'fixtures' || currentView == 'fixtureParameters' || currentView == 'fixtureSettings' }">
-                        <i class="tablinks far fa-lightbulb"></i><span class="tabtext">Fixtures</span>
-                    </div>
-                </div>
-                <div class="col-3" @click="currentView = 'cues'">
-                    <div class="tabitem tabitem-cues"
-                        :class="{ active: currentView == 'cues' || currentView == 'cueSettings' || currentView == 'sequenceSettings' || currentView == 'sequenceParameters' }">
-                        <i class="tablinks far fa-list"></i><span class="tabtext">Cues</span>
-                    </div>
-                </div>
-                <div class="col-3" @click="currentView = 'groups'">
-                    <div class="tabitem tabitem-groups"
-                        :class="{ active: currentView == 'groups' || currentView == 'groupParameters' || currentView == 'groupSettings'}">
-                        <i class="tablinks far fa-layer-group"></i><span class="tabtext">Groups</span>
-                    </div>
-                </div>
-                <div class="col-3" @click="currentView = 'presets'">
-                    <div class="tabitem tabitem-presets"
-                        :class="{ active: currentView == 'presets' || currentView == 'presetSettings'}">
-                        <i class="tablinks far fa-swatchbook"></i><span class="tabtext">Presets</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="serverDisconnectedModal" data-backdrop="static" data-keyboard="false" class="modal" tabindex="-1"
-            role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body text-center dark">
-                        <h5 class="red">Tonalite Server Disconnected!</h5>
-                        <p class="mb-0">If you have not stopped it manually there may have been an error or you may be
-                            on the
-                            wrong
-                            IP. Try
-                            rebooting the <span v-if="desktop">server</span><span v-if="!desktop">console</span>.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="alert" class="fixed-bottom mb-5 alert alert-dismissible fade" role="alert">
-            <div id="alertText"></div>
-            <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div id="showFilesModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <h5 class="dark">All show files on the USB:</h5>
-                        <ul class="list-group" id="showsList">
-                            <li @click="openShowFromUSB(show)" class="list-group-item showFileItem"
-                                v-for="show in usbData">
-                                {{show.slice(0, -9)}}</li>
-                        </ul>
-                        <div v-if="usbData.length == 0" class="text-danger"> There are no shows on the connected USB
-                            drive! </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="openShowModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <p class="dark">Opening a new show file will overwrite the current show.</p>
-                        <form action="/showFile" method='post' enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="showFile" id="showFile"
-                                        accept=".tonalite">
-                                    <label class="dark custom-file-label" for="showFile">Choose file</label>
-                                </div>
-                            </div>
-                            <input type="submit" class="btn btn-success" value="Open Show File">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="openFixtureDefinitionModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <form action="/importFixtureDefinition" method='post' enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="fixtureDefinition"
-                                        id="fixtureDefinition" accept=".jlib,.json">
-                                    <label class="dark custom-file-label" for="fixtureDefinition">Choose file</label>
-                                </div>
-                            </div>
-                            <input type="submit" class="btn btn-success" value="Import Fixture Definition">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="openSettingsModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'ui'}"
-                                    @click="settingsModalTab = 'ui'">UI</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'defaults'}"
-                                    @click="settingsModalTab = 'defaults'">Defaults</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'outputs'}"
-                                    @click="settingsModalTab = 'outputs'">Outputs</a>
-                            </li>
-                        </ul>
-                        <div v-if="settingsModalTab == 'defaults'">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="dark" for="defaultUpTime">Default Up Time:</label>
-                                        <input @input="editSettings" v-model="settings.defaultUpTime" min="0"
-                                            class="form-control" type="number" id="defaultUpTime"
-                                            placeholder="Default Cue Up Time">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="dark" for="defaultDownTime">Default Down Time:</label>
-                                        <input @input="editSettings" v-model="settings.defaultDownTime" min="0"
-                                            class="form-control" type="number" id="defaultDownTime"
-                                            placeholder="Default Cue Up Time">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="dark" for="defaultPresetMode">Default Preset Mode:</label>
-                                        <select @change="editSettings" v-model="settings.defaultPresetMode"
-                                            class="form-control" id="defaultPresetMode"
-                                            placeholder="Default Preset Mode">
-                                            <option value="ltp">Latest Takes Precedence</option>
-                                            <option value="htp">Highest Takes Precedence</option>
-                                        </select>
-                                    </div>
-                                </div>
+                <div id="presets" class="tabcontent" v-if="currentView == 'presets'">
+                    <div class="container">
+                        <div class="row topBtns sticky-top">
+                            <div class="col-12">
+                                <button :disabled="fixtures.length == 0" class="btn btn-success btn-block"
+                                    @click="addPresetModal">Record Preset</button>
                             </div>
                         </div>
-                        <div v-if="settingsModalTab == 'ui'">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="dark" for="interfaceMode">Interface Mode:</label>
-                                        <select @change="editSettings" v-model="settings.interfaceMode"
-                                            class="form-control" id="interfaceMode" placeholder="Interface Mode">
-                                            <option value="normal">Normal</option>
-                                            <option value="dimmer">Dimmer Only</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input @change="editSettings" v-model="settings.automark" type="checkbox"
-                                                class="custom-control-input" id="useAutomark">
-                                            <label class="custom-control-label dark" for="useAutomark">Use
-                                                Automark</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input @change="editSettings" v-model="settings.displayEffectsRealtime"
-                                                type="checkbox" class="custom-control-input"
-                                                id="displayEffectsRealtime">
-                                            <label class="custom-control-label dark"
-                                                for="displayEffectsRealtime">Display
-                                                Effects Realtime</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input @change="editSettings" v-model="settings.blackoutEnabled"
-                                                type="checkbox" class="custom-control-input" id="blackoutEnabled">
-                                            <label class="custom-control-label dark" for="blackoutEnabled">Blackout
-                                                Enabled</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div v-if="settingsModalTab == 'outputs'">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="dark" for="artnetIP">ArtNet IP:</label>
-                                        <input @input="editSettings" v-model="settings.artnetIP" class="form-control"
-                                            type="text" id="artnetIP" placeholder="ArtNet IP is localhost">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="dark" for="artnetHost">ArtNet Host:</label>
-                                        <input @input="editSettings" v-model="settings.artnetHost" class="form-control"
-                                            type="text" id="artnetHost" placeholder="ArtNet host is 255.255.255.255">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="dark" for="sacnIP">sACN IP:</label>
-                                        <input @input="editSettings" v-model="settings.sacnIP" class="form-control"
-                                            type="text" id="sacnIP" placeholder="sACN IP is localhost">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label class="dark" for="sacnPriority">sACN Priority:</label>
-                                        <input @input="editSettings" v-model="settings.sacnPriority"
-                                            class="form-control" type="number" min="1" max="200" id="sacnPriority"
-                                            placeholder="sACN IP is 100">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input @change="editSettings" v-model="settings.udmx" type="checkbox"
-                                                class="custom-control-input" id="useUDMX">
-                                            <label class="custom-control-label dark" for="useUDMX">Use uDMX</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn btn-success" data-dismiss="modal" aria-label="Close">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="openAboutModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body text-center dark">
-                        <h5>Tonalite v{{version}} - Lighting Control System</h5>
-                        <p class="mb-0">Developed by <span v-if="!desktop">John Roper</span><a href="http://jmroper.com"
-                                v-if="desktop">John Roper</a></p>
-                        <p v-if="ifMobile() || desktop" class="mb-0"><small><a href="/open-source-licenses">Open Source
-                                    Licenses</a></small></p>
-                        <p v-if="!desktop && !ifMobile()" class="mb-0"><small>OSS Licences Available Online</small></p>
-                        <img :src="qrcode"><br>
-                        <small>{{url}}</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="showInfoModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body text-center dark">
-                        <input type="text" class="form-control mb-2" style="max-width: 50%; display: inline;"
-                            v-model="showInfo.showName" @input="editShowName">
-                        <h5 style="display: inline;">Info</h5>
                         <div class="row">
+                            <div class="col-12">
+                                <button id="blackoutBtn" class="btn"
+                                    :class="{ 'btn-primary' : blackout == false, 'btn-danger' : blackout == true}"
+                                    @click="toggleBlackout"
+                                    :disabled="settings.blackoutEnabled == false">Blackout</button>
+                                <label class="ml-2" for="grandmaster">Grandmaster:</label>
+                                <input type="range" class="custom-range" id="grandmaster" min="0" max="100"
+                                    v-on:input="changeGrandMasterValue" v-model="grandmaster" step="1">
+                            </div>
+                        </div>
+                        <div class="row" id="presetsList">
+                            <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id"
+                                @click="getPresetSettings(preset.id)">
+                                <div :class="{ 'presetActive' : preset.active == true, 'presetPatchChanged': preset.patchChanged == true}"
+                                    class="presetItem">
+                                    <p>{{preset.name}}</p>
+                                </div>
+                            </div>
+                            <div v-if="presets.length == 0" class="col-12">
+                                <h5>There are no presets in this show!</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="addPresetModal" class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label class="dark mr-2" for="presetFixtureIDs">Fixtures:</label>
+                                        <multiselect placeholder="Select some fixtures" :options="fixtures"
+                                            v-model="addPresetSelected" label="name" :multiple="true" :search="true"
+                                            style="width: 100%" track-by="id" :close-on-select="false"
+                                            :show-pointer="false" :hide-selected="true"
+                                            :custom-label="customMultiselectLabel">
+                                            <template slot="option" slot-scope="props">{{props.option.name}}
+                                                ({{props.option.startDMXAddress}})</template></multiselect>
+                                    </div>
+                                    <button class="btn btn-success btn-full" @click="recordPreset">Record
+                                        Preset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="presetSettingsPage" class="tabcontent" v-if="currentView == 'presetSettings'">
+                    <div class="container">
+                        <div class="row topBtns">
                             <div class="col-6">
-                                <p>Fixtures: {{showInfo.fixtures}}</p>
+                                <div><button id="presetDeleteBtn" class="btn btn-danger btn-block"
+                                        @click="removePreset"><i
+                                            class="far fa-trash-alt d-sm-none d-inline-block"></i><span
+                                            class="d-none d-sm-inline-block">Delete</span></button></div>
+
                             </div>
                             <div class="col-6">
-                                <p>Cues: {{showInfo.cues}}</p>
+                                <button v-if="currentPreset.active == false" id="presetActiveBtn"
+                                    class="btn btn-warning btn-block" @click="changePresetActive">Activate</button>
+                                <button v-if="currentPreset.active == true" id="presetActiveBtn"
+                                    class="btn btn-warning btn-block" @click="changePresetActive">Deactivate</button>
                             </div>
-                            <div class="col-6">
-                                <p>Sequences: {{showInfo.sequences}}</p>
+                            <div class="col-12 mt-2">
+                                <div><button id="presetUpdateBtn" class="btn btn-success btn-block"
+                                        @click="updatePreset"><i
+                                            class="far fa-pencil d-sm-none d-inline-block"></i><span
+                                            class="d-none d-sm-inline-block">Update Params.</span></button></div>
+
                             </div>
-                            <div class="col-6">
-                                <p>Groups: {{showInfo.groups}}</p>
+                        </div>
+                        <div class="row" id="presetSettings">
+                            <div class="col-md-8 col-12">
+                                <div class="form-group">
+                                    <label for="presetNameInput">Name:</label>
+                                    <input class="form-control" type="text" id="presetNameInput"
+                                        placeholder="Preset Name" @input="editPresetSettings"
+                                        v-model="currentPreset.name">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <div class="form-group mt-0 mt-md-4">
+                                    <div class="custom-control custom-checkbox">
+                                        <input @change="editPresetSettings" type="checkbox" class="custom-control-input"
+                                            id="displayPresetAsDimmer" v-model="currentPreset.displayAsDimmer">
+                                        <label class="custom-control-label" for="displayPresetAsDimmer">Display As
+                                            Dimmer</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-12">
-                                <p>Show Length: {{showInfo.showLength}} seconds</p>
+                                <div class="form-group">
+                                    <label for="presetModeInput">Mode:</label>
+                                    <select class="form-control" type="text" id="presetModeInput"
+                                        placeholder="Preset Mode" @change="editPresetSettings"
+                                        v-model="currentPreset.mode">
+                                        <option value="ltp">Latest Takes Precedence</option>
+                                        <option value="htp">Highest Takes Precedence</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="ml-2" for="presetIntensityInput">Intensity:</label>
+                                    <input type="range" @input="editPresetSettings" class="custom-range"
+                                        id="presetIntensityInput" min="0" max="100" v-model="currentPreset.intensity"
+                                        step="1">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <b>Preset Fixtures:</b>
+                                <div id="presetFixtures">
+                                    <div v-for="fixture in currentPresetFixtures" :key="fixture.id"
+                                        :class="{'text-warning': fixture.patchChanged == true}">
+                                        {{fixture.name}} ({{fixture.address}})
+                                        <button class="btn btn-danger btn-sm mb-1 ml-1"
+                                            @click="removePresetFixture(fixture.id)"><i
+                                                class="far fa-sm fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="addPositionPaletteModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label class="dark mr-2" for="positionPaletteName">Position palette name:</label>
-                            <input type="text" class="form-control" placeholder="Name here" id="positionPaletteName"
-                                v-model="addPositionPaletteName" maxlength="10">
+            <div class="tab">
+                <div class="row">
+                    <div class="col-3" @click="currentView = 'fixtures'">
+                        <div class="tabitem tabitem-fixtures"
+                            :class="{ active: currentView == 'fixtures' || currentView == 'fixtureParameters' || currentView == 'fixtureSettings' }">
+                            <i class="tablinks far fa-lightbulb"></i><span class="tabtext">Fixtures</span>
                         </div>
-                        <button class="btn btn-success btn-full" @click="addPositionPalette">Add Position
-                            Palette</button>
+                    </div>
+                    <div class="col-3" @click="currentView = 'cues'">
+                        <div class="tabitem tabitem-cues"
+                            :class="{ active: currentView == 'cues' || currentView == 'cueSettings' || currentView == 'sequenceSettings' || currentView == 'sequenceParameters' }">
+                            <i class="tablinks far fa-list"></i><span class="tabtext">Cues</span>
+                        </div>
+                    </div>
+                    <div class="col-3" @click="currentView = 'groups'">
+                        <div class="tabitem tabitem-groups"
+                            :class="{ active: currentView == 'groups' || currentView == 'groupParameters' || currentView == 'groupSettings'}">
+                            <i class="tablinks far fa-layer-group"></i><span class="tabtext">Groups</span>
+                        </div>
+                    </div>
+                    <div class="col-3" @click="currentView = 'presets'">
+                        <div class="tabitem tabitem-presets"
+                            :class="{ active: currentView == 'presets' || currentView == 'presetSettings'}">
+                            <i class="tablinks far fa-swatchbook"></i><span class="tabtext">Presets</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="serverDisconnectedModal" data-backdrop="static" data-keyboard="false" class="modal" tabindex="-1"
+                role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body text-center dark">
+                            <h5 class="red">Tonalite Server Disconnected!</h5>
+                            <p class="mb-0">If you have not stopped it manually there may have been an error or you may
+                                be
+                                on the
+                                wrong
+                                IP. Try
+                                rebooting the <span v-if="desktop">server</span><span v-if="!desktop">console</span>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="alert" class="fixed-bottom mb-5 alert alert-dismissible fade" role="alert">
+                <div id="alertText"></div>
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="showFilesModal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h5 class="dark">All show files on the USB:</h5>
+                            <ul class="list-group" id="showsList">
+                                <li @click="openShowFromUSB(show)" class="list-group-item showFileItem"
+                                    v-for="show in usbData">
+                                    {{show.slice(0, -9)}}</li>
+                            </ul>
+                            <div v-if="usbData.length == 0" class="text-danger"> There are no shows on the connected USB
+                                drive! </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="openShowModal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p class="dark">Opening a new show file will overwrite the current show.</p>
+                            <form action="/showFile" method='post' enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="showFile" id="showFile"
+                                            accept=".tonalite">
+                                        <label class="dark custom-file-label" for="showFile">Choose file</label>
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-success" value="Open Show File">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="openFixtureDefinitionModal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <form action="/importFixtureDefinition" method='post' enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="fixtureDefinition"
+                                            id="fixtureDefinition" accept=".jlib,.json">
+                                        <label class="dark custom-file-label" for="fixtureDefinition">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-success" value="Import Fixture Definition">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="openSettingsModal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'ui'}"
+                                        @click="settingsModalTab = 'ui'">UI</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'defaults'}"
+                                        @click="settingsModalTab = 'defaults'">Defaults</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'outputs'}"
+                                        @click="settingsModalTab = 'outputs'">Outputs</a>
+                                </li>
+                            </ul>
+                            <div v-if="settingsModalTab == 'defaults'">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="dark" for="defaultUpTime">Default Up Time:</label>
+                                            <input @input="editSettings" v-model="settings.defaultUpTime" min="0"
+                                                class="form-control" type="number" id="defaultUpTime"
+                                                placeholder="Default Cue Up Time">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="dark" for="defaultDownTime">Default Down Time:</label>
+                                            <input @input="editSettings" v-model="settings.defaultDownTime" min="0"
+                                                class="form-control" type="number" id="defaultDownTime"
+                                                placeholder="Default Cue Up Time">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="dark" for="defaultPresetMode">Default Preset Mode:</label>
+                                            <select @change="editSettings" v-model="settings.defaultPresetMode"
+                                                class="form-control" id="defaultPresetMode"
+                                                placeholder="Default Preset Mode">
+                                                <option value="ltp">Latest Takes Precedence</option>
+                                                <option value="htp">Highest Takes Precedence</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="settingsModalTab == 'ui'">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="dark" for="interfaceMode">Interface Mode:</label>
+                                            <select @change="editSettings" v-model="settings.interfaceMode"
+                                                class="form-control" id="interfaceMode" placeholder="Interface Mode">
+                                                <option value="normal">Normal</option>
+                                                <option value="dimmer">Dimmer Only</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input @change="editSettings" v-model="settings.automark"
+                                                    type="checkbox" class="custom-control-input" id="useAutomark">
+                                                <label class="custom-control-label dark" for="useAutomark">Use
+                                                    Automark</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input @change="editSettings" v-model="settings.displayEffectsRealtime"
+                                                    type="checkbox" class="custom-control-input"
+                                                    id="displayEffectsRealtime">
+                                                <label class="custom-control-label dark"
+                                                    for="displayEffectsRealtime">Display
+                                                    Effects Realtime</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input @change="editSettings" v-model="settings.blackoutEnabled"
+                                                    type="checkbox" class="custom-control-input" id="blackoutEnabled">
+                                                <label class="custom-control-label dark" for="blackoutEnabled">Blackout
+                                                    Enabled</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="settingsModalTab == 'outputs'">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="dark" for="artnetIP">ArtNet IP:</label>
+                                            <input @input="editSettings" v-model="settings.artnetIP"
+                                                class="form-control" type="text" id="artnetIP"
+                                                placeholder="ArtNet IP is localhost">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="dark" for="artnetHost">ArtNet Host:</label>
+                                            <input @input="editSettings" v-model="settings.artnetHost"
+                                                class="form-control" type="text" id="artnetHost"
+                                                placeholder="ArtNet host is 255.255.255.255">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="dark" for="sacnIP">sACN IP:</label>
+                                            <input @input="editSettings" v-model="settings.sacnIP" class="form-control"
+                                                type="text" id="sacnIP" placeholder="sACN IP is localhost">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="dark" for="sacnPriority">sACN Priority:</label>
+                                            <input @input="editSettings" v-model="settings.sacnPriority"
+                                                class="form-control" type="number" min="1" max="200" id="sacnPriority"
+                                                placeholder="sACN IP is 100">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input @change="editSettings" v-model="settings.udmx" type="checkbox"
+                                                    class="custom-control-input" id="useUDMX">
+                                                <label class="custom-control-label dark" for="useUDMX">Use uDMX</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-success" data-dismiss="modal" aria-label="Close">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="openAboutModal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body text-center dark">
+                            <h5>Tonalite v{{version}} - Lighting Control System</h5>
+                            <p class="mb-0">Developed by <span v-if="!desktop">John Roper</span><a
+                                    href="http://jmroper.com" v-if="desktop">John Roper</a></p>
+                            <p v-if="ifMobile() || desktop" class="mb-0"><small><a href="/open-source-licenses">Open
+                                        Source
+                                        Licenses</a></small></p>
+                            <p v-if="!desktop && !ifMobile()" class="mb-0"><small>OSS Licences Available Online</small>
+                            </p>
+                            <img :src="qrcode"><br>
+                            <small>{{url}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="showInfoModal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body text-center dark">
+                            <input type="text" class="form-control mb-2" style="max-width: 50%; display: inline;"
+                                v-model="showInfo.showName" @input="editShowName">
+                            <h5 style="display: inline;">Info</h5>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>Fixtures: {{showInfo.fixtures}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>Cues: {{showInfo.cues}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>Sequences: {{showInfo.sequences}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p>Groups: {{showInfo.groups}}</p>
+                                </div>
+                                <div class="col-12">
+                                    <p>Show Length: {{showInfo.showLength}} seconds</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="addPositionPaletteModal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="dark mr-2" for="positionPaletteName">Position palette name:</label>
+                                <input type="text" class="form-control" placeholder="Name here" id="positionPaletteName"
+                                    v-model="addPositionPaletteName" maxlength="10">
+                            </div>
+                            <button class="btn btn-success btn-full" @click="addPositionPalette">Add Position
+                                Palette</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="/static/js/jquery-3.4.1.min.js"></script>
-    <script src="/static/js/popper.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/socket.io.js"></script>
-    <script src="/static/js/vue-multiselect.min.js"></script>
-    <script src="/static/js/bootbox.min.js"></script>
-    <script src="/static/js/isMobile.min.js"></script>
-    <script src="/static/js/mousetrap.min.js"></script>
-    <script src="/static/js/vue-color-picker.umd.min.js"></script>
-    <script src="/static/js/vue.js"></script>
-    <script src="/static/js/script.js"></script>
+        <script src="/static/js/jquery-3.4.1.min.js"></script>
+        <script src="/static/js/popper.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/socket.io.js"></script>
+        <script src="/static/js/vue-multiselect.min.js"></script>
+        <script src="/static/js/bootbox.min.js"></script>
+        <script src="/static/js/isMobile.min.js"></script>
+        <script src="/static/js/mousetrap.min.js"></script>
+        <script src="/static/js/vue-color-picker.umd.min.js"></script>
+        <script src="/static/js/vue.js"></script>
+        <script src="/static/js/script.js"></script>
 </body>
 
 </html>

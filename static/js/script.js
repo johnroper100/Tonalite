@@ -46,7 +46,8 @@ var app = new Vue({
         fixtureProfilesModel: "",
         settingsModalTab: "ui",
         addPositionPaletteName: "",
-        removePositionPalette: false
+        removePositionPalette: false,
+        removeColorPalette: false
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -279,7 +280,16 @@ var app = new Vue({
             socket.emit("changeGroupParameterLock", { id: app.currentGroup.id, pid: param.id })
         },
         useFixtureColorPalette: function (pid) {
-            socket.emit('useFixtureColorPalette', { id: app.currentFixture.id, pid: pid });
+            if (app.removeColorPalette == false) {
+                socket.emit('useFixtureColorPalette', { id: app.currentFixture.id, pid: pid });
+            } else {
+                bootbox.confirm("Are you sure you want to remove this color palette?", function (result) {
+                    if (result === true) {
+                        socket.emit('removeColorPalette', { pid: pid });
+                    }
+                    app.removeColorPalette = false;
+                });
+            }
         },
         useFixturePositionPalette: function (pid) {
             if (app.removePositionPalette == false) {
@@ -734,6 +744,7 @@ socket.on('connect', function () {
     app.qrcode = "";
     app.desktop = false;
     app.removePositionPalette = false;
+    app.removeColorPalette = false;
     app.version = "";
     app.url = "";
     app.fixtureProfilesManufacturer = "";
@@ -857,6 +868,8 @@ socket.on('fixtureParameters', function (msg) {
     app.currentFixture = msg;
     if (app.currentView != "fixtureSettings" && app.currentView != "effectSettings") {
         app.currentView = "fixtureParameters";
+        app.removePositionPalette = false;
+        app.removeColorPalette = false;
     }
 });
 
