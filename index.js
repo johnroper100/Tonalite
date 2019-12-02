@@ -1544,6 +1544,28 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('useFixturePositionPalette', function (msg) {
+        if (fixtures.length != 0) {
+            if (fixtures.some(e => e.id === msg.id)) {
+                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
+                var palette = positionPalettes[msg.pid];
+                var param = null;
+                let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                    if (param != null) {
+                        param.value = palette.parameters[c].value;
+                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                    }
+                }
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
     socket.on('addPositionPalette', function (msg) {
         if (msg.type == 'fixture') {
             var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
