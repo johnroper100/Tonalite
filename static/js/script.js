@@ -246,7 +246,7 @@ var app = new Vue({
             app.fixtureProfilesManufacturer = "";
             app.fixtureProfilesModel = "";
             $('#fixtureProfilesModal').modal("hide");
-            app.fixtureProfiles = {};
+            //app.fixtureProfiles = {}; // maybe re-enable to save browser memory
         },
         getFixtureParameters: function (fixtureID, resetTab) {
             socket.emit("getFixtureParameters", fixtureID);
