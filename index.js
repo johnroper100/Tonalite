@@ -806,6 +806,7 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                     // Make sure that the step does not dip below 0 (finished)
                     if (cue.upStep >= 0) {
                         if ((startFixture.parameters[c].fadeWithIntensity == true || startFixture.parameters[c].type == 1) && includeIntensityColor == true) {
+                            invert = false;
                             if (blackout === false) {
                                 outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.upTime * FPS)) * cue.upStep)) >> 8) / 100.0) * grandmaster;
                                 if (startFixture.parameters[c].fine != null) {
@@ -821,9 +822,27 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                             invert = false;
                             if (startFixture.parameters[c].type == 2 && (startFixture.invertPan == true || startFixture.invertTilt == true)) {
                                 if (startFixture.parameters[c].name == "Pan" && startFixture.invertPan == true) {
-                                    invert = true;
+                                    if (startFixture.parameters[p].invert == false) {
+                                        invert = true;
+                                    }
                                 } else if (startFixture.parameters[c].name == "Tilt" && startFixture.invertTilt == true) {
-                                    invert = true;
+                                    if (startFixture.parameters[p].invert == false) {
+                                        invert = true;
+                                    }
+                                }
+                            } else {
+                                if (startFixture.parameters[p].name == "Pan" && startFixture.invertPan == false) {
+                                    if (startFixture.parameters[p].invert == true) {
+                                        invert = true;
+                                    }
+                                } else if (startFixture.parameters[p].name == "Tilt" && startFixture.invertTilt == false) {
+                                    if (startFixture.parameters[p].invert == true) {
+                                        invert = true;
+                                    }
+                                } else {
+                                    if (startFixture.parameters[p].invert == true) {
+                                        invert = true;
+                                    }
                                 }
                             }
                             if (invert == true) {
