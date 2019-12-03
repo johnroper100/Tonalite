@@ -662,6 +662,10 @@ function calculateChannels() {
                         if (fixtures[f].parameters[p].invert == true) {
                             invert = true;
                         }
+                    } else {
+                        if (fixtures[f].parameters[p].invert == true) {
+                            invert = true;
+                        }
                     }
                 }
                 if (invert == true) {
@@ -739,12 +743,16 @@ function calculatePresetChannels(preset) {
                         }
                     }
                 } else {
-                    if (fixtures[f].parameters[p].name == "Pan" && fixtures[f].invertPan == false) {
-                        if (fixtures[f].parameters[p].invert == true) {
+                    if (preset.fixtures[f].parameters[p].name == "Pan" && preset.fixtures[f].invertPan == false) {
+                        if (preset.fixtures[f].parameters[p].invert == true) {
                             invert = true;
                         }
-                    } else if (fixtures[f].parameters[p].name == "Tilt" && fixtures[f].invertTilt == false) {
-                        if (fixtures[f].parameters[p].invert == true) {
+                    } else if (preset.fixtures[f].parameters[p].name == "Tilt" && preset.fixtures[f].invertTilt == false) {
+                        if (preset.fixtures[f].parameters[p].invert == true) {
+                            invert = true;
+                        }
+                    } else {
+                        if (preset.fixtures[f].parameters[p].invert == true) {
                             invert = true;
                         }
                     }
