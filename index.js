@@ -612,24 +612,56 @@ function calculateChannels() {
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
         let p = 0; const pMax = fixtures[f].parameters.length; for (; p < pMax; p++) {
             if (fixtures[f].parameters[p].fadeWithIntensity == true || fixtures[f].parameters[p].type == 1) {
+                invert = false;
+                if (fixtures[f].parameters[p].invert == true) {
+                    invert = true;
+                }
                 if (blackout === false) {
-                    channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = ((fixtures[f].parameters[p].value >> 8) / 100.0) * grandmaster;
-                    if (fixtures[f].parameters[p].fine != null) {
-                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = ((fixtures[f].parameters[p].value & 0xff) / 100.0) * grandmaster;
+                    if (invert == true) {
+                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = cppaddon.reverseNumber(((fixtures[f].parameters[p].value >> 8) / 100.0) * grandmaster, 0, 255);
+                        if (fixtures[f].parameters[p].fine != null) {
+                            channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = cppaddon.reverseNumber(((fixtures[f].parameters[p].value & 0xff) / 100.0) * grandmaster, 0, 255);
+                        }
+                    } else {
+                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = ((fixtures[f].parameters[p].value >> 8) / 100.0) * grandmaster;
+                        if (fixtures[f].parameters[p].fine != null) {
+                            channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = ((fixtures[f].parameters[p].value & 0xff) / 100.0) * grandmaster;
+                        }
                     }
                 } else {
-                    channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].min >> 8);
-                    if (fixtures[f].parameters[p].fine != null) {
-                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].min & 0xff);
+                    if (invert == true) {
+                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].max >> 8);
+                        if (fixtures[f].parameters[p].fine != null) {
+                            channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].max & 0xff);
+                        }
+                    } else {
+                        channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].coarse) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].min >> 8);
+                        if (fixtures[f].parameters[p].fine != null) {
+                            channels[((fixtures[f].startDMXAddress - 1) + fixtures[f].parameters[p].fine) + (512 * fixtures[f].dmxUniverse)] = (fixtures[f].parameters[p].min & 0xff);
+                        }
                     }
                 }
             } else {
                 invert = false;
                 if (fixtures[f].parameters[p].type == 2 && (fixtures[f].invertPan == true || fixtures[f].invertTilt == true)) {
                     if (fixtures[f].parameters[p].name == "Pan" && fixtures[f].invertPan == true) {
-                        invert = true;
+                        if (fixtures[f].parameters[p].invert == false) {
+                            invert = true;
+                        }
                     } else if (fixtures[f].parameters[p].name == "Tilt" && fixtures[f].invertTilt == true) {
-                        invert = true;
+                        if (fixtures[f].parameters[p].invert == false) {
+                            invert = true;
+                        }
+                    }
+                } else {
+                    if (fixtures[f].parameters[p].name == "Pan" && fixtures[f].invertPan == false) {
+                        if (fixtures[f].parameters[p].invert == true) {
+                            invert = true;
+                        }
+                    } else if (fixtures[f].parameters[p].name == "Tilt" && fixtures[f].invertTilt == false) {
+                        if (fixtures[f].parameters[p].invert == true) {
+                            invert = true;
+                        }
                     }
                 }
                 if (invert == true) {
@@ -655,19 +687,42 @@ function calculatePresetChannels(preset) {
     let f = 0; const fMax = preset.fixtures.length; for (; f < fMax; f++) {
         let p = 0; const pMax = preset.fixtures[f].parameters.length; for (; p < pMax; p++) {
             if (preset.fixtures[f].parameters[p].fadeWithIntensity == true || preset.fixtures[f].parameters[p].type == 1) {
+                invert = false;
+                if (preset.fixtures[f].parameters[p].invert == true) {
+                    invert = true;
+                }
                 if (preset.mode == 'ltp') {
-                    channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = ((preset.fixtures[f].parameters[p].value >> 8) / 100.0) * preset.intensity;
-                    if (preset.fixtures[f].parameters[p].fine != null) {
-                        channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = ((preset.fixtures[f].parameters[p].value & 0xff) / 100.0) * preset.intensity;
+                    if (invert == true) {
+                        channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = cppaddon.reverseNumber(((preset.fixtures[f].parameters[p].value >> 8) / 100.0) * preset.intensity, 0, 255);
+                        if (preset.fixtures[f].parameters[p].fine != null) {
+                            channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = cppaddon.reverseNumber(((preset.fixtures[f].parameters[p].value & 0xff) / 100.0) * preset.intensity, 0, 255);
+                        }
+                    } else {
+                        channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = ((preset.fixtures[f].parameters[p].value >> 8) / 100.0) * preset.intensity;
+                        if (preset.fixtures[f].parameters[p].fine != null) {
+                            channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = ((preset.fixtures[f].parameters[p].value & 0xff) / 100.0) * preset.intensity;
+                        }
                     }
                 } else if (preset.mode == 'htp') {
-                    tempvalue = ((preset.fixtures[f].parameters[p].value >> 8) / 100.0) * preset.intensity;
-                    tempvalue2 = ((preset.fixtures[f].parameters[p].value & 0xff) / 100.0) * preset.intensity;
-                    // may cause issues with 16bit (doesn't check if 16 bit is bigger or not)
-                    if (tempvalue > channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)]) {
-                        channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = tempvalue;
-                        if (preset.fixtures[f].parameters[p].fine != null) {
-                            channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = tempvalue2;
+                    if (invert == true) {
+                        tempvalue = cppaddon.reverseNumber(((preset.fixtures[f].parameters[p].value >> 8) / 100.0) * preset.intensity, 0, 255);
+                        tempvalue2 = cppaddon.reverseNumber(((preset.fixtures[f].parameters[p].value & 0xff) / 100.0) * preset.intensity, 0, 255);
+                        // may cause issues with 16bit (doesn't check if 16 bit is bigger or not)
+                        if (tempvalue < channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)]) {
+                            channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = tempvalue;
+                            if (preset.fixtures[f].parameters[p].fine != null) {
+                                channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = tempvalue2;
+                            }
+                        }
+                    } else {
+                        tempvalue = ((preset.fixtures[f].parameters[p].value >> 8) / 100.0) * preset.intensity;
+                        tempvalue2 = ((preset.fixtures[f].parameters[p].value & 0xff) / 100.0) * preset.intensity;
+                        // may cause issues with 16bit (doesn't check if 16 bit is bigger or not)
+                        if (tempvalue > channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)]) {
+                            channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].coarse) + (512 * preset.fixtures[f].dmxUniverse)] = tempvalue;
+                            if (preset.fixtures[f].parameters[p].fine != null) {
+                                channels[((preset.fixtures[f].startDMXAddress - 1) + preset.fixtures[f].parameters[p].fine) + (512 * preset.fixtures[f].dmxUniverse)] = tempvalue2;
+                            }
                         }
                     }
                 }
@@ -675,9 +730,23 @@ function calculatePresetChannels(preset) {
                 invert = false;
                 if (preset.fixtures[f].parameters[p].type == 2 && (preset.fixtures[f].invertPan == true || preset.fixtures[f].invertTilt == true)) {
                     if (preset.fixtures[f].parameters[p].name == "Pan" && preset.fixtures[f].invertPan == true) {
-                        invert = true;
+                        if (fixtures[f].parameters[p].invert == false) {
+                            invert = true;
+                        }
                     } else if (preset.fixtures[f].parameters[p].name == "Tilt" && preset.fixtures[f].invertTilt == true) {
-                        invert = true;
+                        if (fixtures[f].parameters[p].invert == false) {
+                            invert = true;
+                        }
+                    }
+                } else {
+                    if (fixtures[f].parameters[p].name == "Pan" && fixtures[f].invertPan == false) {
+                        if (fixtures[f].parameters[p].invert == true) {
+                            invert = true;
+                        }
+                    } else if (fixtures[f].parameters[p].name == "Tilt" && fixtures[f].invertTilt == false) {
+                        if (fixtures[f].parameters[p].invert == true) {
+                            invert = true;
+                        }
                     }
                 }
                 if (invert == true) {
