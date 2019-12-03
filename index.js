@@ -1857,15 +1857,112 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('getEffectSettings', function (msg) {
+    socket.on('getFixtureEffectSettings', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
                 if (fixture.effects.some(e => e.id === msg.effectID)) {
-                    socket.emit('effectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
+                    socket.emit('fixtureEffectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
                 } else {
                     socket.emit('message', { type: "error", content: "This effect does not exist!" });
                 }
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('editFixtureEffectSettings', function (msg) {
+        if (fixtures.length != 0) {
+            if (fixtures.some(e => e.id === msg.fixtureID)) {
+                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
+                if (fixture.effects.some(e => e.id === msg.effectID)) {
+                    var effect = fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)];
+                    effect.name = msg.name;
+                    effect.depth = parseFloat(msg.depth);
+                    effect.speed = parseFloat(msg.speed);
+                    socket.broadcast.emit('fixtureEffectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
+                    io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                    saveShow();
+                } else {
+                    socket.emit('message', { type: "error", content: "This effect does not exist!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('changeFixtureEffectState', function (msg) {
+        if (fixtures.length != 0) {
+            if (fixtures.some(e => e.id === msg.id)) {
+                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
+                if (fixture.effects.some(e => e.id === msg.effectid)) {
+                    var effect = fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectid)];
+                    effect.step = 0;
+                    effect.active = !effect.active;
+                    fixture.hasActiveEffects = checkFixtureActiveEffects(fixture.effects);
+                    if (effect.active == false) {
+                        let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+                            fixture.parameters[p].displayValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 100);
+                        }
+                    }
+                    io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                } else {
+                    socket.emit('message', { type: "error", content: "This effect does not exist!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('addFixtureEffect', function (msg) {
+        if (fixtures.length != 0) {
+            if (fixtures.some(e => e.id === msg.fixtureID)) {
+                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
+                var effect = JSON.parse(JSON.stringify(require(process.cwd() + "/effects/" + msg.effectFile).effectTable));
+                effect.active = true;
+                effect.step = 0;
+                effect.depth = 1.0;
+                effect.speed = 0.5;
+                effect.chroma = 1;
+                effect.fan = 0;
+                effect.aspect = 1;
+                effect.rotation = 0;
+                effect.id = generateID();
+                if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Red", "Green", "Blue"])) {
+                    effect.type = "Color";
+                } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Intensity"])) {
+                    effect.type = "Intensity";
+                } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Pan", "Tilt"])) {
+                    effect.type = "Position";
+                } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Parameter"])) {
+                    effect.parameterNames = [msg.parameterName];
+                    effect.type = "Parameter";
+                    effect.name = effect.name + " (" + msg.parameterName + ")";
+                }
+                fixture.effects.push(effect);
+                var topush = null;
+                let cc = 0; const ccMax = cues.length; for (; cc < ccMax; cc++) {
+                    let f = 0; const fMax = cues[cc].fixtures.length; for (; f < fMax; f++) {
+                        if (cues[cc].fixtures[f].id == fixture.id) {
+                            topush = cleanEffectForCue(effect);
+                            topush.active = false;
+                            cues[cc].fixtures[f].effects.push(topush);
+                        }
+                    }
+                }
+                fixture.hasActiveEffects = true;
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                socket.emit('message', { type: "info", content: "Effect has been added to fixture!" });
+                saveShow();
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -1891,29 +1988,6 @@ io.on('connection', function (socket) {
                 fixture.startDMXAddress = parseInt(msg.startDMXAddress);
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                 saveShow();
-            } else {
-                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
-            }
-        } else {
-            socket.emit('message', { type: "error", content: "No fixtures exist!" });
-        }
-    });
-
-    socket.on('editEffectSettings', function (msg) {
-        if (fixtures.length != 0) {
-            if (fixtures.some(e => e.id === msg.fixtureID)) {
-                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
-                if (fixture.effects.some(e => e.id === msg.effectID)) {
-                    var effect = fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)];
-                    effect.name = msg.name;
-                    effect.depth = parseFloat(msg.depth);
-                    effect.speed = parseFloat(msg.speed);
-                    socket.broadcast.emit('effectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
-                    io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-                    saveShow();
-                } else {
-                    socket.emit('message', { type: "error", content: "This effect does not exist!" });
-                }
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -2074,81 +2148,6 @@ io.on('connection', function (socket) {
                 }
             } else {
                 socket.emit('message', { type: "error", content: "No groups exist!" });
-            }
-        } else {
-            socket.emit('message', { type: "error", content: "No fixtures exist!" });
-        }
-    });
-
-    socket.on('changeFixtureEffectState', function (msg) {
-        if (fixtures.length != 0) {
-            if (fixtures.some(e => e.id === msg.id)) {
-                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
-                if (fixture.effects.some(e => e.id === msg.effectid)) {
-                    var effect = fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectid)];
-                    effect.step = 0;
-                    effect.active = !effect.active;
-                    fixture.hasActiveEffects = checkFixtureActiveEffects(fixture.effects);
-                    if (effect.active == false) {
-                        let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
-                            fixture.parameters[p].displayValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 100);
-                        }
-                    }
-                    io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-                    //saveShow();
-                } else {
-                    socket.emit('message', { type: "error", content: "This effect does not exist!" });
-                }
-            } else {
-                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
-            }
-        } else {
-            socket.emit('message', { type: "error", content: "No fixtures exist!" });
-        }
-    });
-
-    socket.on('addFixtureEffect', function (msg) {
-        if (fixtures.length != 0) {
-            if (fixtures.some(e => e.id === msg.fixtureID)) {
-                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
-                var effect = JSON.parse(JSON.stringify(require(process.cwd() + "/effects/" + msg.effectFile).effectTable));
-                effect.active = true;
-                effect.step = 0;
-                effect.depth = 1.0;
-                effect.speed = 0.5;
-                effect.chroma = 1;
-                effect.fan = 0;
-                effect.aspect = 1;
-                effect.rotation = 0;
-                effect.id = generateID();
-                if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Red", "Green", "Blue"])) {
-                    effect.type = "Color";
-                } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Intensity"])) {
-                    effect.type = "Intensity";
-                } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Pan", "Tilt"])) {
-                    effect.type = "Position";
-                } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Parameter"])) {
-                    effect.parameterNames = [msg.parameterName];
-                    effect.type = "Parameter";
-                    effect.name = effect.name + " (" + msg.parameterName + ")";
-                }
-                fixture.effects.push(effect);
-                var topush = null;
-                let cc = 0; const ccMax = cues.length; for (; cc < ccMax; cc++) {
-                    let f = 0; const fMax = cues[cc].fixtures.length; for (; f < fMax; f++) {
-                        if (cues[cc].fixtures[f].id == fixture.id) {
-                            topush = cleanEffectForCue(effect);
-                            topush.active = false;
-                            cues[cc].fixtures[f].effects.push(topush);
-                        }
-                    }
-                }
-                fixture.hasActiveEffects = true;
-                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-                socket.emit('message', { type: "info", content: "Effect has been added to fixture!" });
-                saveShow();
-            } else {
-                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });

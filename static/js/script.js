@@ -335,8 +335,8 @@ var app = new Vue({
         editFixtureSettings: function () {
             socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse, invertPan: app.currentFixture.invertPan, invertTilt: app.currentFixture.invertTilt, swapPanTilt: app.currentFixture.swapPanTilt });
         },
-        editEffectSettings: function () {
-            socket.emit('editEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed });
+        editFixtureEffectSettings: function () {
+            socket.emit('editFixtureEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed });
         },
         editCueSettings: function () {
             socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow, includeIntensityColor: app.currentCue.includeIntensityColor, includePosition: app.currentCue.includePosition, includeBeam: app.currentCue.includeBeam });
@@ -406,8 +406,8 @@ var app = new Vue({
                 }
             });
         },
-        getEffects: function () {
-            socket.emit('getEffects', app.currentFixture.id);
+        getFixtureEffects: function () {
+            socket.emit('getFixtureEffects', app.currentFixture.id);
             $('#fixtureAddEffectsModal').modal("show");
         },
         addFixtureEffect: function (file, type) {
@@ -418,9 +418,9 @@ var app = new Vue({
             socket.emit('addFixtureEffect', { fixtureID: app.currentFixture.id, effectFile: file, parameterName: paramName });
             $('#fixtureAddEffectsModal').modal("hide");
         },
-        getEffectSettings: function (effectID) {
-            socket.emit('getEffectSettings', { fixtureID: app.currentFixture.id, effectID: effectID });
-            app.currentView = 'effectSettings';
+        getFixtureEffectSettings: function (effectID) {
+            socket.emit('getFixtureEffectSettings', { fixtureID: app.currentFixture.id, effectID: effectID });
+            app.currentView = 'fixtureEffectSettings';
         },
         removeFixtureEffect: function () {
             bootbox.confirm("Are you sure you want to delete this effect?", function (result) {
@@ -803,7 +803,7 @@ socket.on('showInfo', function (msg) {
 socket.on('fixtures', function (msg) {
     app.fixtures = msg.fixtures;
     if (msg.target == true) {
-        if ((app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings' || app.currentView == 'effectSettings') && app.currentFixture != {}) {
+        if ((app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings' || app.currentView == 'fixtureEffectSettings') && app.currentFixture != {}) {
             app.getFixtureParameters(app.currentFixture.id, false);
         }
     }
@@ -878,7 +878,7 @@ socket.on('fixtureProfiles', function (msg) {
 
 socket.on('fixtureParameters', function (msg) {
     app.currentFixture = msg;
-    if (app.currentView != "fixtureSettings" && app.currentView != "effectSettings") {
+    if (app.currentView != "fixtureSettings" && app.currentView != "fixtureEffectSettings") {
         app.currentView = "fixtureParameters";
         app.removePositionPalette = false;
         app.removeColorPalette = false;
@@ -975,10 +975,10 @@ socket.on('fixtureEffects', function (msg) {
     }
 });
 
-socket.on('effectSettings', function (msg) {
+socket.on('fixtureEffectSettings', function (msg) {
     if (msg.fixtureID == app.currentFixture.id) {
         app.currentEffect = msg.effect;
-        app.currentView = "effectSettings";
+        app.currentView = "fixtureEffectSettings";
     }
 });
 

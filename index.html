@@ -241,7 +241,7 @@
                                         class="d-none d-sm-inline-block">Reset</span></button></div>
                         </div>
                         <div class="col-3">
-                            <button id="fixtureAddEffectBtn" class="btn btn-success btn-block" @click="getEffects"><i
+                            <button id="fixtureAddEffectBtn" class="btn btn-success btn-block" @click="getFixtureEffects"><i
                                     class="far fa-hurricane d-sm-none d-inline-block"></i><span
                                     class="d-none d-sm-inline-block">Add
                                     Effect</span></button>
@@ -353,7 +353,7 @@
                                             :class="{'fa-palette': effect.type == 'Color', 'fa-running': effect.type == 'Position', 'fa-lightbulb': effect.type == 'Intensity', 'fa-cog': effect.type == 'Parameter'}"></i>
                                         {{effect.name}}
                                         <button class="float-right btn btn-sm btn-primary d-inline-block"
-                                            @click="getEffectSettings(effect.id)">Settings</button>
+                                            @click="getFixtureEffectSettings(effect.id)">Settings</button>
                                         <span v-if="effect.active == true">
                                             <button class="float-right btn btn-sm btn-success d-inline-block mr-1"
                                                 @click="changeFixtureEffectState(effect.id)">Deactivate</button>
@@ -532,7 +532,7 @@
                     </div>
                 </div>
             </div>
-            <div id="effectSettingsPage" class="tabcontent" v-if="currentView == 'effectSettings'">
+            <div id="fixtureEffectSettingsPage" class="tabcontent" v-if="currentView == 'fixtureEffectSettings'">
                 <div class="container">
                     <div class="row topBtns">
                         <div class="col-6">
@@ -547,19 +547,19 @@
 
                         </div>
                     </div>
-                    <div class="row" id="effectSettings">
+                    <div class="row" id="fixtureEffectSettings">
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="effectNameInput">Name:</label>
                                 <input class="form-control" type="text" id="effectNameInput" placeholder="Effect Name"
-                                    v-model="currentEffect.name" @input="editEffectSettings">
+                                    v-model="currentEffect.name" @input="editFixtureEffectSettings">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="effectSpeedInput">Speed:</label>
                                 <input class="form-control" placeholder="Effect Speed" type="number" step="0.1"
-                                    min="0.0" id="effectSpeedInput" @input="editEffectSettings"
+                                    min="0.0" id="effectSpeedInput" @input="editFixtureEffectSettings"
                                     v-model="currentEffect.speed">
                             </div>
                         </div>
@@ -567,7 +567,7 @@
                             <div class="form-group">
                                 <label for="effectDepthInput">Depth:</label>
                                 <input type="number" step="0.1" placeholder="Effect Depth" min="0.0" max="1.0"
-                                    class="form-control" id="effectDepthInput" @input="editEffectSettings"
+                                    class="form-control" id="effectDepthInput" @input="editFixtureEffectSettings"
                                     v-model="currentEffect.depth">
                             </div>
                         </div>
