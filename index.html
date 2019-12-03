@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/vue-multiselect.min.css">
     <link href="/static/css/vue-color-picker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/vue-touch-keyboard.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="apple-touch-icon" href="/static/img/icon.png">
 </head>
@@ -241,7 +242,8 @@
                                         class="d-none d-sm-inline-block">Reset</span></button></div>
                         </div>
                         <div class="col-3">
-                            <button id="fixtureAddEffectBtn" class="btn btn-success btn-block" @click="getFixtureEffects"><i
+                            <button id="fixtureAddEffectBtn" class="btn btn-success btn-block"
+                                @click="getFixtureEffects"><i
                                     class="far fa-hurricane d-sm-none d-inline-block"></i><span
                                     class="d-none d-sm-inline-block">Add
                                     Effect</span></button>
@@ -472,7 +474,7 @@
                                 <label for="fixtureNameInput">Name:</label>
                                 <input class="form-control" type="text" id="fixtureNameInput"
                                     placeholder="Full Fixture Name" @input="editFixtureSettings"
-                                    v-model="currentFixture.name">
+                                    v-model="currentFixture.name" @focus="showKeyboard" data-layout="normal">
                             </div>
                         </div>
                         <div class="col-12">
@@ -1561,6 +1563,8 @@
                 </div>
             </div>
         </div>
+        <vue-touch-keyboard :options="keyboardOptions" v-if="keyboardVisible" :layout="keyboardLayout"
+            :cancel="hideKeyboard" :accept="acceptKeyboard" :input="keyboardInput" />
     </div>
     <script src="/static/js/jquery-3.4.1.min.js"></script>
     <script src="/static/js/popper.min.js"></script>
@@ -1571,6 +1575,7 @@
     <script src="/static/js/isMobile.min.js"></script>
     <script src="/static/js/mousetrap.min.js"></script>
     <script src="/static/js/vue-color-picker.umd.min.js"></script>
+    <script src="/static/js/vue-touch-keyboard.js"></script>
     <script src="/static/js/vue.js"></script>
     <script src="/static/js/script.js"></script>
 </body>

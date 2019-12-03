@@ -1,4 +1,5 @@
 var socket = io('http://' + document.domain + ':' + location.port);
+Vue.use(VueTouchKeyboard);
 var app = new Vue({
     el: '#app',
     data: {
@@ -47,7 +48,14 @@ var app = new Vue({
         settingsModalTab: "ui",
         addPositionPaletteName: "",
         removePositionPalette: false,
-        removeColorPalette: false
+        removeColorPalette: false,
+        keyboardVisible: false,
+        keyboardLayout: "normal",
+        keyboardInput: null,
+        keyboardOptions: {
+            useKbEvents: false,
+            preventClickEvent: false
+        }
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -84,6 +92,20 @@ var app = new Vue({
         }
     },
     methods: {
+        keyboardAccept: function (text) {
+            alert("Input text: " + text);
+            this.hideKeyboard();
+        },
+        showKeyboard: function (e) {
+            this.keyboardInput = e.target;
+            this.keyboardLayout = e.target.dataset.layout;
+
+            if (!this.keyboardVisible)
+                this.keyboardVisible = true
+        },
+        hideKeyboard: function () {
+            this.keyboardVisible = false;
+        },
         setFixtureProfilesSelection: function (obj, type) {
             if (type == 'manufacturers') {
                 app.fixtureProfilesManufacturer = obj;
