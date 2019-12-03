@@ -3295,8 +3295,10 @@ io.on('connection', function (socket) {
     socket.on('toggleBlackout', function () {
         if (SETTINGS.blackoutEnabled == true) {
             blackout = !blackout;
-            io.emit('blackout', blackout);
+        } else {
+            blackout = false;
         }
+        io.emit('blackout', blackout);
     });
 
     socket.on('changeGrandmasterValue', function (value) {
