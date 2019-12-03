@@ -1132,9 +1132,27 @@ function calculateStack() {
                                 invert = false;
                                 if (fixtures[f].parameters[p].type == 2 && (fixtures[f].invertPan == true || fixtures[f].invertTilt == true)) {
                                     if (fixtures[f].parameters[p].name == "Pan" && fixtures[f].invertPan == true) {
-                                        invert = true;
+                                        if (fixtures[f].parameters[p].invert == false) {
+                                            invert = true;
+                                        }
                                     } else if (fixtures[f].parameters[p].name == "Tilt" && fixtures[f].invertTilt == true) {
-                                        invert = true;
+                                        if (fixtures[f].parameters[p].invert == false) {
+                                            invert = true;
+                                        }
+                                    }
+                                } else {
+                                    if (fixtures[f].parameters[p].name == "Pan" && fixtures[f].invertPan == false) {
+                                        if (fixtures[f].parameters[p].invert == true) {
+                                            invert = true;
+                                        }
+                                    } else if (fixtures[f].parameters[p].name == "Tilt" && fixtures[f].invertTilt == false) {
+                                        if (fixtures[f].parameters[p].invert == true) {
+                                            invert = true;
+                                        }
+                                    } else {
+                                        if (fixtures[f].parameters[p].invert == true) {
+                                            invert = true;
+                                        }
                                     }
                                 }
                                 if (fixtures[f].effects[e].resolution == 16) {
