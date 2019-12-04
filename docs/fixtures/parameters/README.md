@@ -55,3 +55,31 @@ Set this parameter's value to 50%;
 ### Right
 
 Set this parameter's value to 100%;
+
+## Color Palettes
+
+![Fixture color palettes](../../images/fixture_color_palettes.png)
+
+There are a number of different color palettes available. Click one in the list to apply it to the fixture. Tonalite currently supports the following color mixing modes natively:
+
+- RGB
+- RGBW
+- RGBA
+- RGBAW
+- CMY
+
+If a fixture has one of these color mixing modes, Tonalite will use all of its color parameters to set the correct color from the palette. If a fixture does not have one of these modes, Tonalite will attempt to set RGB parameter values if any of those parameters exist on the fixture, or else will fail to apply the color palette.
+
+## Position Palettes
+
+![Fixture position palettes](../../images/fixture_position_palettes.png)
+
+You can create position palettes to apply to your fixtures. Click on one in the list to apply it to the fixture. These set the pan and/or tilt parameters of a fixture.
+
+### Add Palette
+
+To add a palette, click the green button with a plus sign inside of it. You will be asked to choose a name for the new palette.
+
+### Remove Palette
+
+To remove a position palette, clcik the red button with a lock inside of it. The palettes that can be removed with state pulsing. To remove one, click on it in the list. You will be asked if you are sure you want to remove it.

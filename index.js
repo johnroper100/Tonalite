@@ -1718,7 +1718,14 @@ io.on('connection', function (socket) {
                         param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
                     }
                 } else {
-                    socket.emit('message', { type: "error", content: "This fixture's colortable can not be controled!" });
+                    // Just try insert RGB
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        if (param != null) {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value, 0, 255, param.min, param.max);
+                            param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                        }
+                    }
                 }
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             } else {

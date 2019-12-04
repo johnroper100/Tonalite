@@ -46,9 +46,22 @@ Set this parameter's value to 0%.
 
 ### 50%
 
-Set this parameter's value to 50%;
+Set this parameter's value to 50%.
 
 ### Right
 
-Set this parameter's value to 100%;
+Set this parameter's value to 100%.
 
+## Position Palettes
+
+![Group position palettes](../../images/group_position_palettes.png)
+
+You can create position palettes to apply to your groups. Click on one in the list to apply it to the group. These set the pan and/or tilt parameters of a group.
+
+### Add Palette
+
+To add a palette, click the green button with a plus sign inside of it. You will be asked to choose a name for the new palette.
+
+### Remove Palette
+
+To remove a position palette, clcik the red button with a lock inside of it. The palettes that can be removed with state pulsing. To remove one, click on it in the list. You will be asked if you are sure you want to remove it.
