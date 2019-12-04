@@ -86,7 +86,7 @@
                 </div>
             </div>
         </nav>
-        <div id="tabs">
+        <div id="tabs" :class="{'bigBottom': settings.desktop == false && ifMobile == false}">
             <div id="fixtures" class="tabcontent" v-if="currentView == 'fixtures'">
                 <div class="container">
                     <div class="row topBtns sticky-top">
