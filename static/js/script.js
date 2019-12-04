@@ -53,7 +53,7 @@ var app = new Vue({
         keyboardLayout: "normal",
         keyboardInput: null,
         keyboardOptions: {
-            useKbEvents: false,
+            useKbEvents: true,
             preventClickEvent: false
         }
     },
@@ -93,20 +93,15 @@ var app = new Vue({
     },
     methods: {
         keyboardAccept: function (text) {
-            alert("Input text: " + text);
-            this.hideKeyboard();
+            app.hideKeyboard();
         },
         showKeyboard: function (e) {
-            if (app.settings.desktop == false && app.ifMobile == false) {
-                this.keyboardInput = e.target;
-                this.keyboardLayout = e.target.dataset.layout;
-
-                if (!this.keyboardVisible)
-                    this.keyboardVisible = true
-            }
+            app.keyboardInput = e.target;
+            app.keyboardLayout = e.target.dataset.layout;
+            app.keyboardVisible = true;
         },
         hideKeyboard: function () {
-            this.keyboardVisible = false;
+            app.keyboardVisible = false;
         },
         setFixtureProfilesSelection: function (obj, type) {
             if (type == 'manufacturers') {
@@ -785,6 +780,7 @@ socket.on('connect', function () {
     app.url = "";
     app.fixtureProfilesManufacturer = "";
     app.fixtureProfilesModel = "";
+    app.keyboardVisible = false;
     $('#openFixtureDefinitionModal').modal("hide");
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
@@ -797,6 +793,7 @@ socket.on('connect', function () {
 });
 
 socket.on('connect_error', function () {
+    app.keyboardVisible = false;
     $('#openFixtureDefinitionModal').modal("hide");
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");

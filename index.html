@@ -146,7 +146,8 @@
                                                 Address:</label>
                                             <input type="number" class="form-control" max="512" min="1"
                                                 id="newFixtureStartDMXAddress" placeholder="DMX Address"
-                                                v-model="startDMXAddress">
+                                                v-model="startDMXAddress" @focus="showKeyboard" @blur="hideKeyboard"
+                                                data-layout="numeric">
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -154,7 +155,8 @@
                                             <label class="dark" for="newFixtureUniverse">Universe:</label>
                                             <input type="number" class="form-control" min="0" max="1"
                                                 id="newFixtureCreationCount" placeholder="DMX Universe"
-                                                v-model="newFixtureUniverse">
+                                                v-model="newFixtureUniverse" @focus="showKeyboard" @blur="hideKeyboard"
+                                                data-layout="numeric">
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -162,7 +164,8 @@
                                             <label class="dark" for="newFixtureCreationCount">Number To Create:</label>
                                             <input type="number" class="form-control" min="1"
                                                 id="newFixtureCreationCount" placeholder="Creation Count"
-                                                v-model="newFixtureCreationCount">
+                                                v-model="newFixtureCreationCount" @focus="showKeyboard"
+                                                @blur="hideKeyboard" data-layout="numeric">
                                         </div>
                                     </div>
                                 </div>
@@ -170,7 +173,8 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="searchFixtureProfiles"
-                                                placeholder="Search:" v-model="fixtureProfilesSearch">
+                                                placeholder="Search:" v-model="fixtureProfilesSearch"
+                                                @focus="showKeyboard" @blur="hideKeyboard" data-layout="compact">
                                         </div>
                                     </div>
                                 </div>
@@ -473,7 +477,8 @@
                                 <label for="fixtureNameInput">Name:</label>
                                 <input class="form-control" type="text" id="fixtureNameInput"
                                     placeholder="Full Fixture Name" @input="editFixtureSettings"
-                                    v-model="currentFixture.name" @focus="showKeyboard" data-layout="normal">
+                                    v-model="currentFixture.name" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="compact">
                             </div>
                         </div>
                         <div class="col-12">
@@ -481,7 +486,8 @@
                                 <label for="fixtureShortNameInput">Short Name:</label>
                                 <input class="form-control" type="text" id="fixtureShortNameInput"
                                     placeholder="Short Fixture Name" @input="editFixtureSettings"
-                                    v-model="currentFixture.shortName">
+                                    v-model="currentFixture.shortName" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="compact">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -489,7 +495,8 @@
                                 <label for="fixtureDMXAddressInput">Starting DMX Address:</label>
                                 <input class="form-control" min="1" max="512" type="number" id="fixtureDMXAddressInput"
                                     placeholder="Fixture Starting DMX Address" @input="editFixtureSettings"
-                                    v-model="currentFixture.startDMXAddress">
+                                    v-model="currentFixture.startDMXAddress" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="numeric">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -497,7 +504,8 @@
                                 <label for="fixtureDMXAddressInput">DMX Universe:</label>
                                 <input class="form-control" min="0" max="1" type="number" id="fixtureDMXUniverseInput"
                                     placeholder="Fixture DMX Universe" @input="editFixtureSettings"
-                                    v-model="currentFixture.dmxUniverse">
+                                    v-model="currentFixture.dmxUniverse" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="numeric">
                             </div>
                         </div>
                         <div class="col-md-4 col-12"
@@ -553,7 +561,8 @@
                             <div class="form-group">
                                 <label for="effectNameInput">Name:</label>
                                 <input class="form-control" type="text" id="effectNameInput" placeholder="Effect Name"
-                                    v-model="currentEffect.name" @input="editFixtureEffectSettings">
+                                    v-model="currentEffect.name" @input="editFixtureEffectSettings"
+                                    @focus="showKeyboard" @blur="hideKeyboard" data-layout="compact">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -561,7 +570,8 @@
                                 <label for="effectSpeedInput">Speed:</label>
                                 <input class="form-control" placeholder="Effect Speed" type="number" step="0.1"
                                     min="0.0" id="effectSpeedInput" @input="editFixtureEffectSettings"
-                                    v-model="currentEffect.speed">
+                                    v-model="currentEffect.speed" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="numeric">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -569,7 +579,8 @@
                                 <label for="effectDepthInput">Depth:</label>
                                 <input type="number" step="0.1" placeholder="Effect Depth" min="0.0" max="1.0"
                                     class="form-control" id="effectDepthInput" @input="editFixtureEffectSettings"
-                                    v-model="currentEffect.depth">
+                                    v-model="currentEffect.depth" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="numeric">
                             </div>
                         </div>
 
@@ -780,13 +791,19 @@
                                                 :class="{'bg-warning': step.active == true}">
                                                 <th scope="row">{{index+1}}</th>
                                                 <td><input type="number" class="form-control" min="0"
-                                                        v-model="step.upTime" @input="editSequenceStepSettings(step)">
+                                                        v-model="step.upTime" @input="editSequenceStepSettings(step)"
+                                                        @focus="showKeyboard" @blur="hideKeyboard"
+                                                        data-layout="numeric">
                                                 </td>
                                                 <td><input type="number" class="form-control" min="0"
-                                                        v-model="step.downTime" @input="editSequenceStepSettings(step)">
+                                                        v-model="step.downTime" @input="editSequenceStepSettings(step)"
+                                                        @focus="showKeyboard" @blur="hideKeyboard"
+                                                        data-layout="numeric">
                                                 </td>
                                                 <td><input type="number" class="form-control" min="0"
-                                                        v-model="step.follow" @input="editSequenceStepSettings(step)">
+                                                        v-model="step.follow" @input="editSequenceStepSettings(step)"
+                                                        @focus="showKeyboard" @blur="hideKeyboard"
+                                                        data-layout="numeric">
                                                 </td>
                                                 <td><button class="btn btn-danger btn-sm"
                                                         @click="removeSequenceStep(step.id)">Delete</button></td>
@@ -818,7 +835,8 @@
                             <div class="form-group">
                                 <label for="groupNameInput">Name:</label>
                                 <input class="form-control" type="text" id="groupNameInput" placeholder="Group Name"
-                                    v-model="currentGroup.name" @input="editGroupSettings">
+                                    v-model="currentGroup.name" @input="editGroupSettings" @focus="showKeyboard"
+                                    @blur="hideKeyboard" data-layout="compact">
                             </div>
                         </div>
                     </div>
@@ -961,7 +979,8 @@
                                 <label for="sequenceNameInput">Name:</label>
                                 <input class="form-control" type="text" id="sequenceNameInput"
                                     placeholder="Sequence Name" v-model="currentSequence.name"
-                                    @input="editSequenceSettings">
+                                    @input="editSequenceSettings" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="compact">
                             </div>
                         </div>
                         <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
@@ -1060,7 +1079,8 @@
                             <div class="form-group">
                                 <label for="cueNameInput">Name:</label>
                                 <input class="form-control" type="text" id="cueNameInput" placeholder="Cue Name"
-                                    @input="editCueSettings" v-model="currentCue.name">
+                                    @input="editCueSettings" v-model="currentCue.name" @focus="showKeyboard"
+                                    @blur="hideKeyboard" data-layout="compact">
                             </div>
                         </div>
                         <div class="col-md-4 col-12">
@@ -1068,7 +1088,8 @@
                                 <label for="cueUpTimeInput">Up Time:</label>
                                 <input class="form-control" min="0" type="number" id="cueUpTimeInput"
                                     placeholder="Cue Up Length In Seconds" @input="editCueSettings"
-                                    v-model="currentCue.upTime">
+                                    v-model="currentCue.upTime" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="numeric">
                             </div>
                         </div>
                         <div class="col-md-4 col-12">
@@ -1076,7 +1097,8 @@
                                 <label for="cueDownTimeInput">Down Time:</label>
                                 <input @input="editCueSettings" class="form-control" min="0" type="number"
                                     id="cueDownTimeInput" placeholder="Cue Down Length In Seconds"
-                                    v-model="currentCue.downTime">
+                                    v-model="currentCue.downTime" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="numeric">
                             </div>
                         </div>
                         <div class="col-md-4 col-12">
@@ -1084,7 +1106,8 @@
                                 <label for="cueFollowInput">Follow:</label>
                                 <input @input="editCueSettings" class="form-control" type="number" min="-1"
                                     id="cueFollowInput" placeholder="Cue Follow Time In Seconds"
-                                    v-model="currentCue.follow">
+                                    v-model="currentCue.follow" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="numeric">
                             </div>
                         </div>
                         <div class="col-md-4 col-12" v-if="settings.interfaceMode == 'normal'">
@@ -1197,7 +1220,8 @@
                             <div class="form-group">
                                 <label for="presetNameInput">Name:</label>
                                 <input class="form-control" type="text" id="presetNameInput" placeholder="Preset Name"
-                                    @input="editPresetSettings" v-model="currentPreset.name">
+                                    @input="editPresetSettings" v-model="currentPreset.name" @focus="showKeyboard"
+                                    @blur="hideKeyboard" data-layout="compact">
                             </div>
                         </div>
                         <div class="col-md-4 col-12">
@@ -1374,7 +1398,8 @@
                                         <label class="dark" for="defaultUpTime">Default Up Time:</label>
                                         <input @input="editSettings" v-model="settings.defaultUpTime" min="0"
                                             class="form-control" type="number" id="defaultUpTime"
-                                            placeholder="Default Cue Up Time">
+                                            placeholder="Default Cue Up Time" @focus="showKeyboard" @blur="hideKeyboard"
+                                            data-layout="numeric">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
@@ -1382,7 +1407,8 @@
                                         <label class="dark" for="defaultDownTime">Default Down Time:</label>
                                         <input @input="editSettings" v-model="settings.defaultDownTime" min="0"
                                             class="form-control" type="number" id="defaultDownTime"
-                                            placeholder="Default Cue Up Time">
+                                            placeholder="Default Cue Up Time" @focus="showKeyboard" @blur="hideKeyboard"
+                                            data-layout="numeric">
                                     </div>
                                 </div>
                             </div>
@@ -1456,14 +1482,16 @@
                                     <div class="form-group">
                                         <label class="dark" for="artnetIP">ArtNet IP:</label>
                                         <input @input="editSettings" v-model="settings.artnetIP" class="form-control"
-                                            type="text" id="artnetIP" placeholder="ArtNet IP is auto">
+                                            type="text" id="artnetIP" placeholder="ArtNet IP is auto"
+                                            @focus="showKeyboard" @blur="hideKeyboard" data-layout="numeric">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label class="dark" for="artnetHost">ArtNet Host:</label>
                                         <input @input="editSettings" v-model="settings.artnetHost" class="form-control"
-                                            type="text" id="artnetHost" placeholder="ArtNet host is 255.255.255.255">
+                                            type="text" id="artnetHost" placeholder="ArtNet host is 255.255.255.255"
+                                            @focus="showKeyboard" @blur="hideKeyboard" data-layout="numeric">
                                     </div>
                                 </div>
                             </div>
@@ -1472,7 +1500,8 @@
                                     <div class="form-group">
                                         <label class="dark" for="sacnIP">sACN IP:</label>
                                         <input @input="editSettings" v-model="settings.sacnIP" class="form-control"
-                                            type="text" id="sacnIP" placeholder="sACN IP is auto">
+                                            type="text" id="sacnIP" placeholder="sACN IP is auto" @focus="showKeyboard"
+                                            @blur="hideKeyboard" data-layout="numeric">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
@@ -1480,7 +1509,8 @@
                                         <label class="dark" for="sacnPriority">sACN Priority:</label>
                                         <input @input="editSettings" v-model="settings.sacnPriority"
                                             class="form-control" type="number" min="1" max="200" id="sacnPriority"
-                                            placeholder="sACN IP is 100">
+                                            placeholder="sACN IP is 100" @focus="showKeyboard" @blur="hideKeyboard"
+                                            data-layout="numeric">
                                     </div>
                                 </div>
                             </div>
@@ -1524,7 +1554,8 @@
                 <div class="modal-content">
                     <div class="modal-body text-center dark">
                         <input type="text" class="form-control mb-2" style="max-width: 50%; display: inline;"
-                            v-model="showInfo.showName" @input="editShowName">
+                            v-model="showInfo.showName" @input="editShowName" @focus="showKeyboard" @blur="hideKeyboard"
+                            data-layout="compact">
                         <h5 style="display: inline;">Info</h5>
                         <div class="row">
                             <div class="col-6">
@@ -1554,7 +1585,8 @@
                         <div class="form-group">
                             <label class="dark mr-2" for="positionPaletteName">Position palette name:</label>
                             <input type="text" class="form-control" placeholder="Name here" id="positionPaletteName"
-                                v-model="addPositionPaletteName" maxlength="10">
+                                v-model="addPositionPaletteName" maxlength="10" @focus="showKeyboard"
+                                @blur="hideKeyboard" data-layout="compact">
                         </div>
                         <button class="btn btn-success btn-full" @click="addPositionPalette">Add Position
                             Palette</button>
@@ -1563,7 +1595,7 @@
             </div>
         </div>
         <vue-touch-keyboard :options="keyboardOptions" v-if="keyboardVisible" :layout="keyboardLayout"
-            :cancel="hideKeyboard" :accept="acceptKeyboard" :input="keyboardInput" />
+            :cancel="hideKeyboard" :accept="keyboardAccept" :input="keyboardInput" />
     </div>
     <script src="/static/js/jquery-3.4.1.min.js"></script>
     <script src="/static/js/popper.min.js"></script>

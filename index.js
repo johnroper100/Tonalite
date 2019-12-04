@@ -2178,6 +2178,18 @@ io.on('connection', function (socket) {
                 fixture.swapPanTilt = msg.swapPanTilt;
                 fixture.dmxUniverse = parseInt(msg.dmxUniverse);
                 fixture.startDMXAddress = parseInt(msg.startDMXAddress);
+                if (fixture.startDMXAddress > 512) {
+                    fixture.startDMXAddress = 512;
+                }
+                if (fixture.startDMXAddress < 1) {
+                    fixture.startDMXAddress = 1;
+                }
+                if (fixture.dmxUniverse > 1) {
+                    fixture.dmxUniverse = 1;
+                }
+                if (fixture.dmxUniverse < 0) {
+                    fixture.dmxUniverse = 0;
+                }
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                 saveShow();
             } else {
