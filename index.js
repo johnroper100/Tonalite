@@ -1270,7 +1270,6 @@ function calculateStack() {
                     if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed) >= fixtures[f].effects[e].steps.length - 1) {
                         fixtures[f].effects[e].step = 0;
                     } else {
-                        if (index > 1) { }
                         fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
                     }
                 }
@@ -2074,7 +2073,7 @@ io.on('connection', function (socket) {
                     var effect = fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)];
                     effect.name = msg.name;
                     effect.depth = parseFloat(msg.depth);
-                    effect.speed = parseFloat(msg.speed);
+                    effect.speed = parseInt(msg.speed);
                     socket.broadcast.emit('fixtureEffectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                     saveShow();
@@ -2123,7 +2122,7 @@ io.on('connection', function (socket) {
                 effect.active = true;
                 effect.step = 0;
                 effect.depth = 1.0;
-                effect.speed = 0.5;
+                effect.speed = 1;
                 effect.chroma = 1;
                 effect.fan = 0;
                 effect.aspect = 1;
