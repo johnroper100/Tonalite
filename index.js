@@ -59,6 +59,10 @@ var currentCueID = "";
 var blackout = false;
 var grandmaster = 100;
 var currentShowName = "Show";
+var undo = {
+    "type": "none",
+    "data": []
+}
 
 // Set up dmx variables for integrations used later on
 var e131 = null;
@@ -1537,6 +1541,8 @@ io.on('connection', function (socket) {
     }
 
     socket.on('openShowFromUSB', function (data) {
+        undo.type = "show";
+        undo.data = { fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, showName: currentShowName };
         fs.copyFile(data.path + '/' + data.file, process.cwd() + '/show.json', function (err) {
             if (err) {
                 logError(err);
@@ -1549,6 +1555,8 @@ io.on('connection', function (socket) {
     });
 
     socket.on('resetShow', function () {
+        undo.type = "show";
+        undo.data = { fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, showName: currentShowName };
         resetFixtures();
         cues = [];
         groups = [];
@@ -1571,6 +1579,8 @@ io.on('connection', function (socket) {
     });
 
     socket.on('resetShowAndPatch', function () {
+        undo.type = "show";
+        undo.data = { fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, showName: currentShowName };
         fixtures = [];
         cues = [];
         groups = [];
@@ -1598,6 +1608,8 @@ io.on('connection', function (socket) {
     });
 
     socket.on('resetPresets', function () {
+        undo.type = "presets";
+        undo.data = presets;
         presets = [];
         io.emit('presets', cleanPresets());
         io.emit('message', { type: "info", content: "The presets have been cleared!" });
