@@ -9,9 +9,6 @@ debugPrint = False
 if not os.path.exists(os.path.join("../", "fixtures")):
     os.makedirs(os.path.join("../", "fixtures"))
 
-if not os.listdir('/home/varun/temp'):
-    debugPrint = True
-
 
 def get_hsv(hexrgb):
     hexrgb = hexrgb.lstrip("#")   # in case you have Web color specs
@@ -186,6 +183,10 @@ with open('Carallon.def') as f:
 
                     parameter["name"] = " ".join(line.partition("$$PARAMETER")[
                         2].strip().split(" ")[5:])
+                    invertTest = " ".join(line.partition("$$PARAMETER")[
+                        2].strip().split(" ")[3])
+                    if (invertTest == "O N"):
+                        parameter["invert"] = True
 
             if "$$OFFSET" in line:
                 parameter["coarse"] = int(line.partition("$$OFFSET")[
