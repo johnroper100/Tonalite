@@ -2123,6 +2123,7 @@ io.on('connection', function (socket) {
                 effect.step = 0;
                 effect.depth = 1.0;
                 effect.speed = 1;
+                effect.speedIndex = 0;
                 effect.chroma = 1;
                 effect.fan = 0;
                 effect.aspect = 1;
