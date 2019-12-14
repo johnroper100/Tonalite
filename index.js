@@ -694,7 +694,7 @@ function calculatePresetChannels(preset) {
     var tempvalue2 = null;
     let f = 0; const fMax = preset.fixtures.length; for (; f < fMax; f++) {
         let p = 0; const pMax = preset.fixtures[f].parameters.length; for (; p < pMax; p++) {
-            if (preset.fixtures[f].parameters[p].fadeWithIntensity == true || preset.fixtures[f].parameters[p].type == 1) {
+            if (preset.fixtures[f].parameters[p].fadeWithIntensity == true || preset.fixtures[f].parameters[p].type == 1 || (preset.colorHTP == true && preset.fixtures[f].parameters[p].type == 5)) {
                 invert = false;
                 if (preset.fixtures[f].parameters[p].invert == true) {
                     invert = true;
@@ -1313,8 +1313,11 @@ function setFixtureGroupValues(group, parameter) {
 };
 
 // Reset the parameter values for each fixture
-function resetFixtures() {
+function resetFixtures(removeEffects) {
     let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+        if (removeEffects == true) {
+            fixtures[f].effects = [];
+        }
         let c = 0; const cMax = fixtures[f].parameters.length; for (; c < cMax; c++) {
             if (fixtures[f].parameters[c].locked != true) {
                 fixtures[f].parameters[c].value = fixtures[f].parameters[c].home;
@@ -1557,7 +1560,7 @@ io.on('connection', function (socket) {
     socket.on('resetShow', function () {
         undo.type = "show";
         undo.data = { fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, showName: currentShowName };
-        resetFixtures();
+        resetFixtures(true);
         cues = [];
         groups = [];
         sequences = [];
@@ -1849,7 +1852,7 @@ io.on('connection', function (socket) {
         saveShow();
     });
 
-    socket.on('getEffects', function (fixtureid) {
+    socket.on('getFixtureEffects', function (fixtureid) {
         fs.readdir(process.cwd() + "/effects", (err, files) => {
             var effectsList = [];
             var effect = null;
@@ -2226,7 +2229,7 @@ io.on('connection', function (socket) {
 
     socket.on('resetFixtures', function () {
         if (fixtures.length != 0) {
-            resetFixtures();
+            resetFixtures(false);
             currentCue = "";
             currentCueID = ""; // maybe remove?
             io.emit('activeCue', currentCueID);

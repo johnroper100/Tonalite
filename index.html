@@ -1203,7 +1203,7 @@
                         </div>
                     </div>
                     <div class="row" id="presetSettings">
-                        <div class="col-md-8 col-12">
+                        <div class="col-12" :class="{'col-md-8': currentPreset.mode == 'htp'}">
                             <div class="form-group">
                                 <label for="presetNameInput">Name:</label>
                                 <input class="form-control" type="text" id="presetNameInput" placeholder="Preset Name"
@@ -1211,13 +1211,23 @@
                                     data-layout="compact">
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-12"
+                            :class="{'col-md-4': currentPreset.mode == 'htp', 'col-md-6': currentPreset.mode == 'ltp'}">
                             <div class="form-group mt-0 mt-md-4">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editPresetSettings" type="checkbox" class="custom-control-input"
                                         id="displayPresetAsDimmer" v-model="currentPreset.displayAsDimmer">
                                     <label class="custom-control-label" for="displayPresetAsDimmer">Display As
                                         Dimmer</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="currentPreset.mode == 'ltp'" class="col-md-6 col-12">
+                            <div class="form-group mt-0 mt-md-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input @change="editPresetSettings" type="checkbox" class="custom-control-input"
+                                        id="colorHTP" v-model="currentPreset.colorHTP">
+                                    <label class="custom-control-label" for="colorHTP">Color HTP</label>
                                 </div>
                             </div>
                         </div>
