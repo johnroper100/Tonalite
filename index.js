@@ -3226,6 +3226,7 @@ io.on('connection', function (socket) {
                 ids: list,
                 intensity: 0,
                 displayAsDimmer: false,
+                colorHTP: true,
                 patchChanged: false,
                 mode: SETTINGS.defaultPresetMode,
                 fixtures: cleanFixturesForPreset(list)
@@ -3289,6 +3290,7 @@ io.on('connection', function (socket) {
                 var preset = presets[presets.map(el => el.id).indexOf(msg.id)];
                 preset.name = msg.name;
                 preset.displayAsDimmer = msg.displayAsDimmer;
+                preset.colorHTP = msg.colorHTP;
                 preset.mode = msg.mode;
                 var intensity = parseInt(msg.intensity);
                 if (intensity > 0) {
