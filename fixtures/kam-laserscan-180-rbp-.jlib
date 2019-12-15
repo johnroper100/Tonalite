@@ -1,5 +1,5 @@
 {
-    "date": "2019-10-17 09:08",
+    "date": "2019-12-04 10:39",
     "editorVersion": "1.1.1.9.0.4",
     "personalities": [
         {
@@ -14,8 +14,8 @@
                 {
                     "coarse": 0,
                     "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
+                    "highlight": 0,
+                    "home": 0,
                     "invert": false,
                     "name": "Fixture Mode",
                     "size": 8,
@@ -26,73 +26,73 @@
                             "begin": 0,
                             "default": 0,
                             "end": 0,
-                            "label": "Laser off"
+                            "label": "off"
                         },
                         {
                             "begin": 30,
                             "default": 30,
                             "end": 30,
-                            "label": "AUT"
+                            "label": "AUT [Laser]"
                         },
                         {
                             "begin": 50,
                             "default": 50,
                             "end": 50,
-                            "label": "AU1"
+                            "label": "AU1 [Laser]"
                         },
                         {
                             "begin": 70,
                             "default": 70,
                             "end": 70,
-                            "label": "AU2"
+                            "label": "AU2 [Laser]"
                         },
                         {
                             "begin": 90,
                             "default": 90,
                             "end": 90,
-                            "label": "AU3"
+                            "label": "AU3 [Laser]"
                         },
                         {
                             "begin": 110,
                             "default": 110,
                             "end": 110,
-                            "label": "SOU"
+                            "label": "SOU [Laser]"
                         },
                         {
                             "begin": 130,
                             "default": 130,
                             "end": 130,
-                            "label": "SO1"
+                            "label": "SO1 [Laser]"
                         },
                         {
                             "begin": 150,
                             "default": 150,
                             "end": 150,
-                            "label": "SO2"
+                            "label": "SO2 [Laser]"
                         },
                         {
                             "begin": 170,
                             "default": 170,
                             "end": 170,
-                            "label": "SO3"
+                            "label": "SO3 [Laser]"
                         },
                         {
                             "begin": 190,
                             "default": 190,
                             "end": 190,
-                            "label": "AUP"
+                            "label": "AUP [Laser]"
                         },
                         {
                             "begin": 210,
                             "default": 210,
                             "end": 210,
-                            "label": "SOP"
+                            "label": "SOP [Laser]"
                         },
                         {
-                            "begin": 255,
-                            "default": 255,
-                            "end": 255,
-                            "label": "DMX mode"
+                            "begin": 238,
+                            "default": 238,
+                            "end": 238,
+                            "label": "DMX mode [Laser]"
                         }
                     ]
                 },
@@ -102,7 +102,7 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "Library",
+                    "name": "Laser Group",
                     "size": 8,
                     "snap": false,
                     "type": 4,
@@ -145,7 +145,7 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "File",
+                    "name": "Laser Pattern",
                     "size": 8,
                     "snap": false,
                     "type": 4,
@@ -274,7 +274,7 @@
                             "begin": 64,
                             "default": 79,
                             "end": 79,
-                            "label": "triangle"
+                            "label": "Triangle"
                         },
                         {
                             "begin": 64,
@@ -304,7 +304,7 @@
                             "begin": 80,
                             "default": 95,
                             "end": 95,
-                            "label": "square"
+                            "label": "Square"
                         },
                         {
                             "begin": 80,
@@ -568,7 +568,7 @@
                             "begin": 208,
                             "default": 223,
                             "end": 223,
-                            "label": "money"
+                            "label": "Money"
                         },
                         {
                             "begin": 224,
@@ -604,7 +604,7 @@
                             "begin": 240,
                             "default": 255,
                             "end": 255,
-                            "label": "wavy line big"
+                            "label": "Wavy line big"
                         },
                         {
                             "begin": 240,
@@ -773,7 +773,7 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "Rotate Y",
+                    "name": "Rotate Mode Y",
                     "size": 8,
                     "snap": false,
                     "type": 4,
@@ -785,33 +785,83 @@
                             "label": "Ind"
                         },
                         {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 191,
-                            "label": "Rot >>"
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "Rotate Mode Y"
                         },
                         {
-                            "begin": 192,
-                            "default": 192,
-                            "end": 255,
-                            "label": "Rot <<"
+                            "begin": 223,
+                            "default": 223,
+                            "end": 223,
+                            "label": "Rotate Mode Y"
                         }
                     ]
                 },
                 {
                     "coarse": 8,
                     "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": true,
-                    "name": "Y Spin",
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Rotate Y",
                     "size": 8,
                     "snap": false,
                     "type": 4,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Rotate Mode Y"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
                 },
                 {
                     "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Rotate Mode X",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Ind"
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "Rotate Mode X"
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 223,
+                            "label": "Rotate Mode X"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
@@ -824,37 +874,56 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Ind"
+                            "end": 255,
+                            "label": "Rotate Mode X"
                         },
                         {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 191,
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
                             "label": "Rot >>"
                         },
                         {
-                            "begin": 192,
-                            "default": 192,
+                            "begin": 0,
+                            "default": 0,
                             "end": 255,
                             "label": "Rot <<"
                         }
                     ]
                 },
                 {
-                    "coarse": 10,
+                    "coarse": 11,
                     "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": true,
-                    "name": "X Spin",
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Rotate Mode Z",
                     "size": 8,
                     "snap": false,
                     "type": 4,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Ind"
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "Rotate Mode Z"
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 223,
+                            "label": "Rotate Mode Z"
+                        }
+                    ]
                 },
                 {
-                    "coarse": 11,
+                    "coarse": 12,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
@@ -867,37 +936,56 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Ind"
+                            "end": 255,
+                            "label": "Rotate Mode Z"
                         },
                         {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 191,
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
                             "label": "Rot >>"
                         },
                         {
-                            "begin": 192,
-                            "default": 192,
+                            "begin": 0,
+                            "default": 0,
                             "end": 255,
                             "label": "Rot <<"
                         }
                     ]
                 },
                 {
-                    "coarse": 12,
+                    "coarse": 13,
                     "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": true,
-                    "name": "Z Spin",
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Y Pos Mode",
                     "size": 8,
                     "snap": false,
                     "type": 4,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Y Pos"
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "Y Scroll Mode"
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 223,
+                            "label": "Y Scroll Mode"
+                        }
+                    ]
                 },
                 {
-                    "coarse": 13,
+                    "coarse": 14,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
@@ -910,37 +998,56 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Y Pos"
+                            "end": 255,
+                            "label": "Y Pos Mode"
                         },
                         {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 143,
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
                             "label": "Y Scroll"
                         },
                         {
-                            "begin": 144,
-                            "default": 144,
+                            "begin": 0,
+                            "default": 0,
                             "end": 255,
                             "label": "Y Scroll"
                         }
                     ]
                 },
                 {
-                    "coarse": 14,
+                    "coarse": 15,
                     "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": true,
-                    "name": "Y Pos 2",
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "X Pos Mode",
                     "size": 8,
                     "snap": false,
                     "type": 4,
-                    "ranges": []
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "X Pos"
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "X Scroll Mode"
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 223,
+                            "label": "X Scroll Mode"
+                        }
+                    ]
                 },
                 {
-                    "coarse": 15,
+                    "coarse": 16,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
@@ -953,34 +1060,22 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "X Pos"
+                            "end": 255,
+                            "label": "X Pos Mode"
                         },
                         {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 143,
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
                             "label": "X Scroll"
                         },
                         {
-                            "begin": 144,
-                            "default": 144,
+                            "begin": 0,
+                            "default": 0,
                             "end": 255,
                             "label": "X Scroll"
                         }
                     ]
-                },
-                {
-                    "coarse": 16,
-                    "fadeWithIntensity": false,
-                    "highlight": 65535,
-                    "home": 65535,
-                    "invert": true,
-                    "name": "X Pos 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
-                    "ranges": []
                 }
             ]
         }

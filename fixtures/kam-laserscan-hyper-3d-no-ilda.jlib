@@ -1,5 +1,5 @@
 {
-    "date": "2019-10-17 09:08",
+    "date": "2019-12-04 10:39",
     "editorVersion": "1.1.1.9.0.4",
     "personalities": [
         {
@@ -26,127 +26,127 @@
                             "begin": 0,
                             "default": 0,
                             "end": 0,
-                            "label": "Laser OFF"
+                            "label": "off"
                         },
                         {
                             "begin": 24,
                             "default": 24,
                             "end": 24,
-                            "label": "AUT show 8in1"
+                            "label": "AUT show 8in1 [Laser]"
                         },
                         {
                             "begin": 36,
                             "default": 36,
                             "end": 36,
-                            "label": "A3D hyper 3D effects"
+                            "label": "A3D hyper 3D effects [Laser]"
                         },
                         {
                             "begin": 48,
                             "default": 48,
                             "end": 48,
-                            "label": "AUY wide beam grating effects"
+                            "label": "AUY wide beam grating effects [Laser]"
                         },
                         {
                             "begin": 60,
                             "default": 60,
                             "end": 60,
-                            "label": "AUL northern lights effects"
+                            "label": "AUL northern lights effects [Laser]"
                         },
                         {
                             "begin": 72,
                             "default": 72,
                             "end": 72,
-                            "label": "AUN multi-grating effects"
+                            "label": "AUN multi-grating effects [Laser]"
                         },
                         {
                             "begin": 84,
                             "default": 84,
                             "end": 84,
-                            "label": "AUQ spirostar effects"
+                            "label": "AUQ spirostar effects [Laser]"
                         },
                         {
                             "begin": 96,
                             "default": 96,
                             "end": 96,
-                            "label": "AUO kaleidoscope effects"
+                            "label": "AUO kaleidoscope effects [Laser]"
                         },
                         {
                             "begin": 108,
                             "default": 108,
                             "end": 108,
-                            "label": "AUC star cluster effects"
+                            "label": "AUC star cluster effects [Laser]"
                         },
                         {
                             "begin": 120,
                             "default": 120,
                             "end": 120,
-                            "label": "AUB in-air tunnel effects"
+                            "label": "AUB in-air tunnel effects [Laser]"
                         },
                         {
                             "begin": 132,
                             "default": 132,
                             "end": 132,
-                            "label": "Mixed effect sound show 8-in-1"
+                            "label": "Mixed effect sound show 8-in-1 [Laser]"
                         },
                         {
                             "begin": 144,
                             "default": 144,
                             "end": 144,
-                            "label": "A3D hyper 3D effects#2"
+                            "label": "A3D hyper 3D effects#2 [Laser]"
                         },
                         {
                             "begin": 156,
                             "default": 156,
                             "end": 156,
-                            "label": "SOY wide beam grating effects"
+                            "label": "SOY wide beam grating effects [Laser]"
                         },
                         {
                             "begin": 168,
                             "default": 168,
                             "end": 168,
-                            "label": "SOL northern lights effects"
+                            "label": "SOL northern lights effects [Laser]"
                         },
                         {
                             "begin": 180,
                             "default": 180,
                             "end": 180,
-                            "label": "SON multi-grating effects"
+                            "label": "SON multi-grating effects [Laser]"
                         },
                         {
                             "begin": 192,
                             "default": 192,
                             "end": 192,
-                            "label": "SOQ spirostar effects"
+                            "label": "SOQ spirostar effects [Laser]"
                         },
                         {
                             "begin": 204,
                             "default": 204,
                             "end": 204,
-                            "label": "SOO kaleidoscope effects"
+                            "label": "SOO kaleidoscope effects [Laser]"
                         },
                         {
                             "begin": 216,
                             "default": 216,
                             "end": 216,
-                            "label": "SOC star cluster effects"
+                            "label": "SOC star cluster effects [Laser]"
                         },
                         {
                             "begin": 228,
                             "default": 228,
                             "end": 228,
-                            "label": "SOB in-air tunnel effects"
+                            "label": "SOB in-air tunnel effects [Laser]"
                         },
                         {
                             "begin": 239,
                             "default": 239,
                             "end": 239,
-                            "label": "DMX control only star cluster"
+                            "label": "DMX control only star cluster [Laser]"
                         },
                         {
                             "begin": 250,
                             "default": 250,
                             "end": 250,
-                            "label": "DMX control grating and pattern"
+                            "label": "DMX control grating and pattern [Laser]"
                         }
                     ]
                 },
@@ -156,11 +156,17 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "Library",
+                    "name": "Laser Group",
                     "size": 8,
                     "snap": false,
                     "type": 4,
                     "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -172,12 +178,6 @@
                             "default": 0,
                             "end": 51,
                             "label": "1 group Patterns"
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None"
                         },
                         {
                             "begin": 5,
@@ -229,7 +229,7 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "File",
+                    "name": "Laser Pattern",
                     "size": 8,
                     "snap": false,
                     "type": 4,
@@ -237,8 +237,14 @@
                         {
                             "begin": 0,
                             "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
                             "end": 7,
-                            "label": "Original [Color Pos]"
+                            "label": "off [Color Pos]"
                         },
                         {
                             "begin": 0,
@@ -247,22 +253,16 @@
                             "label": "Circle solid"
                         },
                         {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None"
-                        },
-                        {
                             "begin": 8,
                             "default": 15,
                             "end": 15,
-                            "label": "Red [Color Pos]"
+                            "label": "Color 1 [Color Pos]"
                         },
                         {
                             "begin": 16,
                             "default": 23,
                             "end": 23,
-                            "label": "Green [Color Pos]"
+                            "label": "Color 2 [Color Pos]"
                         },
                         {
                             "begin": 16,
@@ -274,13 +274,13 @@
                             "begin": 24,
                             "default": 31,
                             "end": 31,
-                            "label": "Yellow [Color Pos]"
+                            "label": "Color 3 [Color Pos]"
                         },
                         {
                             "begin": 32,
                             "default": 39,
                             "end": 39,
-                            "label": "Blue [Color Pos]"
+                            "label": "Color 4 [Color Pos]"
                         },
                         {
                             "begin": 32,
@@ -292,13 +292,13 @@
                             "begin": 40,
                             "default": 47,
                             "end": 47,
-                            "label": "Purple [Color Pos]"
+                            "label": "Color 5 [Color Pos]"
                         },
                         {
                             "begin": 48,
                             "default": 55,
                             "end": 55,
-                            "label": "Cyan [Color Pos]"
+                            "label": "Color 6 [Color Pos]"
                         },
                         {
                             "begin": 48,
@@ -310,13 +310,13 @@
                             "begin": 56,
                             "default": 63,
                             "end": 63,
-                            "label": "White [Color Pos]"
+                            "label": "Color 7 [Color Pos]"
                         },
                         {
                             "begin": 64,
                             "default": 64,
                             "end": 111,
-                            "label": "Single Color change [Color Pos]"
+                            "label": "Color 8 [Color Pos]"
                         },
                         {
                             "begin": 64,
@@ -340,7 +340,7 @@
                             "begin": 112,
                             "default": 112,
                             "end": 159,
-                            "label": "Color jumping [Color Pos]"
+                            "label": "Color 9 [Color Pos]"
                         },
                         {
                             "begin": 112,
@@ -364,7 +364,7 @@
                             "begin": 160,
                             "default": 160,
                             "end": 207,
-                            "label": "Color moving [Color Pos]"
+                            "label": "Color 10 [Color Pos]"
                         },
                         {
                             "begin": 160,
@@ -388,7 +388,7 @@
                             "begin": 208,
                             "default": 208,
                             "end": 255,
-                            "label": "Strobing [Color Pos]"
+                            "label": "Color 11 [Color Pos]"
                         },
                         {
                             "begin": 208,
@@ -411,28 +411,16 @@
                     ]
                 },
                 {
-                    "coarse": 3,
+                    "coarse": 9,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "FX 2",
+                    "name": "Rotate Mode Y",
                     "size": 8,
                     "snap": false,
                     "type": 4,
                     "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 127,
-                            "label": "Ind 1"
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 31,
-                            "label": "Hyper 3D effect"
-                        },
                         {
                             "begin": 0,
                             "default": 0,
@@ -440,109 +428,11 @@
                             "label": "None"
                         },
                         {
-                            "begin": 32,
-                            "default": 63,
-                            "end": 63,
-                            "label": "Wide beam"
-                        },
-                        {
-                            "begin": 64,
-                            "default": 95,
-                            "end": 95,
-                            "label": "Northern lights"
-                        },
-                        {
-                            "begin": 96,
-                            "default": 127,
-                            "end": 127,
-                            "label": "Multi grating"
-                        },
-                        {
-                            "begin": 128,
-                            "default": 255,
-                            "end": 255,
-                            "label": "X shake"
-                        },
-                        {
-                            "begin": 128,
-                            "default": 159,
-                            "end": 159,
-                            "label": "Spirostar"
-                        },
-                        {
-                            "begin": 160,
-                            "default": 191,
-                            "end": 191,
-                            "label": "Kaleidoscope"
-                        },
-                        {
-                            "begin": 192,
-                            "default": 255,
-                            "end": 255,
-                            "label": "Flat beam and air tunnel"
-                        }
-                    ]
-                },
-                {
-                    "coarse": 4,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "FX",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "Rotate Shake X"
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 4,
-                            "label": "No grating rotation"
-                        },
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
                             "label": "None"
                         },
-                        {
-                            "begin": 5,
-                            "default": 5,
-                            "end": 127,
-                            "label": "Anti clockwise grating rotation [FX Rate]"
-                        },
-                        {
-                            "begin": 128,
-                            "default": 133,
-                            "end": 133,
-                            "label": "No grating rotation"
-                        },
-                        {
-                            "begin": 134,
-                            "default": 134,
-                            "end": 255,
-                            "label": "Clockwise grating rotation [FX Rate]"
-                        }
-                    ]
-                },
-                {
-                    "coarse": 5,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Color",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
-                    "ranges": [
                         {
                             "begin": 0,
                             "default": 0,
@@ -550,198 +440,21 @@
                             "label": "Ind"
                         },
                         {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 7,
-                            "label": "Original [Color Pos]"
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None"
-                        },
-                        {
-                            "begin": 8,
-                            "default": 15,
-                            "end": 15,
-                            "label": "Red [Color Pos]"
-                        },
-                        {
-                            "begin": 16,
-                            "default": 23,
-                            "end": 23,
-                            "label": "Green [Color Pos]"
-                        },
-                        {
-                            "begin": 24,
-                            "default": 31,
-                            "end": 31,
-                            "label": "Yellow [Color Pos]"
-                        },
-                        {
-                            "begin": 32,
-                            "default": 39,
-                            "end": 39,
-                            "label": "Blue [Color Pos]"
-                        },
-                        {
-                            "begin": 40,
-                            "default": 47,
-                            "end": 47,
-                            "label": "Purple [Color Pos]"
-                        },
-                        {
-                            "begin": 48,
-                            "default": 55,
-                            "end": 55,
-                            "label": "Cyan [Color Pos]"
-                        },
-                        {
-                            "begin": 56,
-                            "default": 63,
-                            "end": 63,
-                            "label": "White [Color Pos]"
-                        },
-                        {
-                            "begin": 64,
-                            "default": 64,
-                            "end": 111,
-                            "label": "Single Color change [Color Pos]"
-                        },
-                        {
-                            "begin": 112,
-                            "default": 112,
-                            "end": 159,
-                            "label": "Color jumping [Color Pos]"
-                        },
-                        {
                             "begin": 128,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rotate Mode Y"
+                        },
+                        {
+                            "begin": 192,
                             "default": 255,
                             "end": 255,
-                            "label": "Y shake"
-                        },
-                        {
-                            "begin": 160,
-                            "default": 160,
-                            "end": 207,
-                            "label": "Color moving [Color Pos]"
-                        },
-                        {
-                            "begin": 208,
-                            "default": 208,
-                            "end": 255,
-                            "label": "Strobing [Color Pos]"
+                            "label": "Rotate Mode Y"
                         }
                     ]
                 },
                 {
-                    "coarse": 6,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Scale",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "Rotate Shake Y"
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 127,
-                            "label": "Scale"
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None"
-                        },
-                        {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 255,
-                            "label": "Scale Pulse"
-                        }
-                    ]
-                },
-                {
-                    "coarse": 7,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Zoom",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 127,
-                            "label": "Zoom"
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None"
-                        },
-                        {
-                            "begin": 128,
-                            "default": 148,
-                            "end": 169,
-                            "label": "Zoom C Pulse"
-                        },
-                        {
-                            "begin": 170,
-                            "default": 170,
-                            "end": 209,
-                            "label": "Zoom O Pulse"
-                        },
-                        {
-                            "begin": 210,
-                            "default": 210,
-                            "end": 255,
-                            "label": "Zoom Pulse"
-                        }
-                    ]
-                },
-                {
-                    "coarse": 8,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Zoom Speed",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "Zoom"
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None"
-                        }
-                    ]
-                },
-                {
-                    "coarse": 9,
+                    "coarse": 10,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
@@ -754,8 +467,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Ind"
+                            "end": 255,
+                            "label": "None"
                         },
                         {
                             "begin": 0,
@@ -764,26 +477,20 @@
                             "label": "None"
                         },
                         {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 191,
-                            "label": "Rot >>"
-                        },
-                        {
-                            "begin": 192,
-                            "default": 192,
+                            "begin": 0,
+                            "default": 0,
                             "end": 255,
-                            "label": "Rot <<"
+                            "label": "Rotate Mode Y"
                         }
                     ]
                 },
                 {
-                    "coarse": 10,
+                    "coarse": 11,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "Y Spin",
+                    "name": "Rotate Mode X",
                     "size": 8,
                     "snap": false,
                     "type": 4,
@@ -792,18 +499,36 @@
                             "begin": 0,
                             "default": 0,
                             "end": 255,
-                            "label": "Y Spin"
+                            "label": "None"
                         },
                         {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
                             "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Ind"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rotate Mode X"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Rotate Mode X"
                         }
                     ]
                 },
                 {
-                    "coarse": 11,
+                    "coarse": 12,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
@@ -816,8 +541,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Ind"
+                            "end": 255,
+                            "label": "None"
                         },
                         {
                             "begin": 0,
@@ -826,26 +551,20 @@
                             "label": "None"
                         },
                         {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 191,
-                            "label": "Rot >>"
-                        },
-                        {
-                            "begin": 192,
-                            "default": 192,
+                            "begin": 0,
+                            "default": 0,
                             "end": 255,
-                            "label": "Rot <<"
+                            "label": "Rotate Mode X"
                         }
                     ]
                 },
                 {
-                    "coarse": 12,
+                    "coarse": 13,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "X Spin",
+                    "name": "Rotate Mode Z",
                     "size": 8,
                     "snap": false,
                     "type": 4,
@@ -854,18 +573,36 @@
                             "begin": 0,
                             "default": 0,
                             "end": 255,
-                            "label": "X Spin"
+                            "label": "None"
                         },
                         {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
                             "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Ind"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rotate Mode Z"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Rotate Mode Z"
                         }
                     ]
                 },
                 {
-                    "coarse": 13,
+                    "coarse": 14,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
@@ -878,8 +615,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Ind"
+                            "end": 255,
+                            "label": "None"
                         },
                         {
                             "begin": 0,
@@ -888,41 +625,10 @@
                             "label": "None"
                         },
                         {
-                            "begin": 128,
-                            "default": 128,
-                            "end": 191,
-                            "label": "Rot >>"
-                        },
-                        {
-                            "begin": 192,
-                            "default": 192,
-                            "end": 255,
-                            "label": "Rot <<"
-                        }
-                    ]
-                },
-                {
-                    "coarse": 14,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "Z Spin",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
-                    "ranges": [
-                        {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
-                            "label": "Z Spin"
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None"
+                            "label": "Rotate Mode Z"
                         }
                     ]
                 },
@@ -932,7 +638,7 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "X Pos",
+                    "name": "Y Pos Mode",
                     "size": 8,
                     "snap": false,
                     "type": 4,
@@ -940,8 +646,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "X Pos"
+                            "end": 255,
+                            "label": "None"
                         },
                         {
                             "begin": 0,
@@ -950,46 +656,27 @@
                             "label": "None"
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Y Pos"
+                        },
+                        {
                             "begin": 128,
-                            "default": 128,
+                            "default": 191,
                             "end": 191,
-                            "label": "X Scroll"
+                            "label": "Rolling and Morphing Effect 1"
                         },
                         {
                             "begin": 192,
-                            "default": 192,
+                            "default": 255,
                             "end": 255,
-                            "label": "X Scroll"
+                            "label": "Rolling and Morphing Effect 2"
                         }
                     ]
                 },
                 {
                     "coarse": 16,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "X Pos 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "X Scroll"
-                        },
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 255,
-                            "label": "None"
-                        }
-                    ]
-                },
-                {
-                    "coarse": 17,
                     "fadeWithIntensity": false,
                     "highlight": 0,
                     "home": 0,
@@ -1002,8 +689,8 @@
                         {
                             "begin": 0,
                             "default": 0,
-                            "end": 127,
-                            "label": "Y Pos"
+                            "end": 255,
+                            "label": "None"
                         },
                         {
                             "begin": 0,
@@ -1012,16 +699,53 @@
                             "label": "None"
                         },
                         {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Y Pos Mode"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "X Pos Mode",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "X Pos"
+                        },
+                        {
                             "begin": 128,
-                            "default": 128,
+                            "default": 191,
                             "end": 191,
-                            "label": "Y Scroll"
+                            "label": "Rolling and Morphing Effect 1"
                         },
                         {
                             "begin": 192,
-                            "default": 192,
+                            "default": 255,
                             "end": 255,
-                            "label": "Y Scroll"
+                            "label": "Rolling and Morphing Effect 2"
                         }
                     ]
                 },
@@ -1031,7 +755,7 @@
                     "highlight": 0,
                     "home": 0,
                     "invert": false,
-                    "name": "Y Pos 2",
+                    "name": "X Pos",
                     "size": 8,
                     "snap": false,
                     "type": 4,
@@ -1040,13 +764,19 @@
                             "begin": 0,
                             "default": 0,
                             "end": 255,
-                            "label": "Y Scroll"
+                            "label": "None"
                         },
                         {
                             "begin": 0,
                             "default": 0,
                             "end": 255,
                             "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "X Pos Mode"
                         }
                     ]
                 }
