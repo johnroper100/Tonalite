@@ -1003,6 +1003,7 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
 
 function calculateStack() {
     // If there is a running cue
+    var somethingRunning = false;
     if (currentCue != "") {
         // Get the current cue
         cue = cues[cues.map(el => el.id).indexOf(currentCue)];
@@ -1108,7 +1109,7 @@ function calculateStack() {
             io.emit('activeCue', currentCueID);
             io.emit('cues', cleanCues());
         }
-        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+        somethingRunning = true;
     }
     let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
         if (sequences[s].active == true) {
@@ -1118,7 +1119,7 @@ function calculateStack() {
                 channels = calculateCue(step, sequence.includeIntensityColor, sequence.includePosition, sequence.includeBeam, sequence.ids);
                 step.upStep -= 1;
                 step.downStep -= 1;
-                // Check if the cue needs to be followed by another cue
+                // Check if the sequence step needs to be followed by another step
                 if (step.upStep < 0 && step.downStep < 0) {
                     step.active = false;
                     if (step.following === false) {
@@ -1138,6 +1139,7 @@ function calculateStack() {
                         sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.currentStep)].active = true;
                         sequence.currentStepID = sequence.currentStep;
                     }
+                    io.emit('sequences', { sequences: cleanSequences(), target: true });
                     var startFixtureParameters = null;
                     // Set the fixture's display and real values to the correct values from the cue
                     let f = 0; const fMax = step.fixtures.length; for (; f < fMax; f++) {
@@ -1192,13 +1194,11 @@ function calculateStack() {
                         }
                     }
                 }
-                io.emit('sequences', { sequences: cleanSequences(), target: true });
-                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                somethingRunning = true;
             }
         }
     }
     if (blackout === false) {
-        var displayChanged = false;
         var effectChanIndex = null;
         var effectValue = null;
         var invert = null;
@@ -1218,7 +1218,9 @@ function calculateStack() {
                                 effectValue = (effectValue * fixtures[f].effects[e].depth) + ((fixtures[f].parameters[p].value >> 8) * (1 - fixtures[f].effects[e].depth));
                                 if (SETTINGS.displayEffectsRealtime === true) {
                                     fixtures[f].parameters[p].displayValue = cppaddon.mapRange(effectValue, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 100);
-                                    displayChanged = true;
+                                    if (SETTINGS.displayEffectsRealtime === true) {
+                                        somethingRunning = true;
+                                    }
                                 }
                                 if (fixtures[f].parameters[p].fadeWithIntensity == true || fixtures[f].parameters[p].type == 1) {
                                     effectValue = (effectValue / 100.0) * grandmaster;
@@ -1279,11 +1281,9 @@ function calculateStack() {
                 }
             }
         }
-        if (SETTINGS.displayEffectsRealtime === true) {
-            if (displayChanged === true) {
-                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-            }
-        }
+    }
+    if (somethingRunning === true) {
+        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
     }
     let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
         if (presets[p].active) {
