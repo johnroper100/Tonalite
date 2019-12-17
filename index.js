@@ -1004,6 +1004,7 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
 function calculateStack() {
     // If there is a running cue
     var somethingRunning = false;
+    var sequencesChanged = false;
     if (currentCue != "") {
         // Get the current cue
         cue = cues[cues.map(el => el.id).indexOf(currentCue)];
@@ -1017,6 +1018,7 @@ function calculateStack() {
                     startSequence.currentStepID = startSequence.steps[0].id;
                     startSequence.steps[0].active = true;
                 }
+                sequencesChanged = true;
             } else if (startSequence.active == true && cue.sequences[s].active == false) {
                 startSequence.active = cue.sequences[s].active;
                 startSequence.currentStep = "";
@@ -1024,9 +1026,9 @@ function calculateStack() {
                 let st = 0; const stMax = startSequence.steps.length; for (; st < stMax; st++) {
                     startSequence.steps[st].active = false;
                 }
+                sequencesChanged = true;
             }
         }
-        io.emit('sequences', { sequences: cleanSequences(), target: true });
         cue.upStep -= 1;
         cue.downStep -= 1;
         // Check if the cue needs to be followed by another cue
@@ -1139,7 +1141,7 @@ function calculateStack() {
                         sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.currentStep)].active = true;
                         sequence.currentStepID = sequence.currentStep;
                     }
-                    io.emit('sequences', { sequences: cleanSequences(), target: true });
+                    sequencesChanged = true;
                     var startFixtureParameters = null;
                     // Set the fixture's display and real values to the correct values from the cue
                     let f = 0; const fMax = step.fixtures.length; for (; f < fMax; f++) {
@@ -1284,6 +1286,9 @@ function calculateStack() {
     }
     if (somethingRunning === true) {
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+    }
+    if (sequencesChanged === true) {
+        io.emit('sequences', { sequences: cleanSequences(), target: true });
     }
     let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
         if (presets[p].active) {
