@@ -231,9 +231,8 @@ async function saveShowToUSB(showName, callback) {
 };
 
 function logError(msg) {
-    var datetime = new Date();
-    fs.writeFile('error-' + datetime + '.txt', msg, (err) => {
-        if (err) logError(err);
+    fs.writeFile('error-' + new Date() + '.txt', msg, (err) => {
+        if (err) console.log(err);
     });
 };
 
@@ -1803,6 +1802,39 @@ io.on('connection', function (socket) {
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
+    });
+
+    socket.on('addColorPalette', function (msg) {
+        if (msg.type == 'fixture') {
+            var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
+            var pan = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Pan")];
+        }
+        if (pan == null) {
+            pan = 0;
+        } else {
+            pan = pan.value;
+        }
+        var palette = {
+            color: "",
+            name: msg.name,
+            parameters: [
+                {
+                    name: "Red",
+                    value: pan
+                },
+                {
+                    name: "Green",
+                    value: pan
+                },
+                {
+                    name: "Blue",
+                    value: pan
+                }
+            ]
+        }
+        colorPalettes.push(palette);
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        saveShow();
     });
 
     socket.on('addPositionPalette', function (msg) {
