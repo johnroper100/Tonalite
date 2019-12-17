@@ -13,6 +13,7 @@ const unzipper = require('unzipper');
 require('sanic.js').changeMyWorld();
 const cppaddon = require('./build/Release/cppaddon.node');
 const QRCode = require('qrcode');
+const rgbHex = require('rgb-hex');
 
 var SETTINGS = {
     device: "linux", // linux, rpi, win, macos
@@ -1804,31 +1805,69 @@ io.on('connection', function (socket) {
         }
     });
 
+    function blendColors(baseColor, inR, inG, inB, blend) {
+        var base = baseColor;
+        var mr = inR * blend + base[0] * (1 - blend);
+        var mg = inG * blend + base[1] * (1 - blend);
+        var mb = inB * blend + base[2] * (1 - blend);
+        base[0] = mr * 255.0;
+        base[1] = mg * 255.0;
+        base[2] = mb * 255.0;
+        return base;
+    }
     socket.on('addColorPalette', function (msg) {
         if (msg.type == 'fixture') {
             var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
-            var pan = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Pan")];
+            var red = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Red")];
+            var green = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Green")];
+            var blue = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Blue")];
+            var white = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("White")];
+            var amber = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Amber")];
+            var lime = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Lime")];
+            var indigo = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Indigo")];
+            var cyan = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Cyan")];
+            var magenta = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Magenta")];
+            var yellow = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Yellow")];
         }
-        if (pan == null) {
-            pan = 0;
-        } else {
-            pan = pan.value;
+        var finalColor = [255, 255, 255];
+        if (red != null && green != null && blue != null) {
+            finalColor[0] = cppaddon.mapRange(red.value, 0, 65535, 0, 255);
+            finalColor[1] = cppaddon.mapRange(green.value, 0, 65535, 0, 255);
+            finalColor[2] = cppaddon.mapRange(blue.value, 0, 65535, 0, 255);
         }
+        if (cyan != null && magenta != null && yellow != null) {
+            finalColor[0] = cppaddon.mapRange(cyan.value, 0, 65535, 0, 255);
+            finalColor[1] = cppaddon.mapRange(magenta.value, 0, 65535, 0, 255);
+            finalColor[2] = cppaddon.mapRange(yellow.value, 0, 65535, 0, 255);
+        }
+        if (white != null) {
+            finalColor = blendColors(finalColor, 255 / 255.0, 255 / 255.0, 255 / 255.0, cppaddon.mapRange(white.value, 0, 65535, 0, 255) / 255.0);
+        }
+        if (amber != null) {
+            finalColor = blendColors(finalColor, 255 / 255.0, 126 / 255.0, 0 / 255.0, cppaddon.mapRange(amber.value, 0, 65535, 0, 255) / 255.0);
+        }
+        if (lime != null) {
+            finalColor = blendColors(finalColor, 173 / 255.0, 255 / 255.0, 47 / 255.0, cppaddon.mapRange(lime.value, 0, 65535, 0, 255) / 255.0);
+        }
+        if (indigo != null) {
+            finalColor = blendColors(finalColor, 75 / 255.0, 0 / 255.0, 130 / 255.0, cppaddon.mapRange(indigo.value, 0, 65535, 0, 255) / 255.0);
+        }
+        console.log(finalColor);
         var palette = {
-            color: "",
+            color: "#" + rgbHex(finalColor[0], finalColor[1], finalColor[2]),
             name: msg.name,
             parameters: [
                 {
                     name: "Red",
-                    value: pan
+                    value: finalColor[0]
                 },
                 {
                     name: "Green",
-                    value: pan
+                    value: finalColor[1]
                 },
                 {
                     name: "Blue",
-                    value: pan
+                    value: finalColor[2]
                 }
             ]
         }

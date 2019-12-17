@@ -46,7 +46,7 @@ var app = new Vue({
         fixtureProfilesManufacturer: "",
         fixtureProfilesModel: "",
         settingsModalTab: "ui",
-        addPositionPaletteName: "",
+        addPaletteName: "",
         removePositionPalette: false,
         removeColorPalette: false,
         keyboardVisible: false,
@@ -505,8 +505,12 @@ var app = new Vue({
             $('#addPresetModal').modal("show");
         },
         addPositionPaletteModal: function () {
-            app.addPositionPaletteName = "";
+            app.addPaletteName = "";
             $('#addPositionPaletteModal').modal("show");
+        },
+        addColorPaletteModal: function () {
+            app.addPaletteName = "";
+            $('#addColorPaletteModal').modal("show");
         },
         addGroup: function () {
             var list = [];
@@ -528,13 +532,20 @@ var app = new Vue({
         },
         addPositionPalette: function () {
             if (app.currentView == 'fixtureParameters' && app.isEmpty(app.currentFixture) == false) {
-                socket.emit('addPositionPalette', { type: 'fixture', id: app.currentFixture.id, name: app.addPositionPaletteName });
+                socket.emit('addPositionPalette', { type: 'fixture', id: app.currentFixture.id, name: app.addPaletteName });
             }
             if (app.currentView == 'groupParameters' && app.isEmpty(app.currentGroup) == false) {
-                socket.emit('addPositionPalette', { type: 'group', id: app.currentGroup.id, name: app.addPositionPaletteName });
+                socket.emit('addPositionPalette', { type: 'group', id: app.currentGroup.id, name: app.addPaletteName });
             }
-            app.addPositionPaletteName = "";
+            app.addPaletteName = "";
             $('#addPositionPaletteModal').modal("hide");
+        },
+        addColorPalette: function () {
+            if (app.currentView == 'fixtureParameters' && app.isEmpty(app.currentFixture) == false) {
+                socket.emit('addColorPalette', { type: 'fixture', id: app.currentFixture.id, name: app.addPaletteName });
+            }
+            app.addPaletteName = "";
+            $('#addColorPaletteModal').modal("hide");
         },
         getGroupSettings: function () {
             app.getGroupFixtures(app.currentGroup.id);

@@ -309,7 +309,7 @@
                         </div>
                         <!-- Remove length check when you can add color palettes -->
                         <div
-                            v-if="colorPalettes.length > 0 && currentFixture.parameterTypes.indexOf('Color') >= 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
+                            v-if="currentFixture.parameterTypes.indexOf('Color') >= 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
                             <div class="fixturePalettes">
                                 <h5>Fixture Color Palettes:</h5>
                                 <div v-for="(palette, id) in colorPalettes" :key="id"
@@ -318,14 +318,14 @@
                                     @click="useFixtureColorPalette(id)"
                                     :class="{'pulse': removeColorPalette == true, 'redOutline': removeColorPalette == true}">
                                     {{palette.name}}</div>
-                                <!--
-                                <div v-if="removeColorPalette == false" class="fixturePalette d-inline-block mr-2 text-center"
-                                    v-bind:style="{ backgroundColor: 'gray' }"><i class="far fa-plus mt-3"></i></div>
+                                <div v-if="removeColorPalette == false"
+                                    class="fixturePalette d-inline-block mr-2 text-center"
+                                    v-bind:style="{ backgroundColor: 'gray' }" @click="addColorPaletteModal"><i
+                                        class="far fa-plus mt-3"></i></div>
                                 <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
                                     @click="removeColorPalette=!removeColorPalette"><i
                                         class="far fa-trash-alt mt-3"></i>
                                 </div>
-                                -->
                             </div>
                         </div>
                         <div
@@ -1581,10 +1581,24 @@
                         <div class="form-group">
                             <label class="dark mr-2" for="positionPaletteName">Position palette name:</label>
                             <input type="text" class="form-control" placeholder="Name here" id="positionPaletteName"
-                                v-model="addPositionPaletteName" maxlength="10" @focus="showKeyboard"
-                                data-layout="compact">
+                                v-model="addPaletteName" maxlength="10" @focus="showKeyboard" data-layout="compact">
                         </div>
                         <button class="btn btn-success btn-full" @click="addPositionPalette">Add Position
+                            Palette</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="addColorPaletteModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="dark mr-2" for="colorPaletteName">Color palette name:</label>
+                            <input type="text" class="form-control" placeholder="Name here" id="colorPaletteName"
+                                v-model="addPaletteName" maxlength="10" @focus="showKeyboard" data-layout="compact">
+                        </div>
+                        <button class="btn btn-success btn-full" @click="addColorPalette">Add Color
                             Palette</button>
                     </div>
                 </div>
