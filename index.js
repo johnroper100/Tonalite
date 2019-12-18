@@ -1420,6 +1420,7 @@ function openShow(file = "show.json") {
         io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('presets', cleanPresets());
+        io.emit('cueActionBtn', false);
         savePresets();
     });
 };
@@ -2313,6 +2314,7 @@ io.on('connection', function (socket) {
             resetFixtures(false);
             currentCue = "";
             currentCueID = ""; // maybe remove?
+            io.emit('cueActionBtn', false);
             io.emit('activeCue', currentCueID);
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Fixture values have been reset!" });
@@ -2326,6 +2328,7 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             resetFixturesIntensity();
             currentCue = "";
+            io.emit('cueActionBtn', false);
             io.emit('activeCue', currentCueID);
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Fixture values have been reset!" });
@@ -2464,6 +2467,7 @@ io.on('connection', function (socket) {
                 follow: -1,
                 upStep: SETTINGS.defaultUpTime * FPS,
                 downStep: SETTINGS.defaultDownTime * FPS,
+                progress: 0,
                 active: false,
                 following: false,
                 fixtures: cleanFixturesForCue(),
@@ -2484,6 +2488,7 @@ io.on('connection', function (socket) {
             lastCue = newCue.id;
             currentCueID = lastCue;
             io.emit('activeCue', currentCueID);
+            io.emit('cueActionBtn', false);
             io.emit('cues', cleanCues());
             saveShow();
         } else {
@@ -2510,6 +2515,7 @@ io.on('connection', function (socket) {
                 currentCueID = lastCue;
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
+                io.emit('cueActionBtn', false);
                 socket.emit('message', { type: "info", content: "Cue parameters have been updated!" });
                 saveShow();
             } else {
