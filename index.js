@@ -55,6 +55,7 @@ var presets = [];
 var colorPalettes = JSON.parse(JSON.stringify(require(process.cwd() + "/colorPalettes.json")));;
 var positionPalettes = [];
 var currentCue = "";
+var cueProgress = 0;
 var lastCue = "";
 var currentCueID = "";
 var blackout = false;
@@ -1031,6 +1032,7 @@ function calculateStack() {
         }
         cue.upStep -= 1;
         cue.downStep -= 1;
+        cueProgress += 1;
         // Check if the cue needs to be followed by another cue
         if (cue.upStep < 0 && cue.downStep < 0) {
             if (cue.follow != -1) {
@@ -1044,8 +1046,10 @@ function calculateStack() {
                     cue.downStep = cue.downTime * FPS;
                     cue.following = false;
                     if (cues.map(el => el.id).indexOf(currentCue) === cues.length - 1) {
+                        cueProgress = 0;
                         currentCue = cues[0].id;
                     } else {
+                        cueProgress = 0;
                         currentCue = cues[cues.map(el => el.id).indexOf(currentCue) + 1].id;
                     }
                     lastCue = currentCue;
@@ -1112,6 +1116,11 @@ function calculateStack() {
             io.emit('cues', cleanCues());
         }
         somethingRunning = true;
+        if (cue.upTime > cue.downTime) {
+            io.emit('cueProgress', cueProgress / ((cue.upTime * FPS) + 1));
+        } else {
+            io.emit('cueProgress', cueProgress / ((cue.downTime * FPS) + 1));
+        }
     }
     let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
         if (sequences[s].active == true) {
@@ -1399,6 +1408,7 @@ function openShow(file = "show.json") {
         positionPalettes = show.positionPalettes;
         lastCue = "";
         currentCue = "";
+        cueProgress = 0;
         currentCueID = "";
         var changed = false;
         let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
@@ -1421,6 +1431,7 @@ function openShow(file = "show.json") {
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('presets', cleanPresets());
         io.emit('cueActionBtn', false);
+        io.emit('cueProgress', cueProgress);
         savePresets();
     });
 };
@@ -1537,6 +1548,7 @@ io.on('connection', function (socket) {
     socket.emit('grandmaster', grandmaster);
     socket.emit('activeCue', currentCueID);
     socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+    socket.emit('cueProgress', cueProgress);
 
     QRCode.toDataURL(`http://${SETTINGS.url}:${SETTINGS.port}`, function (err, url) {
         socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `http://${SETTINGS.url}:${SETTINGS.port}` });
@@ -1575,6 +1587,7 @@ io.on('connection', function (socket) {
         currentCue = "";
         currentCueID = "";
         lastCue = "";
+        cueProgress = 0;
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
@@ -1583,6 +1596,7 @@ io.on('connection', function (socket) {
         io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('resetView', { type: 'show', eid: "" });
         io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('cueProgress', cueProgress);
         io.emit('message', { type: "info", content: "A new show has been created!" });
         saveShow();
     });
@@ -1597,6 +1611,7 @@ io.on('connection', function (socket) {
         colorPalettes = JSON.parse(JSON.stringify(require(process.cwd() + "/colorPalettes.json")));
         positionPalettes = [];
         currentCue = "";
+        cueProgress = 0;
         currentCueID = "";
         lastCue = "";
         let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
@@ -1611,6 +1626,7 @@ io.on('connection', function (socket) {
         io.emit('cueActionBtn', false);
         io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
         io.emit('resetView', { type: 'show', eid: "" });
+        io.emit('cueProgress', cueProgress);
         io.emit('message', { type: "info", content: "A new show has been created!" });
         saveShow();
         savePresets();
@@ -1841,22 +1857,22 @@ io.on('connection', function (socket) {
             finalColor[1] = cppaddon.mapRange(magenta.value, 0, 65535, 0, 255);
             finalColor[2] = cppaddon.mapRange(yellow.value, 0, 65535, 0, 255);
         }
-        console.log("rgb"+finalColor);
+        console.log("rgb" + finalColor);
         if (white != null) {
             finalColor = blendColors(finalColor, 255 / 255.0, 255 / 255.0, 255 / 255.0, cppaddon.mapRange(white.value, 0, 65535, 0, 255) / 255.0);
-            console.log("white"+finalColor);
+            console.log("white" + finalColor);
         }
         if (amber != null) {
             finalColor = blendColors(finalColor, 255 / 255.0, 126 / 255.0, 0 / 255.0, cppaddon.mapRange(amber.value, 0, 65535, 0, 255) / 255.0);
-            console.log("amber"+finalColor);
+            console.log("amber" + finalColor);
         }
         if (lime != null) {
             finalColor = blendColors(finalColor, 173 / 255.0, 255 / 255.0, 47 / 255.0, cppaddon.mapRange(lime.value, 0, 65535, 0, 255) / 255.0);
-            console.log("lime"+finalColor);
+            console.log("lime" + finalColor);
         }
         if (indigo != null) {
             finalColor = blendColors(finalColor, 75 / 255.0, 0 / 255.0, 130 / 255.0, cppaddon.mapRange(indigo.value, 0, 65535, 0, 255) / 255.0);
-            console.log("indigo"+finalColor);
+            console.log("indigo" + finalColor);
         }
         console.log(finalColor);
         var palette = {
@@ -2313,7 +2329,6 @@ io.on('connection', function (socket) {
         if (fixtures.length != 0) {
             resetFixtures(false);
             currentCue = "";
-            currentCueID = ""; // maybe remove?
             io.emit('cueActionBtn', false);
             io.emit('activeCue', currentCueID);
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
@@ -2467,7 +2482,6 @@ io.on('connection', function (socket) {
                 follow: -1,
                 upStep: SETTINGS.defaultUpTime * FPS,
                 downStep: SETTINGS.defaultDownTime * FPS,
-                progress: 0,
                 active: false,
                 following: false,
                 fixtures: cleanFixturesForCue(),
@@ -2487,6 +2501,8 @@ io.on('connection', function (socket) {
             }
             lastCue = newCue.id;
             currentCueID = lastCue;
+            cueProgress = 100;
+            io.emit('cueProgress', cueProgress);
             io.emit('activeCue', currentCueID);
             io.emit('cueActionBtn', false);
             io.emit('cues', cleanCues());
@@ -2504,6 +2520,7 @@ io.on('connection', function (socket) {
                 cue.sequences = cleanSequencesForCue();
                 cue.groups = cleanGroupsForCue();
                 currentCue = "";
+                cueProgress = 100;
                 if (lastCue != "") {
                     cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
                     cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
@@ -2513,6 +2530,7 @@ io.on('connection', function (socket) {
                 lastCue = cue.id;
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
                 currentCueID = lastCue;
+                io.emit('cueProgress', cueProgress);
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 io.emit('cueActionBtn', false);
@@ -2621,9 +2639,10 @@ io.on('connection', function (socket) {
                 cues.splice(cues.map(el => el.id).indexOf(cueID), 1);
                 if (currentCue == cueID || lastCue == cueID) {
                     lastCue = "";
+                    cueProgress = 0;
+                    io.emit('cueProgress', cueProgress);
                     currentCueID = lastCue;
                     currentCue = lastCue;
-                    io.emit('cueActionBtn', false);
                 }
                 io.emit('resetView', { type: 'cues', eid: cueID });
                 socket.emit('message', { type: "info", content: "Cue has been removed!" });
@@ -2662,6 +2681,8 @@ io.on('connection', function (socket) {
                     }
                 }
             }
+            cueProgress = 0;
+            io.emit('cueProgress', cueProgress);
             currentCue = lastCue;
             cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
             currentCueID = lastCue;
@@ -2697,6 +2718,8 @@ io.on('connection', function (socket) {
                     }
                 }
             }
+            cueProgress = 0;
+            io.emit('cueProgress', cueProgress);
             currentCue = lastCue;
             cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
             currentCueID = lastCue;
@@ -2751,6 +2774,8 @@ io.on('connection', function (socket) {
                     }
                 }
                 lastCue = cues[cues.map(el => el.id).indexOf(cueID)].id;
+                cueProgress = 0;
+                io.emit('cueProgress', cueProgress);
                 currentCue = lastCue;
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
                 currentCueID = lastCue;
@@ -2784,6 +2809,8 @@ io.on('connection', function (socket) {
                     }
                 }
                 lastCue = cues[cues.map(el => el.id).indexOf(cueID)].id;
+                cueProgress = 0;
+                io.emit('cueProgress', cueProgress);
                 currentCue = lastCue;
                 cues[cues.map(el => el.id).indexOf(lastCue)].upStep = 0;
                 cues[cues.map(el => el.id).indexOf(lastCue)].downStep = 0;

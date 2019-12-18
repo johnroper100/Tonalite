@@ -55,7 +55,8 @@ var app = new Vue({
         keyboardOptions: {
             useKbEvents: true,
             preventClickEvent: false
-        }
+        },
+        cueProgress: 0
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -794,6 +795,7 @@ socket.on('connect', function () {
     app.fixtureProfilesManufacturer = "";
     app.fixtureProfilesModel = "";
     app.keyboardVisible = false;
+    app.cueProgress = 0;
     $('#openFixtureDefinitionModal').modal("hide");
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
@@ -821,6 +823,10 @@ socket.on('connect_error', function () {
 socket.on('palettes', function (msg) {
     app.colorPalettes = msg.colorPalettes;
     app.positionPalettes = msg.positionPalettes;
+});
+
+socket.on('cueProgress', function (msg) {
+    app.cueProgress = msg;
 });
 
 socket.on('shows', function (msg) {
