@@ -85,7 +85,7 @@
                         :class="{'text-warning': cues[cues.map(el => el.id).indexOf(activeCue)].active}">{{cues[cues.map(el => el.id).indexOf(activeCue)].name}}</span>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" :style="{'width': cueProgress*100+'%'}"
-                            v-bind:aria-valuenow="cueProgress*100" aria-valuemin="0" aria-valuemax="100"></div>
+                            v-bind:aria-valuenow="cueProgress*100" aria-valuemin="0" aria-valuemax="100">{{cueProgress*100}}%</div>
                     </div>
                 </div>
             </div>

@@ -826,7 +826,7 @@ socket.on('palettes', function (msg) {
 });
 
 socket.on('cueProgress', function (msg) {
-    app.cueProgress = msg;
+    app.cueProgress = Math.round(msg * 10) / 10;
 });
 
 socket.on('shows', function (msg) {
