@@ -2945,6 +2945,46 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('addFixturesToGroup', function (msg) {
+        if (fixtures.length > 0) {
+            if (groups.length > 0) {
+                if (msg.fixtures.length > 0) {
+                    if (groups.some(e => e.id === msg.id)) {
+                        var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                        let f = 0; const fMax = msg.fixtures.length; for (; f < fMax; f++) {
+                            if (group.ids.some(e => e === msg.fixtures[f]) == false) {
+                                group.ids.push(msg.fixtures[f]);
+                            }
+                        }
+                        group.parameters = generateGroupParameters(group);
+                        group.parameterTypes = [];
+                        let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
+                            if (group.parameters[c].type == 2) {
+                                group.parameterTypes.push("Position");
+                            } else if (group.parameters[c].type == 5) {
+                                group.parameterTypes.push("Color");
+                            } else if (group.parameters[c].type == 4) {
+                                group.parameterTypes.push("Parameter");
+                            } else if (group.parameters[c].type == 1) {
+                                group.parameterTypes.push("Intensity");
+                            }
+                        }
+                        io.emit('groups', { groups: cleanGroups(), target: true });
+                        saveShow();
+                    } else {
+                        socket.emit('message', { type: "error", content: "This group doesn't exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "No fixtures selected!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No groups exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
     socket.on('getGroupParameters', function (groupID) {
         if (groups.length != 0) {
             if (groups.some(e => e.id === groupID)) {

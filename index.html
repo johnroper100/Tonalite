@@ -85,7 +85,8 @@
                         :class="{'text-warning': cues[cues.map(el => el.id).indexOf(activeCue)].active}">{{cues[cues.map(el => el.id).indexOf(activeCue)].name}}</span>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" :style="{'width': cueProgress*100+'%'}"
-                            v-bind:aria-valuenow="cueProgress*100" aria-valuemin="0" aria-valuemax="100">{{cueProgress*100}}%</div>
+                            v-bind:aria-valuenow="cueProgress*100" aria-valuemin="0" aria-valuemax="100">
+                            {{cueProgress*100}}%</div>
                     </div>
                 </div>
             </div>
@@ -841,6 +842,27 @@
                             {{fixture.name}} ({{fixture.address}})
                             <button class="btn btn-danger btn-sm mb-1 ml-1" @click="removeGroupFixture(fixture.id)"><i
                                     class="far fa-sm fa-trash-alt"></i></button>
+                            <button class="btn btn-success btn-sm mb-1 ml-1" @click="addFixturesToGroupModal">Add
+                                Fixtures</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="addFixturesToGroupModal" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="dark mr-2" for="groupFixtureIDs">Fixtures:</label>
+                                    <multiselect placeholder="Select some fixtures" :options="fixtures"
+                                        v-model="addGroupSelected" label="name" :multiple="true" :search="true"
+                                        style="width: 100%" track-by="id" :close-on-select="false" :show-pointer="false"
+                                        :hide-selected="true" :custom-label="customMultiselectLabel">
+                                        <template slot="option" slot-scope="props">{{props.option.name}}
+                                            ({{props.option.startDMXAddress}})</template></multiselect>
+                                </div>
+                                <button class="btn btn-success btn-full" @click="addFixturesToGroup">Add Fixtures To
+                                    Group</button>
+                            </div>
                         </div>
                     </div>
                 </div>

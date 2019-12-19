@@ -497,6 +497,10 @@ var app = new Vue({
             app.addGroupSelected = [];
             $('#addGroupModal').modal("show");
         },
+        addFixturesToGroupModal: function () {
+            app.addGroupSelected = [];
+            $('#addFixturesToGroupModal').modal("show");
+        },
         addSequenceModal: function () {
             app.addSequenceSelected = [];
             $('#addSequenceModal').modal("show");
@@ -521,6 +525,15 @@ var app = new Vue({
             socket.emit('addGroup', list);
             app.addGroupSelected = [];
             $('#addGroupModal').modal("hide");
+        },
+        addFixturesToGroup: function () {
+            var list = [];
+            let f = 0; const fMax = app.addGroupSelected.length; for (; f < fMax; f++) {
+                list.push(app.addGroupSelected[f].id);
+            }
+            socket.emit('addFixturesToGroup', {id: app.currentGroup.id, fixtures: list});
+            app.addGroupSelected = [];
+            $('#addFixturesToGroupModal').modal("hide");
         },
         addSequence: function () {
             var list = [];
@@ -799,6 +812,7 @@ socket.on('connect', function () {
     $('#openFixtureDefinitionModal').modal("hide");
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
+    $('#addFixturesToGroupModal').modal("hide");
     $('#fixtureAddEffectsModal').modal("hide");
     $('#fixtureProfilesModal').modal("hide");
     $('#showFilesModal').modal("hide");
@@ -812,6 +826,7 @@ socket.on('connect_error', function () {
     $('#openFixtureDefinitionModal').modal("hide");
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
+    $('#addFixturesToGroupModal').modal("hide");
     $('#fixtureAddEffectsModal').modal("hide");
     $('#fixtureProfilesModal').modal("hide");
     $('#showFilesModal').modal("hide");
