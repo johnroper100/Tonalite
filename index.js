@@ -2502,7 +2502,7 @@ io.on('connection', function (socket) {
             lastCue = newCue.id;
             currentCueID = lastCue;
             cueProgress = 100;
-            io.emit('cueProgress', cueProgress);
+            io.emit('cueProgress', 1);
             io.emit('activeCue', currentCueID);
             io.emit('cueActionBtn', false);
             io.emit('cues', cleanCues());
@@ -2530,7 +2530,7 @@ io.on('connection', function (socket) {
                 lastCue = cue.id;
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
                 currentCueID = lastCue;
-                io.emit('cueProgress', cueProgress);
+                io.emit('cueProgress', 1);
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 io.emit('cueActionBtn', false);
