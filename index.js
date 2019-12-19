@@ -233,6 +233,7 @@ async function saveShowToUSB(showName, callback) {
 };
 
 function logError(msg) {
+    console.log("error: " + msg);
     fs.writeFile('error-' + new Date() + '.txt', msg, (err) => {
         if (err) console.log(err);
     });
@@ -3392,6 +3393,38 @@ io.on('connection', function (socket) {
             io.emit('presets', cleanPresets());
             socket.emit('message', { type: "info", content: "The preset has been recorded!" });
             savePresets();
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('addFixturesToPreset', function (msg) {
+        if (fixtures.length > 0) {
+            if (presets.length > 0) {
+                if (msg.fixtures.length > 0) {
+                    if (presets.some(e => e.id === msg.id)) {
+                        var preset = presets[presets.map(el => el.id).indexOf(msg.id)];
+                        let f = 0; const fMax = msg.fixtures.length; for (; f < fMax; f++) {
+                            if (preset.ids.some(e => e === msg.fixtures[f]) == false) {
+                                preset.ids.push(msg.fixtures[f]);
+                            }
+                        }
+                        let fi = 0; const fiMax = fixtures.length; for (; fi < fiMax; fi++) {
+                            if (msg.fixtures.some(e => e === fixtures[fi].id)) {
+                                preset.fixtures.push(cleanFixtureForPreset(fixtures[fi]));
+                            }
+                        }
+                        io.emit('presets', cleanPresets());
+                        savePresets();
+                    } else {
+                        socket.emit('message', { type: "error", content: "This preset doesn't exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "No fixtures selected!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No presets exist!" });
+            }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }

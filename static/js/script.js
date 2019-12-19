@@ -219,6 +219,15 @@ var app = new Vue({
             app.addPresetSelected = [];
             $('#addPresetModal').modal("hide");
         },
+        addFixturesToPreset: function () {
+            var list = [];
+            let f = 0; const fMax = app.addPresetSelected.length; for (; f < fMax; f++) {
+                list.push(app.addPresetSelected[f].id);
+            }
+            socket.emit('addFixturesToPreset', { id: app.currentPreset.id, fixtures: list });
+            app.addPresetSelected = [];
+            $('#addFixturesToPresetModal').modal("hide");
+        },
         toggleBlackout: function () {
             socket.emit("toggleBlackout");
         },
@@ -509,6 +518,10 @@ var app = new Vue({
             app.addPresetSelected = [];
             $('#addPresetModal').modal("show");
         },
+        addFixturesToPresetModal: function () {
+            app.addPresetSelected = [];
+            $('#addFixturesToPresetModal').modal("show");
+        },
         addPositionPaletteModal: function () {
             app.addPaletteName = "";
             $('#addPositionPaletteModal').modal("show");
@@ -531,7 +544,7 @@ var app = new Vue({
             let f = 0; const fMax = app.addGroupSelected.length; for (; f < fMax; f++) {
                 list.push(app.addGroupSelected[f].id);
             }
-            socket.emit('addFixturesToGroup', {id: app.currentGroup.id, fixtures: list});
+            socket.emit('addFixturesToGroup', { id: app.currentGroup.id, fixtures: list });
             app.addGroupSelected = [];
             $('#addFixturesToGroupModal').modal("hide");
         },
