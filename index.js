@@ -233,9 +233,11 @@ async function saveShowToUSB(showName, callback) {
 };
 
 function logError(msg) {
-    console.log("error: " + msg);
-    fs.writeFile('error-' + new Date() + '.txt', msg, (err) => {
-        if (err) console.log(err);
+    fs.writeFileSync('error-' + new Date() + '.txt', msg, (err) => {
+        if (err) {
+            console.log("wierd: " + err);
+            console.log("error: " + msg);
+        }
     });
 };
 
@@ -1118,9 +1120,9 @@ function calculateStack() {
         }
         somethingRunning = true;
         if (cue.upTime > cue.downTime) {
-            io.emit('cueProgress', cueProgress / ((cue.upTime * FPS) + 1));
+            io.emit('cueProgress', Math.round((cueProgress / ((cue.upTime * FPS) + 1)) * 10) / 10);
         } else {
-            io.emit('cueProgress', cueProgress / ((cue.downTime * FPS) + 1));
+            io.emit('cueProgress', Math.round((cueProgress / ((cue.downTime * FPS) + 1)) * 10) / 10);
         }
     }
     let s = 0; const sMax = sequences.length; for (; s < sMax; s++) {
@@ -1549,7 +1551,15 @@ io.on('connection', function (socket) {
     socket.emit('grandmaster', grandmaster);
     socket.emit('activeCue', currentCueID);
     socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
-    socket.emit('cueProgress', cueProgress);
+    if (currentCueID != "") {
+        if (cues[cues.map(el => el.id).indexOf(currentCueID)].upTime > cues[cues.map(el => el.id).indexOf(currentCueID)].downTime) {
+            socket.emit('cueProgress', Math.round((cueProgress / ((cues[cues.map(el => el.id).indexOf(currentCueID)].upTime * FPS) + 1)) * 10) / 10);
+        } else {
+            socket.emit('cueProgress', Math.round((cueProgress / ((cues[cues.map(el => el.id).indexOf(currentCueID)].downTime * FPS) + 1)) * 10) / 10);
+        }
+    } else {
+        socket.emit('cueProgress', 0);
+    };
 
     QRCode.toDataURL(`http://${SETTINGS.url}:${SETTINGS.port}`, function (err, url) {
         socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `http://${SETTINGS.url}:${SETTINGS.port}` });
@@ -2502,8 +2512,13 @@ io.on('connection', function (socket) {
             }
             lastCue = newCue.id;
             currentCueID = lastCue;
-            cueProgress = 100;
-            io.emit('cueProgress', 1);
+            if (newCue.upTime > newCue.downTime) {
+                cueProgress = ((newCue.upTime * FPS) + 1);
+                io.emit('cueProgress', Math.round((cueProgress / ((newCue.upTime * FPS) + 1)) * 10) / 10);
+            } else {
+                cueProgress = ((newCue.downTime * FPS) + 1);
+                io.emit('cueProgress', Math.round((cueProgress / ((newCue.downTime * FPS) + 1)) * 10) / 10);
+            }
             io.emit('activeCue', currentCueID);
             io.emit('cueActionBtn', false);
             io.emit('cues', cleanCues());
@@ -2521,7 +2536,6 @@ io.on('connection', function (socket) {
                 cue.sequences = cleanSequencesForCue();
                 cue.groups = cleanGroupsForCue();
                 currentCue = "";
-                cueProgress = 100;
                 if (lastCue != "") {
                     cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
                     cues[cues.map(el => el.id).indexOf(lastCue)].downStep = cues[cues.map(el => el.id).indexOf(lastCue)].downTime * FPS;
@@ -2531,7 +2545,13 @@ io.on('connection', function (socket) {
                 lastCue = cue.id;
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = false;
                 currentCueID = lastCue;
-                io.emit('cueProgress', 1);
+                if (cue.upTime > cue.downTime) {
+                    cueProgress = ((cue.upTime * FPS) + 1);
+                    io.emit('cueProgress', Math.round((cueProgress / ((cue.upTime * FPS) + 1)) * 10) / 10);
+                } else {
+                    cueProgress = ((cue.downTime * FPS) + 1);
+                    io.emit('cueProgress', Math.round((cueProgress / ((cue.downTime * FPS) + 1)) * 10) / 10);
+                }
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
                 io.emit('cueActionBtn', false);

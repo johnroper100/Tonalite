@@ -228,6 +228,15 @@ var app = new Vue({
             app.addPresetSelected = [];
             $('#addFixturesToPresetModal').modal("hide");
         },
+        addFixturesToSequence: function () {
+            var list = [];
+            let f = 0; const fMax = app.addSequenceSelected.length; for (; f < fMax; f++) {
+                list.push(app.addSequcneSelected[f].id);
+            }
+            socket.emit('addFixturesToSequence', { id: app.currentSequence.id, fixtures: list });
+            app.addSequenceSelected = [];
+            $('#addFixturesToSequenceModal').modal("hide");
+        },
         toggleBlackout: function () {
             socket.emit("toggleBlackout");
         },
@@ -521,6 +530,10 @@ var app = new Vue({
         addFixturesToPresetModal: function () {
             app.addPresetSelected = [];
             $('#addFixturesToPresetModal').modal("show");
+        },
+        addFixturesToSequenceModal: function () {
+            app.addSequenceSelected = [];
+            $('#addFixturesToSequenceModal').modal("show");
         },
         addPositionPaletteModal: function () {
             app.addPaletteName = "";
@@ -826,6 +839,8 @@ socket.on('connect', function () {
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
     $('#addFixturesToGroupModal').modal("hide");
+    $('#addFixturesToPresetModal').modal("hide");
+    $('#addFixturesToSequenceModal').modal("hide");
     $('#fixtureAddEffectsModal').modal("hide");
     $('#fixtureProfilesModal').modal("hide");
     $('#showFilesModal').modal("hide");
@@ -840,6 +855,8 @@ socket.on('connect_error', function () {
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
     $('#addFixturesToGroupModal').modal("hide");
+    $('#addFixturesToPresetModal').modal("hide");
+    $('#addFixturesToSequenceModal').modal("hide");
     $('#fixtureAddEffectsModal').modal("hide");
     $('#fixtureProfilesModal').modal("hide");
     $('#showFilesModal').modal("hide");
@@ -854,7 +871,7 @@ socket.on('palettes', function (msg) {
 });
 
 socket.on('cueProgress', function (msg) {
-    app.cueProgress = Math.round(msg * 10) / 10;
+    app.cueProgress = msg;
 });
 
 socket.on('shows', function (msg) {
