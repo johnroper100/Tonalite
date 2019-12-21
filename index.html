@@ -775,37 +775,45 @@
                             </div>
                             <div class="col-12">
                                 <div class="card">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Up Time</th>
-                                                <th scope="col">Down Time</th>
-                                                <th scope="col">Follow</th>
-                                                <th scope="col">Remove</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(step, index) in currentSequence.steps" :key="step.id"
-                                                :class="{'bg-warning': step.active == true}">
-                                                <th scope="row">{{index+1}}</th>
-                                                <td><input type="number" class="form-control" min="0"
-                                                        v-model="step.upTime" @input="editSequenceStepSettings(step)"
-                                                        @focus="showKeyboard" data-layout="numeric">
-                                                </td>
-                                                <td><input type="number" class="form-control" min="0"
-                                                        v-model="step.downTime" @input="editSequenceStepSettings(step)"
-                                                        @focus="showKeyboard" data-layout="numeric">
-                                                </td>
-                                                <td><input type="number" class="form-control" min="0"
-                                                        v-model="step.follow" @input="editSequenceStepSettings(step)"
-                                                        @focus="showKeyboard" data-layout="numeric">
-                                                </td>
-                                                <td><button class="btn btn-danger btn-sm"
-                                                        @click="removeSequenceStep(step.id)">Delete</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Up Time</th>
+                                                    <th scope="col">Down Time</th>
+                                                    <th scope="col">Follow</th>
+                                                    <th scope="col">Remove</th>
+                                                    <th scope="col">Update</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(step, index) in currentSequence.steps" :key="step.id"
+                                                    :class="{'bg-warning': step.active == true}">
+                                                    <th scope="row">{{index+1}}</th>
+                                                    <td><input type="number" class="form-control" min="0"
+                                                            v-model="step.upTime"
+                                                            @input="editSequenceStepSettings(step)"
+                                                            @focus="showKeyboard" data-layout="numeric">
+                                                    </td>
+                                                    <td><input type="number" class="form-control" min="0"
+                                                            v-model="step.downTime"
+                                                            @input="editSequenceStepSettings(step)"
+                                                            @focus="showKeyboard" data-layout="numeric">
+                                                    </td>
+                                                    <td><input type="number" class="form-control" min="0"
+                                                            v-model="step.follow"
+                                                            @input="editSequenceStepSettings(step)"
+                                                            @focus="showKeyboard" data-layout="numeric">
+                                                    </td>
+                                                    <td><button class="btn btn-danger btn-sm"
+                                                            @click="removeSequenceStep(step.id)">Delete</button></td>
+                                                    <td><button class="btn btn-warning btn-sm"
+                                                            @click="updateSequenceStep(step.id)">Update</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

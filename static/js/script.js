@@ -640,6 +640,13 @@ var app = new Vue({
                 }
             });
         },
+        updateSequenceStep: function (stepID) {
+            bootbox.confirm("Are you sure you want to update this step in the sequence?", function (result) {
+                if (result === true) {
+                    socket.emit('updateSequenceStep', { sequence: app.currentSequence.id, step: stepID });
+                }
+            });
+        },
         getShowsFromUSB: function () {
             socket.emit('getShowsFromUSB');
         },

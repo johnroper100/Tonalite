@@ -3418,6 +3418,25 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('updateSequenceStep', function (msg) {
+        if (sequences.length != 0) {
+            if (sequences.some(e => e.id === msg.sequence)) {
+                var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
+                if (sequence.steps.some(e => e.id === msg.step)) {
+                    var step = sequence.steps[sequence.steps.map(el => el.id).indexOf(msg.step)];
+                    step.fixtures = cleanFixturesForSequence();
+                }
+                io.emit('sequences', { sequences: cleanSequences(), target: true });
+                socket.emit('message', { type: "info", content: "Step updated!" });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This sequence doesn't exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No sequences exist!" });
+        }
+    });
+
     socket.on('resetGroups', function () {
         if (groups.length != 0) {
             resetGroups();
