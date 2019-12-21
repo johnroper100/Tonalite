@@ -60,3 +60,7 @@ If the fixture in the preset does not exist in the current show, it will be disp
 #### Delete
 
 Use this button to remove the fixture from the preset. If the deleted fixture was the last in the preset, the preset will be deleted because it is now empty.
+
+#### Add Fixtures
+
+Add fixtures to be controlled by this preset. The added fixtures will be recorded with their current values.

@@ -39,3 +39,7 @@ Once the step has been run, the step following it will be run after the time spe
 ### Remove
 
 Remove this step from the sequence. You will be prompted to make sure that you want to do this.
+
+### Update
+
+Update this step to use the current values of the show's fixture parameters.

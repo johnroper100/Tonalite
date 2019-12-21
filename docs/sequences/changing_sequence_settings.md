@@ -41,3 +41,7 @@ This is a list of each fixture that belongs to a sequence.
 #### Delete
 
 Use this button to remove the fixture from the sequence. If the deleted fixture was the last in the sequence, the sequence will be deleted because it is now empty.
+
+#### Add Fixtures
+
+Add fixtures to be controlled by this sequence. The added fixtures will be recorded in each step in their current values.

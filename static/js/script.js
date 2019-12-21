@@ -382,7 +382,7 @@ var app = new Vue({
             socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow, includeIntensityColor: app.currentCue.includeIntensityColor, includePosition: app.currentCue.includePosition, includeBeam: app.currentCue.includeBeam });
         },
         editPresetSettings: function () {
-            socket.emit('editPresetSettings', { id: app.currentPreset.id, name: app.currentPreset.name, displayAsDimmer: app.currentPreset.displayAsDimmer, intensity: app.currentPreset.intensity, mode: app.currentPreset.mode, colorHTP: app.currentPreset.colorHTP });
+            socket.emit('editPresetSettings', { id: app.currentPreset.id, name: app.currentPreset.name, displayAsDimmer: app.currentPreset.displayAsDimmer, intensity: app.currentPreset.intensity, mode: app.currentPreset.mode });
         },
         updatePreset: function () {
             bootbox.confirm("Are you sure you want to update this preset? It may remove the preset if the fixtures it stores doen't exist in the patch.", function (result) {
@@ -536,12 +536,16 @@ var app = new Vue({
             $('#addFixturesToSequenceModal').modal("show");
         },
         addPositionPaletteModal: function () {
-            app.addPaletteName = "";
-            $('#addPositionPaletteModal').modal("show");
+            if (app.removePositionPalette == false) {
+                app.addPaletteName = "";
+                $('#addPositionPaletteModal').modal("show");
+            }
         },
         addColorPaletteModal: function () {
-            app.addPaletteName = "";
-            $('#addColorPaletteModal').modal("show");
+            if (app.removeColorPalette == false) {
+                app.addPaletteName = "";
+                $('#addColorPaletteModal').modal("show");
+            }
         },
         addGroup: function () {
             var list = [];

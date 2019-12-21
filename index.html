@@ -312,7 +312,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Remove length check when you can add color palettes -->
                         <div
                             v-if="currentFixture.parameterTypes.indexOf('Color') >= 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
                             <div class="fixturePalettes">
@@ -324,9 +323,8 @@
                                     :class="{'pulse': removeColorPalette == true, 'redOutline': removeColorPalette == true}">
                                     {{palette.name}}</div>
                                 <div v-if="removeColorPalette == false"
-                                    class="fixturePalette d-inline-block mr-2 text-center"
-                                    v-bind:style="{ backgroundColor: 'gray' }" @click="addColorPaletteModal"><i
-                                        class="far fa-plus mt-3"></i></div>
+                                    class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                    @click="addColorPaletteModal"><i class="far fa-plus mt-3"></i></div>
                                 <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
                                     @click="removeColorPalette=!removeColorPalette"><i
                                         class="far fa-trash-alt mt-3"></i>
@@ -343,8 +341,7 @@
                                     :class="{'pulse': removePositionPalette == true, 'redOutline': removePositionPalette == true}">
                                     {{palette.name}}
                                 </div>
-                                <div v-if="removePositionPalette == false"
-                                    class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
                                     @click="addPositionPaletteModal"><i class="far fa-plus mt-3"></i></div>
                                 <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
                                     @click="removePositionPalette=!removePositionPalette"><i
@@ -724,8 +721,7 @@
                                     :class="{'pulse': removePositionPalette == true, 'redOutline': removePositionPalette == true}">
                                     {{palette.name}}
                                 </div>
-                                <div v-if="removePositionPalette == false"
-                                    class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
                                     @click="addPositionPaletteModal"><i class="far fa-plus mt-3"></i></div>
                                 <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
                                     @click="removePositionPalette=!removePositionPalette"
@@ -1258,7 +1254,7 @@
                         </div>
                     </div>
                     <div class="row" id="presetSettings">
-                        <div class="col-12" :class="{'col-md-8': currentPreset.mode == 'htp'}">
+                        <div class="col-12 col-md-8">
                             <div class="form-group">
                                 <label for="presetNameInput">Name:</label>
                                 <input class="form-control" type="text" id="presetNameInput" placeholder="Preset Name"
@@ -1266,23 +1262,13 @@
                                     data-layout="compact">
                             </div>
                         </div>
-                        <div class="col-12"
-                            :class="{'col-md-4': currentPreset.mode == 'htp', 'col-md-6': currentPreset.mode == 'ltp'}">
+                        <div class="col-12 col-md-4">
                             <div class="form-group mt-0 mt-md-4">
                                 <div class="custom-control custom-checkbox">
                                     <input @change="editPresetSettings" type="checkbox" class="custom-control-input"
                                         id="displayPresetAsDimmer" v-model="currentPreset.displayAsDimmer">
                                     <label class="custom-control-label" for="displayPresetAsDimmer">Display As
                                         Dimmer</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div v-if="currentPreset.mode == 'ltp'" class="col-md-6 col-12">
-                            <div class="form-group mt-0 mt-md-4">
-                                <div class="custom-control custom-checkbox">
-                                    <input @change="editPresetSettings" type="checkbox" class="custom-control-input"
-                                        id="colorHTP" v-model="currentPreset.colorHTP">
-                                    <label class="custom-control-label" for="colorHTP">Color HTP</label>
                                 </div>
                             </div>
                         </div>

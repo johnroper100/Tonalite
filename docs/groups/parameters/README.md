@@ -64,4 +64,4 @@ To add a palette, click the green button with a plus sign inside of it. You will
 
 ### Remove Palette
 
-To remove a position palette, clcik the red button with a lock inside of it. The palettes that can be removed with state pulsing. To remove one, click on it in the list. You will be asked if you are sure you want to remove it.
+To remove a palette, click the red button with a lock inside of it. The palettes that can be removed will start pulsing. To remove one, click on it in the list. You will be asked if you are sure you want to remove it.

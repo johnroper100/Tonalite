@@ -38,7 +38,7 @@ var STARTED = false;
 
 const FPS = 40;
 
-const VERSION = "2.0.0 Beta 7";
+const VERSION = "2.0.0 Beta 8";
 
 fs.exists(process.cwd() + '/settings.json', function (exists) {
     if (exists == false) {
@@ -698,7 +698,7 @@ function calculatePresetChannels(preset) {
     var tempvalue2 = null;
     let f = 0; const fMax = preset.fixtures.length; for (; f < fMax; f++) {
         let p = 0; const pMax = preset.fixtures[f].parameters.length; for (; p < pMax; p++) {
-            if (preset.fixtures[f].parameters[p].fadeWithIntensity == true || preset.fixtures[f].parameters[p].type == 1 || (preset.colorHTP == true && preset.fixtures[f].parameters[p].type == 5)) {
+            if (preset.fixtures[f].parameters[p].fadeWithIntensity == true || preset.fixtures[f].parameters[p].type == 1 || preset.fixtures[f].parameters[p].type == 5) {
                 invert = false;
                 if (preset.fixtures[f].parameters[p].invert == true) {
                     invert = true;
@@ -3457,7 +3457,6 @@ io.on('connection', function (socket) {
                 ids: list,
                 intensity: 0,
                 displayAsDimmer: false,
-                colorHTP: true,
                 patchChanged: false,
                 mode: SETTINGS.defaultPresetMode,
                 fixtures: cleanFixturesForPreset(list)
@@ -3553,7 +3552,6 @@ io.on('connection', function (socket) {
                 var preset = presets[presets.map(el => el.id).indexOf(msg.id)];
                 preset.name = msg.name;
                 preset.displayAsDimmer = msg.displayAsDimmer;
-                preset.colorHTP = msg.colorHTP;
                 preset.mode = msg.mode;
                 var intensity = parseInt(msg.intensity);
                 if (intensity > 0) {
