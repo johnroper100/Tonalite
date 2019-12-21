@@ -231,7 +231,7 @@ var app = new Vue({
         addFixturesToSequence: function () {
             var list = [];
             let f = 0; const fMax = app.addSequenceSelected.length; for (; f < fMax; f++) {
-                list.push(app.addSequcneSelected[f].id);
+                list.push(app.addSequenceSelected[f].id);
             }
             socket.emit('addFixturesToSequence', { id: app.currentSequence.id, fixtures: list });
             app.addSequenceSelected = [];

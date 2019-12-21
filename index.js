@@ -2929,6 +2929,40 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('addFixturesToSequence', function (msg) {
+        if (fixtures.length > 0) {
+            if (sequences.length > 0) {
+                if (msg.fixtures.length > 0) {
+                    if (sequences.some(e => e.id === msg.id)) {
+                        var sequence = sequences[sequences.map(el => el.id).indexOf(msg.id)];
+                        let f = 0; const fMax = msg.fixtures.length; for (; f < fMax; f++) {
+                            if (sequence.ids.some(e => e === msg.fixtures[f]) == false) {
+                                sequence.ids.push(msg.fixtures[f]);
+                            }
+                        }
+                        let s = 0; const sMax = sequence.steps.length; for (; s < sMax; s++) {
+                            let fi = 0; const fiMax = fixtures.length; for (; fi < fiMax; fi++) {
+                                if (msg.fixtures.some(e => e === fixtures[fi].id)) {
+                                    sequence.steps[s].fixtures.push(cleanFixtureForCue(fixtures[fi]));
+                                }
+                            }
+                        }
+                        io.emit('sequences', { sequences: cleanSequences(), target: true });
+                        saveShow();
+                    } else {
+                        socket.emit('message', { type: "error", content: "This sequence doesn't exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "No fixtures selected!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No sequences exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
     socket.on('addGroup', function (fixtureIDs) {
         if (fixtures.length > 0) {
             if (fixtureIDs.length > 0) {
