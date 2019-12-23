@@ -97,7 +97,7 @@ var app = new Vue({
             app.hideKeyboard();
         },
         showKeyboard: function (e) {
-            if (app.settings.desktop == false && app.ifMobile == false) {
+            if (app.settings.desktop == false && isMobile == false) {
                 app.keyboardInput = e.target;
                 app.keyboardLayout = e.target.dataset.layout;
                 app.keyboardVisible = true;
