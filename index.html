@@ -45,7 +45,7 @@
                                 File</a>
                             <div class="dropdown-divider"></div>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item" data-toggle="modal"
-                                data-target="#openFixtureDefinitionModal" data-backdrop="static">Import
+                                data-target="#openFixtureDefinitionModal">Import
                                 Fixture Definition From File</a>
                             <a class="dropdown-item" @click="importFixturesFromUSB">Import
                                 Fixture Definitions From USB</a>
@@ -58,7 +58,7 @@
                             <a class="dropdown-item" @click="undo">Undo</a>
                             <a class="dropdown-item" @click="redo">Redo</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#openSettingsModal" data-backdrop="static">Settings</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#openSettingsModal">Settings</a>
                             <a v-if="desktop == false" class="dropdown-item" @click="updateFirmware">Update Firmware</a>
                             <div v-if="desktop == false" class="dropdown-divider"></div>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item" @click="launchFullScreen">Full
@@ -1359,8 +1359,7 @@
                 </div>
             </div>
         </div>
-        <div id="serverDisconnectedModal" data-backdrop="static" data-keyboard="false" class="modal" tabindex="-1"
-            role="dialog">
+        <div id="serverDisconnectedModal" data-keyboard="false" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body text-center dark">
