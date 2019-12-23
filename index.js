@@ -1035,6 +1035,7 @@ function calculateStack() {
                     startSequence.currentStep = startSequence.steps[0].id;
                     startSequence.currentStepID = startSequence.steps[0].id;
                     startSequence.steps[0].active = true;
+                    8
                 }
                 sequencesChanged = true;
             } else if (startSequence.active == true && cue.sequences[s].active == false) {
@@ -1230,14 +1231,59 @@ function calculateStack() {
         var effectChanIndex = null;
         var effectValue = null;
         var invert = null;
+        var paramWorked = false;
+        var red = null;
+        var green = null;
+        var blue = null;
+        var white = null;
+        var amber = null;
+        var cyan = null;
+        var magenta = null;
+        var yellow = null;
         let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
             let e = 0; const eMax = fixtures[f].effects.length; for (; e < eMax; e++) {
                 if (fixtures[f].effects[e].active == true) {
                     let p = 0; const pMax = fixtures[f].parameters.length; for (; p < pMax; p++) {
                         if (fixtures[f].parameters[p].locked === false) {
                             effectChanIndex = fixtures[f].effects[e].parameterNames.findIndex(function (element) { return element == fixtures[f].parameters[p].name });
-                            if (effectChanIndex > -1) {
+                            paramWorked = false;
+                            if (effectChanIndex > -1 && (fixtures[f].effects[e].type != "Color" || (fixtures[f].effects[e].type == "Color" && fixtures[f].colortable == "3874B444-A11E-47D9-8295-04556EAEBEA7"))) {
+                                paramWorked = true;
                                 effectValue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex];
+                            } else if (fixtures[f].effects[e].type == "Color" && (fixtures[f].colortable == "77A82F8A-9B24-4C3F-98FC-B6A29FB1AAE6" || fixtures[f].colortable == "77597794-7BFF-46A3-878B-906D3780E6C9")) {
+                                // RGBW
+                                paramWorked = true;
+                                red = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][0];
+                                green = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][1];
+                                blue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][2];
+                                white = Math.min(red, green, blue);
+                                if (fixtures[f].parameters[p].name === "Red") {
+                                    effectValue = red - white;
+                                } else if (fixtures[f].parameters[p].name === "Green") {
+                                    effectValue = green - white;
+                                } else if (fixtures[f].parameters[p].name === "Blue") {
+                                    effectValue = blue - white;
+                                } else if (fixtures[f].parameters[p].name === "White") {
+                                    effectValue = white;
+                                }
+                            } else if (fixtures[f].effects[e].type == "Color" && fixtures[f].colortable == "D3E71EC8-3406-4572-A64C-52A38649C795") {
+                                // RGBA
+                                paramWorked = true;
+                                red = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][0];
+                                green = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][1];
+                                blue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][2];
+                                amber = cppaddon.getAFromRGB(red, green, blue);
+                                if (fixtures[f].parameters[p].name === "Red") {
+                                    effectValue = red - amber;
+                                } else if (fixtures[f].parameters[p].name === "Green") {
+                                    effectValue = green - amber / 2;
+                                } else if (fixtures[f].parameters[p].name === "Blue") {
+                                    effectValue = blue;
+                                } else if (fixtures[f].parameters[p].name === "Amber") {
+                                    effectValue = amber;
+                                }
+                            }
+                            if (paramWorked === true) {
                                 if (fixtures[f].effects[e].resolution == 8) {
                                     effectValue = cppaddon.mapRange(effectValue, 0, 255, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max);
                                 } else {
@@ -1301,11 +1347,11 @@ function calculateStack() {
                             }
                         }
                     }
-                    if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed) >= fixtures[f].effects[e].steps.length - 1) {
-                        fixtures[f].effects[e].step = 0;
-                    } else {
-                        fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
-                    }
+                }
+                if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed) >= fixtures[f].effects[e].steps.length - 1) {
+                    fixtures[f].effects[e].step = 0;
+                } else {
+                    fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
                 }
             }
         }
@@ -2287,6 +2333,7 @@ io.on('connection', function (socket) {
                         }
                     }
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                    saveShow();
                 } else {
                     socket.emit('message', { type: "error", content: "This effect does not exist!" });
                 }
