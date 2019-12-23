@@ -1237,9 +1237,6 @@ function calculateStack() {
         var blue = null;
         var white = null;
         var amber = null;
-        var cyan = null;
-        var magenta = null;
-        var yellow = null;
         let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
             let e = 0; const eMax = fixtures[f].effects.length; for (; e < eMax; e++) {
                 if (fixtures[f].effects[e].active == true) {
@@ -1281,6 +1278,38 @@ function calculateStack() {
                                     effectValue = blue;
                                 } else if (fixtures[f].parameters[p].name === "Amber") {
                                     effectValue = amber;
+                                }
+                            } else if (fixtures[f].effects[e].type == "Color" && fixtures[f].colortable == "C7A1FB0A-AA23-468F-9060-AC1625155DE8") {
+                                // RGBAW
+                                paramWorked = true;
+                                red = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][0];
+                                green = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][1];
+                                blue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][2];
+                                white = Math.min(red, green, blue);
+                                amber = cppaddon.getAFromRGB(red, green, blue);
+                                if (fixtures[f].parameters[p].name === "Red") {
+                                    effectValue = red - white - amber;
+                                } else if (fixtures[f].parameters[p].name === "Green") {
+                                    effectValue = green - white - amber / 2;
+                                } else if (fixtures[f].parameters[p].name === "Blue") {
+                                    effectValue = blue - white;
+                                } else if (fixtures[f].parameters[p].name === "Amber") {
+                                    effectValue = amber;
+                                } else if (fixtures[f].parameters[p].name === "White") {
+                                    effectValue = white;
+                                }
+                            } else if (fixtures[f].effects[e].type == "Color" && fixtures[f].colortable == "EF4970BA-2536-4725-9B0F-B2D7A021E139") {
+                                // CMY
+                                paramWorked = true;
+                                red = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][0];
+                                green = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][1];
+                                blue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][2];
+                                if (fixtures[f].parameters[p].name === "Cyan") {
+                                    effectValue = 255 - red;
+                                } else if (fixtures[f].parameters[p].name === "Magenta") {
+                                    effectValue = 255 - green;
+                                } else if (fixtures[f].parameters[p].name === "Yellow") {
+                                    effectValue = 255 - blue;
                                 }
                             }
                             if (paramWorked === true) {
