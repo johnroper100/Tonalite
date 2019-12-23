@@ -140,6 +140,14 @@ function saveUndoRedo(r) {
     }
 }
 
+function isEmpty(obj) {
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
 async function updateFirmware(callback) {
     var uploadComplete = false;
     var drives = await drivelist.list();
@@ -1579,39 +1587,43 @@ io.on('connection', function (socket) {
     }
 
     socket.on('undo', function () {
-        saveUndoRedo(true);
-        fixtures = undo.fixtures;
-        cues = undo.cues;
-        groups = undo.groups;
-        sequences = undo.sequences;
-        colorPalettes = undo.colorPalettes;
-        positionPalettes = undo.positionPalettes;
-        presets = undo.presets;
-        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-        io.emit('cues', cleanCues());
-        io.emit('sequences', { sequences: cleanSequences(), target: true });
-        io.emit('groups', { groups: cleanGroups(), target: true });
-        io.emit('presets', cleanPresets());
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
-        saveShow();
+        if (isEmpty(undo) === false) {
+            saveUndoRedo(true);
+            fixtures = undo.fixtures;
+            cues = undo.cues;
+            groups = undo.groups;
+            sequences = undo.sequences;
+            colorPalettes = undo.colorPalettes;
+            positionPalettes = undo.positionPalettes;
+            presets = undo.presets;
+            io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            io.emit('cues', cleanCues());
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
+            io.emit('groups', { groups: cleanGroups(), target: true });
+            io.emit('presets', cleanPresets());
+            io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+            saveShow();
+        }
     });
 
     socket.on('redo', function () {
-        saveUndoRedo(false);
-        fixtures = redo.fixtures;
-        cues = redo.cues;
-        groups = redo.groups;
-        sequences = redo.sequences;
-        colorPalettes = redo.colorPalettes;
-        positionPalettes = redo.positionPalettes;
-        presets = undo.presets;
-        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-        io.emit('cues', cleanCues());
-        io.emit('sequences', { sequences: cleanSequences(), target: true });
-        io.emit('groups', { groups: cleanGroups(), target: true });
-        io.emit('presets', cleanPresets());
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
-        saveShow();
+        if (isEmpty(redo) === false) {
+            saveUndoRedo(false);
+            fixtures = redo.fixtures;
+            cues = redo.cues;
+            groups = redo.groups;
+            sequences = redo.sequences;
+            colorPalettes = redo.colorPalettes;
+            positionPalettes = redo.positionPalettes;
+            presets = undo.presets;
+            io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            io.emit('cues', cleanCues());
+            io.emit('sequences', { sequences: cleanSequences(), target: true });
+            io.emit('groups', { groups: cleanGroups(), target: true });
+            io.emit('presets', cleanPresets());
+            io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+            saveShow();
+        }
     });
 
     socket.on('openShowFromUSB', function (data) {
