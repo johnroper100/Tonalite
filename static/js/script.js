@@ -688,6 +688,12 @@ var app = new Vue({
         editShowName: function () {
             socket.emit('editShowName', app.showInfo.showName);
         },
+        undo: function () {
+            socket.emit('undo');
+        },
+        redo: function () {
+            socket.emit('redo');
+        }
     }
 });
 
@@ -807,6 +813,24 @@ Mousetrap.bind('left', function (e) {
     } else if (app.currentView == 'presets' || app.currentView == 'presetSettings') {
         app.currentView = 'groups';
     }
+});
+Mousetrap.bind('ctrl+z', function (e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
+    app.undo();
+});
+Mousetrap.bind('ctrl+y', function (e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
+    app.redo();
 });
 
 socket.on('connect', function () {

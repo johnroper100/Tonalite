@@ -55,6 +55,9 @@
                         <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">Edit</a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" @click="undo">Undo</a>
+                            <a class="dropdown-item" @click="redo">Redo</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" data-toggle="modal" data-target="#openSettingsModal">Settings</a>
                             <a v-if="desktop == false" class="dropdown-item" @click="updateFirmware">Update Firmware</a>
                             <div v-if="desktop == false" class="dropdown-divider"></div>

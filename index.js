@@ -61,10 +61,8 @@ var currentCueID = "";
 var blackout = false;
 var grandmaster = 100;
 var currentShowName = "Show";
-var undo = {
-    "type": "none",
-    "data": []
-}
+var undo = {};
+var redo = {};
 
 // Set up dmx variables for integrations used later on
 var e131 = null;
@@ -133,6 +131,14 @@ function saveSettings() {
     });
     return true;
 };
+
+function saveUndoRedo(r) {
+    if (r == false) {
+        undo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, presets: presets }));
+    } else {
+        redo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, presets: presets }));
+    }
+}
 
 async function updateFirmware(callback) {
     var uploadComplete = false;
@@ -1572,9 +1578,44 @@ io.on('connection', function (socket) {
         socket.emit('cueActionBtn', true);
     }
 
+    socket.on('undo', function () {
+        saveUndoRedo(true);
+        fixtures = undo.fixtures;
+        cues = undo.cues;
+        groups = undo.groups;
+        sequences = undo.sequences;
+        colorPalettes = undo.colorPalettes;
+        positionPalettes = undo.positionPalettes;
+        presets = undo.presets;
+        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+        io.emit('cues', cleanCues());
+        io.emit('sequences', { sequences: cleanSequences(), target: true });
+        io.emit('groups', { groups: cleanGroups(), target: true });
+        io.emit('presets', cleanPresets());
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        saveShow();
+    });
+
+    socket.on('redo', function () {
+        saveUndoRedo(false);
+        fixtures = redo.fixtures;
+        cues = redo.cues;
+        groups = redo.groups;
+        sequences = redo.sequences;
+        colorPalettes = redo.colorPalettes;
+        positionPalettes = redo.positionPalettes;
+        presets = undo.presets;
+        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+        io.emit('cues', cleanCues());
+        io.emit('sequences', { sequences: cleanSequences(), target: true });
+        io.emit('groups', { groups: cleanGroups(), target: true });
+        io.emit('presets', cleanPresets());
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        saveShow();
+    });
+
     socket.on('openShowFromUSB', function (data) {
-        undo.type = "show";
-        undo.data = { fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, showName: currentShowName };
+        saveUndoRedo(false);
         fs.copyFile(data.path + '/' + data.file, process.cwd() + '/show.json', function (err) {
             if (err) {
                 logError(err);
@@ -1587,8 +1628,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('resetShow', function () {
-        undo.type = "show";
-        undo.data = { fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, showName: currentShowName };
+        saveUndoRedo(false);
         resetFixtures(true);
         cues = [];
         groups = [];
@@ -1613,8 +1653,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('resetShowAndPatch', function () {
-        undo.type = "show";
-        undo.data = { fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, showName: currentShowName };
+        saveUndoRedo(false);
         fixtures = [];
         cues = [];
         groups = [];
@@ -1644,8 +1683,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('resetPresets', function () {
-        undo.type = "presets";
-        undo.data = presets;
+        saveUndoRedo(false);
         presets = [];
         io.emit('presets', cleanPresets());
         io.emit('message', { type: "info", content: "The presets have been cleared!" });
@@ -1691,6 +1729,7 @@ io.on('connection', function (socket) {
     socket.on('useFixtureColorPalette', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
+                saveUndoRedo(false);
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
                 var palette = colorPalettes[msg.pid];
                 var param = null;
@@ -1786,6 +1825,7 @@ io.on('connection', function (socket) {
     socket.on('useFixturePositionPalette', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
+                saveUndoRedo(false);
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
                 var palette = positionPalettes[msg.pid];
                 var param = null;
@@ -1809,6 +1849,7 @@ io.on('connection', function (socket) {
         if (fixtures.length > 0) {
             if (groups.length > 0) {
                 if (groups.some(e => e.id === msg.id)) {
+                    saveUndoRedo(false);
                     var group = groups[groups.map(el => el.id).indexOf(msg.id)];
                     var palette = positionPalettes[msg.pid];
                     var param = null;
@@ -1844,6 +1885,7 @@ io.on('connection', function (socket) {
         return base;
     }
     socket.on('addColorPalette', function (msg) {
+        saveUndoRedo(false);
         if (msg.type == 'fixture') {
             var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
             var red = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Red")];
@@ -1910,6 +1952,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('addPositionPalette', function (msg) {
+        saveUndoRedo(false);
         if (msg.type == 'fixture') {
             var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
             var pan = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Pan")];
@@ -1948,6 +1991,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('removePositionPalette', function (msg) {
+        saveUndoRedo(false);
         positionPalettes.splice(msg.pid, 1);
         socket.emit('message', { type: "info", content: "Position palette has been removed!" });
         io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
@@ -1955,6 +1999,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('removeColorPalette', function (msg) {
+        saveUndoRedo(false);
         colorPalettes.splice(msg.pid, 1);
         socket.emit('message', { type: "info", content: "Color palette has been removed!" });
         io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
@@ -1991,6 +2036,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('addFixture', function (msg) {
+        saveUndoRedo(false);
         var startDMXAddress = parseInt(msg.startDMXAddress);
         let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
             if (fixtures[f].startDMXAddress == startDMXAddress) {
@@ -2055,6 +2101,7 @@ io.on('connection', function (socket) {
     socket.on('removeFixture', function (fixtureID) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
+                saveUndoRedo(false);
                 let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
                     if (cues[c].fixtures.some(e => e.id === fixtureID)) {
                         cues[c].fixtures.splice(cues[c].fixtures.map(el => el.id).indexOf(fixtureID), 1);
@@ -2138,6 +2185,7 @@ io.on('connection', function (socket) {
     socket.on('removeFixtureEffect', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
+                saveUndoRedo(false);
                 var fixture = null;
                 let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
                     if (cues[c].fixtures.some(e => e.id === msg.fixtureID)) {
@@ -2241,6 +2289,7 @@ io.on('connection', function (socket) {
     socket.on('addFixtureEffect', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
+                saveUndoRedo(false);
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
                 var effect = JSON.parse(JSON.stringify(require(process.cwd() + "/effects/" + msg.effectFile).effectTable));
                 effect.active = true;
@@ -2338,6 +2387,7 @@ io.on('connection', function (socket) {
 
     socket.on('resetFixtures', function () {
         if (fixtures.length != 0) {
+            saveUndoRedo(false);
             resetFixtures(false);
             currentCue = "";
             io.emit('cueActionBtn', false);
@@ -2352,6 +2402,7 @@ io.on('connection', function (socket) {
 
     socket.on('resetFixturesIntensity', function () {
         if (fixtures.length != 0) {
+            saveUndoRedo(false);
             resetFixturesIntensity();
             currentCue = "";
             io.emit('cueActionBtn', false);
@@ -2367,6 +2418,7 @@ io.on('connection', function (socket) {
     socket.on('resetFixture', function (fixtureID) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
+                saveUndoRedo(false);
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(fixtureID)];
                 let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
                     if (fixture.parameters[c].locked != true) {
@@ -2485,6 +2537,7 @@ io.on('connection', function (socket) {
 
     socket.on('recordCue', function () {
         if (fixtures.length != 0) {
+            saveUndoRedo(false);
             var newCue = {
                 id: generateID(),
                 name: "Cue " + (cues.length + 1),
@@ -2531,6 +2584,7 @@ io.on('connection', function (socket) {
     socket.on('updateCue', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
+                saveUndoRedo(false);
                 var cue = cues[cues.map(el => el.id).indexOf(cueID)];
                 cue.fixtures = cleanFixturesForCue();
                 cue.sequences = cleanSequencesForCue();
@@ -2568,6 +2622,7 @@ io.on('connection', function (socket) {
     socket.on('cloneCueEnd', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
+                saveUndoRedo(false);
                 var newCue = JSON.parse(JSON.stringify(cues[cues.map(el => el.id).indexOf(cueID)]));
                 newCue.id = generateID();
                 cues.push(newCue);
@@ -2586,6 +2641,7 @@ io.on('connection', function (socket) {
     socket.on('cloneCueNext', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
+                saveUndoRedo(false);
                 var newCue = JSON.parse(JSON.stringify(cues[cues.map(el => el.id).indexOf(cueID)]));
                 newCue.id = generateID();
                 cues.push(newCue);
@@ -2657,6 +2713,7 @@ io.on('connection', function (socket) {
     socket.on('removeCue', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
+                saveUndoRedo(false);
                 cues.splice(cues.map(el => el.id).indexOf(cueID), 1);
                 if (currentCue == cueID || lastCue == cueID) {
                     lastCue = "";
@@ -2851,6 +2908,7 @@ io.on('connection', function (socket) {
     socket.on('moveCueUp', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
+                saveUndoRedo(false);
                 moveArrayItem(cues, cues.map(el => el.id).indexOf(cueID), cues.map(el => el.id).indexOf(cueID) - 1);
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
@@ -2867,6 +2925,7 @@ io.on('connection', function (socket) {
     socket.on('moveCueDown', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
+                saveUndoRedo(false);
                 moveArrayItem(cues, cues.map(el => el.id).indexOf(cueID), cues.map(el => el.id).indexOf(cueID) + 1);
                 io.emit('activeCue', currentCueID);
                 io.emit('cues', cleanCues());
@@ -2882,6 +2941,7 @@ io.on('connection', function (socket) {
 
     socket.on('addSequence', function (fixtureIDs) {
         if (fixtures.length != 0) {
+            saveUndoRedo(false);
             var newSequence = {
                 id: generateID(),
                 name: "Sequence " + (sequences.length + 1),
@@ -2906,6 +2966,7 @@ io.on('connection', function (socket) {
     socket.on('recordSequenceStep', function (sequenceID) {
         if (fixtures.length != 0) {
             if (sequences.some(e => e.id === sequenceID)) {
+                saveUndoRedo(false);
                 var sequence = sequences[sequences.map(el => el.id).indexOf(sequenceID)];
                 var newStep = {
                     id: generateID(),
@@ -2934,6 +2995,7 @@ io.on('connection', function (socket) {
             if (sequences.length > 0) {
                 if (msg.fixtures.length > 0) {
                     if (sequences.some(e => e.id === msg.id)) {
+                        saveUndoRedo(false);
                         var sequence = sequences[sequences.map(el => el.id).indexOf(msg.id)];
                         let f = 0; const fMax = msg.fixtures.length; for (; f < fMax; f++) {
                             if (sequence.ids.some(e => e === msg.fixtures[f]) == false) {
@@ -2966,6 +3028,7 @@ io.on('connection', function (socket) {
     socket.on('addGroup', function (fixtureIDs) {
         if (fixtures.length > 0) {
             if (fixtureIDs.length > 0) {
+                saveUndoRedo(false);
                 var newGroup = {
                     id: generateID(),
                     name: "Group " + (groups.length + 1),
@@ -3005,6 +3068,7 @@ io.on('connection', function (socket) {
             if (groups.length > 0) {
                 if (msg.fixtures.length > 0) {
                     if (groups.some(e => e.id === msg.id)) {
+                        saveUndoRedo(false);
                         var group = groups[groups.map(el => el.id).indexOf(msg.id)];
                         let f = 0; const fMax = msg.fixtures.length; for (; f < fMax; f++) {
                             if (group.ids.some(e => e === msg.fixtures[f]) == false) {
@@ -3270,6 +3334,7 @@ io.on('connection', function (socket) {
     socket.on('removeGroup', function (groupID) {
         if (groups.length != 0) {
             if (groups.some(e => e.id === groupID)) {
+                saveUndoRedo(false);
                 let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
                     if (cues[c].groups.some(e => e.id === groupID)) {
                         cues[c].groups.splice(cues[c].groups.map(el => el.id).indexOf(groupID), 1);
@@ -3291,6 +3356,7 @@ io.on('connection', function (socket) {
     socket.on('removeSequence', function (sequenceID) {
         if (sequences.length != 0) {
             if (sequences.some(e => e.id === sequenceID)) {
+                saveUndoRedo(false);
                 let c = 0; const cMax = cues.length; for (; c < cMax; c++) {
                     if (cues[c].sequences.some(e => e.id === sequenceID)) {
                         cues[c].sequences.splice(cues[c].sequences.map(el => el.id).indexOf(sequenceID), 1);
@@ -3312,6 +3378,7 @@ io.on('connection', function (socket) {
     socket.on('resetGroup', function (groupID) {
         if (groups.length != 0) {
             if (groups.some(e => e.id === groupID)) {
+                saveUndoRedo(false);
                 var group = groups[groups.map(el => el.id).indexOf(groupID)];
                 group.hasActiveEffects = false;
                 let c = 0; const cMax = group.parameters.length; for (; c < cMax; c++) {
@@ -3334,6 +3401,7 @@ io.on('connection', function (socket) {
     socket.on('removeGroupFixture', function (msg) {
         if (groups.length != 0) {
             if (groups.some(e => e.id === msg.group)) {
+                saveUndoRedo(false);
                 var group = groups[groups.map(el => el.id).indexOf(msg.group)];
                 if (group.ids.some(e => e === msg.fixture)) {
                     group.ids.splice(group.ids.map(el => el).indexOf(msg.fixture), 1);
@@ -3375,6 +3443,7 @@ io.on('connection', function (socket) {
     socket.on('removeSequenceFixture', function (msg) {
         if (sequences.length != 0) {
             if (sequences.some(e => e.id === msg.sequence)) {
+                saveUndoRedo(false);
                 var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
                 if (sequence.ids.some(e => e === msg.fixture)) {
                     sequence.ids.splice(sequence.ids.map(el => el).indexOf(msg.fixture), 1);
@@ -3405,6 +3474,7 @@ io.on('connection', function (socket) {
             if (sequences.some(e => e.id === msg.sequence)) {
                 var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
                 if (sequence.steps.some(e => e.id === msg.step)) {
+                    saveUndoRedo(false);
                     sequence.steps.splice(sequence.steps.map(el => el.id).indexOf(msg.step), 1);
                 }
                 io.emit('sequences', { sequences: cleanSequences(), target: true });
@@ -3423,6 +3493,7 @@ io.on('connection', function (socket) {
             if (sequences.some(e => e.id === msg.sequence)) {
                 var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
                 if (sequence.steps.some(e => e.id === msg.step)) {
+                    saveUndoRedo(false);
                     var step = sequence.steps[sequence.steps.map(el => el.id).indexOf(msg.step)];
                     step.fixtures = cleanFixturesForSequence();
                 }
@@ -3439,6 +3510,7 @@ io.on('connection', function (socket) {
 
     socket.on('resetGroups', function () {
         if (groups.length != 0) {
+            saveUndoRedo(false);
             resetGroups();
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Group values have been reset!" });
@@ -3450,6 +3522,7 @@ io.on('connection', function (socket) {
 
     socket.on('recordPreset', function (list) {
         if (fixtures.length != 0) {
+            saveUndoRedo(false);
             var newPreset = {
                 id: generateID(),
                 name: "Preset " + (presets.length + 1),
@@ -3475,6 +3548,7 @@ io.on('connection', function (socket) {
             if (presets.length > 0) {
                 if (msg.fixtures.length > 0) {
                     if (presets.some(e => e.id === msg.id)) {
+                        saveUndoRedo(false);
                         var preset = presets[presets.map(el => el.id).indexOf(msg.id)];
                         let f = 0; const fMax = msg.fixtures.length; for (; f < fMax; f++) {
                             if (preset.ids.some(e => e === msg.fixtures[f]) == false) {
@@ -3505,6 +3579,7 @@ io.on('connection', function (socket) {
     socket.on('updatePreset', function (presetID) {
         if (presets.length != 0) {
             if (presets.some(e => e.id === presetID)) {
+                saveUndoRedo(false);
                 var preset = presets[presets.map(el => el.id).indexOf(presetID)];
                 let i = preset.ids.length;
                 while (i--) {
@@ -3585,6 +3660,7 @@ io.on('connection', function (socket) {
     socket.on('removePreset', function (presetID) {
         if (presets.length != 0) {
             if (presets.some(e => e.id === presetID)) {
+                saveUndoRedo(false);
                 presets.splice(presets.map(el => el.id).indexOf(presetID), 1);
                 socket.emit('message', { type: "info", content: "Preset has been removed!" });
                 io.emit('resetView', { type: 'presets', eid: presetID });
@@ -3601,6 +3677,7 @@ io.on('connection', function (socket) {
     socket.on('removePresetFixture', function (msg) {
         if (presets.length != 0) {
             if (presets.some(e => e.id === msg.preset)) {
+                saveUndoRedo(false);
                 var preset = presets[presets.map(el => el.id).indexOf(msg.preset)];
                 if (preset.fixtures.some(e => e === msg.fixture)) {
                     preset.fixtures.splice(preset.fixtures.map(el => el).indexOf(msg.fixture), 1);
