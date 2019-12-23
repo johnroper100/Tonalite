@@ -148,7 +148,7 @@ var app = new Vue({
             }
         },
         ifMobile: function () {
-            return isMobile.phone || isMobile.tablet;
+            return isMobile.any;
         },
         resetShow: function () {
             bootbox.confirm("Are you sure you want a new show? This will reset everything.", function (result) {
