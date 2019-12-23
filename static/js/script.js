@@ -257,7 +257,7 @@ var app = new Vue({
             app.fixtureProfilesSearch = "";
             app.fixtureProfilesManufacturer = "";
             app.fixtureProfilesModel = "";
-            $('#fixtureProfilesModal').modal("show");
+            $('#fixtureProfilesModal').modal({ show: true, backdrop: 'static' });
         },
         addFixture: function (fixture, dcid) {
             socket.emit("addFixture", { fixtureName: fixture, dcid: dcid, startDMXAddress: app.startDMXAddress, creationCount: app.newFixtureCreationCount, universe: app.newFixtureUniverse });
@@ -448,7 +448,7 @@ var app = new Vue({
         },
         getFixtureEffects: function () {
             socket.emit('getFixtureEffects', app.currentFixture.id);
-            $('#fixtureAddEffectsModal').modal("show");
+            $('#fixtureAddEffectsModal').modal({ show: true, backdrop: 'static' });
         },
         addFixtureEffect: function (file, type) {
             var paramName = "";
@@ -513,38 +513,38 @@ var app = new Vue({
         },
         addGroupModal: function () {
             app.addGroupSelected = [];
-            $('#addGroupModal').modal("show");
+            $('#addGroupModal').modal({ show: true, backdrop: 'static' });
         },
         addFixturesToGroupModal: function () {
             app.addGroupSelected = [];
-            $('#addFixturesToGroupModal').modal("show");
+            $('#addFixturesToGroupModal').modal({ show: true, backdrop: 'static' });
         },
         addSequenceModal: function () {
             app.addSequenceSelected = [];
-            $('#addSequenceModal').modal("show");
+            $('#addSequenceModal').modal({ show: true, backdrop: 'static' });
         },
         addPresetModal: function () {
             app.addPresetSelected = [];
-            $('#addPresetModal').modal("show");
+            $('#addPresetModal').modal({ show: true, backdrop: 'static' });
         },
         addFixturesToPresetModal: function () {
             app.addPresetSelected = [];
-            $('#addFixturesToPresetModal').modal("show");
+            $('#addFixturesToPresetModal').modal({ show: true, backdrop: 'static' });
         },
         addFixturesToSequenceModal: function () {
             app.addSequenceSelected = [];
-            $('#addFixturesToSequenceModal').modal("show");
+            $('#addFixturesToSequenceModal').modal({ show: true, backdrop: 'static' });
         },
         addPositionPaletteModal: function () {
             if (app.removePositionPalette == false) {
                 app.addPaletteName = "";
-                $('#addPositionPaletteModal').modal("show");
+                $('#addPositionPaletteModal').modal({ show: true, backdrop: 'static' });
             }
         },
         addColorPaletteModal: function () {
             if (app.removeColorPalette == false) {
                 app.addPaletteName = "";
-                $('#addColorPaletteModal').modal("show");
+                $('#addColorPaletteModal').modal({ show: true, backdrop: 'static' });
             }
         },
         addGroup: function () {
@@ -897,7 +897,7 @@ socket.on('connect_error', function () {
     $('#showFilesModal').modal("hide");
     $('#showInfoModal').modal("hide");
     $('#addSequenceModal').modal("hide");
-    $('#serverDisconnectedModal').modal("show");
+    $('#serverDisconnectedModal').modal({ show: true, backdrop: 'static' });
 });
 
 socket.on('palettes', function (msg) {
@@ -912,12 +912,12 @@ socket.on('cueProgress', function (msg) {
 socket.on('shows', function (msg) {
     app.usbData = msg.shows;
     app.usbPath = msg.drive;
-    $('#showFilesModal').modal("show");
+    $('#showFilesModal').modal({ show: true, backdrop: 'static' });
 });
 
 socket.on('showInfo', function (msg) {
     app.showInfo = msg;
-    $('#showInfoModal').modal("show");
+    $('#showInfoModal').modal({ show: true, backdrop: 'static' });
 });
 
 socket.on('fixtures', function (msg) {
