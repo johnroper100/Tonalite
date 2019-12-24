@@ -2125,7 +2125,7 @@ io.on('connection', function (socket) {
     socket.on('getShowsFromUSB', function () {
         getShowsFromUSB(function (result) {
             if (!result) {
-                console.log("Error gettings shows from USB");
+                console.log("Error getting shows from USB");
             }
         });
     });
@@ -2339,8 +2339,12 @@ io.on('connection', function (socket) {
                 if (fixture.effects.some(e => e.id === msg.effectID)) {
                     var effect = fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)];
                     effect.name = msg.name;
-                    effect.depth = parseFloat(msg.depth);
-                    effect.speed = parseInt(msg.speed);
+                    if (parseFloat(msg.depth) != null) {
+                        effect.depth = parseFloat(msg.depth);
+                    }
+                    if (parseInt(msg.speed) != null) {
+                        effect.speed = parseInt(msg.speed);
+                    }
                     socket.broadcast.emit('fixtureEffectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                     saveShow();
@@ -2445,8 +2449,12 @@ io.on('connection', function (socket) {
                 fixture.invertPan = msg.invertPan;
                 fixture.invertTilt = msg.invertTilt;
                 fixture.swapPanTilt = msg.swapPanTilt;
-                fixture.dmxUniverse = parseInt(msg.dmxUniverse);
-                fixture.startDMXAddress = parseInt(msg.startDMXAddress);
+                if (parseInt(msg.dmxUniverse) != null) {
+                    fixture.dmxUniverse = parseInt(msg.dmxUniverse);
+                }
+                if (parseInt(msg.startDMXAddress) != null) {
+                    fixture.startDMXAddress = parseInt(msg.startDMXAddress);
+                }
                 if (fixture.startDMXAddress > 512) {
                     fixture.startDMXAddress = 512;
                 }
@@ -2778,18 +2786,24 @@ io.on('connection', function (socket) {
                 cue.includeIntensityColor = msg.includeIntensityColor;
                 cue.includePosition = msg.includePosition;
                 cue.includeBeam = msg.includeBeam;
-                cue.upTime = parseFloat(msg.upTime);
-                cue.downTime = parseFloat(msg.downTime);
+                if (parseFloat(msg.upTime) != null) {
+                    cue.upTime = parseFloat(msg.upTime);
+                }
+                if (parseFloat(msg.downTime) != null) {
+                    cue.downTime = parseFloat(msg.downTime);
+                }
                 if (cue.upTime == 0) {
                     cue.upTime = 0.001;
                 }
                 if (cue.downTime == 0) {
                     cue.downTime = 0.001;
                 }
-                if (msg.follow < -1) {
-                    cue.follow = -1;
-                } else {
-                    cue.follow = parseFloat(msg.follow);
+                if (parseFloat(msg.follow) != null) {
+                    if (msg.follow < -1) {
+                        cue.follow = -1;
+                    } else {
+                        cue.follow = parseFloat(msg.follow);
+                    }
                 }
                 if (changed == true) {
                     cue.upStep = cue.upTime * FPS;
@@ -3397,18 +3411,24 @@ io.on('connection', function (socket) {
                     if (parseFloat(msg.upTime) == step.upTime && parseFloat(msg.downTime) == step.downTime) {
                         changed = false;
                     }
-                    step.upTime = parseFloat(msg.upTime);
-                    step.downTime = parseFloat(msg.downTime);
+                    if (parseFloat(msg.upTime) != null) {
+                        step.upTime = parseFloat(msg.upTime);
+                    }
+                    if (parseFloat(msg.downTime) != null) {
+                        step.downTime = parseFloat(msg.downTime);
+                    }
                     if (step.upTime == 0) {
                         step.upTime = 0.001;
                     }
                     if (step.downTime == 0) {
                         step.downTime = 0.001;
                     }
-                    if (msg.follow < -1) {
-                        step.follow = -1;
-                    } else {
-                        step.follow = parseFloat(msg.follow);
+                    if (parseFloat(msg.follow) != null) {
+                        if (msg.follow < -1) {
+                            step.follow = -1;
+                        } else {
+                            step.follow = parseFloat(msg.follow);
+                        }
                     }
                     if (changed == true) {
                         step.upStep = step.upTime * FPS;
@@ -3724,13 +3744,15 @@ io.on('connection', function (socket) {
                 preset.name = msg.name;
                 preset.displayAsDimmer = msg.displayAsDimmer;
                 preset.mode = msg.mode;
-                var intensity = parseInt(msg.intensity);
-                if (intensity > 0) {
-                    preset.active = true;
-                } else {
-                    preset.active = false;
+                if (parseInt(msg.intensity) != null) {
+                    var intensity = parseInt(msg.intensity);
+                    if (intensity > 0) {
+                        preset.active = true;
+                    } else {
+                        preset.active = false;
+                    }
+                    preset.intensity = intensity;
                 }
-                preset.intensity = intensity;
                 io.emit('presets', cleanPresets());
                 savePresets();
             } else {
@@ -3887,13 +3909,19 @@ io.on('connection', function (socket) {
     });
 
     socket.on('editSettings', function (msg) {
-        SETTINGS.defaultUpTime = parseFloat(msg.defaultUpTime);
-        SETTINGS.defaultDownTime = parseFloat(msg.defaultDownTime);
-        SETTINGS.sacnPriority = parseInt(msg.sacnPriority);
-        if (SETTINGS.sacnPriority < 1) {
-            SETTINGS.sacnPriority = 1;
-        } else if (SETTINGS.sacnPriority > 200) {
-            SETTINGS.sacnPriority = 200;
+        if (parseFloat(msg.defaultUpTime) != null) {
+            SETTINGS.defaultUpTime = parseFloat(msg.defaultUpTime);
+        }
+        if (parseFloat(msg.defaultDownTime) != null) {
+            SETTINGS.defaultDownTime = parseFloat(msg.defaultDownTime);
+        }
+        if (parseInt(msg.sacnPriority) != null) {
+            SETTINGS.sacnPriority = parseInt(msg.sacnPriority);
+            if (SETTINGS.sacnPriority < 1) {
+                SETTINGS.sacnPriority = 1;
+            } else if (SETTINGS.sacnPriority > 200) {
+                SETTINGS.sacnPriority = 200;
+            }
         }
         SETTINGS.defaultPresetMode = msg.defaultPresetMode;
         SETTINGS.interfaceMode = msg.interfaceMode;
