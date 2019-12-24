@@ -247,7 +247,7 @@ async function saveShowToUSB(showName, callback) {
 };
 
 function logError(msg) {
-    fs.writeFileSync('error-' + new Date() + '.txt', msg, (err) => {
+    fs.writeFileSync('error-' + new Date() + '.error', msg, (err) => {
         if (err) {
             console.log("wierd: " + err);
             console.log("error: " + msg);
