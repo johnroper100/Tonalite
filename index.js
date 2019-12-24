@@ -197,9 +197,9 @@ async function importFixtures(callback) {
     var drives = await drivelist.list();
     drives.forEach((drive) => {
         if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
-            fs.readdir(drive.mountpoints[0].path, (err, files) => {
+            fs.readdir(drive.mountpoints[0].path + "/fixtures", (err, files) => {
                 files.forEach(file => {
-                    fs.copyFile(drive.mountpoints[0].path + "/" + file, process.cwd() + "/fixtures/" + file, (err) => {
+                    fs.copyFile(drive.mountpoints[0].path + "/fixtures/" + file, process.cwd() + "/fixtures/" + file, (err) => {
                         if (err) {
                             logError(err)
                         } else {
