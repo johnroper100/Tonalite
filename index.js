@@ -3957,7 +3957,7 @@ io.on('connection', function (socket) {
             if (result) {
                 socket.emit('message', { type: "info", content: "The Tonalite firmware has been updated. Please reboot the server." });
             } else {
-                socket.emit('message', { type: "info", content: "The Tonalite firmware could not be updated. Is a USB connected?" });
+                socket.emit('message', { type: "error", content: "The Tonalite firmware could not be updated. Is a USB connected?" });
             }
         });
     });
