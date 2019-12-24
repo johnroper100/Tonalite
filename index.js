@@ -1734,6 +1734,7 @@ io.on('connection', function (socket) {
         currentCueID = "";
         lastCue = "";
         cueProgress = 0;
+        currentShowName = "Show";
         io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
         io.emit('activeCue', currentCueID);
         io.emit('cues', cleanCues());
@@ -1759,6 +1760,7 @@ io.on('connection', function (socket) {
         cueProgress = 0;
         currentCueID = "";
         lastCue = "";
+        currentShowName = "Show";
         let p = 0; const pMax = presets.length; for (; p < pMax; p++) {
             presets[p].patchChanged = true;
         }
