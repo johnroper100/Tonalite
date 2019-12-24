@@ -196,7 +196,7 @@ async function importFixtures(callback) {
 
     var drives = await drivelist.list();
     drives.forEach((drive) => {
-        if (drive.enumeraItor == 'USBSTOR' || drive.isUSB === true) {
+        if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
             fs.exists(drive.mountpoints[0].path + "/fixtures.zip", function (exists) {
                 if (exists) {
                     fs.createReadStream(drive.mountpoints[0].path + "/fixtures.zip").pipe(unzipper.Extract({ path: process.cwd() }));
@@ -220,7 +220,7 @@ async function saveShowToUSB(showName, callback) {
                     if (exists) {
                         io.emit('message', { type: "error", content: "A show file with that name already exists!" });
                     } else {
-                        fs.writeFile(filepath, JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, tonaliteVersion: VERSION, lastSaved: moment().format() }), (err) => {
+                        fs.writeFile(filepath, JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, tonaliteVersion: VERSION, showName: currentShowName, lastSaved: moment().format() }), (err) => {
                             if (err) {
                                 logError(err);
                                 done = false;
