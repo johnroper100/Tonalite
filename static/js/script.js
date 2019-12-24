@@ -659,13 +659,7 @@ var app = new Vue({
             $('#showFilesModal').modal("hide");
         },
         saveShowToUSB: function () {
-            bootbox.prompt("Show Name: ", function (result) {
-                if (result.trim() != "") {
-                    socket.emit('saveShowToUSB', result);
-                } else {
-                    bootbox.alert("You must enter a show name!");
-                }
-            });
+            socket.emit('saveShowToUSB', result);
         },
         calculateParamName: function (param, flipPanTilt) {
             if (param.type == 2 && param.name == "Pan" && flipPanTilt == true) {

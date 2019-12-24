@@ -224,7 +224,7 @@ async function saveShowToUSB(showName, callback) {
     drives.forEach((drive) => {
         if (done == false) {
             if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
-                filepath = drive.mountpoints[0].path + "/" + showName + ".tonalite";
+                filepath = drive.mountpoints[0].path + "/" + showName + "_" + moment().format() + ".tonalite";
                 fs.exists(filepath, function (exists) {
                     if (exists) {
                         io.emit('message', { type: "error", content: "A show file with that name already exists!" });
@@ -236,7 +236,7 @@ async function saveShowToUSB(showName, callback) {
                                 socket.emit('message', { type: "error", content: "The current show could not be saved onto a USB drive. Is there one connected?" });
                             };
                             done = true;
-                            io.emit('message', { type: "info", content: "The current show was successfully saved to the connected USB drive!" });
+                            io.emit('message', { type: "info", content: "The show '" + showName + "_" + moment().format() + ".tonalite' was successfully saved to the connected USB drive!" });
                         });
                     }
                 });
@@ -1584,7 +1584,7 @@ app.get('/open-source-licenses', function (req, res) {
 });
 
 app.get('/showFile', function (req, res) {
-    res.download(process.cwd() + '/show.json', moment().format() + '.tonalite', { headers: { 'Content-Disposition': 'attachment', 'Content-Type': 'application/octet-stream' } });
+    res.download(process.cwd() + '/show.json', currentShowName + "_" + moment().format() + '.tonalite', { headers: { 'Content-Disposition': 'attachment', 'Content-Type': 'application/octet-stream' } });
 });
 
 // Upload Show File
@@ -3942,8 +3942,8 @@ io.on('connection', function (socket) {
         });
     });
 
-    socket.on('saveShowToUSB', function (showName) {
-        saveShowToUSB(showName, function (result) {
+    socket.on('saveShowToUSB', function () {
+        saveShowToUSB(currentShowName, function (result) {
             if (!result) {
                 socket.emit('message', { type: "error", content: "The show could not be saved! Is a USB connected?" });
             }
