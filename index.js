@@ -200,8 +200,11 @@ async function importFixtures(callback) {
             fs.readdir(drive.mountpoints[0].path, (err, files) => {
                 files.forEach(file => {
                     fs.copyFile(drive.mountpoints[0].path + "/" + file, process.cwd() + "/fixtures/" + file, (err) => {
-                        if (err) logError(err);
-                        importComplete = true;
+                        if (err) {
+                            logError(err)
+                        } else {
+                            importComplete = true;
+                        };
                     });
                 });
             });
