@@ -2339,10 +2339,10 @@ io.on('connection', function (socket) {
                 if (fixture.effects.some(e => e.id === msg.effectID)) {
                     var effect = fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)];
                     effect.name = msg.name;
-                    if (parseFloat(msg.depth) != null) {
+                    if (isNaN(parseFloat(msg.depth)) == false) {
                         effect.depth = parseFloat(msg.depth);
                     }
-                    if (parseInt(msg.speed) != null) {
+                    if (isNaN(parseInt(msg.speed)) == false) {
                         effect.speed = parseInt(msg.speed);
                     }
                     socket.broadcast.emit('fixtureEffectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
@@ -2449,10 +2449,10 @@ io.on('connection', function (socket) {
                 fixture.invertPan = msg.invertPan;
                 fixture.invertTilt = msg.invertTilt;
                 fixture.swapPanTilt = msg.swapPanTilt;
-                if (parseInt(msg.dmxUniverse) != null) {
+                if (isNaN(parseInt(msg.dmxUniverse)) == false) {
                     fixture.dmxUniverse = parseInt(msg.dmxUniverse);
                 }
-                if (parseInt(msg.startDMXAddress) != null) {
+                if (isNaN(parseInt(msg.startDMXAddress)) == false) {
                     fixture.startDMXAddress = parseInt(msg.startDMXAddress);
                 }
                 if (fixture.startDMXAddress > 512) {
@@ -2786,10 +2786,10 @@ io.on('connection', function (socket) {
                 cue.includeIntensityColor = msg.includeIntensityColor;
                 cue.includePosition = msg.includePosition;
                 cue.includeBeam = msg.includeBeam;
-                if (parseFloat(msg.upTime) != null) {
+                if (isNaN(parseFloat(msg.upTime)) == false) {
                     cue.upTime = parseFloat(msg.upTime);
                 }
-                if (parseFloat(msg.downTime) != null) {
+                if (isNaN(parseFloat(msg.downTime)) == false) {
                     cue.downTime = parseFloat(msg.downTime);
                 }
                 if (cue.upTime == 0) {
@@ -2798,7 +2798,7 @@ io.on('connection', function (socket) {
                 if (cue.downTime == 0) {
                     cue.downTime = 0.001;
                 }
-                if (parseFloat(msg.follow) != null) {
+                if (isNaN(parseFloat(msg.follow)) == false) {
                     if (msg.follow < -1) {
                         cue.follow = -1;
                     } else {
@@ -3411,10 +3411,10 @@ io.on('connection', function (socket) {
                     if (parseFloat(msg.upTime) == step.upTime && parseFloat(msg.downTime) == step.downTime) {
                         changed = false;
                     }
-                    if (parseFloat(msg.upTime) != null) {
+                    if (isNaN(parseFloat(msg.upTime)) == false) {
                         step.upTime = parseFloat(msg.upTime);
                     }
-                    if (parseFloat(msg.downTime) != null) {
+                    if (isNaN(parseFloat(msg.downTime)) == false) {
                         step.downTime = parseFloat(msg.downTime);
                     }
                     if (step.upTime == 0) {
@@ -3423,7 +3423,7 @@ io.on('connection', function (socket) {
                     if (step.downTime == 0) {
                         step.downTime = 0.001;
                     }
-                    if (parseFloat(msg.follow) != null) {
+                    if (isNaN(parseFloat(msg.follow)) == false) {
                         if (msg.follow < -1) {
                             step.follow = -1;
                         } else {
@@ -3744,7 +3744,7 @@ io.on('connection', function (socket) {
                 preset.name = msg.name;
                 preset.displayAsDimmer = msg.displayAsDimmer;
                 preset.mode = msg.mode;
-                if (parseInt(msg.intensity) != null) {
+                if (isNaN(parseInt(msg.intensity)) == false) {
                     var intensity = parseInt(msg.intensity);
                     if (intensity > 0) {
                         preset.active = true;
@@ -3909,13 +3909,13 @@ io.on('connection', function (socket) {
     });
 
     socket.on('editSettings', function (msg) {
-        if (parseFloat(msg.defaultUpTime) != null) {
+        if (isNaN(parseFloat(msg.defaultUpTime)) == false) {
             SETTINGS.defaultUpTime = parseFloat(msg.defaultUpTime);
         }
-        if (parseFloat(msg.defaultDownTime) != null) {
+        if (isNaN(parseFloat(msg.defaultDownTime)) == false) {
             SETTINGS.defaultDownTime = parseFloat(msg.defaultDownTime);
         }
-        if (parseInt(msg.sacnPriority) != null) {
+        if (isNaN(parseInt(msg.sacnPriority)) == false) {
             SETTINGS.sacnPriority = parseInt(msg.sacnPriority);
             if (SETTINGS.sacnPriority < 1) {
                 SETTINGS.sacnPriority = 1;
