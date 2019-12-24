@@ -659,7 +659,7 @@ var app = new Vue({
             $('#showFilesModal').modal("hide");
         },
         saveShowToUSB: function () {
-            socket.emit('saveShowToUSB', result);
+            socket.emit('saveShowToUSB');
         },
         calculateParamName: function (param, flipPanTilt) {
             if (param.type == 2 && param.name == "Pan" && flipPanTilt == true) {
