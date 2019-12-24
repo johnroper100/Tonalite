@@ -1262,6 +1262,8 @@ function calculateStack() {
                                     effectValue = blue - white;
                                 } else if (fixtures[f].parameters[p].name === "White") {
                                     effectValue = white;
+                                } else {
+                                    effectValue = cppaddon.mapRange(fixtures[f].parameters[p].value, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 255);
                                 }
                             } else if (fixtures[f].effects[e].type == "Color" && fixtures[f].colortable == "D3E71EC8-3406-4572-A64C-52A38649C795") {
                                 // RGBA
@@ -1278,6 +1280,8 @@ function calculateStack() {
                                     effectValue = blue;
                                 } else if (fixtures[f].parameters[p].name === "Amber") {
                                     effectValue = amber;
+                                } else {
+                                    effectValue = cppaddon.mapRange(fixtures[f].parameters[p].value, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 255);
                                 }
                             } else if (fixtures[f].effects[e].type == "Color" && fixtures[f].colortable == "C7A1FB0A-AA23-468F-9060-AC1625155DE8") {
                                 // RGBAW
@@ -1297,6 +1301,8 @@ function calculateStack() {
                                     effectValue = amber;
                                 } else if (fixtures[f].parameters[p].name === "White") {
                                     effectValue = white;
+                                } else {
+                                    effectValue = cppaddon.mapRange(fixtures[f].parameters[p].value, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 255);
                                 }
                             } else if (fixtures[f].effects[e].type == "Color" && fixtures[f].colortable == "EF4970BA-2536-4725-9B0F-B2D7A021E139") {
                                 // CMY
@@ -1310,6 +1316,8 @@ function calculateStack() {
                                     effectValue = 255 - green;
                                 } else if (fixtures[f].parameters[p].name === "Yellow") {
                                     effectValue = 255 - blue;
+                                } else {
+                                    effectValue = cppaddon.mapRange(fixtures[f].parameters[p].value, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 255);
                                 }
                             }
                             if (paramWorked === true) {
