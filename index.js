@@ -196,19 +196,7 @@ async function importFixtures(callback) {
 
     var drives = await drivelist.list();
     drives.forEach((drive) => {
-        if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
-            fs.readdir(drive.mountpoints[0].path + "/fixtures", (err, files) => {
-                files.forEach(file => {
-                    fs.copyFile(drive.mountpoints[0].path + "/fixtures/" + file, process.cwd() + "/fixtures/" + file, (err) => {
-                        if (err) {
-                            logError(err)
-                        } else {
-                            importComplete = true;
-                        };
-                    });
-                });
-            });
-
+        if (drive.enumeraItor == 'USBSTOR' || drive.isUSB === true) {
             fs.exists(drive.mountpoints[0].path + "/fixtures.zip", function (exists) {
                 if (exists) {
                     fs.createReadStream(drive.mountpoints[0].path + "/fixtures.zip").pipe(unzipper.Extract({ path: process.cwd() }));
