@@ -70,7 +70,7 @@ var redo = {};
 
 var colortables = {
     // supported
-    "RGB": [
+    RGB: [
         "050FB0B4-3FD8-4267-803F-B953AEAD2EBC",
         "1A541B28-F61A-460A-8196-0FF18F94057B",
         "23F586D8-B31E-4052-B35F-CBE9F2277DEA",
@@ -88,30 +88,30 @@ var colortables = {
         "DF4D550A-D4E9-4D35-A0CF-9F49DC5C0B0B"
     ],
     // supported
-    "RGBW": [
+    RGBW: [
         "77597794-7BFF-46A3-878B-906D3780E6C9",
         "77A82F8A-9B24-4C3F-98FC-B6A29FB1AAE6"
     ],
     // suported
-    "RGBA": [
+    RGBA: [
         "D3E71EC8-3406-4572-A64C-52A38649C795"
     ],
     // supported
-    "RGBAW": [
+    RGBAW: [
         "C7A1FB0A-AA23-468F-9060-AC1625155DE8"
     ],
     // supported
-    "CMY": [
+    CMY: [
         "EF4970BA-2536-4725-9B0F-B2D7A021E139"
     ],
-    "RWAGCBI": [
+    RWAGCBI: [
         "02A2F87C-AB4C-41F5-8779-A51B99D0BE1C",
         "787A5AE4-E6C9-430D-975D-A746CCCA4A6A",
         "8D75E930-EA9E-471E-8A69-8A24308AF841",
         "AF677206-0DB3-49CD-8907-8ADFFC1B1EA6",
         "F5A91C47-BAD0-4230-A4DB-E80820D025A0"
     ],
-    "RROCAGBI": [
+    RROCAGBI: [
         "0422C16E-EFFC-42F2-A826-9B92E7F39595",
         "14837615-92A3-4989-BBBD-9CB024CE5369",
         "26FB5CFB-2CC6-4F29-8854-904D3E1CD256",
@@ -120,38 +120,38 @@ var colortables = {
         "D8CA1691-B23A-48B2-90B0-69A794F38437",
         "D93D1251-83A1-4F49-89ED-C5DA29CF32F3"
     ],
-    "RGCBI": [
+    RGCBI: [
         "04493BB0-7B6E-4B6C-B3B7-D9641F7511AD"
     ],
-    "RCWAGCBWW": [
+    RCWAGCBWW: [
         "08A4129A-2400-4068-9859-02A755492210",
         "8E084572-3A11-4E16-BB4C-E350CB47E3F4"
     ],
-    "RROAGI": [
+    RROAGI: [
         "0A4AAE23-D858-4BEE-97E0-DE14FF2C1E4A",
         "73C71AE4-687D-459D-A63B-9B591BA8CD9A",
         "91189886-6A6A-47CF-9137-5F5A7A88D829",
         "A529092E-9E64-492A-BB7D-B66FBBE95FBB"
     ],
-    "RGCBI": [
+    RGCBI: [
         "0ADC1299-1835-4508-AD36-70F11270C239",
         "5D5C5745-0299-4873-9935-1DD8141A71DF",
         "91660B37-B219-410F-BA20-45C121A4DBF5"
     ],
-    "RLGB": [
+    RLGB: [
         "0EEE630E-F1A8-46A6-8C0C-CEC9D149A27A",
         "4458B2D2-3E9D-49A3-9E48-C8E89FBFD4CC"
     ],
-    "RAGBI": [
+    RAGBI: [
         "1D16DE15-5F4C-46A9-9C3D-2380C2D2793A"
     ],
-    "RCWAGCBWW": [
+    RCWAGCBWW: [
         "202A0C13-0676-4EC1-B135-42919264C65D"
     ],
-    "RLAGCBI": [
+    RLAGCBI: [
         "203F7C23-8513-4003-BC3E-FE0752961353"
     ],
-    "HHF": [
+    HHF: [
         "2204B023-BD4D-477B-A4B8-AF29562BF0DE",
         "380FDA12-1374-4C43-912C-3D76FD6E01D5",
         "52186D1D-BD9A-43FD-83AD-A984A1AFE16A",
@@ -166,37 +166,37 @@ var colortables = {
         "F877A2FB-F40D-4856-BA51-D3F8132B9747",
         "FDEA1A5D-DB0B-4238-A8EF-42385AE1CD7E"
     ],
-    "RAGCB": [
+    RAGCB: [
         "3F90A9F9-209F-4505-A9F2-FEC17BC6A426"
     ],
-    "RGBU": [
+    RGBU: [
         "74EF89F4-0B78-4DC6-8E8A-68E3298B7CD2"
     ],
-    "RGBWU": [
+    RGBWU: [
         "B28E1514-AE8C-4E06-8472-B52D575B1CF2"
     ],
-    "RALGCBI": [
+    RALGCBI: [
         "75FEB905-EA2A-4643-B4F8-1A84141F8E98"
     ],
-    "WWCW": [
+    WWCW: [
         "7B365530-A4DF-44AD-AEF5-225472BE02AE"
     ],
-    "RROMGBI": [
+    RROMGBI: [
         "7C17F9A0-FCB1-454A-B497-BD2AC3CC0D2F"
     ],
-    "ROBMGI": [
+    ROBMGI: [
         "AE0F17D2-BAB6-4FDB-A826-C36BB289D3A0"
     ],
-    "RGBI": [
+    RGBI: [
         "B043D095-95A4-4DDB-AB38-252C991B13A8"
     ],
-    "H": [
+    H: [
         "B074A2D3-0C40-45A7-844A-7C2721E0B267"
     ],
-    "RMGBI": [
+    RMGBI: [
         "DA53CCAE-6FAB-4840-B990-E64B1B8C0444"
     ],
-    "RAGBUW": [
+    RAGBUW: [
         "EDDEAC65-BD2E-4D87-B163-D7A2434EC081"
     ]
 }
@@ -1395,10 +1395,10 @@ function calculateStack() {
                         if (fixtures[f].parameters[p].locked === false) {
                             effectChanIndex = fixtures[f].effects[e].parameterNames.findIndex(function (element) { return element == fixtures[f].parameters[p].name });
                             paramWorked = false;
-                            if (effectChanIndex > -1 && (fixtures[f].effects[e].type != "Color" || (fixtures[f].effects[e].type == "Color" && (fixtures[f].colortable == "3874B444-A11E-47D9-8295-04556EAEBEA7" || fixtures[f].colortable == "8E0BE596-3B4D-4CC4-8B9A-F2D54B0192AC")))) {
+                            if (effectChanIndex > -1 && (fixtures[f].effects[e].type != "Color" || (fixtures[f].effects[e].type == "Color" && colortables.RGB.indexOf(fixtures[f].colortable) >= 0))) {
                                 paramWorked = true;
                                 effectValue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex];
-                            } else if (fixtures[f].effects[e].type == "Color" && (fixtures[f].colortable == "77A82F8A-9B24-4C3F-98FC-B6A29FB1AAE6" || fixtures[f].colortable == "77597794-7BFF-46A3-878B-906D3780E6C9")) {
+                            } else if (fixtures[f].effects[e].type == "Color" && colortables.RGBW.indexOf(fixtures[f].colortable) >= 0) {
                                 // RGBW
                                 paramWorked = true;
                                 red = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][0];
@@ -1416,7 +1416,7 @@ function calculateStack() {
                                 } else {
                                     effectValue = cppaddon.mapRange(fixtures[f].parameters[p].value, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 255);
                                 }
-                            } else if (fixtures[f].effects[e].type == "Color" && fixtures[f].colortable == "D3E71EC8-3406-4572-A64C-52A38649C795") {
+                            } else if (fixtures[f].effects[e].type == "Color" && colortables.RGBA.indexOf(fixtures[f].colortable) >= 0) {
                                 // RGBA
                                 paramWorked = true;
                                 red = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][0];
@@ -1434,7 +1434,7 @@ function calculateStack() {
                                 } else {
                                     effectValue = cppaddon.mapRange(fixtures[f].parameters[p].value, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 255);
                                 }
-                            } else if (fixtures[f].effects[e].type == "Color" && fixtures[f].colortable == "C7A1FB0A-AA23-468F-9060-AC1625155DE8") {
+                            } else if (fixtures[f].effects[e].type == "Color" && colortables.RGBAW.indexOf(fixtures[f].colortable) >= 0) {
                                 // RGBAW
                                 paramWorked = true;
                                 red = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][0];
@@ -1455,7 +1455,7 @@ function calculateStack() {
                                 } else {
                                     effectValue = cppaddon.mapRange(fixtures[f].parameters[p].value, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 255);
                                 }
-                            } else if (fixtures[f].effects[e].type == "Color" && fixtures[f].colortable == "EF4970BA-2536-4725-9B0F-B2D7A021E139") {
+                            } else if (fixtures[f].effects[e].type == "Color" && colortables.CMY.indexOf(fixtures[f].colortable) >= 0) {
                                 // CMY
                                 paramWorked = true;
                                 red = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][0];
@@ -1981,14 +1981,14 @@ io.on('connection', function (socket) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
                 var palette = colorPalettes[msg.pid];
                 var param = null;
-                if (fixture.colortable == "3874B444-A11E-47D9-8295-04556EAEBEA7" || fixture.colortable == "8E0BE596-3B4D-4CC4-8B9A-F2D54B0192AC") {
+                if (colortables.RGB.indexOf(fixture.colortable) >= 0) {
                     // RGB
                     let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
                         param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
                         param.value = cppaddon.mapRange(palette.parameters[c].value, 0, 255, param.min, param.max);
                         param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
                     }
-                } else if (fixture.colortable == "77A82F8A-9B24-4C3F-98FC-B6A29FB1AAE6" || fixture.colortable == "77597794-7BFF-46A3-878B-906D3780E6C9") {
+                } else if (colortables.RGBW.indexOf(fixture.colortable) >= 0) {
                     // RGBW
                     w = Math.min(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
                     let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
@@ -1999,7 +1999,7 @@ io.on('connection', function (socket) {
                     param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("White")];
                     param.value = cppaddon.mapRange(w, 0, 255, param.min, param.max);
                     param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
-                } else if (fixture.colortable == "D3E71EC8-3406-4572-A64C-52A38649C795") {
+                } else if (colortables.RGBA.indexOf(fixture.colortable) >= 0) {
                     // RGBA
                     a = cppaddon.getAFromRGB(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
                     let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
@@ -2016,7 +2016,7 @@ io.on('connection', function (socket) {
                     param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Amber")];
                     param.value = cppaddon.mapRange(a, 0, 255, param.min, param.max);
                     param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
-                } else if (fixture.colortable == "C7A1FB0A-AA23-468F-9060-AC1625155DE8") {
+                } else if (colortables.RGBAW.indexOf(fixture.colortable) >= 0) {
                     // RGBAW
                     w = Math.min(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
                     a = cppaddon.getAFromRGB(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
@@ -2038,7 +2038,7 @@ io.on('connection', function (socket) {
                     param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("White")];
                     param.value = cppaddon.mapRange(w, 0, 255, param.min, param.max);
                     param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
-                } else if (fixture.colortable == "EF4970BA-2536-4725-9B0F-B2D7A021E139") {
+                } else if (colortables.CMY.indexOf(fixture.colortable) >= 0) {
                     // CMY
                     let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
                         if (palette.parameters[c].name == "Red") {
