@@ -1974,6 +1974,30 @@ io.on('connection', function (socket) {
         });
     });
 
+    function rgbToHsv(r, g, b) {
+        r /= 255, g /= 255, b /= 255;
+
+        var max = Math.max(r, g, b), min = Math.min(r, g, b);
+        var h, s, v = max;
+
+        var d = max - min;
+        s = max == 0 ? 0 : d / max;
+
+        if (max == min) {
+            h = 0; // achromatic
+        } else {
+            switch (max) {
+                case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                case g: h = (b - r) / d + 2; break;
+                case b: h = (r - g) / d + 4; break;
+            }
+
+            h /= 6;
+        }
+
+        return [h * 255, s * 255, v * 255];
+    }
+
     socket.on('useFixtureColorPalette', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
@@ -2051,6 +2075,32 @@ io.on('connection', function (socket) {
                         param.value = cppaddon.mapRange(255 - palette.parameters[c].value, 0, 255, param.min, param.max);
                         param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
                     }
+                } else if (colortables.H.indexOf(fixture.colortable) >= 0 || colortables.HHF.indexOf(fixture.colortable) >= 0) {
+                    // HSI
+                    var red = null;
+                    var green = null;
+                    var blue = null;
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        if (palette.parameters[c].name == "Red") {
+                            red = palette.parameters[c].value;
+                        } else if (palette.parameters[c].name == "Green") {
+                            green = palette.parameters[c].value;
+                        } else if (palette.parameters[c].name == "Blue") {
+                            blue = palette.parameters[c].value;
+                        }
+                    }
+                    var hue = rgbToHsv(red, green, blue);
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Hue")];
+                    param.value = cppaddon.mapRange(hue[0], 0, 255, param.min, param.max);
+                    param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Saturation")];
+                    param.value = cppaddon.mapRange(hue[1], 0, 255, param.min, param.max);
+                    param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Intensity")];
+                    param.value = cppaddon.mapRange(hue[2], 0, 255, param.min, param.max);
+                    param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
                 } else {
                     // Just try insert RGB
                     let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
@@ -2132,6 +2182,29 @@ io.on('connection', function (socket) {
         base[2] = mb * 255.0;
         return base;
     }
+
+    function hsvToRgb(h, s, v) {
+        console.log(h,s,v);
+        var r, g, b;
+
+        var i = Math.floor(h * 6);
+        var f = h * 6 - i;
+        var p = v * (1 - s);
+        var q = v * (1 - f * s);
+        var t = v * (1 - (1 - f) * s);
+
+        switch (i % 6) {
+            case 0: r = v, g = t, b = p; break;
+            case 1: r = q, g = v, b = p; break;
+            case 2: r = p, g = v, b = t; break;
+            case 3: r = p, g = q, b = v; break;
+            case 4: r = t, g = p, b = v; break;
+            case 5: r = v, g = p, b = q; break;
+        }
+
+        return [r * 255, g * 255, b * 255];
+    }
+
     socket.on('addColorPalette', function (msg) {
         saveUndoRedo(false);
         if (msg.type == 'fixture') {
@@ -2152,6 +2225,9 @@ io.on('connection', function (socket) {
             var mintgreen = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("MintGreen")];
             var coolwhite = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("CoolWhite")];
             var warmwhite = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("WarmWhite")];
+            var hue = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Hue")];
+            var saturation = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Saturation")];
+            var intensity = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Intensity")];
         }
         var finalColor = [255, 255, 255];
         if (red != null && green != null && blue != null) {
@@ -2163,6 +2239,12 @@ io.on('connection', function (socket) {
             finalColor[0] = cppaddon.mapRange(cyan.value, 0, 65535, 0, 255);
             finalColor[1] = cppaddon.mapRange(magenta.value, 0, 65535, 0, 255);
             finalColor[2] = cppaddon.mapRange(yellow.value, 0, 65535, 0, 255);
+        }
+        if (hue != null && saturation != null && intensity != null) {
+            var rgb = hsvToRgb(hue.value/hue.max, saturation.value/saturation.max, intensity.value/intensity.max);
+            finalColor[0] = cppaddon.mapRange(rgb[0], 0, 65535, 0, 255);
+            finalColor[1] = cppaddon.mapRange(rgb[1], 0, 65535, 0, 255);
+            finalColor[2] = cppaddon.mapRange(rgb[2], 0, 65535, 0, 255);
         }
         console.log("rgb" + finalColor);
         if (white != null) {
