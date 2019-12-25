@@ -452,6 +452,7 @@ function cleanFixtures() {
     var newFixtures = JSON.parse(JSON.stringify(fixtures));
     var valMax = null;
     let f = 0; const fMax = newFixtures.length; for (; f < fMax; f++) {
+        valMax = null;
         delete newFixtures[f].effects;
         delete newFixtures[f].parameterTypes;
         delete newFixtures[f].dmxUniverse;
@@ -465,7 +466,7 @@ function cleanFixtures() {
         delete newFixtures[f].swapPanTilt;
         let p = 0; const pMax = newFixtures[f].parameters.length; for (; p < pMax; p++) {
             if (newFixtures[f].parameters[p].fadeWithIntensity == true || newFixtures[f].parameters[p].type == 1) {
-                if (newFixtures[f].parameters[p].displayValue > valMax) {
+                if (valMax == null || newFixtures[f].parameters[p].displayValue > valMax) {
                     valMax = newFixtures[f].parameters[p].displayValue;
                 }
             }
@@ -486,7 +487,6 @@ function cleanFixtures() {
             delete newFixtures[f].parameters[p].id;
         }
         newFixtures[f].intensityDisplay = valMax;
-        valMax = null;
     }
     return newFixtures;
 };
@@ -2184,7 +2184,7 @@ io.on('connection', function (socket) {
     }
 
     function hsvToRgb(h, s, v) {
-        console.log(h,s,v);
+        console.log(h, s, v);
         var r, g, b;
 
         var i = Math.floor(h * 6);
@@ -2241,7 +2241,7 @@ io.on('connection', function (socket) {
             finalColor[2] = cppaddon.mapRange(yellow.value, 0, 65535, 0, 255);
         }
         if (hue != null && saturation != null && intensity != null) {
-            var rgb = hsvToRgb(hue.value/hue.max, saturation.value/saturation.max, intensity.value/intensity.max);
+            var rgb = hsvToRgb(hue.value / hue.max, saturation.value / saturation.max, intensity.value / intensity.max);
             finalColor[0] = cppaddon.mapRange(rgb[0], 0, 65535, 0, 255);
             finalColor[1] = cppaddon.mapRange(rgb[1], 0, 65535, 0, 255);
             finalColor[2] = cppaddon.mapRange(rgb[2], 0, 65535, 0, 255);
