@@ -2031,15 +2031,15 @@ io.on('connection', function (socket) {
             console.log("white" + finalColor);
         }
         if (amber != null) {
-            finalColor = blendColors(finalColor, 255 / 255.0, 126 / 255.0, 0 / 255.0, cppaddon.mapRange(amber.value, 0, 65535, 0, 255) / 255.0);
+            finalColor = blendColors(finalColor, 255 / 255.0, 205 / 255.0, 15 / 255.0, cppaddon.mapRange(amber.value, 0, 65535, 0, 255) / 255.0);
             console.log("amber" + finalColor);
         }
         if (lime != null) {
-            finalColor = blendColors(finalColor, 173 / 255.0, 255 / 255.0, 47 / 255.0, cppaddon.mapRange(lime.value, 0, 65535, 0, 255) / 255.0);
+            finalColor = blendColors(finalColor, 180 / 255.0, 255 / 255.0, 43 / 255.0, cppaddon.mapRange(lime.value, 0, 65535, 0, 255) / 255.0);
             console.log("lime" + finalColor);
         }
         if (indigo != null) {
-            finalColor = blendColors(finalColor, 75 / 255.0, 0 / 255.0, 130 / 255.0, cppaddon.mapRange(indigo.value, 0, 65535, 0, 255) / 255.0);
+            finalColor = blendColors(finalColor, 5 / 255.0, 52 / 255.0, 255 / 255.0, cppaddon.mapRange(indigo.value, 0, 65535, 0, 255) / 255.0);
             console.log("indigo" + finalColor);
         }
         console.log(finalColor);
