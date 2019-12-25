@@ -1820,7 +1820,7 @@ io.on('connection', function (socket) {
                 fixture.personalities.forEach(function (personality) {
                     push = false;
                     if (SETTINGS.interfaceMode == 'dimmer') {
-                        if (personality.modelName.indexOf("Dimmer") >= 0) {
+                        if (personality.modelName === "Dimmer") {
                             push = true;
                         }
                     } else {
