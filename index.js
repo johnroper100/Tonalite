@@ -1236,7 +1236,7 @@ function calculateStack() {
                         if (fixtures[f].parameters[p].locked === false) {
                             effectChanIndex = fixtures[f].effects[e].parameterNames.findIndex(function (element) { return element == fixtures[f].parameters[p].name });
                             paramWorked = false;
-                            if (effectChanIndex > -1 && (fixtures[f].effects[e].type != "Color" || (fixtures[f].effects[e].type == "Color" && fixtures[f].colortable == "3874B444-A11E-47D9-8295-04556EAEBEA7"))) {
+                            if (effectChanIndex > -1 && (fixtures[f].effects[e].type != "Color" || (fixtures[f].effects[e].type == "Color" && (fixtures[f].colortable == "3874B444-A11E-47D9-8295-04556EAEBEA7" || fixtures[f].colortable == "8E0BE596-3B4D-4CC4-8B9A-F2D54B0192AC")))) {
                                 paramWorked = true;
                                 effectValue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex];
                             } else if (fixtures[f].effects[e].type == "Color" && (fixtures[f].colortable == "77A82F8A-9B24-4C3F-98FC-B6A29FB1AAE6" || fixtures[f].colortable == "77597794-7BFF-46A3-878B-906D3780E6C9")) {
@@ -1822,7 +1822,7 @@ io.on('connection', function (socket) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
                 var palette = colorPalettes[msg.pid];
                 var param = null;
-                if (fixture.colortable == "3874B444-A11E-47D9-8295-04556EAEBEA7") {
+                if (fixture.colortable == "3874B444-A11E-47D9-8295-04556EAEBEA7" || fixture.colortable == "8E0BE596-3B4D-4CC4-8B9A-F2D54B0192AC") {
                     // RGB
                     let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
                         param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
