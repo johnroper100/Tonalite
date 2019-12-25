@@ -2146,6 +2146,12 @@ io.on('connection', function (socket) {
             var cyan = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Cyan")];
             var magenta = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Magenta")];
             var yellow = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Yellow")];
+            var redorange = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("RedOrange")];
+            var orange = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Orange")];
+            var greencyan = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("GreenCyan")];
+            var mintgreen = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("MintGreen")];
+            var coolwhite = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("CoolWhite")];
+            var warmwhite = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("WarmWhite")];
         }
         var finalColor = [255, 255, 255];
         if (red != null && green != null && blue != null) {
@@ -2174,6 +2180,30 @@ io.on('connection', function (socket) {
         if (indigo != null) {
             finalColor = blendColors(finalColor, 5 / 255.0, 52 / 255.0, 255 / 255.0, cppaddon.mapRange(indigo.value, 0, 65535, 0, 255) / 255.0);
             console.log("indigo" + finalColor);
+        }
+        if (redorange != null) {
+            finalColor = blendColors(finalColor, 255 / 255.0, 105 / 255.0, 55 / 255.0, cppaddon.mapRange(redorange.value, 0, 65535, 0, 255) / 255.0);
+            console.log("redorange" + finalColor);
+        }
+        if (orange != null) {
+            finalColor = blendColors(finalColor, 255 / 255.0, 200 / 255.0, 0 / 255.0, cppaddon.mapRange(orange.value, 0, 65535, 0, 255) / 255.0);
+            console.log("orange" + finalColor);
+        }
+        if (greencyan != null) {
+            finalColor = blendColors(finalColor, 55 / 255.0, 255 / 255.0, 134 / 255.0, cppaddon.mapRange(greencyan.value, 0, 65535, 0, 255) / 255.0);
+            console.log("greencyan" + finalColor);
+        }
+        if (mintgreen != null) {
+            finalColor = blendColors(finalColor, 200 / 255.0, 255 / 255.0, 213 / 255.0, cppaddon.mapRange(mintgreen.value, 0, 65535, 0, 255) / 255.0);
+            console.log("mintgreen" + finalColor);
+        }
+        if (coolwhite != null) {
+            finalColor = blendColors(finalColor, 182 / 255.0, 228 / 255.0, 255 / 255.0, cppaddon.mapRange(coolwhite.value, 0, 65535, 0, 255) / 255.0);
+            console.log("coolwhite" + finalColor);
+        }
+        if (warmwhite != null) {
+            finalColor = blendColors(finalColor, 255 / 255.0, 249 / 255.0, 108 / 255.0, cppaddon.mapRange(warmwhite.value, 0, 65535, 0, 255) / 255.0);
+            console.log("warmwhite" + finalColor);
         }
         console.log(finalColor);
         var palette = {
