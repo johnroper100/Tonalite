@@ -151,6 +151,7 @@ var colortables = {
     RLAGCBI: [
         "203F7C23-8513-4003-BC3E-FE0752961353"
     ],
+    // supported
     HHF: [
         "2204B023-BD4D-477B-A4B8-AF29562BF0DE",
         "380FDA12-1374-4C43-912C-3D76FD6E01D5",
@@ -190,6 +191,7 @@ var colortables = {
     RGBI: [
         "B043D095-95A4-4DDB-AB38-252C991B13A8"
     ],
+    // supported
     H: [
         "B074A2D3-0C40-45A7-844A-7C2721E0B267"
     ],
@@ -283,6 +285,30 @@ function isEmpty(obj) {
             return false;
     }
     return true;
+}
+
+function rgbToHsv(r, g, b) {
+    r /= 255, g /= 255, b /= 255;
+
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, v = max;
+
+    var d = max - min;
+    s = max == 0 ? 0 : d / max;
+
+    if (max == min) {
+        h = 0; // achromatic
+    } else {
+        switch (max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+
+        h /= 6;
+    }
+
+    return [h * 255, s * 255, v * 255];
 }
 
 async function updateFirmware(callback) {
@@ -1388,6 +1414,7 @@ function calculateStack() {
         var blue = null;
         var white = null;
         var amber = null;
+        var hsi = null;
         let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
             let e = 0; const eMax = fixtures[f].effects.length; for (; e < eMax; e++) {
                 if (fixtures[f].effects[e].active == true) {
@@ -1467,6 +1494,23 @@ function calculateStack() {
                                     effectValue = 255 - green;
                                 } else if (fixtures[f].parameters[p].name === "Yellow") {
                                     effectValue = 255 - blue;
+                                } else {
+                                    effectValue = cppaddon.mapRange(fixtures[f].parameters[p].value, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 255);
+                                }
+                            } else if (fixtures[f].effects[e].type == "Color" && (colortables.H.indexOf(fixtures[f].colortable) >= 0 || colortables.HHF.indexOf(fixtures[f].colortable) >= 0)) {
+                                // HSI
+                                paramWorked = true;
+                                red = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][0];
+                                green = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][1];
+                                blue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][2];
+                                hsi = rgbToHsv(red, green, blue);
+
+                                if (fixtures[f].parameters[p].name === "Hue") {
+                                    effectValue = Math.round(hsi[0]);
+                                } else if (fixtures[f].parameters[p].name === "Saturation") {
+                                    effectValue = Math.round(hsi[1]);
+                                } else if (fixtures[f].parameters[p].name === "Intensity") {
+                                    effectValue = Math.round(hsi[2]);
                                 } else {
                                     effectValue = cppaddon.mapRange(fixtures[f].parameters[p].value, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 255);
                                 }
@@ -1973,30 +2017,6 @@ io.on('connection', function (socket) {
             socket.emit('fixtureProfiles', [fixturesList, startDMXAddress]);
         });
     });
-
-    function rgbToHsv(r, g, b) {
-        r /= 255, g /= 255, b /= 255;
-
-        var max = Math.max(r, g, b), min = Math.min(r, g, b);
-        var h, s, v = max;
-
-        var d = max - min;
-        s = max == 0 ? 0 : d / max;
-
-        if (max == min) {
-            h = 0; // achromatic
-        } else {
-            switch (max) {
-                case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-                case g: h = (b - r) / d + 2; break;
-                case b: h = (r - g) / d + 4; break;
-            }
-
-            h /= 6;
-        }
-
-        return [h * 255, s * 255, v * 255];
-    }
 
     socket.on('useFixtureColorPalette', function (msg) {
         if (fixtures.length != 0) {

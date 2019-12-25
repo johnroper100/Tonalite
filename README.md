@@ -14,7 +14,7 @@ Tonalite is lighting control software that uses a web interface accessible from 
 - Add sequences and cycle through them
 - Add groups to control multiple fixtures at once
 - Record presets for easy system overrides
-- Support RGB, RGBW, RGBA, RGBAW, CMY leds, and moving lights
+- Support RGB, RGBW, RGBA, RGBAW, CMY, HSI leds, and moving lights
 - Support automark
 - Support ETC's fixture profile format
   

@@ -67,6 +67,7 @@ There are a number of different color palettes available. Click one in the list 
 - RGBA
 - RGBAW
 - CMY
+- HSI
 
 If a fixture has one of these color mixing modes, Tonalite will use all of its color parameters to set the correct color from the palette. If a fixture does not have one of these modes, Tonalite will attempt to set RGB parameter values if any of those parameters exist on the fixture, or else will fail to apply the color palette.
 
