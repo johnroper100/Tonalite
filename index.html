@@ -390,14 +390,14 @@
                                             href="#intensityEffects" role="tab" aria-controls="intensityEffects"
                                             aria-selected="false">Intensity</a>
                                     </li>
-                                    <li v-if="settings.interfaceMode == 'normal'" class="nav-item"
-                                        v-if="currentFixture.parameterTypes.indexOf('Position') >= 0">
+                                    <li v-if="settings.interfaceMode == 'normal' && currentFixture.parameterTypes.indexOf('Position') >= 0"
+                                        class="nav-item">
                                         <a class="nav-link" id="positionEffects-tab" data-toggle="tab"
                                             href="#positionEffects" role="tab" aria-controls="positionEffects"
                                             aria-selected="false">Position</a>
                                     </li>
-                                    <li v-if="settings.interfaceMode == 'normal'" class="nav-item"
-                                        v-if="currentFixture.parameterTypes.indexOf('Color') >= 0">
+                                    <li v-if="settings.interfaceMode == 'normal' && currentFixture.parameterTypes.indexOf('Color') >= 0"
+                                        class="nav-item">
                                         <a class="nav-link" id="colorEffects-tab" data-toggle="tab" href="#colorEffects"
                                             role="tab" aria-controls="colorEffects" aria-selected="false">Color</a>
                                     </li>
