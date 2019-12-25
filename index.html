@@ -693,7 +693,7 @@
                                     @click="setParameterValue(parameter, parameter.min, 'group')">
                                     <i class="far fa-step-backward fa-sm"></i>
                                 </button>
-                                <button :disabled="parameter.locked == true" v-if="!('ranges' in parameter)"
+                                <button :disabled="parameter.locked == true" v-if="!('ranges' in parameter) || parameter.ranges.length == 0"
                                     class="btn btn-warning"
                                     @click="setParameterValue(parameter, parseInt(parameter.max/2)+1, 'group')">
                                     50%
