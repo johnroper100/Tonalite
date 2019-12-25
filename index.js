@@ -4,7 +4,7 @@ const favicon = require('serve-favicon');
 const compression = require('compression');
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const fs = require('fs');
+const fs = require('fs-extra');
 const moment = require('moment');
 const fileUpload = require('express-fileupload');
 const { spawn } = require('child_process');
@@ -195,7 +195,7 @@ async function getShowsFromUSB(callback) {
     }
 };
 
-async function importFixtures(callback) {
+async function importFixturesFromUSB(callback) {
     var importComplete = false;
 
     var drives = await drivelist.list();
@@ -207,6 +207,28 @@ async function importFixtures(callback) {
                     importComplete = true;
                 }
             });
+        }
+    });
+    return callback(importComplete);
+};
+
+async function exportErrorLogsToUSB(callback) {
+    var importComplete = false;
+
+    var drives = await drivelist.list();
+    drives.forEach((drive) => {
+        if (importComplete == false) {
+            if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
+                fs.copy('errors', drive.mountpoints[0].path + "/errors", function (err) {
+                    if (err && err != null) {
+                        logError(err);
+                        io.emit('message', { type: "error", content: "The error logs couldn't be exported! Is a USB connected?" });
+                    } else {
+                        importComplete = true;
+                        io.emit('message', { type: "info", content: "The error logs have been exported to USB!" });
+                    }
+                });
+            }
         }
     });
     return callback(importComplete);
@@ -243,7 +265,7 @@ async function saveShowToUSB(showName, callback) {
 };
 
 function logError(msg) {
-    fs.writeFileSync('errors/error-' + new Date() + '.error', msg, (err) => {
+    fs.writeFileSync('errors/error-' + moment().format('YYYY-MM-DDTHH-mm-ss') + '.error', msg, (err) => {
         if (err) {
             console.log("wierd: " + err);
             console.log("error: " + msg);
@@ -3967,12 +3989,17 @@ io.on('connection', function (socket) {
     });
 
     socket.on('importFixturesFromUSB', function () {
-        importFixtures(function (result) {
+        importFixturesFromUSB(function (result) {
             if (result) {
                 socket.emit('message', { type: "info", content: "The fixture profiles have been imported from USB!" });
             } else {
                 socket.emit('message', { type: "error", content: "The fixture profiles could not be imported! Is a USB connected?" });
             }
+        });
+    });
+
+    socket.on('exportErrorLogsToUSB', function () {
+        exportErrorLogsToUSB(function (result) {
         });
     });
 

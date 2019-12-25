@@ -687,6 +687,9 @@ var app = new Vue({
         },
         redo: function () {
             socket.emit('redo');
+        },
+        exportErrorLogsToUSB: function () {
+            socket.emit('exportErrorLogsToUSB');
         }
     }
 });

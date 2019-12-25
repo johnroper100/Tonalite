@@ -74,6 +74,7 @@
                                 Tonalite</a>
                             <a class="dropdown-item" @click="getShowInfo">Show Info</a>
                             <a class="dropdown-item" href="/docs">Documentation</a>
+                            <a class="dropdown-item" @click="exportErrorLogsToUSB">Export Logs To USB</a>
                             <div v-if="ifMobile() || desktop == true" class="dropdown-divider"></div>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item"
                                 href="http://jmroper.com/tonalite">Website</a>
