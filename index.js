@@ -69,6 +69,7 @@ var undo = {};
 var redo = {};
 
 var colortables = {
+    // supported
     "RGB": [
         "050FB0B4-3FD8-4267-803F-B953AEAD2EBC",
         "1A541B28-F61A-460A-8196-0FF18F94057B",
@@ -86,16 +87,20 @@ var colortables = {
         "C8A5EEF9-7346-4C5C-B108-A4DE9E73AC1E",
         "DF4D550A-D4E9-4D35-A0CF-9F49DC5C0B0B"
     ],
+    // supported
     "RGBW": [
         "77597794-7BFF-46A3-878B-906D3780E6C9",
         "77A82F8A-9B24-4C3F-98FC-B6A29FB1AAE6"
     ],
+    // suported
     "RGBA": [
         "D3E71EC8-3406-4572-A64C-52A38649C795"
     ],
+    // supported
     "RGBAW": [
         "C7A1FB0A-AA23-468F-9060-AC1625155DE8"
     ],
+    // supported
     "CMY": [
         "EF4970BA-2536-4725-9B0F-B2D7A021E139"
     ],
