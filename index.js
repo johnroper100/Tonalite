@@ -40,6 +40,10 @@ const FPS = 40;
 
 const VERSION = "2.0.0 Beta 8";
 
+if (!fs.existsSync("errors")) {
+    fs.mkdirSync("errors");
+}
+
 fs.exists(process.cwd() + '/settings.json', function (exists) {
     if (exists == false) {
         saveSettings();
@@ -239,7 +243,7 @@ async function saveShowToUSB(showName, callback) {
 };
 
 function logError(msg) {
-    fs.writeFileSync('error-' + new Date() + '.error', msg, (err) => {
+    fs.writeFileSync('errors/error-' + new Date() + '.error', msg, (err) => {
         if (err) {
             console.log("wierd: " + err);
             console.log("error: " + msg);
