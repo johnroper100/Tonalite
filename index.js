@@ -291,7 +291,7 @@ function generateGroupParameters(newGroup) {
 
 function cleanFixtures() {
     var newFixtures = JSON.parse(JSON.stringify(fixtures));
-    var valMax = 0;
+    var valMax = null;
     let f = 0; const fMax = newFixtures.length; for (; f < fMax; f++) {
         delete newFixtures[f].effects;
         delete newFixtures[f].parameterTypes;
@@ -327,7 +327,7 @@ function cleanFixtures() {
             delete newFixtures[f].parameters[p].id;
         }
         newFixtures[f].intensityDisplay = valMax;
-        valMax = 0;
+        valMax = null;
     }
     return newFixtures;
 };

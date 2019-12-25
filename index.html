@@ -123,7 +123,7 @@
                         <div class="col-4 col-sm-3 col-lg-2 mb-3" v-for="fixture in fixtures" :key="fixture.id"
                             @click="getFixtureParameters(fixture.id, true)">
                             <div class="fixtureItem">
-                                <h3 class="fixtureValue">
+                                <h3 class="fixtureValue" v-if="fixture.intensityDisplay">
                                     {{fixture.intensityDisplay}}%
                                 </h3>
                                 <p>{{fixture.shortName}} ({{fixture.startDMXAddress}})
