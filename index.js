@@ -2184,7 +2184,6 @@ io.on('connection', function (socket) {
     }
 
     function hsvToRgb(h, s, v) {
-        console.log(h, s, v);
         var r, g, b;
 
         var i = Math.floor(h * 6);
@@ -2242,11 +2241,10 @@ io.on('connection', function (socket) {
         }
         if (hue != null && saturation != null && intensity != null) {
             var rgb = hsvToRgb(hue.value / hue.max, saturation.value / saturation.max, intensity.value / intensity.max);
-            finalColor[0] = cppaddon.mapRange(rgb[0], 0, 65535, 0, 255);
-            finalColor[1] = cppaddon.mapRange(rgb[1], 0, 65535, 0, 255);
-            finalColor[2] = cppaddon.mapRange(rgb[2], 0, 65535, 0, 255);
+            finalColor[0] = Math.round(rgb[0]);
+            finalColor[1] = Math.round(rgb[1]);
+            finalColor[2] = Math.round(rgb[2]);
         }
-        console.log("rgb" + finalColor);
         if (white != null) {
             finalColor = blendColors(finalColor, 255 / 255.0, 255 / 255.0, 255 / 255.0, cppaddon.mapRange(white.value, 0, 65535, 0, 255) / 255.0);
             console.log("white" + finalColor);
