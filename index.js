@@ -8,6 +8,7 @@ const fs = require('fs-extra');
 const moment = require('moment');
 const fileUpload = require('express-fileupload');
 const { spawn } = require('child_process');
+const exec = require('child_process').exec;
 const drivelist = require('drivelist');
 const unzipper = require('unzipper');
 require('sanic.js').changeMyWorld();
@@ -4279,9 +4280,7 @@ io.on('connection', function (socket) {
 
     socket.on('shutdown', function () {
         if (SETTINGS.desktop === false && SETTINGS.device === "rpi") {
-            saveShow();
-            savePresets();
-            var cp = spawn('sudo shutdown -h now');
+            exec('shutdown now', function (error, stdout, stderr) { callback(stdout); });
         }
     });
 });
