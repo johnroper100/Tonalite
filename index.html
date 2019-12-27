@@ -98,7 +98,7 @@
         <div id="tabs" :class="{'bigBottom': settings.desktop == false && ifMobile == false}">
             <div id="fixtures" class="tabcontent" v-if="currentView == 'fixtures'">
                 <div class="container">
-                    <div class="row topBtns sticky-top">
+                    <div class="row topBtns sticky-top noselect">
                         <div class="col-4">
                             <button class="btn btn-success btn-block" @click="getFixtureProfiles">Add Fixture</button>
                         </div>
@@ -120,7 +120,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="fixturesList">
+                    <div class="row noselect" id="fixturesList">
                         <div class="col-4 col-sm-3 col-lg-2 mb-3" v-for="fixture in fixtures" :key="fixture.id"
                             @click="getFixtureParameters(fixture.id, true)">
                             <div class="fixtureItem">
@@ -187,24 +187,24 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="dark mb-1">
+                                <div class="dark mb-1 noselect">
                                     <span @click="clearFixtureProfilesSelection('manufacturers')"
                                         v-if="isEmpty(fixtureProfiles) == false">
-                                        <span class="text-primary">All Fixtures</span>
+                                        <span class="text-primary fixtureProfilesText">All Fixtures</span>
                                     </span>
                                     <span v-if="fixtureProfilesManufacturer != ''">
                                         >
-                                        <span class="text-primary"
+                                        <span class="text-primary fixtureProfilesText"
                                             @click="clearFixtureProfilesSelection('models')">{{fixtureProfilesManufacturer}}</span>
                                     </span>
                                     <span v-if="fixtureProfilesModel != '' && fixtureProfilesManufacturer != ''">
                                         >
-                                        <span class="text-primary">{{fixtureProfilesModel}}</span>
+                                        <span class="text-primary fixtureProfilesText">{{fixtureProfilesModel}}</span>
                                     </span>
                                     <span v-if="isEmpty(fixtureProfiles) == true">Loading fixture
                                         profiles...</span>
                                 </div>
-                                <ul class="list-group" id="fixtureProfilesList">
+                                <ul class="list-group noselect" id="fixtureProfilesList">
                                     <span
                                         v-if="filteredFixtureProfilesList['objs'].length == 0 && isEmpty(fixtureProfiles) == false && fixtureProfilesSearch != ''"
                                         class="dark">Nothing matching this search parameter exists.</span>
@@ -228,7 +228,8 @@
                                         {{model}}
                                     </li>
                                 </ul>
-                                <div v-if="fixtureProfiles.length == 0" class="text-danger"> There are no fixture
+                                <div v-if="fixtureProfiles.length == 0" class="text-danger noselect"> There are no
+                                    fixture
                                     profiles in your library!
                                 </div>
                             </div>
@@ -236,7 +237,7 @@
                     </div>
                 </div>
             </div>
-            <div id="fixtureParametersPage" class="tabcontent" v-if="currentView == 'fixtureParameters'">
+            <div id="fixtureParametersPage noselect" class="tabcontent" v-if="currentView == 'fixtureParameters'">
                 <div class="container">
                     <div class="row topBtns">
                         <div class="col-4">
@@ -467,7 +468,7 @@
             </div>
             <div id="fixtureSettingsPage" class="tabcontent" v-if="currentView == 'fixtureSettings'">
                 <div class="container">
-                    <div class="row topBtns">
+                    <div class="row topBtns noselect">
                         <div class="col-6">
                             <div><button id="fixtureParametersBackBtn" class="btn btn-primary btn-block"
                                     @click="currentView = 'fixtureParameters'">Back</button></div>
@@ -550,7 +551,7 @@
             </div>
             <div id="fixtureEffectSettingsPage" class="tabcontent" v-if="currentView == 'fixtureEffectSettings'">
                 <div class="container">
-                    <div class="row topBtns">
+                    <div class="row topBtns noselect">
                         <div class="col-6">
                             <button id="fixtureParametersEffectBackBtn" class="btn btn-primary btn-block"
                                 @click="currentView = 'fixtureParameters'">Back</button>
@@ -594,7 +595,7 @@
                     </div>
                 </div>
             </div>
-            <div id="groups" class="tabcontent" v-if="currentView == 'groups'">
+            <div id="groups" class="tabcontent noselect" v-if="currentView == 'groups'">
                 <div class="container">
                     <div class="row topBtns sticky-top">
                         <div class="col-6">
@@ -652,7 +653,7 @@
                     </div>
                 </div>
             </div>
-            <div id="groupParametersPage" class="tabcontent" v-if="currentView == 'groupParameters'">
+            <div id="groupParametersPage" class="tabcontent noselect" v-if="currentView == 'groupParameters'">
                 <div class="container">
                     <div class="row topBtns">
                         <div class="col-4">
@@ -747,7 +748,7 @@
             </div>
             <div id="sequenceParametersPage" class="tabcontent" v-if="currentView == 'sequenceParameters'">
                 <div class="container">
-                    <div class="row topBtns">
+                    <div class="row topBtns noselect">
                         <div class="col-4">
                             <h5 id="sequenceParametersName">{{currentSequence.name}}</h5>
                         </div>
@@ -833,7 +834,7 @@
             </div>
             <div id="groupSettingsPage" class="tabcontent" v-if="currentView == 'groupSettings'">
                 <div class="container">
-                    <div class="row topBtns">
+                    <div class="row topBtns noselect">
                         <div class="col-6">
                             <button id="groupParametersBackBtn" class="btn btn-primary btn-block"
                                 @click="currentView = 'groupParameters'">Back</button>
@@ -866,7 +867,7 @@
                             Fixtures</button>
                     </div>
                 </div>
-                <div id="addFixturesToGroupModal" class="modal" tabindex="-1" role="dialog">
+                <div id="addFixturesToGroupModal" class="modal noselect" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-body">
@@ -886,7 +887,7 @@
                     </div>
                 </div>
             </div>
-            <div id="cues" class="tabcontent" v-if="currentView == 'cues'">
+            <div id="cues" class="tabcontent noselect" v-if="currentView == 'cues'">
                 <div class="container">
                     <div class="topBtns sticky-top">
                         <div class="row mb-2">
@@ -997,7 +998,7 @@
             </div>
             <div id="sequenceSettingsPage" class="tabcontent" v-if="currentView == 'sequenceSettings'">
                 <div class="container">
-                    <div class="row topBtns">
+                    <div class="row topBtns noselect">
                         <div class="col-6">
                             <button id="sequenceParametersBackBtn" class="btn btn-primary btn-block"
                                 @click="currentView = 'sequenceParameters'">Back</button>
@@ -1061,7 +1062,7 @@
                             Fixtures</button>
                     </div>
                 </div>
-                <div id="addFixturesToSequenceModal" class="modal" tabindex="-1" role="dialog">
+                <div id="addFixturesToSequenceModal" class="modal noselect" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-body">
@@ -1083,7 +1084,7 @@
             </div>
             <div id="cueSettingsPage" class="tabcontent" v-if="currentView == 'cueSettings'">
                 <div class="container">
-                    <div class="row topBtns">
+                    <div class="row topBtns noselect">
                         <div class="col-3">
                             <button id="gotoCueBtn" class="btn btn-primary btn-block" @click="gotoCue">Go</button>
                         </div>
@@ -1199,7 +1200,7 @@
                     </div>
                 </div>
             </div>
-            <div id="presets" class="tabcontent" v-if="currentView == 'presets'">
+            <div id="presets" class="tabcontent noselect" v-if="currentView == 'presets'">
                 <div class="container">
                     <div class="row topBtns sticky-top">
                         <div class="col-12">
@@ -1252,7 +1253,7 @@
             </div>
             <div id="presetSettingsPage" class="tabcontent" v-if="currentView == 'presetSettings'">
                 <div class="container">
-                    <div class="row topBtns">
+                    <div class="row topBtns noselect">
                         <div class="col-6">
                             <div><button id="presetDeleteBtn" class="btn btn-danger btn-block" @click="removePreset"><i
                                         class="far fa-trash-alt d-sm-none d-inline-block"></i><span
@@ -1325,7 +1326,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="addFixturesToPresetModal" class="modal" tabindex="-1" role="dialog">
+                <div id="addFixturesToPresetModal" class="modal noselect" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-body">
@@ -1346,7 +1347,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab">
+        <div class="tab noselect">
             <div class="row">
                 <div class="col-3" @click="currentView = 'fixtures'">
                     <div class="tabitem tabitem-fixtures"
@@ -1374,10 +1375,11 @@
                 </div>
             </div>
         </div>
-        <div id="serverDisconnectedModal" data-keyboard="false" class="modal" tabindex="-1" role="dialog">
+        <div id="serverDisconnectedModal" data-backdrop="static" data-keyboard="false" class="modal noselect"
+            tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-body text-center dark">
+                    <div class="modal-body text-center dark noselect">
                         <h5 class="red">Tonalite Server Disconnected!</h5>
                         <p class="mb-0">If you have not stopped it manually there may have been an error or you may
                             be
@@ -1390,13 +1392,13 @@
                 </div>
             </div>
         </div>
-        <div id="alert" class="fixed-bottom mb-5 alert alert-dismissible fade" role="alert">
+        <div id="alert" class="fixed-bottom mb-5 alert alert-dismissible fade noselect" role="alert">
             <div id="alertText"></div>
             <button type="button" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div id="showFilesModal" class="modal" tabindex="-1" role="dialog">
+        <div id="showFilesModal" class="modal noselect" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -1412,7 +1414,7 @@
                 </div>
             </div>
         </div>
-        <div id="openShowModal" class="modal" tabindex="-1" role="dialog">
+        <div id="openShowModal" class="modal noselect" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -1431,7 +1433,7 @@
                 </div>
             </div>
         </div>
-        <div id="openFixtureDefinitionModal" class="modal" tabindex="-1" role="dialog">
+        <div id="openFixtureDefinitionModal" class="modal noselect" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -1454,7 +1456,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <ul class="nav nav-tabs mb-2">
+                        <ul class="nav nav-tabs mb-2 noselect">
                             <li class="nav-item">
                                 <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'ui'}"
                                     @click="settingsModalTab = 'ui'">UI</a>
@@ -1607,7 +1609,7 @@
                 </div>
             </div>
         </div>
-        <div id="openAboutModal" class="modal" tabindex="-1" role="dialog">
+        <div id="openAboutModal" class="modal noselect" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body text-center dark">
@@ -1625,7 +1627,7 @@
                 </div>
             </div>
         </div>
-        <div id="showInfoModal" class="modal" tabindex="-1" role="dialog">
+        <div id="showInfoModal" class="modal noselect" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body text-center dark">
