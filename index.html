@@ -49,6 +49,10 @@
                                 Fixture Definition From File</a>
                             <a class="dropdown-item" @click="importFixturesFromUSB">Import
                                 Fixture Definitions From USB</a>
+                            <div v-if="ifMobile() == false && desktop == false && settings.device == 'rpi'"
+                                class="dropdown-divider"></div>
+                            <a v-if="ifMobile() == false && desktop == false && settings.device == 'rpi'"
+                                class="dropdown-item" @click="shutdown">Shutdown Console</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -1381,7 +1385,8 @@
                 <div class="modal-content">
                     <div class="modal-body text-center dark noselect">
                         <h5 class="red">Tonalite Server Disconnected!</h5>
-                        <p class="mb-0">If you have not stopped it manually, there may have been an error during execution. Please try
+                        <p class="mb-0">If you have not stopped it manually, there may have been an error during
+                            execution. Please try
                             rebooting the <span v-if="desktop">program</span><span v-if="!desktop">console</span>.
                         </p>
                     </div>

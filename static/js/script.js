@@ -690,6 +690,13 @@ var app = new Vue({
         },
         exportErrorLogsToUSB: function () {
             socket.emit('exportErrorLogsToUSB');
+        },
+        shutdown: function () {
+            bootbox.confirm("Are you sure you want to shutdown the console?", function (result) {
+                if (result === true) {
+                    socket.emit('shutdown');
+                }
+            });
         }
     }
 });
