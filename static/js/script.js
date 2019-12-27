@@ -54,7 +54,7 @@ var app = new Vue({
         keyboardInput: null,
         keyboardOptions: {
             useKbEvents: true,
-            preventClickEvent: false
+            preventClickEvent: true
         },
         cueProgress: 0
     },
