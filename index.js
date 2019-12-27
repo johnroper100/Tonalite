@@ -2194,6 +2194,9 @@ io.on('connection', function (socket) {
 
     function blendColors(baseColor, inR, inG, inB, blend) {
         var base = baseColor;
+        base[0] = base[0]/255;
+        base[1] = base[1]/255;
+        base[2] = base[2]/255;
         var mr = inR * blend + base[0] * (1 - blend);
         var mg = inG * blend + base[1] * (1 - blend);
         var mb = inB * blend + base[2] * (1 - blend);
