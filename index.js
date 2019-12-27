@@ -219,7 +219,13 @@ require.extensions['.jlib'] = require.extensions['.json'];
 function openSettings() {
     fs.readFile(process.cwd() + '/settings.json', function (err, data) {
         if (err) logError(err);
-        var settings = JSON.parse(data);
+        try {
+            var settings = JSON.parse(data);
+        } catch (e) {
+            saveSettings();
+            openSettings();
+            return console.error(e);
+        }
         SETTINGS = settings;
 
         if (STARTED == false) {
@@ -1719,7 +1725,13 @@ function dmxLoop() {
 function openShow(file = "show.json") {
     fs.readFile(process.cwd() + '/' + file, (err, data) => {
         if (err) logError(err);
-        let show = JSON.parse(data);
+        try {
+            var show = JSON.parse(data);
+        } catch (e) {
+            saveShow();
+            openShow();
+            return console.error(e);
+        }
         fixtures = show.fixtures;
         cues = show.cues;
         groups = show.groups;
@@ -1776,7 +1788,13 @@ function openPresets() {
         }
         fs.readFile(process.cwd() + '/presets.json', (err, data) => {
             if (err) logError(err);
-            presets = JSON.parse(data);
+            try {
+                presets = JSON.parse(data);
+            } catch (e) {
+                savePresets();
+                openPresets();
+                return console.error(e);
+            }
             openShow();
         });
     });
