@@ -315,27 +315,34 @@ function rgbToHsv(r, g, b) {
 async function updateFirmware(callback) {
     var uploadComplete = false;
     var drives = await drivelist.list();
-    drives.forEach((drive) => {
-        if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
-            fs.exists(drive.mountpoints[0].path + "/tonalite.zip", function (exists) {
-                if (exists) {
-                    fs.createReadStream(drive.mountpoints[0].path + "/tonalite.zip").pipe(unzipper.Extract({ path: process.cwd() }));
-                    uploadComplete = true;
-                    return callback(uploadComplete);
-                }
-            });
-        }
-    });
-    return callback(uploadComplete);
+    drives = drives.filter(drive => drive.enumerator == 'USBSTOR' || drive.isUSB === true);
+    if (drives.length > 0) {
+        drives.forEach((drive) => {
+            if (uploadComplete == false) {
+                fs.exists(drive.mountpoints[0].path + "/tonalite.zip", function (exists) {
+                    if (exists) {
+                        fs.createReadStream(drive.mountpoints[0].path + "/tonalite.zip").pipe(unzipper.Extract({ path: process.cwd() }));
+                        uploadComplete = true;
+                        io.emit('message', { type: "info", content: "The Tonalite firmware has been updated. Please reboot the server." });
+                        return callback(uploadComplete);
+                    }
+                });
+            }
+        });
+    } else {
+        io.emit('message', { type: "error", content: "Is there a USB drive connected?" });
+        return callback(uploadComplete);
+    }
 };
 
 async function getShowsFromUSB(callback) {
     var showsList = null;
-    var done = false;
+    var importComplete = false;
     var drives = await drivelist.list();
-    drives.forEach((drive) => {
-        if (done == false) {
-            if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
+    drives = drives.filter(drive => drive.enumerator == 'USBSTOR' || drive.isUSB === true);
+    if (drives.length > 0) {
+        drives.forEach((drive) => {
+            if (importComplete == false) {
                 fs.readdir(drive.mountpoints[0].path, (err, files) => {
                     showsList = [];
                     files.forEach(file => {
@@ -343,85 +350,103 @@ async function getShowsFromUSB(callback) {
                             showsList.push(file);
                         }
                     });
-                    done = true;
+                    importComplete = true;
                     io.emit('shows', { shows: showsList, drive: drive.mountpoints[0].path });
-                    return callback({ shows: showsList, drive: drive.mountpoints[0].path });
+                    return callback(importComplete);
                 });
             }
-        }
-    });
-    if (showsList == null) {
-        io.emit('message', { type: "error", content: "Shows could not be read of of a USB drive. Is there one connected?" });
+        });
+    } else {
+        io.emit('message', { type: "error", content: "Is there a USB drive connected?" });
+        return callback(importComplete);
     }
 };
 
 async function importFixturesFromUSB(callback) {
     var importComplete = false;
-
     var drives = await drivelist.list();
-    drives.forEach((drive) => {
-        if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
-            fs.exists(drive.mountpoints[0].path + "/fixtures.zip", function (exists) {
-                if (exists) {
-                    fs.createReadStream(drive.mountpoints[0].path + "/fixtures.zip").pipe(unzipper.Extract({ path: process.cwd() }));
-                    importComplete = true;
-                }
-            });
-        }
-    });
-    return callback(importComplete);
+    drives = drives.filter(drive => drive.enumerator == 'USBSTOR' || drive.isUSB === true);
+    if (drives.length > 0) {
+        drives.forEach((drive) => {
+            if (importComplete == false) {
+                fs.exists(drive.mountpoints[0].path + "/fixtures.zip", function (exists) {
+                    if (exists) {
+                        fs.createReadStream(drive.mountpoints[0].path + "/fixtures.zip").pipe(unzipper.Extract({ path: process.cwd() }));
+                        importComplete = true;
+                        io.emit('message', { type: "info", content: "The fixture profiles have been imported from USB!" });
+                        return callback(importComplete);
+                    }
+                });
+            }
+        });
+    } else {
+        io.emit('message', { type: "error", content: "Is there a USB drive connected?" });
+        return callback(importComplete);
+    }
 };
 
 async function exportErrorLogsToUSB(callback) {
     var importComplete = false;
-
+    var errorhappened = false;
     var drives = await drivelist.list();
-    drives.forEach((drive) => {
-        if (importComplete == false) {
-            if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
+    drives = drives.filter(drive => drive.enumerator == 'USBSTOR' || drive.isUSB === true);
+    if (drives.length > 0) {
+        drives.forEach((drive) => {
+            if (importComplete == false) {
                 fs.copy('errors', drive.mountpoints[0].path + "/errors", function (err) {
                     if (err && err != null) {
                         logError(err);
-                        io.emit('message', { type: "error", content: "The error logs couldn't be exported! Is a USB connected?" });
+                        errorhappened = true;
                     } else {
                         importComplete = true;
+                        errorhappened = false;
                         io.emit('message', { type: "info", content: "The error logs have been exported to USB!" });
+                        return callback(importComplete);
                     }
                 });
             }
-        }
-    });
-    return callback(importComplete);
+        });
+    } else {
+        io.emit('message', { type: "error", content: "Is there a USB drive connected?" });
+        return callback(importComplete);
+    }
 };
 
 async function saveShowToUSB(showName, callback) {
     var drives = await drivelist.list();
-    var done = false;
+    var importComplete = false;
+    var errorhappened = false;
+    var alreadyexists = false;
     var filepath = null;
-    drives.forEach((drive) => {
-        if (done == false) {
-            if (drive.enumerator == 'USBSTOR' || drive.isUSB === true) {
+    drives = drives.filter(drive => drive.enumerator == 'USBSTOR' || drive.isUSB === true);
+    if (drives.length > 0) {
+        drives.forEach((drive) => {
+            if (importComplete == false) {
                 filepath = drive.mountpoints[0].path + "/" + showName + "_" + moment().format('YYYY-MM-DDTHH-mm-ss') + ".tonalite";
                 fs.exists(filepath, function (exists) {
                     if (exists) {
-                        io.emit('message', { type: "error", content: "A show file with that name already exists!" });
+                        alreadyexists = true;
                     } else {
                         fs.writeFile(filepath, JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, tonaliteVersion: VERSION, showName: currentShowName, lastSaved: moment().format() }), (err) => {
                             if (err) {
                                 logError(err);
-                                done = false;
-                                io.emit('message', { type: "error", content: "The current show could not be saved onto a USB drive. Is there one connected?" });
+                                errorhappened = true;
                             } else {
-                                done = true;
+                                importComplete = true;
+                                errorhappened = false;
+                                alreadyexists = false;
                                 io.emit('message', { type: "info", content: "The show '" + showName + "_" + moment().format('YYYY-MM-DDTHH-mm-ss') + ".tonalite' was successfully saved to the connected USB drive!" });
+                                return callback(importComplete);
                             };
                         });
                     }
                 });
             }
-        }
-    });
-    return callback(done);
+        });
+    } else {
+        io.emit('message', { type: "error", content: "Is there a USB drive connected?" });
+        return callback(importComplete);
+    }
 };
 
 function logError(msg) {
@@ -2411,9 +2436,6 @@ io.on('connection', function (socket) {
 
     socket.on('getShowsFromUSB', function () {
         getShowsFromUSB(function (result) {
-            if (!result) {
-                console.log("Error getting shows from USB");
-            }
         });
     });
 
@@ -4247,21 +4269,11 @@ io.on('connection', function (socket) {
 
     socket.on('updateFirmware', function () {
         updateFirmware(function (result) {
-            if (result) {
-                socket.emit('message', { type: "info", content: "The Tonalite firmware has been updated. Please reboot the server." });
-            } else {
-                socket.emit('message', { type: "error", content: "The Tonalite firmware could not be updated. Is a USB connected?" });
-            }
         });
     });
 
     socket.on('importFixturesFromUSB', function () {
         importFixturesFromUSB(function (result) {
-            if (result) {
-                socket.emit('message', { type: "info", content: "The fixture profiles have been imported from USB!" });
-            } else {
-                socket.emit('message', { type: "error", content: "The fixture profiles could not be imported! Is a USB connected?" });
-            }
         });
     });
 
@@ -4272,9 +4284,6 @@ io.on('connection', function (socket) {
 
     socket.on('saveShowToUSB', function () {
         saveShowToUSB(currentShowName, function (result) {
-            if (!result) {
-                socket.emit('message', { type: "error", content: "The show could not be saved! Is a USB connected?" });
-            }
         });
     });
 
