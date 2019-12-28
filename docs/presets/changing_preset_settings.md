@@ -30,18 +30,20 @@ The full name of the preset. This can be any length needed to be descriptive tho
 
 Display the preset as a dimmable value rather than as an on/off button in the interface.
 
-### Mode
+### Intensity Mode
 
-The overide mode that the preset is in.
+The overide mode that the preset's intensity/color values are in.
 
 Options:
 
-- `Latest Takes Precedence` - This preset will overide everything
-- `Highest Takes Precedence` - This preset will ovveride everything when its values are higher
+- `Latest Takes Precedence` - This preset's intensity/color will overide everything
+- `Highest Takes Precedence` - This preset's intensity/color will ovveride everything when its values are higher
 
 Default: `Latest Takes Precedence`
 
-The default can be updated in settings.
+The default for this option can be updated in settings.
+
+All non-intensity/color parameters use `Latest Takes Precedence` mode.
 
 ### Intensity
 
