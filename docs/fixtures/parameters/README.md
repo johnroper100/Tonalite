@@ -44,6 +44,12 @@ There are some buttons that show up on all parameters.
 
 Besides each parameter, there is a lock icon. It switches from unlocked to locked when you click on it. When a parameter is locked, the value you set manually on the slider will override values for the parameter that are saved in cues.
 
+### Color Wheel
+
+Display the color wheel input.
+
+![Fixture color wheel input](../../images/fixture_color_wheel.png)
+
 ### Left
 
 Set this parameter's value to 0%.
