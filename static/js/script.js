@@ -897,6 +897,7 @@ socket.on('connect', function () {
     $('#showInfoModal').modal("hide");
     $('#addSequenceModal').modal("hide");
     $('#serverDisconnectedModal').modal("hide");
+    $('#colorWheelModal').modal("hide");
 });
 
 socket.on('connect_error', function () {
@@ -912,6 +913,7 @@ socket.on('connect_error', function () {
     $('#showFilesModal').modal("hide");
     $('#showInfoModal').modal("hide");
     $('#addSequenceModal').modal("hide");
+    $('#colorWheelModal').modal("hide");
     $('#serverDisconnectedModal').modal('show');
 });
 
