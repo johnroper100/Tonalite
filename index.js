@@ -2189,7 +2189,7 @@ io.on('connection', function (socket) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
                 var param = null;
-                if (colortables.RGB.indexOf(fixture.colortable) >= 0) {
+                if (colortables.RGBW.indexOf(fixture.colortable) >= 0) {
                     // RGB
                     param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Red")];
                     param.value = cppaddon.mapRange(msg.color.r, 0, 255, param.min, param.max);
