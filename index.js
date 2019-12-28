@@ -1785,18 +1785,20 @@ function openPresets() {
     fs.exists(process.cwd() + '/presets.json', function (exists) {
         if (exists == false) {
             savePresets();
+            openPresets();
+        } else {
+            fs.readFile(process.cwd() + '/presets.json', (err, data) => {
+                if (err) logError(err);
+                try {
+                    presets = JSON.parse(data);
+                } catch (e) {
+                    savePresets();
+                    openPresets();
+                    return false;
+                }
+                openShow();
+            });
         }
-        fs.readFile(process.cwd() + '/presets.json', (err, data) => {
-            if (err) logError(err);
-            try {
-                presets = JSON.parse(data);
-            } catch (e) {
-                savePresets();
-                openPresets();
-                return false;
-            }
-            openShow();
-        });
     });
 };
 
