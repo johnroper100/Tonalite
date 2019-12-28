@@ -40,6 +40,12 @@ There are some buttons that show up on all parameters.
 
 Besides each parameter, there is a lock icon. It switches from unlocked to locked when you click on it. When a parameter is locked, the value you set manually on the slider will override values for the parameter that are saved in cues.
 
+### Color Wheel
+
+Display the color wheel input.
+
+![Group color wheel input](../../images/fixture_color_wheel.png)
+
 ### Left
 
 Set this parameter's value to 0%.
@@ -51,6 +57,25 @@ Set this parameter's value to 50%.
 ### Right
 
 Set this parameter's value to 100%.
+
+## Color Palettes
+
+![Group color palettes](../../images/group_color_palettes.png)
+
+There are a number of different color palettes available. Click one in the list to apply it to the group's fixtures. Tonalite currently supports the following color mixing modes natively:
+
+- RGB
+- RGBW
+- RGBA
+- RGBAW
+- CMY
+- HSI
+
+If a fixture has one of these color mixing modes, Tonalite will use all of its color parameters to set the correct color from the palette. If a fixture does not have one of these modes, Tonalite will attempt to set RGB parameter values if any of those parameters exist on the fixture, or else will fail to apply the color palette.
+
+### Remove Palette
+
+To remove a palette, click the red button with a lock inside of it. The palettes that can be removed will start pulsing. To remove one, click on it in the list. You will be asked if you are sure you want to remove it.
 
 ## Position Palettes
 
