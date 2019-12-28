@@ -8,7 +8,6 @@
     <script defer src="/static/js/all.min.js"></script>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/vue-multiselect.min.css">
-    <link href="/static/css/vue-color-picker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/vue-touch-keyboard.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="apple-touch-icon" href="/static/img/icon.png">
@@ -100,6 +99,7 @@
             </div>
         </nav>
         <div id="tabs" :class="{'bigBottom': settings.desktop == false && ifMobile == false}">
+            <div id="color-picker-container"></div>
             <div id="fixtures" class="tabcontent" v-if="currentView == 'fixtures'">
                 <div class="container">
                     <div class="row topBtns sticky-top noselect">
@@ -1700,9 +1700,9 @@
     <script src="/static/js/bootbox.min.js"></script>
     <script src="/static/js/isMobile.min.js"></script>
     <script src="/static/js/mousetrap.min.js"></script>
-    <script src="/static/js/vue-color-picker.umd.min.js"></script>
     <script src="/static/js/vue-touch-keyboard.js"></script>
     <script src="/static/js/vue.js"></script>
+    <script src="/static/js/iro.min.js"></script>
     <script src="/static/js/script.js"></script>
 </body>
 

@@ -697,6 +697,9 @@ var app = new Vue({
                     socket.emit('shutdown');
                 }
             });
+        },
+        onColorChange: function (color, changes) {
+            socket.emit('colorWheelChange', { id: app.currentFixture.id, color: color.rgb });
         }
     }
 });
@@ -836,6 +839,10 @@ Mousetrap.bind('ctrl+y', function (e) {
     }
     app.redo();
 });
+
+var colorPicker = new iro.ColorPicker('#color-picker-container');
+
+colorPicker.on('color:change', app.onColorChange);
 
 socket.on('connect', function () {
     app.currentView = 'fixtures';
