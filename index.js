@@ -2190,17 +2190,22 @@ io.on('connection', function (socket) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
                 var param = null;
                 if (colortables.RGBW.indexOf(fixture.colortable) >= 0) {
-                    // RGB
+                    // RGBW
+                    w = Math.min(msg.color.r, msg.color.g, msg.color.b);
                     param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Red")];
-                    param.value = cppaddon.mapRange(msg.color.r, 0, 255, param.min, param.max);
+                    param.value = cppaddon.mapRange(msg.color.r - w, 0, 255, param.min, param.max);
                     param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
 
                     param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Green")];
-                    param.value = cppaddon.mapRange(msg.color.g, 0, 255, param.min, param.max);
+                    param.value = cppaddon.mapRange(msg.color.g - w, 0, 255, param.min, param.max);
                     param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
 
                     param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Blue")];
-                    param.value = cppaddon.mapRange(msg.color.b, 0, 255, param.min, param.max);
+                    param.value = cppaddon.mapRange(msg.color.b - w, 0, 255, param.min, param.max);
+                    param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("White")];
+                    param.value = cppaddon.mapRange(w, 0, 255, param.min, param.max);
                     param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
                 }
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });

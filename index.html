@@ -99,7 +99,6 @@
             </div>
         </nav>
         <div id="tabs" :class="{'bigBottom': settings.desktop == false && ifMobile == false}">
-            <div id="color-picker-container"></div>
             <div id="fixtures" class="tabcontent" v-if="currentView == 'fixtures'">
                 <div class="container">
                     <div class="row topBtns sticky-top noselect">
@@ -241,7 +240,7 @@
                     </div>
                 </div>
             </div>
-            <div id="fixtureParametersPage noselect" class="tabcontent" v-if="currentView == 'fixtureParameters'">
+            <div id="fixtureParametersPage" class="tabcontent noselect" v-if="currentView == 'fixtureParameters'">
                 <div class="container">
                     <div class="row topBtns">
                         <div class="col-4">
@@ -295,6 +294,10 @@
                                     v-bind:for="parameter.coarse">{{calculateParamName(parameter, currentFixture.swapPanTilt)}}
                                     ({{parameter.displayValue}}%)</label>
                                 <div class="float-right">
+                                    <button class="btn btn-warning" data-toggle="modal"
+                                        data-target="#colorWheelModal" v-if="parameter.type == 5">
+                                        <i class="far fa-palette fa-sm"></i>
+                                    </button>
                                     <button class="btn btn-warning"
                                         @click="setParameterValue(parameter, parameter.min, 'fixture')">
                                         <i class="far fa-step-backward fa-sm"></i>
@@ -1389,6 +1392,15 @@
                             execution. Please try
                             rebooting the <span v-if="desktop">program</span><span v-if="!desktop">console</span>.
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="colorWheelModal" class="modal noselect" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center dark noselect">
+                        <div id="color-picker-container"></div>
                     </div>
                 </div>
             </div>
