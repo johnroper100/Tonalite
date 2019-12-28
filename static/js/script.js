@@ -321,7 +321,7 @@ var app = new Vue({
         },
         useFixtureColorPalette: function (pid) {
             if (app.removeColorPalette == false) {
-                socket.emit('useFixtureColorPalette', { id: app.currentFixture.id, pid: pid });
+                socket.emit('useFixtureColorPalette', { id: app.currentFixture.id, pid: pid, type: 'palette' });
             } else {
                 bootbox.confirm("Are you sure you want to remove this color palette?", function (result) {
                     if (result === true) {
@@ -700,7 +700,7 @@ var app = new Vue({
         },
         onColorChange: function (color, changes) {
             if (app.currentView == 'fixtureParameters') {
-                socket.emit('fixtureColorWheelChange', { id: app.currentFixture.id, color: color.rgb });
+                socket.emit('useFixtureColorPalette', { id: app.currentFixture.id, color: color.rgb, type: 'wheel' });
             }
         }
     }
