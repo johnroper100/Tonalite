@@ -1063,6 +1063,7 @@ socket.on('resetView', function (msg) {
         if (app.currentFixture.id == msg.eid) {
             app.currentView = 'fixtures';
             app.currentFixture = {};
+            $('#colorWheelModal').modal("hide");
         }
     } else if (msg.type == 'effect') {
         if (app.currentEffect.id == msg.eid) {
@@ -1097,6 +1098,7 @@ socket.on('resetView', function (msg) {
         app.addGroupSelected = [];
         app.addSequenceSelected = [];
         app.addPresetSelected = [];
+        $('#colorWheelModal').modal("hide");
     } else if (msg.type == 'groups') {
         if (app.currentGroup.id == msg.eid) {
             app.currentView = 'groups';
