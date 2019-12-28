@@ -703,6 +703,10 @@
                             <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
                                 ({{parameter.displayValue}}%)</label>
                             <div class="float-right">
+                                <button class="btn btn-warning" data-toggle="modal" data-target="#colorWheelModal"
+                                    v-if="parameter.type == 5">
+                                    <i class="far fa-palette fa-sm"></i>
+                                </button>
                                 <button :disabled="parameter.locked == true" class="btn btn-warning"
                                     @click="setParameterValue(parameter, parameter.min, 'group')">
                                     <i class="far fa-step-backward fa-sm"></i>
@@ -728,6 +732,22 @@
                                         @click="useGroupParameterRange(parameter, id)"
                                         :class="{ 'bg-success': parameter.value >= mapRange(range.begin, 0, 255, 0, 65535) && parameter.value <= mapRange(range.end, 0, 255, 0, 65535), 'bg-danger': parameter.value < mapRange(range.begin, 0, 255, 0, 65535) || parameter.value > mapRange(range.end, 0, 255, 0, 65535)}">
                                         {{range.label}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            v-if="currentGroup.parameterTypes.indexOf('Color') >= 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
+                            <div class="fixturePalettes">
+                                <h5>Group Color Palettes:</h5>
+                                <div v-for="(palette, id) in colorPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center"
+                                    v-bind:style="{ backgroundColor: palette.color }"
+                                    @click="useGroupColorPalette(id)"
+                                    :class="{'pulse': removeColorPalette == true, 'redOutline': removeColorPalette == true}">
+                                    {{palette.name}}</div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
+                                    @click="removeColorPalette=!removeColorPalette"><i
+                                        class="far fa-trash-alt mt-3"></i>
                                 </div>
                             </div>
                         </div>
@@ -1302,8 +1322,9 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="presetModeInput">Intensity Mode:</label>
-                                <select class="form-control" type="text" id="presetModeInput" placeholder="Preset Intensity Mode"
-                                    @change="editPresetSettings" v-model="currentPreset.mode">
+                                <select class="form-control" type="text" id="presetModeInput"
+                                    placeholder="Preset Intensity Mode" @change="editPresetSettings"
+                                    v-model="currentPreset.mode">
                                     <option value="ltp">Latest Takes Precedence</option>
                                     <option value="htp">Highest Takes Precedence</option>
                                 </select>

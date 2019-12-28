@@ -321,7 +321,7 @@ var app = new Vue({
         },
         useFixtureColorPalette: function (pid) {
             if (app.removeColorPalette == false) {
-                socket.emit('useFixtureColorPalette', { id: app.currentFixture.id, pid: pid, type: 'palette' });
+                socket.emit('useColorPalette', { id: app.currentFixture.id, pid: pid, type: 'fixture', colorType: 'palette' });
             } else {
                 bootbox.confirm("Are you sure you want to remove this color palette?", function (result) {
                     if (result === true) {
@@ -340,6 +340,18 @@ var app = new Vue({
                         socket.emit('removePositionPalette', { pid: pid });
                     }
                     app.removePositionPalette = false;
+                });
+            }
+        },
+        useGroupColorPalette: function (pid) {
+            if (app.removeColorPalette == false) {
+                socket.emit('useColorPalette', { id: app.currentGroup.id, pid: pid, type: 'group', colorType: 'palette' });
+            } else {
+                bootbox.confirm("Are you sure you want to remove this color palette?", function (result) {
+                    if (result === true) {
+                        socket.emit('removeColorPalette', { pid: pid });
+                    }
+                    app.removeColorPalette = false;
                 });
             }
         },
@@ -700,7 +712,9 @@ var app = new Vue({
         },
         onColorChange: function (color, changes) {
             if (app.currentView == 'fixtureParameters') {
-                socket.emit('useFixtureColorPalette', { id: app.currentFixture.id, color: color.rgb, type: 'wheel' });
+                socket.emit('useColorPalette', { id: app.currentFixture.id, color: color.rgb, type: 'fixture', colorType: 'wheel' });
+            } else if (app.currentView == 'groupParameters') {
+                socket.emit('useColorPalette', { id: app.currentGroup.id, color: color.rgb, type: 'group', colorType: 'wheel' });
             }
         }
     }
