@@ -2358,45 +2358,34 @@ io.on('connection', function (socket) {
         }
         if (white != null) {
             finalColor = blendColors(finalColor, 255 / 255.0, 255 / 255.0, 255 / 255.0, cppaddon.mapRange(white.value, 0, 65535, 0, 255) / 255.0);
-            console.log("white" + finalColor);
         }
         if (amber != null) {
             finalColor = blendColors(finalColor, 255 / 255.0, 205 / 255.0, 15 / 255.0, cppaddon.mapRange(amber.value, 0, 65535, 0, 255) / 255.0);
-            console.log("amber" + finalColor);
         }
         if (lime != null) {
             finalColor = blendColors(finalColor, 180 / 255.0, 255 / 255.0, 43 / 255.0, cppaddon.mapRange(lime.value, 0, 65535, 0, 255) / 255.0);
-            console.log("lime" + finalColor);
         }
         if (indigo != null) {
             finalColor = blendColors(finalColor, 5 / 255.0, 52 / 255.0, 255 / 255.0, cppaddon.mapRange(indigo.value, 0, 65535, 0, 255) / 255.0);
-            console.log("indigo" + finalColor);
         }
         if (redorange != null) {
             finalColor = blendColors(finalColor, 255 / 255.0, 105 / 255.0, 55 / 255.0, cppaddon.mapRange(redorange.value, 0, 65535, 0, 255) / 255.0);
-            console.log("redorange" + finalColor);
         }
         if (orange != null) {
             finalColor = blendColors(finalColor, 255 / 255.0, 200 / 255.0, 0 / 255.0, cppaddon.mapRange(orange.value, 0, 65535, 0, 255) / 255.0);
-            console.log("orange" + finalColor);
         }
         if (greencyan != null) {
             finalColor = blendColors(finalColor, 55 / 255.0, 255 / 255.0, 134 / 255.0, cppaddon.mapRange(greencyan.value, 0, 65535, 0, 255) / 255.0);
-            console.log("greencyan" + finalColor);
         }
         if (mintgreen != null) {
             finalColor = blendColors(finalColor, 200 / 255.0, 255 / 255.0, 213 / 255.0, cppaddon.mapRange(mintgreen.value, 0, 65535, 0, 255) / 255.0);
-            console.log("mintgreen" + finalColor);
         }
         if (coolwhite != null) {
             finalColor = blendColors(finalColor, 182 / 255.0, 228 / 255.0, 255 / 255.0, cppaddon.mapRange(coolwhite.value, 0, 65535, 0, 255) / 255.0);
-            console.log("coolwhite" + finalColor);
         }
         if (warmwhite != null) {
             finalColor = blendColors(finalColor, 255 / 255.0, 249 / 255.0, 108 / 255.0, cppaddon.mapRange(warmwhite.value, 0, 65535, 0, 255) / 255.0);
-            console.log("warmwhite" + finalColor);
         }
-        console.log(finalColor);
         var palette = {
             color: "#" + rgbHex(finalColor[0], finalColor[1], finalColor[2]),
             name: msg.name,
@@ -3874,9 +3863,8 @@ io.on('connection', function (socket) {
                     setFixtureGroupValues(group, group.parameters[c]);
                 }
                 io.emit('groups', { groups: cleanGroups(), target: true });
-                io.emit('fixtures', { fixtures: cleanFixtures(), target: false });
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                 socket.emit('message', { type: "info", content: "Group parameters reset!" });
-                //saveShow();
             } else {
                 socket.emit('message', { type: "error", content: "This group doesn't exist!" });
             }
@@ -4001,7 +3989,6 @@ io.on('connection', function (socket) {
             resetGroups();
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Group values have been reset!" });
-            //saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No groups exist!" });
         }
