@@ -2184,29 +2184,132 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('colorWheelChange', function (msg) {
+    socket.on('fixtureColorWheelChange', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
                 var param = null;
-                if (colortables.RGBW.indexOf(fixture.colortable) >= 0) {
+                var palette = {
+                    parameters: [
+                        {
+                            "name": "Red",
+                            "value": msg.color.r
+                        },
+                        {
+                            "name": "Green",
+                            "value": msg.color.g
+                        },
+                        {
+                            "name": "Blue",
+                            "value": msg.color.b
+                        }
+                    ]
+                };
+                if (colortables.RGB.indexOf(fixture.colortable) >= 0) {
+                    // RGB
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        param.value = cppaddon.mapRange(palette.parameters[c].value, 0, 255, param.min, param.max);
+                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                    }
+                } else if (colortables.RGBW.indexOf(fixture.colortable) >= 0) {
                     // RGBW
-                    w = Math.min(msg.color.r, msg.color.g, msg.color.b);
-                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Red")];
-                    param.value = cppaddon.mapRange(msg.color.r - w, 0, 255, param.min, param.max);
+                    w = Math.min(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        param.value = cppaddon.mapRange(palette.parameters[c].value - w, 0, 255, param.min, param.max);
+                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                    }
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("White")];
+                    param.value = cppaddon.mapRange(w, 0, 255, param.min, param.max);
                     param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
-
-                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Green")];
-                    param.value = cppaddon.mapRange(msg.color.g - w, 0, 255, param.min, param.max);
+                } else if (colortables.RGBA.indexOf(fixture.colortable) >= 0) {
+                    // RGBA
+                    a = cppaddon.getAFromRGB(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        if (param.name == "Red") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value - a, 0, 255, param.min, param.max);
+                        } else if (param.name == "Green") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value - a / 2, 0, 255, param.min, param.max);
+                        } else if (param.name == "Blue") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value, 0, 255, param.min, param.max);
+                        }
+                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                    }
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Amber")];
+                    param.value = cppaddon.mapRange(a, 0, 255, param.min, param.max);
                     param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
-
-                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Blue")];
-                    param.value = cppaddon.mapRange(msg.color.b - w, 0, 255, param.min, param.max);
+                } else if (colortables.RGBAW.indexOf(fixture.colortable) >= 0) {
+                    // RGBAW
+                    w = Math.min(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
+                    a = cppaddon.getAFromRGB(palette.parameters[0].value, palette.parameters[1].value, palette.parameters[2].value);
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        if (param.name == "Red") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value - w - a, 0, 255, param.min, param.max);
+                        } else if (param.name == "Green") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value - w - a / 2, 0, 255, param.min, param.max);
+                        } else if (param.name == "Blue") {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value - w, 0, 255, param.min, param.max);
+                        }
+                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                    }
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Amber")];
+                    param.value = cppaddon.mapRange(a, 0, 255, param.min, param.max);
                     param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
 
                     param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("White")];
                     param.value = cppaddon.mapRange(w, 0, 255, param.min, param.max);
                     param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                } else if (colortables.CMY.indexOf(fixture.colortable) >= 0) {
+                    // CMY
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        if (palette.parameters[c].name == "Red") {
+                            param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Cyan")];
+                        } else if (palette.parameters[c].name == "Green") {
+                            param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Magenta")];
+                        } else if (palette.parameters[c].name == "Blue") {
+                            param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Yellow")];
+                        }
+                        param.value = cppaddon.mapRange(255 - palette.parameters[c].value, 0, 255, param.min, param.max);
+                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                    }
+                } else if (colortables.H.indexOf(fixture.colortable) >= 0 || colortables.HHF.indexOf(fixture.colortable) >= 0) {
+                    // HSI
+                    var red = null;
+                    var green = null;
+                    var blue = null;
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        if (palette.parameters[c].name == "Red") {
+                            red = palette.parameters[c].value;
+                        } else if (palette.parameters[c].name == "Green") {
+                            green = palette.parameters[c].value;
+                        } else if (palette.parameters[c].name == "Blue") {
+                            blue = palette.parameters[c].value;
+                        }
+                    }
+                    var hue = rgbToHsv(red, green, blue);
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Hue")];
+                    param.value = cppaddon.mapRange(hue[0], 0, 255, param.min, param.max);
+                    param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Saturation")];
+                    param.value = cppaddon.mapRange(hue[1], 0, 255, param.min, param.max);
+                    param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+
+                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Intensity")];
+                    param.value = cppaddon.mapRange(hue[2], 0, 255, param.min, param.max);
+                    param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                } else {
+                    // Just try insert RGB
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        if (param != null) {
+                            param.value = cppaddon.mapRange(palette.parameters[c].value, 0, 255, param.min, param.max);
+                            param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                        }
+                    }
                 }
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             } else {

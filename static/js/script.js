@@ -699,7 +699,9 @@ var app = new Vue({
             });
         },
         onColorChange: function (color, changes) {
-            socket.emit('colorWheelChange', { id: app.currentFixture.id, color: color.rgb });
+            if (app.currentView == 'fixtureParameters') {
+                socket.emit('fixtureColorWheelChange', { id: app.currentFixture.id, color: color.rgb });
+            }
         }
     }
 });
