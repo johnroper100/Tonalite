@@ -224,7 +224,7 @@ function openSettings() {
         } catch (e) {
             saveSettings();
             openSettings();
-            return console.error(e);
+            return false;
         }
         SETTINGS = settings;
 
@@ -1730,7 +1730,7 @@ function openShow(file = "show.json") {
         } catch (e) {
             saveShow();
             openShow();
-            return console.error(e);
+            return false;
         }
         fixtures = show.fixtures;
         cues = show.cues;
@@ -1793,7 +1793,7 @@ function openPresets() {
             } catch (e) {
                 savePresets();
                 openPresets();
-                return console.error(e);
+                return false;
             }
             openShow();
         });
