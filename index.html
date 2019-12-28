@@ -294,8 +294,8 @@
                                     v-bind:for="parameter.coarse">{{calculateParamName(parameter, currentFixture.swapPanTilt)}}
                                     ({{parameter.displayValue}}%)</label>
                                 <div class="float-right">
-                                    <button class="btn btn-warning" data-toggle="modal"
-                                        data-target="#colorWheelModal" v-if="parameter.type == 5">
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#colorWheelModal"
+                                        v-if="parameter.type == 5">
                                         <i class="far fa-palette fa-sm"></i>
                                     </button>
                                     <button class="btn btn-warning"
@@ -1398,7 +1398,7 @@
         </div>
         <div id="colorWheelModal" class="modal noselect" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content bg-secondary">
                     <div class="modal-body text-center dark noselect">
                         <div id="color-picker-container"></div>
                     </div>

@@ -840,7 +840,9 @@ Mousetrap.bind('ctrl+y', function (e) {
     app.redo();
 });
 
-var colorPicker = new iro.ColorPicker('#color-picker-container');
+var colorPicker = new iro.ColorPicker('#color-picker-container', {
+    display: 'inline-block'
+});
 
 colorPicker.on('color:change', app.onColorChange);
 
