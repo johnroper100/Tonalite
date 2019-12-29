@@ -99,7 +99,7 @@
             </div>
         </nav>
         <div id="tabs" :class="{'bigBottom': settings.desktop == false && ifMobile == false}">
-            <div id="fixtures" class="tabcontent" v-show="currentView == 'fixtures'">
+            <div id="fixtures" class="tabcontent" v-if="currentView == 'fixtures'">
                 <div class="container">
                     <div class="row topBtns sticky-top noselect">
                         <div class="col-4">
@@ -602,7 +602,7 @@
                     </div>
                 </div>
             </div>
-            <div id="groups" class="tabcontent noselect" v-show="currentView == 'groups'">
+            <div id="groups" class="tabcontent noselect" v-if="currentView == 'groups'">
                 <div class="container">
                     <div class="row topBtns sticky-top">
                         <div class="col-6">
@@ -914,7 +914,7 @@
                     </div>
                 </div>
             </div>
-            <div id="cues" class="tabcontent noselect" v-show="currentView == 'cues'">
+            <div id="cues" class="tabcontent noselect" v-if="currentView == 'cues'">
                 <div class="container">
                     <div class="topBtns sticky-top">
                         <div class="row mb-2">
@@ -1227,7 +1227,7 @@
                     </div>
                 </div>
             </div>
-            <div id="presets" class="tabcontent noselect" v-show="currentView == 'presets'">
+            <div id="presets" class="tabcontent noselect" v-if="currentView == 'presets'">
                 <div class="container">
                     <div class="row topBtns sticky-top">
                         <div class="col-12">
