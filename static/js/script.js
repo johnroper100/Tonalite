@@ -920,7 +920,7 @@ document.getElementById("joystick-container").addEventListener("touchend", funct
 });
 
 socket.on('connect', function () {
-    socket.emit("getFixtureProfiles");
+    //socket.emit("getFixtureProfiles");
     app.currentView = 'fixtures';
     app.fixtureParametersTab = 'all';
     app.cuesTab = 'cues';
