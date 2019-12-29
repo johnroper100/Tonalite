@@ -490,6 +490,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="fixtureNameInput">Name:</label>
+                                <label for="fixtureNameInput" class="text-danger" v-if="currentFixture.name == ''">(This
+                                    field is required)</label>
                                 <input class="form-control" type="text" id="fixtureNameInput"
                                     placeholder="Full Fixture Name" @input="editFixtureSettings"
                                     v-model="currentFixture.name" @blur="hideKeyboard" @focus="showKeyboard"
@@ -499,6 +501,9 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="fixtureShortNameInput">Short Name:</label>
+                                <label for="fixtureShortNameInput" class="text-danger"
+                                    v-if="currentFixture.shortName == ''">(This
+                                    field is required)</label>
                                 <input class="form-control" type="text" id="fixtureShortNameInput"
                                     placeholder="Short Fixture Name" @input="editFixtureSettings"
                                     v-model="currentFixture.shortName" @focus="showKeyboard" @blur="hideKeyboard"
@@ -575,6 +580,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="effectNameInput">Name:</label>
+                                <label for="effectNameInput" class="text-danger" v-if="currentEffect.name == ''">(This
+                                    field is required)</label>
                                 <input class="form-control" type="text" id="effectNameInput" placeholder="Effect Name"
                                     v-model="currentEffect.name" @input="editFixtureEffectSettings"
                                     @focus="showKeyboard" @blur="hideKeyboard" data-layout="compact">
@@ -741,8 +748,7 @@
                                 <h5>Group Color Palettes:</h5>
                                 <div v-for="(palette, id) in colorPalettes" :key="id"
                                     class="fixturePalette d-inline-block mr-2 text-light text-center"
-                                    v-bind:style="{ backgroundColor: palette.color }"
-                                    @click="useGroupColorPalette(id)"
+                                    v-bind:style="{ backgroundColor: palette.color }" @click="useGroupColorPalette(id)"
                                     :class="{'pulse': removeColorPalette == true, 'redOutline': removeColorPalette == true}">
                                     {{palette.name}}</div>
                                 <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
@@ -877,6 +883,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="groupNameInput">Name:</label>
+                                <label for="GroupNameInput" class="text-danger" v-if="currentGroup.name == ''">(This
+                                    field is required)</label>
                                 <input class="form-control" type="text" id="groupNameInput" placeholder="Group Name"
                                     v-model="currentGroup.name" @input="editGroupSettings" @focus="showKeyboard"
                                     @blur="hideKeyboard" data-layout="compact">
@@ -1041,6 +1049,9 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="sequenceNameInput">Name:</label>
+                                <label for="sequenceNameInput" class="text-danger"
+                                    v-if="currentSequence.name == ''">(This
+                                    field is required)</label>
                                 <input class="form-control" type="text" id="sequenceNameInput"
                                     placeholder="Sequence Name" v-model="currentSequence.name"
                                     @input="editSequenceSettings" @focus="showKeyboard" @blur="hideKeyboard"
@@ -1163,6 +1174,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="cueNameInput">Name:</label>
+                                <label for="cueNameInput" class="text-danger" v-if="currentCue.name == ''">(This
+                                    field is required)</label>
                                 <input class="form-control" type="text" id="cueNameInput" placeholder="Cue Name"
                                     @input="editCueSettings" v-model="currentCue.name" @focus="showKeyboard"
                                     @blur="hideKeyboard" data-layout="compact">
@@ -1304,6 +1317,8 @@
                         <div class="col-12 col-md-8">
                             <div class="form-group">
                                 <label for="presetNameInput">Name:</label>
+                                <label for="presetNameInput" class="text-danger" v-if="currentPreset.name == ''">(This
+                                    field is required)</label>
                                 <input class="form-control" type="text" id="presetNameInput" placeholder="Preset Name"
                                     @input="editPresetSettings" v-model="currentPreset.name" @focus="showKeyboard"
                                     @blur="hideKeyboard" data-layout="compact">
@@ -1665,9 +1680,11 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body text-center dark">
-                        <input type="text" class="form-control mb-2" style="max-width: 50%; display: inline;"
-                            v-model="showInfo.showName" @input="editShowName" @focus="showKeyboard" @blur="hideKeyboard"
-                            data-layout="compact">
+                        <label for="showNameInput" class="text-danger" v-if="showInfo.showName == ''">(This
+                            field is required)</label>
+                        <input id="showNameInput" type="text" class="form-control mb-2"
+                            style="max-width: 50%; display: inline;" v-model="showInfo.showName" @input="editShowName"
+                            @focus="showKeyboard" @blur="hideKeyboard" data-layout="compact">
                         <h5 style="display: inline;">Info</h5>
                         <div class="row">
                             <div class="col-6">
