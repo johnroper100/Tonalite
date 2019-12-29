@@ -893,16 +893,29 @@ var joystick = new VirtualJoystick({
     baseY: 150
 });
 
-document.getElementById("joystick-container").addEventListener("mousemove", function() {
+var timer;
+document.getElementById("joystick-container").addEventListener("mousedown", function() {
     if (joystick._pressed == true) {
-        app.onJoystickChange(joystick.deltaX(), joystick.deltaY());
+        timer=setInterval(function(){
+            app.onJoystickChange(joystick.deltaX(), joystick.deltaY());
+       }, 100); 
     }
 });
 
-document.getElementById("joystick-container").addEventListener("touchmove", function() {
+document.getElementById("joystick-container").addEventListener("mouseup", function() {
+    if (timer) clearInterval(timer)
+});
+
+document.getElementById("joystick-container").addEventListener("touchdown", function() {
     if (joystick._pressed == true) {
-        app.onJoystickChange(joystick.deltaX(), joystick.deltaY());
+        timer=setInterval(function(){
+            app.onJoystickChange(joystick.deltaX(), joystick.deltaY());
+       }, 100); 
     }
+});
+
+document.getElementById("joystick-container").addEventListener("touchup", function() {
+    if (timer) clearInterval(timer)
 });
 
 socket.on('connect', function () {
