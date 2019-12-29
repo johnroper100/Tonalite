@@ -899,6 +899,12 @@ document.getElementById("joystick-container").addEventListener("mousemove", func
     }
 });
 
+document.getElementById("joystick-container").addEventListener("touchmove", function() {
+    if (joystick._pressed == true) {
+        app.onJoystickChange(joystick.deltaX(), joystick.deltaY());
+    }
+});
+
 socket.on('connect', function () {
     socket.emit("getFixtureProfiles");
     app.currentView = 'fixtures';
