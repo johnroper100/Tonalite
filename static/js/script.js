@@ -890,7 +890,8 @@ var joystick = new VirtualJoystick({
     limitStickTravel: true,
     stationaryBase: true,
     baseX: 225,
-    baseY: 150
+    baseY: 150,
+    stickRadius: 250
 });
 
 var timer;
