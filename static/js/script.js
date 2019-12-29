@@ -391,8 +391,10 @@ var app = new Vue({
             socket.emit('editFixtureEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed });
         },
         editCueSettings: function () {
+	if (isNaN(parseFloat(app.currentCue.upTime)) == false && isNaN(parseFloat(app.currentCue.downTime)) == false && isNaN(parseFloat(app.currentCue.follow)) == false) {
             socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow, includeIntensityColor: app.currentCue.includeIntensityColor, includePosition: app.currentCue.includePosition, includeBeam: app.currentCue.includeBeam });
-        },
+}        
+},
         editPresetSettings: function () {
             socket.emit('editPresetSettings', { id: app.currentPreset.id, name: app.currentPreset.name, displayAsDimmer: app.currentPreset.displayAsDimmer, intensity: app.currentPreset.intensity, mode: app.currentPreset.mode });
         },
