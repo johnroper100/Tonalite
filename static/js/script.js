@@ -890,32 +890,32 @@ var joystick = new VirtualJoystick({
     limitStickTravel: true,
     stationaryBase: true,
     baseX: 225,
-    baseY: 150,
-    stickRadius: 250
+    baseY: 200,
+    stickRadius: 200
 });
 
 var timer;
-document.getElementById("joystick-container").addEventListener("mousedown", function() {
+document.getElementById("joystick-container").addEventListener("mousedown", function () {
     if (joystick._pressed == true) {
-        timer=setInterval(function(){
+        timer = setInterval(function () {
             app.onJoystickChange(joystick.deltaX(), joystick.deltaY());
-       }, 100); 
+        }, 100);
     }
 });
 
-document.getElementById("joystick-container").addEventListener("mouseup", function() {
+document.getElementById("joystick-container").addEventListener("mouseup", function () {
     if (timer) clearInterval(timer)
 });
 
-document.getElementById("joystick-container").addEventListener("touchstart", function() {
+document.getElementById("joystick-container").addEventListener("touchstart", function () {
     if (joystick._pressed == true) {
-        timer=setInterval(function(){
+        timer = setInterval(function () {
             app.onJoystickChange(joystick.deltaX(), joystick.deltaY());
-       }, 100); 
+        }, 100);
     }
 });
 
-document.getElementById("joystick-container").addEventListener("touchend", function() {
+document.getElementById("joystick-container").addEventListener("touchend", function () {
     if (timer) clearInterval(timer)
 });
 
