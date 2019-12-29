@@ -879,6 +879,7 @@ var colorPicker = new iro.ColorPicker('#color-picker-container', {
 colorPicker.on('color:change', app.onColorChange);
 
 socket.on('connect', function () {
+    socket.emit("getFixtureProfiles");
     app.currentView = 'fixtures';
     app.fixtureParametersTab = 'all';
     app.cuesTab = 'cues';
