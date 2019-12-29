@@ -2107,15 +2107,14 @@ io.on('connection', function (socket) {
                 let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
                     param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
                     if (param != null) {
-                        if (param.value + palette.parameters[c].value <= param.max) {
+                        if (param.value + palette.parameters[c].value <= param.max && param.value + palette.parameters[c].value >= param.min) {
                             param.value += palette.parameters[c].value;
                         } else {
-                            param.value = param.max;
-                        }
-                        if (param.value + palette.parameters[c].value >= param.min) {
-                            param.value += palette.parameters[c].value;
-                        } else {
-                            param.value = param.min;
+                            if (param.value + palette.parameters[c].value > param.max) {
+                                param.value = param.max;
+                            } else if (param.value + palette.parameters[c].value < param.min) {
+                                param.value = param.min;
+                            }
                         }
                         param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
                     }
