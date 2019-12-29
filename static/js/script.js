@@ -732,6 +732,13 @@ var app = new Vue({
             } else if (app.currentView == 'groupParameters') {
                 socket.emit('useColorPalette', { id: app.currentGroup.id, color: color.rgb, type: 'group', colorType: 'wheel' });
             }
+        },
+        onJoystickChange: function (x, y) {
+            if (app.currentView == 'fixtureParameters') {
+                socket.emit('useFixturePositionJoystick', { id: app.currentFixture.id, x: x, y: y });
+            } else if (app.currentView == 'groupParameters') {
+                socket.emit('useColorPalette', { id: app.currentGroup.id, color: color.rgb, type: 'group', colorType: 'wheel' });
+            }
         }
     }
 });
@@ -875,8 +882,22 @@ Mousetrap.bind('ctrl+y', function (e) {
 var colorPicker = new iro.ColorPicker('#color-picker-container', {
     display: 'inline-block'
 });
-
 colorPicker.on('color:change', app.onColorChange);
+
+var joystick = new VirtualJoystick({
+    container: document.getElementById('joystick-container'),
+    mouseSupport: true,
+    limitStickTravel: true,
+    stationaryBase: true,
+    baseX: 225,
+    baseY: 150
+});
+
+document.getElementById("joystick-container").addEventListener("mousemove", function() {
+    if (joystick._pressed == true) {
+        app.onJoystickChange(joystick.deltaX(), joystick.deltaY());
+    }
+});
 
 socket.on('connect', function () {
     socket.emit("getFixtureProfiles");

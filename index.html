@@ -298,6 +298,10 @@
                                         v-if="parameter.type == 5">
                                         <i class="far fa-palette fa-sm"></i>
                                     </button>
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#joystickModal"
+                                        v-if="parameter.type == 2">
+                                        <i class="far fa-location fa-sm"></i>
+                                    </button>
                                     <button class="btn btn-warning"
                                         @click="setParameterValue(parameter, parameter.min, 'fixture')">
                                         <i class="far fa-step-backward fa-sm"></i>
@@ -1441,6 +1445,15 @@
                 </div>
             </div>
         </div>
+        <div id="joystickModal" class="modal noselect" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content bg-secondary">
+                    <div class="modal-body text-center dark noselect">
+                        <div id="joystick-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="alert" class="fixed-bottom mb-5 alert alert-dismissible fade noselect" role="alert">
             <div id="alertText"></div>
             <button type="button" class="close" aria-label="Close">
@@ -1753,6 +1766,7 @@
     <script src="/static/js/vue-touch-keyboard.js"></script>
     <script src="/static/js/vue.js"></script>
     <script src="/static/js/iro.min.js"></script>
+    <script src="/static/js/virtualjoystick.js"></script>
     <script src="/static/js/script.js"></script>
 </body>
 
