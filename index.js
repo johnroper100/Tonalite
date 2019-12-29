@@ -2095,11 +2095,11 @@ io.on('connection', function (socket) {
                     parameters: [
                         {
                             "name": "Pan",
-                            "value": msg.x * 3
+                            "value": msg.x * 10
                         },
                         {
                             "name": "Tilt",
-                            "value": msg.y * 3
+                            "value": msg.y * 10
                         }
                     ]
                 };
