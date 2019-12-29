@@ -920,7 +920,6 @@ document.getElementById("joystick-container").addEventListener("touchend", funct
 });
 
 socket.on('connect', function () {
-    //socket.emit("getFixtureProfiles");
     app.currentView = 'fixtures';
     app.fixtureParametersTab = 'all';
     app.cuesTab = 'cues';
@@ -970,6 +969,8 @@ socket.on('connect', function () {
     $('#addSequenceModal').modal("hide");
     $('#serverDisconnectedModal').modal("hide");
     $('#colorWheelModal').modal("hide");
+    $('#joystickModal').modal("hide");
+    socket.emit("getFixtureProfiles");
 });
 
 socket.on('connect_error', function () {
@@ -986,6 +987,7 @@ socket.on('connect_error', function () {
     $('#showInfoModal').modal("hide");
     $('#addSequenceModal').modal("hide");
     $('#colorWheelModal').modal("hide");
+    $('#joystickModal').modal("hide");
     $('#serverDisconnectedModal').modal('show');
 });
 
