@@ -2107,8 +2107,10 @@ io.on('connection', function (socket) {
                 let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
                     param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
                     if (param != null) {
-                        param.value += palette.parameters[c].value;
-                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                        if (param.value + palette.parameters[c].value <= param.max && param.value + palette.parameters[c].value >= param.min) {
+                            param.value += palette.parameters[c].value;
+                            param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                        }
                     }
                 }
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
