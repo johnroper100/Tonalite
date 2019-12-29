@@ -906,7 +906,7 @@ document.getElementById("joystick-container").addEventListener("mouseup", functi
     if (timer) clearInterval(timer)
 });
 
-document.getElementById("joystick-container").addEventListener("touchdown", function() {
+document.getElementById("joystick-container").addEventListener("touchstart", function() {
     if (joystick._pressed == true) {
         timer=setInterval(function(){
             app.onJoystickChange(joystick.deltaX(), joystick.deltaY());
@@ -914,7 +914,7 @@ document.getElementById("joystick-container").addEventListener("touchdown", func
     }
 });
 
-document.getElementById("joystick-container").addEventListener("touchup", function() {
+document.getElementById("joystick-container").addEventListener("touchend", function() {
     if (timer) clearInterval(timer)
 });
 
