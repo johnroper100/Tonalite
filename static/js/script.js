@@ -385,18 +385,24 @@ var app = new Vue({
             });
         },
         editFixtureSettings: function () {
-            socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse, invertPan: app.currentFixture.invertPan, invertTilt: app.currentFixture.invertTilt, swapPanTilt: app.currentFixture.swapPanTilt });
+            if (app.currentFixture.name != "" && app.currentFixture.shortName != "" && isNaN(parseFloat(app.currentFixture.startDMXAddress)) == false && isNaN(parseFloat(app.currentFixture.dmxUniverse)) == false) {
+                socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse, invertPan: app.currentFixture.invertPan, invertTilt: app.currentFixture.invertTilt, swapPanTilt: app.currentFixture.swapPanTilt });
+            }
         },
         editFixtureEffectSettings: function () {
-            socket.emit('editFixtureEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed });
+            if (app.currentEffect.name != "" && isNaN(parseFloat(app.currentEffect.depth)) == false && isNaN(parseFloat(app.currentEffect.speed)) == false) {
+                socket.emit('editFixtureEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed });
+            }
         },
         editCueSettings: function () {
-	if (isNaN(parseFloat(app.currentCue.upTime)) == false && isNaN(parseFloat(app.currentCue.downTime)) == false && isNaN(parseFloat(app.currentCue.follow)) == false) {
-            socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow, includeIntensityColor: app.currentCue.includeIntensityColor, includePosition: app.currentCue.includePosition, includeBeam: app.currentCue.includeBeam });
-}        
-},
+            if (isNaN(parseFloat(app.currentCue.upTime)) == false && isNaN(parseFloat(app.currentCue.downTime)) == false && isNaN(parseFloat(app.currentCue.follow)) == false && app.currentCue.name != "") {
+                socket.emit('editCueSettings', { id: app.currentCue.id, upTime: app.currentCue.upTime, downTime: app.currentCue.downTime, name: app.currentCue.name, follow: app.currentCue.follow, includeIntensityColor: app.currentCue.includeIntensityColor, includePosition: app.currentCue.includePosition, includeBeam: app.currentCue.includeBeam });
+            }
+        },
         editPresetSettings: function () {
-            socket.emit('editPresetSettings', { id: app.currentPreset.id, name: app.currentPreset.name, displayAsDimmer: app.currentPreset.displayAsDimmer, intensity: app.currentPreset.intensity, mode: app.currentPreset.mode });
+            if (app.currentPreset.name != "") {
+                socket.emit('editPresetSettings', { id: app.currentPreset.id, name: app.currentPreset.name, displayAsDimmer: app.currentPreset.displayAsDimmer, intensity: app.currentPreset.intensity, mode: app.currentPreset.mode });
+            }
         },
         updatePreset: function () {
             bootbox.confirm("Are you sure you want to update this preset? It may remove the preset if the fixtures it stores doen't exist in the patch.", function (result) {
@@ -406,13 +412,19 @@ var app = new Vue({
             });
         },
         editGroupSettings: function () {
-            socket.emit('editGroupSettings', { id: app.currentGroup.id, name: app.currentGroup.name });
+            if (app.currentGroup.name != "") {
+                socket.emit('editGroupSettings', { id: app.currentGroup.id, name: app.currentGroup.name });
+            }
         },
         editSequenceSettings: function () {
-            socket.emit('editSequenceSettings', { id: app.currentSequence.id, name: app.currentSequence.name, active: app.currentSequence.active, includeIntensityColor: app.currentSequence.includeIntensityColor, includePosition: app.currentSequence.includePosition, includeBeam: app.currentSequence.includeBeam });
+            if (app.currentSequence.name != "") {
+                socket.emit('editSequenceSettings', { id: app.currentSequence.id, name: app.currentSequence.name, active: app.currentSequence.active, includeIntensityColor: app.currentSequence.includeIntensityColor, includePosition: app.currentSequence.includePosition, includeBeam: app.currentSequence.includeBeam });
+            }
         },
         editSequenceStepSettings: function (step) {
-            socket.emit('editSequenceStepSettings', { sequence: app.currentSequence.id, step: step.id, upTime: step.upTime, downTime: step.downTime, follow: step.follow });
+            if (isNaN(parseFloat(step.upTime)) == false && isNaN(parseFloat(step.downTime)) == false && isNaN(parseFloat(step.follow)) == false) {
+                socket.emit('editSequenceStepSettings', { sequence: app.currentSequence.id, step: step.id, upTime: step.upTime, downTime: step.downTime, follow: step.follow });
+            }
         },
         removeFixture: function () {
             bootbox.confirm("Are you sure you want to delete this fixture?", function (result) {
@@ -694,7 +706,9 @@ var app = new Vue({
             return `${name} (${startDMXAddress})`
         },
         editShowName: function () {
-            socket.emit('editShowName', app.showInfo.showName);
+            if (app.showInfo.showName != "") {
+                socket.emit('editShowName', app.showInfo.showName);
+            }
         },
         undo: function () {
             socket.emit('undo');
