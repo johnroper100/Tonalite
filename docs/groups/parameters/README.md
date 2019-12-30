@@ -42,9 +42,15 @@ Besides each parameter, there is a lock icon. It switches from unlocked to locke
 
 ### Color Wheel
 
-Display the color wheel input.
+Display the color wheel input. This is only available when the parameter is a color parameter.
 
 ![Group color wheel input](../../images/fixture_color_wheel.png)
+
+### Joystick
+
+Display the position joystick input. This is only available when the parameter is a position parameter.
+
+![Group joystick input](../../images/fixture_joystick.png)
 
 ### Left
 
