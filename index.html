@@ -719,6 +719,10 @@
                                     v-if="parameter.type == 5">
                                     <i class="far fa-palette fa-sm"></i>
                                 </button>
+                                <button class="btn btn-warning" data-toggle="modal" data-target="#joystickModal"
+                                    v-if="parameter.type == 2">
+                                    <i class="far fa-location fa-sm"></i>
+                                </button>
                                 <button :disabled="parameter.locked == true" class="btn btn-warning"
                                     @click="setParameterValue(parameter, parameter.min, 'group')">
                                     <i class="far fa-step-backward fa-sm"></i>

@@ -735,9 +735,9 @@ var app = new Vue({
         },
         onJoystickChange: function (x, y) {
             if (app.currentView == 'fixtureParameters') {
-                socket.emit('useFixturePositionJoystick', { id: app.currentFixture.id, x: x, y: y });
+                socket.emit('usePositionJoystick', { id: app.currentFixture.id, type: 'fixture', x: x, y: y });
             } else if (app.currentView == 'groupParameters') {
-                socket.emit('useColorPalette', { id: app.currentGroup.id, color: color.rgb, type: 'group', colorType: 'wheel' });
+                socket.emit('usePositionJoystick', { id: app.currentGroup.id, type: 'group', x: x, y: y });
             }
         }
     }

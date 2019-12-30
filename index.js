@@ -2087,47 +2087,6 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('useFixturePositionJoystick', function (msg) {
-        if (fixtures.length != 0) {
-            if (fixtures.some(e => e.id === msg.id)) {
-                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
-                var palette = {
-                    parameters: [
-                        {
-                            "name": "Pan",
-                            "value": msg.x * 13
-                        },
-                        {
-                            "name": "Tilt",
-                            "value": msg.y * 13
-                        }
-                    ]
-                };
-                var param = null;
-                let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
-                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
-                    if (param != null) {
-                        if (param.value + palette.parameters[c].value <= param.max && param.value + palette.parameters[c].value >= param.min) {
-                            param.value += palette.parameters[c].value;
-                        } else {
-                            if (param.value + palette.parameters[c].value > param.max) {
-                                param.value = param.max;
-                            } else if (param.value + palette.parameters[c].value < param.min) {
-                                param.value = param.min;
-                            }
-                        }
-                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
-                    }
-                }
-                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-            } else {
-                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
-            }
-        } else {
-            socket.emit('message', { type: "error", content: "No fixtures exist!" });
-        }
-    });
-
     socket.on('useGroupPositionPalette', function (msg) {
         if (fixtures.length > 0) {
             if (groups.length > 0) {
@@ -2151,6 +2110,70 @@ io.on('connection', function (socket) {
                 }
             } else {
                 socket.emit('message', { type: "error", content: "No groups exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('usePositionJoystick', function (msg) {
+        var ids = [];
+        if (fixtures.length != 0) {
+            if (msg.type == 'fixture') {
+                if (fixtures.some(e => e.id === msg.id)) {
+                    ids.push(msg.id);
+                } else {
+                    socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+                }
+            } else if (msg.type == 'group') {
+                if (groups.length != 0) {
+                    if (groups.some(e => e.id === msg.id)) {
+                        var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                        ids = group.ids;
+                    } else {
+                        socket.emit('message', { type: "error", content: "This group does not exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "No groups exist!" });
+                }
+            }
+            if (ids.length > 0) {
+                var palette = {
+                    parameters: [
+                        {
+                            "name": "Pan",
+                            "value": msg.x * 13
+                        },
+                        {
+                            "name": "Tilt",
+                            "value": msg.y * 13
+                        }
+                    ]
+                };
+                var param = null;
+                var fixture = null;
+                let i = 0; const iMax = ids.length; for (; i < iMax; i++) {
+                    fixture = fixtures[fixtures.map(el => el.id).indexOf(ids[i])];
+                    let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        if (param != null) {
+                            if (param.value + palette.parameters[c].value <= param.max && param.value + palette.parameters[c].value >= param.min) {
+                                param.value += palette.parameters[c].value;
+                            } else {
+                                if (param.value + palette.parameters[c].value > param.max) {
+                                    param.value = param.max;
+                                } else if (param.value + palette.parameters[c].value < param.min) {
+                                    param.value = param.min;
+                                }
+                            }
+                            param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                        }
+                    }
+                }
+                if (msg.type == 'group') {
+                    io.emit('groups', { groups: cleanGroups(), target: true });
+                }
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
