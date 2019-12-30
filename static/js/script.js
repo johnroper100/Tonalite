@@ -921,13 +921,14 @@ document.getElementById("joystick-container").addEventListener("touchend", funct
 
 socket.on('connect', function () {
     app.currentView = 'fixtures';
+    app.fixtureProfiles = {};
+    socket.emit("getFixtureProfiles");
     app.fixtureParametersTab = 'all';
     app.cuesTab = 'cues';
     app.settingsModalTab = "ui";
     app.addGroupSelected = [];
     app.addPresetSelected = [];
     app.addSequenceSelected = [];
-    app.fixtureProfiles = {};
     app.startDMXAddress = 1;
     app.newFixtureCreationCount = 1;
     app.newFixtureUniverse = 0;
@@ -956,7 +957,6 @@ socket.on('connect', function () {
     app.fixtureProfilesModel = "";
     app.keyboardVisible = false;
     app.cueProgress = 0;
-    socket.emit("getFixtureProfiles");
     $('#openFixtureDefinitionModal').modal("hide");
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
