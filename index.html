@@ -300,7 +300,7 @@
                                         <i class="far fa-palette fa-sm"></i>
                                     </button>
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#joystickModal"
-                                        v-if="parameter.type == 2">
+                                        v-if="parameter.type == 2 && (parameter.name == 'Pan' || parameter.name == 'Tilt')">
                                         <i class="far fa-location fa-sm"></i>
                                     </button>
                                     <button class="btn btn-warning"
@@ -720,7 +720,7 @@
                                     <i class="far fa-palette fa-sm"></i>
                                 </button>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#joystickModal"
-                                    v-if="parameter.type == 2">
+                                    v-if="parameter.type == 2 && (parameter.name == 'Pan' || parameter.name == 'Tilt')">
                                     <i class="far fa-location fa-sm"></i>
                                 </button>
                                 <button :disabled="parameter.locked == true" class="btn btn-warning"
@@ -1773,7 +1773,7 @@
     <script src="/static/js/isMobile.min.js"></script>
     <script src="/static/js/mousetrap.min.js"></script>
     <script src="/static/js/vue-touch-keyboard.js"></script>
-    <script src="/static/js/vue.js"></script>
+    <script src="/static/js/vue.min.js"></script>
     <script src="/static/js/iro.min.js"></script>
     <script src="/static/js/virtualjoystick.js"></script>
     <script src="/static/js/script.js"></script>

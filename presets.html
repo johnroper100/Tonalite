@@ -25,8 +25,8 @@
             <div class="row" id="presetsButtonList">
                 <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id"
                     v-if="preset.displayAsDimmer == false">
-                    <div :class="{ 'presetActive' : preset.active == true, 'presetPatchChanged': preset.patchChanged == true}" class="presetViewItem presetItem"
-                        v-on:click="changePresetActive(preset.id)">
+                    <div :class="{ 'presetActive' : preset.active == true, 'presetPatchChanged': preset.patchChanged == true}"
+                        class="presetViewItem presetItem" v-on:click="changePresetActive(preset.id)">
                         <p>{{preset.name}}</p>
                     </div>
                 </div>
@@ -49,7 +49,8 @@
                 <div class="modal-content">
                     <div class="modal-body text-center dark">
                         <h5 class="red">Tonalite Server Disconnected!</h5>
-                        <p class="mb-0">If you have not stopped it manually there may have been an error or you may be on the
+                        <p class="mb-0">If you have not stopped it manually there may have been an error or you may be
+                            on the
                             wrong IP. Try rebooting the <span v-if="desktop"></span>server</span><span
                                 v-if="!desktop">console</span>.</p>
                     </div>
@@ -61,7 +62,7 @@
     <script src="static/js/popper.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
     <script src="static/js/socket.io.js"></script>
-    <script src="static/js/vue.js"></script>
+    <script src="static/js/vue.min.js"></script>
     <script src="static/js/bootbox.min.js"></script>
     <script src="static/js/presets_script.js"></script>
 </body>
