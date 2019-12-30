@@ -253,7 +253,6 @@ var app = new Vue({
             socket.emit("getFixtureProfiles");
             app.newFixtureCreationCount = 1;
             app.newFixtureUniverse = 0;
-            app.startDMXAddress = 1;
             app.fixtureProfilesSearch = "";
             app.fixtureProfilesManufacturer = "";
             app.fixtureProfilesModel = "";
