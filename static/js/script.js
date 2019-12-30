@@ -956,6 +956,7 @@ socket.on('connect', function () {
     app.fixtureProfilesModel = "";
     app.keyboardVisible = false;
     app.cueProgress = 0;
+    socket.emit("getFixtureProfiles");
     $('#openFixtureDefinitionModal').modal("hide");
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
@@ -970,7 +971,6 @@ socket.on('connect', function () {
     $('#serverDisconnectedModal').modal("hide");
     $('#colorWheelModal').modal("hide");
     $('#joystickModal').modal("hide");
-    socket.emit("getFixtureProfiles");
 });
 
 socket.on('connect_error', function () {
@@ -1138,6 +1138,7 @@ socket.on('resetView', function (msg) {
             app.currentView = 'fixtures';
             app.currentFixture = {};
             $('#colorWheelModal').modal("hide");
+            $('#joystickModal').modal("hide");
         }
     } else if (msg.type == 'effect') {
         if (app.currentEffect.id == msg.eid) {
@@ -1173,11 +1174,14 @@ socket.on('resetView', function (msg) {
         app.addSequenceSelected = [];
         app.addPresetSelected = [];
         $('#colorWheelModal').modal("hide");
+        $('#joystickModal').modal("hide");
     } else if (msg.type == 'groups') {
         if (app.currentGroup.id == msg.eid) {
             app.currentView = 'groups';
             app.currentGroup = {};
             app.currentGroupFixtures = {};
+            $('#colorWheelModal').modal("hide");
+            $('#joystickModal').modal("hide");
         }
     }
 });
