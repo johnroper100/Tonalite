@@ -57,7 +57,7 @@ var cues = [];
 var sequences = [];
 var groups = [];
 var presets = [];
-var colorPalettes = JSON.parse(JSON.stringify(require(process.cwd() + "/colorPalettes.json")));;
+var colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));;
 var positionPalettes = [];
 var currentCue = "";
 var cueProgress = 0;
@@ -1969,7 +1969,7 @@ io.on('connection', function (socket) {
         cues = [];
         groups = [];
         sequences = [];
-        colorPalettes = JSON.parse(JSON.stringify(require(process.cwd() + "/colorPalettes.json")));
+        colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));
         positionPalettes = [];
         currentCue = "";
         currentCueID = "";
@@ -1995,7 +1995,7 @@ io.on('connection', function (socket) {
         cues = [];
         groups = [];
         sequences = [];
-        colorPalettes = JSON.parse(JSON.stringify(require(process.cwd() + "/colorPalettes.json")));
+        colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));
         positionPalettes = [];
         currentCue = "";
         cueProgress = 0;
