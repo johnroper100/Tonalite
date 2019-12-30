@@ -3365,14 +3365,14 @@ io.on('connection', function (socket) {
                     }
                 }
                 lastCue = cues[cues.map(el => el.id).indexOf(cueID)].id;
-                cueProgress = 0;
-                io.emit('cueProgress', cueProgress);
+                cueProgress = ((cues[cues.map(el => el.id).indexOf(cueID)].upTime * FPS) + 1);
                 currentCue = lastCue;
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
                 currentCueID = lastCue;
                 io.emit('cues', cleanCues());
                 io.emit('activeCue', currentCueID);
                 io.emit('cueActionBtn', true);
+                io.emit('cueProgress', Math.round((cueProgress / ((cues[cues.map(el => el.id).indexOf(cueID)].upTime * FPS) + 1)) * 10) / 10);
             } else {
                 socket.emit('message', { type: "error", content: "This cue doesn't exist!" });
             }
@@ -3400,8 +3400,8 @@ io.on('connection', function (socket) {
                     }
                 }
                 lastCue = cues[cues.map(el => el.id).indexOf(cueID)].id;
-                cueProgress = 0;
-                io.emit('cueProgress', cueProgress);
+                cueProgress = ((cues[cues.map(el => el.id).indexOf(cueID)].upTime * FPS) + 1);
+
                 currentCue = lastCue;
                 cues[cues.map(el => el.id).indexOf(lastCue)].upStep = 0;
                 cues[cues.map(el => el.id).indexOf(lastCue)].downStep = 0;
@@ -3410,6 +3410,7 @@ io.on('connection', function (socket) {
                 io.emit('cues', cleanCues());
                 io.emit('activeCue', currentCueID);
                 io.emit('cueActionBtn', true);
+                io.emit('cueProgress', Math.round((cueProgress / ((cues[cues.map(el => el.id).indexOf(cueID)].upTime * FPS) + 1)) * 10) / 10);
             } else {
                 socket.emit('message', { type: "error", content: "This cue doesn't exist!" });
             }
