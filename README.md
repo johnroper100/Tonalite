@@ -34,7 +34,7 @@ You will find the UI at `localhost:3000` by default.
 
 ## Build
 
-To build Tonalite, run `npm run build-(linux/win/macos)`
+To build Tonalite, run `npm run build-(linux/win/macos/rpi)`
 
 To generate the HTML documentation run `npm run build-docs`
 

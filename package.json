@@ -10,6 +10,7 @@
     "build-addon": "node-gyp rebuild",
     "clean-addon": "node-gyp clean",
     "build-linux": "pkg . -t latest-linux",
+    "build-rpi": "pkg . -t latest-linux",
     "build-win": "pkg . -t latest-win",
     "build-macos": "pkg . -t latest-macos",
     "build-docs-pdf": "cd docs && gitbook build . dist/ && gitbook pdf . documentation.pdf && cd ../",
