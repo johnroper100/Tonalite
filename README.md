@@ -17,8 +17,6 @@ Tonalite is lighting control software that uses a web interface accessible from 
 - Support RGB, RGBW, RGBA, RGBAW, CMY, HSI color mixing, and moving lights
 - Support automark
 - Support ETC's fixture profile format
-  
-All these features make Tonalite a direct competetor to other well-known theater lighting consoles.
 
 Tonalite currently works with all `ArtNet`, `E1.31 (sACN)`, and `uDMX (using uDMXArtNet)` interfaces.
 
