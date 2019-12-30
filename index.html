@@ -295,11 +295,11 @@
                                     v-bind:for="parameter.coarse">{{calculateParamName(parameter, currentFixture.swapPanTilt)}}
                                     ({{parameter.displayValue}}%)</label>
                                 <div class="float-right">
-                                    <button class="btn btn-warning" data-toggle="modal" data-target="#colorWheelModal"
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#colorWheelModal"
                                         v-if="parameter.type == 5">
                                         <i class="far fa-palette fa-sm"></i>
                                     </button>
-                                    <button class="btn btn-warning" data-toggle="modal" data-target="#joystickModal"
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#joystickModal"
                                         v-if="parameter.type == 2">
                                         <i class="far fa-location fa-sm"></i>
                                     </button>
@@ -715,11 +715,11 @@
                             <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
                                 ({{parameter.displayValue}}%)</label>
                             <div class="float-right">
-                                <button class="btn btn-warning" data-toggle="modal" data-target="#colorWheelModal"
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#colorWheelModal"
                                     v-if="parameter.type == 5">
                                     <i class="far fa-palette fa-sm"></i>
                                 </button>
-                                <button class="btn btn-warning" data-toggle="modal" data-target="#joystickModal"
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#joystickModal"
                                     v-if="parameter.type == 2">
                                     <i class="far fa-location fa-sm"></i>
                                 </button>
