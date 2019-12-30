@@ -2064,52 +2064,46 @@ io.on('connection', function (socket) {
         });
     });
 
-    socket.on('useFixturePositionPalette', function (msg) {
+    socket.on('usePositionPalette', function (msg) {
+        var ids = [];
         if (fixtures.length != 0) {
-            if (fixtures.some(e => e.id === msg.id)) {
-                saveUndoRedo(false);
-                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
-                var palette = positionPalettes[msg.pid];
-                var param = null;
-                let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
-                    param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
-                    if (param != null) {
-                        param.value = palette.parameters[c].value;
-                        param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
-                    }
+            if (msg.type == 'fixture') {
+                if (fixtures.some(e => e.id === msg.id)) {
+                    ids.push(msg.id);
+                } else {
+                    socket.emit('message', { type: "error", content: "This fixture does not exist!" });
                 }
-                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-            } else {
-                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+            } else if (msg.type == 'group') {
+                if (groups.length != 0) {
+                    if (groups.some(e => e.id === msg.id)) {
+                        var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                        ids = group.ids;
+                    } else {
+                        socket.emit('message', { type: "error", content: "This group does not exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "No groups exist!" });
+                }
             }
-        } else {
-            socket.emit('message', { type: "error", content: "No fixtures exist!" });
-        }
-    });
-
-    socket.on('useGroupPositionPalette', function (msg) {
-        if (fixtures.length > 0) {
-            if (groups.length > 0) {
-                if (groups.some(e => e.id === msg.id)) {
-                    saveUndoRedo(false);
-                    var group = groups[groups.map(el => el.id).indexOf(msg.id)];
-                    var palette = positionPalettes[msg.pid];
-                    var param = null;
+            if (ids.length > 0) {
+                saveUndoRedo(false);
+                var param = null;
+                var fixture = null;
+                var palette = positionPalettes[msg.pid];
+                let i = 0; const iMax = ids.length; for (; i < iMax; i++) {
+                    fixture = fixtures[fixtures.map(el => el.id).indexOf(ids[i])];
                     let c = 0; const cMax = palette.parameters.length; for (; c < cMax; c++) {
-                        param = group.parameters[group.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
                         if (param != null) {
                             param.value = palette.parameters[c].value;
                             param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
-                            setFixtureGroupValues(group, param);
                         }
                     }
-                    io.emit('groups', { groups: cleanGroups(), target: true });
-                    io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-                } else {
-                    socket.emit('message', { type: "error", content: "This group doesn't exist!" });
                 }
-            } else {
-                socket.emit('message', { type: "error", content: "No groups exist!" });
+                if (msg.type == 'group') {
+                    io.emit('groups', { groups: cleanGroups(), target: true });
+                }
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });

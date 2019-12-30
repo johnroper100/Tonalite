@@ -333,7 +333,7 @@ var app = new Vue({
         },
         useFixturePositionPalette: function (pid) {
             if (app.removePositionPalette == false) {
-                socket.emit('useFixturePositionPalette', { id: app.currentFixture.id, pid: pid });
+                socket.emit('usePositionPalette', { id: app.currentFixture.id, pid: pid, type: 'fixture' });
             } else {
                 bootbox.confirm("Are you sure you want to remove this position palette?", function (result) {
                     if (result === true) {
@@ -357,7 +357,7 @@ var app = new Vue({
         },
         useGroupPositionPalette: function (pid) {
             if (app.removePositionPalette == false) {
-                socket.emit('useGroupPositionPalette', { id: app.currentGroup.id, pid: pid });
+                socket.emit('usePositionPalette', { id: app.currentGroup.id, pid: pid, type: 'group' });
             } else {
                 bootbox.confirm("Are you sure you want to remove this position palette?", function (result) {
                     if (result === true) {
