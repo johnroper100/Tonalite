@@ -45,7 +45,7 @@ if (!fs.existsSync("errors")) {
     fs.mkdirSync("errors");
 }
 
-fs.exists(__dirname + '/settings.json', function (exists) {
+fs.exists(process.cwd() + '/settings.json', function (exists) {
     if (exists == false) {
         saveSettings();
     }
@@ -57,7 +57,7 @@ var cues = [];
 var sequences = [];
 var groups = [];
 var presets = [];
-var colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));;
+var colorPalettes = JSON.parse(JSON.stringify(require(process.cwd() + "/colorPalettes.json")));;
 var positionPalettes = [];
 var currentCue = "";
 var cueProgress = 0;
@@ -217,7 +217,7 @@ require.extensions['.jlib'] = require.extensions['.json'];
 
 // Load the Tonalite settings from file
 function openSettings() {
-    fs.readFile(__dirname + '/settings.json', function (err, data) {
+    fs.readFile(process.cwd() + '/settings.json', function (err, data) {
         if (err) logError(err);
         try {
             var settings = JSON.parse(data);
@@ -251,11 +251,11 @@ function openSettings() {
 
             if (SETTINGS.udmx == true) {
                 if (SETTINGS.device === "linux") {
-                    cp = spawn(__dirname + '/uDMXArtnet/uDMXArtnet_minimal_64');
+                    cp = spawn(process.cwd() + '/uDMXArtnet/uDMXArtnet_minimal_64');
                 } else if (SETTINGS.device === "rpi") {
-                    cp = spawn(__dirname + '/uDMXArtnet/uDMXArtnet_PI_minimal_32', ['-i', '192.168.4.1']);
+                    cp = spawn(process.cwd() + '/uDMXArtnet/uDMXArtnet_PI_minimal_32', ['-i', '192.168.4.1']);
                 } else if (SETTINGS.device === "win") {
-                    cp = spawn(__dirname + '/uDMXArtnet/uDMXArtnet_Minimal.exe');
+                    cp = spawn(process.cwd() + '/uDMXArtnet/uDMXArtnet_Minimal.exe');
                 } else {
                     console.log("Selected platform not supported by uDMX, falling back to ArtNet.");
                 }
@@ -269,7 +269,7 @@ function openSettings() {
 
 // Save the Tonalite settings to a file
 function saveSettings() {
-    fs.writeFile(__dirname + "/settings.json", JSON.stringify(SETTINGS, null, 4), (err) => {
+    fs.writeFile(process.cwd() + "/settings.json", JSON.stringify(SETTINGS, null, 4), (err) => {
         if (err) {
             logError(err);
             return false;
@@ -327,7 +327,7 @@ async function updateFirmware(callback) {
             if (uploadComplete == false) {
                 fs.exists(drive.mountpoints[0].path + "/tonalite.zip", function (exists) {
                     if (exists) {
-                        fs.createReadStream(drive.mountpoints[0].path + "/tonalite.zip").pipe(unzipper.Extract({ path: __dirname }));
+                        fs.createReadStream(drive.mountpoints[0].path + "/tonalite.zip").pipe(unzipper.Extract({ path: process.cwd() }));
                         uploadComplete = true;
                         io.emit('message', { type: "info", content: "The Tonalite firmware has been updated. Please reboot the server." });
                         return callback(uploadComplete);
@@ -377,7 +377,7 @@ async function importFixturesFromUSB(callback) {
             if (importComplete == false) {
                 fs.exists(drive.mountpoints[0].path + "/fixtures.zip", function (exists) {
                     if (exists) {
-                        fs.createReadStream(drive.mountpoints[0].path + "/fixtures.zip").pipe(unzipper.Extract({ path: __dirname }));
+                        fs.createReadStream(drive.mountpoints[0].path + "/fixtures.zip").pipe(unzipper.Extract({ path: process.cwd() }));
                         importComplete = true;
                         io.emit('message', { type: "info", content: "The fixture profiles have been imported from USB!" });
                         return callback(importComplete);
@@ -1723,7 +1723,7 @@ function dmxLoop() {
 
 // Load the fixtures, cues, and groups from file
 function openShow(file = "show.json") {
-    fs.readFile(__dirname + '/' + file, (err, data) => {
+    fs.readFile(process.cwd() + '/' + file, (err, data) => {
         if (err) logError(err);
         try {
             var show = JSON.parse(data);
@@ -1771,7 +1771,7 @@ function openShow(file = "show.json") {
 
 // Save the fixtures, cues, and groups of the show to file
 function saveShow() {
-    fs.writeFile(__dirname + "/show.json", JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, tonaliteVersion: VERSION, lastSaved: moment().format(), showName: currentShowName }), (err) => {
+    fs.writeFile(process.cwd() + "/show.json", JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, tonaliteVersion: VERSION, lastSaved: moment().format(), showName: currentShowName }), (err) => {
         if (err) {
             logError(err);
             return false;
@@ -1782,12 +1782,12 @@ function saveShow() {
 
 // Load the presets from file
 function openPresets() {
-    fs.exists(__dirname + '/presets.json', function (exists) {
+    fs.exists(process.cwd() + '/presets.json', function (exists) {
         if (exists == false) {
             savePresets();
             openPresets();
         } else {
-            fs.readFile(__dirname + '/presets.json', (err, data) => {
+            fs.readFile(process.cwd() + '/presets.json', (err, data) => {
                 if (err) logError(err);
                 try {
                     presets = JSON.parse(data);
@@ -1804,7 +1804,7 @@ function openPresets() {
 
 // Save the presets to file
 function savePresets() {
-    fs.writeFile(__dirname + "/presets.json", JSON.stringify(presets), (err) => {
+    fs.writeFile(process.cwd() + "/presets.json", JSON.stringify(presets), (err) => {
         if (err) {
             logError(err);
             return false;
@@ -1833,7 +1833,7 @@ app.get('/open-source-licenses', function (req, res) {
 });
 
 app.get('/showFile', function (req, res) {
-    res.download(__dirname + '/show.json', currentShowName + "_" + moment().format('YYYY-MM-DDTHH-mm-ss') + '.tonalite', { headers: { 'Content-Disposition': 'attachment', 'Content-Type': 'application/octet-stream' } });
+    res.download(process.cwd() + '/show.json', currentShowName + "_" + moment().format('YYYY-MM-DDTHH-mm-ss') + '.tonalite', { headers: { 'Content-Disposition': 'attachment', 'Content-Type': 'application/octet-stream' } });
 });
 
 // Upload Show File
@@ -1843,7 +1843,7 @@ app.post('/showFile', (req, res) => {
     }
     let showFile = req.files.showFile;
     if (showFile.name.includes(".tonalite")) {
-        showFile.mv(__dirname + '/show.json', function (err) {
+        showFile.mv(process.cwd() + '/show.json', function (err) {
             if (err)
                 return res.status(500).send(err);
             openPresets();
@@ -1861,7 +1861,7 @@ app.post('/importFixtureDefinition', (req, res) => {
     let fixtureDefinition = req.files.fixtureDefinition;
 
     if (fixtureDefinition.mimetype == "application/json" || fixtureDefinition.mimetype == "application/x-wine-extension-jlib") {
-        fixtureDefinition.mv(__dirname + '/fixtures/' + req.files.fixtureDefinition.name, function (err) {
+        fixtureDefinition.mv(process.cwd() + '/fixtures/' + req.files.fixtureDefinition.name, function (err) {
             if (err)
                 return res.status(500).send(err);
             res.redirect('/');
@@ -1872,7 +1872,7 @@ app.post('/importFixtureDefinition', (req, res) => {
     }
 });
 
-fs.exists(__dirname + '/show.json', function (exists) {
+fs.exists(process.cwd() + '/show.json', function (exists) {
     if (exists == false) {
         saveShow();
     }
@@ -1952,7 +1952,7 @@ io.on('connection', function (socket) {
 
     socket.on('openShowFromUSB', function (data) {
         saveUndoRedo(false);
-        fs.copyFile(data.path + '/' + data.file, __dirname + '/show.json', function (err) {
+        fs.copyFile(data.path + '/' + data.file, process.cwd() + '/show.json', function (err) {
             if (err) {
                 logError(err);
                 socket.emit('message', { type: "error", content: "The show could not be opened!" });
@@ -1969,7 +1969,7 @@ io.on('connection', function (socket) {
         cues = [];
         groups = [];
         sequences = [];
-        colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));
+        colorPalettes = JSON.parse(JSON.stringify(require(process.cwd() + "/colorPalettes.json")));
         positionPalettes = [];
         currentCue = "";
         currentCueID = "";
@@ -1995,7 +1995,7 @@ io.on('connection', function (socket) {
         cues = [];
         groups = [];
         sequences = [];
-        colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));
+        colorPalettes = JSON.parse(JSON.stringify(require(process.cwd() + "/colorPalettes.json")));
         positionPalettes = [];
         currentCue = "";
         cueProgress = 0;
@@ -2034,12 +2034,12 @@ io.on('connection', function (socket) {
         let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
             startDMXAddress += fixtures[f].maxOffset + 1;
         }
-        fs.readdir(__dirname + "/fixtures", (err, files) => {
+        fs.readdir(process.cwd() + "/fixtures", (err, files) => {
             var fixturesList = {};
             var fixture = null;
             var push = false;
             files.forEach(file => {
-                fixture = require(__dirname + "/fixtures/" + file);
+                fixture = require(process.cwd() + "/fixtures/" + file);
                 fixture.personalities.forEach(function (personality) {
                     push = false;
                     if (SETTINGS.interfaceMode == 'dimmer') {
@@ -2525,11 +2525,11 @@ io.on('connection', function (socket) {
     });
 
     socket.on('getFixtureEffects', function (fixtureid) {
-        fs.readdir(__dirname + "/effects", (err, files) => {
+        fs.readdir(process.cwd() + "/effects", (err, files) => {
             var effectsList = [];
             var effect = null;
             files.forEach(file => {
-                effect = require(__dirname + "/effects/" + file).effectTable;
+                effect = require(process.cwd() + "/effects/" + file).effectTable;
                 if (JSON.stringify(effect.parameterNames).indexOf("Red") >= 0 || JSON.stringify(effect.parameterNames).indexOf("Green") >= 0 || JSON.stringify(effect.parameterNames).indexOf("Blue") >= 0) {
                     effect.type = "Color";
                 } else if (JSON.stringify(effect.parameterNames).indexOf("Intensity") >= 0) {
@@ -2565,7 +2565,7 @@ io.on('connection', function (socket) {
             var fixture = null;
             let i = 0; const iMax = parseInt(msg.creationCount); for (; i < iMax; i++) {
                 // Add a fixture using the fixture spec file in the fixtures folder
-                fixture = require(__dirname + "/fixtures/" + msg.fixtureName);
+                fixture = require(process.cwd() + "/fixtures/" + msg.fixtureName);
                 fixture = fixture.personalities[fixture.personalities.map(el => el.dcid).indexOf(msg.dcid)];
                 fixture.startDMXAddress = startDMXAddress;
                 fixture.dmxUniverse = parseInt(msg.universe);
@@ -2604,7 +2604,7 @@ io.on('connection', function (socket) {
                     cues[cc].fixtures.push(cleanFixtureForCue(fixture));
                 }
                 startDMXAddress += fixture.maxOffset + 1;
-                delete require.cache[require.resolve(__dirname + "/fixtures/" + msg.fixtureName)]
+                delete require.cache[require.resolve(process.cwd() + "/fixtures/" + msg.fixtureName)]
             }
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             saveShow();
@@ -2811,7 +2811,7 @@ io.on('connection', function (socket) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
                 saveUndoRedo(false);
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
-                var effect = JSON.parse(JSON.stringify(require(__dirname + "/effects/" + msg.effectFile).effectTable));
+                var effect = JSON.parse(JSON.stringify(require(process.cwd() + "/effects/" + msg.effectFile).effectTable));
                 effect.active = true;
                 effect.step = 0;
                 effect.depth = 1.0;
