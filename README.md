@@ -3,6 +3,7 @@
 ![Tonalite fixtures](docs/images/fixture_added.png)
 ![Tonalite cues](docs/images/cue_recorded.png)
 ![Tonalite groups](docs/images/group_added.png)
+![Tonalite sequences](docs/images/sequence_added.png)
 ![Tonalite presets and grandmaster](docs/images/preset_recorded.png)
 
 Tonalite is lighting control software that uses a web interface accessible from any device on the network such as a phone, tablet, or laptop. While there are more features coming soon, Tonalite can currently:
@@ -14,7 +15,7 @@ Tonalite is lighting control software that uses a web interface accessible from 
 - Add sequences and cycle through them
 - Add groups to control multiple fixtures at once
 - Record presets for easy system overrides
-- Support RGB, RGBW, RGBA, RGBAW, CMY, HSI color mixing, and moving lights
+- Support color mixing, and moving lights
 - Support automark
 - Support ETC's fixture profile format
 
