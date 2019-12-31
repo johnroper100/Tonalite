@@ -117,9 +117,9 @@ body {
 .hero-btn {
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
-    background-color: #25F18B;
+    background-color: #0ABCEB;
     border-radius: 10px;
-    border: 1px solid #25F18B;
+    border: 1px solid #0ABCEB;
     width: 210px;
     height: 51px;
     color: white;
@@ -127,7 +127,7 @@ body {
 }
 
 .hero-btn:hover {
-    background-color: #6affb4;
+    background-color: #58d5f7;
     color: white;
     border-radius: 20px;
     -webkit-box-shadow: -1px 9px 46px -17px rgba(43, 43, 43, 1);
@@ -512,4 +512,36 @@ a.submit-btn {
 .strips {
     position: absolute;
     width: 100%;
+}
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+
+    0%,
+    100% {
+        transform: rotate(0)
+    }
+
+    20%,
+    60% {
+        transform: rotate(-25deg)
+    }
+
+    40%,
+    80% {
+        transform: rotate(10deg)
+    }
+}
+
+@media (max-width:500px) {
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
 }
