@@ -56,7 +56,9 @@ var app = new Vue({
             useKbEvents: true,
             preventClickEvent: true
         },
-        cueProgress: 0
+        cueProgress: 0,
+        midiEnabled: false,
+        selectedMIDIInput: ""
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -90,6 +92,9 @@ var app = new Vue({
             } else {
                 return { 'objs': [], 'type': 'manufacturers' };
             }
+        },
+        midiInputs: function () {
+            return WebMidi.inputs;
         }
     },
     methods: {
@@ -741,7 +746,6 @@ var app = new Vue({
         }
     }
 });
-
 Mousetrap.bind('r', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
@@ -876,6 +880,15 @@ Mousetrap.bind('ctrl+y', function (e) {
         e.returnValue = false;
     }
     app.redo();
+});
+
+WebMidi.enable(function (err) {
+    if (err) {
+        console.log("WebMidi could not be enabled.", err);
+    } else {
+        //app.midiEnabled = true;
+        app.selectedMIDIInput = WebMidi.inputs[0].id;
+    }
 });
 
 var colorPicker = new iro.ColorPicker('#color-picker-container', {

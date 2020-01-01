@@ -1540,6 +1540,10 @@
                                 <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'outputs'}"
                                     @click="settingsModalTab = 'outputs'">Outputs</a>
                             </li>
+                            <li class="nav-item" v-if="midiEnabled == true">
+                                <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'midi'}"
+                                    @click="settingsModalTab = 'midi'">MIDI</a>
+                            </li>
                         </ul>
                         <div v-if="settingsModalTab == 'defaults'">
                             <div class="row">
@@ -1676,6 +1680,21 @@
                                 </div>
                             </div>
                         </div>
+                        <div v-if="settingsModalTab == 'midi'">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="text-danger">These settings apply to each individual controller instance.
+                                    </p>
+                                    <div class="form-group">
+                                        <label class="dark" for="midiInputDevice">MIDI Input Device:</label>
+                                        <select id="midiInputDevice" class="form-control" v-model="selectedMIDIInput">
+                                            <option v-for="device in midiInputs" :value="device.id">{{device.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1776,6 +1795,7 @@
     <script src="/static/js/vue.min.js"></script>
     <script src="/static/js/iro.min.js"></script>
     <script src="/static/js/virtualjoystick.js"></script>
+    <script src="/static/js/webmidi.js"></script>
     <script src="/static/js/script.js"></script>
 </body>
 
