@@ -93,7 +93,7 @@ var app = new Vue({
                 return { 'objs': [], 'type': 'manufacturers' };
             }
         },
-        midiInputs: function () {
+        getMIDIInputs: function () {
             return WebMidi.inputs;
         }
     },
