@@ -1690,7 +1690,7 @@
                                             <label class="dark" for="midiInputDevice">MIDI Input Device:</label>
                                             <select id="midiInputDevice" class="form-control"
                                                 v-model="selectedMIDIInput">
-                                                <option v-for="inputdevice in getMIDIInputs" :value="inputdevice.id">
+                                                <option v-for="inputdevice in midiInputDevices" :value="inputdevice.id">
                                                     {{inputdevice.name}}
                                                 </option>
                                             </select>

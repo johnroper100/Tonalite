@@ -58,7 +58,8 @@ var app = new Vue({
         },
         cueProgress: 0,
         midiEnabled: false,
-        selectedMIDIInput: ""
+        selectedMIDIInput: "",
+        midiInputDevices: []
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -92,9 +93,6 @@ var app = new Vue({
             } else {
                 return { 'objs': [], 'type': 'manufacturers' };
             }
-        },
-        getMIDIInputs: function () {
-            return WebMidi.inputs;
         }
     },
     methods: {
@@ -887,6 +885,7 @@ WebMidi.enable(function (err) {
         console.log("WebMidi could not be enabled.", err);
     } else {
         //app.midiEnabled = true;
+        app.midiInputDevices = WebMidi.inputs;
         app.selectedMIDIInput = WebMidi.inputs[0].id;
     }
 });
