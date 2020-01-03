@@ -2551,65 +2551,69 @@ io.on('connection', function (socket) {
     });
 
     socket.on('addFixture', function (msg) {
-        saveUndoRedo(false);
-        var startDMXAddress = parseInt(msg.startDMXAddress);
-        let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-            if (fixtures[f].startDMXAddress == startDMXAddress) {
-                startDMXAddress = null;
+        if (fixtures.length <= 512) {
+            saveUndoRedo(false);
+            var startDMXAddress = parseInt(msg.startDMXAddress);
+            let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+                if (fixtures[f].startDMXAddress == startDMXAddress) {
+                    startDMXAddress = null;
+                }
+                if (startDMXAddress >= fixtures[f].startDMXAddress && startDMXAddress < parseInt(fixtures[f].startDMXAddress) + parseInt(fixtures[f].maxOffset + 1)) {
+                    startDMXAddress = null;
+                }
             }
-            if (startDMXAddress >= fixtures[f].startDMXAddress && startDMXAddress < parseInt(fixtures[f].startDMXAddress) + parseInt(fixtures[f].maxOffset + 1)) {
-                startDMXAddress = null;
-            }
-        }
-        if (startDMXAddress) {
-            var fixture = null;
-            let i = 0; const iMax = parseInt(msg.creationCount); for (; i < iMax; i++) {
-                // Add a fixture using the fixture spec file in the fixtures folder
-                fixture = require(process.cwd() + "/fixtures/" + msg.fixtureName);
-                fixture = fixture.personalities[fixture.personalities.map(el => el.dcid).indexOf(msg.dcid)];
-                fixture.startDMXAddress = startDMXAddress;
-                fixture.dmxUniverse = parseInt(msg.universe);
-                fixture.hasLockedParameters = false;
-                fixture.hasActiveEffects = false;
-                fixture.name = fixture.modelName;
-                fixture.effects = [];
-                fixture.parameterTypes = [];
-                fixture.invertPan = false;
-                fixture.invertTilt = false;
-                fixture.swapPanTilt = false;
+            if (startDMXAddress) {
+                var fixture = null;
+                let i = 0; const iMax = parseInt(msg.creationCount); for (; i < iMax; i++) {
+                    // Add a fixture using the fixture spec file in the fixtures folder
+                    fixture = require(process.cwd() + "/fixtures/" + msg.fixtureName);
+                    fixture = fixture.personalities[fixture.personalities.map(el => el.dcid).indexOf(msg.dcid)];
+                    fixture.startDMXAddress = startDMXAddress;
+                    fixture.dmxUniverse = parseInt(msg.universe);
+                    fixture.hasLockedParameters = false;
+                    fixture.hasActiveEffects = false;
+                    fixture.name = fixture.modelName;
+                    fixture.effects = [];
+                    fixture.parameterTypes = [];
+                    fixture.invertPan = false;
+                    fixture.invertTilt = false;
+                    fixture.swapPanTilt = false;
 
-                let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
-                    fixture.parameters[c].value = fixture.parameters[c].home;
-                    fixture.parameters[c].max = 65535;
-                    fixture.parameters[c].min = 0;
-                    fixture.parameters[c].displayValue = cppaddon.mapRange(fixture.parameters[c].home, fixture.parameters[c].min, fixture.parameters[c].max, 0, 100);
-                    fixture.parameters[c].locked = false;
-                    fixture.parameters[c].id = generateID();
-                    if (fixture.parameters[c].type == 2) {
-                        fixture.parameterTypes.push("Position");
-                    } else if (fixture.parameters[c].type == 5) {
-                        fixture.parameterTypes.push("Color");
-                    } else if (fixture.parameters[c].type == 4) {
-                        fixture.parameterTypes.push("Parameter");
-                    } else if (fixture.parameters[c].type == 1) {
-                        fixture.parameterTypes.push("Intensity");
+                    let c = 0; const cMax = fixture.parameters.length; for (; c < cMax; c++) {
+                        fixture.parameters[c].value = fixture.parameters[c].home;
+                        fixture.parameters[c].max = 65535;
+                        fixture.parameters[c].min = 0;
+                        fixture.parameters[c].displayValue = cppaddon.mapRange(fixture.parameters[c].home, fixture.parameters[c].min, fixture.parameters[c].max, 0, 100);
+                        fixture.parameters[c].locked = false;
+                        fixture.parameters[c].id = generateID();
+                        if (fixture.parameters[c].type == 2) {
+                            fixture.parameterTypes.push("Position");
+                        } else if (fixture.parameters[c].type == 5) {
+                            fixture.parameterTypes.push("Color");
+                        } else if (fixture.parameters[c].type == 4) {
+                            fixture.parameterTypes.push("Parameter");
+                        } else if (fixture.parameters[c].type == 1) {
+                            fixture.parameterTypes.push("Intensity");
+                        }
                     }
+                    fixture.parameters.sort((a, b) => (a.coarse > b.coarse) ? 1 : -1)
+                    fixture.shortName = fixture.name.split(" ")[0];
+                    // Assign a random id for easy access to this fixture
+                    fixture.id = generateID();
+                    fixtures.push(JSON.parse(JSON.stringify(fixture)));
+                    let cc = 0; const ccMax = cues.length; for (; cc < ccMax; cc++) {
+                        cues[cc].fixtures.push(cleanFixtureForCue(fixture));
+                    }
+                    startDMXAddress += fixture.maxOffset + 1;
+                    delete require.cache[require.resolve(process.cwd() + "/fixtures/" + msg.fixtureName)]
                 }
-                fixture.parameters.sort((a, b) => (a.coarse > b.coarse) ? 1 : -1)
-                fixture.shortName = fixture.name.split(" ")[0];
-                // Assign a random id for easy access to this fixture
-                fixture.id = generateID();
-                fixtures.push(JSON.parse(JSON.stringify(fixture)));
-                let cc = 0; const ccMax = cues.length; for (; cc < ccMax; cc++) {
-                    cues[cc].fixtures.push(cleanFixtureForCue(fixture));
-                }
-                startDMXAddress += fixture.maxOffset + 1;
-                delete require.cache[require.resolve(process.cwd() + "/fixtures/" + msg.fixtureName)]
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "A fixture with this starting DMX address already exists!" });
             }
-            io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-            saveShow();
         } else {
-            socket.emit('message', { type: "error", content: "A fixture with this starting DMX address already exists!" });
+            socket.emit('message', { type: "error", content: "1024 fixtures have already been created!" });
         }
     });
 
