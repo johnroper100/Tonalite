@@ -1757,6 +1757,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <button class="btn btn-success" @click="patchMIDIControl">Patch MIDI
+                                            Control</button>
+                                    </div>
+                                    <div class="dark mt-2">
+                                        Patched MIDI Controls:
+                                        <div v-for="control in midiCommands">Parameter: {{control.command}}, Type:
+                                            {{control.type}}, Channel: {{control.channel}}</div>
                                     </div>
                                 </div>
                             </div>

@@ -752,7 +752,7 @@ var app = new Vue({
                 socket.emit('usePositionJoystick', { id: app.currentGroup.id, type: 'group', x: x, y: y });
             }
         },
-        patchMIDIControl: function (e) {
+        patchMIDIControlFromLearn: function (e) {
             app.midiPatchMessageType = e.type;
             app.midiPatchMessageChannel = e.channel;
             if (e.type == "controlchange") {
@@ -761,7 +761,15 @@ var app = new Vue({
                 app.midiPatchMessageNote = e.note.number;
                 app.midiPatchMessageVelocity = e.rawVelocity;
             }
-
+        },
+        patchMIDIControl: function () {
+            if (app.midiPatchParamToControl != "") {
+                if (app.midiPatchMessageType == "controlchange") {
+                    app.midiCommands.push({ command: app.midiPatchParamToControl, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, control: app.midiPatchMessageControl });
+                } else {
+                    app.midiCommands.push({ command: app.midiPatchParamToControl, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, note: app.midiPatchMessageNote, velocity: app.midiPatchMessageVelocity });
+                }
+            }
         },
         setMIDIInput: function () {
             if (app.selectedMIDIInput != "") {
@@ -769,25 +777,58 @@ var app = new Vue({
                 app.midiInputDevice.addListener('noteon', "all", function (e) {
                     if (app.midiLearn == true) {
                         app.midiLearn = false;
-                        app.patchMIDIControl(e);
+                        app.patchMIDIControlFromLearn(e);
                     } else {
-
+                        if (app.midiCommands.some(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number && c.velocity == e.rawVelocity)) {
+                            var command = app.midiCommands.filter(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number && c.velocity == e.rawVelocity)[0];
+                            if (command.command == 'nextCue') {
+                                app.nextCue();
+                            } else if (command.command == 'lastCue') {
+                                app.lastCue();
+                            } else if (command.command == 'stopCue') {
+                                app.stopCue();
+                            } else if (command.command == 'recordCue') {
+                                app.recordCue();
+                            }
+                        }
                     }
                 });
                 app.midiInputDevice.addListener('noteoff', "all", function (e) {
                     if (app.midiLearn == true) {
                         app.midiLearn = false;
-                        app.patchMIDIControl(e);
+                        app.patchMIDIControlFromLearn(e);
                     } else {
-
+                        if (app.midiCommands.some(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number && c.velocity == e.rawVelocity)) {
+                            var command = app.midiCommands.filter(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number && c.velocity == e.rawVelocity)[0];
+                            if (command.command == 'nextCue') {
+                                app.nextCue();
+                            } else if (command.command == 'lastCue') {
+                                app.lastCue();
+                            } else if (command.command == 'stopCue') {
+                                app.stopCue();
+                            } else if (command.command == 'recordCue') {
+                                app.recordCue();
+                            }
+                        }
                     }
                 });
                 app.midiInputDevice.addListener('controlchange', "all", function (e) {
                     if (app.midiLearn == true) {
                         app.midiLearn = false;
-                        app.patchMIDIControl(e);
+                        app.patchMIDIControlFromLearn(e);
                     } else {
-
+                        if (app.midiCommands.some(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number && c.velocity == e.rawVelocity)) {
+                            var command = app.midiCommands.filter(c => c.type == e.type && c.channel == e.channel && c.control == e.control)[0];
+                            if (command.command == 'nextCue') {
+                                app.nextCue();
+                            } else if (command.command == 'lastCue') {
+                                app.lastCue();
+                            } else if (command.command == 'stopCue') {
+                                app.stopCue();
+                            } else if (command.command == 'recordCue') {
+                                app.recordCue();
+                            }
+                        }
                     }
                 });
             }
