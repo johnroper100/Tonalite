@@ -59,7 +59,17 @@ var app = new Vue({
         cueProgress: 0,
         midiEnabled: false,
         selectedMIDIInput: "",
-        midiInputDevices: []
+        midiInputDevice: null,
+        midiInputDevices: [],
+        midiCommands: [],
+        showMIDIControlInput: false,
+        midiLearn: false,
+        midiPatchParamToControl: "",
+        midiPatchMessageType: "",
+        midiPatchMessageNote: 61,
+        midiPatchMessageVelocity: 127,
+        midiPatchMessageControl: 0,
+        midiPatchMessageChannel: 1
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -740,6 +750,46 @@ var app = new Vue({
                 socket.emit('usePositionJoystick', { id: app.currentFixture.id, type: 'fixture', x: x, y: y });
             } else if (app.currentView == 'groupParameters') {
                 socket.emit('usePositionJoystick', { id: app.currentGroup.id, type: 'group', x: x, y: y });
+            }
+        },
+        patchMIDIControl: function (e) {
+            app.midiPatchMessageType = e.type;
+            app.midiPatchMessageChannel = e.channel;
+            if (e.type == "controlchange") {
+                app.midiPatchMessageControl = e.control;
+            } else {
+                app.midiPatchMessageNote = e.note.number;
+                app.midiPatchMessageVelocity = e.rawVelocity;
+            }
+
+        },
+        setMIDIInput: function () {
+            if (app.selectedMIDIInput != "") {
+                app.midiInputDevice = WebMidi.getInputById(app.selectedMIDIInput);
+                app.midiInputDevice.addListener('noteon', "all", function (e) {
+                    if (app.midiLearn == true) {
+                        app.midiLearn = false;
+                        app.patchMIDIControl(e);
+                    } else {
+
+                    }
+                });
+                app.midiInputDevice.addListener('noteoff', "all", function (e) {
+                    if (app.midiLearn == true) {
+                        app.midiLearn = false;
+                        app.patchMIDIControl(e);
+                    } else {
+
+                    }
+                });
+                app.midiInputDevice.addListener('controlchange', "all", function (e) {
+                    if (app.midiLearn == true) {
+                        app.midiLearn = false;
+                        app.patchMIDIControl(e);
+                    } else {
+
+                    }
+                });
             }
         }
     }

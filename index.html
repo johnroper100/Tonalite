@@ -1689,11 +1689,73 @@
                                         <div class="form-group">
                                             <label class="dark" for="midiInputDevice">MIDI Input Device:</label>
                                             <select id="midiInputDevice" class="form-control"
-                                                v-model="selectedMIDIInput">
+                                                v-model="selectedMIDIInput" @change="setMIDIInput">
                                                 <option v-for="inputdevice in midiInputDevices" :value="inputdevice.id">
                                                     {{inputdevice.name}}
                                                 </option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-success" @click="showMIDIControlInput = true">Map MIDI
+                                        Control</button>
+                                    <button class="btn btn-primary"
+                                        v-if="showMIDIControlInput == true && midiLearn == false"
+                                        @click="midiLearn = true">Learn MIDI Event</button>
+                                    <button class="btn btn-danger"
+                                        v-if="showMIDIControlInput == true && midiLearn == true"
+                                        @click="midiLearn = false">Stop MIDI Learn</button>
+                                    <div v-if="showMIDIControlInput == true" class="dark mt-2">
+                                        <div class="form-group">
+                                            <label class="dark" for="parameterToControl">Parameter To Control:</label>
+                                            <select id="parameterToControl" class="form-control"
+                                                v-model="midiPatchParamToControl">
+                                                <option value="nextCue">Next Cue</option>
+                                                <option value="lastCue">Last Cue</option>
+                                                <option value="stopCue">Stop Cue</option>
+                                                <option value="recordCue">Record Cue</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="dark" for="midiMessageType">MIDI Message Type:</label>
+                                            <select id="midiMessageType" class="form-control"
+                                                v-model="midiPatchMessageType">
+                                                <option value="noteon">Note On</option>
+                                                <option value="noteoff">Note Off</option>
+                                                <option value="controlchange">Control Change</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="dark" for="midiMessageChannel">MIDI Message Channel:</label>
+                                            <input type="number" id="midiMessageChannel" class="form-control"
+                                                v-model="midiPatchMessageChannel" min="1" max="127">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-12"
+                                                v-if="midiPatchMessageType != '' && midiPatchMessageType != 'controlchange'">
+                                                <div class="form-group">
+                                                    <label class="dark" for="midiMessageNote">MIDI Message Note:</label>
+                                                    <input type="number" id="midiMessageNote" class="form-control"
+                                                        v-model="midiPatchMessageNote" min="1" max="127">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12"
+                                                v-if="midiPatchMessageType != '' && midiPatchMessageType != 'controlchange'">
+                                                <div class="form-group">
+                                                    <label class="dark" for="midiMessageVelocity">MIDI Message
+                                                        Velocity:</label>
+                                                    <input type="number" id="midiMessageVelocity" class="form-control"
+                                                        v-model="midiPatchMessageVelocity" min="1" max="127">
+                                                </div>
+                                            </div>
+                                            <div class="col-12"
+                                                v-if="midiPatchMessageType != '' && midiPatchMessageType == 'controlchange'">
+                                                <div class="form-group">
+                                                    <label class="dark" for="midiMessageControl">MIDI Message
+                                                        Control:</label>
+                                                    <input type="number" id="midiMessageControl" class="form-control"
+                                                        v-model="midiPatchMessageControl" min="1" max="127">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
