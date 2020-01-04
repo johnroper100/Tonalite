@@ -485,6 +485,31 @@ function generateID() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 };
 
+function checkAvailableDMXChannels(checkFixture) {
+    var checked = new Array(1024).fill(false);
+    var fixture = null;
+    let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
+        fixture = fixtures[f];
+        let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+            checked[((fixture.startDMXAddress + (512 * fixture.dmxUniverse)) - 1) + fixture.parameters[p].coarse] = true;
+            if (fixture.parameters[p].fine != null) {
+                checked[((fixture.startDMXAddress + (512 * fixture.dmxUniverse)) - 1) + fixture.parameters[p].fine] = true;
+            }
+        }
+    }
+    let i = 0; const iMax = checkFixture.parameters.length; for (; i < iMax; i++) {
+        if (checked[((checkFixture.startDMXAddress + (512 * checkFixture.dmxUniverse)) - 1) + checkFixture.parameters[i].coarse] == true) {
+            return false;
+        }
+        if (checkFixture.parameters[i].fine != null) {
+            if (checked[((checkFixture.startDMXAddress + (512 * checkFixture.dmxUniverse)) - 1) + checkFixture.parameters[i].fine] == true) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 function generateGroupParameters(newGroup) {
     var parameterCats = [];
     var parameters = [];
@@ -2551,25 +2576,17 @@ io.on('connection', function (socket) {
     });
 
     socket.on('addFixture', function (msg) {
-        if (fixtures.length <= 512) {
+        if (fixtures.length < 1024) {
             saveUndoRedo(false);
             var startDMXAddress = parseInt(msg.startDMXAddress);
-            let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
-                if (fixtures[f].startDMXAddress == startDMXAddress) {
-                    startDMXAddress = null;
-                }
-                if (startDMXAddress >= fixtures[f].startDMXAddress && startDMXAddress < parseInt(fixtures[f].startDMXAddress) + parseInt(fixtures[f].maxOffset + 1)) {
-                    startDMXAddress = null;
-                }
-            }
-            if (startDMXAddress) {
-                var fixture = null;
-                let i = 0; const iMax = parseInt(msg.creationCount); for (; i < iMax; i++) {
-                    // Add a fixture using the fixture spec file in the fixtures folder
-                    fixture = require(process.cwd() + "/fixtures/" + msg.fixtureName);
-                    fixture = fixture.personalities[fixture.personalities.map(el => el.dcid).indexOf(msg.dcid)];
-                    fixture.startDMXAddress = startDMXAddress;
-                    fixture.dmxUniverse = parseInt(msg.universe);
+            var fixture = null;
+            let i = 0; const iMax = parseInt(msg.creationCount); for (; i < iMax; i++) {
+                // Add a fixture using the fixture spec file in the fixtures folder
+                fixture = require(process.cwd() + "/fixtures/" + msg.fixtureName);
+                fixture = fixture.personalities[fixture.personalities.map(el => el.dcid).indexOf(msg.dcid)];
+                fixture.startDMXAddress = startDMXAddress;
+                fixture.dmxUniverse = parseInt(msg.universe);
+                if (checkAvailableDMXChannels(fixture)) {
                     fixture.hasLockedParameters = false;
                     fixture.hasActiveEffects = false;
                     fixture.name = fixture.modelName;
@@ -2605,13 +2622,14 @@ io.on('connection', function (socket) {
                         cues[cc].fixtures.push(cleanFixtureForCue(fixture));
                     }
                     startDMXAddress += fixture.maxOffset + 1;
-                    delete require.cache[require.resolve(process.cwd() + "/fixtures/" + msg.fixtureName)]
+                    delete require.cache[require.resolve(process.cwd() + "/fixtures/" + msg.fixtureName)];
+                } else {
+                    socket.emit('message', { type: "error", content: "One or more of the fixtures won't fit in their assigned DMX channels!" });
+                    break;
                 }
-                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-                saveShow();
-            } else {
-                socket.emit('message', { type: "error", content: "A fixture with this starting DMX address already exists!" });
             }
+            io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            saveShow();
         } else {
             socket.emit('message', { type: "error", content: "1024 fixtures have already been created!" });
         }
