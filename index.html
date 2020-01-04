@@ -1728,11 +1728,13 @@
                                                         <option value="grandmaster">Grandmaster</option>
                                                         <option value="fixtureIntensity">Fixture Intensity</option>
                                                         <option value="fixtureParameter">Fixture Parameter</option>
+                                                        <option value="fixtureParameterLock">Fixture Parameter Lock
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12"
-                                                v-if="midiPatchParamToControl == 'fixtureIntensity' || midiPatchParamToControl == 'fixtureParameter'">
+                                                v-if="midiPatchParamToControl == 'fixtureIntensity' || midiPatchParamToControl == 'fixtureParameter' || midiPatchParamToControl == 'fixtureParameterLock'">
                                                 <div class="form-group">
                                                     <label class="dark" for="paramNumber">Item Number:</label>
                                                     <input type="number" id="paramNumber" class="form-control"
@@ -1740,7 +1742,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12"
-                                                v-if="midiPatchParamToControl == 'fixtureIntensity' || midiPatchParamToControl == 'fixtureParameter'">
+                                                v-if="midiPatchParamToControl == 'fixtureIntensity' || midiPatchParamToControl == 'fixtureParameter' || midiPatchParamToControl == 'fixtureParameterLock'">
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox">
                                                         <input @change="editSettings"

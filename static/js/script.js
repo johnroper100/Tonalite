@@ -839,6 +839,17 @@ var app = new Vue({
                             }
                         }
                     }
+                } else if (commands[p].command == 'fixtureParameterLock') {
+                    if (app.currentFixture != {} && app.currentFixture != null) {
+                        if (app.currentFixture.parameters.length >= commands[0].number) {
+                            var param = app.currentFixture.parameters[commands[0].number - 1];
+                            if (commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") {
+                                app.changeFixtureParameterLock(param);
+                            } else if (commands[0].mustBeOnParamPage == false) {
+                                app.changeFixtureParameterLock(param);
+                            }
+                        }
+                    }
                 }
             }
         },
