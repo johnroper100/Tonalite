@@ -1685,16 +1685,25 @@
                                 <div class="col-12">
                                     <p class="text-danger">These settings apply to each individual controller instance.
                                     </p>
-                                    <div>
-                                        <div class="form-group">
-                                            <label class="dark" for="midiInputDevice">MIDI Input Device:</label>
-                                            <select id="midiInputDevice" class="form-control"
-                                                v-model="selectedMIDIInput" @change="setMIDIInput">
-                                                <option v-for="inputdevice in midiInputDevices"
-                                                    :value="inputdevice.name">
-                                                    {{inputdevice.name}}
-                                                </option>
-                                            </select>
+                                    <div class="row">
+                                        <div class="col-12"
+                                            :class="{ 'col-md-6': midiInputDevice == null && selectedMIDIInput != ''}">
+                                            <div class="form-group">
+                                                <label class="dark" for="midiInputDevice">MIDI Input Device:</label>
+                                                <select id="midiInputDevice" class="form-control"
+                                                    v-model="selectedMIDIInput" @change="setMIDIInput">
+                                                    <option v-for="inputdevice in midiInputDevices"
+                                                        :value="inputdevice.name">
+                                                        {{inputdevice.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6" v-if="midiInputDevice == null && selectedMIDIInput != ''">
+                                            <label class="dark" for="selectInputBtn">Select Input:</label>
+                                            <button class="btn btn-warning" @click="setMIDIInput"
+                                                id="selectInputBtn">Use This
+                                                Device</button>
                                         </div>
                                     </div>
                                     <button class="btn btn-success" @click="showMIDIControlInput = true">Map MIDI
