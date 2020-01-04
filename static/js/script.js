@@ -1,4 +1,6 @@
 var socket = io('http://' + document.domain + ':' + location.port);
+var store;
+
 Vue.use(VueTouchKeyboard);
 var app = new Vue({
     el: '#app',
@@ -772,6 +774,7 @@ var app = new Vue({
                 } else {
                     app.midiCommands.push({ command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, control: null, note: app.midiPatchMessageNote });
                 }
+                store.set('midiCommands', JSON.stringify(app.midiCommands));
             }
         },
         doMIDIAction: function (e) {
@@ -855,31 +858,34 @@ var app = new Vue({
         },
         setMIDIInput: function () {
             if (app.selectedMIDIInput != "") {
+                store.set('selectedMIDIInput', app.selectedMIDIInput);
                 app.midiInputDevice = WebMidi.getInputByName(app.selectedMIDIInput);
-                app.midiInputDevice.addListener('noteon', "all", function (e) {
-                    if (app.midiLearn == true) {
-                        app.midiLearn = false;
-                        app.patchMIDIControlFromLearn(e);
-                    } else {
-                        app.doMIDIAction(e);
-                    }
-                });
-                app.midiInputDevice.addListener('noteoff', "all", function (e) {
-                    if (app.midiLearn == true) {
-                        app.midiLearn = false;
-                        app.patchMIDIControlFromLearn(e);
-                    } else {
-                        app.doMIDIAction(e);
-                    }
-                });
-                app.midiInputDevice.addListener('controlchange', "all", function (e) {
-                    if (app.midiLearn == true) {
-                        app.midiLearn = false;
-                        app.patchMIDIControlFromLearn(e);
-                    } else {
-                        app.doMIDIAction(e);
-                    }
-                });
+                if (app.midiInputDevice != null && app.midiInputDevice != false) {
+                    app.midiInputDevice.addListener('noteon', "all", function (e) {
+                        if (app.midiLearn == true) {
+                            app.midiLearn = false;
+                            app.patchMIDIControlFromLearn(e);
+                        } else {
+                            app.doMIDIAction(e);
+                        }
+                    });
+                    app.midiInputDevice.addListener('noteoff', "all", function (e) {
+                        if (app.midiLearn == true) {
+                            app.midiLearn = false;
+                            app.patchMIDIControlFromLearn(e);
+                        } else {
+                            app.doMIDIAction(e);
+                        }
+                    });
+                    app.midiInputDevice.addListener('controlchange', "all", function (e) {
+                        if (app.midiLearn == true) {
+                            app.midiLearn = false;
+                            app.patchMIDIControlFromLearn(e);
+                        } else {
+                            app.doMIDIAction(e);
+                        }
+                    });
+                }
             }
         }
     }
@@ -1027,6 +1033,16 @@ WebMidi.enable(function (err) {
         app.midiEnabled = true;
         app.midiInputDevices = WebMidi.inputs;
         app.selectedMIDIInput = WebMidi.inputs[0].name;
+        store = new Persist.Store('Tonalite');
+        var midiInput = store.get('selectedMIDIInput');
+        if (midiInput != null && midiInput != "") {
+            app.selectedMIDIInput = midiInput;
+            app.setMIDIInput();
+        }
+        var cmds = store.get('midiCommands');
+        if (cmds != null && cmds != "") {
+            app.midiCommands = JSON.parse(cmds);
+        }
     }
 });
 
