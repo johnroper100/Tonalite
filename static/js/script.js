@@ -109,6 +109,9 @@ var app = new Vue({
         }
     },
     methods: {
+        generateID: function () {
+            return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        },
         keyboardAccept: function (text) {
             app.hideKeyboard();
         },
@@ -770,9 +773,9 @@ var app = new Vue({
         patchMIDIControl: function () {
             if (app.midiPatchParamToControl != "") {
                 if (app.midiPatchMessageType == "controlchange") {
-                    app.midiCommands.push({ command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, note: null, control: app.midiPatchMessageControl });
+                    app.midiCommands.push({ id: app.generateID, command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, note: null, control: app.midiPatchMessageControl, velocity: null, useVelocity: null });
                 } else {
-                    app.midiCommands.push({ command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, control: null, note: app.midiPatchMessageNote });
+                    app.midiCommands.push({ id: app.generateID, command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, control: null, note: app.midiPatchMessageNote, velocity: null, useVelocity: null });
                 }
                 store.set('midiCommands', JSON.stringify(app.midiCommands));
             }
