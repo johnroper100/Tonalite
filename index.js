@@ -2990,6 +2990,27 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('changeFixtureIntensityValue', function (msg) {
+        if (fixtures.length != 0) {
+            if (fixtures.some(e => e.id === msg.id)) {
+                var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
+                var parameter = null;
+                let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+                    parameter = fixture.parameters[p];
+                    if (parameter.type == 1 || parameter.fadeWithIntensity == true) {
+                        parameter.value = parseInt(msg.value);
+                        parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
+                    }
+                }
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            } else {
+                socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
     socket.on('changeFixtureParameterLock', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {

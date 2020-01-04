@@ -65,6 +65,8 @@ var app = new Vue({
         showMIDIControlInput: false,
         midiLearn: false,
         midiPatchParamToControl: "",
+        midiPatchParamNumber: 1,
+        midiPatchMustBeOnParamPage: true,
         midiPatchMessageType: "",
         midiPatchMessageNote: 61,
         midiPatchMessageControl: 0,
@@ -311,6 +313,9 @@ var app = new Vue({
         changeFixtureParameterValue: function (parameter) {
             socket.emit("changeFixtureParameterValue", { id: app.currentFixture.id, pid: parameter.id, value: parameter.value })
             parameter.displayValue = parseInt(app.mapRange(parameter.value, parameter.min, parameter.max, 0, 100));
+        },
+        changeFixtureIntensityValue: function (id, value) {
+            socket.emit("changeFixtureIntensityValue", { id: id, value: value })
         },
         changeGroupParameterValue: function (parameter) {
             socket.emit("changeGroupParameterValue", { id: app.currentGroup.id, pid: parameter.id, value: parameter.value })
@@ -763,9 +768,9 @@ var app = new Vue({
         patchMIDIControl: function () {
             if (app.midiPatchParamToControl != "") {
                 if (app.midiPatchMessageType == "controlchange") {
-                    app.midiCommands.push({ command: app.midiPatchParamToControl, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, note: null, control: app.midiPatchMessageControl });
+                    app.midiCommands.push({ command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, note: null, control: app.midiPatchMessageControl });
                 } else {
-                    app.midiCommands.push({ command: app.midiPatchParamToControl, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, control: null, note: app.midiPatchMessageNote });
+                    app.midiCommands.push({ command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, control: null, note: app.midiPatchMessageNote });
                 }
             }
         },
@@ -794,11 +799,11 @@ var app = new Vue({
                 } else if (commands[p].command == 'resetGroups') {
                     app.resetGroups();
                 } else if (commands[p].command == 'resetFixture') {
-                    if (app.currentView == "fixtureParameters") {
+                    if (app.currentView == "fixtureParameters" && app.currentFixture != {}) {
                         app.resetFixture();
                     }
                 } else if (commands[p].command == 'resetGroup') {
-                    if (app.currentView == "groupParameters") {
+                    if (app.currentView == "groupParameters" && app.currentGrou != {}) {
                         app.resetGroup();
                     }
                 } else if (commands[p].command == 'shutdown') {
@@ -808,12 +813,38 @@ var app = new Vue({
                         app.grandmaster = app.mapRange(e.value, 0, 127, 0, 100);
                         app.changeGrandMasterValue();
                     }
+                } else if (commands[p].command == 'fixtureIntensity') {
+                    if (e.type == 'controlchange') {
+                        if (app.fixtures.length >= commands[0].number) {
+                            var fixture = app.fixtures[commands[0].number - 1];
+                            if (commands[0].mustBeOnParamPage == true && app.currentView == "fixtures") {
+                                app.changeFixtureIntensityValue(fixture.id, app.mapRange(e.value, 0, 127, 0, 65535));
+                            } else if (commands[0].mustBeOnParamPage == false) {
+                                app.changeFixtureIntensityValue(fixture.id, app.mapRange(e.value, 0, 127, 0, 65535));
+                            }
+                        }
+                    }
+                } else if (commands[p].command == 'fixtureParameter') {
+                    if (e.type == 'controlchange') {
+                        if (app.currentFixture != {} && app.currentFixture != null) {
+                            if (app.currentFixture.parameters.length >= commands[0].number) {
+                                var param = app.currentFixture.parameters[commands[0].number - 1];
+                                if (commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") {
+                                    param.value = app.mapRange(e.value, 0, 127, 0, 65535);
+                                    app.changeFixtureParameterValue(param);
+                                } else if (commands[0].mustBeOnParamPage == false) {
+                                    param.value = app.mapRange(e.value, 0, 127, 0, 65535);
+                                    app.changeFixtureParameterValue(param);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
         setMIDIInput: function () {
             if (app.selectedMIDIInput != "") {
-                app.midiInputDevice = WebMidi.getInputById(app.selectedMIDIInput);
+                app.midiInputDevice = WebMidi.getInputByName(app.selectedMIDIInput);
                 app.midiInputDevice.addListener('noteon', "all", function (e) {
                     if (app.midiLearn == true) {
                         app.midiLearn = false;
@@ -984,7 +1015,7 @@ WebMidi.enable(function (err) {
     } else {
         app.midiEnabled = true;
         app.midiInputDevices = WebMidi.inputs;
-        app.selectedMIDIInput = WebMidi.inputs[0].id;
+        app.selectedMIDIInput = WebMidi.inputs[0].name;
     }
 });
 
@@ -1031,7 +1062,6 @@ document.getElementById("joystick-container").addEventListener("touchend", funct
 socket.on('connect', function () {
     app.currentView = 'fixtures';
     app.fixtureProfiles = {};
-    socket.emit("getFixtureProfiles");
     app.fixtureParametersTab = 'all';
     app.cuesTab = 'cues';
     app.settingsModalTab = "ui";
@@ -1080,6 +1110,7 @@ socket.on('connect', function () {
     $('#serverDisconnectedModal').modal("hide");
     $('#colorWheelModal').modal("hide");
     $('#joystickModal').modal("hide");
+    socket.emit("getFixtureProfiles");
 });
 
 socket.on('connect_error', function () {
