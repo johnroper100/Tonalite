@@ -780,6 +780,14 @@ var app = new Vue({
                 store.set('midiCommands', JSON.stringify(app.midiCommands));
             }
         },
+        removeMIDICommand: function (id) {
+            if (app.midiCommands.length != 0) {
+                if (app.midiCommands.some(e => e.id === id)) {
+                    app.midiCommands.splice(app.midiCommands.map(el => el.id).indexOf(id), 1);
+                    store.set('midiCommands', JSON.stringify(app.midiCommands));
+                }
+            }
+        },
         doMIDIAction: function (e) {
             var commands = [];
             if (e.type == 'controlchange') {

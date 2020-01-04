@@ -1706,8 +1706,11 @@
                                                 Device</button>
                                         </div>
                                     </div>
-                                    <button class="btn btn-success" @click="showMIDIControlInput = true">Map MIDI
+                                    <button class="btn btn-success" @click="showMIDIControlInput = true"
+                                        v-if="showMIDIControlInput == false">Map MIDI
                                         Control</button>
+                                    <button class="btn btn-success" @click="showMIDIControlInput = false"
+                                        v-if="showMIDIControlInput == true">Hide</button>
                                     <button class="btn btn-primary"
                                         v-if="showMIDIControlInput == true && midiLearn == false"
                                         @click="midiLearn = true">Learn MIDI Event</button>
@@ -1795,9 +1798,37 @@
                                             Control</button>
                                     </div>
                                     <div class="dark mt-2">
-                                        Patched MIDI Controls:
-                                        <div v-for="control in midiCommands">Parameter: {{control.command}}, Type:
-                                            {{control.type}}, Channel: {{control.channel}}</div>
+                                        Patched MIDI Comands:
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Parameter</th>
+                                                        <th scope="col">Item Number</th>
+                                                        <th scope="col">Page Req.</th>
+                                                        <th scope="col">MSG Type</th>
+                                                        <th scope="col">MSG Channel</th>
+                                                        <th scope="col">MSG Note</th>
+                                                        <th scope="col">MSG Control</th>
+                                                        <th scope="col">Remove Control</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr v-for="command in midiCommands">
+                                                        <td>{{command.command}}</td>
+                                                        <td>{{command.number}}</td>
+                                                        <td>{{command.mustbeOnParamPage}}</td>
+                                                        <td>{{command.type}}</td>
+                                                        <td>{{command.channel}}</td>
+                                                        <td>{{command.note}}</td>
+                                                        <td>{{command.control}}</td>
+                                                        <td><button class="btn btn-danger btn-sm"
+                                                                @click="removeMIDICommand(command.id)">Delete</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
