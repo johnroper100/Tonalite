@@ -67,7 +67,6 @@ var app = new Vue({
         midiPatchParamToControl: "",
         midiPatchMessageType: "",
         midiPatchMessageNote: 61,
-        midiPatchMessageVelocity: 127,
         midiPatchMessageControl: 0,
         midiPatchMessageChannel: 1
     },
@@ -756,18 +755,59 @@ var app = new Vue({
             app.midiPatchMessageType = e.type;
             app.midiPatchMessageChannel = e.channel;
             if (e.type == "controlchange") {
-                app.midiPatchMessageControl = e.control;
+                app.midiPatchMessageControl = e.controller.number;
             } else {
                 app.midiPatchMessageNote = e.note.number;
-                app.midiPatchMessageVelocity = e.rawVelocity;
             }
         },
         patchMIDIControl: function () {
             if (app.midiPatchParamToControl != "") {
                 if (app.midiPatchMessageType == "controlchange") {
-                    app.midiCommands.push({ command: app.midiPatchParamToControl, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, control: app.midiPatchMessageControl });
+                    app.midiCommands.push({ command: app.midiPatchParamToControl, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, note: null, control: app.midiPatchMessageControl });
                 } else {
-                    app.midiCommands.push({ command: app.midiPatchParamToControl, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, note: app.midiPatchMessageNote, velocity: app.midiPatchMessageVelocity });
+                    app.midiCommands.push({ command: app.midiPatchParamToControl, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, control: null, note: app.midiPatchMessageNote });
+                }
+            }
+        },
+        doMIDIAction: function (e) {
+            var commands = [];
+            if (e.type == 'controlchange') {
+                commands = app.midiCommands.filter(c => c.type == e.type && c.channel == e.channel && c.control == e.controller.number);
+            } else {
+                commands = app.midiCommands.filter(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number);
+            }
+            let p = 0; const pMax = commands.length; for (; p < pMax; p++) {
+                if (commands[p].command == 'nextCue') {
+                    app.nextCue();
+                } else if (commands[p].command == 'lastCue') {
+                    app.lastCue();
+                } else if (commands[p].command == 'stopCue') {
+                    app.stopCue();
+                } else if (commands[p].command == 'recordCue') {
+                    app.recordCue();
+                } else if (commands[p].command == 'toggleBlackout') {
+                    app.toggleBlackout();
+                } else if (commands[p].command == 'resetFixturesIntensity') {
+                    app.resetFixturesIntensity();
+                } else if (commands[p].command == 'resetFixtures') {
+                    app.resetFixtures();
+                } else if (commands[p].command == 'resetGroups') {
+                    app.resetGroups();
+                } else if (commands[p].command == 'resetFixture') {
+                    if (app.currentView == "fixtureParameters") {
+                        app.resetFixture();
+                    }
+                } else if (commands[p].command == 'resetGroup') {
+                    if (app.currentView == "groupParameters") {
+                        app.resetGroup();
+                    }
+                } else if (commands[p].command == 'shutdown') {
+                    app.shutdown();
+                } else if (commands[p].command == 'grandmaster') {
+                    if (e.type == 'controlchange') {
+                        app.grandmaster = app.mapRange(e.value, 0, 127, 0, 100);
+                        app.changeGrandMasterValue();
+                    }
                 }
             }
         },
@@ -779,18 +819,7 @@ var app = new Vue({
                         app.midiLearn = false;
                         app.patchMIDIControlFromLearn(e);
                     } else {
-                        if (app.midiCommands.some(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number && c.velocity == e.rawVelocity)) {
-                            var command = app.midiCommands.filter(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number && c.velocity == e.rawVelocity)[0];
-                            if (command.command == 'nextCue') {
-                                app.nextCue();
-                            } else if (command.command == 'lastCue') {
-                                app.lastCue();
-                            } else if (command.command == 'stopCue') {
-                                app.stopCue();
-                            } else if (command.command == 'recordCue') {
-                                app.recordCue();
-                            }
-                        }
+                        app.doMIDIAction(e);
                     }
                 });
                 app.midiInputDevice.addListener('noteoff', "all", function (e) {
@@ -798,18 +827,7 @@ var app = new Vue({
                         app.midiLearn = false;
                         app.patchMIDIControlFromLearn(e);
                     } else {
-                        if (app.midiCommands.some(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number && c.velocity == e.rawVelocity)) {
-                            var command = app.midiCommands.filter(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number && c.velocity == e.rawVelocity)[0];
-                            if (command.command == 'nextCue') {
-                                app.nextCue();
-                            } else if (command.command == 'lastCue') {
-                                app.lastCue();
-                            } else if (command.command == 'stopCue') {
-                                app.stopCue();
-                            } else if (command.command == 'recordCue') {
-                                app.recordCue();
-                            }
-                        }
+                        app.doMIDIAction(e);
                     }
                 });
                 app.midiInputDevice.addListener('controlchange', "all", function (e) {
@@ -817,18 +835,7 @@ var app = new Vue({
                         app.midiLearn = false;
                         app.patchMIDIControlFromLearn(e);
                     } else {
-                        if (app.midiCommands.some(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number && c.velocity == e.rawVelocity)) {
-                            var command = app.midiCommands.filter(c => c.type == e.type && c.channel == e.channel && c.control == e.control)[0];
-                            if (command.command == 'nextCue') {
-                                app.nextCue();
-                            } else if (command.command == 'lastCue') {
-                                app.lastCue();
-                            } else if (command.command == 'stopCue') {
-                                app.stopCue();
-                            } else if (command.command == 'recordCue') {
-                                app.recordCue();
-                            }
-                        }
+                        app.doMIDIAction(e);
                     }
                 });
             }
@@ -975,7 +982,7 @@ WebMidi.enable(function (err) {
     if (err) {
         console.log("WebMidi could not be enabled.", err);
     } else {
-        //app.midiEnabled = true;
+        app.midiEnabled = true;
         app.midiInputDevices = WebMidi.inputs;
         app.selectedMIDIInput = WebMidi.inputs[0].id;
     }
