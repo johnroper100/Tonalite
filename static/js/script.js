@@ -72,7 +72,9 @@ var app = new Vue({
         midiPatchMessageType: "",
         midiPatchMessageNote: 61,
         midiPatchMessageControl: 0,
-        midiPatchMessageChannel: 1
+        midiPatchMessageChannel: 1,
+        midiPatchMessageVelocity: 127,
+        midiPatchUseVelocity: false
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -768,6 +770,7 @@ var app = new Vue({
                 app.midiPatchMessageControl = e.controller.number;
             } else {
                 app.midiPatchMessageNote = e.note.number;
+                app.midiPatchMessageVelocity = e.rawVelocity;
             }
         },
         patchMIDIControl: function () {
@@ -775,7 +778,7 @@ var app = new Vue({
                 if (app.midiPatchMessageType == "controlchange") {
                     app.midiCommands.push({ id: app.generateID, command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, note: null, control: app.midiPatchMessageControl, velocity: null, useVelocity: null });
                 } else {
-                    app.midiCommands.push({ id: app.generateID, command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, control: null, note: app.midiPatchMessageNote, velocity: null, useVelocity: null });
+                    app.midiCommands.push({ id: app.generateID, command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, control: null, note: app.midiPatchMessageNote, velocity: app.midiPatchMessageVelocity, useVelocity: app.midiPatchUseVelocity });
                 }
                 store.set('midiCommands', JSON.stringify(app.midiCommands));
             }
@@ -796,71 +799,73 @@ var app = new Vue({
                 commands = app.midiCommands.filter(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number);
             }
             let p = 0; const pMax = commands.length; for (; p < pMax; p++) {
-                if (commands[p].command == 'nextCue') {
-                    app.nextCue();
-                } else if (commands[p].command == 'lastCue') {
-                    app.lastCue();
-                } else if (commands[p].command == 'stopCue') {
-                    app.stopCue();
-                } else if (commands[p].command == 'recordCue') {
-                    app.recordCue();
-                } else if (commands[p].command == 'toggleBlackout') {
-                    app.toggleBlackout();
-                } else if (commands[p].command == 'resetFixturesIntensity') {
-                    app.resetFixturesIntensity();
-                } else if (commands[p].command == 'resetFixtures') {
-                    app.resetFixtures();
-                } else if (commands[p].command == 'resetGroups') {
-                    app.resetGroups();
-                } else if (commands[p].command == 'resetFixture') {
-                    if (app.currentView == "fixtureParameters" && app.currentFixture != {}) {
-                        app.resetFixture();
-                    }
-                } else if (commands[p].command == 'resetGroup') {
-                    if (app.currentView == "groupParameters" && app.currentGrou != {}) {
-                        app.resetGroup();
-                    }
-                } else if (commands[p].command == 'shutdown') {
-                    app.shutdown();
-                } else if (commands[p].command == 'grandmaster') {
-                    if (e.type == 'controlchange') {
-                        app.grandmaster = app.mapRange(e.value, 0, 127, 0, 100);
-                        app.changeGrandMasterValue();
-                    }
-                } else if (commands[p].command == 'fixtureIntensity') {
-                    if (e.type == 'controlchange') {
-                        if (app.fixtures.length >= commands[0].number) {
-                            var fixture = app.fixtures[commands[0].number - 1];
-                            if (commands[0].mustBeOnParamPage == true && app.currentView == "fixtures") {
-                                app.changeFixtureIntensityValue(fixture.id, app.mapRange(e.value, 0, 127, 0, 65535));
-                            } else if (commands[0].mustBeOnParamPage == false) {
-                                app.changeFixtureIntensityValue(fixture.id, app.mapRange(e.value, 0, 127, 0, 65535));
+                if ((commands[p].useVelocity == true && commands[p].velocity == e.rawVelocity) || commands[p].useVelocity == false || commands[p].useVelocity == null) {
+                    if (commands[p].command == 'nextCue') {
+                        app.nextCue();
+                    } else if (commands[p].command == 'lastCue') {
+                        app.lastCue();
+                    } else if (commands[p].command == 'stopCue') {
+                        app.stopCue();
+                    } else if (commands[p].command == 'recordCue') {
+                        app.recordCue();
+                    } else if (commands[p].command == 'toggleBlackout') {
+                        app.toggleBlackout();
+                    } else if (commands[p].command == 'resetFixturesIntensity') {
+                        app.resetFixturesIntensity();
+                    } else if (commands[p].command == 'resetFixtures') {
+                        app.resetFixtures();
+                    } else if (commands[p].command == 'resetGroups') {
+                        app.resetGroups();
+                    } else if (commands[p].command == 'resetFixture') {
+                        if (app.currentView == "fixtureParameters" && app.currentFixture != {}) {
+                            app.resetFixture();
+                        }
+                    } else if (commands[p].command == 'resetGroup') {
+                        if (app.currentView == "groupParameters" && app.currentGrou != {}) {
+                            app.resetGroup();
+                        }
+                    } else if (commands[p].command == 'shutdown') {
+                        app.shutdown();
+                    } else if (commands[p].command == 'grandmaster') {
+                        if (e.type == 'controlchange') {
+                            app.grandmaster = app.mapRange(e.value, 0, 127, 0, 100);
+                            app.changeGrandMasterValue();
+                        }
+                    } else if (commands[p].command == 'fixtureIntensity') {
+                        if (e.type == 'controlchange') {
+                            if (app.fixtures.length >= commands[0].number) {
+                                var fixture = app.fixtures[commands[0].number - 1];
+                                if (commands[0].mustBeOnParamPage == true && app.currentView == "fixtures") {
+                                    app.changeFixtureIntensityValue(fixture.id, app.mapRange(e.value, 0, 127, 0, 65535));
+                                } else if (commands[0].mustBeOnParamPage == false) {
+                                    app.changeFixtureIntensityValue(fixture.id, app.mapRange(e.value, 0, 127, 0, 65535));
+                                }
                             }
                         }
-                    }
-                } else if (commands[p].command == 'fixtureParameter') {
-                    if (e.type == 'controlchange') {
+                    } else if (commands[p].command == 'fixtureParameter') {
+                        if (e.type == 'controlchange') {
+                            if (app.currentFixture != {} && app.currentFixture != null) {
+                                if (app.currentFixture.parameters.length >= commands[0].number) {
+                                    var param = app.currentFixture.parameters[commands[0].number - 1];
+                                    if (commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") {
+                                        param.value = app.mapRange(e.value, 0, 127, 0, 65535);
+                                        app.changeFixtureParameterValue(param);
+                                    } else if (commands[0].mustBeOnParamPage == false) {
+                                        param.value = app.mapRange(e.value, 0, 127, 0, 65535);
+                                        app.changeFixtureParameterValue(param);
+                                    }
+                                }
+                            }
+                        }
+                    } else if (commands[p].command == 'fixtureParameterLock') {
                         if (app.currentFixture != {} && app.currentFixture != null) {
                             if (app.currentFixture.parameters.length >= commands[0].number) {
                                 var param = app.currentFixture.parameters[commands[0].number - 1];
                                 if (commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") {
-                                    param.value = app.mapRange(e.value, 0, 127, 0, 65535);
-                                    app.changeFixtureParameterValue(param);
+                                    app.changeFixtureParameterLock(param);
                                 } else if (commands[0].mustBeOnParamPage == false) {
-                                    param.value = app.mapRange(e.value, 0, 127, 0, 65535);
-                                    app.changeFixtureParameterValue(param);
+                                    app.changeFixtureParameterLock(param);
                                 }
-                            }
-                        }
-                    }
-                } else if (commands[p].command == 'fixtureParameterLock') {
-                    if (app.currentFixture != {} && app.currentFixture != null) {
-                        if (app.currentFixture.parameters.length >= commands[0].number) {
-                            var param = app.currentFixture.parameters[commands[0].number - 1];
-                            if (commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") {
-                                app.changeFixtureParameterLock(param);
-                            } else if (commands[0].mustBeOnParamPage == false) {
-                                app.changeFixtureParameterLock(param);
                             }
                         }
                     }

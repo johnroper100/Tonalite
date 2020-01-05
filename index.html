@@ -1751,15 +1751,14 @@
                                                 <div class="form-group">
                                                     <label class="dark" for="paramNumber">Item Number:</label>
                                                     <input type="number" id="paramNumber" class="form-control"
-                                                        v-model="midiPatchParamNumber" min="1" max="127">
+                                                        v-model="midiPatchParamNumber" min="1" max="1024">
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12"
                                                 v-if="midiPatchParamToControl == 'fixtureIntensity' || midiPatchParamToControl == 'fixtureParameter' || midiPatchParamToControl == 'fixtureParameterLock'">
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox">
-                                                        <input @change="editSettings"
-                                                            v-model="midiPatchMustBeOnParamPage" type="checkbox"
+                                                        <input v-model="midiPatchMustBeOnParamPage" type="checkbox"
                                                             class="custom-control-input" id="mustBeOnParamPage">
                                                         <label class="custom-control-label dark"
                                                             for="mustBeOnParamPage">Must Be On Param Page</label>
@@ -1779,20 +1778,44 @@
                                         <div class="form-group">
                                             <label class="dark" for="midiMessageChannel">MIDI Message Channel:</label>
                                             <input type="number" id="midiMessageChannel" class="form-control"
-                                                v-model="midiPatchMessageChannel" min="1" max="127">
+                                                v-model="midiPatchMessageChannel" min="0" max="127">
                                         </div>
                                         <div class="form-group"
                                             v-if="midiPatchMessageType != '' && midiPatchMessageType != 'controlchange'">
                                             <label class="dark" for="midiMessageNote">MIDI Message Note:</label>
                                             <input type="number" id="midiMessageNote" class="form-control"
-                                                v-model="midiPatchMessageNote" min="1" max="127">
+                                                v-model="midiPatchMessageNote" min="0" max="127">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12"
+                                                v-if="midiPatchMessageType != '' && midiPatchMessageType != 'controlchange'"
+                                                :class="{ 'col-md-6': app.midiPatchUseVelocity == true }">
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input v-model="midiPatchUseVelocity" type="checkbox"
+                                                            class="custom-control-input" id="useVelocity">
+                                                        <label class="custom-control-label dark" for="useVelocity">Use
+                                                            Velocity</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12"
+                                                v-if="midiPatchMessageType != '' && midiPatchMessageType != 'controlchange' && midiPatchUseVelocity == true"
+                                                :class="{ 'col-md-6': app.midiPatchUseVelocity == true }">
+                                                <div class="form-group">
+                                                    <label class="dark" for="midiMessageVelocity">MIDI Message
+                                                        Velocity:</label>
+                                                    <input type="number" id="midiMessageVelocity" class="form-control"
+                                                        v-model="midiPatchMessageVelocity" min="0" max="127">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div v-if="midiPatchMessageType != '' && midiPatchMessageType == 'controlchange'"
                                             class="form-group">
                                             <label class="dark" for="midiMessageControl">MIDI Message
                                                 Control:</label>
                                             <input type="number" id="midiMessageControl" class="form-control"
-                                                v-model="midiPatchMessageControl" min="1" max="127">
+                                                v-model="midiPatchMessageControl" min="0" max="127">
                                         </div>
                                         <button class="btn btn-success" @click="patchMIDIControl">Patch MIDI
                                             Control</button>
@@ -1809,18 +1832,22 @@
                                                         <th scope="col">MSG Type</th>
                                                         <th scope="col">MSG Channel</th>
                                                         <th scope="col">MSG Note</th>
+                                                        <th scope="col">Use Velocity</th>
+                                                        <th scope="col">MSG Velocity</th>
                                                         <th scope="col">MSG Control</th>
-                                                        <th scope="col">Remove Control</th>
+                                                        <th scope="col">Remove Command</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr v-for="command in midiCommands">
                                                         <td>{{command.command}}</td>
                                                         <td>{{command.number}}</td>
-                                                        <td>{{command.mustbeOnParamPage}}</td>
+                                                        <td>{{command.mustBeOnParamPage}}</td>
                                                         <td>{{command.type}}</td>
                                                         <td>{{command.channel}}</td>
                                                         <td>{{command.note}}</td>
+                                                        <td>{{command.useVelocity}}</td>
+                                                        <td>{{command.velocity}}</td>
                                                         <td>{{command.control}}</td>
                                                         <td><button class="btn btn-danger btn-sm"
                                                                 @click="removeMIDICommand(command.id)">Delete</button>
