@@ -824,8 +824,6 @@ var app = new Vue({
                         if (app.currentView == "groupParameters" && app.currentGrou != {}) {
                             app.resetGroup();
                         }
-                    } else if (commands[p].command == 'shutdown') {
-                        app.shutdown();
                     } else if (commands[p].command == 'grandmaster') {
                         if (e.type == 'controlchange') {
                             app.grandmaster = app.mapRange(e.value, 0, 127, 0, 100);
