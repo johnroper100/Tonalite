@@ -3427,7 +3427,7 @@ io.on('connection', function (socket) {
                     }
                 }
                 lastCue = cues[cues.map(el => el.id).indexOf(cueID)].id;
-                cueProgress = ((cues[cues.map(el => el.id).indexOf(cueID)].upTime * FPS) + 1);
+                cueProgress = 0;
                 currentCue = lastCue;
                 cues[cues.map(el => el.id).indexOf(lastCue)].active = true;
                 currentCueID = lastCue;
@@ -3463,7 +3463,6 @@ io.on('connection', function (socket) {
                 }
                 lastCue = cues[cues.map(el => el.id).indexOf(cueID)].id;
                 cueProgress = ((cues[cues.map(el => el.id).indexOf(cueID)].upTime * FPS) + 1);
-
                 currentCue = lastCue;
                 cues[cues.map(el => el.id).indexOf(lastCue)].upStep = 0;
                 cues[cues.map(el => el.id).indexOf(lastCue)].downStep = 0;

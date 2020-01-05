@@ -846,8 +846,10 @@ var app = new Vue({
                                 if (app.currentFixture.parameters.length >= commands[0].number) {
                                     var param = app.currentFixture.parameters[commands[0].number - 1];
                                     if ((commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") || commands[0].mustBeOnParamPage == false) {
-                                        param.value = app.mapRange(e.value, 0, 127, 0, 65535);
-                                        app.changeFixtureParameterValue(param);
+                                        if (param.locked == false) {
+                                            param.value = app.mapRange(e.value, 0, 127, 0, 65535);
+                                            app.changeFixtureParameterValue(param);
+                                        }
                                     }
                                 }
                             }
@@ -867,8 +869,10 @@ var app = new Vue({
                                 if (app.currentGroup.parameters.length >= commands[0].number) {
                                     var param = app.currentGroup.parameters[commands[0].number - 1];
                                     if ((commands[0].mustBeOnParamPage == true && app.currentView == "groupParameters") || commands[0].mustBeOnParamPage == false) {
-                                        param.value = app.mapRange(e.value, 0, 127, 0, 65535);
-                                        app.changeGroupParameterValue(param);
+                                        if (param.locked == false) {
+                                            param.value = app.mapRange(e.value, 0, 127, 0, 65535);
+                                            app.changeGroupParameterValue(param);
+                                        }
                                     }
                                 }
                             }
