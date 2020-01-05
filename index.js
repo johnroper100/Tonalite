@@ -2993,10 +2993,12 @@ io.on('connection', function (socket) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
                 if (fixture.parameters.some(e => e.id === msg.pid)) {
                     var parameter = fixture.parameters[fixture.parameters.map(el => el.id).indexOf(msg.pid)];
-                    parameter.value = parseInt(msg.value);
-                    parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
-                    socket.broadcast.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-                    socket.emit('fixtures', { fixtures: cleanFixtures(), target: false });
+                    if (parameter.locked == false) {
+                        parameter.value = parseInt(msg.value);
+                        parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
+                        socket.broadcast.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                        socket.emit('fixtures', { fixtures: cleanFixtures(), target: false });
+                    }
                 } else {
                     socket.emit('message', { type: "error", content: "This parameter does not exist!" });
                 }
@@ -3742,12 +3744,14 @@ io.on('connection', function (socket) {
                     var group = groups[groups.map(el => el.id).indexOf(msg.id)];
                     if (group.parameters.some(e => e.id === msg.pid)) {
                         var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
-                        parameter.value = parseInt(msg.value);
-                        parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
-                        setFixtureGroupValues(group, parameter);
-                        socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
-                        socket.emit('groups', { groups: cleanGroups(), target: false });
-                        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                        if (parameter.locked == false) {
+                            parameter.value = parseInt(msg.value);
+                            parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
+                            setFixtureGroupValues(group, parameter);
+                            socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
+                            socket.emit('groups', { groups: cleanGroups(), target: false });
+                            io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                        }
                     } else {
                         socket.emit('message', { type: "error", content: "This parameter doesn't exist!" });
                     }

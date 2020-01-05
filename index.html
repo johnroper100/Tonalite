@@ -295,31 +295,33 @@
                                     v-bind:for="parameter.coarse">{{calculateParamName(parameter, currentFixture.swapPanTilt)}}
                                     ({{parameter.displayValue}}%)</label>
                                 <div class="float-right">
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#colorWheelModal"
-                                        v-if="parameter.type == 5">
+                                    <button :disabled="parameter.locked == true" class="btn btn-primary"
+                                        data-toggle="modal" data-target="#colorWheelModal" v-if="parameter.type == 5">
                                         <i class="far fa-palette fa-sm"></i>
                                     </button>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#joystickModal"
+                                    <button :disabled="parameter.locked == true" class="btn btn-primary"
+                                        data-toggle="modal" data-target="#joystickModal"
                                         v-if="parameter.type == 2 && (parameter.name == 'Pan' || parameter.name == 'Tilt')">
                                         <i class="far fa-location fa-sm"></i>
                                     </button>
-                                    <button class="btn btn-warning"
+                                    <button :disabled="parameter.locked == true" class="btn btn-warning"
                                         @click="setParameterValue(parameter, parameter.min, 'fixture')">
                                         <i class="far fa-step-backward fa-sm"></i>
                                     </button>
-                                    <button v-if="!('ranges' in parameter) || parameter.ranges.length == 0"
+                                    <button :disabled="parameter.locked == true"
+                                        v-if="!('ranges' in parameter) || parameter.ranges.length == 0"
                                         class="btn btn-warning"
                                         @click="setParameterValue(parameter, parseInt(parameter.max/2)+1, 'fixture')">
                                         50%
                                     </button>
-                                    <button class="btn btn-warning"
+                                    <button :disabled="parameter.locked == true" class="btn btn-warning"
                                         @click="setParameterValue(parameter, parameter.max, 'fixture')">
                                         <i class="far fa-step-forward fa-sm"></i>
                                     </button>
                                 </div>
-                                <input type="range" class="custom-range" v-bind:id="parameter.id"
-                                    v-bind:max="parameter.max" v-bind:min="parameter.min" v-model="parameter.value"
-                                    @input="changeFixtureParameterValue(parameter)" step="1">
+                                <input :disabled="parameter.locked == true" type="range" class="custom-range"
+                                    v-bind:id="parameter.id" v-bind:max="parameter.max" v-bind:min="parameter.min"
+                                    v-model="parameter.value" @input="changeFixtureParameterValue(parameter)" step="1">
                                 <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
                                     <div class="channelRanges row flex-nowrap">
                                         <div class="channelRange col-2 col-md-1 mr-1 "
@@ -715,11 +717,12 @@
                             <label class="ml-2" v-bind:for="parameter.coarse">{{parameter.name}}
                                 ({{parameter.displayValue}}%)</label>
                             <div class="float-right">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#colorWheelModal"
-                                    v-if="parameter.type == 5">
+                                <button :disabled="parameter.locked == true" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#colorWheelModal" v-if="parameter.type == 5">
                                     <i class="far fa-palette fa-sm"></i>
                                 </button>
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#joystickModal"
+                                <button :disabled="parameter.locked == true" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#joystickModal"
                                     v-if="parameter.type == 2 && (parameter.name == 'Pan' || parameter.name == 'Tilt')">
                                     <i class="far fa-location fa-sm"></i>
                                 </button>
@@ -1743,11 +1746,15 @@
                                                         <option value="fixtureParameterLock">Toggle Fixture Parameter
                                                             Lock
                                                         </option>
+                                                        <option value="groupParameter">Group Parameter</option>
+                                                        <option value="groupParameterLock">Toggle Group Parameter
+                                                            Lock
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12"
-                                                v-if="midiPatchParamToControl == 'fixtureIntensity' || midiPatchParamToControl == 'fixtureParameter' || midiPatchParamToControl == 'fixtureParameterLock'">
+                                                v-if="midiPatchParamToControl == 'fixtureIntensity' || midiPatchParamToControl == 'fixtureParameter' || midiPatchParamToControl == 'fixtureParameterLock' || midiPatchParamToControl == 'groupParameter' || midiPatchParamToControl == 'groupParameterLock'">
                                                 <div class="form-group">
                                                     <label class="dark" for="paramNumber">Item Number:</label>
                                                     <input type="number" id="paramNumber" class="form-control"
@@ -1755,7 +1762,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12"
-                                                v-if="midiPatchParamToControl == 'fixtureIntensity' || midiPatchParamToControl == 'fixtureParameter' || midiPatchParamToControl == 'fixtureParameterLock'">
+                                                v-if="midiPatchParamToControl == 'fixtureIntensity' || midiPatchParamToControl == 'fixtureParameter' || midiPatchParamToControl == 'fixtureParameterLock' || midiPatchParamToControl == 'groupParameter' || midiPatchParamToControl == 'groupParameterLock'">
                                                 <div class="form-group">
                                                     <div class="custom-control custom-checkbox">
                                                         <input v-model="midiPatchMustBeOnParamPage" type="checkbox"

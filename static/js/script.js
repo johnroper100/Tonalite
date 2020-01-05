@@ -835,9 +835,7 @@ var app = new Vue({
                         if (e.type == 'controlchange') {
                             if (app.fixtures.length >= commands[0].number) {
                                 var fixture = app.fixtures[commands[0].number - 1];
-                                if (commands[0].mustBeOnParamPage == true && app.currentView == "fixtures") {
-                                    app.changeFixtureIntensityValue(fixture.id, app.mapRange(e.value, 0, 127, 0, 65535));
-                                } else if (commands[0].mustBeOnParamPage == false) {
+                                if ((commands[0].mustBeOnParamPage == true && app.currentView == "fixtures") || commands[0].mustBeOnParamPage == false) {
                                     app.changeFixtureIntensityValue(fixture.id, app.mapRange(e.value, 0, 127, 0, 65535));
                                 }
                             }
@@ -847,10 +845,7 @@ var app = new Vue({
                             if (app.currentFixture != {} && app.currentFixture != null) {
                                 if (app.currentFixture.parameters.length >= commands[0].number) {
                                     var param = app.currentFixture.parameters[commands[0].number - 1];
-                                    if (commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") {
-                                        param.value = app.mapRange(e.value, 0, 127, 0, 65535);
-                                        app.changeFixtureParameterValue(param);
-                                    } else if (commands[0].mustBeOnParamPage == false) {
+                                    if ((commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") || commands[0].mustBeOnParamPage == false) {
                                         param.value = app.mapRange(e.value, 0, 127, 0, 65535);
                                         app.changeFixtureParameterValue(param);
                                     }
@@ -861,10 +856,29 @@ var app = new Vue({
                         if (app.currentFixture != {} && app.currentFixture != null) {
                             if (app.currentFixture.parameters.length >= commands[0].number) {
                                 var param = app.currentFixture.parameters[commands[0].number - 1];
-                                if (commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") {
+                                if ((commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") || commands[0].mustBeOnParamPage == false) {
                                     app.changeFixtureParameterLock(param);
-                                } else if (commands[0].mustBeOnParamPage == false) {
-                                    app.changeFixtureParameterLock(param);
+                                }
+                            }
+                        }
+                    } else if (commands[p].command == 'groupParameter') {
+                        if (e.type == 'controlchange') {
+                            if (app.currentGroup != {} && app.currentGroup != null) {
+                                if (app.currentGroup.parameters.length >= commands[0].number) {
+                                    var param = app.currentGroup.parameters[commands[0].number - 1];
+                                    if ((commands[0].mustBeOnParamPage == true && app.currentView == "groupParameters") || commands[0].mustBeOnParamPage == false) {
+                                        param.value = app.mapRange(e.value, 0, 127, 0, 65535);
+                                        app.changeGroupParameterValue(param);
+                                    }
+                                }
+                            }
+                        }
+                    } else if (commands[p].command == 'groupParameterLock') {
+                        if (app.currentGroup != {} && app.currentGroup != null) {
+                            if (app.currentGroup.parameters.length >= commands[0].number) {
+                                var param = app.currentGroup.parameters[commands[0].number - 1];
+                                if ((commands[0].mustBeOnParamPage == true && app.currentView == "groupParameters") || commands[0].mustBeOnParamPage == false) {
+                                    app.changeGroupParameterLock(param);
                                 }
                             }
                         }
