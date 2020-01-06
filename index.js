@@ -2445,7 +2445,7 @@ io.on('connection', function (socket) {
             finalColor = blendColors(finalColor, 255 / 255.0, 255 / 255.0, 255 / 255.0, cppaddon.mapRange(white.value, 0, 65535, 0, 255) / 255.0);
         }
         if (amber != null) {
-            finalColor = blendColors(finalColor, 255 / 255.0, 205 / 255.0, 15 / 255.0, cppaddon.mapRange(amber.value, 0, 65535, 0, 255) / 255.0);
+            finalColor = blendColors(finalColor, 255 / 255.0, 128 / 255.0, 0 / 255.0, cppaddon.mapRange(amber.value, 0, 65535, 0, 255) / 255.0);
         }
         if (lime != null) {
             finalColor = blendColors(finalColor, 180 / 255.0, 255 / 255.0, 43 / 255.0, cppaddon.mapRange(lime.value, 0, 65535, 0, 255) / 255.0);
