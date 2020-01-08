@@ -39,7 +39,7 @@ var STARTED = false;
 
 const FPS = 40;
 
-const VERSION = "1.0.0 Beta 8";
+const VERSION = "1.0.0 Beta 9";
 
 if (!fs.existsSync("errors")) {
     fs.mkdirSync("errors");

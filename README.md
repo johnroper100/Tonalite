@@ -1,4 +1,4 @@
-# Tonalite v1.0.0 Beta 8 [![Build Status](https://travis-ci.com/johnroper100/Tonalite.svg?branch=master)](https://travis-ci.com/johnroper100/Tonalite)
+# Tonalite v1.0.0 Beta 9 [![Build Status](https://travis-ci.com/johnroper100/Tonalite.svg?branch=master)](https://travis-ci.com/johnroper100/Tonalite)
 
 ![Tonalite fixtures](docs/images/fixture_added.png)
 ![Tonalite cues](docs/images/cue_recorded.png)
