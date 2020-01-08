@@ -15,3 +15,9 @@ A group item displays as a yellow box with the group's name inside.
 If a group has any locked channels, an icon will appear next to its name to indicate this.
 
 ![Group locked icon](../images/group_locked_icon.png)
+
+#### Active Effects
+
+If a group has any active effects, an icon will appear next to its name to indicate this.
+
+![Group active effects icon](../images/group_effects_icon.png)
