@@ -616,6 +616,54 @@
                     </div>
                 </div>
             </div>
+            <div id="groupEffectSettingsPage" class="tabcontent" v-if="currentView == 'groupEffectSettings'">
+                <div class="container">
+                    <div class="row topBtns noselect">
+                        <div class="col-6">
+                            <button id="groupParametersEffectBackBtn" class="btn btn-primary btn-block"
+                                @click="currentView = 'groupParameters'">Back</button>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <div><button id="effectDeleteBtn" class="btn btn-danger btn-block"
+                                        @click="removeGroupEffect">Delete</button></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row" id="groupEffectSettings">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="effectNameInput">Name:</label>
+                                <label for="effectNameInput" class="text-danger" v-if="currentEffect.name == ''">(This
+                                    field is required)</label>
+                                <input class="form-control" type="text" id="effectNameInput" placeholder="Effect Name"
+                                    v-model="currentEffect.name" @input="editGroupEffectSettings" @focus="showKeyboard"
+                                    @blur="hideKeyboard" data-layout="compact">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="effectSpeedInput">Speed:</label>
+                                <input class="form-control" placeholder="Effect Speed" type="number" step="0.1"
+                                    min="0.0" id="effectSpeedInput" @input="editGroupEffectSettings"
+                                    v-model="currentEffect.speed" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="numeric">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="effectDepthInput">Depth:</label>
+                                <input type="number" step="0.1" placeholder="Effect Depth" min="0.0" max="1.0"
+                                    class="form-control" id="effectDepthInput" @input="editGroupEffectSettings"
+                                    v-model="currentEffect.depth" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="numeric">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             <div id="groups" class="tabcontent noselect" v-if="currentView == 'groups'">
                 <div class="container">
                     <div class="row topBtns sticky-top">
@@ -680,15 +728,21 @@
                         <div class="col-4">
                             <h5 id="groupParametersName">{{currentGroup.name}}</h5>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <button id="groupSettingsBtn" class="btn btn-primary btn-block" @click="getGroupSettings"><i
                                     class="far fa-cog d-sm-none d-inline-block"></i><span
                                     class="d-none d-sm-inline-block">Settings</span></button>
                         </div>
-                        <div class="col-4">
+                        <div class="col-2">
                             <div><button id="groupResetBtn" class="btn btn-danger btn-block" @click="resetGroup"><i
                                         class="far fa-redo d-sm-none d-inline-block"></i><span
                                         class="d-none d-sm-inline-block">Reset</span></button></div>
+                        </div>
+                        <div class="col-3">
+                            <button id="groupAddEffectBtn" class="btn btn-success btn-block" @click="getGroupEffects"><i
+                                    class="far fa-hurricane d-sm-none d-inline-block"></i><span
+                                    class="d-none d-sm-inline-block">Add
+                                    Effect</span></button>
                         </div>
                     </div>
                     <div id="groupParameters">
@@ -785,6 +839,113 @@
                                     @click="removePositionPalette=!removePositionPalette"
                                     :class="{'pulse': removePositionPalette == true}"><i
                                         class="far fa-trash-alt mt-3"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="currentGroup.effects.length > 0">
+                            <div class="fixtureEffects">
+                                <h5>Group Effects:</h5>
+                                <ul class="list-group">
+                                    <li class="list-group-item fixtureEffect" v-for="effect in currentGroup.effects"
+                                        :key="effect.id">
+                                        <i class="mr-1 far"
+                                            :class="{'fa-palette': effect.type == 'Color', 'fa-running': effect.type == 'Position', 'fa-lightbulb': effect.type == 'Intensity', 'fa-cog': effect.type == 'Parameter'}"></i>
+                                        {{effect.name}}
+                                        <button class="float-right btn btn-sm btn-primary d-inline-block"
+                                            @click="getGroupEffectSettings(effect.id)">Settings</button>
+                                        <span v-if="effect.active == true">
+                                            <button class="float-right btn btn-sm btn-success d-inline-block mr-1"
+                                                @click="changeGroupEffectState(effect.id)">Deactivate</button>
+                                        </span>
+                                        <span>
+                                            <span v-if="effect.active == false">
+                                                <button class="float-right btn btn-sm btn-warning d-inline-block mr-1"
+                                                    @click="changeGroupEffectState(effect.id)">Activate</button>
+                                            </span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="groupAddEffectsModal" class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <ul class="nav nav-tabs" id="effectsTabs" role="tablist"
+                                    v-if="effectProfiles.length > 0">
+                                    <li class="nav-item" v-if="currentGroup.parameterTypes.indexOf('Intensity') >= 0">
+                                        <a class="nav-link" id="intensityEffects-tab" data-toggle="tab"
+                                            href="#intensityEffects" role="tab" aria-controls="intensityEffects"
+                                            aria-selected="false">Intensity</a>
+                                    </li>
+                                    <li v-if="settings.interfaceMode == 'normal' && currentGroup.parameterTypes.indexOf('Position') >= 0"
+                                        class="nav-item">
+                                        <a class="nav-link" id="positionEffects-tab" data-toggle="tab"
+                                            href="#positionEffects" role="tab" aria-controls="positionEffects"
+                                            aria-selected="false">Position</a>
+                                    </li>
+                                    <li v-if="settings.interfaceMode == 'normal' && currentGroup.parameterTypes.indexOf('Color') >= 0"
+                                        class="nav-item">
+                                        <a class="nav-link" id="colorEffects-tab" data-toggle="tab" href="#colorEffects"
+                                            role="tab" aria-controls="colorEffects" aria-selected="false">Color</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="parameterEffects-tab" data-toggle="tab"
+                                            href="#parameterEffects" role="tab" aria-controls="parameterEffects"
+                                            aria-selected="true">Param.</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" v-if="effectProfiles.length > 0">
+                                    <div class="tab-pane" id="intensityEffects" role="tabpanel"
+                                        aria-labelledby="intensityEffects-tab">
+                                        <ul class="list-group groupEffectsList" id="groupEffectsListIntensity">
+                                            <li class="list-group-item fixtureProfileItem"
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Intensity'"
+                                                @click="addGroupEffect(effect.file, effect.type)">
+                                                {{effect.name}} </li>
+                                        </ul>
+                                    </div>
+                                    <div v-if="settings.interfaceMode == 'normal'" class="tab-pane" id="positionEffects"
+                                        role="tabpanel" aria-labelledby="positionEffects-tab">
+                                        <ul class="list-group groupEffectsList" id="groupEffectsListPosition">
+                                            <li class="list-group-item fixtureProfileItem"
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Position'"
+                                                @click="addGroupEffect(effect.file, effect.type)">
+                                                {{effect.name}} </li>
+                                        </ul>
+                                    </div>
+                                    <div v-if="settings.interfaceMode == 'normal'" class="tab-pane" id="colorEffects"
+                                        role="tabpanel" aria-labelledby="colorEffects-tab">
+                                        <ul class="list-group groupEffectsList" id="groupEffectsListColor">
+                                            <li class="list-group-item fixtureProfileItem"
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Color'"
+                                                @click="addGroupEffect(effect.file, effect.type)">
+                                                {{effect.name}} </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane active" id="parameterEffects" role="tabpanel"
+                                        aria-labelledby="parameterEffects-tab">
+                                        <label for="groupEffectParametersList" class="mb-0 text-dark mt-1">Apply
+                                            Effect To:</label>
+                                        <select class="form-control mb-1" id="groupEffectParametersList"
+                                            name="groupEffectParametersList">
+                                            <option v-for="parameter in currentGroup.parameters" :key="parameter.id"
+                                                :value="parameter.name">
+                                                {{parameter.name}}</option>
+                                        </select>
+                                        <ul class="list-group groupEffectsList" id="groupEffectsListParameter">
+                                            <li class="list-group-item fixtureProfileItem"
+                                                v-for="effect in effectProfiles" v-if="effect.type == 'Parameter'"
+                                                @click="addGroupEffect(effect.file, effect.type)">
+                                                {{effect.name}} </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div v-if="effectProfiles.length == 0" class="text-danger"> There are no group
+                                    effects
+                                    in the library!
                                 </div>
                             </div>
                         </div>

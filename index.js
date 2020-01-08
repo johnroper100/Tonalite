@@ -1254,7 +1254,7 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
 };
 
 function calculateStack() {
-    // If there is a running cue
+    // If fixture values change
     var somethingRunning = false;
     var sequencesChanged = false;
     if (currentCue != "") {
@@ -1472,6 +1472,7 @@ function calculateStack() {
         var white = null;
         var amber = null;
         var hsi = null;
+        var fixture = null;
         let f = 0; const fMax = fixtures.length; for (; f < fMax; f++) {
             let e = 0; const eMax = fixtures[f].effects.length; for (; e < eMax; e++) {
                 if (fixtures[f].effects[e].active == true) {
@@ -1581,9 +1582,7 @@ function calculateStack() {
                                 effectValue = (effectValue * fixtures[f].effects[e].depth) + ((fixtures[f].parameters[p].value >> 8) * (1 - fixtures[f].effects[e].depth));
                                 if (SETTINGS.displayEffectsRealtime === true) {
                                     fixtures[f].parameters[p].displayValue = cppaddon.mapRange(effectValue, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max, 0, 100);
-                                    if (SETTINGS.displayEffectsRealtime === true) {
-                                        somethingRunning = true;
-                                    }
+                                    somethingRunning = true;
                                 }
                                 if (fixtures[f].parameters[p].fadeWithIntensity == true || fixtures[f].parameters[p].type == 1) {
                                     effectValue = (effectValue / 100.0) * grandmaster;
@@ -1636,11 +1635,184 @@ function calculateStack() {
                             }
                         }
                     }
+                    if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed) >= fixtures[f].effects[e].steps.length - 1) {
+                        fixtures[f].effects[e].step = 0;
+                    } else {
+                        fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
+                    }
                 }
-                if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed) >= fixtures[f].effects[e].steps.length - 1) {
-                    fixtures[f].effects[e].step = 0;
-                } else {
-                    fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
+            }
+        }
+        let g = 0; const gMax = groups.length; for (; g < gMax; g++) {
+            e = 0; const eMax = groups[g].effects.length; for (; e < eMax; e++) {
+                if (groups[g].effects[e].active == true) {
+                    let i = 0; const iMax = groups[g].ids.length; for (; i < iMax; i++) {
+                        fixture = fixtures[fixtures.map(el => el.id).indexOf(groups[g].ids[i])];
+                        let p = 0; const pMax = fixture.parameters.length; for (; p < pMax; p++) {
+                            if (fixture.parameters[p].locked === false) {
+                                effectChanIndex = groups[g].effects[e].parameterNames.findIndex(function (element) { return element == fixture.parameters[p].name });
+                                paramWorked = false;
+                                if (effectChanIndex > -1 && (groups[g].effects[e].type != "Color" || (groups[g].effects[e].type == "Color" && colortables.RGB.indexOf(fixture.colortable) >= 0))) {
+                                    paramWorked = true;
+                                    effectValue = groups[g].effects[e].steps[groups[g].effects[e].step][effectChanIndex];
+                                } else if (groups[g].effects[e].type == "Color" && colortables.RGBW.indexOf(fixture.colortable) >= 0) {
+                                    // RGBW
+                                    paramWorked = true;
+                                    red = groups[g].effects[e].steps[groups[g].effects[e].step][0];
+                                    green = groups[g].effects[e].steps[groups[g].effects[e].step][1];
+                                    blue = groups[g].effects[e].steps[groups[g].effects[e].step][2];
+                                    white = Math.min(red, green, blue);
+                                    if (fixture.parameters[p].name === "Red") {
+                                        effectValue = red - white;
+                                    } else if (fixture.parameters[p].name === "Green") {
+                                        effectValue = green - white;
+                                    } else if (fixture.parameters[p].name === "Blue") {
+                                        effectValue = blue - white;
+                                    } else if (fixture.parameters[p].name === "White") {
+                                        effectValue = white;
+                                    } else {
+                                        effectValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 255);
+                                    }
+                                } else if (groups[g].effects[e].type == "Color" && colortables.RGBA.indexOf(fixture.colortable) >= 0) {
+                                    // RGBA
+                                    paramWorked = true;
+                                    red = groups[g].effects[e].steps[groups[g].effects[e].step][0];
+                                    green = groups[g].effects[e].steps[groups[g].effects[e].step][1];
+                                    blue = groups[g].effects[e].steps[groups[g].effects[e].step][2];
+                                    amber = cppaddon.getAFromRGB(red, green, blue);
+                                    if (fixture.parameters[p].name === "Red") {
+                                        effectValue = red - amber;
+                                    } else if (fixture.parameters[p].name === "Green") {
+                                        effectValue = green - amber / 2;
+                                    } else if (fixture.parameters[p].name === "Blue") {
+                                        effectValue = blue;
+                                    } else if (fixture.parameters[p].name === "Amber") {
+                                        effectValue = amber;
+                                    } else {
+                                        effectValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 255);
+                                    }
+                                } else if (groups[g].effects[e].type == "Color" && colortables.RGBAW.indexOf(fixture.colortable) >= 0) {
+                                    // RGBAW
+                                    paramWorked = true;
+                                    red = groups[g].effects[e].steps[groups[g].effects[e].step][0];
+                                    green = groups[g].effects[e].steps[groups[g].effects[e].step][1];
+                                    blue = groups[g].effects[e].steps[groups[g].effects[e].step][2];
+                                    white = Math.min(red, green, blue);
+                                    amber = cppaddon.getAFromRGB(red, green, blue);
+                                    if (fixture.parameters[p].name === "Red") {
+                                        effectValue = red - white - amber;
+                                    } else if (fixture.parameters[p].name === "Green") {
+                                        effectValue = green - white - amber / 2;
+                                    } else if (fixture.parameters[p].name === "Blue") {
+                                        effectValue = blue - white;
+                                    } else if (fixture.parameters[p].name === "Amber") {
+                                        effectValue = amber;
+                                    } else if (fixture.parameters[p].name === "White") {
+                                        effectValue = white;
+                                    } else {
+                                        effectValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 255);
+                                    }
+                                } else if (groups[g].effects[e].type == "Color" && colortables.CMY.indexOf(groups[g].colortable) >= 0) {
+                                    // CMY
+                                    paramWorked = true;
+                                    red = groups[g].effects[e].steps[groups[g].effects[e].step][0];
+                                    green = groups[g].effects[e].steps[groups[g].effects[e].step][1];
+                                    blue = groups[g].effects[e].steps[groups[g].effects[e].step][2];
+                                    if (fixture.parameters[p].name === "Cyan") {
+                                        effectValue = 255 - red;
+                                    } else if (fixture.parameters[p].name === "Magenta") {
+                                        effectValue = 255 - green;
+                                    } else if (fixture.parameters[p].name === "Yellow") {
+                                        effectValue = 255 - blue;
+                                    } else {
+                                        effectValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 255);
+                                    }
+                                } else if (groups[g].effects[e].type == "Color" && (colortables.H.indexOf(fixture.colortable) >= 0 || colortables.HHF.indexOf(fixture.colortable) >= 0)) {
+                                    // HSI
+                                    paramWorked = true;
+                                    red = groups[g].effects[e].steps[groups[g].effects[e].step][0];
+                                    green = groups[g].effects[e].steps[groups[g].effects[e].step][1];
+                                    blue = groups[g].effects[e].steps[groups[g].effects[e].step][2];
+                                    hsi = rgbToHsv(red, green, blue);
+
+                                    if (fixture.parameters[p].name === "Hue") {
+                                        effectValue = Math.round(hsi[0]);
+                                    } else if (fixture.parameters[p].name === "Saturation") {
+                                        effectValue = Math.round(hsi[1]);
+                                    } else if (fixture.parameters[p].name === "Intensity") {
+                                        effectValue = Math.round(hsi[2]);
+                                    } else {
+                                        effectValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 255);
+                                    }
+                                }
+                                if (paramWorked === true) {
+                                    if (groups[g].effects[e].resolution == 8) {
+                                        effectValue = cppaddon.mapRange(effectValue, 0, 255, fixture.parameters[p].min, fixture.parameters[p].max);
+                                    } else {
+                                        effectValue = effectValue + 32766;
+                                    }
+                                    effectValue = (effectValue * groups[g].effects[e].depth) + ((fixture.parameters[p].value >> 8) * (1 - groups[g].effects[e].depth));
+                                    if (SETTINGS.displayEffectsRealtime === true) {
+                                        fixture.parameters[p].displayValue = cppaddon.mapRange(effectValue, fixture.parameters[p].min, fixture.parameters[p].max, 0, 100);
+                                        somethingRunning = true;
+                                    }
+                                    if (fixture.parameters[p].fadeWithIntensity == true || fixture.parameters[p].type == 1) {
+                                        effectValue = (effectValue / 100.0) * grandmaster;
+                                    }
+                                    invert = false;
+                                    if (fixture.parameters[p].type == 2 && (fixture.invertPan == true || fixture.invertTilt == true)) {
+                                        if (fixture.parameters[p].name == "Pan" && fixture.invertPan == true) {
+                                            if (fixture.parameters[p].invert == false) {
+                                                invert = true;
+                                            }
+                                        } else if (fixture.parameters[p].name == "Tilt" && fixture.invertTilt == true) {
+                                            if (fixture.parameters[p].invert == false) {
+                                                invert = true;
+                                            }
+                                        }
+                                    } else {
+                                        if (fixture.parameters[p].name == "Pan" && fixture.invertPan == false) {
+                                            if (fixture.parameters[p].invert == true) {
+                                                invert = true;
+                                            }
+                                        } else if (fixture.parameters[p].name == "Tilt" && fixture.invertTilt == false) {
+                                            if (fixture.parameters[p].invert == true) {
+                                                invert = true;
+                                            }
+                                        } else {
+                                            if (fixture.parameters[p].invert == true) {
+                                                invert = true;
+                                            }
+                                        }
+                                    }
+                                    if (groups[g].effects[e].resolution == 16) {
+                                        if (invert == true) {
+                                            channels[((fixture.startDMXAddress - 1) + fixture.parameters[p].coarse) + (512 * fixture.dmxUniverse)] = (cppaddon.reverseNumber(effectValue, 0, 65535) >> 8);
+                                            if (fixture.parameters[p].fine != null) {
+                                                channels[((fixture.startDMXAddress - 1) + fixture.parameters[p].fine) + (512 * fixture.dmxUniverse)] = (cppaddon.reverseNumber(effectValue, 0, 65535) & 0xff);
+                                            }
+                                        } else {
+                                            channels[((fixture.startDMXAddress - 1) + fixture.parameters[p].coarse) + (512 * fixture.dmxUniverse)] = (effectValue >> 8);
+                                            if (fixture.parameters[p].fine != null) {
+                                                channels[((fixture.startDMXAddress - 1) + fixture.parameters[p].fine) + (512 * fixture.dmxUniverse)] = (effectValue & 0xff);
+                                            }
+                                        }
+                                    } else if (groups[g].effects[e].resolution == 8) {
+                                        if (invert == true) {
+                                            channels[((fixture.startDMXAddress - 1) + fixture.parameters[p].coarse) + (512 * fixture.dmxUniverse)] = cppaddon.reverseNumber(effectValue, 0, 255);
+                                        } else {
+                                            channels[((fixture.startDMXAddress - 1) + fixture.parameters[p].coarse) + (512 * fixture.dmxUniverse)] = effectValue;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (groups[g].effects[e].step + Math.floor(groups[g].effects[e].speed) >= groups[g].effects[e].steps.length - 1) {
+                        groups[g].effects[e].step = 0;
+                    } else {
+                        groups[g].effects[e].step = groups[g].effects[e].step + Math.floor(groups[g].effects[e].speed);
+                    }
                 }
             }
         }
@@ -2570,6 +2742,27 @@ io.on('connection', function (socket) {
         });
     });
 
+    socket.on('getGroupEffects', function (groupid) {
+        fs.readdir(process.cwd() + "/effects", (err, files) => {
+            var effectsList = [];
+            var effect = null;
+            files.forEach(file => {
+                effect = require(process.cwd() + "/effects/" + file).effectTable;
+                if (JSON.stringify(effect.parameterNames).indexOf("Red") >= 0 || JSON.stringify(effect.parameterNames).indexOf("Green") >= 0 || JSON.stringify(effect.parameterNames).indexOf("Blue") >= 0) {
+                    effect.type = "Color";
+                } else if (JSON.stringify(effect.parameterNames).indexOf("Intensity") >= 0) {
+                    effect.type = "Intensity";
+                } else if (JSON.stringify(effect.parameterNames).indexOf("Pan") >= 0 || JSON.stringify(effect.parameterNames).indexOf("Tilt") >= 0) {
+                    effect.type = "Position";
+                } else if (JSON.stringify(effect.parameterNames).indexOf("Parameter") >= 0) {
+                    effect.type = "Parameter";
+                }
+                effectsList.push({ name: effect.name, type: effect.type, file: file });
+            });
+            socket.emit('groupEffects', { groupID: groupid, effects: effectsList });
+        });
+    });
+
     socket.on('getShowsFromUSB', function () {
         getShowsFromUSB(function (result) {
         });
@@ -2743,7 +2936,7 @@ io.on('connection', function (socket) {
                         fixture.parameters[p].displayValue = cppaddon.mapRange(fixture.parameters[p].value, fixture.parameters[p].min, fixture.parameters[p].max, 0, 100);
                     }
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-                    io.emit('resetView', { type: 'effect', eid: msg.effectID });
+                    io.emit('resetView', { type: 'fixtureEffect', eid: msg.effectID });
                     socket.emit('message', { type: "info", content: "Fixture effect has been removed!" });
                     saveShow();
                 } else {
@@ -2751,6 +2944,37 @@ io.on('connection', function (socket) {
                 }
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('removeGroupEffect', function (msg) {
+        if (fixtures.length != 0) {
+            if (groups.length != 0) {
+                if (groups.some(e => e.id === msg.groupID)) {
+                    saveUndoRedo(false);
+                    var group = groups[groups.map(el => el.id).indexOf(msg.groupID)];
+                    if (group.effects.some(e => e.id === msg.effectID)) {
+                        group.effects.splice(group.effects.map(el => el.id).indexOf(msg.effectID), 1);
+                        group.hasActiveEffects = checkFixtureActiveEffects(group.effects);
+                        let p = 0; const pMax = group.parameters.length; for (; p < pMax; p++) {
+                            group.parameters[p].displayValue = cppaddon.mapRange(group.parameters[p].value, group.parameters[p].min, group.parameters[p].max, 0, 100);
+                        }
+                        io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                        io.emit('groups', { groups: cleanGroups(), target: true });
+                        io.emit('resetView', { type: 'groupFffect', eid: msg.effectID });
+                        socket.emit('message', { type: "info", content: "Group effect has been removed!" });
+                        saveShow();
+                    } else {
+                        socket.emit('message', { type: "error", content: "This effect does not exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "This group does not exist!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No groups exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -2768,6 +2992,27 @@ io.on('connection', function (socket) {
                 }
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('getGroupEffectSettings', function (msg) {
+        if (fixtures.length != 0) {
+            if (groups.length != 0) {
+                if (groups.some(e => e.id === msg.groupID)) {
+                    var group = groups[groups.map(el => el.id).indexOf(msg.groupID)];
+                    if (group.effects.some(e => e.id === msg.effectID)) {
+                        socket.emit('groupEffectSettings', { groupID: group.id, effect: group.effects[group.effects.map(el => el.id).indexOf(msg.effectID)] });
+                    } else {
+                        socket.emit('message', { type: "error", content: "This effect does not exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "This group does not exist!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No groups exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -2801,6 +3046,37 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('editGroupEffectSettings', function (msg) {
+        if (fixtures.length != 0) {
+            if (groups.length != 0) {
+                if (groups.some(e => e.id === msg.groupID)) {
+                    var group = groups[groups.map(el => el.id).indexOf(msg.groupID)];
+                    if (group.effects.some(e => e.id === msg.effectID)) {
+                        var effect = group.effects[group.effects.map(el => el.id).indexOf(msg.effectID)];
+                        effect.name = msg.name;
+                        if (isNaN(parseFloat(msg.depth)) == false) {
+                            effect.depth = parseFloat(msg.depth);
+                        }
+                        if (isNaN(parseInt(msg.speed)) == false) {
+                            effect.speed = parseInt(msg.speed);
+                        }
+                        socket.broadcast.emit('groupEffectSettings', { groupID: group.id, effect: group.effects[group.effects.map(el => el.id).indexOf(msg.effectID)] });
+                        io.emit('groups', { groups: cleanGroups(), target: true });
+                        saveShow();
+                    } else {
+                        socket.emit('message', { type: "error", content: "This effect does not exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No groups exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
     socket.on('changeFixtureEffectState', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
@@ -2822,6 +3098,39 @@ io.on('connection', function (socket) {
                 }
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('changeGroupEffectState', function (msg) {
+        if (fixtures.length != 0) {
+            if (groups.length != 0) {
+                if (groups.some(e => e.id === msg.id)) {
+                    var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                    if (group.effects.some(e => e.id === msg.effectid)) {
+                        var effect = group.effects[group.effects.map(el => el.id).indexOf(msg.effectid)];
+                        effect.step = 0;
+                        effect.active = !effect.active;
+                        group.hasActiveEffects = checkFixtureActiveEffects(group.effects);
+                        if (effect.active == false) {
+                            let p = 0; const pMax = group.parameters.length; for (; p < pMax; p++) {
+                                group.parameters[p].displayValue = cppaddon.mapRange(group.parameters[p].value, group.parameters[p].min, group.parameters[p].max, 0, 100);
+                                setFixtureGroupValues(group, group.parameters[p]);
+                            }
+                            io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                        }
+                        io.emit('groups', { groups: cleanGroups(), target: true });
+                        saveShow();
+                    } else {
+                        socket.emit('message', { type: "error", content: "This effect does not exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "This group does not exist!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No groups exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
@@ -2872,6 +3181,50 @@ io.on('connection', function (socket) {
                 saveShow();
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('addGroupEffect', function (msg) {
+        if (fixtures.length != 0) {
+            if (groups.length != 0) {
+                if (groups.some(e => e.id === msg.groupID)) {
+                    saveUndoRedo(false);
+                    var group = groups[groups.map(el => el.id).indexOf(msg.groupID)];
+                    var effect = JSON.parse(JSON.stringify(require(process.cwd() + "/effects/" + msg.effectFile).effectTable));
+                    effect.active = true;
+                    effect.step = 0;
+                    effect.depth = 1.0;
+                    effect.speed = 1;
+                    effect.speedIndex = 0;
+                    effect.chroma = 1;
+                    effect.fan = 0;
+                    effect.aspect = 1;
+                    effect.rotation = 0;
+                    effect.id = generateID();
+                    if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Red", "Green", "Blue"])) {
+                        effect.type = "Color";
+                    } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Intensity"])) {
+                        effect.type = "Intensity";
+                    } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Pan", "Tilt"])) {
+                        effect.type = "Position";
+                    } else if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Parameter"])) {
+                        effect.parameterNames = [msg.parameterName];
+                        effect.type = "Parameter";
+                        effect.name = effect.name + " (" + msg.parameterName + ")";
+                    }
+                    group.effects.push(effect);
+                    group.hasActiveEffects = true;
+                    io.emit('groups', { groups: cleanGroups(), target: true });
+                    socket.emit('message', { type: "info", content: "Effect has been added to group!" });
+                    saveShow();
+                } else {
+                    socket.emit('message', { type: "error", content: "This group does not exist!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No groups exist!" });
             }
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
