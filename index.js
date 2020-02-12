@@ -46,7 +46,7 @@ if (!fs.existsSync("errors")) {
     fs.mkdirSync("errors");
 }
 
-fs.exists(process.cwd() + '/settings.json', function(exists) {
+fs.exists(process.cwd() + '/settings.json', function (exists) {
     if (exists == false) {
         saveSettings();
     }
@@ -217,7 +217,7 @@ require.extensions['.jlib'] = require.extensions['.json'];
 
 // Load the Tonalite settings from file
 function openSettings() {
-    fs.readFile(process.cwd() + '/settings.json', function(err, data) {
+    fs.readFile(process.cwd() + '/settings.json', function (err, data) {
         if (err) logError(err);
         try {
             var settings = JSON.parse(data);
@@ -247,7 +247,7 @@ function openSettings() {
 
             artnet = require('artnet')({ iface: SETTINGS.artnetIP, host: SETTINGS.artnetHost, sendAll: true });
 
-            http.listen(SETTINGS.port, SETTINGS.url, function() {
+            http.listen(SETTINGS.port, SETTINGS.url, function () {
                 var msg = "Desktop";
                 if (SETTINGS.desktop === false)
                     msg = "Embeded";
@@ -338,7 +338,7 @@ async function updateFirmware(callback) {
     if (drives.length > 0) {
         drives.forEach((drive) => {
             if (uploadComplete == false) {
-                fs.exists(drive.mountpoints[0].path + "/tonalite.zip", function(exists) {
+                fs.exists(drive.mountpoints[0].path + "/tonalite.zip", function (exists) {
                     if (exists) {
                         fs.createReadStream(drive.mountpoints[0].path + "/tonalite.zip").pipe(unzipper.Extract({ path: process.cwd() }));
                         uploadComplete = true;
@@ -388,7 +388,7 @@ async function importFixturesFromUSB(callback) {
     if (drives.length > 0) {
         drives.forEach((drive) => {
             if (importComplete == false) {
-                fs.exists(drive.mountpoints[0].path + "/fixtures.zip", function(exists) {
+                fs.exists(drive.mountpoints[0].path + "/fixtures.zip", function (exists) {
                     if (exists) {
                         fs.createReadStream(drive.mountpoints[0].path + "/fixtures.zip").pipe(unzipper.Extract({ path: process.cwd() }));
                         importComplete = true;
@@ -412,7 +412,7 @@ async function exportErrorLogsToUSB(callback) {
     if (drives.length > 0) {
         drives.forEach((drive) => {
             if (importComplete == false) {
-                fs.copy('errors', drive.mountpoints[0].path + "/errors", function(err) {
+                fs.copy('errors', drive.mountpoints[0].path + "/errors", function (err) {
                     if (err && err != null) {
                         logError(err);
                         errorhappened = true;
@@ -442,7 +442,7 @@ async function saveShowToUSB(showName, callback) {
         drives.forEach((drive) => {
             if (importComplete == false) {
                 filepath = drive.mountpoints[0].path + "/" + showName + "_" + moment().format('YYYY-MM-DDTHH-mm-ss') + ".tonalite";
-                fs.exists(filepath, function(exists) {
+                fs.exists(filepath, function (exists) {
                     if (exists) {
                         alreadyexists = true;
                     } else {
@@ -793,6 +793,16 @@ function cleanGroupsForCue() {
         delete newGroups[g].hasLockedParameters;
     }
     return newGroups;
+};
+
+function cleanGroupForCue(group) {
+    var newGroup = JSON.parse(JSON.stringify(group));
+    delete newGroup.name;
+    delete newGroup.parameters;
+    delete newGroup.parameterTypes;
+    delete newGroup.hasActiveEffects;
+    delete newGroup.hasLockedParameters;
+    return newGroup;
 };
 
 function getFixtureIDs() {
@@ -1618,7 +1628,7 @@ function calculateStack() {
                     const pMax = fixtures[f].parameters.length;
                     for (; p < pMax; p++) {
                         if (fixtures[f].parameters[p].locked === false) {
-                            effectChanIndex = fixtures[f].effects[e].parameterNames.findIndex(function(element) { return element == fixtures[f].parameters[p].name });
+                            effectChanIndex = fixtures[f].effects[e].parameterNames.findIndex(function (element) { return element == fixtures[f].parameters[p].name });
                             paramWorked = false;
                             if (effectChanIndex > -1 && (fixtures[f].effects[e].type != "Color" || (fixtures[f].effects[e].type == "Color" && colortables.RGB.indexOf(fixtures[f].colortable) >= 0))) {
                                 paramWorked = true;
@@ -1798,7 +1808,7 @@ function calculateStack() {
                         const pMax = fixture.parameters.length;
                         for (; p < pMax; p++) {
                             if (fixture.parameters[p].locked === false) {
-                                effectChanIndex = groups[g].effects[e].parameterNames.findIndex(function(element) { return element == fixture.parameters[p].name });
+                                effectChanIndex = groups[g].effects[e].parameterNames.findIndex(function (element) { return element == fixture.parameters[p].name });
                                 paramWorked = false;
                                 if (effectChanIndex > -1 && (groups[g].effects[e].type != "Color" || (groups[g].effects[e].type == "Color" && colortables.RGB.indexOf(fixture.colortable) >= 0))) {
                                     paramWorked = true;
@@ -2156,7 +2166,7 @@ function saveShow() {
 
 // Load the presets from file
 function openPresets() {
-    fs.exists(process.cwd() + '/presets.json', function(exists) {
+    fs.exists(process.cwd() + '/presets.json', function (exists) {
         if (exists == false) {
             savePresets();
             openPresets();
@@ -2194,19 +2204,19 @@ app.use(fileUpload());
 app.use(compression());
 app.use(favicon(__dirname + '/static/img/favicon.ico'));
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/presets', function(req, res) {
+app.get('/presets', function (req, res) {
     res.sendFile(__dirname + '/presets.html');
 });
 
-app.get('/open-source-licenses', function(req, res) {
+app.get('/open-source-licenses', function (req, res) {
     res.sendFile(__dirname + '/open-source-licenses.txt');
 });
 
-app.get('/showFile', function(req, res) {
+app.get('/showFile', function (req, res) {
     res.download(process.cwd() + '/show.json', currentShowName + "_" + moment().format('YYYY-MM-DDTHH-mm-ss') + '.tonalite', { headers: { 'Content-Disposition': 'attachment', 'Content-Type': 'application/octet-stream' } });
 });
 
@@ -2217,7 +2227,7 @@ app.post('/showFile', (req, res) => {
     }
     let showFile = req.files.showFile;
     if (showFile.name.includes(".tonalite")) {
-        showFile.mv(process.cwd() + '/show.json', function(err) {
+        showFile.mv(process.cwd() + '/show.json', function (err) {
             if (err)
                 return res.status(500).send(err);
             openPresets();
@@ -2235,7 +2245,7 @@ app.post('/importFixtureDefinition', (req, res) => {
     let fixtureDefinition = req.files.fixtureDefinition;
 
     if (fixtureDefinition.mimetype == "application/json" || fixtureDefinition.mimetype == "application/x-wine-extension-jlib") {
-        fixtureDefinition.mv(process.cwd() + '/fixtures/' + req.files.fixtureDefinition.name, function(err) {
+        fixtureDefinition.mv(process.cwd() + '/fixtures/' + req.files.fixtureDefinition.name, function (err) {
             if (err)
                 return res.status(500).send(err);
             res.redirect('/');
@@ -2246,14 +2256,14 @@ app.post('/importFixtureDefinition', (req, res) => {
     }
 });
 
-fs.exists(process.cwd() + '/show.json', function(exists) {
+fs.exists(process.cwd() + '/show.json', function (exists) {
     if (exists == false) {
         saveShow();
     }
     openPresets();
 });
 
-io.on('connection', function(socket) {
+io.on('connection', function (socket) {
     socket.emit('fixtures', { fixtures: cleanFixtures(), target: true });
     socket.emit('cues', cleanCues());
     socket.emit('sequences', { sequences: cleanSequences(), target: true });
@@ -2273,7 +2283,7 @@ io.on('connection', function(socket) {
         socket.emit('cueProgress', 0);
     };
 
-    QRCode.toDataURL(`http://${SETTINGS.url}:${SETTINGS.port}`, function(err, url) {
+    QRCode.toDataURL(`http://${SETTINGS.url}:${SETTINGS.port}`, function (err, url) {
         socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `http://${SETTINGS.url}:${SETTINGS.port}` });
     });
 
@@ -2284,7 +2294,7 @@ io.on('connection', function(socket) {
         socket.emit('cueActionBtn', true);
     }
 
-    socket.on('undo', function() {
+    socket.on('undo', function () {
         if (isEmpty(undo) === false) {
             saveUndoRedo(true);
             fixtures = undo.fixtures;
@@ -2304,7 +2314,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('redo', function() {
+    socket.on('redo', function () {
         if (isEmpty(redo) === false) {
             saveUndoRedo(false);
             fixtures = redo.fixtures;
@@ -2324,9 +2334,9 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('openShowFromUSB', function(data) {
+    socket.on('openShowFromUSB', function (data) {
         saveUndoRedo(false);
-        fs.copyFile(data.path + '/' + data.file, process.cwd() + '/show.json', function(err) {
+        fs.copyFile(data.path + '/' + data.file, process.cwd() + '/show.json', function (err) {
             if (err) {
                 logError(err);
                 socket.emit('message', { type: "error", content: "The show could not be opened!" });
@@ -2337,7 +2347,7 @@ io.on('connection', function(socket) {
         });
     });
 
-    socket.on('resetShow', function() {
+    socket.on('resetShow', function () {
         saveUndoRedo(false);
         resetFixtures(true);
         cues = [];
@@ -2363,7 +2373,7 @@ io.on('connection', function(socket) {
         saveShow();
     });
 
-    socket.on('resetShowAndPatch', function() {
+    socket.on('resetShowAndPatch', function () {
         saveUndoRedo(false);
         fixtures = [];
         cues = [];
@@ -2396,7 +2406,7 @@ io.on('connection', function(socket) {
         savePresets();
     });
 
-    socket.on('resetPresets', function() {
+    socket.on('resetPresets', function () {
         saveUndoRedo(false);
         presets = [];
         io.emit('presets', cleanPresets());
@@ -2404,7 +2414,7 @@ io.on('connection', function(socket) {
         savePresets();
     });
 
-    socket.on('getFixtureProfiles', function() {
+    socket.on('getFixtureProfiles', function () {
         var startDMXAddress = 1;
 
         let f = 0;
@@ -2418,7 +2428,7 @@ io.on('connection', function(socket) {
             var push = false;
             files.forEach(file => {
                 fixture = require(process.cwd() + "/fixtures/" + file);
-                fixture.personalities.forEach(function(personality) {
+                fixture.personalities.forEach(function (personality) {
                     push = false;
                     if (SETTINGS.interfaceMode == 'dimmer') {
                         if (personality.modelName === "Dimmer") {
@@ -2442,7 +2452,7 @@ io.on('connection', function(socket) {
         });
     });
 
-    socket.on('usePositionPalette', function(msg) {
+    socket.on('usePositionPalette', function (msg) {
         var ids = [];
         if (fixtures.length != 0) {
             if (msg.type == 'fixture') {
@@ -2492,7 +2502,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('usePositionJoystick', function(msg) {
+    socket.on('usePositionJoystick', function (msg) {
         var ids = [];
         if (fixtures.length != 0) {
             if (msg.type == 'fixture') {
@@ -2516,13 +2526,13 @@ io.on('connection', function(socket) {
             if (ids.length > 0) {
                 var palette = {
                     parameters: [{
-                            "name": "Pan",
-                            "value": msg.x * 13
-                        },
-                        {
-                            "name": "Tilt",
-                            "value": msg.y * 13
-                        }
+                        "name": "Pan",
+                        "value": msg.x * 13
+                    },
+                    {
+                        "name": "Tilt",
+                        "value": msg.y * 13
+                    }
                     ]
                 };
                 var param = null;
@@ -2559,7 +2569,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('useColorPalette', function(msg) {
+    socket.on('useColorPalette', function (msg) {
         var ids = [];
         if (fixtures.length != 0) {
             if (msg.type == 'fixture') {
@@ -2591,17 +2601,17 @@ io.on('connection', function(socket) {
                 } else if (msg.colorType == 'wheel') {
                     palette = {
                         parameters: [{
-                                "name": "Red",
-                                "value": msg.color.r
-                            },
-                            {
-                                "name": "Green",
-                                "value": msg.color.g
-                            },
-                            {
-                                "name": "Blue",
-                                "value": msg.color.b
-                            }
+                            "name": "Red",
+                            "value": msg.color.r
+                        },
+                        {
+                            "name": "Green",
+                            "value": msg.color.g
+                        },
+                        {
+                            "name": "Blue",
+                            "value": msg.color.b
+                        }
                         ]
                     };
                 }
@@ -2787,7 +2797,7 @@ io.on('connection', function(socket) {
         return [r * 255, g * 255, b * 255];
     }
 
-    socket.on('addColorPalette', function(msg) {
+    socket.on('addColorPalette', function (msg) {
         saveUndoRedo(false);
         if (msg.type == 'fixture') {
             var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
@@ -2862,17 +2872,17 @@ io.on('connection', function(socket) {
             color: "#" + rgbHex(finalColor[0], finalColor[1], finalColor[2]),
             name: msg.name,
             parameters: [{
-                    name: "Red",
-                    value: finalColor[0]
-                },
-                {
-                    name: "Green",
-                    value: finalColor[1]
-                },
-                {
-                    name: "Blue",
-                    value: finalColor[2]
-                }
+                name: "Red",
+                value: finalColor[0]
+            },
+            {
+                name: "Green",
+                value: finalColor[1]
+            },
+            {
+                name: "Blue",
+                value: finalColor[2]
+            }
             ]
         }
         colorPalettes.push(palette);
@@ -2880,7 +2890,7 @@ io.on('connection', function(socket) {
         saveShow();
     });
 
-    socket.on('addPositionPalette', function(msg) {
+    socket.on('addPositionPalette', function (msg) {
         saveUndoRedo(false);
         if (msg.type == 'fixture') {
             var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
@@ -2904,13 +2914,13 @@ io.on('connection', function(socket) {
         var palette = {
             name: msg.name,
             parameters: [{
-                    name: "Pan",
-                    value: pan
-                },
-                {
-                    name: "Tilt",
-                    value: tilt
-                }
+                name: "Pan",
+                value: pan
+            },
+            {
+                name: "Tilt",
+                value: tilt
+            }
             ]
         }
         positionPalettes.push(palette);
@@ -2918,7 +2928,7 @@ io.on('connection', function(socket) {
         saveShow();
     });
 
-    socket.on('removePositionPalette', function(msg) {
+    socket.on('removePositionPalette', function (msg) {
         saveUndoRedo(false);
         positionPalettes.splice(msg.pid, 1);
         socket.emit('message', { type: "info", content: "Position palette has been removed!" });
@@ -2926,7 +2936,7 @@ io.on('connection', function(socket) {
         saveShow();
     });
 
-    socket.on('removeColorPalette', function(msg) {
+    socket.on('removeColorPalette', function (msg) {
         saveUndoRedo(false);
         colorPalettes.splice(msg.pid, 1);
         socket.emit('message', { type: "info", content: "Color palette has been removed!" });
@@ -2934,7 +2944,7 @@ io.on('connection', function(socket) {
         saveShow();
     });
 
-    socket.on('getFixtureEffects', function(fixtureid) {
+    socket.on('getFixtureEffects', function (fixtureid) {
         fs.readdir(process.cwd() + "/effects", (err, files) => {
             var effectsList = [];
             var effect = null;
@@ -2955,7 +2965,7 @@ io.on('connection', function(socket) {
         });
     });
 
-    socket.on('getGroupEffects', function(groupid) {
+    socket.on('getGroupEffects', function (groupid) {
         fs.readdir(process.cwd() + "/effects", (err, files) => {
             var effectsList = [];
             var effect = null;
@@ -2976,11 +2986,11 @@ io.on('connection', function(socket) {
         });
     });
 
-    socket.on('getShowsFromUSB', function() {
-        getShowsFromUSB(function(result) {});
+    socket.on('getShowsFromUSB', function () {
+        getShowsFromUSB(function (result) { });
     });
 
-    socket.on('addFixture', function(msg) {
+    socket.on('addFixture', function (msg) {
         if (fixtures.length < 1024) {
             saveUndoRedo(false);
             var startDMXAddress = parseInt(msg.startDMXAddress);
@@ -3046,7 +3056,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('removeFixture', function(fixtureID) {
+    socket.on('removeFixture', function (fixtureID) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
                 saveUndoRedo(false);
@@ -3144,7 +3154,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('removeFixtureEffect', function(msg) {
+    socket.on('removeFixtureEffect', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
                 saveUndoRedo(false);
@@ -3186,7 +3196,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('removeGroupEffect', function(msg) {
+    socket.on('removeGroupEffect', function (msg) {
         if (fixtures.length != 0) {
             if (groups.length != 0) {
                 if (groups.some(e => e.id === msg.groupID)) {
@@ -3219,7 +3229,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('getFixtureEffectSettings', function(msg) {
+    socket.on('getFixtureEffectSettings', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
@@ -3236,7 +3246,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('getGroupEffectSettings', function(msg) {
+    socket.on('getGroupEffectSettings', function (msg) {
         if (fixtures.length != 0) {
             if (groups.length != 0) {
                 if (groups.some(e => e.id === msg.groupID)) {
@@ -3257,7 +3267,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('editFixtureEffectSettings', function(msg) {
+    socket.on('editFixtureEffectSettings', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
@@ -3284,7 +3294,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('editGroupEffectSettings', function(msg) {
+    socket.on('editGroupEffectSettings', function (msg) {
         if (fixtures.length != 0) {
             if (groups.length != 0) {
                 if (groups.some(e => e.id === msg.groupID)) {
@@ -3315,7 +3325,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('changeFixtureEffectState', function(msg) {
+    socket.on('changeFixtureEffectState', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
@@ -3344,7 +3354,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('changeGroupEffectState', function(msg) {
+    socket.on('changeGroupEffectState', function (msg) {
         if (fixtures.length != 0) {
             if (groups.length != 0) {
                 if (groups.some(e => e.id === msg.id)) {
@@ -3379,7 +3389,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('addFixtureEffect', function(msg) {
+    socket.on('addFixtureEffect', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
                 saveUndoRedo(false);
@@ -3433,7 +3443,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('addGroupEffect', function(msg) {
+    socket.on('addGroupEffect', function (msg) {
         if (fixtures.length != 0) {
             if (groups.length != 0) {
                 if (groups.some(e => e.id === msg.groupID)) {
@@ -3461,8 +3471,23 @@ io.on('connection', function(socket) {
                         effect.type = "Parameter";
                         effect.name = effect.name + " (" + msg.parameterName + ")";
                     }
-                    group.effects.push(effect);
                     group.hasActiveEffects = true;
+                    group.effects.push(effect);
+                    if (cues.length > 0) {
+                        let cc = 0;
+                        const ccMax = cues.length;
+                        for (; cc < ccMax; cc++) {
+                            if (cues[cc].groups.length > 0) {
+                                let gg = 0;
+                                const ggMax = cues[cc].groups.length;
+                                for (; gg < ggMax; gg++) {
+                                    topush = cleanEffectForCue(effect);
+                                    topush.active = false;
+                                    cues[cc].groups[gg].effects.push(topush);
+                                }
+                            }
+                        }
+                    }
                     io.emit('groups', { groups: cleanGroups(), target: true });
                     socket.emit('message', { type: "info", content: "Effect has been added to group!" });
                     saveShow();
@@ -3477,7 +3502,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('editFixtureSettings', function(msg) {
+    socket.on('editFixtureSettings', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
@@ -3518,7 +3543,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('getFixtureParameters', function(fixtureID) {
+    socket.on('getFixtureParameters', function (fixtureID) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
                 socket.emit('fixtureParameters', cleanFixture(fixtures[fixtures.map(el => el.id).indexOf(fixtureID)]));
@@ -3530,7 +3555,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('resetFixtures', function() {
+    socket.on('resetFixtures', function () {
         if (fixtures.length != 0) {
             saveUndoRedo(false);
             resetFixtures(false);
@@ -3545,7 +3570,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('resetFixturesIntensity', function() {
+    socket.on('resetFixturesIntensity', function () {
         if (fixtures.length != 0) {
             saveUndoRedo(false);
             resetFixturesIntensity();
@@ -3560,7 +3585,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('resetFixture', function(fixtureID) {
+    socket.on('resetFixture', function (fixtureID) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === fixtureID)) {
                 saveUndoRedo(false);
@@ -3590,7 +3615,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('changeFixtureParameterValue', function(msg) {
+    socket.on('changeFixtureParameterValue', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
@@ -3613,7 +3638,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('changeFixtureIntensityValue', function(msg) {
+    socket.on('changeFixtureIntensityValue', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
@@ -3636,7 +3661,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('changeFixtureParameterLock', function(msg) {
+    socket.on('changeFixtureParameterLock', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
@@ -3663,7 +3688,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('useFixtureParameterRange', function(msg) {
+    socket.on('useFixtureParameterRange', function (msg) {
         if (fixtures.length != 0) {
             if (fixtures.some(e => e.id === msg.id)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
@@ -3684,7 +3709,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('useGroupParameterRange', function(msg) {
+    socket.on('useGroupParameterRange', function (msg) {
         if (fixtures.length != 0) {
             if (groups.length != 0) {
                 if (groups.some(e => e.id === msg.id)) {
@@ -3711,7 +3736,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('recordCue', function() {
+    socket.on('recordCue', function () {
         if (fixtures.length != 0) {
             saveUndoRedo(false);
             var newCue = {
@@ -3757,7 +3782,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('updateCue', function(cueID) {
+    socket.on('updateCue', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 saveUndoRedo(false);
@@ -3795,7 +3820,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('cloneCueEnd', function(cueID) {
+    socket.on('cloneCueEnd', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 saveUndoRedo(false);
@@ -3814,7 +3839,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('cloneCueNext', function(cueID) {
+    socket.on('cloneCueNext', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 saveUndoRedo(false);
@@ -3834,7 +3859,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('getCueSettings', function(cueID) {
+    socket.on('getCueSettings', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 socket.emit('cueSettings', cues[cues.map(el => el.id).indexOf(cueID)]);
@@ -3846,7 +3871,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('editCueSettings', function(msg) {
+    socket.on('editCueSettings', function (msg) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === msg.id)) {
                 var cue = cues[cues.map(el => el.id).indexOf(msg.id)];
@@ -3892,7 +3917,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('removeCue', function(cueID) {
+    socket.on('removeCue', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 saveUndoRedo(false);
@@ -3917,7 +3942,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('nextCue', function() {
+    socket.on('nextCue', function () {
         if (cues.length != 0) {
             if (cues.some(e => e.id === lastCue)) {
                 cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
@@ -3958,7 +3983,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('lastCue', function() {
+    socket.on('lastCue', function () {
         if (cues.length != 0) {
             if (lastCue != "") {
                 cues[cues.map(el => el.id).indexOf(lastCue)].upStep = cues[cues.map(el => el.id).indexOf(lastCue)].upTime * FPS;
@@ -3999,7 +4024,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('stopCue', function() {
+    socket.on('stopCue', function () {
         if (cues.length != 0) {
             var fixtureParameters = null;
             let f = 0;
@@ -4027,7 +4052,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('gotoCue', function(cueID) {
+    socket.on('gotoCue', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 if (lastCue != "") {
@@ -4066,7 +4091,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('gotoCueInstant', function(cueID) {
+    socket.on('gotoCueInstant', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 if (lastCue != "") {
@@ -4107,7 +4132,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('moveCueUp', function(cueID) {
+    socket.on('moveCueUp', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 saveUndoRedo(false);
@@ -4124,7 +4149,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('moveCueDown', function(cueID) {
+    socket.on('moveCueDown', function (cueID) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 saveUndoRedo(false);
@@ -4141,7 +4166,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('addSequence', function(fixtureIDs) {
+    socket.on('addSequence', function (fixtureIDs) {
         if (fixtures.length != 0) {
             saveUndoRedo(false);
             var newSequence = {
@@ -4165,7 +4190,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('recordSequenceStep', function(sequenceID) {
+    socket.on('recordSequenceStep', function (sequenceID) {
         if (fixtures.length != 0) {
             if (sequences.some(e => e.id === sequenceID)) {
                 saveUndoRedo(false);
@@ -4192,7 +4217,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('addFixturesToSequence', function(msg) {
+    socket.on('addFixturesToSequence', function (msg) {
         if (fixtures.length > 0) {
             if (sequences.length > 0) {
                 if (msg.fixtures.length > 0) {
@@ -4233,7 +4258,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('addGroup', function(fixtureIDs) {
+    socket.on('addGroup', function (fixtureIDs) {
         if (fixtures.length > 0) {
             if (fixtureIDs.length > 0) {
                 saveUndoRedo(false);
@@ -4263,6 +4288,13 @@ io.on('connection', function(socket) {
                     }
                 }
                 groups.push(newGroup);
+                if (cues.length > 0) {
+                    let cc = 0;
+                    const ccMax = cues.length;
+                    for (; cc < ccMax; cc++) {
+                        cues[cc].groups.push(cleanGroupForCue(newGroup));
+                    }
+                }
                 io.emit('groups', { groups: cleanGroups(), target: true });
                 saveShow();
             } else {
@@ -4273,7 +4305,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('addFixturesToGroup', function(msg) {
+    socket.on('addFixturesToGroup', function (msg) {
         if (fixtures.length > 0) {
             if (groups.length > 0) {
                 if (msg.fixtures.length > 0) {
@@ -4318,7 +4350,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('getGroupParameters', function(groupID) {
+    socket.on('getGroupParameters', function (groupID) {
         if (groups.length != 0) {
             if (groups.some(e => e.id === groupID)) {
                 var group = groups[groups.map(el => el.id).indexOf(groupID)];
@@ -4368,7 +4400,7 @@ io.on('connection', function(socket) {
 
     });
 
-    socket.on('getSequenceParameters', function(sequenceID) {
+    socket.on('getSequenceParameters', function (sequenceID) {
         if (sequences.length != 0) {
             if (sequences.some(e => e.id === sequenceID)) {
                 socket.emit('sequenceParameters', sequences[sequences.map(el => el.id).indexOf(sequenceID)]);
@@ -4381,7 +4413,7 @@ io.on('connection', function(socket) {
 
     });
 
-    socket.on('changeGroupParameterValue', function(msg) {
+    socket.on('changeGroupParameterValue', function (msg) {
         if (fixtures.length > 0) {
             if (groups.length > 0) {
                 if (groups.some(e => e.id === msg.id)) {
@@ -4410,7 +4442,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('changeGroupParameterLock', function(msg) {
+    socket.on('changeGroupParameterLock', function (msg) {
         if (fixtures.length > 0) {
             if (groups.length > 0) {
                 if (groups.some(e => e.id === msg.id)) {
@@ -4443,7 +4475,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('getGroupFixtures', function(groupID) {
+    socket.on('getGroupFixtures', function (groupID) {
         if (groups.length != 0) {
             if (groups.some(e => e.id === groupID)) {
                 socket.emit('groupFixtures', getGroupFixtures(groupID));
@@ -4455,7 +4487,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('getSequenceFixtures', function(sequenceID) {
+    socket.on('getSequenceFixtures', function (sequenceID) {
         if (sequences.length != 0) {
             if (sequences.some(e => e.id === sequenceID)) {
                 socket.emit('sequenceFixtures', getSequenceFixtures(sequenceID));
@@ -4467,7 +4499,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('editGroupSettings', function(msg) {
+    socket.on('editGroupSettings', function (msg) {
         if (groups.length != 0) {
             if (groups.some(e => e.id === msg.id)) {
                 var group = groups[groups.map(el => el.id).indexOf(msg.id)];
@@ -4482,7 +4514,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('editSequenceSettings', function(msg) {
+    socket.on('editSequenceSettings', function (msg) {
         if (sequences.length != 0) {
             if (sequences.some(e => e.id === msg.id)) {
                 var sequence = sequences[sequences.map(el => el.id).indexOf(msg.id)];
@@ -4517,7 +4549,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('editSequenceStepSettings', function(msg) {
+    socket.on('editSequenceStepSettings', function (msg) {
         if (sequences.length != 0) {
             if (sequences.some(e => e.id === msg.sequence)) {
                 var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
@@ -4563,7 +4595,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('removeGroup', function(groupID) {
+    socket.on('removeGroup', function (groupID) {
         if (groups.length != 0) {
             if (groups.some(e => e.id === groupID)) {
                 saveUndoRedo(false);
@@ -4587,7 +4619,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('removeSequence', function(sequenceID) {
+    socket.on('removeSequence', function (sequenceID) {
         if (sequences.length != 0) {
             if (sequences.some(e => e.id === sequenceID)) {
                 saveUndoRedo(false);
@@ -4611,7 +4643,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('resetGroup', function(groupID) {
+    socket.on('resetGroup', function (groupID) {
         if (groups.length != 0) {
             if (groups.some(e => e.id === groupID)) {
                 saveUndoRedo(false);
@@ -4635,7 +4667,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('removeGroupFixture', function(msg) {
+    socket.on('removeGroupFixture', function (msg) {
         if (groups.length != 0) {
             if (groups.some(e => e.id === msg.group)) {
                 saveUndoRedo(false);
@@ -4681,7 +4713,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('removeSequenceFixture', function(msg) {
+    socket.on('removeSequenceFixture', function (msg) {
         if (sequences.length != 0) {
             if (sequences.some(e => e.id === msg.sequence)) {
                 saveUndoRedo(false);
@@ -4712,7 +4744,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('removeSequenceStep', function(msg) {
+    socket.on('removeSequenceStep', function (msg) {
         if (sequences.length != 0) {
             if (sequences.some(e => e.id === msg.sequence)) {
                 var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
@@ -4731,7 +4763,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('updateSequenceStep', function(msg) {
+    socket.on('updateSequenceStep', function (msg) {
         if (sequences.length != 0) {
             if (sequences.some(e => e.id === msg.sequence)) {
                 var sequence = sequences[sequences.map(el => el.id).indexOf(msg.sequence)];
@@ -4751,7 +4783,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('resetGroups', function() {
+    socket.on('resetGroups', function () {
         if (groups.length != 0) {
             saveUndoRedo(false);
             resetGroups();
@@ -4762,7 +4794,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('recordPreset', function(list) {
+    socket.on('recordPreset', function (list) {
         if (fixtures.length != 0) {
             saveUndoRedo(false);
             var newPreset = {
@@ -4785,7 +4817,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('addFixturesToPreset', function(msg) {
+    socket.on('addFixturesToPreset', function (msg) {
         if (fixtures.length > 0) {
             if (presets.length > 0) {
                 if (msg.fixtures.length > 0) {
@@ -4822,7 +4854,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('updatePreset', function(presetID) {
+    socket.on('updatePreset', function (presetID) {
         if (presets.length != 0) {
             if (presets.some(e => e.id === presetID)) {
                 saveUndoRedo(false);
@@ -4855,7 +4887,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('getPresetSettings', function(presetID) {
+    socket.on('getPresetSettings', function (presetID) {
         if (presets.length != 0) {
             if (presets.some(e => e.id === presetID)) {
                 socket.emit('presetSettings', presets[presets.map(el => el.id).indexOf(presetID)]);
@@ -4867,7 +4899,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('editPresetSettings', function(msg) {
+    socket.on('editPresetSettings', function (msg) {
         if (presets.length != 0) {
             if (presets.some(e => e.id === msg.id)) {
                 var preset = presets[presets.map(el => el.id).indexOf(msg.id)];
@@ -4893,7 +4925,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('getPresetFixtures', function(presetID) {
+    socket.on('getPresetFixtures', function (presetID) {
         if (presets.length != 0) {
             if (presets.some(e => e.id === presetID)) {
                 socket.emit('presetFixtures', getPresetFixtures(presetID));
@@ -4905,7 +4937,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('removePreset', function(presetID) {
+    socket.on('removePreset', function (presetID) {
         if (presets.length != 0) {
             if (presets.some(e => e.id === presetID)) {
                 saveUndoRedo(false);
@@ -4922,7 +4954,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('removePresetFixture', function(msg) {
+    socket.on('removePresetFixture', function (msg) {
         if (presets.length != 0) {
             if (presets.some(e => e.id === msg.preset)) {
                 saveUndoRedo(false);
@@ -4963,7 +4995,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('changePresetActive', function(presetID) {
+    socket.on('changePresetActive', function (presetID) {
         if (presets.length != 0) {
             if (presets.some(e => e.id === presetID)) {
                 var preset = presets[presets.map(el => el.id).indexOf(presetID)];
@@ -4984,7 +5016,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('changePresetIntensity', function(msg) {
+    socket.on('changePresetIntensity', function (msg) {
         if (presets.length != 0) {
             if (presets.some(e => e.id === msg.presetID)) {
                 var preset = presets[presets.map(el => el.id).indexOf(msg.presetID)];
@@ -5003,7 +5035,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('toggleBlackout', function() {
+    socket.on('toggleBlackout', function () {
         if (SETTINGS.blackoutEnabled == true) {
             blackout = !blackout;
         } else {
@@ -5012,12 +5044,12 @@ io.on('connection', function(socket) {
         io.emit('blackout', blackout);
     });
 
-    socket.on('changeGrandmasterValue', function(value) {
+    socket.on('changeGrandmasterValue', function (value) {
         grandmaster = parseInt(value);
         socket.broadcast.emit('grandmaster', grandmaster);
     });
 
-    socket.on('getShowInfo', function() {
+    socket.on('getShowInfo', function () {
         var info = {
             fixtures: fixtures.length,
             cues: cues.length,
@@ -5042,7 +5074,7 @@ io.on('connection', function(socket) {
         socket.emit('showInfo', info);
     });
 
-    socket.on('editSettings', function(msg) {
+    socket.on('editSettings', function (msg) {
         if (isNaN(parseFloat(msg.defaultUpTime)) == false) {
             SETTINGS.defaultUpTime = parseFloat(msg.defaultUpTime);
         }
@@ -5081,36 +5113,36 @@ io.on('connection', function(socket) {
         if (saveSettings() == false) {
             socket.emit('message', { type: "error", content: "The Tonalite settings file could not be saved on disk." });
         } else {
-            QRCode.toDataURL(`http://${SETTINGS.url}:${SETTINGS.port}`, function(err, url) {
+            QRCode.toDataURL(`http://${SETTINGS.url}:${SETTINGS.port}`, function (err, url) {
                 socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `http://${SETTINGS.url}:${SETTINGS.port}` });
             });
         }
     });
 
-    socket.on('editShowName', function(msg) {
+    socket.on('editShowName', function (msg) {
         currentShowName = msg;
         saveShow();
     });
 
-    socket.on('updateFirmware', function() {
-        updateFirmware(function(result) {});
+    socket.on('updateFirmware', function () {
+        updateFirmware(function (result) { });
     });
 
-    socket.on('importFixturesFromUSB', function() {
-        importFixturesFromUSB(function(result) {});
+    socket.on('importFixturesFromUSB', function () {
+        importFixturesFromUSB(function (result) { });
     });
 
-    socket.on('exportErrorLogsToUSB', function() {
-        exportErrorLogsToUSB(function(result) {});
+    socket.on('exportErrorLogsToUSB', function () {
+        exportErrorLogsToUSB(function (result) { });
     });
 
-    socket.on('saveShowToUSB', function() {
-        saveShowToUSB(currentShowName, function(result) {});
+    socket.on('saveShowToUSB', function () {
+        saveShowToUSB(currentShowName, function (result) { });
     });
 
-    socket.on('shutdown', function() {
+    socket.on('shutdown', function () {
         if (SETTINGS.desktop === false && SETTINGS.device === "rpi") {
-            exec('shutdown now', function(error, stdout, stderr) { callback(stdout); });
+            exec('shutdown now', function (error, stdout, stderr) { callback(stdout); });
         }
     });
 });
