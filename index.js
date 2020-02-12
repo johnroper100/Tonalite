@@ -1108,6 +1108,7 @@ function calculatePresetChannels(preset) {
 function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, ids) {
     var outputChannels = new Array(1024).fill(0);
     var startFixture = null;
+    var startGroup = null;
     var startParameter = null;
     var endParameter = null;
     var invert = null;
@@ -1330,6 +1331,28 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
 
             }
         }
+    }
+    let g = 0;
+    const gMax = cue.groups.length;
+    for (; g < gMax; g++) {
+        startGroup = groups[groups.map(el => el.id).indexOf(cue.groups[g].id)];
+        let e = 0;
+        const e1Max = cue.groups[g].effects.length;
+        for (; e < e1Max; e++) {
+            if (startGroup.effects[e].id == cue.groups[g].effects[e].id) {
+                startGroup.effects[e].fan = cue.groups[g].effects[e].fan;
+                if (cue.groups[g].effects[e].active != startGroup.effects[e].active) {
+                    startGroup.effects[e].step = 0;
+                }
+                startGroup.effects[e].depth = cue.groups[g].effects[e].depth;
+                startGroup.effects[e].speed = cue.groups[g].effects[e].speed;
+                startGroup.effects[e].chroma = cue.groups[g].effects[e].chroma;
+                startGroup.effects[e].aspect = cue.groups[g].effects[e].aspect;
+                startGroup.effects[e].rotation = cue.groups[g].effects[e].rotation;
+                startGroup.effects[e].active = cue.groups[g].effects[e].active;
+            }
+        }
+        startGroup.hasActiveEffects = checkFixtureActiveEffects(startGroup.effects);
     }
     return outputChannels;
 };
