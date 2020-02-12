@@ -209,7 +209,6 @@ var colortables = {
 var e131 = null;
 var client = null;
 var packet = null;
-var slotsData = null;
 var channels = null;
 var artnet = null;
 var cp = null;
@@ -243,7 +242,6 @@ function openSettings() {
             client = new e131.Client(SETTINGS.sacnIP);
             packet = client.createPacket(512);
             packet.setPriority(SETTINGS.sacnPriority);
-            slotsData = packet.getSlotsData();
             channels = new Array(1024).fill(0);
             cp = cp;
 
@@ -2048,22 +2046,23 @@ function resetGroups() {
 };
 
 // This is the output dmx loop. It gathers the parameter and calculates what the output values should be.
+var u1 = null;
+var u2 = null;
+var c = 0;
+
 function dmxLoop() {
     // Reset DMX values
-    let c = 0;
-    const cMax = channels.length;
-    for (; c < cMax; c++) {
+    c = 0;
+    for (; c < 1024; c++) {
         channels[c] = 0;
     }
     calculateChannels();
     calculateStack();
-    var u1 = channels.slice(0, 512);
-    var u2 = channels.slice(512, 1024);
+    u1 = channels.slice(0, 512);
+    u2 = channels.slice(512, 1024);
     packet.setUniverse(0x01);
-    slotsData = u1;
     client.send(packet);
     packet.setUniverse(0x02);
-    slotsData = u2;
     client.send(packet);
     artnet.set(0, 1, u1);
     artnet.set(1, 1, u2);
