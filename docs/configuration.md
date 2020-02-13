@@ -17,15 +17,17 @@ Default: `linux`
 
 Reboot required after change.
 
-## url
+## serverIP
 
 The IP address of the webserver that runs the control page. This is also used as the ArtNet and sACN output IPs.
+
+When this is set to `localhost`, the server will automatically use the local ip of the computer it is running on.
 
 Default: `localhost`
 
 Reboot required after change.
 
-## port
+## serverPort
 
 The IP port of the webserver that runs the control page.
 
