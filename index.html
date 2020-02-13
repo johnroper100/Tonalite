@@ -103,10 +103,11 @@
             <div id="fixtures" class="tabcontent" v-if="currentView == 'fixtures'">
                 <div class="container">
                     <div class="row topBtns sticky-top noselect">
-                        <div class="col-4">
+                        <div
+                            :class="{'col-4': settings.interfaceMode == 'normal', 'col-6': settings.interfaceMode != 'normal'}">
                             <button class="btn btn-success btn-block" @click="getFixtureProfiles">Add Fixture</button>
                         </div>
-                        <div class="col-4">
+                        <div class="col-4" v-if="settings.interfaceMode == 'normal'">
                             <div>
                                 <div>
                                     <div><button :disabled="fixtures.length == 0" class="btn btn-warning btn-block"
@@ -114,7 +115,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div
+                            :class="{'col-4': settings.interfaceMode == 'normal', 'col-6': settings.interfaceMode != 'normal'}">
                             <div>
                                 <div>
                                     <div><button :disabled="fixtures.length == 0" class="btn btn-danger btn-block"
@@ -1761,16 +1763,6 @@
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
-                                            <input @change="editSettings" v-model="settings.automark" type="checkbox"
-                                                class="custom-control-input" id="useAutomark">
-                                            <label class="custom-control-label dark" for="useAutomark">Use
-                                                Automark</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
                                             <input @change="editSettings" v-model="settings.displayEffectsRealtime"
                                                 type="checkbox" class="custom-control-input"
                                                 id="displayEffectsRealtime">
@@ -1780,15 +1772,23 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
+                                <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
                                             <input @change="editSettings" v-model="settings.blackoutEnabled"
                                                 type="checkbox" class="custom-control-input" id="blackoutEnabled">
                                             <label class="custom-control-label dark" for="blackoutEnabled">Blackout
                                                 Enabled</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12" v-if="settings.interfaceMode == 'normal'">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input @change="editSettings" v-model="settings.automark" type="checkbox"
+                                                class="custom-control-input" id="useAutomark">
+                                            <label class="custom-control-label dark" for="useAutomark">Use
+                                                Automark</label>
                                         </div>
                                     </div>
                                 </div>
