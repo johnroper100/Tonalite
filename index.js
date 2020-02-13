@@ -31,6 +31,7 @@ var SETTINGS = {
     udmx: false,
     automark: true,
     displayEffectsRealtime: true,
+    openBrowserOnStart: true,
     blackoutEnabled: true,
     interfaceMode: 'normal',
     artnetIP: null, // ArtNet output IP
@@ -255,9 +256,11 @@ function openSettings() {
                 if (SETTINGS.desktop === false) {
                     msg = "Embeded";
                 } else {
-                    (async () => {
-                        await open(`https://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
-                    })();
+                    if (SETTINGS.openBrowserOnStart == true) {
+                        (async () => {
+                            await open(`https://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
+                        })();
+                    }
                 }
                 console.log(`Tonalite ${msg} v${VERSION} - DMX Lighting Control System`);
                 console.log(`The web UI can be found at https://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
