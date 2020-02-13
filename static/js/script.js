@@ -958,7 +958,6 @@ Mousetrap.bind('r', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
         e.returnValue = false;
     }
     app.recordCue();
@@ -967,7 +966,6 @@ Mousetrap.bind('end', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
         e.returnValue = false;
     }
     app.stopCue();
@@ -976,7 +974,6 @@ Mousetrap.bind('home', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
         e.returnValue = false;
     }
     app.gotoSpecificCue(0);
@@ -985,7 +982,6 @@ Mousetrap.bind('pageup', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
         e.returnValue = false;
     }
     app.nextCue();
@@ -994,7 +990,7 @@ Mousetrap.bind('pagedown', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
+
         e.returnValue = false;
     }
     app.lastCue();
@@ -1003,7 +999,6 @@ Mousetrap.bind('ctrl+alt+n', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
         e.returnValue = false;
     }
     app.resetShow();
@@ -1012,7 +1007,6 @@ Mousetrap.bind('shift+a', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
         e.returnValue = false;
     }
     app.currentView = 'fixtures';
@@ -1022,7 +1016,6 @@ Mousetrap.bind('ctrl+s', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
         e.returnValue = false;
     }
     window.location = "/showFile";
@@ -1031,7 +1024,6 @@ Mousetrap.bind('right', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
         e.returnValue = false;
     }
     if (app.currentView == 'fixtures' || app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings') {
@@ -1055,7 +1047,6 @@ Mousetrap.bind('left', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
         e.returnValue = false;
     }
     if (app.currentView == 'fixtures' || app.currentView == 'fixtureParameters' || app.currentView == 'fixtureSettings') {
@@ -1075,7 +1066,6 @@ Mousetrap.bind('ctrl+z', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
         e.returnValue = false;
     }
     app.undo();
@@ -1084,7 +1074,6 @@ Mousetrap.bind('ctrl+y', function (e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {
-        // internet explorer
         e.returnValue = false;
     }
     app.redo();
