@@ -28,10 +28,10 @@ var SETTINGS = {
     defaultDownTime: 3,
     defaultPresetMode: 'ltp',
     desktop: true, // desktop vs embeded
+    openBrowserOnStart: true,
     udmx: false,
     automark: true,
     displayEffectsRealtime: true,
-    openBrowserOnStart: true,
     blackoutEnabled: true,
     interfaceMode: 'normal',
     artnetIP: null, // ArtNet output IP

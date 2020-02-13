@@ -71,6 +71,17 @@ Default: `true`
   
 Reboot required after change.
 
+## openBrowserOnStart
+
+Open a browser to the web UI automatically on start. This only runs when `device` is set to `desktop`.
+
+Options:
+
+- `true` - The browser will be opened automatically on start
+- `false` - The browser will not be opened
+
+Default: `true`
+
 ## udmx
 
 Whether or not to output to uDMX.
