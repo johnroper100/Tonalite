@@ -1,4 +1,4 @@
-var socket = io('http://' + document.domain + ':' + location.port);
+var socket = io('https://' + document.domain + ':' + location.port);
 var store;
 
 Vue.use(VueTouchKeyboard);

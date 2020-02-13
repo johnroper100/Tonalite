@@ -1,22 +1,24 @@
+const fs = require('fs-extra');
+const key = fs.readFileSync(__dirname + '/localhost.key');
+const cert = fs.readFileSync(__dirname + '/localhost.crt');
 const app = require('express')();
 const express = require('express');
 const favicon = require('serve-favicon');
 const compression = require('compression');
-const http = require('http').Server(app);
+const http = require('https').Server({ key: key, cert: cert }, app);
 const io = require('socket.io')(http);
-const fs = require('fs-extra');
 const moment = require('moment');
 const fileUpload = require('express-fileupload');
 const { spawn } = require('child_process');
 const exec = require('child_process').exec;
 const drivelist = require('drivelist');
 const unzipper = require('unzipper');
-require('sanic.js').changeMyWorld();
 const cppaddon = require('./build/Release/cppaddon.node');
 const QRCode = require('qrcode');
 const rgbHex = require('rgb-hex');
 const ip = require('ip');
 const open = require('open');
+require('sanic.js').changeMyWorld();
 
 var SETTINGS = {
     device: "linux", // linux, rpi, win, macos
@@ -254,11 +256,11 @@ function openSettings() {
                     msg = "Embeded";
                 } else {
                     (async () => {
-                        await open(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
+                        await open(`https://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
                     })();
                 }
                 console.log(`Tonalite ${msg} v${VERSION} - DMX Lighting Control System`);
-                console.log(`The web UI can be found at http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
+                console.log(`The web UI can be found at https://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
             });
 
             if (SETTINGS.udmx == true) {
@@ -2289,8 +2291,8 @@ io.on('connection', function (socket) {
         socket.emit('cueProgress', 0);
     };
 
-    QRCode.toDataURL(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
-        socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
+    QRCode.toDataURL(`https://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
+        socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `https://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
     });
 
 
@@ -5119,8 +5121,8 @@ io.on('connection', function (socket) {
         if (saveSettings() == false) {
             socket.emit('message', { type: "error", content: "The Tonalite settings file could not be saved on disk." });
         } else {
-            QRCode.toDataURL(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
-                socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
+            QRCode.toDataURL(`https://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
+                socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `https://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
             });
         }
     });
