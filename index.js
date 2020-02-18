@@ -1812,6 +1812,10 @@ function calculateStack() {
                     const iMax = groups[g].ids.length;
                     for (; i < iMax; i++) {
                         fixture = fixtures[fixtures.map(el => el.id).indexOf(groups[g].ids[i])];
+                        let stepitem = groups[g].effects[e].step + ((1 * groups[g].effects[e].fan)*i);
+                        if (stepitem >= groups[g].effects[e].steps.length) {
+                            stepitem = stepitem - groups[g].effects[e].steps.length;
+                        }
                         let p = 0;
                         const pMax = fixture.parameters.length;
                         for (; p < pMax; p++) {
@@ -1820,13 +1824,13 @@ function calculateStack() {
                                 paramWorked = false;
                                 if (effectChanIndex > -1 && (groups[g].effects[e].type != "Color" || (groups[g].effects[e].type == "Color" && colortables.RGB.indexOf(fixture.colortable) >= 0))) {
                                     paramWorked = true;
-                                    effectValue = groups[g].effects[e].steps[groups[g].effects[e].step][effectChanIndex];
+                                    effectValue = groups[g].effects[e].steps[stepitem][effectChanIndex];
                                 } else if (groups[g].effects[e].type == "Color" && colortables.RGBW.indexOf(fixture.colortable) >= 0) {
                                     // RGBW
                                     paramWorked = true;
-                                    red = groups[g].effects[e].steps[groups[g].effects[e].step][0];
-                                    green = groups[g].effects[e].steps[groups[g].effects[e].step][1];
-                                    blue = groups[g].effects[e].steps[groups[g].effects[e].step][2];
+                                    red = groups[g].effects[e].steps[stepitem][0];
+                                    green = groups[g].effects[e].steps[stepitem][1];
+                                    blue = groups[g].effects[e].steps[stepitem][2];
                                     white = Math.min(red, green, blue);
                                     if (fixture.parameters[p].name === "Red") {
                                         effectValue = red - white;
@@ -1842,9 +1846,9 @@ function calculateStack() {
                                 } else if (groups[g].effects[e].type == "Color" && colortables.RGBA.indexOf(fixture.colortable) >= 0) {
                                     // RGBA
                                     paramWorked = true;
-                                    red = groups[g].effects[e].steps[groups[g].effects[e].step][0];
-                                    green = groups[g].effects[e].steps[groups[g].effects[e].step][1];
-                                    blue = groups[g].effects[e].steps[groups[g].effects[e].step][2];
+                                    red = groups[g].effects[e].steps[stepitem][0];
+                                    green = groups[g].effects[e].steps[stepitem][1];
+                                    blue = groups[g].effects[e].steps[stepitem][2];
                                     amber = cppaddon.getAFromRGB(red, green, blue);
                                     if (fixture.parameters[p].name === "Red") {
                                         effectValue = red - amber;
@@ -1860,9 +1864,9 @@ function calculateStack() {
                                 } else if (groups[g].effects[e].type == "Color" && colortables.RGBAW.indexOf(fixture.colortable) >= 0) {
                                     // RGBAW
                                     paramWorked = true;
-                                    red = groups[g].effects[e].steps[groups[g].effects[e].step][0];
-                                    green = groups[g].effects[e].steps[groups[g].effects[e].step][1];
-                                    blue = groups[g].effects[e].steps[groups[g].effects[e].step][2];
+                                    red = groups[g].effects[e].steps[stepitem][0];
+                                    green = groups[g].effects[e].steps[stepitem][1];
+                                    blue = groups[g].effects[e].steps[stepitem][2];
                                     white = Math.min(red, green, blue);
                                     amber = cppaddon.getAFromRGB(red, green, blue);
                                     if (fixture.parameters[p].name === "Red") {
@@ -1881,9 +1885,9 @@ function calculateStack() {
                                 } else if (groups[g].effects[e].type == "Color" && colortables.CMY.indexOf(groups[g].colortable) >= 0) {
                                     // CMY
                                     paramWorked = true;
-                                    red = groups[g].effects[e].steps[groups[g].effects[e].step][0];
-                                    green = groups[g].effects[e].steps[groups[g].effects[e].step][1];
-                                    blue = groups[g].effects[e].steps[groups[g].effects[e].step][2];
+                                    red = groups[g].effects[e].steps[stepitem][0];
+                                    green = groups[g].effects[e].steps[stepitem][1];
+                                    blue = groups[g].effects[e].steps[stepitem][2];
                                     if (fixture.parameters[p].name === "Cyan") {
                                         effectValue = 255 - red;
                                     } else if (fixture.parameters[p].name === "Magenta") {
@@ -1896,9 +1900,9 @@ function calculateStack() {
                                 } else if (groups[g].effects[e].type == "Color" && (colortables.H.indexOf(fixture.colortable) >= 0 || colortables.HHF.indexOf(fixture.colortable) >= 0)) {
                                     // HSI
                                     paramWorked = true;
-                                    red = groups[g].effects[e].steps[groups[g].effects[e].step][0];
-                                    green = groups[g].effects[e].steps[groups[g].effects[e].step][1];
-                                    blue = groups[g].effects[e].steps[groups[g].effects[e].step][2];
+                                    red = groups[g].effects[e].steps[stepitem][0];
+                                    green = groups[g].effects[e].steps[stepitem][1];
+                                    blue = groups[g].effects[e].steps[stepitem][2];
                                     hsi = rgbToHsv(red, green, blue);
 
                                     if (fixture.parameters[p].name === "Hue") {
