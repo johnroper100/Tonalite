@@ -1431,14 +1431,14 @@ socket.on('groupEffects', function (msg) {
 });
 
 socket.on('fixtureEffectSettings', function (msg) {
-    if (msg.fixtureID == app.currentFixture.id) {
+    if (msg.fixtureID == app.currentFixture.id && msg.target == true) {
         app.currentEffect = msg.effect;
         app.currentView = "fixtureEffectSettings";
     }
 });
 
 socket.on('groupEffectSettings', function (msg) {
-    if (msg.groupID == app.currentGroup.id) {
+    if (msg.groupID == app.currentGroup.id && msg.target == true) {
         app.currentEffect = msg.effect;
         app.currentView = "groupEffectSettings";
     }

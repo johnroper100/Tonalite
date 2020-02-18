@@ -3246,7 +3246,7 @@ io.on('connection', function (socket) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
                 if (fixture.effects.some(e => e.id === msg.effectID)) {
-                    socket.emit('fixtureEffectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
+                    socket.emit('fixtureEffectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)], target: true });
                 } else {
                     socket.emit('message', { type: "error", content: "This effect does not exist!" });
                 }
@@ -3264,7 +3264,7 @@ io.on('connection', function (socket) {
                 if (groups.some(e => e.id === msg.groupID)) {
                     var group = groups[groups.map(el => el.id).indexOf(msg.groupID)];
                     if (group.effects.some(e => e.id === msg.effectID)) {
-                        socket.emit('groupEffectSettings', { groupID: group.id, effect: group.effects[group.effects.map(el => el.id).indexOf(msg.effectID)] });
+                        socket.emit('groupEffectSettings', { groupID: group.id, effect: group.effects[group.effects.map(el => el.id).indexOf(msg.effectID)], target: true });
                     } else {
                         socket.emit('message', { type: "error", content: "This effect does not exist!" });
                     }
@@ -3292,7 +3292,7 @@ io.on('connection', function (socket) {
                     if (isNaN(parseInt(msg.speed)) == false) {
                         effect.speed = parseInt(msg.speed);
                     }
-                    socket.broadcast.emit('fixtureEffectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)] });
+                    socket.broadcast.emit('fixtureEffectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)], target: false });
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                     saveShow();
                 } else {
@@ -3323,7 +3323,7 @@ io.on('connection', function (socket) {
                         if (isNaN(parseInt(msg.fan)) == false) {
                             effect.fan = parseInt(msg.fan);
                         }
-                        socket.broadcast.emit('groupEffectSettings', { groupID: group.id, effect: group.effects[group.effects.map(el => el.id).indexOf(msg.effectID)] });
+                        socket.broadcast.emit('groupEffectSettings', { groupID: group.id, effect: group.effects[group.effects.map(el => el.id).indexOf(msg.effectID)], target: false });
                         io.emit('groups', { groups: cleanGroups(), target: true });
                         saveShow();
                     } else {
