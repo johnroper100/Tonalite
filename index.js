@@ -1735,7 +1735,7 @@ function calculateStack() {
                                 if (fixtures[f].effects[e].resolution == 8) {
                                     effectValue = cppaddon.mapRange(effectValue, 0, 255, fixtures[f].parameters[p].min, fixtures[f].parameters[p].max);
                                 } else {
-                                    effectValue = effectValue + 32766;
+                                    effectValue = effectValue + 32769;
                                 }
                                 effectValue = (effectValue * fixtures[f].effects[e].depth) + ((fixtures[f].parameters[p].value >> 8) * (1 - fixtures[f].effects[e].depth));
                                 if (SETTINGS.displayEffectsRealtime === true) {
@@ -1915,7 +1915,7 @@ function calculateStack() {
                                     if (groups[g].effects[e].resolution == 8) {
                                         effectValue = cppaddon.mapRange(effectValue, 0, 255, fixture.parameters[p].min, fixture.parameters[p].max);
                                     } else {
-                                        effectValue = effectValue + 32766;
+                                        effectValue = effectValue + 32769;
                                     }
                                     effectValue = (effectValue * groups[g].effects[e].depth) + ((fixture.parameters[p].value >> 8) * (1 - groups[g].effects[e].depth));
                                     if (SETTINGS.displayEffectsRealtime === true) {
