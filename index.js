@@ -6,7 +6,7 @@ const express = require('express');
 const favicon = require('serve-favicon');
 const compression = require('compression');
 const https = require('https').Server({ key: key, cert: cert }, app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(https);
 const moment = require('moment');
 const fileUpload = require('express-fileupload');
 const { spawn } = require('child_process');
@@ -22,7 +22,7 @@ require('sanic.js').changeMyWorld();
 
 var SETTINGS = {
     device: "linux", // linux, rpi, win, macos
-    serverIP: "localhost", // http web UI location
+    serverIP: "localhost", // https web UI location
     serverPort: 3000,
     defaultUpTime: 3,
     defaultDownTime: 3,
