@@ -422,7 +422,7 @@ var app = new Vue({
         },
         editGroupEffectSettings: function () {
             if (app.currentEffect.name != "" && isNaN(parseFloat(app.currentEffect.depth)) == false && isNaN(parseFloat(app.currentEffect.speed)) == false) {
-                socket.emit('editGroupEffectSettings', { groupID: app.currentGroup.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed });
+                socket.emit('editGroupEffectSettings', { groupID: app.currentGroup.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed, fan: app.currentEffect.fan });
             }
         },
         editCueSettings: function () {

@@ -1812,7 +1812,7 @@ function calculateStack() {
                     const iMax = groups[g].ids.length;
                     for (; i < iMax; i++) {
                         fixture = fixtures[fixtures.map(el => el.id).indexOf(groups[g].ids[i])];
-                        let stepitem = groups[g].effects[e].step + ((1 * groups[g].effects[e].fan)*i);
+                        let stepitem = groups[g].effects[e].step + ((1 * groups[g].effects[e].fan) * i);
                         if (stepitem >= groups[g].effects[e].steps.length) {
                             stepitem = stepitem - groups[g].effects[e].steps.length;
                         }
@@ -3319,6 +3319,9 @@ io.on('connection', function (socket) {
                         }
                         if (isNaN(parseInt(msg.speed)) == false) {
                             effect.speed = parseInt(msg.speed);
+                        }
+                        if (isNaN(parseInt(msg.fan)) == false) {
+                            effect.fan = parseInt(msg.fan);
                         }
                         socket.broadcast.emit('groupEffectSettings', { groupID: group.id, effect: group.effects[group.effects.map(el => el.id).indexOf(msg.effectID)] });
                         io.emit('groups', { groups: cleanGroups(), target: true });
