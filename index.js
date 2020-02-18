@@ -18,6 +18,7 @@ const QRCode = require('qrcode');
 const rgbHex = require('rgb-hex');
 const ip = require('ip');
 const open = require('open');
+const os = require('os');
 require('sanic.js').changeMyWorld();
 
 var SETTINGS = {
@@ -267,14 +268,14 @@ function openSettings() {
             });
 
             if (SETTINGS.udmx == true) {
-                if (SETTINGS.device === "linux") {
-                    cp = spawn(process.cwd() + '/uDMXArtnet/uDMXArtnet_minimal_64');
-                } else if (SETTINGS.device === "rpi") {
-                    cp = spawn(process.cwd() + '/uDMXArtnet/uDMXArtnet_PI_minimal_32', ['-i', '192.168.4.1']);
-                } else if (SETTINGS.device === "win") {
-                    cp = spawn(process.cwd() + '/uDMXArtnet/uDMXArtnet_Minimal.exe');
+                if (os.platform() === "linux" && os.arch() === "x64") {
+                    cp = spawn(process.cwd() + '/uDMXArtnet/uDMXArtnet_minimal_64', ['-i', SETTINGS.artnetIP]);
+                } else if (os.platform() === "linux" && os.arch() === "arm") {
+                    cp = spawn(process.cwd() + '/uDMXArtnet/uDMXArtnet_PI_minimal_32', ['-i', SETTINGS.artnetIP]);
+                } else if (os.platform() === "win32") {
+                    cp = spawn(process.cwd() + '/uDMXArtnet/uDMXArtnet_Minimal.exe', ['-i', SETTINGS.artnetIP]);
                 } else {
-                    console.log("Selected platform not supported by uDMX, falling back to ArtNet.");
+                    console.log("Current platform not supported by uDMX, falling back to ArtNet/sACN.");
                 }
             }
 
