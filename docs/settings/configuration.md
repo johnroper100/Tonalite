@@ -2,21 +2,6 @@
 
 You can find the system configuration in the `settings.json` file.
 
-## device
-
-The platform that the user is running on.
-
-Options:
-
-- `linux` - Linux 64bit
-- `win` - Windows 64bit
-- `macos` - macOS 64bit
-- `rpi` - Raspberry Pi
-
-Default: `linux`
-
-Reboot required after change.
-
 ## serverIP
 
 The IP address of the webserver that runs the control page. This is also used as the ArtNet and sACN output IPs.

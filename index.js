@@ -22,7 +22,6 @@ const os = require('os');
 require('sanic.js').changeMyWorld();
 
 var SETTINGS = {
-    device: "linux", // linux, rpi, win, macos
     serverIP: "localhost", // https web UI location
     serverPort: 3000,
     defaultUpTime: 3,
@@ -5189,7 +5188,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('shutdown', function () {
-        if (SETTINGS.desktop === false && SETTINGS.device === "rpi") {
+        if (SETTINGS.desktop === false && os.platform() != "win32") {
             exec('shutdown now', function (error, stdout, stderr) { callback(stdout); });
         }
     });
