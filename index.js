@@ -496,10 +496,7 @@ function moveArrayItem(arr, old_index, new_index) {
         new_index += arr.length;
     }
     if (new_index >= arr.length) {
-        var k = new_index - arr.length;
-        while ((k--) + 1) {
-            arr.push(undefined);
-        }
+        new_index = new_index - arr.length;
     }
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
     return arr;
@@ -4715,6 +4712,38 @@ io.on('connection', function (socket) {
                 }
                 io.emit('groups', { groups: cleanGroups(), target: true });
                 socket.emit('message', { type: "info", content: "Fixture removed from group!" });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This group doesn't exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No groups exist!" });
+        }
+    });
+
+    socket.on('moveGroupFixtureUp', function (msg) {
+        if (groups.length != 0) {
+            if (groups.some(e => e.id === msg.group)) {
+                saveUndoRedo(false);
+                var group = groups[groups.map(el => el.id).indexOf(msg.group)];
+                moveArrayItem(group.ids, group.ids.map(el => el).indexOf(msg.fixture), group.ids.map(el => el).indexOf(msg.fixture) - 1);
+                io.emit('groups', { groups: cleanGroups(), target: true });
+                saveShow();
+            } else {
+                socket.emit('message', { type: "error", content: "This group doesn't exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No groups exist!" });
+        }
+    });
+
+    socket.on('moveGroupFixtureDown', function (msg) {
+        if (groups.length != 0) {
+            if (groups.some(e => e.id === msg.group)) {
+                saveUndoRedo(false);
+                var group = groups[groups.map(el => el.id).indexOf(msg.group)];
+                moveArrayItem(group.ids, group.ids.map(el => el).indexOf(msg.fixture), group.ids.map(el => el).indexOf(msg.fixture) + 1);
+                io.emit('groups', { groups: cleanGroups(), target: true });
                 saveShow();
             } else {
                 socket.emit('message', { type: "error", content: "This group doesn't exist!" });

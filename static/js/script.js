@@ -704,6 +704,12 @@ var app = new Vue({
                 }
             });
         },
+        moveGroupFixtureUp: function (fixtureID) {
+            socket.emit('moveGroupFixtureUp', { group: app.currentGroup.id, fixture: fixtureID });
+        },
+        moveGroupFixtureDown: function (fixtureID) {
+            socket.emit('moveGroupFixtureDown', { group: app.currentGroup.id, fixture: fixtureID });
+        },
         removePresetFixture: function (fixtureID) {
             bootbox.confirm("Are you sure you want remove this fixture from the preset?", function (result) {
                 if (result === true) {
