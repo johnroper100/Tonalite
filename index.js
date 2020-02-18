@@ -5,7 +5,7 @@ const app = require('express')();
 const express = require('express');
 const favicon = require('serve-favicon');
 const compression = require('compression');
-const http = require('https').Server({ key: key, cert: cert }, app);
+const https = require('https').Server({ key: key, cert: cert }, app);
 const io = require('socket.io')(http);
 const moment = require('moment');
 const fileUpload = require('express-fileupload');
@@ -251,7 +251,7 @@ function openSettings() {
 
             artnet = require('artnet')({ iface: SETTINGS.artnetIP, host: SETTINGS.artnetHost, sendAll: true });
 
-            http.listen(SETTINGS.serverPort, SETTINGS.serverIP, function () {
+            https.listen(SETTINGS.serverPort, SETTINGS.serverIP, function () {
                 var msg = "Desktop";
                 if (SETTINGS.desktop === false) {
                     msg = "Embeded";
