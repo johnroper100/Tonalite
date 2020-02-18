@@ -31,6 +31,14 @@ This is a list of each fixture that belongs to a group.
 
 Use this button to remove the fixture from the group. If the deleted fixture was the last in the group, the group will be deleted because it is now empty.
 
+#### Move Up
+
+TODO
+
+#### Move Down
+
+TODO
+
 #### Add Fixtures
 
 Add fixtures to be controlled by this group.
