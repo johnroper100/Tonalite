@@ -580,6 +580,7 @@ function cleanFixtures() {
         delete newFixtures[f].invertPan;
         delete newFixtures[f].invertTilt;
         delete newFixtures[f].swapPanTilt;
+        delete newFixtures[f].displayIntensityAsSwitch;
         let p = 0;
         const pMax = newFixtures[f].parameters.length;
         for (; p < pMax; p++) {
@@ -634,6 +635,7 @@ function cleanFixtureForCue(fixture) {
     delete newFixture.modeName;
     delete newFixture.dmxUniverse;
     delete newFixture.parameterTypes;
+    delete newFixture.displayIntensityAsSwitch;
     newFixture.effects = cleanEffectsForCue(newFixture.effects);
     let p = 0;
     const pMax = newFixture.parameters.length;
@@ -669,6 +671,7 @@ function cleanFixtureForPreset(fixture) {
     delete newFixture.hasIntensity;
     delete newFixture.maxOffset;
     delete newFixture.modeName;
+    delete newFixture.displayIntensityAsSwitch;
     newFixture.effects = cleanEffectsForCue(newFixture.effects);
     let p = 0;
     const pMax = newFixture.parameters.length;
@@ -3024,6 +3027,7 @@ io.on('connection', function (socket) {
                     fixture.invertPan = false;
                     fixture.invertTilt = false;
                     fixture.swapPanTilt = false;
+                    fixture.displayIntensityAsSwitch = false;
 
                     let c = 0;
                     const cMax = fixture.parameters.length;
