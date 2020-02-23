@@ -25,7 +25,7 @@ The full name of the group. This can be any length needed to be descriptive thou
 
 This is a list of each fixture that belongs to a group.
 
-![Group fixture](../images/sequence_fixture.png)
+![Group fixture](../images/group_fixture.png)
 
 #### Delete
 
@@ -33,11 +33,11 @@ Use this button to remove the fixture from the group. If the deleted fixture was
 
 #### Move Up
 
-TODO
+Move this fixture up in the group's fixtures list.
 
 #### Move Down
 
-TODO
+Move this fixture down in the group's fixtures list.
 
 #### Add Fixtures
 
