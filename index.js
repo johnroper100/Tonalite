@@ -3534,6 +3534,7 @@ io.on('connection', function (socket) {
                 fixture.invertPan = msg.invertPan;
                 fixture.invertTilt = msg.invertTilt;
                 fixture.swapPanTilt = msg.swapPanTilt;
+                fixture.displayIntensityAsSwitch = msg.displayIntensityAsSwitch;
                 if (isNaN(parseInt(msg.dmxUniverse)) == false) {
                     fixture.dmxUniverse = parseInt(msg.dmxUniverse);
                 }

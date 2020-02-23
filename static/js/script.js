@@ -412,7 +412,7 @@ var app = new Vue({
         },
         editFixtureSettings: function () {
             if (app.currentFixture.name != "" && app.currentFixture.shortName != "" && isNaN(parseFloat(app.currentFixture.startDMXAddress)) == false && isNaN(parseFloat(app.currentFixture.dmxUniverse)) == false) {
-                socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse, invertPan: app.currentFixture.invertPan, invertTilt: app.currentFixture.invertTilt, swapPanTilt: app.currentFixture.swapPanTilt });
+                socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse, invertPan: app.currentFixture.invertPan, invertTilt: app.currentFixture.invertTilt, swapPanTilt: app.currentFixture.swapPanTilt, displayIntensityAsSwitch: app.currentFixture.displayIntensityAsSwitch });
             }
         },
         editFixtureEffectSettings: function () {
