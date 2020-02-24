@@ -493,8 +493,20 @@ async function saveShowToUSB(showName, callback) {
     }
 };
 
+function checkForErrors() {
+    return fs.promises.readdir("errors").then(files => {
+        if (files.length === 0) {
+            io.emit('errorsExist', false);
+        } else {
+            io.emit('errorsExist', true);
+        }
+        return files.length === 0;
+    });
+};
+
 function logError(msg) {
     fs.writeFileSync('errors/error-' + moment().format('YYYY-MM-DDTHH-mm-ss') + '.error', msg, (err) => {
+        checkForErrors();
         if (err) {
             console.log("wierd: " + err);
             console.log("error: " + msg);
@@ -2316,12 +2328,13 @@ io.on('connection', function (socket) {
         socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, disablePresets: disablePresets, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
     });
 
-
     if (currentCue === "") {
         socket.emit('cueActionBtn', false);
     } else {
         socket.emit('cueActionBtn', true);
     }
+
+    checkForErrors();
 
     socket.on('undo', function () {
         if (isEmpty(undo) === false) {

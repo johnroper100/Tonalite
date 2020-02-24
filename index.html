@@ -78,7 +78,8 @@
                                 Tonalite</a>
                             <a class="dropdown-item" @click="getShowInfo">Show Info</a>
                             <a class="dropdown-item" href="/docs">Documentation</a>
-                            <a class="dropdown-item" @click="exportErrorLogsToUSB">Export Logs To USB</a>
+                            <a class="dropdown-item" @click="exportErrorLogsToUSB" v-if="errorsExist">Export Errors To
+                                USB</a>
                             <div v-if="ifMobile() || desktop == true" class="dropdown-divider"></div>
                             <a v-if="ifMobile() || desktop == true" class="dropdown-item"
                                 href="https://tonalite.org">Website</a>
@@ -285,7 +286,8 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12" v-for="parameter in currentFixture.parameters"
-                                v-if="getParameterTabType(parameter)" :key="parameter.id" :class="{'mb-3': parameter.name == 'Intensity' && currentFixture.displayIntensityAsSwitch == true}">
+                                v-if="getParameterTabType(parameter)" :key="parameter.id"
+                                :class="{'mb-3': parameter.name == 'Intensity' && currentFixture.displayIntensityAsSwitch == true}">
                                 <button class="btn btn-info" @click="changeFixtureParameterLock(parameter)">
                                     <div v-if="parameter.locked == true"><i class="far fa-lock-alt fa-sm"></i></div>
                                     <div>
@@ -321,7 +323,9 @@
                                         <i class="far fa-step-forward fa-sm"></i>
                                     </button>
                                 </div>
-                                <input v-if="parameter.name != 'Intensity' || (parameter.name == 'Intensity' && currentFixture.displayIntensityAsSwitch == false)" :disabled="parameter.locked == true" type="range" class="custom-range"
+                                <input
+                                    v-if="parameter.name != 'Intensity' || (parameter.name == 'Intensity' && currentFixture.displayIntensityAsSwitch == false)"
+                                    :disabled="parameter.locked == true" type="range" class="custom-range"
                                     v-bind:id="parameter.id" v-bind:max="parameter.max" v-bind:min="parameter.min"
                                     v-model="parameter.value" @input="changeFixtureParameterValue(parameter)" step="1">
                                 <div v-if="'ranges' in parameter && parameter.ranges.length > 0">
@@ -1813,7 +1817,8 @@
                                         <div class="custom-control custom-checkbox">
                                             <input @change="editSettings" v-model="disablePresets" type="checkbox"
                                                 class="custom-control-input" id="disablePresets">
-                                            <label class="custom-control-label dark" for="disablePresets">Disable Presets</label>
+                                            <label class="custom-control-label dark" for="disablePresets">Disable
+                                                Presets</label>
                                         </div>
                                     </div>
                                 </div>

@@ -59,7 +59,8 @@ var app = new Vue({
             preventClickEvent: true
         },
         cueProgress: 0,
-        disablePresets: false
+        disablePresets: false,
+        errorsExist: false
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -990,6 +991,8 @@ socket.on('connect', function () {
     app.fixtureProfilesModel = "";
     app.keyboardVisible = false;
     app.cueProgress = 0;
+    app.disablePresets = false;
+    app.errorsExist = false;
     $('#openFixtureDefinitionModal').modal("hide");
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
@@ -1023,6 +1026,10 @@ socket.on('connect_error', function () {
     $('#colorWheelModal').modal("hide");
     $('#joystickModal').modal("hide");
     $('#serverDisconnectedModal').modal('show');
+});
+
+socket.on('errorsExist', function (msg) {
+    app.errorsExist = msg;
 });
 
 socket.on('palettes', function (msg) {
