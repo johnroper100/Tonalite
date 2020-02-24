@@ -1,6 +1,4 @@
 const fs = require('fs-extra');
-const key = fs.readFileSync(__dirname + '/localhost.key');
-const cert = fs.readFileSync(__dirname + '/localhost.crt');
 const app = require('express')();
 const express = require('express');
 const favicon = require('serve-favicon');
@@ -212,6 +210,7 @@ var colortables = {
 // Set up dmx variables for integrations used later on
 var e131 = null;
 var client = null;
+var server = null;
 var packet = null;
 var channels = null;
 var artnet = null;
@@ -248,6 +247,13 @@ function openSettings() {
             packet.setPriority(SETTINGS.sacnPriority);
             channels = new Array(1024).fill(0);
             cp = cp;
+
+            server = new e131.Server([0x0001, 0x0002]);
+            server.on('packet', function (packet) {
+                if (packet.getPriority() > SETTINGS.sacnPriority) {
+                    // TODO
+                }
+            });
 
             artnet = require('artnet')({ iface: SETTINGS.artnetIP, host: SETTINGS.artnetHost, sendAll: true });
 
