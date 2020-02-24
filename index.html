@@ -1726,10 +1726,6 @@
                                 <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'outputs'}"
                                     @click="settingsModalTab = 'outputs'">Outputs</a>
                             </li>
-                            <li class="nav-item" v-if="midiEnabled == true">
-                                <a class="nav-link" href="#" :class="{'active': settingsModalTab == 'midi'}"
-                                    @click="settingsModalTab = 'midi'">MIDI</a>
-                            </li>
                         </ul>
                         <div v-if="settingsModalTab == 'defaults'">
                             <div class="row">
@@ -1864,189 +1860,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="settingsModalTab == 'midi'">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p class="text-danger">These settings apply to each individual controller instance.
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-12"
-                                            :class="{ 'col-md-6': midiInputDevice == null && selectedMIDIInput != ''}">
-                                            <div class="form-group">
-                                                <label class="dark" for="midiInputDevice">MIDI Input Device:</label>
-                                                <select id="midiInputDevice" class="form-control"
-                                                    v-model="selectedMIDIInput" @change="setMIDIInput">
-                                                    <option v-for="inputdevice in midiInputDevices"
-                                                        :value="inputdevice.name">
-                                                        {{inputdevice.name}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-6" v-if="midiInputDevice == null && selectedMIDIInput != ''">
-                                            <label class="dark" for="selectInputBtn">Select Input:</label>
-                                            <button class="btn btn-warning" @click="setMIDIInput"
-                                                id="selectInputBtn">Use This
-                                                Device</button>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-success" @click="showMIDIControlInput = true"
-                                        v-if="showMIDIControlInput == false">Map MIDI
-                                        Control</button>
-                                    <button class="btn btn-success" @click="showMIDIControlInput = false"
-                                        v-if="showMIDIControlInput == true">Hide</button>
-                                    <button class="btn btn-primary"
-                                        v-if="showMIDIControlInput == true && midiLearn == false"
-                                        @click="midiLearn = true">Learn MIDI Event</button>
-                                    <button class="btn btn-danger"
-                                        v-if="showMIDIControlInput == true && midiLearn == true"
-                                        @click="midiLearn = false">Stop MIDI Learn</button>
-                                    <div v-if="showMIDIControlInput == true" class="dark mt-2">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label class="dark" for="parameterToControl">Parameter To
-                                                        Control:</label>
-                                                    <select id="parameterToControl" class="form-control"
-                                                        v-model="midiPatchParamToControl">
-                                                        <option value="nextCue">Next Cue</option>
-                                                        <option value="lastCue">Last Cue</option>
-                                                        <option value="stopCue">Stop Cue</option>
-                                                        <option value="recordCue">Record Cue</option>
-                                                        <option value="toggleBlackout">Toggle Blackout</option>
-                                                        <option value="resetFixturesIntensity">Reset Fixtures Intensity
-                                                        </option>
-                                                        <option value="resetFixtures">Reset Fixtures</option>
-                                                        <option value="resetGroups">Reset Groups</option>
-                                                        <option value="resetFixture">Reset Fixture</option>
-                                                        <option value="resetGroup">Reset Group</option>
-                                                        <option value="grandmaster">Grandmaster</option>
-                                                        <option value="fixtureIntensity">Fixture Intensity</option>
-                                                        <option value="fixtureParameter">Fixture Parameter</option>
-                                                        <option value="fixtureParameterLock">Toggle Fixture Parameter
-                                                            Lock
-                                                        </option>
-                                                        <option value="groupParameter">Group Parameter</option>
-                                                        <option value="groupParameterLock">Toggle Group Parameter
-                                                            Lock
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12"
-                                                v-if="midiPatchParamToControl == 'fixtureIntensity' || midiPatchParamToControl == 'fixtureParameter' || midiPatchParamToControl == 'fixtureParameterLock' || midiPatchParamToControl == 'groupParameter' || midiPatchParamToControl == 'groupParameterLock'">
-                                                <div class="form-group">
-                                                    <label class="dark" for="paramNumber">Item Number:</label>
-                                                    <input type="number" id="paramNumber" class="form-control"
-                                                        v-model="midiPatchParamNumber" min="1" max="1024">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12"
-                                                v-if="midiPatchParamToControl == 'fixtureIntensity' || midiPatchParamToControl == 'fixtureParameter' || midiPatchParamToControl == 'fixtureParameterLock' || midiPatchParamToControl == 'groupParameter' || midiPatchParamToControl == 'groupParameterLock'">
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input v-model="midiPatchMustBeOnParamPage" type="checkbox"
-                                                            class="custom-control-input" id="mustBeOnParamPage">
-                                                        <label class="custom-control-label dark"
-                                                            for="mustBeOnParamPage">Must Be On Param Page</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="dark" for="midiMessageType">MIDI Message Type:</label>
-                                            <select id="midiMessageType" class="form-control"
-                                                v-model="midiPatchMessageType">
-                                                <option value="noteon">Note On</option>
-                                                <option value="noteoff">Note Off</option>
-                                                <option value="controlchange">Control Change</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="dark" for="midiMessageChannel">MIDI Message Channel:</label>
-                                            <input type="number" id="midiMessageChannel" class="form-control"
-                                                v-model="midiPatchMessageChannel" min="0" max="127">
-                                        </div>
-                                        <div class="form-group"
-                                            v-if="midiPatchMessageType != '' && midiPatchMessageType != 'controlchange'">
-                                            <label class="dark" for="midiMessageNote">MIDI Message Note:</label>
-                                            <input type="number" id="midiMessageNote" class="form-control"
-                                                v-model="midiPatchMessageNote" min="0" max="127">
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12"
-                                                v-if="midiPatchMessageType != '' && midiPatchMessageType != 'controlchange'"
-                                                :class="{ 'col-md-6': app.midiPatchUseVelocity == true }">
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input v-model="midiPatchUseVelocity" type="checkbox"
-                                                            class="custom-control-input" id="useVelocity">
-                                                        <label class="custom-control-label dark" for="useVelocity">Use
-                                                            Velocity</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12"
-                                                v-if="midiPatchMessageType != '' && midiPatchMessageType != 'controlchange' && midiPatchUseVelocity == true"
-                                                :class="{ 'col-md-6': app.midiPatchUseVelocity == true }">
-                                                <div class="form-group">
-                                                    <label class="dark" for="midiMessageVelocity">MIDI Message
-                                                        Velocity:</label>
-                                                    <input type="number" id="midiMessageVelocity" class="form-control"
-                                                        v-model="midiPatchMessageVelocity" min="0" max="127">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div v-if="midiPatchMessageType != '' && midiPatchMessageType == 'controlchange'"
-                                            class="form-group">
-                                            <label class="dark" for="midiMessageControl">MIDI Message
-                                                Control:</label>
-                                            <input type="number" id="midiMessageControl" class="form-control"
-                                                v-model="midiPatchMessageControl" min="0" max="127">
-                                        </div>
-                                        <button class="btn btn-success" @click="patchMIDIControl">Patch MIDI
-                                            Control</button>
-                                    </div>
-                                    <div class="dark mt-2">
-                                        Patched MIDI Comands:
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Parameter</th>
-                                                        <th scope="col">Item Number</th>
-                                                        <th scope="col">Page Req.</th>
-                                                        <th scope="col">MSG Type</th>
-                                                        <th scope="col">MSG Channel</th>
-                                                        <th scope="col">MSG Note</th>
-                                                        <th scope="col">Use Velocity</th>
-                                                        <th scope="col">MSG Velocity</th>
-                                                        <th scope="col">MSG Control</th>
-                                                        <th scope="col">Remove Command</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr v-for="command in midiCommands">
-                                                        <td>{{command.command}}</td>
-                                                        <td>{{command.number}}</td>
-                                                        <td>{{command.mustBeOnParamPage}}</td>
-                                                        <td>{{command.type}}</td>
-                                                        <td>{{command.channel}}</td>
-                                                        <td>{{command.note}}</td>
-                                                        <td>{{command.useVelocity}}</td>
-                                                        <td>{{command.velocity}}</td>
-                                                        <td>{{command.control}}</td>
-                                                        <td><button class="btn btn-danger btn-sm"
-                                                                @click="removeMIDICommand(command.id)">Delete</button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -2147,7 +1960,6 @@
     <script src="/static/js/vue.min.js"></script>
     <script src="/static/js/iro.min.js"></script>
     <script src="/static/js/virtualjoystick.js"></script>
-    <script src="/static/js/webmidi.js"></script>
     <script src='/static/js/persist-min.js'></script>
     <script src="/static/js/script.js"></script>
 </body>
