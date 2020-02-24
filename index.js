@@ -252,7 +252,14 @@ function openSettings() {
             server = new e131.Server([0x0001, 0x0002]);
             server.on('packet', function (packet) {
                 if (packet.getPriority() > SETTINGS.sacnPriority) {
+                    if (disablePresets == false) {
+                        disablePresets = true;
+                        QRCode.toDataURL(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
+                            io.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, disablePresets: disablePresets, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
+                        });
+                    }
                     // TODO
+                    // Won't turn back on automatically
                 }
             });
 
