@@ -231,13 +231,13 @@ function openSettings() {
             return false;
         }
         SETTINGS = settings;
+
         if (SETTINGS.serverIP == "localhost") {
             let addr = ip.address();
             if (ip.isPrivate(addr) == true && ip.isV4Format(addr)) {
                 SETTINGS.serverIP = addr;
             }
         }
-
 
         if (STARTED == false) {
             STARTED = true;
