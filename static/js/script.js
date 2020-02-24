@@ -59,6 +59,7 @@ var app = new Vue({
             preventClickEvent: true
         },
         cueProgress: 0,
+        disablePresets: false
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -1113,6 +1114,7 @@ socket.on('meta', function (msg) {
     app.qrcode = msg.qrcode;
     app.settings = msg.settings;
     app.url = msg.url;
+    app.disablePresets = msg.disablePresets;
 });
 
 socket.on('fixtureProfiles', function (msg) {

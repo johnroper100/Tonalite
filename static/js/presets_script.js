@@ -5,7 +5,8 @@ var app = new Vue({
     data: {
         presets: [],
         grandmaster: 0.0,
-        desktop: false
+        desktop: false,
+        disablePresets: false
     },
     methods: {
         changePresetActive: function (presetID) {
@@ -37,6 +38,7 @@ socket.on('connect_error', function () {
 
 socket.on('meta', function (metadata) {
     app.desktop = metadata.desktop;
+    app.disablePresets = metadata.disablePresets;
 });
 
 socket.on('grandmaster', function (value) {

@@ -67,6 +67,7 @@ var cueProgress = 0;
 var lastCue = "";
 var currentCueID = "";
 var blackout = false;
+var disablePresets = false;
 var grandmaster = 100;
 var currentShowName = "Show";
 var undo = {};
@@ -2305,7 +2306,7 @@ io.on('connection', function (socket) {
     };
 
     QRCode.toDataURL(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
-        socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
+        socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, disablePresets: disablePresets, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
     });
 
 
@@ -5172,7 +5173,7 @@ io.on('connection', function (socket) {
             socket.emit('message', { type: "error", content: "The Tonalite settings file could not be saved on disk." });
         } else {
             QRCode.toDataURL(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
-                socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
+                socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, disablePresets: disablePresets, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
             });
         }
     });
