@@ -5103,6 +5103,13 @@ io.on('connection', function (socket) {
         io.emit('blackout', blackout);
     });
 
+    socket.on('toggleDisablePresets', function () {
+        disablePresets = !disablePresets;
+        QRCode.toDataURL(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
+            socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, disablePresets: disablePresets, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
+        });
+    });
+
     socket.on('changeGrandmasterValue', function (value) {
         grandmaster = parseInt(value);
         socket.broadcast.emit('grandmaster', grandmaster);
