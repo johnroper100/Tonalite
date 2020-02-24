@@ -1798,13 +1798,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12" v-if="settings.interfaceMode == 'normal'">
+                                <div class="col-md-6 col-sm-12" v-if="settings.interfaceMode == 'normal'">
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
                                             <input @change="editSettings" v-model="settings.automark" type="checkbox"
                                                 class="custom-control-input" id="useAutomark">
                                             <label class="custom-control-label dark" for="useAutomark">Use
                                                 Automark</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input @change="editSettings" v-model="disablePresets" type="checkbox"
+                                                class="custom-control-input" id="disablePresets">
+                                            <label class="custom-control-label dark" for="disablePresets">Disable Presets</label>
                                         </div>
                                     </div>
                                 </div>

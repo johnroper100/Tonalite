@@ -10,20 +10,29 @@ var app = new Vue({
     },
     methods: {
         changePresetActive: function (presetID) {
-            socket.emit('changePresetActive', presetID);
+            if (app.disablePresets == false) {
+                socket.emit('changePresetActive', presetID);
+            }
+
         },
         changeGrandmasterValue: function () {
-            socket.emit('changeGrandmasterValue', app.grandmaster);
+            if (app.disablePresets == false) {
+                socket.emit('changeGrandmasterValue', app.grandmaster);
+            }
         },
         updatePresetIntensity: function (preset) {
-            socket.emit('changePresetIntensity', { presetID: preset.id, intensity: preset.intensity });
+            if (app.disablePresets == false) {
+                socket.emit('changePresetIntensity', { presetID: preset.id, intensity: preset.intensity });
+            }
         },
         resetFixtures: function () {
-            bootbox.confirm("Are you sure you want to reset all fixture parameter values?", function (result) {
-                if (result === true) {
-                    socket.emit('resetFixtures');
-                }
-            });
+            if (app.disablePresets == false) {
+                bootbox.confirm("Are you sure you want to reset all fixture parameter values?", function (result) {
+                    if (result === true) {
+                        socket.emit('resetFixtures');
+                    }
+                });
+            }
         }
     }
 });

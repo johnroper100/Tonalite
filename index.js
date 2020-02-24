@@ -5103,13 +5103,6 @@ io.on('connection', function (socket) {
         io.emit('blackout', blackout);
     });
 
-    socket.on('toggleDisablePresets', function () {
-        disablePresets = !disablePresets;
-        QRCode.toDataURL(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
-            socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, disablePresets: disablePresets, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
-        });
-    });
-
     socket.on('changeGrandmasterValue', function (value) {
         grandmaster = parseInt(value);
         socket.broadcast.emit('grandmaster', grandmaster);
@@ -5160,6 +5153,7 @@ io.on('connection', function (socket) {
         SETTINGS.udmx = msg.udmx;
         SETTINGS.automark = msg.automark;
         SETTINGS.blackoutEnabled = msg.blackoutEnabled;
+        disablePresets = msg.disablePresets;
         SETTINGS.displayEffectsRealtime = msg.displayEffectsRealtime;
         if (msg.artnetIP != "") {
             SETTINGS.artnetIP = msg.artnetIP;
@@ -5180,7 +5174,7 @@ io.on('connection', function (socket) {
             socket.emit('message', { type: "error", content: "The Tonalite settings file could not be saved on disk." });
         } else {
             QRCode.toDataURL(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
-                socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, disablePresets: disablePresets, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
+                io.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, disablePresets: disablePresets, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
             });
         }
     });
