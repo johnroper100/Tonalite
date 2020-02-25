@@ -17,6 +17,7 @@ const rgbHex = require('rgb-hex');
 const ip = require('ip');
 const open = require('open');
 const os = require('os');
+const osc = require("osc");
 require('sanic.js').changeMyWorld();
 
 var SETTINGS = {
@@ -216,6 +217,7 @@ var packet = null;
 var channels = null;
 var artnet = null;
 var cp = null;
+var udpPort = null;
 
 require.extensions['.jlib'] = require.extensions['.json'];
 
@@ -264,6 +266,20 @@ function openSettings() {
             });
 
             artnet = require('artnet')({ iface: SETTINGS.artnetIP, host: SETTINGS.artnetHost, sendAll: true });
+
+            udpPort = new osc.UDPPort({
+                localAddress: "0.0.0.0",
+                localPort: 57121,
+                metadata: true
+            });
+
+            udpPort.on("message", function (oscMsg, timeTag, info) {
+                console.log("An OSC message just arrived!", oscMsg);
+                console.log("Remote info is: ", info);
+                console.log("Time tag is: ", timeTag);
+            });
+
+            udpPort.open();
 
             http.listen(SETTINGS.serverPort, SETTINGS.serverIP, function () {
                 var msg = "Desktop";
