@@ -3626,7 +3626,7 @@ io.on('connection', function (socket) {
             io.emit('activeCue', currentCueID);
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Fixture values have been reset!" });
-            //saveShow();
+            saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
@@ -3653,7 +3653,7 @@ io.on('connection', function (socket) {
                 fixture.hasActiveEffects = false;
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                 socket.emit('message', { type: "info", content: "Fixture values reset!" });
-                //saveShow();
+                saveShow();
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -3673,6 +3673,7 @@ io.on('connection', function (socket) {
                         parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
                         socket.broadcast.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                         socket.emit('fixtures', { fixtures: cleanFixtures(), target: false });
+                        saveShow();
                     }
                 } else {
                     socket.emit('message', { type: "error", content: "This parameter does not exist!" });
@@ -4474,6 +4475,7 @@ io.on('connection', function (socket) {
                             socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
                             socket.emit('groups', { groups: cleanGroups(), target: false });
                             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                            saveShow();
                         }
                     } else {
                         socket.emit('message', { type: "error", content: "This parameter doesn't exist!" });
