@@ -145,3 +145,19 @@ Default: `100`
 The device priotity can be in a range from `1` to `200`.
 
 Reboot required after change.
+
+## oscIP
+
+The IP to be used for the OSC server.
+
+Default: `0.0.0.0`
+
+Reboot required after change.
+
+## oscPort
+
+The port to be used for the OSC server.
+
+Default: `57121`
+
+Reboot required after change.
