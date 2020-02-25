@@ -277,10 +277,8 @@ function openSettings() {
 
             udpPort.on("message", function (oscMsg, timeTag, info) {
                 console.log("An OSC message just arrived!", oscMsg);
-                console.log("Remote info is: ", info);
                 // Sample data:
                 // An OSC message just arrived! { address: '/test1', args: [ { type: 'i', value: 1234 } ] }
-                // Remote info is:  { address: '127.0.0.1', family: 'IPv4', port: 52933, size: 16 }
             });
 
             udpPort.open();
