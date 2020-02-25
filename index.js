@@ -36,7 +36,9 @@ var SETTINGS = {
     artnetIP: null, // ArtNet output IP
     artnetHost: '255.255.255.255', // Artnet network host
     sacnIP: null, // sACN output IP
-    sacnPriority: 100 // sACN device priority
+    sacnPriority: 100, // sACN device priority
+    oscIP: "0.0.0.0",
+    oscPort: 57121
 }
 
 var STARTED = false;
@@ -268,8 +270,8 @@ function openSettings() {
             artnet = require('artnet')({ iface: SETTINGS.artnetIP, host: SETTINGS.artnetHost, sendAll: true });
 
             udpPort = new osc.UDPPort({
-                localAddress: "0.0.0.0",
-                localPort: 57121,
+                localAddress: SETTINGS.oscIP,
+                localPort: SETTINGS.oscPort,
                 metadata: true
             });
 
