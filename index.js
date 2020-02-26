@@ -1178,6 +1178,8 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
     var endParameter = null;
     var invert = null;
     let f = 0;
+    let upAmount = null;
+    let downAmount = null;
     const fMax = cue.fixtures.length;
     for (; f < fMax; f++) {
         startFixture = fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)];
@@ -1281,6 +1283,7 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                         fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(upAmount, startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
                     }
                 } else {
+                    downAmount = (endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep));
                     // Make sure that the step does not dip below 0 (finished)
                     if (cue.downStep >= 0) {
                         if ((startFixture.parameters[c].fadeWithIntensity == true || startFixture.parameters[c].type == 1) && cue.includeIntensityColor == true) {
@@ -1290,14 +1293,14 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                             }
                             if (blackout === false) {
                                 if (invert == true) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = cppaddon.reverseNumber((((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)) >> 8) / 100.0) * grandmaster, 0, 255);
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = cppaddon.reverseNumber((((downAmount) >> 8) / 100.0) * grandmaster, 0, 255);
                                     if (startFixture.parameters[c].fine != null) {
-                                        outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = cppaddon.reverseNumber((((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)) & 0xff) / 100.0) * grandmaster, 0, 255);
+                                        outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = cppaddon.reverseNumber((((downAmount) & 0xff) / 100.0) * grandmaster, 0, 255);
                                     }
                                 } else {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)) >> 8) / 100.0) * grandmaster;
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (((downAmount) >> 8) / 100.0) * grandmaster;
                                     if (startFixture.parameters[c].fine != null) {
-                                        outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)) & 0xff) / 100.0) * grandmaster;
+                                        outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (((downAmount) & 0xff) / 100.0) * grandmaster;
                                     }
                                 }
                             } else {
@@ -1341,18 +1344,18 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                                 }
                             }
                             if (invert == true) {
-                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)), 0, 65535) >> 8);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((downAmount), 0, 65535) >> 8);
                                 if (startFixture.parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)), 0, 65535) & 0xff);
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = (cppaddon.reverseNumber((downAmount), 0, 65535) & 0xff);
                                 }
                             } else {
-                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)) >> 8);
+                                outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].coarse) + (512 * startFixture.dmxUniverse)] = ((downAmount) >> 8);
                                 if (startFixture.parameters[c].fine != null) {
-                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep)) & 0xff);
+                                    outputChannels[((startFixture.startDMXAddress - 1) + startFixture.parameters[c].fine) + (512 * startFixture.dmxUniverse)] = ((downAmount) & 0xff);
                                 }
                             }
                         }
-                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep), startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
+                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(downAmount, startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
                     }
                 }
             } else {
