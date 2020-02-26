@@ -1,12 +1,10 @@
 const fs = require('fs-extra');
-const key = fs.readFileSync(__dirname + '/localhost.key');
-const cert = fs.readFileSync(__dirname + '/localhost.crt');
 const app = require('express')();
 const express = require('express');
 const favicon = require('serve-favicon');
 const compression = require('compression');
-const https = require('https').Server({ key: key, cert: cert }, app);
-const io = require('socket.io')(https);
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 const moment = require('moment');
 const fileUpload = require('express-fileupload');
 const { spawn } = require('child_process');
@@ -19,10 +17,11 @@ const rgbHex = require('rgb-hex');
 const ip = require('ip');
 const open = require('open');
 const os = require('os');
+const osc = require("osc");
 require('sanic.js').changeMyWorld();
 
 var SETTINGS = {
-    serverIP: "localhost", // https web UI location
+    serverIP: "localhost", // http web UI location
     serverPort: 3000,
     defaultUpTime: 3,
     defaultDownTime: 3,
@@ -37,7 +36,9 @@ var SETTINGS = {
     artnetIP: null, // ArtNet output IP
     artnetHost: '255.255.255.255', // Artnet network host
     sacnIP: null, // sACN output IP
-    sacnPriority: 100 // sACN device priority
+    sacnPriority: 100, // sACN device priority
+    oscIP: "0.0.0.0",
+    oscPort: 57121
 }
 
 var STARTED = false;
@@ -69,6 +70,7 @@ var cueProgress = 0;
 var lastCue = "";
 var currentCueID = "";
 var blackout = false;
+var disablePresets = false;
 var grandmaster = 100;
 var currentShowName = "Show";
 var undo = {};
@@ -212,10 +214,12 @@ var colortables = {
 // Set up dmx variables for integrations used later on
 var e131 = null;
 var client = null;
+var server = null;
 var packet = null;
 var channels = null;
 var artnet = null;
 var cp = null;
+var udpPort = null;
 
 require.extensions['.jlib'] = require.extensions['.json'];
 
@@ -231,13 +235,13 @@ function openSettings() {
             return false;
         }
         SETTINGS = settings;
+
         if (SETTINGS.serverIP == "localhost") {
             let addr = ip.address();
             if (ip.isPrivate(addr) == true && ip.isV4Format(addr)) {
                 SETTINGS.serverIP = addr;
             }
         }
-
 
         if (STARTED == false) {
             STARTED = true;
@@ -249,21 +253,49 @@ function openSettings() {
             channels = new Array(1024).fill(0);
             cp = cp;
 
+            server = new e131.Server([0x0001, 0x0002]);
+            server.on('packet', function (packet) {
+                if (packet.getPriority() > SETTINGS.sacnPriority) {
+                    if (disablePresets == false) {
+                        disablePresets = true;
+                        QRCode.toDataURL(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
+                            io.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, disablePresets: disablePresets, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
+                        });
+                    }
+                    // TODO
+                    // Won't turn back on automatically
+                }
+            });
+
             artnet = require('artnet')({ iface: SETTINGS.artnetIP, host: SETTINGS.artnetHost, sendAll: true });
 
-            https.listen(SETTINGS.serverPort, SETTINGS.serverIP, function () {
+            udpPort = new osc.UDPPort({
+                localAddress: SETTINGS.oscIP,
+                localPort: SETTINGS.oscPort,
+                metadata: true
+            });
+
+            udpPort.on("message", function (oscMsg, timeTag, info) {
+                console.log("An OSC message just arrived!", oscMsg);
+                // Sample data:
+                // An OSC message just arrived! { address: '/test1', args: [ { type: 'i', value: 1234 } ] }
+            });
+
+            udpPort.open();
+
+            http.listen(SETTINGS.serverPort, SETTINGS.serverIP, function () {
                 var msg = "Desktop";
                 if (SETTINGS.desktop === false) {
                     msg = "Embeded";
                 } else {
                     if (SETTINGS.openBrowserOnStart == true) {
                         (async () => {
-                            await open(`https://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
+                            await open(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
                         })();
                     }
                 }
                 console.log(`Tonalite ${msg} v${VERSION} - DMX Lighting Control System`);
-                console.log(`The web UI can be found at https://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
+                console.log(`The web UI can be found at http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
             });
 
             if (SETTINGS.udmx == true) {
@@ -479,8 +511,20 @@ async function saveShowToUSB(showName, callback) {
     }
 };
 
+function checkForErrors() {
+    return fs.promises.readdir("errors").then(files => {
+        if (files.length === 0) {
+            io.emit('errorsExist', false);
+        } else {
+            io.emit('errorsExist', true);
+        }
+        return files.length === 0;
+    });
+};
+
 function logError(msg) {
     fs.writeFileSync('errors/error-' + moment().format('YYYY-MM-DDTHH-mm-ss') + '.error', msg, (err) => {
+        checkForErrors();
         if (err) {
             console.log("wierd: " + err);
             console.log("error: " + msg);
@@ -580,6 +624,7 @@ function cleanFixtures() {
         delete newFixtures[f].invertPan;
         delete newFixtures[f].invertTilt;
         delete newFixtures[f].swapPanTilt;
+        delete newFixtures[f].displayIntensityAsSwitch;
         let p = 0;
         const pMax = newFixtures[f].parameters.length;
         for (; p < pMax; p++) {
@@ -634,6 +679,7 @@ function cleanFixtureForCue(fixture) {
     delete newFixture.modeName;
     delete newFixture.dmxUniverse;
     delete newFixture.parameterTypes;
+    delete newFixture.displayIntensityAsSwitch;
     newFixture.effects = cleanEffectsForCue(newFixture.effects);
     let p = 0;
     const pMax = newFixture.parameters.length;
@@ -669,6 +715,7 @@ function cleanFixtureForPreset(fixture) {
     delete newFixture.hasIntensity;
     delete newFixture.maxOffset;
     delete newFixture.modeName;
+    delete newFixture.displayIntensityAsSwitch;
     newFixture.effects = cleanEffectsForCue(newFixture.effects);
     let p = 0;
     const pMax = newFixture.parameters.length;
@@ -2296,16 +2343,17 @@ io.on('connection', function (socket) {
         socket.emit('cueProgress', 0);
     };
 
-    QRCode.toDataURL(`https://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
-        socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `https://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
+    QRCode.toDataURL(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
+        socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, disablePresets: disablePresets, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
     });
-
 
     if (currentCue === "") {
         socket.emit('cueActionBtn', false);
     } else {
         socket.emit('cueActionBtn', true);
     }
+
+    checkForErrors();
 
     socket.on('undo', function () {
         if (isEmpty(undo) === false) {
@@ -3025,6 +3073,7 @@ io.on('connection', function (socket) {
                     fixture.invertPan = false;
                     fixture.invertTilt = false;
                     fixture.swapPanTilt = false;
+                    fixture.displayIntensityAsSwitch = false;
 
                     let c = 0;
                     const cMax = fixture.parameters.length;
@@ -3531,6 +3580,7 @@ io.on('connection', function (socket) {
                 fixture.invertPan = msg.invertPan;
                 fixture.invertTilt = msg.invertTilt;
                 fixture.swapPanTilt = msg.swapPanTilt;
+                fixture.displayIntensityAsSwitch = msg.displayIntensityAsSwitch;
                 if (isNaN(parseInt(msg.dmxUniverse)) == false) {
                     fixture.dmxUniverse = parseInt(msg.dmxUniverse);
                 }
@@ -3595,7 +3645,7 @@ io.on('connection', function (socket) {
             io.emit('activeCue', currentCueID);
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             socket.emit('message', { type: "info", content: "Fixture values have been reset!" });
-            //saveShow();
+            saveShow();
         } else {
             socket.emit('message', { type: "error", content: "No fixtures exist!" });
         }
@@ -3622,7 +3672,7 @@ io.on('connection', function (socket) {
                 fixture.hasActiveEffects = false;
                 io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                 socket.emit('message', { type: "info", content: "Fixture values reset!" });
-                //saveShow();
+                saveShow();
             } else {
                 socket.emit('message', { type: "error", content: "This fixture does not exist!" });
             }
@@ -3642,6 +3692,7 @@ io.on('connection', function (socket) {
                         parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
                         socket.broadcast.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                         socket.emit('fixtures', { fixtures: cleanFixtures(), target: false });
+                        saveShow();
                     }
                 } else {
                     socket.emit('message', { type: "error", content: "This parameter does not exist!" });
@@ -4443,6 +4494,7 @@ io.on('connection', function (socket) {
                             socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
                             socket.emit('groups', { groups: cleanGroups(), target: false });
                             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                            saveShow();
                         }
                     } else {
                         socket.emit('message', { type: "error", content: "This parameter doesn't exist!" });
@@ -5142,6 +5194,7 @@ io.on('connection', function (socket) {
         SETTINGS.udmx = msg.udmx;
         SETTINGS.automark = msg.automark;
         SETTINGS.blackoutEnabled = msg.blackoutEnabled;
+        disablePresets = msg.disablePresets;
         SETTINGS.displayEffectsRealtime = msg.displayEffectsRealtime;
         if (msg.artnetIP != "") {
             SETTINGS.artnetIP = msg.artnetIP;
@@ -5161,8 +5214,8 @@ io.on('connection', function (socket) {
         if (saveSettings() == false) {
             socket.emit('message', { type: "error", content: "The Tonalite settings file could not be saved on disk." });
         } else {
-            QRCode.toDataURL(`https://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
-                socket.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, qrcode: url, url: `https://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
+            QRCode.toDataURL(`http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`, function (err, url) {
+                io.emit('meta', { settings: SETTINGS, desktop: SETTINGS.desktop, version: VERSION, disablePresets: disablePresets, qrcode: url, url: `http://${SETTINGS.serverIP}:${SETTINGS.serverPort}` });
             });
         }
     });

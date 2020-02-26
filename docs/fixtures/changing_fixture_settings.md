@@ -44,3 +44,7 @@ If enabled, the values for the tilt parameter (if the fixture has one) will be o
 ### Swap Pan/Tilt
 
 The controls for pan and tilt will output to each's opposite channel.
+
+### Display Intensity As Switch
+
+Only allow the intensity value of a fixture to be either `0%` or `100%`.

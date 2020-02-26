@@ -31,4 +31,4 @@ How much this effect affects the group's fixtures that it is applied to. Depth i
 
 ### Fan
 
-TODO
+How much this effect is spread out over the group's fixtures. The higher this value is, the more the effect is spread out. When the value is `0` all the lights in the group will share the same values. The order of the lights in the group affects the ordering of the effect when using fan.

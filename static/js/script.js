@@ -1,4 +1,4 @@
-var socket = io('https://' + document.domain + ':' + location.port);
+var socket = io('http://' + document.domain + ':' + location.port);
 var store;
 
 Vue.use(VueTouchKeyboard);
@@ -59,22 +59,8 @@ var app = new Vue({
             preventClickEvent: true
         },
         cueProgress: 0,
-        midiEnabled: false,
-        selectedMIDIInput: "",
-        midiInputDevice: null,
-        midiInputDevices: [],
-        midiCommands: [],
-        showMIDIControlInput: false,
-        midiLearn: false,
-        midiPatchParamToControl: "",
-        midiPatchParamNumber: 1,
-        midiPatchMustBeOnParamPage: true,
-        midiPatchMessageType: "",
-        midiPatchMessageNote: 61,
-        midiPatchMessageControl: 0,
-        midiPatchMessageChannel: 1,
-        midiPatchMessageVelocity: 127,
-        midiPatchUseVelocity: false
+        disablePresets: false,
+        errorsExist: false
     },
     components: {
         Multiselect: window.VueMultiselect.default
@@ -412,7 +398,7 @@ var app = new Vue({
         },
         editFixtureSettings: function () {
             if (app.currentFixture.name != "" && app.currentFixture.shortName != "" && isNaN(parseFloat(app.currentFixture.startDMXAddress)) == false && isNaN(parseFloat(app.currentFixture.dmxUniverse)) == false) {
-                socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse, invertPan: app.currentFixture.invertPan, invertTilt: app.currentFixture.invertTilt, swapPanTilt: app.currentFixture.swapPanTilt });
+                socket.emit('editFixtureSettings', { id: app.currentFixture.id, shortName: app.currentFixture.shortName, name: app.currentFixture.name, startDMXAddress: app.currentFixture.startDMXAddress, dmxUniverse: app.currentFixture.dmxUniverse, invertPan: app.currentFixture.invertPan, invertTilt: app.currentFixture.invertTilt, swapPanTilt: app.currentFixture.swapPanTilt, displayIntensityAsSwitch: app.currentFixture.displayIntensityAsSwitch });
             }
         },
         editFixtureEffectSettings: function () {
@@ -758,7 +744,7 @@ var app = new Vue({
             }
         },
         editSettings: function () {
-            socket.emit('editSettings', { defaultUpTime: app.settings.defaultUpTime, defaultDownTime: app.settings.defaultDownTime, defaultPresetMode: app.settings.defaultPresetMode, udmx: app.settings.udmx, automark: app.settings.automark, displayEffectsRealtime: app.settings.displayEffectsRealtime, artnetIP: app.settings.artnetIP, artnetHost: app.settings.artnetHost, sacnIP: app.settings.sacnIP, interfaceMode: app.settings.interfaceMode, blackoutEnabled: app.settings.blackoutEnabled, sacnPriority: app.settings.sacnPriority });
+            socket.emit('editSettings', { defaultUpTime: app.settings.defaultUpTime, defaultDownTime: app.settings.defaultDownTime, defaultPresetMode: app.settings.defaultPresetMode, udmx: app.settings.udmx, automark: app.settings.automark, displayEffectsRealtime: app.settings.displayEffectsRealtime, artnetIP: app.settings.artnetIP, artnetHost: app.settings.artnetHost, sacnIP: app.settings.sacnIP, interfaceMode: app.settings.interfaceMode, blackoutEnabled: app.settings.blackoutEnabled, sacnPriority: app.settings.sacnPriority, disablePresets: app.disablePresets });
         },
         getShowInfo: function () {
             socket.emit('getShowInfo');
@@ -799,163 +785,6 @@ var app = new Vue({
                 socket.emit('usePositionJoystick', { id: app.currentFixture.id, type: 'fixture', x: x, y: y });
             } else if (app.currentView == 'groupParameters') {
                 socket.emit('usePositionJoystick', { id: app.currentGroup.id, type: 'group', x: x, y: y });
-            }
-        },
-        patchMIDIControlFromLearn: function (e) {
-            app.midiPatchMessageType = e.type;
-            app.midiPatchMessageChannel = e.channel;
-            if (e.type == "controlchange") {
-                app.midiPatchMessageControl = e.controller.number;
-            } else {
-                app.midiPatchMessageNote = e.note.number;
-                app.midiPatchMessageVelocity = e.rawVelocity;
-            }
-        },
-        patchMIDIControl: function () {
-            if (app.midiPatchParamToControl != "") {
-                if (app.midiPatchMessageType == "controlchange") {
-                    app.midiCommands.push({ id: app.generateID, command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, note: null, control: app.midiPatchMessageControl, velocity: null, useVelocity: null });
-                } else {
-                    app.midiCommands.push({ id: app.generateID, command: app.midiPatchParamToControl, number: app.midiPatchParamNumber, mustBeOnParamPage: app.midiPatchMustBeOnParamPage, type: app.midiPatchMessageType, channel: app.midiPatchMessageChannel, control: null, note: app.midiPatchMessageNote, velocity: app.midiPatchMessageVelocity, useVelocity: app.midiPatchUseVelocity });
-                }
-                store.set('midiCommands', JSON.stringify(app.midiCommands));
-            }
-        },
-        removeMIDICommand: function (id) {
-            if (app.midiCommands.length != 0) {
-                if (app.midiCommands.some(e => e.id === id)) {
-                    app.midiCommands.splice(app.midiCommands.map(el => el.id).indexOf(id), 1);
-                    store.set('midiCommands', JSON.stringify(app.midiCommands));
-                }
-            }
-        },
-        doMIDIAction: function (e) {
-            var commands = [];
-            if (e.type == 'controlchange') {
-                commands = app.midiCommands.filter(c => c.type == e.type && c.channel == e.channel && c.control == e.controller.number);
-            } else {
-                commands = app.midiCommands.filter(c => c.type == e.type && c.channel == e.channel && c.note == e.note.number);
-            }
-            let p = 0; const pMax = commands.length; for (; p < pMax; p++) {
-                if ((commands[p].useVelocity == true && commands[p].velocity == e.rawVelocity) || commands[p].useVelocity == false || commands[p].useVelocity == null) {
-                    if (commands[p].command == 'nextCue') {
-                        app.nextCue();
-                    } else if (commands[p].command == 'lastCue') {
-                        app.lastCue();
-                    } else if (commands[p].command == 'stopCue') {
-                        app.stopCue();
-                    } else if (commands[p].command == 'recordCue') {
-                        app.recordCue();
-                    } else if (commands[p].command == 'toggleBlackout') {
-                        app.toggleBlackout();
-                    } else if (commands[p].command == 'resetFixturesIntensity') {
-                        app.resetFixturesIntensity();
-                    } else if (commands[p].command == 'resetFixtures') {
-                        app.resetFixtures();
-                    } else if (commands[p].command == 'resetGroups') {
-                        app.resetGroups();
-                    } else if (commands[p].command == 'resetFixture') {
-                        if (app.currentView == "fixtureParameters" && app.currentFixture != {}) {
-                            app.resetFixture();
-                        }
-                    } else if (commands[p].command == 'resetGroup') {
-                        if (app.currentView == "groupParameters" && app.currentGrou != {}) {
-                            app.resetGroup();
-                        }
-                    } else if (commands[p].command == 'grandmaster') {
-                        if (e.type == 'controlchange') {
-                            app.grandmaster = app.mapRange(e.value, 0, 127, 0, 100);
-                            app.changeGrandMasterValue();
-                        }
-                    } else if (commands[p].command == 'fixtureIntensity') {
-                        if (e.type == 'controlchange') {
-                            if (app.fixtures.length >= commands[0].number) {
-                                var fixture = app.fixtures[commands[0].number - 1];
-                                if ((commands[0].mustBeOnParamPage == true && app.currentView == "fixtures") || commands[0].mustBeOnParamPage == false) {
-                                    app.changeFixtureIntensityValue(fixture.id, app.mapRange(e.value, 0, 127, 0, 65535));
-                                }
-                            }
-                        }
-                    } else if (commands[p].command == 'fixtureParameter') {
-                        if (e.type == 'controlchange') {
-                            if (app.currentFixture != {} && app.currentFixture != null) {
-                                if (app.currentFixture.parameters.length >= commands[0].number) {
-                                    var param = app.currentFixture.parameters[commands[0].number - 1];
-                                    if ((commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") || commands[0].mustBeOnParamPage == false) {
-                                        if (param.locked == false) {
-                                            param.value = app.mapRange(e.value, 0, 127, 0, 65535);
-                                            app.changeFixtureParameterValue(param);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } else if (commands[p].command == 'fixtureParameterLock') {
-                        if (app.currentFixture != {} && app.currentFixture != null) {
-                            if (app.currentFixture.parameters.length >= commands[0].number) {
-                                var param = app.currentFixture.parameters[commands[0].number - 1];
-                                if ((commands[0].mustBeOnParamPage == true && app.currentView == "fixtureParameters") || commands[0].mustBeOnParamPage == false) {
-                                    app.changeFixtureParameterLock(param);
-                                }
-                            }
-                        }
-                    } else if (commands[p].command == 'groupParameter') {
-                        if (e.type == 'controlchange') {
-                            if (app.currentGroup != {} && app.currentGroup != null) {
-                                if (app.currentGroup.parameters.length >= commands[0].number) {
-                                    var param = app.currentGroup.parameters[commands[0].number - 1];
-                                    if ((commands[0].mustBeOnParamPage == true && app.currentView == "groupParameters") || commands[0].mustBeOnParamPage == false) {
-                                        if (param.locked == false) {
-                                            param.value = app.mapRange(e.value, 0, 127, 0, 65535);
-                                            app.changeGroupParameterValue(param);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } else if (commands[p].command == 'groupParameterLock') {
-                        if (app.currentGroup != {} && app.currentGroup != null) {
-                            if (app.currentGroup.parameters.length >= commands[0].number) {
-                                var param = app.currentGroup.parameters[commands[0].number - 1];
-                                if ((commands[0].mustBeOnParamPage == true && app.currentView == "groupParameters") || commands[0].mustBeOnParamPage == false) {
-                                    app.changeGroupParameterLock(param);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        setMIDIInput: function () {
-            if (app.selectedMIDIInput != "") {
-                store.set('selectedMIDIInput', app.selectedMIDIInput);
-                app.midiInputDevice = WebMidi.getInputByName(app.selectedMIDIInput);
-                if (app.midiInputDevice != null && app.midiInputDevice != false) {
-                    app.midiInputDevice.addListener('noteon', "all", function (e) {
-                        if (app.midiLearn == true) {
-                            app.midiLearn = false;
-                            app.patchMIDIControlFromLearn(e);
-                        } else {
-                            app.doMIDIAction(e);
-                        }
-                    });
-                    app.midiInputDevice.addListener('noteoff', "all", function (e) {
-                        if (app.midiLearn == true) {
-                            app.midiLearn = false;
-                            app.patchMIDIControlFromLearn(e);
-                        } else {
-                            app.doMIDIAction(e);
-                        }
-                    });
-                    app.midiInputDevice.addListener('controlchange', "all", function (e) {
-                        if (app.midiLearn == true) {
-                            app.midiLearn = false;
-                            app.patchMIDIControlFromLearn(e);
-                        } else {
-                            app.doMIDIAction(e);
-                        }
-                    });
-                }
             }
         }
     }
@@ -1085,26 +914,6 @@ Mousetrap.bind('ctrl+y', function (e) {
     app.redo();
 });
 
-WebMidi.enable(function (err) {
-    if (err) {
-        console.log("WebMidi could not be enabled.", err);
-    } else {
-        app.midiEnabled = true;
-        app.midiInputDevices = WebMidi.inputs;
-        app.selectedMIDIInput = WebMidi.inputs[0].name;
-        store = new Persist.Store('Tonalite');
-        var midiInput = store.get('selectedMIDIInput');
-        if (midiInput != null && midiInput != "") {
-            app.selectedMIDIInput = midiInput;
-            app.setMIDIInput();
-        }
-        var cmds = store.get('midiCommands');
-        if (cmds != null && cmds != "") {
-            app.midiCommands = JSON.parse(cmds);
-        }
-    }
-});
-
 var colorPicker = new iro.ColorPicker('#color-picker-container', {
     display: 'inline-block'
 });
@@ -1182,6 +991,8 @@ socket.on('connect', function () {
     app.fixtureProfilesModel = "";
     app.keyboardVisible = false;
     app.cueProgress = 0;
+    app.disablePresets = false;
+    app.errorsExist = false;
     $('#openFixtureDefinitionModal').modal("hide");
     $('#openShowModal').modal("hide");
     $('#addGroupModal').modal("hide");
@@ -1215,6 +1026,10 @@ socket.on('connect_error', function () {
     $('#colorWheelModal').modal("hide");
     $('#joystickModal').modal("hide");
     $('#serverDisconnectedModal').modal('show');
+});
+
+socket.on('errorsExist', function (msg) {
+    app.errorsExist = msg;
 });
 
 socket.on('palettes', function (msg) {
@@ -1306,6 +1121,7 @@ socket.on('meta', function (msg) {
     app.qrcode = msg.qrcode;
     app.settings = msg.settings;
     app.url = msg.url;
+    app.disablePresets = msg.disablePresets;
 });
 
 socket.on('fixtureProfiles', function (msg) {
