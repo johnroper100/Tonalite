@@ -1702,10 +1702,6 @@ function calculateStack() {
                                     } else if (fixtures[f].parameters[p].name == "Tilt") {
                                         effectValue = effectValue + (fixtures[f].effects[e].aspect * -1);
                                     }
-                                    if (effectValue < 0) {
-                                        effectValue = 0;
-                                    }
-                                    //todo
                                 }
                             } else if (fixtures[f].effects[e].type == "Color" && colortables.RGBW.indexOf(fixtures[f].colortable) >= 0) {
                                 // RGBW
