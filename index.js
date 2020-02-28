@@ -1887,6 +1887,13 @@ function calculateStack() {
                                 if (effectChanIndex > -1 && (groups[g].effects[e].type != "Color" || (groups[g].effects[e].type == "Color" && colortables.RGB.indexOf(fixture.colortable) >= 0))) {
                                     paramWorked = true;
                                     effectValue = groups[g].effects[e].steps[stepitem][effectChanIndex];
+                                    if (groups[g].effects[e].type == "Position" && groups[g].effects[e].aspect > 0) {
+                                        if (groups[g].parameters[p].name == "Pan") {
+                                            effectValue = effectValue + groups[g].effects[e].aspect;
+                                        } else if (groups[g].parameters[p].name == "Tilt") {
+                                            effectValue = effectValue + (groups[g].effects[e].aspect * -1);
+                                        }
+                                    }
                                 } else if (groups[g].effects[e].type == "Color" && colortables.RGBW.indexOf(fixture.colortable) >= 0) {
                                     // RGBW
                                     paramWorked = true;
