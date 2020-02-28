@@ -37,6 +37,5 @@
     * [UI Settings](settings/ui.md)
     * [Defaults Settings](settings/defaults.md)
     * [Outputs Settings](settings/outputs.md)
-    * [MIDI Settings](settings/midi/README.md)
     * [Configuration](settings/configuration.md)
 

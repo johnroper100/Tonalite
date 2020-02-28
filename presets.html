@@ -20,13 +20,13 @@
 <body>
     <div id="app">
         <a href="/" class="mt-1 ml-1 btn btn-small btn-light"><i class="far fa-pencil-alt"></i></a>
-        <button class="mt-1 btn btn-small btn-light" @click="resetFixtures"><i class="far fa-sync"></i></button>
+        <button class="mt-1 btn btn-small btn-light" @click="resetFixtures" :disabled="disablePresets == true"><i class="far fa-sync"></i></button>
         <a href="/docs" class="mt-1 mr-1 btn btn-small btn-light float-right"><i class="far fa-book"></i></a>
         <div class="container mt-4">
             <div class="row" id="presetsButtonList">
                 <div class="col-4 col-lg-2 mb-3" v-for="preset in presets" :key="preset.id"
                     v-if="preset.displayAsDimmer == false">
-                    <div :class="{ 'presetActive' : preset.active == true, 'presetPatchChanged': preset.patchChanged == true}"
+                    <div :class="{ 'presetActive' : preset.active == true && disablePresets == false, 'presetPatchChanged': preset.patchChanged == true && disablePresets == false, 'bg-secondary': disablePresets == true}"
                         class="presetViewItem presetItem" v-on:click="changePresetActive(preset.id)">
                         <p>{{preset.name}}</p>
                     </div>
@@ -40,7 +40,8 @@
                     v-if="preset.displayAsDimmer == true">
                     <label>{{preset.name}}:</label>
                     <input type="range" class="custom-range preset-range" min="0" max="100"
-                        @input="updatePresetIntensity(preset)" v-model="preset.intensity">
+                        @input="updatePresetIntensity(preset)" v-model="preset.intensity"
+                        :disabled="disablePresets == true">
                 </div>
             </div>
         </div>
