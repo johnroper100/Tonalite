@@ -1650,6 +1650,7 @@ function calculateStack() {
                                     if (effectValue < 0) {
                                         effectValue = 0;
                                     }
+                                    //todo
                                 }
                             } else if (fixtures[f].effects[e].type == "Color" && colortables.RGBW.indexOf(fixtures[f].colortable) >= 0) {
                                 // RGBW
