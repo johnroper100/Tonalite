@@ -1641,6 +1641,16 @@ function calculateStack() {
                             if (effectChanIndex > -1 && (fixtures[f].effects[e].type != "Color" || (fixtures[f].effects[e].type == "Color" && colortables.RGB.indexOf(fixtures[f].colortable) >= 0))) {
                                 paramWorked = true;
                                 effectValue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex];
+                                if (fixtures[f].effects[e].type == "Position" && fixtures[f].effects[e].aspect > 0) {
+                                    if (fixtures[f].parameters[p].name == "Pan") {
+                                        effectValue = effectValue + fixtures[f].effects[e].aspect;
+                                    } else if (fixtures[f].parameters[p].name == "Tilt") {
+                                        effectValue = effectValue + (fixtures[f].effects[e].aspect * -1);
+                                    }
+                                    if (effectValue < 0) {
+                                        effectValue = 0;
+                                    }
+                                }
                             } else if (fixtures[f].effects[e].type == "Color" && colortables.RGBW.indexOf(fixtures[f].colortable) >= 0) {
                                 // RGBW
                                 paramWorked = true;
@@ -3417,7 +3427,7 @@ io.on('connection', function (socket) {
                 effect.speedIndex = 0;
                 effect.chroma = 1;
                 effect.fan = 0;
-                effect.aspect = 1;
+                effect.aspect = 0;
                 effect.rotation = 0;
                 effect.id = generateID();
                 if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Red", "Green", "Blue"])) {
@@ -3472,7 +3482,7 @@ io.on('connection', function (socket) {
                     effect.speedIndex = 0;
                     effect.chroma = 1;
                     effect.fan = 0;
-                    effect.aspect = 1;
+                    effect.aspect = 0;
                     effect.rotation = 0;
                     effect.id = generateID();
                     if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Red", "Green", "Blue"])) {
