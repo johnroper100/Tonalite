@@ -403,12 +403,12 @@ var app = new Vue({
         },
         editFixtureEffectSettings: function () {
             if (app.currentEffect.name != "" && isNaN(parseFloat(app.currentEffect.depth)) == false && isNaN(parseFloat(app.currentEffect.speed)) == false) {
-                socket.emit('editFixtureEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed });
+                socket.emit('editFixtureEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, aspect: app.currentEffect.aspect, speed: app.currentEffect.speed });
             }
         },
         editGroupEffectSettings: function () {
             if (app.currentEffect.name != "" && isNaN(parseFloat(app.currentEffect.depth)) == false && isNaN(parseFloat(app.currentEffect.speed)) == false) {
-                socket.emit('editGroupEffectSettings', { groupID: app.currentGroup.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed, fan: app.currentEffect.fan });
+                socket.emit('editGroupEffectSettings', { groupID: app.currentGroup.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, aspect: app.currentEffect.aspect, speed: app.currentEffect.speed, fan: app.currentEffect.fan });
             }
         },
         editCueSettings: function () {
