@@ -754,7 +754,6 @@ function cleanEffect(effect) {
     delete newEffect.speed;
     delete newEffect.depth;
     delete newEffect.chroma;
-    delete newEffect.fan;
     delete newEffect.aspect;
     delete newEffect.rotation;
     return newEffect;
@@ -1191,7 +1190,6 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
         const eMax = cue.fixtures[f].effects.length;
         for (; e < eMax; e++) {
             if (startFixture.effects[e].id == cue.fixtures[f].effects[e].id) {
-                startFixture.effects[e].fan = cue.fixtures[f].effects[e].fan;
                 if (cue.fixtures[f].effects[e].active != startFixture.effects[e].active) {
                     startFixture.effects[e].step = 0;
                 }
@@ -3505,7 +3503,6 @@ io.on('connection', function (socket) {
                 effect.speed = 1;
                 effect.speedIndex = 0;
                 effect.chroma = 1;
-                effect.fan = 0;
                 effect.aspect = 0;
                 effect.rotation = 0;
                 effect.id = generateID();
