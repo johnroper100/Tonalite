@@ -1853,10 +1853,17 @@ function calculateStack() {
                             }
                         }
                     }
-                    if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed) >= fixtures[f].effects[e].steps.length - 1) {
-                        fixtures[f].effects[e].step = 0;
+                    if (fixtures[f].effects[e].speedIndex == 0) {
+                        if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed) >= fixtures[f].effects[e].steps.length - 1) {
+                            fixtures[f].effects[e].step = 0;
+                        } else {
+                            fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
+                        }
+                        if (fixtures[f].effects[e].speed > 0.0) {
+                            fixtures[f].effects[e].speedIndex = fixtures[f].effects[e].speed * -1;
+                        }
                     } else {
-                        fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
+                        fixtures[f].effects[e].speedIndex -= 1;
                     }
                 }
             }
@@ -2045,10 +2052,17 @@ function calculateStack() {
                             }
                         }
                     }
-                    if (groups[g].effects[e].step + Math.floor(groups[g].effects[e].speed) >= groups[g].effects[e].steps.length - 1) {
-                        groups[g].effects[e].step = 0;
+                    if (groups[g].effects[e].speedIndex == 0) {
+                        if (groups[g].effects[e].step + Math.floor(groups[g].effects[e].speed) >= groups[g].effects[e].steps.length - 1) {
+                            groups[g].effects[e].step = 0;
+                        } else {
+                            groups[g].effects[e].step = groups[g].effects[e].step + Math.floor(groups[g].effects[e].speed);
+                        }
+                        if (groups[g].effects[e].speed > 0.0) {
+                            groups[g].effects[e].speedIndex = groups[g].effects[e].speed * -1;
+                        }
                     } else {
-                        groups[g].effects[e].step = groups[g].effects[e].step + Math.floor(groups[g].effects[e].speed);
+                        groups[g].effects[e].speedIndex -= 1;
                     }
                 }
             }
@@ -3367,6 +3381,9 @@ io.on('connection', function (socket) {
                     if (isNaN(parseInt(msg.speed)) == false) {
                         effect.speed = parseInt(msg.speed);
                     }
+                    if (effect.speed < 0) {
+                        effect.speedIndex = effect.speed * -1;
+                    }
                     if (isNaN(parseInt(msg.aspect)) == false) {
                         effect.aspect = parseInt(msg.aspect);
                     }
@@ -3403,6 +3420,9 @@ io.on('connection', function (socket) {
                         }
                         if (isNaN(parseInt(msg.speed)) == false) {
                             effect.speed = parseInt(msg.speed);
+                        }
+                        if (effect.speed < 0) {
+                            effect.speedIndex = effect.speed * -1;
                         }
                         if (isNaN(parseInt(msg.fan)) == false) {
                             effect.fan = parseInt(msg.fan);
