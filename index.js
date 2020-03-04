@@ -3406,6 +3406,20 @@ io.on('connection', function (socket) {
                 if (groups.some(e => e.id === msg.groupID)) {
                     saveUndoRedo(false);
                     var group = groups[groups.map(el => el.id).indexOf(msg.groupID)];
+                    var g2 = null;
+                    let c = 0;
+                    const cMax = cues.length;
+                    for (; c < cMax; c++) {
+                        if (cues[c].groups.some(e => e.id === msg.groupID)) {
+                            g2 = cues[c].groups[cues[c].groups.map(el => el.id).indexOf(msg.groupID)];
+                            if (g2.effects.some(e => e.id === msg.effectID)) {
+                                g2.effects.splice(g2.effects.map(el => el.id).indexOf(msg.effectID), 1);
+                            } else {
+                                socket.emit('message', { type: "error", content: "This effect does not exist!" });
+                                break;
+                            }
+                        }
+                    }
                     if (group.effects.some(e => e.id === msg.effectID)) {
                         group.effects.splice(group.effects.map(el => el.id).indexOf(msg.effectID), 1);
                         group.hasActiveEffects = checkFixtureActiveEffects(group.effects);
@@ -3709,18 +3723,17 @@ io.on('connection', function (socket) {
                     }
                     group.hasActiveEffects = true;
                     group.effects.push(effect);
-                    if (cues.length > 0) {
-                        let cc = 0;
-                        const ccMax = cues.length;
-                        for (; cc < ccMax; cc++) {
-                            if (cues[cc].groups.length > 0) {
-                                let gg = 0;
-                                const ggMax = cues[cc].groups.length;
-                                for (; gg < ggMax; gg++) {
-                                    topush = cleanEffectForCue(effect);
-                                    topush.active = false;
-                                    cues[cc].groups[gg].effects.push(topush);
-                                }
+                    var topush = null;
+                    let cc = 0;
+                    const ccMax = cues.length;
+                    for (; cc < ccMax; cc++) {
+                        let f = 0;
+                        const fMax = cues[cc].groups.length;
+                        for (; f < fMax; f++) {
+                            if (cues[cc].groups[f].id == group.id) {
+                                topush = cleanEffectForCue(effect);
+                                topush.active = false;
+                                cues[cc].groups[f].effects.push(topush);
                             }
                         }
                     }
