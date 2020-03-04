@@ -104,3 +104,17 @@ To add a palette, click the green button with a plus sign inside of it. You will
 ### Remove Palette
 
 To remove a palette, click the red button with a lock inside of it. The palettes that can be removed will mstart pulsing. To remove one, click on it in the list. You will be asked if you are sure you want to remove it.
+
+## Beam Palettes
+
+![Fixture beam palettes](../../images/fixture_beam_palettes.png)
+
+You can create beam palettes to apply to your fixtures. Click on one in the list to apply it to the fixture. These set the beam parameters of a fixture.
+
+### Add Palette
+
+To add a palette, click the green button with a plus sign inside of it. You will be asked to choose a name for the new palette.
+
+### Remove Palette
+
+To remove a palette, click the red button with a lock inside of it. The palettes that can be removed will mstart pulsing. To remove one, click on it in the list. You will be asked if you are sure you want to remove it.
