@@ -4514,6 +4514,7 @@ io.on('connection', function (socket) {
                 newGroup.parameterTypes = [];
                 let c = 0;
                 const cMax = newGroup.parameters.length;
+                let changeIndex = null;
                 for (; c < cMax; c++) {
                     if (newGroup.parameters[c].type == 2) {
                         newGroup.parameterTypes.push("Position");
@@ -4524,6 +4525,13 @@ io.on('connection', function (socket) {
                     } else if (newGroup.parameters[c].type == 1) {
                         newGroup.parameterTypes.push("Intensity");
                     }
+                    if (newGroup.parameters[c].type == 1) {
+                        changeIndex = c;
+                    }
+                }
+                newGroup.parameters.sort((a, b) => (a.coarse > b.coarse) ? 1 : -1)
+                if (changeIndex != null) {
+                    moveArrayItem(newGroup.parameters, changeIndex, 0);
                 }
                 groups.push(newGroup);
                 if (cues.length > 0) {
