@@ -1859,7 +1859,7 @@ function calculateStack() {
                         } else {
                             fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
                         }
-                        if (fixtures[f].effects[e].speed > 0.0) {
+                        if (fixtures[f].effects[e].speed < 0) {
                             fixtures[f].effects[e].speedIndex = fixtures[f].effects[e].speed * -1;
                         }
                     } else {
@@ -2058,7 +2058,7 @@ function calculateStack() {
                         } else {
                             groups[g].effects[e].step = groups[g].effects[e].step + Math.floor(groups[g].effects[e].speed);
                         }
-                        if (groups[g].effects[e].speed > 0.0) {
+                        if (groups[g].effects[e].speed < 0) {
                             groups[g].effects[e].speedIndex = groups[g].effects[e].speed * -1;
                         }
                     } else {
