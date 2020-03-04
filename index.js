@@ -3084,39 +3084,31 @@ io.on('connection', function (socket) {
 
     socket.on('addParameterPalette', function (msg) {
         saveUndoRedo(false);
-        if (msg.type == 'fixture') {
-            var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
-            var pan = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Pan")];
-            var tilt = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Tilt")];
-        } else if (msg.type == 'group') {
-            var group = groups[groups.map(el => el.id).indexOf(msg.id)];
-            var pan = group.parameters[group.parameters.map(el => el.name).indexOf("Pan")];
-            var tilt = group.parameters[group.parameters.map(el => el.name).indexOf("Tilt")];
-        }
-        if (pan == null) {
-            pan = 0;
-        } else {
-            pan = pan.value;
-        }
-        if (tilt == null) {
-            tilt = 0;
-        } else {
-            tilt = tilt.value;
-        }
         var palette = {
             name: msg.name,
-            parameters: [{
-                name: "Pan",
-                value: pan
-            },
-            {
-                name: "Tilt",
-                value: tilt
+            parameters: []
+        };
+        let p = 0;
+        if (msg.type == 'fixture') {
+            var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
+            const pMax = fixture.parameters.length;
+            for (; p < pMax; p++) {
+                if (fixture.parameters[p].type == 4) {
+                    palette.parameters.push({ name: fixture.parameters[p].name, value: fixture.parameters[p].value });
+                }
             }
-            ]
+        } else if (msg.type == 'group') {
+            var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+            const pMax = group.parameters.length;
+            for (; p < pMax; p++) {
+                if (group.parameters[p].type == 4) {
+                    palette.parameters.push({ name: group.parameters[p].name, value: group.parameters[p].value });
+                }
+            }
         }
-        // TODO
-        parameterPalettes.push(palette);
+        if (palette.parameters.length > 0) {
+            parameterPalettes.push(palette);
+        }
         io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         saveShow();
     });
