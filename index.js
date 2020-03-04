@@ -2606,6 +2606,56 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('useParameterPalette', function (msg) {
+        var ids = [];
+        if (fixtures.length != 0) {
+            if (msg.type == 'fixture') {
+                if (fixtures.some(e => e.id === msg.id)) {
+                    ids.push(msg.id);
+                } else {
+                    socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+                }
+            } else if (msg.type == 'group') {
+                if (groups.length != 0) {
+                    if (groups.some(e => e.id === msg.id)) {
+                        var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                        ids = group.ids;
+                    } else {
+                        socket.emit('message', { type: "error", content: "This group does not exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "No groups exist!" });
+                }
+            }
+            if (ids.length > 0) {
+                saveUndoRedo(false);
+                var param = null;
+                var fixture = null;
+                var palette = parameterPalettes[msg.pid];
+                let i = 0;
+                const iMax = ids.length;
+                for (; i < iMax; i++) {
+                    fixture = fixtures[fixtures.map(el => el.id).indexOf(ids[i])];
+                    let c = 0;
+                    const cMax = palette.parameters.length;
+                    for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        if (param != null) {
+                            param.value = palette.parameters[c].value;
+                            param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                        }
+                    }
+                }
+                if (msg.type == 'group') {
+                    io.emit('groups', { groups: cleanGroups(), target: true });
+                }
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
     socket.on('usePositionJoystick', function (msg) {
         var ids = [];
         if (fixtures.length != 0) {
@@ -3032,6 +3082,45 @@ io.on('connection', function (socket) {
         saveShow();
     });
 
+    socket.on('addParameterPalette', function (msg) {
+        saveUndoRedo(false);
+        if (msg.type == 'fixture') {
+            var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
+            var pan = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Pan")];
+            var tilt = fixture.parameters[fixture.parameters.map(el => el.name).indexOf("Tilt")];
+        } else if (msg.type == 'group') {
+            var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+            var pan = group.parameters[group.parameters.map(el => el.name).indexOf("Pan")];
+            var tilt = group.parameters[group.parameters.map(el => el.name).indexOf("Tilt")];
+        }
+        if (pan == null) {
+            pan = 0;
+        } else {
+            pan = pan.value;
+        }
+        if (tilt == null) {
+            tilt = 0;
+        } else {
+            tilt = tilt.value;
+        }
+        var palette = {
+            name: msg.name,
+            parameters: [{
+                name: "Pan",
+                value: pan
+            },
+            {
+                name: "Tilt",
+                value: tilt
+            }
+            ]
+        }
+        // TODO
+        parameterPalettes.push(palette);
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
+        saveShow();
+    });
+
     socket.on('removePositionPalette', function (msg) {
         saveUndoRedo(false);
         positionPalettes.splice(msg.pid, 1);
@@ -3044,6 +3133,14 @@ io.on('connection', function (socket) {
         saveUndoRedo(false);
         colorPalettes.splice(msg.pid, 1);
         socket.emit('message', { type: "info", content: "Color palette has been removed!" });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
+        saveShow();
+    });
+
+    socket.on('removeParameterPalette', function (msg) {
+        saveUndoRedo(false);
+        parameterPalettes.splice(msg.pid, 1);
+        socket.emit('message', { type: "info", content: "Parameter palette has been removed!" });
         io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         saveShow();
     });
