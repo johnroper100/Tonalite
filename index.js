@@ -3132,6 +3132,9 @@ io.on('connection', function (socket) {
                     // Assign a random id for easy access to this fixture
                     fixture.id = generateID();
                     fixtures.push(JSON.parse(JSON.stringify(fixture)));
+                    fixtures.sort(function(second, first) {
+                        return second.startDMXAddress - first.startDMXAddress;
+                    });
                     let cc = 0;
                     const ccMax = cues.length;
                     for (; cc < ccMax; cc++) {
