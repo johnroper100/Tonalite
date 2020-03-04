@@ -65,6 +65,7 @@ var groups = [];
 var presets = [];
 var colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));;
 var positionPalettes = [];
+var parameterPalettes = [];
 var currentCue = "";
 var cueProgress = 0;
 var lastCue = "";
@@ -329,9 +330,9 @@ function saveSettings() {
 
 function saveUndoRedo(r) {
     if (r == false) {
-        undo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, presets: presets }));
+        undo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, presets: presets }));
     } else {
-        redo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, presets: presets }));
+        redo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, presets: presets }));
     }
 }
 
@@ -489,7 +490,7 @@ async function saveShowToUSB(showName, callback) {
                     if (exists) {
                         alreadyexists = true;
                     } else {
-                        fs.writeFile(filepath, JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, tonaliteVersion: VERSION, showName: currentShowName, lastSaved: moment().format() }), (err) => {
+                        fs.writeFile(filepath, JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, tonaliteVersion: VERSION, showName: currentShowName, lastSaved: moment().format() }), (err) => {
                             if (err) {
                                 logError(err);
                                 errorhappened = true;
@@ -2216,6 +2217,7 @@ function openShow(file = "show.json") {
         currentShowName = show.showName;
         colorPalettes = show.colorPalettes;
         positionPalettes = show.positionPalettes;
+        parameterPalettes = show.parameterPalettes;
         lastCue = "";
         currentCue = "";
         cueProgress = 0;
@@ -2252,7 +2254,7 @@ function openShow(file = "show.json") {
 
 // Save the fixtures, cues, and groups of the show to file
 function saveShow() {
-    fs.writeFile(process.cwd() + "/show.json", JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, tonaliteVersion: VERSION, lastSaved: moment().format(), showName: currentShowName }), (err) => {
+    fs.writeFile(process.cwd() + "/show.json", JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, tonaliteVersion: VERSION, lastSaved: moment().format(), showName: currentShowName }), (err) => {
         if (err) {
             logError(err);
             return false;
@@ -2369,7 +2371,7 @@ io.on('connection', function (socket) {
     socket.emit('blackout', blackout);
     socket.emit('grandmaster', grandmaster);
     socket.emit('activeCue', currentCueID);
-    socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+    socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
     if (currentCueID != "") {
         if (cues[cues.map(el => el.id).indexOf(currentCueID)].upTime > cues[cues.map(el => el.id).indexOf(currentCueID)].downTime) {
             socket.emit('cueProgress', Math.round((cueProgress / ((cues[cues.map(el => el.id).indexOf(currentCueID)].upTime * FPS) + 1)) * 10) / 10);
@@ -2401,13 +2403,14 @@ io.on('connection', function (socket) {
             sequences = undo.sequences;
             colorPalettes = undo.colorPalettes;
             positionPalettes = undo.positionPalettes;
+            parameterPalettes = undo.parameterPalettes;
             presets = undo.presets;
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             io.emit('cues', cleanCues());
             io.emit('sequences', { sequences: cleanSequences(), target: true });
             io.emit('groups', { groups: cleanGroups(), target: true });
             io.emit('presets', cleanPresets());
-            io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+            io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
             saveShow();
         }
     });
@@ -2421,13 +2424,14 @@ io.on('connection', function (socket) {
             sequences = redo.sequences;
             colorPalettes = redo.colorPalettes;
             positionPalettes = redo.positionPalettes;
+            parameterPalettes = redo.parameterPalettes;
             presets = undo.presets;
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             io.emit('cues', cleanCues());
             io.emit('sequences', { sequences: cleanSequences(), target: true });
             io.emit('groups', { groups: cleanGroups(), target: true });
             io.emit('presets', cleanPresets());
-            io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+            io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
             saveShow();
         }
     });
@@ -2453,6 +2457,7 @@ io.on('connection', function (socket) {
         sequences = [];
         colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));
         positionPalettes = [];
+        parameterPalettes = [];
         currentCue = "";
         currentCueID = "";
         lastCue = "";
@@ -2465,7 +2470,7 @@ io.on('connection', function (socket) {
         io.emit('cueActionBtn', false);
         io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('resetView', { type: 'show', eid: "" });
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         io.emit('cueProgress', cueProgress);
         io.emit('message', { type: "info", content: "A new show has been created!" });
         saveShow();
@@ -2479,6 +2484,7 @@ io.on('connection', function (socket) {
         sequences = [];
         colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));
         positionPalettes = [];
+        parameterPalettes = [];
         currentCue = "";
         cueProgress = 0;
         currentCueID = "";
@@ -2496,7 +2502,7 @@ io.on('connection', function (socket) {
         io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('cueActionBtn', false);
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         io.emit('resetView', { type: 'show', eid: "" });
         io.emit('cueProgress', cueProgress);
         io.emit('message', { type: "info", content: "A new show has been created!" });
@@ -2984,7 +2990,7 @@ io.on('connection', function (socket) {
             ]
         }
         colorPalettes.push(palette);
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         saveShow();
     });
 
@@ -3022,7 +3028,7 @@ io.on('connection', function (socket) {
             ]
         }
         positionPalettes.push(palette);
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         saveShow();
     });
 
@@ -3030,7 +3036,7 @@ io.on('connection', function (socket) {
         saveUndoRedo(false);
         positionPalettes.splice(msg.pid, 1);
         socket.emit('message', { type: "info", content: "Position palette has been removed!" });
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         saveShow();
     });
 
@@ -3038,7 +3044,7 @@ io.on('connection', function (socket) {
         saveUndoRedo(false);
         colorPalettes.splice(msg.pid, 1);
         socket.emit('message', { type: "info", content: "Color palette has been removed!" });
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         saveShow();
     });
 
@@ -4533,7 +4539,7 @@ io.on('connection', function (socket) {
                     shouldLock = false;
                 }
                 socket.emit('groupParameters', group);
-                socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+                socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
             } else {
                 socket.emit('message', { type: "error", content: "This group doesn't exist!" });
             }

@@ -16,6 +16,7 @@ var app = new Vue({
         sequences: [],
         colorPalettes: [],
         positionPalettes: [],
+        parameterPalettes: [],
         presets: [],
         cuePlaying: false,
         activeCue: "",
@@ -50,6 +51,7 @@ var app = new Vue({
         settingsModalTab: "ui",
         addPaletteName: "",
         removePositionPalette: false,
+        removeParameterPalette: false,
         removeColorPalette: false,
         keyboardVisible: false,
         keyboardLayout: "normal",
@@ -984,6 +986,7 @@ socket.on('connect', function () {
     app.qrcode = "";
     app.desktop = false;
     app.removePositionPalette = false;
+    app.removeParameterPalette = false;
     app.removeColorPalette = false;
     app.version = "";
     app.url = "";
@@ -1035,6 +1038,7 @@ socket.on('errorsExist', function (msg) {
 socket.on('palettes', function (msg) {
     app.colorPalettes = msg.colorPalettes;
     app.positionPalettes = msg.positionPalettes;
+    app.beamPallettes = msg.parameterPalettes;
 });
 
 socket.on('cueProgress', function (msg) {
@@ -1135,6 +1139,7 @@ socket.on('fixtureParameters', function (msg) {
         app.currentView = "fixtureParameters";
         app.removePositionPalette = false;
         app.removeColorPalette = false;
+        app.removeParameterPalette = false;
     }
 });
 
