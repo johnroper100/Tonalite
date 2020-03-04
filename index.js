@@ -1195,6 +1195,8 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                 }
                 startFixture.effects[e].depth = cue.fixtures[f].effects[e].depth;
                 startFixture.effects[e].speed = cue.fixtures[f].effects[e].speed;
+                startFixture.effects[e].speedPositive = cue.fixtures[f].effects[e].speedPositive;
+                startFixture.effects[e].speedIndex = cue.fixtures[f].effects[e].speedIndex;
                 startFixture.effects[e].chroma = cue.fixtures[f].effects[e].chroma;
                 startFixture.effects[e].aspect = cue.fixtures[f].effects[e].aspect;
                 startFixture.effects[e].rotation = cue.fixtures[f].effects[e].rotation;
@@ -1417,6 +1419,8 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                 }
                 startGroup.effects[e].depth = cue.groups[g].effects[e].depth;
                 startGroup.effects[e].speed = cue.groups[g].effects[e].speed;
+                startGroup.effects[e].speedPositive = cue.groups[g].effects[e].speedPositive;
+                startGroup.effects[e].speedIndex = cue.groups[g].effects[e].speedIndex;
                 startGroup.effects[e].chroma = cue.groups[g].effects[e].chroma;
                 startGroup.effects[e].aspect = cue.groups[g].effects[e].aspect;
                 startGroup.effects[e].rotation = cue.groups[g].effects[e].rotation;
@@ -1854,10 +1858,10 @@ function calculateStack() {
                         }
                     }
                     if (fixtures[f].effects[e].speedIndex == 0) {
-                        if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed) >= fixtures[f].effects[e].steps.length - 1) {
+                        if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speedPositive) >= fixtures[f].effects[e].steps.length - 1) {
                             fixtures[f].effects[e].step = 0;
                         } else {
-                            fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
+                            fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speedPositive);
                         }
                         if (fixtures[f].effects[e].speed < 0) {
                             fixtures[f].effects[e].speedIndex = fixtures[f].effects[e].speed * -1;
@@ -2053,10 +2057,10 @@ function calculateStack() {
                         }
                     }
                     if (groups[g].effects[e].speedIndex == 0) {
-                        if (groups[g].effects[e].step + Math.floor(groups[g].effects[e].speed) >= groups[g].effects[e].steps.length - 1) {
+                        if (groups[g].effects[e].step + Math.floor(groups[g].effects[e].speedPositive) >= groups[g].effects[e].steps.length - 1) {
                             groups[g].effects[e].step = 0;
                         } else {
-                            groups[g].effects[e].step = groups[g].effects[e].step + Math.floor(groups[g].effects[e].speed);
+                            groups[g].effects[e].step = groups[g].effects[e].step + Math.floor(groups[g].effects[e].speedPositive);
                         }
                         if (groups[g].effects[e].speed < 0) {
                             groups[g].effects[e].speedIndex = groups[g].effects[e].speed * -1;
@@ -3132,7 +3136,7 @@ io.on('connection', function (socket) {
                     // Assign a random id for easy access to this fixture
                     fixture.id = generateID();
                     fixtures.push(JSON.parse(JSON.stringify(fixture)));
-                    fixtures.sort(function(second, first) {
+                    fixtures.sort(function (second, first) {
                         return second.startDMXAddress - first.startDMXAddress;
                     });
                     let cc = 0;
@@ -3383,9 +3387,11 @@ io.on('connection', function (socket) {
                     }
                     if (isNaN(parseInt(msg.speed)) == false) {
                         effect.speed = parseInt(msg.speed);
+                        effect.speedPositive = effect.speed;
                     }
                     if (effect.speed < 0) {
                         effect.speedIndex = effect.speed * -1;
+                        effect.speedPositive = effect.speed * -1;
                     }
                     if (isNaN(parseInt(msg.aspect)) == false) {
                         effect.aspect = parseInt(msg.aspect);
@@ -3423,9 +3429,11 @@ io.on('connection', function (socket) {
                         }
                         if (isNaN(parseInt(msg.speed)) == false) {
                             effect.speed = parseInt(msg.speed);
+                            effect.speedPositive = effect.speed;
                         }
                         if (effect.speed < 0) {
                             effect.speedIndex = effect.speed * -1;
+                            effect.speedPositive = effect.speed * -1;
                         }
                         if (isNaN(parseInt(msg.fan)) == false) {
                             effect.fan = parseInt(msg.fan);
@@ -3524,6 +3532,7 @@ io.on('connection', function (socket) {
                 effect.step = 0;
                 effect.depth = 1.0;
                 effect.speed = 1;
+                effect.speedPositive = 1;
                 effect.speedIndex = 0;
                 effect.chroma = 1;
                 effect.aspect = 0;
@@ -3578,6 +3587,7 @@ io.on('connection', function (socket) {
                     effect.step = 0;
                     effect.depth = 1.0;
                     effect.speed = 1;
+                    effect.speedPositive = 1;
                     effect.speedIndex = 0;
                     effect.chroma = 1;
                     effect.fan = 0;
