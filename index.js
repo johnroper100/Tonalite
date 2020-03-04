@@ -3114,6 +3114,7 @@ io.on('connection', function (socket) {
 
                     let c = 0;
                     const cMax = fixture.parameters.length;
+                    let changeIndex = null;
                     for (; c < cMax; c++) {
                         fixture.parameters[c].value = fixture.parameters[c].home;
                         fixture.parameters[c].max = 65535;
@@ -3130,8 +3131,14 @@ io.on('connection', function (socket) {
                         } else if (fixture.parameters[c].type == 1) {
                             fixture.parameterTypes.push("Intensity");
                         }
+                        if (fixture.parameters[c].type == 1) {
+                            changeIndex = c;
+                        }
                     }
                     fixture.parameters.sort((a, b) => (a.coarse > b.coarse) ? 1 : -1)
+                    if (changeIndex != null) {
+                        moveArrayItem(fixture.parameters, changeIndex, 0);
+                    }
                     fixture.shortName = fixture.name.split(" ")[0];
                     // Assign a random id for easy access to this fixture
                     fixture.id = generateID();
