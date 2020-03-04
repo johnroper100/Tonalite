@@ -358,7 +358,7 @@ var app = new Vue({
             if (app.removeParameterPalette == false) {
                 socket.emit('useParameterPalette', { id: app.currentFixture.id, pid: pid, type: 'fixture' });
             } else {
-                bootbox.confirm("Are you sure you want to remove this parameter palette?", function (result) {
+                bootbox.confirm("Are you sure you want to remove this beam palette?", function (result) {
                     if (result === true) {
                         socket.emit('removeParameterPalette', { pid: pid });
                     }
@@ -394,7 +394,7 @@ var app = new Vue({
             if (app.removeParameterPalette == false) {
                 socket.emit('useParameterPalette', { id: app.currentGroup.id, pid: pid, type: 'group' });
             } else {
-                bootbox.confirm("Are you sure you want to remove this parameter palette?", function (result) {
+                bootbox.confirm("Are you sure you want to remove this beam palette?", function (result) {
                     if (result === true) {
                         socket.emit('removeParameterPalette', { pid: pid });
                     }
@@ -1078,7 +1078,7 @@ socket.on('errorsExist', function (msg) {
 socket.on('palettes', function (msg) {
     app.colorPalettes = msg.colorPalettes;
     app.positionPalettes = msg.positionPalettes;
-    app.beamPallettes = msg.parameterPalettes;
+    app.parameterPalettes = msg.parameterPalettes;
 });
 
 socket.on('cueProgress', function (msg) {
