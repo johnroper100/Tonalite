@@ -284,6 +284,61 @@
                                 class="btn btn-secondary" @click="fixtureParametersTab = 'beam'"
                                 :class="{'btn-success': fixtureParametersTab == 'beam'}">Beam</button>
                         </div>
+                        <div
+                            v-if="currentFixture.parameterTypes.indexOf('Color') >= 0 && fixtureParametersTab == 'color'">
+                            <div class="fixturePalettes">
+                                <h5>Color Palettes:</h5>
+                                <div v-for="(palette, id) in colorPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center"
+                                    v-bind:style="{ backgroundColor: palette.color }"
+                                    @click="useFixtureColorPalette(id)"
+                                    :class="{'pulse': removeColorPalette == true, 'redOutline': removeColorPalette == true}">
+                                    {{palette.name}}</div>
+                                <div v-if="removeColorPalette == false"
+                                    class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                    @click="addColorPaletteModal"><i class="far fa-plus mt-3"></i></div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
+                                    @click="removeColorPalette=!removeColorPalette"><i
+                                        class="far fa-trash-alt mt-3"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && fixtureParametersTab == 'position'">
+                            <div class="fixturePalettes">
+                                <h5>Position Palettes:</h5>
+                                <div v-for="(palette, id) in positionPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
+                                    @click="useFixturePositionPalette(id)"
+                                    :class="{'pulse': removePositionPalette == true, 'redOutline': removePositionPalette == true}">
+                                    {{palette.name}}
+                                </div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                    @click="addPositionPaletteModal"><i class="far fa-plus mt-3"></i></div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
+                                    @click="removePositionPalette=!removePositionPalette"><i
+                                        class="far fa-trash-alt mt-3"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            v-if="currentFixture.parameterTypes.indexOf('Parameter') >= 0 && fixtureParametersTab == 'beam'">
+                            <div class="fixturePalettes">
+                                <h5>Beam Palettes:</h5>
+                                <div v-for="(palette, id) in parameterPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
+                                    @click="useFixtureParameterPalette(id)"
+                                    :class="{'pulse': removeParameterPalette == true, 'redOutline': removeParameterPalette == true}">
+                                    {{palette.name}}
+                                </div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                    @click="addParameterPaletteModal"><i class="far fa-plus mt-3"></i></div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
+                                    @click="removeParameterPalette=!removeParameterPalette"><i
+                                        class="far fa-trash-alt mt-3"></i>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-12" v-for="parameter in currentFixture.parameters"
                                 v-if="getParameterTabType(parameter)" :key="parameter.id"
@@ -336,61 +391,6 @@
                                             :class="{ 'bg-success': parameter.value >= mapRange(range.begin, 0, 255, 0, 65535) && parameter.value <= mapRange(range.end, 0, 255, 0, 65535), 'bg-danger': parameter.value < mapRange(range.begin, 0, 255, 0, 65535) || parameter.value > mapRange(range.end, 0, 255, 0, 65535)}">
                                             {{range.label}}</div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            v-if="currentFixture.parameterTypes.indexOf('Color') >= 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
-                            <div class="fixturePalettes">
-                                <h5>Fixture Color Palettes:</h5>
-                                <div v-for="(palette, id) in colorPalettes" :key="id"
-                                    class="fixturePalette d-inline-block mr-2 text-light text-center"
-                                    v-bind:style="{ backgroundColor: palette.color }"
-                                    @click="useFixtureColorPalette(id)"
-                                    :class="{'pulse': removeColorPalette == true, 'redOutline': removeColorPalette == true}">
-                                    {{palette.name}}</div>
-                                <div v-if="removeColorPalette == false"
-                                    class="fixturePalette d-inline-block mr-2 text-center bg-success"
-                                    @click="addColorPaletteModal"><i class="far fa-plus mt-3"></i></div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
-                                    @click="removeColorPalette=!removeColorPalette"><i
-                                        class="far fa-trash-alt mt-3"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            v-if="currentFixture.parameterTypes.indexOf('Position') >= 0 && (fixtureParametersTab == 'position' || fixtureParametersTab == 'all')">
-                            <div class="fixturePalettes">
-                                <h5>Fixture Position Palettes:</h5>
-                                <div v-for="(palette, id) in positionPalettes" :key="id"
-                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
-                                    @click="useFixturePositionPalette(id)"
-                                    :class="{'pulse': removePositionPalette == true, 'redOutline': removePositionPalette == true}">
-                                    {{palette.name}}
-                                </div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
-                                    @click="addPositionPaletteModal"><i class="far fa-plus mt-3"></i></div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
-                                    @click="removePositionPalette=!removePositionPalette"><i
-                                        class="far fa-trash-alt mt-3"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            v-if="currentFixture.parameterTypes.indexOf('Parameter') >= 0 && (fixtureParametersTab == 'beam' || fixtureParametersTab == 'all')">
-                            <div class="fixturePalettes">
-                                <h5>Fixture Beam Palettes:</h5>
-                                <div v-for="(palette, id) in parameterPalettes" :key="id"
-                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
-                                    @click="useFixtureParameterPalette(id)"
-                                    :class="{'pulse': removeParameterPalette == true, 'redOutline': removeParameterPalette == true}">
-                                    {{palette.name}}
-                                </div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
-                                    @click="addParameterPaletteModal"><i class="far fa-plus mt-3"></i></div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
-                                    @click="removeParameterPalette=!removeParameterPalette"><i
-                                        class="far fa-trash-alt mt-3"></i>
                                 </div>
                             </div>
                         </div>
@@ -817,6 +817,59 @@
                                 class="btn btn-secondary" @click="fixtureParametersTab = 'beam'"
                                 :class="{'btn-success': fixtureParametersTab == 'beam'}">Beam</button>
                         </div>
+                        <div
+                            v-if="currentGroup.parameterTypes.indexOf('Color') >= 0 && fixtureParametersTab == 'color'">
+                            <div class="fixturePalettes">
+                                <h5>Color Palettes:</h5>
+                                <div v-for="(palette, id) in colorPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center"
+                                    v-bind:style="{ backgroundColor: palette.color }" @click="useGroupColorPalette(id)"
+                                    :class="{'pulse': removeColorPalette == true, 'redOutline': removeColorPalette == true}">
+                                    {{palette.name}}</div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
+                                    @click="removeColorPalette=!removeColorPalette"><i
+                                        class="far fa-trash-alt mt-3"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            v-if="currentGroup.parameterTypes.indexOf('Position') >= 0 && fixtureParametersTab == 'position'">
+                            <div class="fixturePalettes">
+                                <h5>Position Palettes:</h5>
+                                <div v-for="(palette, id) in positionPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
+                                    @click="useGroupPositionPalette(id)"
+                                    :class="{'pulse': removePositionPalette == true, 'redOutline': removePositionPalette == true}">
+                                    {{palette.name}}
+                                </div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                    @click="addPositionPaletteModal"><i class="far fa-plus mt-3"></i></div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
+                                    @click="removePositionPalette=!removePositionPalette"
+                                    :class="{'pulse': removePositionPalette == true}"><i
+                                        class="far fa-trash-alt mt-3"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            v-if="currentGroup.parameterTypes.indexOf('Parameter') >= 0 && fixtureParametersTab == 'beam'">
+                            <div class="fixturePalettes">
+                                <h5>Beam Palettes:</h5>
+                                <div v-for="(palette, id) in parameterPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
+                                    @click="useGroupParameterPalette(id)"
+                                    :class="{'pulse': removeParameterPalette == true, 'redOutline': removeParameterPalette == true}">
+                                    {{palette.name}}
+                                </div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                    @click="addParameterPaletteModal"><i class="far fa-plus mt-3"></i></div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
+                                    @click="removeParameterPalette=!removeParameterPalette"
+                                    :class="{'pulse': removeParameterPalette == true}"><i
+                                        class="far fa-trash-alt mt-3"></i>
+                                </div>
+                            </div>
+                        </div>
                         <div v-for="parameter in currentGroup.parameters" v-if="getParameterTabType(parameter)"
                             :key="parameter.id">
                             <button class="btn btn-info" @click="changeGroupParameterLock(parameter)">
@@ -863,59 +916,6 @@
                                         @click="useGroupParameterRange(parameter, id)"
                                         :class="{ 'bg-success': parameter.value >= mapRange(range.begin, 0, 255, 0, 65535) && parameter.value <= mapRange(range.end, 0, 255, 0, 65535), 'bg-danger': parameter.value < mapRange(range.begin, 0, 255, 0, 65535) || parameter.value > mapRange(range.end, 0, 255, 0, 65535)}">
                                         {{range.label}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            v-if="currentGroup.parameterTypes.indexOf('Color') >= 0 && (fixtureParametersTab == 'color' || fixtureParametersTab == 'all')">
-                            <div class="fixturePalettes">
-                                <h5>Group Color Palettes:</h5>
-                                <div v-for="(palette, id) in colorPalettes" :key="id"
-                                    class="fixturePalette d-inline-block mr-2 text-light text-center"
-                                    v-bind:style="{ backgroundColor: palette.color }" @click="useGroupColorPalette(id)"
-                                    :class="{'pulse': removeColorPalette == true, 'redOutline': removeColorPalette == true}">
-                                    {{palette.name}}</div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
-                                    @click="removeColorPalette=!removeColorPalette"><i
-                                        class="far fa-trash-alt mt-3"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            v-if="currentGroup.parameterTypes.indexOf('Position') >= 0 && (fixtureParametersTab == 'position' || fixtureParametersTab == 'all')">
-                            <div class="fixturePalettes">
-                                <h5>Group Position Palettes:</h5>
-                                <div v-for="(palette, id) in positionPalettes" :key="id"
-                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
-                                    @click="useGroupPositionPalette(id)"
-                                    :class="{'pulse': removePositionPalette == true, 'redOutline': removePositionPalette == true}">
-                                    {{palette.name}}
-                                </div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
-                                    @click="addPositionPaletteModal"><i class="far fa-plus mt-3"></i></div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
-                                    @click="removePositionPalette=!removePositionPalette"
-                                    :class="{'pulse': removePositionPalette == true}"><i
-                                        class="far fa-trash-alt mt-3"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            v-if="currentGroup.parameterTypes.indexOf('Parameter') >= 0 && (fixtureParametersTab == 'beam' || fixtureParametersTab == 'all')">
-                            <div class="fixturePalettes">
-                                <h5>Group Beam Palettes:</h5>
-                                <div v-for="(palette, id) in parameterPalettes" :key="id"
-                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
-                                    @click="useGroupParameterPalette(id)"
-                                    :class="{'pulse': removeParameterPalette == true, 'redOutline': removeParameterPalette == true}">
-                                    {{palette.name}}
-                                </div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
-                                    @click="addParameterPaletteModal"><i class="far fa-plus mt-3"></i></div>
-                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
-                                    @click="removeParameterPalette=!removeParameterPalette"
-                                    :class="{'pulse': removeParameterPalette == true}"><i
-                                        class="far fa-trash-alt mt-3"></i>
                                 </div>
                             </div>
                         </div>
