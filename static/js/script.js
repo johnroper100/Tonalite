@@ -316,6 +316,16 @@ var app = new Vue({
             socket.emit("changeGroupParameterValue", { id: app.currentGroup.id, pid: parameter.id, value: parameter.value })
             parameter.displayValue = parseInt(app.mapRange(parameter.value, parameter.min, parameter.max, 0, 100));
         },
+        fanGroupParameterValue: function (parameter, fan) {
+            socket.emit("fanGroupParameterValue", { id: app.currentGroup.id, pid: parameter.id, value: fan });
+            parameter.value += fan;
+            if (parameter.value < 0) {
+                parameter.value = 0;
+            } else if (parameter.value > 65535) {
+                parameter.value = 65535;
+            }
+            parameter.displayValue = parseInt(app.mapRange(parameter.value, parameter.min, parameter.max, 0, 100));
+        },
         changeFixtureParameterLock: function (param) {
             socket.emit("changeFixtureParameterLock", { id: app.currentFixture.id, pid: param.id })
         },

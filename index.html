@@ -905,6 +905,14 @@
                                     @click="setParameterValue(parameter, parameter.max, 'group')">
                                     <i class="far fa-step-forward fa-sm"></i>
                                 </button>
+                                <button :disabled="parameter.locked == true" class="btn btn-success"
+                                    @click="fanGroupParameterValue(parameter, 656)">
+                                    <i class="far fa-chevron-up fa-sm"></i>
+                                </button>
+                                <button :disabled="parameter.locked == true" class="btn btn-success"
+                                    @click="fanGroupParameterValue(parameter, -656)">
+                                    <i class="far fa-chevron-down fa-sm"></i>
+                                </button>
                             </div>
                             <input type="range" :disabled="parameter.locked == true" class="custom-range"
                                 v-bind:id="parameter.id" v-bind:max="parameter.max" v-bind:min="parameter.min"
