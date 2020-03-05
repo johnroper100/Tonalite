@@ -2104,7 +2104,7 @@ function setFixtureGroupValues(group, parameter, fan = null) {
                     if (fan == null) {
                         fixture.parameters[c].value = parameter.value;
                     } else {
-                        fixture.parameters[c].value = fan - fixture.parameters[c].value;
+                        fixture.parameters[c].value += fan;
                         if (fixture.parameters[c].value < 0) {
                             fixture.parameters[c].value = 0;
                         } else if (fixture.parameters[c].value > 65535) {
@@ -4711,6 +4711,41 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('fanGroupParameterValue', function (msg) {
+        if (fixtures.length > 0) {
+            if (groups.length > 0) {
+                if (groups.some(e => e.id === msg.id)) {
+                    var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                    if (group.parameters.some(e => e.id === msg.pid)) {
+                        var parameter = group.parameters[group.parameters.map(el => el.id).indexOf(msg.pid)];
+                        if (parameter.locked == false) {
+                            parameter.value += parseInt(msg.value);
+                            if (parameter.value > 65535) {
+                                parameter.value = 65535;
+                            }
+                            if (parameter.value < 0) {
+                                parameter.value = 0;
+                            }
+                            parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
+                            setFixtureGroupValues(group, parameter, parseInt(msg.value));
+                            socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
+                            socket.emit('groups', { groups: cleanGroups(), target: false });
+                            io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+                            //saveShow();
+                        }
+                    } else {
+                        socket.emit('message', { type: "error", content: "This parameter doesn't exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "This group doesn't exist!" });
+                }
+            } else {
+                socket.emit('message', { type: "error", content: "No groups exist!" });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
     socket.on('changeGroupParameterLock', function (msg) {
         if (fixtures.length > 0) {
             if (groups.length > 0) {
