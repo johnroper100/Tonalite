@@ -5218,6 +5218,16 @@ io.on('connection', function (socket) {
         } else {
             SETTINGS.sacnIP = null;
         }
+        if (msg.oscIP != "") {
+            SETTINGS.oscIP = msg.oscIP;
+        } else {
+            SETTINGS.oscIP = "0.0.0.0";
+        }
+        if (isNaN(parseInt(msg.oscPort)) == false) {
+            SETTINGS.oscpPort = parseInt(msg.oscPort);
+        } else {
+            SETTINGS.oscPort = 57121;
+        }
         if (saveSettings() == false) {
             socket.emit('message', { type: "error", content: "The Tonalite settings file could not be saved on disk." });
         } else {

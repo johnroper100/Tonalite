@@ -1863,6 +1863,24 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="dark" for="oscIP">OSC IP:</label>
+                                        <input @input="editSettings" v-model="settings.oscIP" class="form-control"
+                                            type="text" id="oscIP" placeholder="OSC IP is 0.0.0.0" @focus="showKeyboard"
+                                            @blur="hideKeyboard" data-layout="numeric">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="dark" for="oscPort">OSC Port:</label>
+                                        <input @input="editSettings" v-model="settings.oscPort" class="form-control"
+                                            type="number" id="oscPort" placeholder="OSC Port is 57121"
+                                            @focus="showKeyboard" @blur="hideKeyboard" data-layout="numeric">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
