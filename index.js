@@ -3876,7 +3876,7 @@ io.on('connection', function (socket) {
                         parameter.displayValue = cppaddon.mapRange(parameter.value, parameter.min, parameter.max, 0, 100);
                         socket.broadcast.emit('fixtures', { fixtures: cleanFixtures(), target: true });
                         socket.emit('fixtures', { fixtures: cleanFixtures(), target: false });
-                        saveShow();
+                        //saveShow();
                     }
                 } else {
                     socket.emit('message', { type: "error", content: "This parameter does not exist!" });
@@ -4686,7 +4686,7 @@ io.on('connection', function (socket) {
                             socket.broadcast.emit('groups', { groups: cleanGroups(), target: true });
                             socket.emit('groups', { groups: cleanGroups(), target: false });
                             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
-                            saveShow();
+                            //saveShow();
                         }
                     } else {
                         socket.emit('message', { type: "error", content: "This parameter doesn't exist!" });
