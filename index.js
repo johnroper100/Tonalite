@@ -2089,7 +2089,7 @@ function calculateStack() {
 };
 
 // Set the fixture values for each group equal to the group's parameter value
-function setFixtureGroupValues(group, parameter, fan=false) {
+function setFixtureGroupValues(group, parameter, fan = null) {
     let i = 0;
     const iMax = group.ids.length;
     for (; i < iMax; i++) {
@@ -2101,7 +2101,16 @@ function setFixtureGroupValues(group, parameter, fan=false) {
             if (fixture.parameters[c].name === parameter.name && fixture.parameters[c].type === parameter.type) {
                 fixture.parameters[c].locked = parameter.locked;
                 if (fixture.parameters[c].locked != true) {
-                    fixture.parameters[c].value = parameter.value;
+                    if (fan == null) {
+                        fixture.parameters[c].value = parameter.value;
+                    } else {
+                        fixture.parameters[c].value = fan - fixture.parameters[c].value;
+                        if (fixture.parameters[c].value < 0) {
+                            fixture.parameters[c].value = 0;
+                        } else if (fixture.parameters[c].value > 65535) {
+                            fixture.parameters[c].value = 65535;
+                        }
+                    }
                     fixture.parameters[c].displayValue = cppaddon.mapRange(fixture.parameters[c].value, fixture.parameters[c].min, fixture.parameters[c].max, 0, 100);
                 }
             }
