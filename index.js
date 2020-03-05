@@ -2089,7 +2089,7 @@ function calculateStack() {
 };
 
 // Set the fixture values for each group equal to the group's parameter value
-function setFixtureGroupValues(group, parameter) {
+function setFixtureGroupValues(group, parameter, fan=false) {
     let i = 0;
     const iMax = group.ids.length;
     for (; i < iMax; i++) {
