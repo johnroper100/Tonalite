@@ -376,6 +376,24 @@
                                 </div>
                             </div>
                         </div>
+                        <div
+                            v-if="currentFixture.parameterTypes.indexOf('Parameter') >= 0 && (fixtureParametersTab == 'beam' || fixtureParametersTab == 'all')">
+                            <div class="fixturePalettes">
+                                <h5>Fixture Beam Palettes:</h5>
+                                <div v-for="(palette, id) in parameterPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
+                                    @click="useFixtureParameterPalette(id)"
+                                    :class="{'pulse': removeParameterPalette == true, 'redOutline': removeParameterPalette == true}">
+                                    {{palette.name}}
+                                </div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                    @click="addParameterPaletteModal"><i class="far fa-plus mt-3"></i></div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
+                                    @click="removeParameterPalette=!removeParameterPalette"><i
+                                        class="far fa-trash-alt mt-3"></i>
+                                </div>
+                            </div>
+                        </div>
                         <div v-if="currentFixture.effects.length > 0">
                             <div class="fixtureEffects">
                                 <h5>Fixture Effects:</h5>
@@ -383,7 +401,7 @@
                                     <li class="list-group-item fixtureEffect" v-for="effect in currentFixture.effects"
                                         :key="effect.id">
                                         <i class="mr-1 far"
-                                            :class="{'fa-palette': effect.type == 'Color', 'fa-running': effect.type == 'Position', 'fa-lightbulb': effect.type == 'Intensity', 'fa-cog': effect.type == 'Parameter'}"></i>
+                                            :class="{'fa-palette': effect.type == 'Color', 'fa-running': effect.type == 'Position', 'fa-lightbulb': effect.type == 'Intensity', 'fa-cog': effect.type == 'beam'}"></i>
                                         {{effect.name}}
                                         <button class="float-right btn btn-sm btn-primary d-inline-block"
                                             @click="getFixtureEffectSettings(effect.id)">Settings</button>
@@ -613,7 +631,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="effectSpeedInput">Speed:</label>
-                                <input class="form-control" placeholder="Effect Speed" type="number" step="1" min="0"
+                                <input class="form-control" placeholder="Effect Speed" type="number" step="1"
                                     id="effectSpeedInput" @input="editFixtureEffectSettings"
                                     v-model="currentEffect.speed" @focus="showKeyboard" @blur="hideKeyboard"
                                     data-layout="numeric">
@@ -628,7 +646,15 @@
                                     data-layout="numeric">
                             </div>
                         </div>
-
+                        <div class="col-12" v-if="currentEffect.type == 'Position'">
+                            <div class="form-group">
+                                <label for="effectAspectInput">Aspect:</label>
+                                <input type="number" step="1" placeholder="Effect Aspect" min="0" class="form-control"
+                                    id="effectAspectInput" @input="editFixtureEffectSettings"
+                                    v-model="currentEffect.aspect" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="numeric">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -661,7 +687,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label for="effectSpeedInput">Speed:</label>
-                                <input class="form-control" placeholder="Effect Speed" type="number" step="1" min="0"
+                                <input class="form-control" placeholder="Effect Speed" type="number" step="1"
                                     id="effectSpeedInput" @input="editGroupEffectSettings" v-model="currentEffect.speed"
                                     @focus="showKeyboard" @blur="hideKeyboard" data-layout="numeric">
                             </div>
@@ -675,7 +701,17 @@
                                     data-layout="numeric">
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12" :class="{'col-md-6': currentEffect.type == 'Position'}"
+                            v-if="currentEffect.type == 'Position'">
+                            <div class="form-group">
+                                <label for="effectAspectInput">Aspect:</label>
+                                <input type="number" step="1" placeholder="Effect Aspect" min="0" class="form-control"
+                                    id="effectAspectInput" @input="editGroupEffectSettings"
+                                    v-model="currentEffect.aspect" @focus="showKeyboard" @blur="hideKeyboard"
+                                    data-layout="numeric">
+                            </div>
+                        </div>
+                        <div class="col-12" :class="{'col-md-6': currentEffect.type == 'Position'}">
                             <div class="form-group">
                                 <label for="effectFanInput">Fan:</label>
                                 <input type="number" step="1" placeholder="Effect Fan" min="0" class="form-control"
@@ -860,6 +896,25 @@
                                 <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
                                     @click="removePositionPalette=!removePositionPalette"
                                     :class="{'pulse': removePositionPalette == true}"><i
+                                        class="far fa-trash-alt mt-3"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            v-if="currentGroup.parameterTypes.indexOf('Parameter') >= 0 && (fixtureParametersTab == 'beam' || fixtureParametersTab == 'all')">
+                            <div class="fixturePalettes">
+                                <h5>Group Beam Palettes:</h5>
+                                <div v-for="(palette, id) in parameterPalettes" :key="id"
+                                    class="fixturePalette d-inline-block mr-2 text-light text-center bg-secondary"
+                                    @click="useGroupParameterPalette(id)"
+                                    :class="{'pulse': removeParameterPalette == true, 'redOutline': removeParameterPalette == true}">
+                                    {{palette.name}}
+                                </div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-success"
+                                    @click="addParameterPaletteModal"><i class="far fa-plus mt-3"></i></div>
+                                <div class="fixturePalette d-inline-block mr-2 text-center bg-danger"
+                                    @click="removeParameterPalette=!removeParameterPalette"
+                                    :class="{'pulse': removeParameterPalette == true}"><i
                                         class="far fa-trash-alt mt-3"></i>
                                 </div>
                             </div>
@@ -1956,6 +2011,22 @@
                                 data-layout="compact">
                         </div>
                         <button class="btn btn-success btn-full" @click="addPositionPalette">Add Position
+                            Palette</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="addParameterPaletteModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="dark mr-2" for="parameterPaletteName">Beam palette name:</label>
+                            <input type="text" class="form-control" placeholder="Name here" id="parameterPaletteName"
+                                v-model="addPaletteName" maxlength="10" @focus="showKeyboard" @blur="hideKeyboard"
+                                data-layout="compact">
+                        </div>
+                        <button class="btn btn-success btn-full" @click="addParameterPalette">Add Beam
                             Palette</button>
                     </div>
                 </div>

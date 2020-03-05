@@ -16,6 +16,7 @@ var app = new Vue({
         sequences: [],
         colorPalettes: [],
         positionPalettes: [],
+        parameterPalettes: [],
         presets: [],
         cuePlaying: false,
         activeCue: "",
@@ -50,6 +51,7 @@ var app = new Vue({
         settingsModalTab: "ui",
         addPaletteName: "",
         removePositionPalette: false,
+        removeParameterPalette: false,
         removeColorPalette: false,
         keyboardVisible: false,
         keyboardLayout: "normal",
@@ -352,6 +354,18 @@ var app = new Vue({
                 });
             }
         },
+        useFixtureParameterPalette: function (pid) {
+            if (app.removeParameterPalette == false) {
+                socket.emit('useParameterPalette', { id: app.currentFixture.id, pid: pid, type: 'fixture' });
+            } else {
+                bootbox.confirm("Are you sure you want to remove this beam palette?", function (result) {
+                    if (result === true) {
+                        socket.emit('removeParameterPalette', { pid: pid });
+                    }
+                    app.removeParameterPalette = false;
+                });
+            }
+        },
         useGroupColorPalette: function (pid) {
             if (app.removeColorPalette == false) {
                 socket.emit('useColorPalette', { id: app.currentGroup.id, pid: pid, type: 'group', colorType: 'palette' });
@@ -373,6 +387,18 @@ var app = new Vue({
                         socket.emit('removePositionPalette', { pid: pid });
                     }
                     app.removePositionPalette = false;
+                });
+            }
+        },
+        useGroupParameterPalette: function (pid) {
+            if (app.removeParameterPalette == false) {
+                socket.emit('useParameterPalette', { id: app.currentGroup.id, pid: pid, type: 'group' });
+            } else {
+                bootbox.confirm("Are you sure you want to remove this beam palette?", function (result) {
+                    if (result === true) {
+                        socket.emit('removeParameterPalette', { pid: pid });
+                    }
+                    app.removeParameterPalette = false;
                 });
             }
         },
@@ -403,12 +429,12 @@ var app = new Vue({
         },
         editFixtureEffectSettings: function () {
             if (app.currentEffect.name != "" && isNaN(parseFloat(app.currentEffect.depth)) == false && isNaN(parseFloat(app.currentEffect.speed)) == false) {
-                socket.emit('editFixtureEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed });
+                socket.emit('editFixtureEffectSettings', { fixtureID: app.currentFixture.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, aspect: app.currentEffect.aspect, speed: app.currentEffect.speed });
             }
         },
         editGroupEffectSettings: function () {
             if (app.currentEffect.name != "" && isNaN(parseFloat(app.currentEffect.depth)) == false && isNaN(parseFloat(app.currentEffect.speed)) == false) {
-                socket.emit('editGroupEffectSettings', { groupID: app.currentGroup.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, speed: app.currentEffect.speed, fan: app.currentEffect.fan });
+                socket.emit('editGroupEffectSettings', { groupID: app.currentGroup.id, effectID: app.currentEffect.id, name: app.currentEffect.name, depth: app.currentEffect.depth, aspect: app.currentEffect.aspect, speed: app.currentEffect.speed, fan: app.currentEffect.fan });
             }
         },
         editCueSettings: function () {
@@ -608,6 +634,12 @@ var app = new Vue({
                 $('#addPositionPaletteModal').modal('show');
             }
         },
+        addParameterPaletteModal: function () {
+            if (app.removeParameterPalette == false) {
+                app.addPaletteName = "";
+                $('#addParameterPaletteModal').modal('show');
+            }
+        },
         addColorPaletteModal: function () {
             if (app.removeColorPalette == false) {
                 app.addPaletteName = "";
@@ -650,6 +682,16 @@ var app = new Vue({
             }
             app.addPaletteName = "";
             $('#addPositionPaletteModal').modal("hide");
+        },
+        addParameterPalette: function () {
+            if (app.currentView == 'fixtureParameters' && app.isEmpty(app.currentFixture) == false) {
+                socket.emit('addParameterPalette', { type: 'fixture', id: app.currentFixture.id, name: app.addPaletteName });
+            }
+            if (app.currentView == 'groupParameters' && app.isEmpty(app.currentGroup) == false) {
+                socket.emit('addParameterPalette', { type: 'group', id: app.currentGroup.id, name: app.addPaletteName });
+            }
+            app.addPaletteName = "";
+            $('#addParameterPaletteModal').modal("hide");
         },
         addColorPalette: function () {
             if (app.currentView == 'fixtureParameters' && app.isEmpty(app.currentFixture) == false) {
@@ -984,6 +1026,7 @@ socket.on('connect', function () {
     app.qrcode = "";
     app.desktop = false;
     app.removePositionPalette = false;
+    app.removeParameterPalette = false;
     app.removeColorPalette = false;
     app.version = "";
     app.url = "";
@@ -1035,6 +1078,7 @@ socket.on('errorsExist', function (msg) {
 socket.on('palettes', function (msg) {
     app.colorPalettes = msg.colorPalettes;
     app.positionPalettes = msg.positionPalettes;
+    app.parameterPalettes = msg.parameterPalettes;
 });
 
 socket.on('cueProgress', function (msg) {
@@ -1135,6 +1179,7 @@ socket.on('fixtureParameters', function (msg) {
         app.currentView = "fixtureParameters";
         app.removePositionPalette = false;
         app.removeColorPalette = false;
+        app.removeParameterPalette = false;
     }
 });
 

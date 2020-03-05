@@ -65,6 +65,7 @@ var groups = [];
 var presets = [];
 var colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));;
 var positionPalettes = [];
+var parameterPalettes = [];
 var currentCue = "";
 var cueProgress = 0;
 var lastCue = "";
@@ -329,9 +330,9 @@ function saveSettings() {
 
 function saveUndoRedo(r) {
     if (r == false) {
-        undo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, presets: presets }));
+        undo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, presets: presets }));
     } else {
-        redo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, presets: presets }));
+        redo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, presets: presets }));
     }
 }
 
@@ -489,7 +490,7 @@ async function saveShowToUSB(showName, callback) {
                     if (exists) {
                         alreadyexists = true;
                     } else {
-                        fs.writeFile(filepath, JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, tonaliteVersion: VERSION, showName: currentShowName, lastSaved: moment().format() }), (err) => {
+                        fs.writeFile(filepath, JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, tonaliteVersion: VERSION, showName: currentShowName, lastSaved: moment().format() }), (err) => {
                             if (err) {
                                 logError(err);
                                 errorhappened = true;
@@ -754,7 +755,6 @@ function cleanEffect(effect) {
     delete newEffect.speed;
     delete newEffect.depth;
     delete newEffect.chroma;
-    delete newEffect.fan;
     delete newEffect.aspect;
     delete newEffect.rotation;
     return newEffect;
@@ -1191,12 +1191,13 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
         const eMax = cue.fixtures[f].effects.length;
         for (; e < eMax; e++) {
             if (startFixture.effects[e].id == cue.fixtures[f].effects[e].id) {
-                startFixture.effects[e].fan = cue.fixtures[f].effects[e].fan;
                 if (cue.fixtures[f].effects[e].active != startFixture.effects[e].active) {
                     startFixture.effects[e].step = 0;
                 }
                 startFixture.effects[e].depth = cue.fixtures[f].effects[e].depth;
                 startFixture.effects[e].speed = cue.fixtures[f].effects[e].speed;
+                startFixture.effects[e].speedPositive = cue.fixtures[f].effects[e].speedPositive;
+                startFixture.effects[e].speedIndex = cue.fixtures[f].effects[e].speedIndex;
                 startFixture.effects[e].chroma = cue.fixtures[f].effects[e].chroma;
                 startFixture.effects[e].aspect = cue.fixtures[f].effects[e].aspect;
                 startFixture.effects[e].rotation = cue.fixtures[f].effects[e].rotation;
@@ -1419,6 +1420,8 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                 }
                 startGroup.effects[e].depth = cue.groups[g].effects[e].depth;
                 startGroup.effects[e].speed = cue.groups[g].effects[e].speed;
+                startGroup.effects[e].speedPositive = cue.groups[g].effects[e].speedPositive;
+                startGroup.effects[e].speedIndex = cue.groups[g].effects[e].speedIndex;
                 startGroup.effects[e].chroma = cue.groups[g].effects[e].chroma;
                 startGroup.effects[e].aspect = cue.groups[g].effects[e].aspect;
                 startGroup.effects[e].rotation = cue.groups[g].effects[e].rotation;
@@ -1696,6 +1699,13 @@ function calculateStack() {
                             if (effectChanIndex > -1 && (fixtures[f].effects[e].type != "Color" || (fixtures[f].effects[e].type == "Color" && colortables.RGB.indexOf(fixtures[f].colortable) >= 0))) {
                                 paramWorked = true;
                                 effectValue = fixtures[f].effects[e].steps[fixtures[f].effects[e].step][effectChanIndex];
+                                if (fixtures[f].effects[e].type == "Position" && fixtures[f].effects[e].aspect > 0) {
+                                    if (fixtures[f].parameters[p].name == "Pan") {
+                                        effectValue = effectValue + fixtures[f].effects[e].aspect;
+                                    } else if (fixtures[f].parameters[p].name == "Tilt") {
+                                        effectValue = effectValue + (fixtures[f].effects[e].aspect * -1);
+                                    }
+                                }
                             } else if (fixtures[f].effects[e].type == "Color" && colortables.RGBW.indexOf(fixtures[f].colortable) >= 0) {
                                 // RGBW
                                 paramWorked = true;
@@ -1848,10 +1858,17 @@ function calculateStack() {
                             }
                         }
                     }
-                    if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed) >= fixtures[f].effects[e].steps.length - 1) {
-                        fixtures[f].effects[e].step = 0;
+                    if (fixtures[f].effects[e].speedIndex == 0) {
+                        if (fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speedPositive) >= fixtures[f].effects[e].steps.length - 1) {
+                            fixtures[f].effects[e].step = 0;
+                        } else {
+                            fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speedPositive);
+                        }
+                        if (fixtures[f].effects[e].speed < 0) {
+                            fixtures[f].effects[e].speedIndex = fixtures[f].effects[e].speed * -1;
+                        }
                     } else {
-                        fixtures[f].effects[e].step = fixtures[f].effects[e].step + Math.floor(fixtures[f].effects[e].speed);
+                        fixtures[f].effects[e].speedIndex -= 1;
                     }
                 }
             }
@@ -1880,6 +1897,13 @@ function calculateStack() {
                                 if (effectChanIndex > -1 && (groups[g].effects[e].type != "Color" || (groups[g].effects[e].type == "Color" && colortables.RGB.indexOf(fixture.colortable) >= 0))) {
                                     paramWorked = true;
                                     effectValue = groups[g].effects[e].steps[stepitem][effectChanIndex];
+                                    if (groups[g].effects[e].type == "Position" && groups[g].effects[e].aspect > 0) {
+                                        if (groups[g].parameters[p].name == "Pan") {
+                                            effectValue = effectValue + groups[g].effects[e].aspect;
+                                        } else if (groups[g].parameters[p].name == "Tilt") {
+                                            effectValue = effectValue + (groups[g].effects[e].aspect * -1);
+                                        }
+                                    }
                                 } else if (groups[g].effects[e].type == "Color" && colortables.RGBW.indexOf(fixture.colortable) >= 0) {
                                     // RGBW
                                     paramWorked = true;
@@ -2033,10 +2057,17 @@ function calculateStack() {
                             }
                         }
                     }
-                    if (groups[g].effects[e].step + Math.floor(groups[g].effects[e].speed) >= groups[g].effects[e].steps.length - 1) {
-                        groups[g].effects[e].step = 0;
+                    if (groups[g].effects[e].speedIndex == 0) {
+                        if (groups[g].effects[e].step + Math.floor(groups[g].effects[e].speedPositive) >= groups[g].effects[e].steps.length - 1) {
+                            groups[g].effects[e].step = 0;
+                        } else {
+                            groups[g].effects[e].step = groups[g].effects[e].step + Math.floor(groups[g].effects[e].speedPositive);
+                        }
+                        if (groups[g].effects[e].speed < 0) {
+                            groups[g].effects[e].speedIndex = groups[g].effects[e].speed * -1;
+                        }
                     } else {
-                        groups[g].effects[e].step = groups[g].effects[e].step + Math.floor(groups[g].effects[e].speed);
+                        groups[g].effects[e].speedIndex -= 1;
                     }
                 }
             }
@@ -2186,6 +2217,7 @@ function openShow(file = "show.json") {
         currentShowName = show.showName;
         colorPalettes = show.colorPalettes;
         positionPalettes = show.positionPalettes;
+        parameterPalettes = show.parameterPalettes;
         lastCue = "";
         currentCue = "";
         cueProgress = 0;
@@ -2222,7 +2254,7 @@ function openShow(file = "show.json") {
 
 // Save the fixtures, cues, and groups of the show to file
 function saveShow() {
-    fs.writeFile(process.cwd() + "/show.json", JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, tonaliteVersion: VERSION, lastSaved: moment().format(), showName: currentShowName }), (err) => {
+    fs.writeFile(process.cwd() + "/show.json", JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, tonaliteVersion: VERSION, lastSaved: moment().format(), showName: currentShowName }), (err) => {
         if (err) {
             logError(err);
             return false;
@@ -2339,7 +2371,7 @@ io.on('connection', function (socket) {
     socket.emit('blackout', blackout);
     socket.emit('grandmaster', grandmaster);
     socket.emit('activeCue', currentCueID);
-    socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+    socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
     if (currentCueID != "") {
         if (cues[cues.map(el => el.id).indexOf(currentCueID)].upTime > cues[cues.map(el => el.id).indexOf(currentCueID)].downTime) {
             socket.emit('cueProgress', Math.round((cueProgress / ((cues[cues.map(el => el.id).indexOf(currentCueID)].upTime * FPS) + 1)) * 10) / 10);
@@ -2371,13 +2403,14 @@ io.on('connection', function (socket) {
             sequences = undo.sequences;
             colorPalettes = undo.colorPalettes;
             positionPalettes = undo.positionPalettes;
+            parameterPalettes = undo.parameterPalettes;
             presets = undo.presets;
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             io.emit('cues', cleanCues());
             io.emit('sequences', { sequences: cleanSequences(), target: true });
             io.emit('groups', { groups: cleanGroups(), target: true });
             io.emit('presets', cleanPresets());
-            io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+            io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
             saveShow();
         }
     });
@@ -2391,13 +2424,14 @@ io.on('connection', function (socket) {
             sequences = redo.sequences;
             colorPalettes = redo.colorPalettes;
             positionPalettes = redo.positionPalettes;
+            parameterPalettes = redo.parameterPalettes;
             presets = undo.presets;
             io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
             io.emit('cues', cleanCues());
             io.emit('sequences', { sequences: cleanSequences(), target: true });
             io.emit('groups', { groups: cleanGroups(), target: true });
             io.emit('presets', cleanPresets());
-            io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+            io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
             saveShow();
         }
     });
@@ -2423,6 +2457,7 @@ io.on('connection', function (socket) {
         sequences = [];
         colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));
         positionPalettes = [];
+        parameterPalettes = [];
         currentCue = "";
         currentCueID = "";
         lastCue = "";
@@ -2435,7 +2470,7 @@ io.on('connection', function (socket) {
         io.emit('cueActionBtn', false);
         io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('resetView', { type: 'show', eid: "" });
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         io.emit('cueProgress', cueProgress);
         io.emit('message', { type: "info", content: "A new show has been created!" });
         saveShow();
@@ -2449,6 +2484,7 @@ io.on('connection', function (socket) {
         sequences = [];
         colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));
         positionPalettes = [];
+        parameterPalettes = [];
         currentCue = "";
         cueProgress = 0;
         currentCueID = "";
@@ -2466,7 +2502,7 @@ io.on('connection', function (socket) {
         io.emit('sequences', { sequences: cleanSequences(), target: true });
         io.emit('groups', { groups: cleanGroups(), target: true });
         io.emit('cueActionBtn', false);
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         io.emit('resetView', { type: 'show', eid: "" });
         io.emit('cueProgress', cueProgress);
         io.emit('message', { type: "info", content: "A new show has been created!" });
@@ -2546,6 +2582,56 @@ io.on('connection', function (socket) {
                 var param = null;
                 var fixture = null;
                 var palette = positionPalettes[msg.pid];
+                let i = 0;
+                const iMax = ids.length;
+                for (; i < iMax; i++) {
+                    fixture = fixtures[fixtures.map(el => el.id).indexOf(ids[i])];
+                    let c = 0;
+                    const cMax = palette.parameters.length;
+                    for (; c < cMax; c++) {
+                        param = fixture.parameters[fixture.parameters.map(el => el.name).indexOf(palette.parameters[c].name)];
+                        if (param != null) {
+                            param.value = palette.parameters[c].value;
+                            param.displayValue = cppaddon.mapRange(param.value, param.min, param.max, 0, 100);
+                        }
+                    }
+                }
+                if (msg.type == 'group') {
+                    io.emit('groups', { groups: cleanGroups(), target: true });
+                }
+                io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
+            }
+        } else {
+            socket.emit('message', { type: "error", content: "No fixtures exist!" });
+        }
+    });
+
+    socket.on('useParameterPalette', function (msg) {
+        var ids = [];
+        if (fixtures.length != 0) {
+            if (msg.type == 'fixture') {
+                if (fixtures.some(e => e.id === msg.id)) {
+                    ids.push(msg.id);
+                } else {
+                    socket.emit('message', { type: "error", content: "This fixture does not exist!" });
+                }
+            } else if (msg.type == 'group') {
+                if (groups.length != 0) {
+                    if (groups.some(e => e.id === msg.id)) {
+                        var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+                        ids = group.ids;
+                    } else {
+                        socket.emit('message', { type: "error", content: "This group does not exist!" });
+                    }
+                } else {
+                    socket.emit('message', { type: "error", content: "No groups exist!" });
+                }
+            }
+            if (ids.length > 0) {
+                saveUndoRedo(false);
+                var param = null;
+                var fixture = null;
+                var palette = parameterPalettes[msg.pid];
                 let i = 0;
                 const iMax = ids.length;
                 for (; i < iMax; i++) {
@@ -2954,7 +3040,7 @@ io.on('connection', function (socket) {
             ]
         }
         colorPalettes.push(palette);
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         saveShow();
     });
 
@@ -2992,7 +3078,38 @@ io.on('connection', function (socket) {
             ]
         }
         positionPalettes.push(palette);
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
+        saveShow();
+    });
+
+    socket.on('addParameterPalette', function (msg) {
+        saveUndoRedo(false);
+        var palette = {
+            name: msg.name,
+            parameters: []
+        };
+        let p = 0;
+        if (msg.type == 'fixture') {
+            var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.id)];
+            const pMax = fixture.parameters.length;
+            for (; p < pMax; p++) {
+                if (fixture.parameters[p].type == 4) {
+                    palette.parameters.push({ name: fixture.parameters[p].name, value: fixture.parameters[p].value });
+                }
+            }
+        } else if (msg.type == 'group') {
+            var group = groups[groups.map(el => el.id).indexOf(msg.id)];
+            const pMax = group.parameters.length;
+            for (; p < pMax; p++) {
+                if (group.parameters[p].type == 4) {
+                    palette.parameters.push({ name: group.parameters[p].name, value: group.parameters[p].value });
+                }
+            }
+        }
+        if (palette.parameters.length > 0) {
+            parameterPalettes.push(palette);
+        }
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         saveShow();
     });
 
@@ -3000,7 +3117,7 @@ io.on('connection', function (socket) {
         saveUndoRedo(false);
         positionPalettes.splice(msg.pid, 1);
         socket.emit('message', { type: "info", content: "Position palette has been removed!" });
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         saveShow();
     });
 
@@ -3008,7 +3125,15 @@ io.on('connection', function (socket) {
         saveUndoRedo(false);
         colorPalettes.splice(msg.pid, 1);
         socket.emit('message', { type: "info", content: "Color palette has been removed!" });
-        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
+        saveShow();
+    });
+
+    socket.on('removeParameterPalette', function (msg) {
+        saveUndoRedo(false);
+        parameterPalettes.splice(msg.pid, 1);
+        socket.emit('message', { type: "info", content: "Parameter palette has been removed!" });
+        io.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
         saveShow();
     });
 
@@ -3084,6 +3209,7 @@ io.on('connection', function (socket) {
 
                     let c = 0;
                     const cMax = fixture.parameters.length;
+                    let changeIndex = null;
                     for (; c < cMax; c++) {
                         fixture.parameters[c].value = fixture.parameters[c].home;
                         fixture.parameters[c].max = 65535;
@@ -3100,12 +3226,21 @@ io.on('connection', function (socket) {
                         } else if (fixture.parameters[c].type == 1) {
                             fixture.parameterTypes.push("Intensity");
                         }
+                        if (fixture.parameters[c].type == 1) {
+                            changeIndex = c;
+                        }
                     }
                     fixture.parameters.sort((a, b) => (a.coarse > b.coarse) ? 1 : -1)
+                    if (changeIndex != null) {
+                        moveArrayItem(fixture.parameters, changeIndex, 0);
+                    }
                     fixture.shortName = fixture.name.split(" ")[0];
                     // Assign a random id for easy access to this fixture
                     fixture.id = generateID();
                     fixtures.push(JSON.parse(JSON.stringify(fixture)));
+                    fixtures.sort(function (second, first) {
+                        return second.startDMXAddress - first.startDMXAddress;
+                    });
                     let cc = 0;
                     const ccMax = cues.length;
                     for (; cc < ccMax; cc++) {
@@ -3271,6 +3406,20 @@ io.on('connection', function (socket) {
                 if (groups.some(e => e.id === msg.groupID)) {
                     saveUndoRedo(false);
                     var group = groups[groups.map(el => el.id).indexOf(msg.groupID)];
+                    var g2 = null;
+                    let c = 0;
+                    const cMax = cues.length;
+                    for (; c < cMax; c++) {
+                        if (cues[c].groups.some(e => e.id === msg.groupID)) {
+                            g2 = cues[c].groups[cues[c].groups.map(el => el.id).indexOf(msg.groupID)];
+                            if (g2.effects.some(e => e.id === msg.effectID)) {
+                                g2.effects.splice(g2.effects.map(el => el.id).indexOf(msg.effectID), 1);
+                            } else {
+                                socket.emit('message', { type: "error", content: "This effect does not exist!" });
+                                break;
+                            }
+                        }
+                    }
                     if (group.effects.some(e => e.id === msg.effectID)) {
                         group.effects.splice(group.effects.map(el => el.id).indexOf(msg.effectID), 1);
                         group.hasActiveEffects = checkFixtureActiveEffects(group.effects);
@@ -3346,8 +3495,22 @@ io.on('connection', function (socket) {
                     if (isNaN(parseFloat(msg.depth)) == false) {
                         effect.depth = parseFloat(msg.depth);
                     }
+                    if (effect.depth > 1.0) {
+                        effect.depth = 1.0;
+                    }
+                    if (effect.depth < 0.0) {
+                        effect.depth = 0.0;
+                    }
                     if (isNaN(parseInt(msg.speed)) == false) {
                         effect.speed = parseInt(msg.speed);
+                        effect.speedPositive = effect.speed;
+                    }
+                    if (effect.speed < 0) {
+                        effect.speedIndex = effect.speed * -1;
+                        effect.speedPositive = effect.speed * -1;
+                    }
+                    if (isNaN(parseInt(msg.aspect)) == false) {
+                        effect.aspect = parseInt(msg.aspect);
                     }
                     socket.broadcast.emit('fixtureEffectSettings', { fixtureID: fixture.id, effect: fixture.effects[fixture.effects.map(el => el.id).indexOf(msg.effectID)], target: false });
                     io.emit('fixtures', { fixtures: cleanFixtures(), target: true });
@@ -3374,11 +3537,25 @@ io.on('connection', function (socket) {
                         if (isNaN(parseFloat(msg.depth)) == false) {
                             effect.depth = parseFloat(msg.depth);
                         }
+                        if (effect.depth > 1.0) {
+                            effect.depth = 1.0;
+                        }
+                        if (effect.depth < 0.0) {
+                            effect.depth = 0.0;
+                        }
                         if (isNaN(parseInt(msg.speed)) == false) {
                             effect.speed = parseInt(msg.speed);
+                            effect.speedPositive = effect.speed;
+                        }
+                        if (effect.speed < 0) {
+                            effect.speedIndex = effect.speed * -1;
+                            effect.speedPositive = effect.speed * -1;
                         }
                         if (isNaN(parseInt(msg.fan)) == false) {
                             effect.fan = parseInt(msg.fan);
+                        }
+                        if (isNaN(parseInt(msg.aspect)) == false) {
+                            effect.aspect = parseInt(msg.aspect);
                         }
                         socket.broadcast.emit('groupEffectSettings', { groupID: group.id, effect: group.effects[group.effects.map(el => el.id).indexOf(msg.effectID)], target: false });
                         io.emit('groups', { groups: cleanGroups(), target: true });
@@ -3471,10 +3648,10 @@ io.on('connection', function (socket) {
                 effect.step = 0;
                 effect.depth = 1.0;
                 effect.speed = 1;
+                effect.speedPositive = 1;
                 effect.speedIndex = 0;
                 effect.chroma = 1;
-                effect.fan = 0;
-                effect.aspect = 1;
+                effect.aspect = 0;
                 effect.rotation = 0;
                 effect.id = generateID();
                 if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Red", "Green", "Blue"])) {
@@ -3526,10 +3703,11 @@ io.on('connection', function (socket) {
                     effect.step = 0;
                     effect.depth = 1.0;
                     effect.speed = 1;
+                    effect.speedPositive = 1;
                     effect.speedIndex = 0;
                     effect.chroma = 1;
                     effect.fan = 0;
-                    effect.aspect = 1;
+                    effect.aspect = 0;
                     effect.rotation = 0;
                     effect.id = generateID();
                     if (JSON.stringify(effect.parameterNames) == JSON.stringify(["Red", "Green", "Blue"])) {
@@ -3545,18 +3723,17 @@ io.on('connection', function (socket) {
                     }
                     group.hasActiveEffects = true;
                     group.effects.push(effect);
-                    if (cues.length > 0) {
-                        let cc = 0;
-                        const ccMax = cues.length;
-                        for (; cc < ccMax; cc++) {
-                            if (cues[cc].groups.length > 0) {
-                                let gg = 0;
-                                const ggMax = cues[cc].groups.length;
-                                for (; gg < ggMax; gg++) {
-                                    topush = cleanEffectForCue(effect);
-                                    topush.active = false;
-                                    cues[cc].groups[gg].effects.push(topush);
-                                }
+                    var topush = null;
+                    let cc = 0;
+                    const ccMax = cues.length;
+                    for (; cc < ccMax; cc++) {
+                        let f = 0;
+                        const fMax = cues[cc].groups.length;
+                        for (; f < fMax; f++) {
+                            if (cues[cc].groups[f].id == group.id) {
+                                topush = cleanEffectForCue(effect);
+                                topush.active = false;
+                                cues[cc].groups[f].effects.push(topush);
                             }
                         }
                     }
@@ -4350,6 +4527,7 @@ io.on('connection', function (socket) {
                 newGroup.parameterTypes = [];
                 let c = 0;
                 const cMax = newGroup.parameters.length;
+                let changeIndex = null;
                 for (; c < cMax; c++) {
                     if (newGroup.parameters[c].type == 2) {
                         newGroup.parameterTypes.push("Position");
@@ -4360,6 +4538,13 @@ io.on('connection', function (socket) {
                     } else if (newGroup.parameters[c].type == 1) {
                         newGroup.parameterTypes.push("Intensity");
                     }
+                    if (newGroup.parameters[c].type == 1) {
+                        changeIndex = c;
+                    }
+                }
+                newGroup.parameters.sort((a, b) => (a.coarse > b.coarse) ? 1 : -1)
+                if (changeIndex != null) {
+                    moveArrayItem(newGroup.parameters, changeIndex, 0);
                 }
                 groups.push(newGroup);
                 if (cues.length > 0) {
@@ -4464,7 +4649,7 @@ io.on('connection', function (socket) {
                     shouldLock = false;
                 }
                 socket.emit('groupParameters', group);
-                socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes });
+                socket.emit('palettes', { colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes });
             } else {
                 socket.emit('message', { type: "error", content: "This group doesn't exist!" });
             }
