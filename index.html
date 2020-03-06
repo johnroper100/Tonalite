@@ -906,11 +906,11 @@
                                     <i class="far fa-step-forward fa-sm"></i>
                                 </button>
                                 <button :disabled="parameter.locked == true" class="btn btn-success"
-                                    @click="fanGroupParameterValue(parameter, 656)">
+                                    @click="fanGroupParameterValue(parameter, 656)" v-if="parameter.name == 'Pan' || parameter.name == 'Tilt'">
                                     <i class="far fa-chevron-up fa-sm"></i>
                                 </button>
                                 <button :disabled="parameter.locked == true" class="btn btn-success"
-                                    @click="fanGroupParameterValue(parameter, -656)">
+                                    @click="fanGroupParameterValue(parameter, -656)" v-if="parameter.name == 'Pan' || parameter.name == 'Tilt'">
                                     <i class="far fa-chevron-down fa-sm"></i>
                                 </button>
                             </div>
