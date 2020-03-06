@@ -18,6 +18,7 @@ const ip = require('ip');
 const open = require('open');
 const os = require('os');
 const osc = require("osc");
+const copy = require("fast-copy");
 require('sanic.js').changeMyWorld();
 
 var SETTINGS = {
@@ -63,7 +64,7 @@ var cues = [];
 var sequences = [];
 var groups = [];
 var presets = [];
-var colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));;
+var colorPalettes = copy(require(__dirname + "/colorPalettes.json"));
 var positionPalettes = [];
 var parameterPalettes = [];
 var currentCue = "";
@@ -330,9 +331,9 @@ function saveSettings() {
 
 function saveUndoRedo(r) {
     if (r == false) {
-        undo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, presets: presets }));
+        undo = copy({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, presets: presets });
     } else {
-        redo = JSON.parse(JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, presets: presets }));
+        redo = copy({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, presets: presets });
     }
 }
 
@@ -594,7 +595,7 @@ function generateGroupParameters(newGroup) {
         let c = 0;
         const cMax = fixture.parameters.length;
         for (; c < cMax; c++) {
-            newParameter = JSON.parse(JSON.stringify(fixture.parameters[c]));
+            newParameter = copy(fixture.parameters[c]);
             newParameter.id = generateID();
             if (!parameterCats.includes(newParameter.name + ":" + newParameter.type)) {
                 newParameter.value = newParameter.home;
@@ -608,7 +609,7 @@ function generateGroupParameters(newGroup) {
 };
 
 function cleanFixtures() {
-    var newFixtures = JSON.parse(JSON.stringify(fixtures));
+    var newFixtures = copy(fixtures);
     var valMax = null;
     let f = 0;
     const fMax = newFixtures.length;
@@ -656,13 +657,13 @@ function cleanFixtures() {
 };
 
 function cleanFixture(fixture) {
-    var newFixture = JSON.parse(JSON.stringify(fixture));
+    var newFixture = copy(fixture);
     newFixture.effects = cleanEffects(newFixture.effects);
     return newFixture;
 }
 
 function cleanFixtureForCue(fixture) {
-    var newFixture = JSON.parse(JSON.stringify(fixture));
+    var newFixture = copy(fixture);
     delete newFixture.name;
     delete newFixture.modelName;
     delete newFixture.shortName;
@@ -704,7 +705,7 @@ function cleanFixtureForCue(fixture) {
 };
 
 function cleanFixtureForPreset(fixture) {
-    var newFixture = JSON.parse(JSON.stringify(fixture));
+    var newFixture = copy(fixture);
     delete newFixture.modelName;
     delete newFixture.shortName;
     delete newFixture.manufacturerName;
@@ -734,7 +735,7 @@ function cleanFixtureForPreset(fixture) {
 };
 
 function cleanSequenceForCue(sequence) {
-    var newSequence = JSON.parse(JSON.stringify(sequence));
+    var newSequence = copy(sequence);
     delete newSequence.name;
     delete newSequence.steps;
     delete newSequence.ids;
@@ -745,7 +746,7 @@ function cleanSequenceForCue(sequence) {
 };
 
 function cleanEffect(effect) {
-    var newEffect = JSON.parse(JSON.stringify(effect));
+    var newEffect = copy(effect);
     delete newEffect.steps;
     delete newEffect.valueCount;
     delete newEffect.absolute;
@@ -761,7 +762,7 @@ function cleanEffect(effect) {
 };
 
 function cleanEffects(ineffects) {
-    var newEffects = JSON.parse(JSON.stringify(ineffects));
+    var newEffects = copy(ineffects);
     let e = 0;
     const eMax = newEffects.length;
     for (; e < eMax; e++) {
@@ -771,7 +772,7 @@ function cleanEffects(ineffects) {
 };
 
 function cleanEffectForCue(effect) {
-    var newEffect = JSON.parse(JSON.stringify(effect));
+    var newEffect = copy(effect);
     delete newEffect.steps;
     delete newEffect.valueCount;
     delete newEffect.absolute;
@@ -784,7 +785,7 @@ function cleanEffectForCue(effect) {
 };
 
 function cleanEffectsForCue(ineffects) {
-    var newEffects = JSON.parse(JSON.stringify(ineffects));
+    var newEffects = copy(ineffects);
     let e = 0;
     const eMax = newEffects.length;
     for (; e < eMax; e++) {
@@ -837,7 +838,7 @@ function cleanFixturesForPreset(ids) {
 };
 
 function cleanGroupsForCue() {
-    var newGroups = JSON.parse(JSON.stringify(groups));
+    var newGroups = copy(groups);
     let g = 0;
     const gMax = newGroups.length;
     for (; g < gMax; g++) {
@@ -851,7 +852,7 @@ function cleanGroupsForCue() {
 };
 
 function cleanGroupForCue(group) {
-    var newGroup = JSON.parse(JSON.stringify(group));
+    var newGroup = copy(group);
     delete newGroup.name;
     delete newGroup.parameters;
     delete newGroup.parameterTypes;
@@ -881,7 +882,7 @@ function cleanSequencesForCue() {
 };
 
 function cleanGroups() {
-    var newGroups = JSON.parse(JSON.stringify(groups));
+    var newGroups = copy(groups);
     let g = 0;
     const gMax = newGroups.length;
     for (; g < gMax; g++) {
@@ -894,7 +895,7 @@ function cleanGroups() {
 };
 
 function cleanCues() {
-    var newCues = JSON.parse(JSON.stringify(cues));
+    var newCues = copy(cues);
     let c = 0;
     const cMax = newCues.length;
     for (; c < cMax; c++) {
@@ -915,7 +916,7 @@ function cleanCues() {
 };
 
 function cleanSequences() {
-    var newSequences = JSON.parse(JSON.stringify(sequences));
+    var newSequences = copy(sequences);
     let s = 0;
     const sMax = newSequences.length;
     for (; s < sMax; s++) {
@@ -929,7 +930,7 @@ function cleanSequences() {
 };
 
 function cleanPresets() {
-    var newPresets = JSON.parse(JSON.stringify(presets));
+    var newPresets = copy(presets);
     let p = 0;
     const pMax = newPresets.length;
     for (; p < pMax; p++) {
@@ -2464,7 +2465,7 @@ io.on('connection', function (socket) {
         cues = [];
         groups = [];
         sequences = [];
-        colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));
+        colorPalettes = copy(require(__dirname + "/colorPalettes.json"));
         positionPalettes = [];
         parameterPalettes = [];
         currentCue = "";
@@ -2491,7 +2492,7 @@ io.on('connection', function (socket) {
         cues = [];
         groups = [];
         sequences = [];
-        colorPalettes = JSON.parse(JSON.stringify(require(__dirname + "/colorPalettes.json")));
+        colorPalettes = copy(require(__dirname + "/colorPalettes.json"));
         positionPalettes = [];
         parameterPalettes = [];
         currentCue = "";
@@ -3246,7 +3247,7 @@ io.on('connection', function (socket) {
                     fixture.shortName = fixture.name.split(" ")[0];
                     // Assign a random id for easy access to this fixture
                     fixture.id = generateID();
-                    fixtures.push(JSON.parse(JSON.stringify(fixture)));
+                    fixtures.push(copy(fixture));
                     fixtures.sort(function (second, first) {
                         return second.startDMXAddress - first.startDMXAddress;
                     });
@@ -3652,7 +3653,7 @@ io.on('connection', function (socket) {
             if (fixtures.some(e => e.id === msg.fixtureID)) {
                 saveUndoRedo(false);
                 var fixture = fixtures[fixtures.map(el => el.id).indexOf(msg.fixtureID)];
-                var effect = JSON.parse(JSON.stringify(require(process.cwd() + "/effects/" + msg.effectFile).effectTable));
+                var effect = copy(require(process.cwd() + "/effects/" + msg.effectFile).effectTable);
                 effect.active = true;
                 effect.step = 0;
                 effect.depth = 1.0;
@@ -3707,7 +3708,7 @@ io.on('connection', function (socket) {
                 if (groups.some(e => e.id === msg.groupID)) {
                     saveUndoRedo(false);
                     var group = groups[groups.map(el => el.id).indexOf(msg.groupID)];
-                    var effect = JSON.parse(JSON.stringify(require(process.cwd() + "/effects/" + msg.effectFile).effectTable));
+                    var effect = copy(require(process.cwd() + "/effects/" + msg.effectFile).effectTable);
                     effect.active = true;
                     effect.step = 0;
                     effect.depth = 1.0;
@@ -4084,7 +4085,7 @@ io.on('connection', function (socket) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 saveUndoRedo(false);
-                var newCue = JSON.parse(JSON.stringify(cues[cues.map(el => el.id).indexOf(cueID)]));
+                var newCue = copy(cues[cues.map(el => el.id).indexOf(cueID)]);
                 newCue.id = generateID();
                 cues.push(newCue);
                 io.emit('cues', cleanCues());
@@ -4103,7 +4104,7 @@ io.on('connection', function (socket) {
         if (cues.length != 0) {
             if (cues.some(e => e.id === cueID)) {
                 saveUndoRedo(false);
-                var newCue = JSON.parse(JSON.stringify(cues[cues.map(el => el.id).indexOf(cueID)]));
+                var newCue = copy(cues[cues.map(el => el.id).indexOf(cueID)]);
                 newCue.id = generateID();
                 cues.push(newCue);
                 moveArrayItem(cues, cues.map(el => el.id).indexOf(newCue.id), cues.map(el => el.id).indexOf(cueID) + 1);
