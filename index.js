@@ -1469,7 +1469,9 @@ function calculateStack() {
         }
         cue.upStep -= 1;
         cue.downStep -= 1;
-        cueProgress += 1;
+        if (cue.following === false) {
+            cueProgress += 1;
+        }
         // Check if the cue needs to be followed by another cue
         if (cue.upStep < 0 && cue.downStep < 0) {
             if (cue.follow != -1) {
