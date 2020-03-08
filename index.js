@@ -2183,6 +2183,12 @@ function resetGroups() {
             setFixtureGroupValues(groups[g], groups[g].parameters[c]);
             groups[g].hasActiveEffects = checkFixtureActiveEffects(groups[g].effects);
         }
+        let e = 0;
+        const eMax = groups[g].effects.length;
+        for (; e < eMax; e++) {
+            groups[g].effects[e].active = false;
+        }
+        groups[g].hasActiveEffects = checkFixtureActiveEffects(groups[g].effects);
     }
 };
 
