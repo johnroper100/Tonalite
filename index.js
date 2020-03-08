@@ -525,7 +525,7 @@ function checkForErrors() {
 };
 
 function logError(msg) {
-    fs.writeFileSync('errors/error-' + moment().format('YYYY-MM-DDTHH-mm-ss') + '.error', msg, (err) => {
+    fs.writeFile('errors/error-' + moment().format('YYYY-MM-DDTHH-mm-ss') + '.error', msg, (err) => {
         checkForErrors();
         if (err) {
             console.log("wierd: " + err);
@@ -1286,7 +1286,7 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                                 }
                             }
                         }
-                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(upAmount, startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
+                        startFixture.parameters[c].displayValue = cppaddon.mapRange(upAmount, startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
                     }
                 } else {
                     downAmount = (endParameter + (((startParameter - endParameter) / (cue.downTime * FPS)) * cue.downStep));
@@ -1361,7 +1361,7 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
                                 }
                             }
                         }
-                        fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)].parameters[c].displayValue = cppaddon.mapRange(downAmount, startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
+                        startFixture.parameters[c].displayValue = cppaddon.mapRange(downAmount, startFixture.parameters[c].min, startFixture.parameters[c].max, 0, 100);
                     }
                 }
             } else {
@@ -1490,7 +1490,7 @@ function calculateStack() {
                         currentCue = cues[cues.map(el => el.id).indexOf(currentCue) + 1].id;
                     }
                     lastCue = currentCue;
-                    cues[cues.map(el => el.id).indexOf(currentCue)].active = true;
+                    cue.active = true;
                     currentCueID = currentCue;
                 }
             } else {

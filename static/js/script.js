@@ -1060,7 +1060,6 @@ socket.on('connect', function () {
     $('#serverDisconnectedModal').modal("hide");
     $('#colorWheelModal').modal("hide");
     $('#joystickModal').modal("hide");
-    socket.emit("getFixtureProfiles");
 });
 
 socket.on('connect_error', function () {
