@@ -1475,24 +1475,25 @@ function calculateStack() {
         // Check if the cue needs to be followed by another cue
         if (cue.upStep < 0 && cue.downStep < 0) {
             if (cue.follow != -1) {
-                cue.active = false;
                 if (cue.following === false) {
                     cue.upStep = cue.follow * FPS;
                     cue.downStep = cue.follow * FPS;
                     cue.following = true;
                 } else {
+                    cue.active = false;
                     cue.upStep = cue.upTime * FPS;
                     cue.downStep = cue.downTime * FPS;
                     cue.following = false;
                     if (cues.map(el => el.id).indexOf(currentCue) === cues.length - 1) {
                         cueProgress = 0;
                         currentCue = cues[0].id;
+                        cues[0].active = true;
                     } else {
                         cueProgress = 0;
                         currentCue = cues[cues.map(el => el.id).indexOf(currentCue) + 1].id;
+                        cues[cues.map(el => el.id).indexOf(currentCue)].active = true;
                     }
                     lastCue = currentCue;
-                    cue.active = true;
                     currentCueID = currentCue;
                 }
             } else {
