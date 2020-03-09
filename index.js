@@ -1541,7 +1541,6 @@ function calculateStack() {
                 for (; f < fMax1; f++) {
                     startFixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].parameters;
                     nextCueFixtureParameters = nextCue.fixtures[f].parameters;
-                    console.log(fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].hasIntensity, startFixtureParameters.some(e => e.fadeWithIntensity === true));
                     if (fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].hasIntensity == true && (startFixtureParameters.some(e => e.fadeWithIntensity === true) == false)) {
                         if (startFixtureParameters[startFixtureParameters.map(el => el.type).indexOf(1)].value === 0) {
                             c = 0;
@@ -1562,7 +1561,6 @@ function calculateStack() {
                                 valNum += 1;
                             }
                         }
-                        console.log(valNumAvg / valNum);
                         if (valNumAvg / valNum <= 0.0) {
                             c = 0;
                             const cMax1 = startFixtureParameters.length;
