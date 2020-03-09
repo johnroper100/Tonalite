@@ -382,15 +382,17 @@ async function updateFirmware(callback) {
     drives = drives.filter(drive => drive.enumerator == 'USBSTOR' || drive.isUSB === true);
     if (drives.length > 0) {
         drives.forEach((drive) => {
-            if (uploadComplete == false) {
-                fs.exists(drive.mountpoints[0].path + "/tonalite.zip", function (exists) {
-                    if (exists) {
-                        fs.createReadStream(drive.mountpoints[0].path + "/tonalite.zip").pipe(unzipper.Extract({ path: process.cwd() }));
-                        uploadComplete = true;
-                        io.emit('message', { type: "info", content: "The Tonalite firmware has been updated. Please reboot the server." });
-                        return callback(uploadComplete);
-                    }
-                });
+            if (drive.mountpoints.length > 0) {
+                if (uploadComplete == false) {
+                    fs.exists(drive.mountpoints[0].path + "/tonalite.zip", function (exists) {
+                        if (exists) {
+                            fs.createReadStream(drive.mountpoints[0].path + "/tonalite.zip").pipe(unzipper.Extract({ path: process.cwd() }));
+                            uploadComplete = true;
+                            io.emit('message', { type: "info", content: "The Tonalite firmware has been updated. Please reboot the server." });
+                            return callback(uploadComplete);
+                        }
+                    });
+                }
             }
         });
     } else {
@@ -406,18 +408,20 @@ async function getShowsFromUSB(callback) {
     drives = drives.filter(drive => drive.enumerator == 'USBSTOR' || drive.isUSB === true);
     if (drives.length > 0) {
         drives.forEach((drive) => {
-            if (importComplete == false) {
-                fs.readdir(drive.mountpoints[0].path, (err, files) => {
-                    showsList = [];
-                    files.forEach(file => {
-                        if (file.slice(-8) === "tonalite") {
-                            showsList.push(file);
-                        }
+            if (drive.mountpoints.length > 0) {
+                if (importComplete == false) {
+                    fs.readdir(drive.mountpoints[0].path, (err, files) => {
+                        showsList = [];
+                        files.forEach(file => {
+                            if (file.slice(-8) === "tonalite") {
+                                showsList.push(file);
+                            }
+                        });
+                        importComplete = true;
+                        io.emit('shows', { shows: showsList, drive: drive.mountpoints[0].path });
+                        return callback(importComplete);
                     });
-                    importComplete = true;
-                    io.emit('shows', { shows: showsList, drive: drive.mountpoints[0].path });
-                    return callback(importComplete);
-                });
+                }
             }
         });
     } else {
@@ -432,15 +436,17 @@ async function importFixturesFromUSB(callback) {
     drives = drives.filter(drive => drive.enumerator == 'USBSTOR' || drive.isUSB === true);
     if (drives.length > 0) {
         drives.forEach((drive) => {
-            if (importComplete == false) {
-                fs.exists(drive.mountpoints[0].path + "/fixtures.zip", function (exists) {
-                    if (exists) {
-                        fs.createReadStream(drive.mountpoints[0].path + "/fixtures.zip").pipe(unzipper.Extract({ path: process.cwd() }));
-                        importComplete = true;
-                        io.emit('message', { type: "info", content: "The fixture profiles have been imported from USB!" });
-                        return callback(importComplete);
-                    }
-                });
+            if (drive.mountpoints.length > 0) {
+                if (importComplete == false) {
+                    fs.exists(drive.mountpoints[0].path + "/fixtures.zip", function (exists) {
+                        if (exists) {
+                            fs.createReadStream(drive.mountpoints[0].path + "/fixtures.zip").pipe(unzipper.Extract({ path: process.cwd() }));
+                            importComplete = true;
+                            io.emit('message', { type: "info", content: "The fixture profiles have been imported from USB!" });
+                            return callback(importComplete);
+                        }
+                    });
+                }
             }
         });
     } else {
@@ -456,18 +462,20 @@ async function exportErrorLogsToUSB(callback) {
     drives = drives.filter(drive => drive.enumerator == 'USBSTOR' || drive.isUSB === true);
     if (drives.length > 0) {
         drives.forEach((drive) => {
-            if (importComplete == false) {
-                fs.copy('errors', drive.mountpoints[0].path + "/errors", function (err) {
-                    if (err && err != null) {
-                        logError(err);
-                        errorhappened = true;
-                    } else {
-                        importComplete = true;
-                        errorhappened = false;
-                        io.emit('message', { type: "info", content: "The error logs have been exported to USB!" });
-                        return callback(importComplete);
-                    }
-                });
+            if (drive.mountpoints.length > 0) {
+                if (importComplete == false) {
+                    fs.copy('errors', drive.mountpoints[0].path + "/errors", function (err) {
+                        if (err && err != null) {
+                            logError(err);
+                            errorhappened = true;
+                        } else {
+                            importComplete = true;
+                            errorhappened = false;
+                            io.emit('message', { type: "info", content: "The error logs have been exported to USB!" });
+                            return callback(importComplete);
+                        }
+                    });
+                }
             }
         });
     } else {
@@ -485,26 +493,28 @@ async function saveShowToUSB(showName, callback) {
     drives = drives.filter(drive => drive.enumerator == 'USBSTOR' || drive.isUSB === true);
     if (drives.length > 0) {
         drives.forEach((drive) => {
-            if (importComplete == false) {
-                filepath = drive.mountpoints[0].path + "/" + showName + "_" + moment().format('YYYY-MM-DDTHH-mm-ss') + ".tonalite";
-                fs.exists(filepath, function (exists) {
-                    if (exists) {
-                        alreadyexists = true;
-                    } else {
-                        fs.writeFile(filepath, JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, tonaliteVersion: VERSION, showName: currentShowName, lastSaved: moment().format() }), (err) => {
-                            if (err) {
-                                logError(err);
-                                errorhappened = true;
-                            } else {
-                                importComplete = true;
-                                errorhappened = false;
-                                alreadyexists = false;
-                                io.emit('message', { type: "info", content: "The show '" + showName + "_" + moment().format('YYYY-MM-DDTHH-mm-ss') + ".tonalite' was successfully saved to the connected USB drive!" });
-                                return callback(importComplete);
-                            };
-                        });
-                    }
-                });
+            if (drive.mountpoints.length > 0) {
+                if (importComplete == false) {
+                    filepath = drive.mountpoints[0].path + "/" + showName + "_" + moment().format('YYYY-MM-DDTHH-mm-ss') + ".tonalite";
+                    fs.exists(filepath, function (exists) {
+                        if (exists) {
+                            alreadyexists = true;
+                        } else {
+                            fs.writeFile(filepath, JSON.stringify({ fixtures: fixtures, cues: cues, groups: groups, sequences: sequences, colorPalettes: colorPalettes, positionPalettes: positionPalettes, parameterPalettes: parameterPalettes, tonaliteVersion: VERSION, showName: currentShowName, lastSaved: moment().format() }), (err) => {
+                                if (err) {
+                                    logError(err);
+                                    errorhappened = true;
+                                } else {
+                                    importComplete = true;
+                                    errorhappened = false;
+                                    alreadyexists = false;
+                                    io.emit('message', { type: "info", content: "The show '" + showName + "_" + moment().format('YYYY-MM-DDTHH-mm-ss') + ".tonalite' was successfully saved to the connected USB drive!" });
+                                    return callback(importComplete);
+                                };
+                            });
+                        }
+                    });
+                }
             }
         });
     } else {
