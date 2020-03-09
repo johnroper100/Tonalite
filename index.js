@@ -1531,7 +1531,8 @@ function calculateStack() {
                 for (; f < fMax1; f++) {
                     startFixtureParameters = fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].parameters;
                     nextCueFixtureParameters = nextCue.fixtures[f].parameters;
-                    if (fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].hasIntensity == true && startFixtureParameters.some(e => e.fadeWithIntensity === true) == false) {
+                    console.log(fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].hasIntensity, startFixtureParameters.some(e => e.fadeWithIntensity === true));
+                    if (fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].hasIntensity == true && (startFixtureParameters.some(e => e.fadeWithIntensity === true) == false)) {
                         if (startFixtureParameters[startFixtureParameters.map(el => el.type).indexOf(1)].value === 0) {
                             c = 0;
                             const cMax1 = startFixtureParameters.length;
@@ -1542,7 +1543,7 @@ function calculateStack() {
                                 }
                             }
                         }
-                    } else if (startFixtureParameters.some(e => e.fadeWithIntensity === true)) {
+                    } else if (fixtures[fixtures.map(el => el.id).indexOf(nextCue.fixtures[f].id)].hasIntensity == true || startFixtureParameters.some(e => e.fadeWithIntensity === true)) {
                         c = 0;
                         const cMax1 = startFixtureParameters.length;
                         for (; c < cMax1; c++) {
@@ -1551,6 +1552,7 @@ function calculateStack() {
                                 valNum += 1;
                             }
                         }
+                        console.log(valNumAvg / valNum);
                         if (valNumAvg / valNum <= 0.0) {
                             c = 0;
                             const cMax1 = startFixtureParameters.length;
