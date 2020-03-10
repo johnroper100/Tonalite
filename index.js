@@ -299,7 +299,6 @@ function openSettings() {
                 console.log(`Tonalite ${msg} v${VERSION} - DMX Lighting Control System`);
                 console.log(`The web UI can be found at http://${SETTINGS.serverIP}:${SETTINGS.serverPort}`);
             });
-
             if (SETTINGS.udmx == true) {
                 if (os.platform() === "linux" && os.arch() === "x64") {
                     cp = spawn(process.cwd() + '/uDMXArtnet/uDMXArtnet_minimal_64', ['-i', SETTINGS.artnetIP]);
@@ -1005,12 +1004,15 @@ function checkFixtureActiveEffects(effects) {
     }
 }
 
+invert = null;
+chanNum = null;
+chanNum2 = null;
 // Set the output channel values to those of the current fixture values
 function calculateChannels() {
-    var invert = null;
+    invert = null;
     let f = 0;
-    let chanNum = null;
-    let chanNum2 = null;
+    chanNum = null;
+    chanNum2 = null;
     const fMax = fixtures.length;
     for (; f < fMax; f++) {
         let p = 0;
@@ -1091,10 +1093,12 @@ function calculateChannels() {
     }
 };
 
+var tempvalue = null;
+var tempvalue2 = null;
 function calculatePresetChannels(preset) {
-    var invert = null;
-    var tempvalue = null;
-    var tempvalue2 = null;
+    invert = null;
+    tempvalue = null;
+    tempvalue2 = null;
     let f = 0;
     const fMax = preset.fixtures.length;
     for (; f < fMax; f++) {
@@ -1184,17 +1188,24 @@ function calculatePresetChannels(preset) {
     }
 };
 
+var outputChannels = null;
+var startFixture = null;
+var startGroup = null;
+var startParameter = null;
+var endParameter = null;
+let upAmount = null;
+let downAmount = null;
 // Set the cue's output channel values to the correct values from the fixtures. This is basically saving the cue.
 function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, ids) {
-    var outputChannels = new Array(1024).fill(0);
-    var startFixture = null;
-    var startGroup = null;
-    var startParameter = null;
-    var endParameter = null;
-    var invert = null;
+    outputChannels = new Array(1024).fill(0);
+    startFixture = null;
+    startGroup = null;
+    startParameter = null;
+    endParameter = null;
+    invert = null;
     let f = 0;
-    let upAmount = null;
-    let downAmount = null;
+    upAmount = null;
+    downAmount = null;
     const fMax = cue.fixtures.length;
     for (; f < fMax; f++) {
         startFixture = fixtures[fixtures.map(el => el.id).indexOf(cue.fixtures[f].id)];
@@ -1444,13 +1455,21 @@ function calculateCue(cue, includeIntensityColor, includePosition, includeBeam, 
     return outputChannels;
 };
 
+var somethingRunning = null;
+var sequencesChanged = null;
+var currentCueIndex = null;
+var startFixtureParameters = null;
+var nextCue = null;
+var valNum = null;
+var valNumAvg = null;
 function calculateStack() {
     // If fixture values change
-    var somethingRunning = false;
-    var sequencesChanged = false;
+    somethingRunning = false;
+    sequencesChanged = false;
     if (currentCue != "") {
         // Get the current cue
-        cue = cues[cues.map(el => el.id).indexOf(currentCue)];
+        currentCueIndex = cues.map(el => el.id).indexOf(currentCue);
+        cue = cues[currentCueIndex];
         channels = calculateCue(cue, cue.includeIntensityColor, cue.includePosition, cue.includeBeam, getFixtureIDs());
         let s = 0;
         const sMax = cue.sequences.length;
@@ -1494,14 +1513,14 @@ function calculateStack() {
                     cue.upStep = cue.upTime * FPS;
                     cue.downStep = cue.downTime * FPS;
                     cue.following = false;
-                    if (cues.map(el => el.id).indexOf(currentCue) === cues.length - 1) {
+                    if (currentCueIndex === cues.length - 1) {
                         cueProgress = 0;
                         currentCue = cues[0].id;
                         cues[0].active = true;
                     } else {
                         cueProgress = 0;
-                        currentCue = cues[cues.map(el => el.id).indexOf(currentCue) + 1].id;
-                        cues[cues.map(el => el.id).indexOf(currentCue)].active = true;
+                        currentCue = cues[currentCueIndex + 1].id;
+                        cues[currentCueIndex].active = true;
                     }
                     lastCue = currentCue;
                     currentCueID = currentCue;
@@ -1513,7 +1532,7 @@ function calculateStack() {
                 cue.active = false;
                 io.emit('cueActionBtn', false);
             }
-            var startFixtureParameters = null;
+            startFixtureParameters = null;
             // Set the fixture's display and real values to the correct values from the cue
             let f = 0;
             const fMax = cue.fixtures.length;
@@ -1530,12 +1549,12 @@ function calculateStack() {
             }
             if (SETTINGS.automark === true) {
                 if (cues.map(el => el.id).indexOf(lastCue) + 1 === cues.length) {
-                    var nextCue = cues[0];
+                    nextCue = cues[0];
                 } else {
-                    var nextCue = cues[cues.map(el => el.id).indexOf(lastCue) + 1];
+                    nextCue = cues[cues.map(el => el.id).indexOf(lastCue) + 1];
                 }
-                var valNum = 0;
-                var valNumAvg = 0;
+                valNum = 0;
+                valNumAvg = 0;
                 f = 0;
                 const fMax1 = nextCue.fixtures.length;
                 for (; f < fMax1; f++) {
@@ -1615,7 +1634,7 @@ function calculateStack() {
                         sequence.currentStepID = sequence.currentStep;
                     }
                     sequencesChanged = true;
-                    var startFixtureParameters = null;
+                    startFixtureParameters = null;
                     // Set the fixture's display and real values to the correct values from the cue
                     let f = 0;
                     const fMax = step.fixtures.length;
@@ -1634,12 +1653,12 @@ function calculateStack() {
                     }
                     if (SETTINGS.automark === true) {
                         if (sequence.steps.map(el => el.id).indexOf(sequence.lastCue) + 1 === sequence.steps.length) {
-                            var nextCue = sequence.steps[0];
+                            nextCue = sequence.steps[0];
                         } else {
-                            var nextCue = sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.lastCue) + 1];
+                            nextCue = sequence.steps[sequence.steps.map(el => el.id).indexOf(sequence.lastCue) + 1];
                         }
-                        var valNum = 0;
-                        var valNumAvg = 0;
+                        valNum = 0;
+                        valNumAvg = 0;
                         f = 0;
                         const fMax1 = nextCue.fixtures.length;
                         for (; f < fMax1; f++) {
