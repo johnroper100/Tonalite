@@ -1,3 +1,0 @@
-# Outputs Settings
-
-TODO

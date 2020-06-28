@@ -1,3 +1,0 @@
-# Defaults Settings
-
-TODO
