@@ -17,7 +17,7 @@ Tonalite is lighting control software that uses a web interface accessible from 
 - Record presets for easy system overrides
 - Support color mixing, and moving lights
 - Support automark
-- Support ETC's fixture profile format
+- Support ETC ColorSource's fixture profile format
 
 Tonalite currently works with all `ArtNet`, `E1.31 (sACN)`, and `uDMX (using uDMXArtNet)` interfaces.
 
