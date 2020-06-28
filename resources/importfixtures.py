@@ -56,8 +56,13 @@ with open('Carallon.def') as f:
                         parameter = {}
                     if personality["modeName"] == "":
                         personality["modeName"] = "-"
-                    filename = personality["manufacturerName"]+"-" + \
-                        personality["modelName"]+"-"+personality["modeName"]
+                    if personality["modeName"] == "-":
+                        filename = personality["manufacturerName"]+"-" + \
+                            personality["modelName"]
+                    else:
+                        filename = personality["manufacturerName"]+"-" + \
+                            personality["modelName"] + \
+                            "-"+personality["modeName"]
                     filename = slugify(filename)+".jlib"
                     if needsFade == True:
                         for param in personality["parameters"]:
@@ -103,8 +108,13 @@ with open('Carallon.def') as f:
                         parameter = {}
                     if personality["modeName"] == "":
                         personality["modeName"] = "-"
-                    filename = personality["manufacturerName"]+"-" + \
-                        personality["modelName"]+"-"+personality["modeName"]
+                    if personality["modeName"] == "-":
+                        filename = personality["manufacturerName"]+"-" + \
+                            personality["modelName"]
+                    else:
+                        filename = personality["manufacturerName"]+"-" + \
+                            personality["modelName"] + \
+                            "-"+personality["modeName"]
                     filename = slugify(filename)+".jlib"
                     if needsFade == True:
                         for param in personality["parameters"]:
@@ -255,7 +265,8 @@ with open('Carallon.def') as f:
                     "name": ""
                 }
                 rangeItem["media"]["name"] = rangeItem["label"]
-                rangeItem["media"]["dcid"] = line.partition("$$IMAGE")[2].strip()
+                rangeItem["media"]["dcid"] = line.partition("$$IMAGE")[
+                    2].strip()
             if "$$SWATCH" in line:
                 swatch = {
                     "name": "",
