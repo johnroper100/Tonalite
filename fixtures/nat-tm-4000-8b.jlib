@@ -1,0 +1,650 @@
+{
+    "date": "2020-06-02 08:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "7AC6A8A1-E6B5-7149-ABE2-44CBF9291385",
+            "hasIntensity": true,
+            "manufacturerName": "NAT",
+            "maxOffset": 17,
+            "modeName": "8b",
+            "modelName": "TM 4000",
+            "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 32512,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": []
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 32512,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": []
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Pan and Tilt Modes",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Pan Mode [Tilt Mode]"
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 47,
+                            "label": "Pan rotate - [Tilt Mode]"
+                        },
+                        {
+                            "begin": 79,
+                            "default": 79,
+                            "end": 79,
+                            "label": "Pan rotate + [Tilt Mode]"
+                        },
+                        {
+                            "begin": 111,
+                            "default": 111,
+                            "end": 111,
+                            "label": "Tilt rotate + [Pan Mode]"
+                        },
+                        {
+                            "begin": 143,
+                            "default": 143,
+                            "end": 143,
+                            "label": "Tilt rotate - [Pan Mode]"
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "Pan rotate - [Tilt rotate +]"
+                        },
+                        {
+                            "begin": 207,
+                            "default": 207,
+                            "end": 207,
+                            "label": "Pan rotate + [Tilt rotate -]"
+                        },
+                        {
+                            "begin": 239,
+                            "default": 239,
+                            "end": 239,
+                            "label": "Pan rotate double [Tilt rotate double]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 32512,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 127,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 255,
+                            "label": "Strobe"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Iris",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Iris 100"
+                        },
+                        {
+                            "begin": 36,
+                            "default": 75,
+                            "end": 115,
+                            "label": "Iris"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "Iris 1"
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 251,
+                            "label": "Iris Strobe Pulse"
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Iris 100"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": []
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 12,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 13,
+                            "default": 37,
+                            "end": 37,
+                            "label": "gobo 1"
+                        },
+                        {
+                            "begin": 38,
+                            "default": 62,
+                            "end": 62,
+                            "label": "gobo 2"
+                        },
+                        {
+                            "begin": 63,
+                            "default": 88,
+                            "end": 88,
+                            "label": "gobo 3"
+                        },
+                        {
+                            "begin": 89,
+                            "default": 113,
+                            "end": 113,
+                            "label": "gobo 4"
+                        },
+                        {
+                            "begin": 114,
+                            "default": 138,
+                            "end": 138,
+                            "label": "gobo 5"
+                        },
+                        {
+                            "begin": 139,
+                            "default": 145,
+                            "end": 151,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 152,
+                            "default": 152,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 128,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 159,
+                            "end": 190,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 12,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 13,
+                            "default": 37,
+                            "end": 37,
+                            "label": "gobo 1"
+                        },
+                        {
+                            "begin": 38,
+                            "default": 62,
+                            "end": 62,
+                            "label": "gobo 2"
+                        },
+                        {
+                            "begin": 63,
+                            "default": 88,
+                            "end": 88,
+                            "label": "gobo 3"
+                        },
+                        {
+                            "begin": 89,
+                            "default": 113,
+                            "end": 113,
+                            "label": "gobo 4"
+                        },
+                        {
+                            "begin": 114,
+                            "default": 138,
+                            "end": 138,
+                            "label": "gobo 5"
+                        },
+                        {
+                            "begin": 139,
+                            "default": 145,
+                            "end": 151,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 152,
+                            "default": 152,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2 <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 128,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 159,
+                            "end": 190,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 63,
+                            "default": 63,
+                            "end": 63,
+                            "label": "(effect 1)"
+                        },
+                        {
+                            "begin": 105,
+                            "default": 105,
+                            "end": 105,
+                            "label": "(effect 2)"
+                        },
+                        {
+                            "begin": 147,
+                            "default": 147,
+                            "end": 147,
+                            "label": "(effect 3)"
+                        },
+                        {
+                            "begin": 189,
+                            "default": 189,
+                            "end": 189,
+                            "label": "(effect 4)"
+                        },
+                        {
+                            "begin": 232,
+                            "default": 232,
+                            "end": 232,
+                            "label": "(effect 5)"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 128,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 159,
+                            "end": 190,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 9,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 10,
+                            "default": 28,
+                            "end": 28,
+                            "label": "colour 1"
+                        },
+                        {
+                            "begin": 29,
+                            "default": 47,
+                            "end": 47,
+                            "label": "colour 2"
+                        },
+                        {
+                            "begin": 48,
+                            "default": 66,
+                            "end": 66,
+                            "label": "colour 3"
+                        },
+                        {
+                            "begin": 67,
+                            "default": 85,
+                            "end": 85,
+                            "label": "colour 4"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 105,
+                            "end": 105,
+                            "label": "colour 5"
+                        },
+                        {
+                            "begin": 106,
+                            "default": 124,
+                            "end": 124,
+                            "label": "colour 6"
+                        },
+                        {
+                            "begin": 125,
+                            "default": 143,
+                            "end": 143,
+                            "label": "colour 7"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 162,
+                            "end": 162,
+                            "label": "colour 8"
+                        },
+                        {
+                            "begin": 163,
+                            "default": 181,
+                            "end": 181,
+                            "label": "colour 9"
+                        },
+                        {
+                            "begin": 182,
+                            "default": 186,
+                            "end": 191,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Cyan",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Magenta",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Yellow",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "None"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

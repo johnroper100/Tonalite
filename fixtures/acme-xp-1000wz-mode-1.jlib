@@ -1,0 +1,720 @@
+{
+    "date": "2020-06-02 08:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "D79F5995-BEC3-1B4E-92DA-8E0D03E8C1D4",
+            "hasIntensity": true,
+            "manufacturerName": "Acme",
+            "maxOffset": 15,
+            "modeName": "Mode 1",
+            "modelName": "XP-1000WZ",
+            "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 7680,
+                    "home": 7680,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 200,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 205,
+                            "default": 205,
+                            "end": 205,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 233,
+                            "default": 233,
+                            "end": 233,
+                            "label": "Rnd 100"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 7,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 8,
+                            "default": 21,
+                            "end": 21,
+                            "label": "Red",
+                            "media": {
+                                "dcid": "0ADA916D-1029-4F4D-A2A0-47AA3FD9D97A",
+                                "name": "Red"
+                            }
+                        },
+                        {
+                            "begin": 22,
+                            "default": 37,
+                            "end": 37,
+                            "label": "UV",
+                            "media": {
+                                "dcid": "B5B1BE34-2FC8-B546-8423-E57934E85B0B",
+                                "name": "UV"
+                            }
+                        },
+                        {
+                            "begin": 38,
+                            "default": 51,
+                            "end": 51,
+                            "label": "Pink",
+                            "media": {
+                                "dcid": "D77BD94B-2802-104E-BDC3-666D1B6607C5",
+                                "name": "Pink"
+                            }
+                        },
+                        {
+                            "begin": 52,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Orange",
+                            "media": {
+                                "dcid": "DA6BFE98-BA30-5345-BE10-EA3289980963",
+                                "name": "Orange"
+                            }
+                        },
+                        {
+                            "begin": 68,
+                            "default": 81,
+                            "end": 81,
+                            "label": "Green",
+                            "media": {
+                                "dcid": "4E539F09-6D8B-CF4B-997D-164ED83C6A88",
+                                "name": "Green"
+                            }
+                        },
+                        {
+                            "begin": 82,
+                            "default": 104,
+                            "end": 104,
+                            "label": "Dark Blue",
+                            "media": {
+                                "dcid": "C9A8AD6F-C64D-AA41-BC93-1FE17CAD329C",
+                                "name": "Dark Blue"
+                            }
+                        },
+                        {
+                            "begin": 122,
+                            "default": 122,
+                            "end": 122,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 143,
+                            "default": 143,
+                            "end": 143,
+                            "label": "(Red)",
+                            "media": {
+                                "dcid": "0ADA916D-1029-4F4D-A2A0-47AA3FD9D97A",
+                                "name": "(Red)"
+                            }
+                        },
+                        {
+                            "begin": 148,
+                            "default": 148,
+                            "end": 148,
+                            "label": "(UV)",
+                            "media": {
+                                "dcid": "B5B1BE34-2FC8-B546-8423-E57934E85B0B",
+                                "name": "(UV)"
+                            }
+                        },
+                        {
+                            "begin": 153,
+                            "default": 153,
+                            "end": 153,
+                            "label": "(Pink)",
+                            "media": {
+                                "dcid": "D77BD94B-2802-104E-BDC3-666D1B6607C5",
+                                "name": "(Pink)"
+                            }
+                        },
+                        {
+                            "begin": 158,
+                            "default": 158,
+                            "end": 158,
+                            "label": "(Orange)",
+                            "media": {
+                                "dcid": "DA6BFE98-BA30-5345-BE10-EA3289980963",
+                                "name": "(Orange)"
+                            }
+                        },
+                        {
+                            "begin": 163,
+                            "default": 163,
+                            "end": 163,
+                            "label": "(Green)",
+                            "media": {
+                                "dcid": "4E539F09-6D8B-CF4B-997D-164ED83C6A88",
+                                "name": "(Green)"
+                            }
+                        },
+                        {
+                            "begin": 168,
+                            "default": 168,
+                            "end": 168,
+                            "label": "(Dark Blue)",
+                            "media": {
+                                "dcid": "C9A8AD6F-C64D-AA41-BC93-1FE17CAD329C",
+                                "name": "(Dark Blue)"
+                            }
+                        },
+                        {
+                            "begin": 178,
+                            "default": 178,
+                            "end": 178,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 186,
+                            "default": 198,
+                            "end": 211,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 214,
+                            "default": 214,
+                            "end": 214,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 218,
+                            "default": 218,
+                            "end": 243,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 245,
+                            "default": 245,
+                            "end": 245,
+                            "label": "Rnd 100"
+                        },
+                        {
+                            "begin": 249,
+                            "default": 249,
+                            "end": 249,
+                            "label": "Rnd 50"
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Rnd 1"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color 2",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 7,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 8,
+                            "default": 21,
+                            "end": 21,
+                            "label": "Yellow",
+                            "media": {
+                                "dcid": "985A91C4-0E74-4248-A725-2E04640AD7E1",
+                                "name": "Yellow"
+                            }
+                        },
+                        {
+                            "begin": 22,
+                            "default": 37,
+                            "end": 37,
+                            "label": "Light Blue Purple",
+                            "media": {
+                                "dcid": "E5DB6C24-731D-2D4A-95CB-E510622A4841",
+                                "name": "Light Blue Purple"
+                            }
+                        },
+                        {
+                            "begin": 38,
+                            "default": 51,
+                            "end": 51,
+                            "label": "Magenta",
+                            "media": {
+                                "dcid": "93BF07BA-24F4-F641-94B1-E523174E0C5A",
+                                "name": "Magenta"
+                            }
+                        },
+                        {
+                            "begin": 52,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Light Yellow",
+                            "media": {
+                                "dcid": "83FC9FFF-FA61-FB41-A3D8-B7F918CC3767",
+                                "name": "Light Yellow"
+                            }
+                        },
+                        {
+                            "begin": 68,
+                            "default": 81,
+                            "end": 81,
+                            "label": "Light Blue",
+                            "media": {
+                                "dcid": "402980AE-E6BA-DB4A-A794-A5CE811846B5",
+                                "name": "Light Blue"
+                            }
+                        },
+                        {
+                            "begin": 82,
+                            "default": 104,
+                            "end": 104,
+                            "label": "Light Green",
+                            "media": {
+                                "dcid": "8EF71006-7E6C-5845-A596-E4B966265C71",
+                                "name": "Light Green"
+                            }
+                        },
+                        {
+                            "begin": 122,
+                            "default": 122,
+                            "end": 122,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 143,
+                            "default": 143,
+                            "end": 143,
+                            "label": "(Yellow)",
+                            "media": {
+                                "dcid": "985A91C4-0E74-4248-A725-2E04640AD7E1",
+                                "name": "(Yellow)"
+                            }
+                        },
+                        {
+                            "begin": 148,
+                            "default": 148,
+                            "end": 148,
+                            "label": "(Light Blue Purple)",
+                            "media": {
+                                "dcid": "E5DB6C24-731D-2D4A-95CB-E510622A4841",
+                                "name": "(Light Blue Purple)"
+                            }
+                        },
+                        {
+                            "begin": 153,
+                            "default": 153,
+                            "end": 153,
+                            "label": "(Magenta)",
+                            "media": {
+                                "dcid": "93BF07BA-24F4-F641-94B1-E523174E0C5A",
+                                "name": "(Magenta)"
+                            }
+                        },
+                        {
+                            "begin": 158,
+                            "default": 158,
+                            "end": 158,
+                            "label": "(Light Yellow)",
+                            "media": {
+                                "dcid": "83FC9FFF-FA61-FB41-A3D8-B7F918CC3767",
+                                "name": "(Light Yellow)"
+                            }
+                        },
+                        {
+                            "begin": 163,
+                            "default": 163,
+                            "end": 163,
+                            "label": "(Light Blue)",
+                            "media": {
+                                "dcid": "402980AE-E6BA-DB4A-A794-A5CE811846B5",
+                                "name": "(Light Blue)"
+                            }
+                        },
+                        {
+                            "begin": 168,
+                            "default": 168,
+                            "end": 168,
+                            "label": "(Light Green)",
+                            "media": {
+                                "dcid": "8EF71006-7E6C-5845-A596-E4B966265C71",
+                                "name": "(Light Green)"
+                            }
+                        },
+                        {
+                            "begin": 178,
+                            "default": 178,
+                            "end": 178,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 186,
+                            "default": 198,
+                            "end": 211,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 214,
+                            "default": 214,
+                            "end": 214,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 218,
+                            "default": 218,
+                            "end": 243,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 245,
+                            "default": 245,
+                            "end": 245,
+                            "label": "Rnd 100"
+                        },
+                        {
+                            "begin": 249,
+                            "default": 249,
+                            "end": 249,
+                            "label": "Rnd 50"
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Rnd 1"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Cyan",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Magenta",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Yellow",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "CTO",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color 3",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 32,
+                            "label": "Color 1"
+                        },
+                        {
+                            "begin": 53,
+                            "default": 53,
+                            "end": 53,
+                            "label": "Color 2"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "Color 3"
+                        },
+                        {
+                            "begin": 96,
+                            "default": 96,
+                            "end": 96,
+                            "label": "Color 4"
+                        },
+                        {
+                            "begin": 117,
+                            "default": 117,
+                            "end": 117,
+                            "label": "Color 5"
+                        },
+                        {
+                            "begin": 138,
+                            "default": 138,
+                            "end": 138,
+                            "label": "Color 6"
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "Color 7"
+                        },
+                        {
+                            "begin": 181,
+                            "default": 181,
+                            "end": 181,
+                            "label": "Color 8"
+                        },
+                        {
+                            "begin": 202,
+                            "default": 202,
+                            "end": 202,
+                            "label": "Color 9"
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 223,
+                            "label": "Color 10"
+                        },
+                        {
+                            "begin": 244,
+                            "default": 244,
+                            "end": 244,
+                            "label": "Color 11"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Zoom",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": []
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "BlackMove On"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "BlackMove Off"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 94,
+                            "label": "Color Blink On [Clr 2 Blink]"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 104,
+                            "label": "Color Blink Off"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 144,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "Color Reset [Color 2 & Color Mix Reset]"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 174,
+                            "label": "Shutter Reset"
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 184,
+                            "label": "Zoom Reset"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

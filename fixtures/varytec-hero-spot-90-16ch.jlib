@@ -1,0 +1,742 @@
+{
+    "date": "2020-06-02 08:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "4DA6572B-8150-419D-AFAA-9D21C1BDC9CD",
+            "hasIntensity": true,
+            "manufacturerName": "Varytec",
+            "maxOffset": 15,
+            "modeName": "16ch",
+            "modelName": "Hero Spot 90",
+            "colortable": "",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 250,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 9,
+                            "default": 9,
+                            "end": 9,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 18,
+                            "label": "(Red)",
+                            "media": {
+                                "dcid": "DD5BBF27-6268-E44E-A93C-469B5150475F",
+                                "name": "(Red)"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "Red",
+                            "media": {
+                                "dcid": "DD5BBF27-6268-E44E-A93C-469B5150475F",
+                                "name": "Red"
+                            }
+                        },
+                        {
+                            "begin": 36,
+                            "default": 36,
+                            "end": 36,
+                            "label": "(Orange)",
+                            "media": {
+                                "dcid": "B9540446-F1B8-9945-B129-517897426EA8",
+                                "name": "(Orange)"
+                            }
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": "Orange",
+                            "media": {
+                                "dcid": "B9540446-F1B8-9945-B129-517897426EA8",
+                                "name": "Orange"
+                            }
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "(Green)",
+                            "media": {
+                                "dcid": "2D7E4D23-E0B6-8A40-B8DA-2E7B7B59B654",
+                                "name": "(Green)"
+                            }
+                        },
+                        {
+                            "begin": 63,
+                            "default": 63,
+                            "end": 63,
+                            "label": "Green",
+                            "media": {
+                                "dcid": "2D7E4D23-E0B6-8A40-B8DA-2E7B7B59B654",
+                                "name": "Green"
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 72,
+                            "end": 72,
+                            "label": "(Blue)",
+                            "media": {
+                                "dcid": "EB48B036-5A0A-B146-9220-1BD4CB28BC73",
+                                "name": "(Blue)"
+                            }
+                        },
+                        {
+                            "begin": 81,
+                            "default": 81,
+                            "end": 81,
+                            "label": "Blue",
+                            "media": {
+                                "dcid": "EB48B036-5A0A-B146-9220-1BD4CB28BC73",
+                                "name": "Blue"
+                            }
+                        },
+                        {
+                            "begin": 90,
+                            "default": 90,
+                            "end": 90,
+                            "label": "(Yellow)",
+                            "media": {
+                                "dcid": "C4B812DF-99CD-424F-AAFB-4CE315DDF002",
+                                "name": "(Yellow)"
+                            }
+                        },
+                        {
+                            "begin": 99,
+                            "default": 99,
+                            "end": 99,
+                            "label": "Yellow",
+                            "media": {
+                                "dcid": "C4B812DF-99CD-424F-AAFB-4CE315DDF002",
+                                "name": "Yellow"
+                            }
+                        },
+                        {
+                            "begin": 108,
+                            "default": 108,
+                            "end": 108,
+                            "label": "(Light Blue)",
+                            "media": {
+                                "dcid": "9E960FA4-6575-A148-BAA8-1C20464CCC54",
+                                "name": "(Light Blue)"
+                            }
+                        },
+                        {
+                            "begin": 117,
+                            "default": 117,
+                            "end": 117,
+                            "label": "Light Blue",
+                            "media": {
+                                "dcid": "9E960FA4-6575-A148-BAA8-1C20464CCC54",
+                                "name": "Light Blue"
+                            }
+                        },
+                        {
+                            "begin": 126,
+                            "default": 126,
+                            "end": 126,
+                            "label": "(Purple)",
+                            "media": {
+                                "dcid": "EE60D67D-9B4F-6F4E-81DC-A183930DF690",
+                                "name": "(Purple)"
+                            }
+                        },
+                        {
+                            "begin": 135,
+                            "default": 135,
+                            "end": 135,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 140,
+                            "default": 167,
+                            "end": 195,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 197,
+                            "default": 197,
+                            "end": 197,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 13,
+                            "default": 13,
+                            "end": 13,
+                            "label": "(19)",
+                            "media": {
+                                "dcid": "2B9623AD-749B-CF45-A2F0-EFBA39438A27",
+                                "name": "(19)"
+                            }
+                        },
+                        {
+                            "begin": 29,
+                            "default": 29,
+                            "end": 29,
+                            "label": "(27)",
+                            "media": {
+                                "dcid": "B4B89267-63DB-EF42-B489-0DD2D17B2137",
+                                "name": "(27)"
+                            }
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": "(50)",
+                            "media": {
+                                "dcid": "3C8966A7-774C-E241-9E25-FC571420000E",
+                                "name": "(50)"
+                            }
+                        },
+                        {
+                            "begin": 61,
+                            "default": 61,
+                            "end": 61,
+                            "label": "(49)",
+                            "media": {
+                                "dcid": "CDB15B2D-5D3A-A944-A00E-2A142C8C07A9",
+                                "name": "(49)"
+                            }
+                        },
+                        {
+                            "begin": 77,
+                            "default": 77,
+                            "end": 77,
+                            "label": "(259)",
+                            "media": {
+                                "dcid": "3A88B685-3F48-6546-9886-748AD9762632",
+                                "name": "(259)"
+                            }
+                        },
+                        {
+                            "begin": 93,
+                            "default": 93,
+                            "end": 93,
+                            "label": "(173)",
+                            "media": {
+                                "dcid": "44A1F1F1-2362-4A4B-A0FC-E8D9F3528472",
+                                "name": "(173)"
+                            }
+                        },
+                        {
+                            "begin": 109,
+                            "default": 109,
+                            "end": 109,
+                            "label": "(138)",
+                            "media": {
+                                "dcid": "5D576A25-333D-4140-8446-D48676492115",
+                                "name": "(138)"
+                            }
+                        },
+                        {
+                            "begin": 125,
+                            "default": 125,
+                            "end": 125,
+                            "label": "(244)",
+                            "media": {
+                                "dcid": "089D3959-2312-964B-BE4B-27FCAD4E4AED",
+                                "name": "(244)"
+                            }
+                        },
+                        {
+                            "begin": 134,
+                            "default": 164,
+                            "end": 194,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 195,
+                            "default": 195,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 18,
+                            "label": "(182)",
+                            "media": {
+                                "dcid": "38AD541F-A75E-0E44-AF03-E777B143F457",
+                                "name": "(182)"
+                            }
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "(177)",
+                            "media": {
+                                "dcid": "81960E1C-0C37-8F4B-B7D2-272448820BEC",
+                                "name": "(177)"
+                            }
+                        },
+                        {
+                            "begin": 60,
+                            "default": 60,
+                            "end": 60,
+                            "label": "(Swirl)",
+                            "media": {
+                                "dcid": "AD0F698B-B51E-A84A-8247-E72C7AC720A8",
+                                "name": "(Swirl)"
+                            }
+                        },
+                        {
+                            "begin": 81,
+                            "default": 81,
+                            "end": 81,
+                            "label": "(Star)",
+                            "media": {
+                                "dcid": "E732AC4A-0275-A84D-8A45-92C677902C6E",
+                                "name": "(Star)"
+                            }
+                        },
+                        {
+                            "begin": 102,
+                            "default": 102,
+                            "end": 102,
+                            "label": "(117)",
+                            "media": {
+                                "dcid": "60596933-C801-1949-B76F-E80BA62C3699",
+                                "name": "(117)"
+                            }
+                        },
+                        {
+                            "begin": 123,
+                            "default": 123,
+                            "end": 123,
+                            "label": "(Triangle)",
+                            "media": {
+                                "dcid": "39133F5B-E2CC-5A4B-8CE6-8E5B60BA81EC",
+                                "name": "(Triangle)"
+                            }
+                        },
+                        {
+                            "begin": 134,
+                            "default": 164,
+                            "end": 194,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 195,
+                            "default": 195,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2 <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 69,
+                            "end": 129,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 132,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 135,
+                            "default": 135,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": []
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 71,
+                            "default": 71,
+                            "end": 71,
+                            "label": "(effect)"
+                        },
+                        {
+                            "begin": 135,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(effect) [>>]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Macros",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "Auto play 1"
+                        },
+                        {
+                            "begin": 67,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Auto play 2"
+                        },
+                        {
+                            "begin": 107,
+                            "default": 107,
+                            "end": 107,
+                            "label": "Auto play 3"
+                        },
+                        {
+                            "begin": 147,
+                            "default": 147,
+                            "end": 147,
+                            "label": "Auto play 4"
+                        },
+                        {
+                            "begin": 187,
+                            "default": 187,
+                            "end": 187,
+                            "label": "Auto play 5"
+                        },
+                        {
+                            "begin": 227,
+                            "default": 227,
+                            "end": 227,
+                            "label": "Auto play 6"
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
+                            "label": "Audio"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Pos Macros",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 20,
+                            "default": 20,
+                            "end": 20,
+                            "label": "Pos Macros 1"
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": "Pos Macros 2"
+                        },
+                        {
+                            "begin": 71,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Pos Macros 3"
+                        },
+                        {
+                            "begin": 97,
+                            "default": 97,
+                            "end": 97,
+                            "label": "Pos Macros 4"
+                        },
+                        {
+                            "begin": 123,
+                            "default": 123,
+                            "end": 123,
+                            "label": "Pos Macros 5"
+                        },
+                        {
+                            "begin": 149,
+                            "default": 149,
+                            "end": 149,
+                            "label": "Pos Macros 6"
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "Pos Macros 7"
+                        },
+                        {
+                            "begin": 201,
+                            "default": 201,
+                            "end": 201,
+                            "label": "Pos Macros 8"
+                        },
+                        {
+                            "begin": 227,
+                            "default": 227,
+                            "end": 227,
+                            "label": "Pos Macros 9"
+                        },
+                        {
+                            "begin": 248,
+                            "default": 248,
+                            "end": 248,
+                            "label": "Pos Macro Aud"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Global Reset",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

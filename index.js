@@ -21,8 +21,39 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-function dmxLoop(){
+var channels = new Array(2048).fill(0);
 
+var u1 = null;
+var u2 = null;
+var u3 = null;
+var u4 = null;
+var c = 0;
+function dmxLoop() {
+    c = 0;
+    for (; c < 2048; c++) {
+        channels[c] = 0;
+    }
+    //calculate here
+    u1 = channels.slice(0, 512);
+    u2 = channels.slice(512, 1024);
+    u3 = channels.slice(1024, 1536);
+    u4 = channels.slice(1536, 2048);
+    packet.setUniverse(0x01);
+    slotsData = u1;
+    client.send(packet);
+    packet.setUniverse(0x02);
+    slotsData = u2;
+    client.send(packet);
+    packet.setUniverse(0x03);
+    slotsData = u3;
+    client.send(packet);
+    packet.setUniverse(0x04);
+    slotsData = u4;
+    client.send(packet);
+    artnet.set(0, 1, u1);
+    artnet.set(1, 1, u2);
+    artnet.set(2, 1, u3);
+    artnet.set(3, 1, u4);
     setTimeout(dmxLoop, 25);
 }
 

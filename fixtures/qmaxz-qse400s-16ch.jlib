@@ -1,0 +1,971 @@
+{
+    "date": "2020-06-02 08:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "8F7D5458-CE45-BC4D-9BDC-834F24D9FE72",
+            "hasIntensity": true,
+            "manufacturerName": "Qmaxz",
+            "maxOffset": 15,
+            "modeName": "16ch",
+            "modelName": "QSE400S",
+            "colortable": "",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 63744,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 20,
+                            "default": 20,
+                            "end": 65,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 70,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 76,
+                            "default": 76,
+                            "end": 107,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 108,
+                            "default": 108,
+                            "end": 139,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 144,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "Rnd 100"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "Rnd 50"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 174,
+                            "label": "Rnd 1"
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 184,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 194,
+                            "label": "Rnd O Pulse 100"
+                        },
+                        {
+                            "begin": 204,
+                            "default": 204,
+                            "end": 204,
+                            "label": "Rnd O Pulse 50"
+                        },
+                        {
+                            "begin": 214,
+                            "default": 214,
+                            "end": 214,
+                            "label": "Rnd O Pulse 1"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 224,
+                            "label": "Rnd C Pulse 100"
+                        },
+                        {
+                            "begin": 234,
+                            "default": 234,
+                            "end": 234,
+                            "label": "Rnd C Pulse 50"
+                        },
+                        {
+                            "begin": 244,
+                            "default": 244,
+                            "end": 244,
+                            "label": "Rnd C Pulse 1"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 14
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 15
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "(Dark Blue)",
+                            "media": {
+                                "dcid": "091D8CCA-040E-8849-9315-6DB9A6ECF66B",
+                                "name": "(Dark Blue)"
+                            }
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "(Yellow)",
+                            "media": {
+                                "dcid": "2C772002-47AE-DE4B-A733-2B31EC380EEB",
+                                "name": "(Yellow)"
+                            }
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 34,
+                            "label": "(Purple)",
+                            "media": {
+                                "dcid": "24D2A3EE-1CB8-9B45-B30D-A6CBB891CF53",
+                                "name": "(Purple)"
+                            }
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 44,
+                            "label": "(Green)",
+                            "media": {
+                                "dcid": "8E616ADB-8471-4648-A3C6-7665ECE47CF0",
+                                "name": "(Green)"
+                            }
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "(Orange)",
+                            "media": {
+                                "dcid": "C58FA115-E48D-F749-9830-1659131839E6",
+                                "name": "(Orange)"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "(Light Blue)",
+                            "media": {
+                                "dcid": "86CD789E-BF62-B548-BA45-39246170D005",
+                                "name": "(Light Blue)"
+                            }
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "(Red)",
+                            "media": {
+                                "dcid": "9470F63B-C493-0544-95F4-73715A4DE0E0",
+                                "name": "(Red)"
+                            }
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 90,
+                            "default": 90,
+                            "end": 96,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 97,
+                            "default": 109,
+                            "end": 109,
+                            "label": "Dark Blue",
+                            "media": {
+                                "dcid": "091D8CCA-040E-8849-9315-6DB9A6ECF66B",
+                                "name": "Dark Blue"
+                            }
+                        },
+                        {
+                            "begin": 110,
+                            "default": 122,
+                            "end": 122,
+                            "label": "Yellow",
+                            "media": {
+                                "dcid": "2C772002-47AE-DE4B-A733-2B31EC380EEB",
+                                "name": "Yellow"
+                            }
+                        },
+                        {
+                            "begin": 123,
+                            "default": 135,
+                            "end": 135,
+                            "label": "Purple",
+                            "media": {
+                                "dcid": "24D2A3EE-1CB8-9B45-B30D-A6CBB891CF53",
+                                "name": "Purple"
+                            }
+                        },
+                        {
+                            "begin": 136,
+                            "default": 148,
+                            "end": 148,
+                            "label": "Green",
+                            "media": {
+                                "dcid": "8E616ADB-8471-4648-A3C6-7665ECE47CF0",
+                                "name": "Green"
+                            }
+                        },
+                        {
+                            "begin": 149,
+                            "default": 161,
+                            "end": 161,
+                            "label": "Orange",
+                            "media": {
+                                "dcid": "C58FA115-E48D-F749-9830-1659131839E6",
+                                "name": "Orange"
+                            }
+                        },
+                        {
+                            "begin": 162,
+                            "default": 174,
+                            "end": 174,
+                            "label": "Light Blue",
+                            "media": {
+                                "dcid": "86CD789E-BF62-B548-BA45-39246170D005",
+                                "name": "Light Blue"
+                            }
+                        },
+                        {
+                            "begin": 175,
+                            "default": 187,
+                            "end": 187,
+                            "label": "Red",
+                            "media": {
+                                "dcid": "9470F63B-C493-0544-95F4-73715A4DE0E0",
+                                "name": "Red"
+                            }
+                        },
+                        {
+                            "begin": 188,
+                            "default": 190,
+                            "end": 193,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "C0609B4A-12C7-427B-89F2-1F2CD3E99CBE",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 194,
+                            "default": 208,
+                            "end": 223,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 224,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 226,
+                            "default": 226,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "(01)",
+                            "media": {
+                                "dcid": "0183BCC2-9BAE-0343-8C36-C79D68EDFBA3",
+                                "name": "(01)"
+                            }
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "(02)",
+                            "media": {
+                                "dcid": "7CA03747-E25A-3040-A4B3-DC06E82D7CC7",
+                                "name": "(02)"
+                            }
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 34,
+                            "label": "(03)",
+                            "media": {
+                                "dcid": "6248F376-A920-3741-B821-979CD1829FF7",
+                                "name": "(03)"
+                            }
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 44,
+                            "label": "(04)",
+                            "media": {
+                                "dcid": "B2D5DA38-58C4-4940-A851-F5B094F06A65",
+                                "name": "(04)"
+                            }
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "(05)",
+                            "media": {
+                                "dcid": "2AD51786-6C0E-6847-A4C7-BA576B265C06",
+                                "name": "(05)"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "(06)",
+                            "media": {
+                                "dcid": "1CCAFF60-4015-AC41-87F7-152687BBA9AA",
+                                "name": "(06)"
+                            }
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "(07)",
+                            "media": {
+                                "dcid": "8C08D64B-44D6-704B-A922-AA736B4F359E",
+                                "name": "(07)"
+                            }
+                        },
+                        {
+                            "begin": 87,
+                            "default": 87,
+                            "end": 87,
+                            "label": "(08)",
+                            "media": {
+                                "dcid": "8216DC35-7C4F-1D40-9058-BFE66EDB35CC",
+                                "name": "(08)"
+                            }
+                        },
+                        {
+                            "begin": 95,
+                            "default": 109,
+                            "end": 109,
+                            "label": "(08) [S]",
+                            "media": {
+                                "dcid": "8216DC35-7C4F-1D40-9058-BFE66EDB35CC",
+                                "name": "(08) [S]"
+                            }
+                        },
+                        {
+                            "begin": 110,
+                            "default": 124,
+                            "end": 124,
+                            "label": "(07) [S]",
+                            "media": {
+                                "dcid": "8C08D64B-44D6-704B-A922-AA736B4F359E",
+                                "name": "(07) [S]"
+                            }
+                        },
+                        {
+                            "begin": 125,
+                            "default": 139,
+                            "end": 139,
+                            "label": "(06) [S]",
+                            "media": {
+                                "dcid": "1CCAFF60-4015-AC41-87F7-152687BBA9AA",
+                                "name": "(06) [S]"
+                            }
+                        },
+                        {
+                            "begin": 140,
+                            "default": 154,
+                            "end": 154,
+                            "label": "(05) [S]",
+                            "media": {
+                                "dcid": "2AD51786-6C0E-6847-A4C7-BA576B265C06",
+                                "name": "(05) [S]"
+                            }
+                        },
+                        {
+                            "begin": 155,
+                            "default": 169,
+                            "end": 169,
+                            "label": "(04) [S]",
+                            "media": {
+                                "dcid": "B2D5DA38-58C4-4940-A851-F5B094F06A65",
+                                "name": "(04) [S]"
+                            }
+                        },
+                        {
+                            "begin": 170,
+                            "default": 184,
+                            "end": 184,
+                            "label": "(03) [S]",
+                            "media": {
+                                "dcid": "6248F376-A920-3741-B821-979CD1829FF7",
+                                "name": "(03) [S]"
+                            }
+                        },
+                        {
+                            "begin": 185,
+                            "default": 199,
+                            "end": 199,
+                            "label": "(02) [S]",
+                            "media": {
+                                "dcid": "7CA03747-E25A-3040-A4B3-DC06E82D7CC7",
+                                "name": "(02) [S]"
+                            }
+                        },
+                        {
+                            "begin": 200,
+                            "default": 214,
+                            "end": 214,
+                            "label": "(01) [S]",
+                            "media": {
+                                "dcid": "0183BCC2-9BAE-0343-8C36-C79D68EDFBA3",
+                                "name": "(01) [S]"
+                            }
+                        },
+                        {
+                            "begin": 215,
+                            "default": 224,
+                            "end": 224,
+                            "label": "(Open) [S]",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open) [S]"
+                            }
+                        },
+                        {
+                            "begin": 225,
+                            "default": 225,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 29,
+                            "default": 29,
+                            "end": 29,
+                            "label": "(01)",
+                            "media": {
+                                "dcid": "580FA92E-25F9-1146-B4C5-C58C17821856",
+                                "name": "(01)"
+                            }
+                        },
+                        {
+                            "begin": 49,
+                            "default": 49,
+                            "end": 49,
+                            "label": "(02)",
+                            "media": {
+                                "dcid": "D6962DD0-F295-FC46-9932-6135FC56087B",
+                                "name": "(02)"
+                            }
+                        },
+                        {
+                            "begin": 69,
+                            "default": 69,
+                            "end": 69,
+                            "label": "(03)",
+                            "media": {
+                                "dcid": "22E01D71-BD62-8643-952C-5421E0AC0E45",
+                                "name": "(03)"
+                            }
+                        },
+                        {
+                            "begin": 89,
+                            "default": 89,
+                            "end": 89,
+                            "label": "(04)",
+                            "media": {
+                                "dcid": "14863806-E61A-9D46-8EDC-F9267F4A0C7A",
+                                "name": "(04)"
+                            }
+                        },
+                        {
+                            "begin": 109,
+                            "default": 109,
+                            "end": 109,
+                            "label": "(05)",
+                            "media": {
+                                "dcid": "48BB6616-2803-704B-AD12-D52D76F8AA05",
+                                "name": "(05)"
+                            }
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 132,
+                            "label": "(06)",
+                            "media": {
+                                "dcid": "724B2A5D-DBD8-624A-9C32-584B6FDE0DF8",
+                                "name": "(06)"
+                            }
+                        },
+                        {
+                            "begin": 145,
+                            "default": 159,
+                            "end": 159,
+                            "label": "(06) [S]",
+                            "media": {
+                                "dcid": "724B2A5D-DBD8-624A-9C32-584B6FDE0DF8",
+                                "name": "(06) [S]"
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 174,
+                            "end": 174,
+                            "label": "(05) [S]",
+                            "media": {
+                                "dcid": "48BB6616-2803-704B-AD12-D52D76F8AA05",
+                                "name": "(05) [S]"
+                            }
+                        },
+                        {
+                            "begin": 175,
+                            "default": 189,
+                            "end": 189,
+                            "label": "(04) [S]",
+                            "media": {
+                                "dcid": "14863806-E61A-9D46-8EDC-F9267F4A0C7A",
+                                "name": "(04) [S]"
+                            }
+                        },
+                        {
+                            "begin": 190,
+                            "default": 204,
+                            "end": 204,
+                            "label": "(03) [S]",
+                            "media": {
+                                "dcid": "22E01D71-BD62-8643-952C-5421E0AC0E45",
+                                "name": "(03) [S]"
+                            }
+                        },
+                        {
+                            "begin": 205,
+                            "default": 219,
+                            "end": 219,
+                            "label": "(02) [S]",
+                            "media": {
+                                "dcid": "D6962DD0-F295-FC46-9932-6135FC56087B",
+                                "name": "(02) [S]"
+                            }
+                        },
+                        {
+                            "begin": 220,
+                            "default": 234,
+                            "end": 234,
+                            "label": "(01) [S]",
+                            "media": {
+                                "dcid": "580FA92E-25F9-1146-B4C5-C58C17821856",
+                                "name": "(01) [S]"
+                            }
+                        },
+                        {
+                            "begin": 245,
+                            "default": 245,
+                            "end": 245,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2 <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 125,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 127,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Unknown 1"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 159,
+                            "end": 190,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 192,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": []
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "(effect)"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 125,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 127,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 159,
+                            "end": 190,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 192,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Blink",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Blink functions off"
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "Off [FX Blink]"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 104,
+                            "label": "Gobo wheels blink"
+                        },
+                        {
+                            "begin": 134,
+                            "default": 134,
+                            "end": 134,
+                            "label": "Blink functions off"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "Off [Clr Blink]"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 194,
+                            "label": "On"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 224,
+                            "label": "Blink functions on"
+                        },
+                        {
+                            "begin": 247,
+                            "default": 247,
+                            "end": 247,
+                            "label": "Blink functions off"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Focus Track"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 132,
+                            "end": 255,
+                            "label": "Focus Spd"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

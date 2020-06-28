@@ -1,0 +1,680 @@
+{
+    "date": "2020-06-02 08:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "706A9A69-877D-4B64-9536-86D1266D63D2",
+            "hasIntensity": true,
+            "manufacturerName": "Custom",
+            "maxOffset": 17,
+            "modeName": "18ch",
+            "modelName": "S4i Rainproof Moving Head",
+            "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [],
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": []
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Pan Rotate",
+                    "size": 8,
+                    "snap": false,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Pan Mode"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 135,
+                            "label": "Pan Rotate >>"
+                        },
+                        {
+                            "begin": 136,
+                            "default": 136,
+                            "end": 255,
+                            "label": "Pan Rotate <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Tilt <>",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Tilt Mode"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 135,
+                            "label": "Tilt Rotate"
+                        },
+                        {
+                            "begin": 136,
+                            "default": 136,
+                            "end": 255,
+                            "label": "Tilt Rotate"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "snap": false,
+                    "type": 1,
+                    "ranges": []
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 255,
+                            "label": "Strobe"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe 2",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 255,
+                            "label": "Strobe"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 10,
+                            "label": "Color 1"
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "Color 2"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "Color 3"
+                        },
+                        {
+                            "begin": 31,
+                            "default": 31,
+                            "end": 31,
+                            "label": "Color 4"
+                        },
+                        {
+                            "begin": 38,
+                            "default": 38,
+                            "end": 38,
+                            "label": "Color 5"
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": "Color 6"
+                        },
+                        {
+                            "begin": 52,
+                            "default": 52,
+                            "end": 52,
+                            "label": "Color 7"
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "Color 8"
+                        },
+                        {
+                            "begin": 66,
+                            "default": 66,
+                            "end": 66,
+                            "label": "Color 9"
+                        },
+                        {
+                            "begin": 73,
+                            "default": 73,
+                            "end": 73,
+                            "label": "Color 10"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 80,
+                            "end": 80,
+                            "label": "Color 11"
+                        },
+                        {
+                            "begin": 87,
+                            "default": 87,
+                            "end": 87,
+                            "label": "Color 12"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 94,
+                            "label": "Color 13"
+                        },
+                        {
+                            "begin": 101,
+                            "default": 101,
+                            "end": 101,
+                            "label": "Color 14"
+                        },
+                        {
+                            "begin": 108,
+                            "default": 108,
+                            "end": 108,
+                            "label": "Color 15"
+                        },
+                        {
+                            "begin": 115,
+                            "default": 115,
+                            "end": 115,
+                            "label": "Color 16"
+                        },
+                        {
+                            "begin": 122,
+                            "default": 122,
+                            "end": 122,
+                            "label": "Color 17"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 129,
+                            "label": "Color 18"
+                        },
+                        {
+                            "begin": 136,
+                            "default": 136,
+                            "end": 136,
+                            "label": "Color 19"
+                        },
+                        {
+                            "begin": 143,
+                            "default": 143,
+                            "end": 143,
+                            "label": "Color 20"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 150,
+                            "label": "Color 21"
+                        },
+                        {
+                            "begin": 157,
+                            "default": 157,
+                            "end": 157,
+                            "label": "Color 22"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "Color 23"
+                        },
+                        {
+                            "begin": 171,
+                            "default": 171,
+                            "end": 171,
+                            "label": "Color 24"
+                        },
+                        {
+                            "begin": 178,
+                            "default": 178,
+                            "end": 178,
+                            "label": "Color 25"
+                        },
+                        {
+                            "begin": 185,
+                            "default": 185,
+                            "end": 185,
+                            "label": "Color 26"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 192,
+                            "label": "Color 27"
+                        },
+                        {
+                            "begin": 199,
+                            "default": 199,
+                            "end": 199,
+                            "label": "Color 28"
+                        },
+                        {
+                            "begin": 206,
+                            "default": 206,
+                            "end": 206,
+                            "label": "Color 29"
+                        },
+                        {
+                            "begin": 213,
+                            "default": 213,
+                            "end": 213,
+                            "label": "Color 30"
+                        },
+                        {
+                            "begin": 220,
+                            "default": 220,
+                            "end": 220,
+                            "label": "Color 31"
+                        },
+                        {
+                            "begin": 227,
+                            "default": 227,
+                            "end": 227,
+                            "label": "Color 32"
+                        },
+                        {
+                            "begin": 243,
+                            "default": 243,
+                            "end": 243,
+                            "label": "Color 33"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Macro",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "Jump 1"
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "Jump 2"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 55,
+                            "label": "Jump 3"
+                        },
+                        {
+                            "begin": 71,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Jump 4"
+                        },
+                        {
+                            "begin": 87,
+                            "default": 87,
+                            "end": 87,
+                            "label": "Jump 5"
+                        },
+                        {
+                            "begin": 103,
+                            "default": 103,
+                            "end": 103,
+                            "label": "Jump 6"
+                        },
+                        {
+                            "begin": 119,
+                            "default": 119,
+                            "end": 119,
+                            "label": "Jump 7"
+                        },
+                        {
+                            "begin": 135,
+                            "default": 135,
+                            "end": 135,
+                            "label": "Jump 8"
+                        },
+                        {
+                            "begin": 151,
+                            "default": 151,
+                            "end": 151,
+                            "label": "Fade 1"
+                        },
+                        {
+                            "begin": 167,
+                            "default": 167,
+                            "end": 167,
+                            "label": "Fade 2"
+                        },
+                        {
+                            "begin": 183,
+                            "default": 183,
+                            "end": 183,
+                            "label": "Fade 3"
+                        },
+                        {
+                            "begin": 199,
+                            "default": 199,
+                            "end": 199,
+                            "label": "Fade 4"
+                        },
+                        {
+                            "begin": 215,
+                            "default": 215,
+                            "end": 215,
+                            "label": "Fade 5"
+                        },
+                        {
+                            "begin": 231,
+                            "default": 231,
+                            "end": 231,
+                            "label": "Fade 6"
+                        },
+                        {
+                            "begin": 247,
+                            "default": 247,
+                            "end": 247,
+                            "label": "Fade 7"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix Macro Rate",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "snap": false,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 8,
+                            "default": 8,
+                            "end": 8,
+                            "label": "Show 1"
+                        },
+                        {
+                            "begin": 15,
+                            "default": 15,
+                            "end": 15,
+                            "label": "Show 2"
+                        },
+                        {
+                            "begin": 25,
+                            "default": 25,
+                            "end": 25,
+                            "label": "Show 3"
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "Show 4"
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": "Show 5"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 55,
+                            "label": "Show 6"
+                        },
+                        {
+                            "begin": 65,
+                            "default": 65,
+                            "end": 65,
+                            "label": "Show 7"
+                        },
+                        {
+                            "begin": 75,
+                            "default": 75,
+                            "end": 75,
+                            "label": "Show 8"
+                        },
+                        {
+                            "begin": 85,
+                            "default": 85,
+                            "end": 85,
+                            "label": "Slave 1"
+                        },
+                        {
+                            "begin": 93,
+                            "default": 93,
+                            "end": 93,
+                            "label": "Slave 2"
+                        },
+                        {
+                            "begin": 97,
+                            "default": 97,
+                            "end": 160,
+                            "label": "Aud Sensitivity [FX Macro Aud]"
+                        },
+                        {
+                            "begin": 165,
+                            "default": 165,
+                            "end": 165,
+                            "label": "Pan mode reverse"
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "Tilt mode reverse"
+                        },
+                        {
+                            "begin": 185,
+                            "default": 185,
+                            "end": 185,
+                            "label": "Pan mode normal"
+                        },
+                        {
+                            "begin": 195,
+                            "default": 195,
+                            "end": 195,
+                            "label": "Tilt mode normal"
+                        },
+                        {
+                            "begin": 210,
+                            "default": 210,
+                            "end": 210,
+                            "label": "BlackMove On"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Green",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Blue",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "White",
+                    "size": 8,
+                    "snap": false,
+                    "type": 5,
+                    "ranges": []
+                }
+            ]
+        }
+    ]
+}
