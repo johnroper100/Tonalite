@@ -2,6 +2,9 @@ var app = require('express')();
 var express = require('express');
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
+var fastJson = require('fast-json-stringify');
+
+require.extensions['.jlib'] = require.extensions['.json'];
 
 var artnetOptions = {
     sendAll: true
