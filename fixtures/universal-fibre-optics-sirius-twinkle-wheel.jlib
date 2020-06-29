@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "63B1A947-CFAE-44BE-8541-267BD53B09EF",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Universal Fibre Optics",
             "maxOffset": 2,
             "modeName": "Twinkle Wheel",
             "modelName": "Sirius",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Twinkle",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -46,7 +43,10 @@
                             "end": 255,
                             "label": "Rot >>"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -55,9 +55,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Fan+Display",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -71,7 +68,10 @@
                             "end": 253,
                             "label": "Fan Speed"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "0C33130F-B489-844F-8556-08FE71BF5617",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "JB Lighting",
             "maxOffset": 5,
             "modeName": "6ch",
             "modelName": "VaryColor MICRO 150 HTI",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 33023,
                     "invert": true,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 32512,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 3,
@@ -42,9 +42,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -132,7 +129,10 @@
                             "end": 255,
                             "label": "Spin >>"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 4,
@@ -141,10 +141,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 5,
@@ -153,9 +153,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Pos Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -169,7 +166,10 @@
                             "end": 191,
                             "label": "Stop pan and tilt smoothly"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 }
             ]
         }

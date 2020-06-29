@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "3BDEAB21-402B-4A45-9F2E-5A3FA49BC8E9",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Picturall",
             "maxOffset": 55,
             "modeName": "v1.1 Layer Full",
             "modelName": "Octo",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "X Pos",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 2
                 },
                 {
@@ -43,10 +43,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Y Pos",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 4
                 },
                 {
@@ -56,9 +56,6 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Rotate Z",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -79,6 +76,9 @@
                             "label": "Rot >>"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 6
                 },
                 {
@@ -88,10 +88,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Scale",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 8
                 },
                 {
@@ -101,10 +101,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Aspect Ratio",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 10
                 },
                 {
@@ -114,9 +114,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "VisMode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1654,7 +1651,10 @@
                             "end": 255,
                             "label": "VisMode 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 12,
@@ -1663,9 +1663,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "File",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -3203,7 +3200,10 @@
                             "end": 255,
                             "label": "File 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 13,
@@ -3212,9 +3212,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Library",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -4752,7 +4749,10 @@
                             "end": 255,
                             "label": "Library 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 14,
@@ -4761,9 +4761,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Playback Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -6301,7 +6298,10 @@
                             "end": 255,
                             "label": "Playback Mode 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 15,
@@ -6310,9 +6310,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "PlaySpd",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -6332,7 +6329,10 @@
                             "end": 160,
                             "label": "Spd"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 16,
@@ -6341,10 +6341,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "In Point",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 17
                 },
                 {
@@ -6354,10 +6354,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Audio Vol",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 22,
@@ -6366,10 +6366,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Image Sat",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 23,
@@ -6378,10 +6378,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Brightness",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 24,
@@ -6390,10 +6390,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Contrast",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 25,
@@ -6402,10 +6402,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Gamma",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 26,
@@ -6414,10 +6414,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Image Adj Red",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 27,
@@ -6426,10 +6426,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Image Adj Green",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 28,
@@ -6438,10 +6438,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Image Adj Blue",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 29,
@@ -6450,10 +6450,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Red Contrast",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 30,
@@ -6462,10 +6462,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Green Contrast",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 31,
@@ -6474,10 +6474,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Blue Contrast",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 32,
@@ -6486,9 +6486,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -8026,7 +8023,10 @@
                             "end": 255,
                             "label": "FX 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 33,
@@ -8035,10 +8035,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 34,
@@ -8047,10 +8047,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param 2",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 35,
@@ -8059,10 +8059,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param 3",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 36,
@@ -8071,10 +8071,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param 4",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 37,
@@ -8083,10 +8083,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param 5",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 38,
@@ -8095,10 +8095,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param 6",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 39,
@@ -8107,10 +8107,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param 7",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 40,
@@ -8119,9 +8119,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -9659,7 +9656,10 @@
                             "end": 255,
                             "label": "FX 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 41,
@@ -9668,10 +9668,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 42,
@@ -9680,10 +9680,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param 2",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 43,
@@ -9692,10 +9692,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param 3",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 44,
@@ -9704,10 +9704,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param 4",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 45,
@@ -9716,10 +9716,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param 5",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 46,
@@ -9728,10 +9728,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param 6",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 47,
@@ -9740,10 +9740,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param 7",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 }
             ]
         }

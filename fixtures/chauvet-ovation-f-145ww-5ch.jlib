@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "B4DC2048-A9AF-4003-B3EA-71C116C7E0E7",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Chauvet",
             "maxOffset": 4,
             "modeName": "5ch",
             "modelName": "Ovation F-145WW",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Zoom",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -43,9 +43,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -83,7 +80,10 @@
                             "end": 255,
                             "label": "Rnd [FXM Rate]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 4,
@@ -92,9 +92,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Zoom Reset",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -108,7 +105,10 @@
                             "end": 210,
                             "label": "Zoom Reset"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

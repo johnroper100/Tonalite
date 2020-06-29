@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "1B643156-B82A-AE40-8C5A-8103326C5123",
+            "colortable": "",
             "hasIntensity": false,
             "manufacturerName": "Stage Ape Lighting",
             "maxOffset": 4,
             "modeName": "5ch",
             "modelName": "Whirl 18x3",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 2,
@@ -42,9 +42,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -70,7 +67,10 @@
                             "end": 247,
                             "label": "Open [Full]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -79,9 +79,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -185,7 +182,10 @@
                             "end": 255,
                             "label": "Color Change [Color Mix Macro Rate]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

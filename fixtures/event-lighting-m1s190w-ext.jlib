@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "CE7045FE-7073-4AEC-92BA-6A4F00BAE98C",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Event Lighting",
             "maxOffset": 23,
             "modeName": "Ext",
             "modelName": "M1S190W",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,10 +44,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Focus Speed",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 5,
@@ -56,9 +56,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Pos Blink",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -72,7 +69,10 @@
                             "end": 23,
                             "label": "On"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 6,
@@ -81,9 +81,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -109,7 +106,10 @@
                             "end": 55,
                             "label": "Rnd Mode"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 7,
@@ -118,9 +118,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -200,7 +197,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 8,
@@ -209,10 +209,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 9,
@@ -221,9 +221,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -261,7 +258,10 @@
                             "end": 95,
                             "label": "Full Frame [Color Scan]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 10,
@@ -270,9 +270,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -932,7 +929,10 @@
                                 "name": "Open"
                             }
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 11,
@@ -941,9 +941,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -981,7 +978,10 @@
                             "end": 87,
                             "label": "Gobo mode [Shk]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 12,
@@ -990,9 +990,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1332,7 +1329,10 @@
                                 "name": "(83) [S]"
                             }
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 13,
@@ -1341,9 +1341,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo rot",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1387,7 +1384,10 @@
                             "end": 103,
                             "label": "Anim [Gobo Idx Blink]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 14,
@@ -1396,9 +1396,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo <>",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1448,7 +1445,10 @@
                             "end": 255,
                             "label": "Reserved"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 15,
@@ -1457,9 +1457,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo 2 mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1497,7 +1494,10 @@
                             "end": 87,
                             "label": "Gobo mode [Shk]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 16,
@@ -1506,9 +1506,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1848,7 +1845,10 @@
                                 "name": "(05) [S]"
                             }
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 17,
@@ -1857,9 +1857,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1901,7 +1898,10 @@
                                 "name": "(Frost)"
                             }
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 18,
@@ -1910,9 +1910,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX <>",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1926,7 +1923,10 @@
                             "end": 255,
                             "label": "Rot <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 19,
@@ -1935,9 +1935,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Focus Dist",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1981,7 +1978,10 @@
                             "end": 175,
                             "label": "Focus Mode"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 20,
@@ -1990,9 +1990,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Focus",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -2012,7 +2009,10 @@
                             "end": 255,
                             "label": "Focus Adj [Focus Auto]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 21,
@@ -2021,9 +2021,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Iris Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -2055,7 +2052,10 @@
                             "end": 71,
                             "label": "Reverse blackout"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 22,
@@ -2064,9 +2064,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Iris",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -2086,7 +2083,10 @@
                             "end": 255,
                             "label": "Reserved"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 23,
@@ -2095,9 +2095,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -2147,7 +2144,10 @@
                             "end": 91,
                             "label": "Sleep"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

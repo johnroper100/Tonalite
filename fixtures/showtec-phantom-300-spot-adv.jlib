@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "A0ECB413-68D9-1244-8D3E-9E05270AE016",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Showtec",
             "maxOffset": 21,
             "modeName": "Adv",
             "modelName": "Phantom 300 Spot",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,10 +44,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Focus Speed",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 5,
@@ -56,9 +56,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Pos Macros",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -114,7 +111,10 @@
                             "end": 240,
                             "label": "Pos Macros 8"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 6,
@@ -123,9 +123,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -169,7 +166,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 7,
@@ -178,9 +178,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Pos Blink",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -236,7 +233,10 @@
                             "end": 241,
                             "label": "On [Clr & FX & Gobo & Gobo 2 Blink]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 8,
@@ -245,10 +245,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 9
                 },
                 {
@@ -258,9 +258,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -444,7 +441,10 @@
                             "end": 255,
                             "label": "Spin <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 11,
@@ -453,9 +453,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -639,7 +636,10 @@
                             "end": 255,
                             "label": "Spin <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 12,
@@ -648,9 +648,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -824,7 +821,10 @@
                             "end": 255,
                             "label": "Spin <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 13,
@@ -833,9 +833,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1009,7 +1006,10 @@
                             "end": 255,
                             "label": "Spin <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 14,
@@ -1018,9 +1018,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo 2 <>",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1065,6 +1062,9 @@
                             "label": "Rot << [^]"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 15
                 },
                 {
@@ -1074,10 +1074,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Focus",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 17,
@@ -1086,9 +1086,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Iris",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1114,7 +1111,10 @@
                             "end": 255,
                             "label": "Iris Strobe C Pulse"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 18,
@@ -1123,9 +1123,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Frost",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1163,7 +1160,10 @@
                             "end": 253,
                             "label": "Frost 100"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 19,
@@ -1172,9 +1172,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1218,7 +1215,10 @@
                             "end": 255,
                             "label": "FX Spin >>"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 20,
@@ -1227,9 +1227,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX <>",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1249,7 +1246,10 @@
                             "end": 247,
                             "label": "Rot <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 21,
@@ -1258,9 +1258,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1286,7 +1283,10 @@
                             "end": 191,
                             "label": "Fan Speed 1"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

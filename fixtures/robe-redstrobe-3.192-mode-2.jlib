@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "D014E3B8-CE9F-8E40-9C37-1533A474CEDA",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Robe",
             "maxOffset": 2,
             "modeName": "Mode 2",
             "modelName": "REDStrobe 3.192",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -76,7 +73,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -85,10 +85,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 2
                 }
             ]

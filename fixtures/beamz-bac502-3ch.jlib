@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "0CD1AABA-422F-4571-BBFB-C9CDA395EF4B",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "BeamZ",
             "maxOffset": 2,
             "modeName": "3ch",
             "modelName": "BAC502",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -46,7 +43,10 @@
                             "end": 255,
                             "label": "Strobe"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -55,9 +55,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX Macros",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -101,7 +98,10 @@
                             "end": 232,
                             "label": "Sound 3"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

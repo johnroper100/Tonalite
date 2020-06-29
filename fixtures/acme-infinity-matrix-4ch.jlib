@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "2F96C14F-9111-0548-BD95-9E343D87F396",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Acme",
             "maxOffset": 3,
             "modeName": "4ch",
             "modelName": "Infinity Matrix",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -166,7 +163,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -175,9 +175,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -221,7 +218,10 @@
                             "end": 235,
                             "label": "off"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -230,9 +230,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "File",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -828,7 +825,10 @@
                             "end": 255,
                             "label": "Line effect 31"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

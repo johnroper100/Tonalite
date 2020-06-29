@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "CDEA1BD1-9C7A-4D02-8C54-93F9786A1A6F",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "PRG",
             "maxOffset": 4,
             "modeName": "v4.0 Global Master",
             "modelName": "Mbox Studio",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -268,7 +265,10 @@
                             "end": 255,
                             "label": "Unknown"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -277,9 +277,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1817,7 +1814,10 @@
                             "end": 255,
                             "label": "Macros 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -1826,10 +1826,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Pixel Map Level",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 4,
@@ -1838,10 +1838,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Audio Vol",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 }
             ]
         }

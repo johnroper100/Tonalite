@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "F32BD323-8D2A-4A4E-A80F-01A8E33EFB83",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Expolite",
             "maxOffset": 2,
             "modeName": "3ch",
             "modelName": "Tourbar 32",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "White",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 2,
@@ -42,9 +42,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -130,7 +127,10 @@
                             "end": 253,
                             "label": "Blue#2 [Mix Pos]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

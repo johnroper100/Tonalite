@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "F6409626-D74B-EA4D-ADC3-77F2C150942D",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "TMB",
             "maxOffset": 3,
             "modeName": "Basic Strobe Only",
             "modelName": "Solaris Flare",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe Duration",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -46,7 +43,10 @@
                             "end": 255,
                             "label": "Hyper"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -55,9 +55,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -191,7 +188,10 @@
                             "end": 255,
                             "label": "Meltdown - burst background [Strobe FX Rate]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -200,9 +200,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -270,7 +267,10 @@
                             "end": 253,
                             "label": "Meltdown - burst background mode"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

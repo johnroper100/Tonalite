@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "CB25B63D-7D4D-2E46-8351-DC1B181BB1E0",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Microh",
             "maxOffset": 8,
             "modeName": "Mode 2",
             "modelName": "Cyclops 150R",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,9 +44,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Focus Speed",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -72,7 +69,10 @@
                             "end": 254,
                             "label": "Focus Track [BlackMove,Clr & Gobo Blink]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 5,
@@ -81,9 +81,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -233,7 +230,10 @@
                             "end": 255,
                             "label": "Spin <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 6,
@@ -242,9 +242,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -394,7 +391,10 @@
                             "end": 255,
                             "label": "Spin >>"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 7,
@@ -403,9 +403,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo <>",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -431,7 +428,10 @@
                             "end": 255,
                             "label": "Rot <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 8,
@@ -440,10 +440,10 @@
                     "home": 256,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 }
             ]
         }

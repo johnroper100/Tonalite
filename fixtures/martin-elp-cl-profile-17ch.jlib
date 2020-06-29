@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "91150809-8BD9-440D-920D-7677F48DAAC8",
+            "colortable": "61140E03-B858-436F-A40F-2E72CFF06157",
             "hasIntensity": true,
             "manufacturerName": "Martin",
             "maxOffset": 16,
             "modeName": "17ch",
             "modelName": "ELP CL Profile",
-            "colortable": "61140E03-B858-436F-A40F-2E72CFF06157",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -70,7 +67,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -79,10 +79,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 2
                 },
                 {
@@ -92,10 +92,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Int Speed",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 4,
@@ -104,9 +104,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Temp",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -241,6 +238,9 @@
                             "label": "9000K"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 5
                 },
                 {
@@ -250,10 +250,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Red",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 7
                 },
                 {
@@ -263,10 +263,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Green",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 9
                 },
                 {
@@ -276,10 +276,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Blue",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 11
                 },
                 {
@@ -289,10 +289,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Lime",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 13
                 },
                 {
@@ -302,10 +302,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Amber",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 15
                 },
                 {
@@ -315,9 +315,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -451,7 +448,10 @@
                             "end": 250,
                             "label": "Primary green"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

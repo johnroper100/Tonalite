@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "D6A7C198-8251-844B-8C5C-5966E090A7FB",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Lightmaxx",
             "maxOffset": 6,
             "modeName": "-",
             "modelName": "LED Scanner",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32512,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 32512,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 2,
@@ -42,9 +42,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -148,7 +145,10 @@
                             "end": 255,
                             "label": "Spin <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -157,9 +157,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -309,7 +306,10 @@
                             "end": 255,
                             "label": "Spin >>"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 4,
@@ -318,9 +318,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -358,7 +355,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 5,
@@ -367,10 +367,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 6,
@@ -379,9 +379,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -443,7 +440,10 @@
                             "end": 247,
                             "label": "Internal program 8"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "60C7A6FC-6EFC-4D4F-8E4A-D95C545981F3",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Luxli",
             "maxOffset": 4,
             "modeName": "CCT 16b",
             "modelName": "Timpani 1x1 RGBAW LED Panel",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,9 +31,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Temp",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -120,6 +117,9 @@
                             "label": "9000K"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 3
                 },
                 {
@@ -129,9 +129,6 @@
                     "home": 39680,
                     "invert": false,
                     "name": "Tint",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -145,7 +142,10 @@
                             "end": 255,
                             "label": "Tint"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

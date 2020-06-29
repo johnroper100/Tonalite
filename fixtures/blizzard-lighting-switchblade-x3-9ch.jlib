@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "ECA9063C-633D-7541-8413-3032F63E99C4",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Blizzard Lighting",
             "maxOffset": 8,
             "modeName": "9ch",
             "modelName": "Switchblade X3",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,10 +44,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Focus Speed",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 5,
@@ -56,10 +56,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 6,
@@ -68,9 +68,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -84,7 +81,10 @@
                             "end": 255,
                             "label": "Strobe"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 7,
@@ -93,9 +93,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX Macros",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1573,7 +1570,10 @@
                             "end": 255,
                             "label": "FX Macros 245"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 8,
@@ -1582,9 +1582,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Pos Macros",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -3062,7 +3059,10 @@
                             "end": 255,
                             "label": "Pos Macros 245"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 }
             ]
         }

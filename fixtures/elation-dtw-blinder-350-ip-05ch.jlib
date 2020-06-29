@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "169285E0-4DAF-442D-BE1C-986775F8EEC0",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Elation",
             "maxOffset": 4,
             "modeName": "05CH",
             "modelName": "DTW Blinder 350 IP",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "White",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Amber",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 2,
@@ -42,10 +42,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -55,9 +55,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -95,7 +92,10 @@
                             "end": 255,
                             "label": "Default"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

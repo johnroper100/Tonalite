@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "78EAD467-90E0-ED4E-B594-7B17CAE20723",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Chauvet",
             "maxOffset": 5,
             "modeName": "6ch",
             "modelName": "Min Spot RGBW",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 33023,
                     "invert": true,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 32512,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 2,
@@ -42,9 +42,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -70,7 +67,10 @@
                             "end": 247,
                             "label": "Open [Full]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -79,10 +79,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 4,
@@ -91,9 +91,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Macros",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -203,7 +200,10 @@
                             "end": 243,
                             "label": "Color chase"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 5,
@@ -212,9 +212,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -328,7 +325,10 @@
                             "end": 255,
                             "label": "Spin <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

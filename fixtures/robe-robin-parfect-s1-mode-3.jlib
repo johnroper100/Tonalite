@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "483C7AA2-D3D8-8E4D-A9E3-13947605335A",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Robe",
             "maxOffset": 2,
             "modeName": "Mode 3",
             "modelName": "Robin Parfect S1",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -76,7 +73,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -85,10 +85,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 2
                 }
             ]

@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "81383EDE-D809-2D44-BEE3-7988C5B10F65",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Prolights",
             "maxOffset": 2,
             "modeName": "STD.P",
             "modelName": "ArcLED 7337",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Zoom",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -42,9 +42,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Global Reset",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -52,7 +49,10 @@
                             "end": 0,
                             "label": "None"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

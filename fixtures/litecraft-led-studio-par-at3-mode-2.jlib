@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "7A0E5712-AE9B-2D4A-9750-736B9D8BF4A7",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Litecraft",
             "maxOffset": 1,
             "modeName": "Mode 2",
             "modelName": "LED Studio Par AT3",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -286,7 +283,10 @@
                             "end": 255,
                             "label": "White"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -295,10 +295,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 }
             ]
         }

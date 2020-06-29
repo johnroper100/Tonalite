@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "AA2B3A25-E587-45EB-AA20-9B0ED03AE239",
+            "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139",
             "hasIntensity": true,
             "manufacturerName": "Showtec",
             "maxOffset": 56,
             "modeName": "Adv",
             "modelName": "Infinity S601 Profile",
-            "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,10 +44,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Focus Speed",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 5,
@@ -56,10 +56,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 6
                 },
                 {
@@ -69,9 +69,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -109,7 +106,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 8,
@@ -118,9 +118,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -280,7 +277,10 @@
                             "end": 255,
                             "label": "Spin >>"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 9,
@@ -289,10 +289,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Cyan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 10
                 },
                 {
@@ -302,10 +302,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Magenta",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 12
                 },
                 {
@@ -315,10 +315,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Yellow",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 14
                 },
                 {
@@ -328,10 +328,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "CTO",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 16
                 },
                 {
@@ -341,9 +341,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1065,7 +1062,10 @@
                             "end": 255,
                             "label": "MixCycle"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 18,
@@ -1074,9 +1074,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1232,7 +1229,10 @@
                             "end": 255,
                             "label": "Spin <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 19,
@@ -1241,9 +1241,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo <>",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1276,6 +1273,9 @@
                             "label": "Gobo Shake ^"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 20
                 },
                 {
@@ -1285,9 +1285,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1443,7 +1440,10 @@
                             "end": 255,
                             "label": "Spin <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 22,
@@ -1452,9 +1452,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo 2 <>",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1487,6 +1484,9 @@
                             "label": "Gobo Shake ^"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 23
                 },
                 {
@@ -1496,9 +1496,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1530,7 +1527,10 @@
                                 "name": "(6 Facet Linear Prism)"
                             }
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 25,
@@ -1539,9 +1539,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX <>",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1574,6 +1571,9 @@
                             "label": "Rot <<"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 26
                 },
                 {
@@ -1583,10 +1583,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Zoom",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 28
                 },
                 {
@@ -1596,9 +1596,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Iris",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1625,6 +1622,9 @@
                             "label": "Iris Mode Strobe C Pulse"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 30
                 },
                 {
@@ -1634,9 +1634,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Iris Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1662,7 +1659,10 @@
                             "end": 255,
                             "label": "Iris Strobe C Pulse"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 32,
@@ -1671,9 +1671,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Focus",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1706,6 +1703,9 @@
                             "label": "None"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 33
                 },
                 {
@@ -1715,9 +1715,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Focus Dist",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1857,7 +1854,10 @@
                             "end": 246,
                             "label": "Auto Detect Distance - Gobo Wheel 2"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 35,
@@ -1866,10 +1866,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Frost",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 36,
@@ -1878,9 +1878,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Anim",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1922,7 +1919,10 @@
                                 "name": "(01) [<<]"
                             }
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 37,
@@ -1931,9 +1931,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "LED Engine FX",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1953,7 +1950,10 @@
                             "end": 255,
                             "label": "Fade Mode [LED FX Rate]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 38,
@@ -1962,10 +1962,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Shape 3a",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 39
                 },
                 {
@@ -1975,10 +1975,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Shape 3b",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 41
                 },
                 {
@@ -1988,10 +1988,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Shape 2a",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 43
                 },
                 {
@@ -2001,10 +2001,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Shape 2b",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 45
                 },
                 {
@@ -2014,10 +2014,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Shape 1a",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 47
                 },
                 {
@@ -2027,10 +2027,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Shape 1b",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 49
                 },
                 {
@@ -2040,10 +2040,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Shape 4a",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 51
                 },
                 {
@@ -2053,10 +2053,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Shape 4b",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 53
                 },
                 {
@@ -2066,10 +2066,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Shape <>",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 55,
@@ -2078,9 +2078,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Frame Macros",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -3600,7 +3597,10 @@
                             "end": 255,
                             "label": "Frame Macros 252"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 56,
@@ -3609,9 +3609,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -3817,7 +3814,10 @@
                             "end": 206,
                             "label": "Anim Reset [Frost Reset]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "1392C1B7-EE0E-4F95-950F-F87BED06719D",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Bright Norway",
             "maxOffset": 1,
             "modeName": "2ch",
             "modelName": "XBar",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 10240,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -196,7 +193,10 @@
                             "end": 255,
                             "label": "UV"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

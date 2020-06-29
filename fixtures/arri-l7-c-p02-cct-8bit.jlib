@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "09467429-4C1B-9143-86C2-2EA14D135FD1",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Arri",
             "maxOffset": 2,
             "modeName": "P:02 CCT 8bit",
             "modelName": "L7-C",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Temp",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -124,7 +121,10 @@
                             "end": 255,
                             "label": "10000K"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -133,9 +133,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Tint",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -173,7 +170,10 @@
                             "end": 250,
                             "label": "-100"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

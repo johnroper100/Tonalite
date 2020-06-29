@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "C716A7F0-E2CB-47D1-A529-0C016081BE32",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Elation",
             "maxOffset": 3,
             "modeName": "4ch",
             "modelName": "KL Fresnel 8",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -82,7 +79,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -91,10 +91,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Zoom",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -103,9 +103,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -143,7 +140,10 @@
                             "end": 255,
                             "label": "From menu"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

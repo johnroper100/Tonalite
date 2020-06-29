@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "9CB488F4-E000-4564-B622-78013ED57AD3",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Cameo",
             "maxOffset": 2,
             "modeName": "3ch Mode 2",
             "modelName": "CLTW 600 RGBW",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -58,7 +55,10 @@
                             "end": 253,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -67,9 +67,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -185,7 +182,10 @@
                             "end": 255,
                             "label": "Color fading [Color Mix Macro Rate]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

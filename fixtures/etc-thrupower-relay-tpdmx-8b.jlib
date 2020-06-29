@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "F734AEC0-32F9-C44E-9FAB-93A6E2EE5841",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "ETC",
             "maxOffset": 1,
             "modeName": "TPDMX 8b",
             "modelName": "ThruPower Relay",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Int Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -46,7 +43,10 @@
                             "end": 191,
                             "label": "Dimmed mode"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

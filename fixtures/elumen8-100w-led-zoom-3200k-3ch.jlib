@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "6E949932-E4AE-AB4F-945B-910AA411D1C2",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "elumen8",
             "maxOffset": 2,
             "modeName": "3ch",
             "modelName": "100W LED Zoom 3200K",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -46,7 +43,10 @@
                             "end": 128,
                             "label": "Strobe 100"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -55,9 +55,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -113,7 +110,10 @@
                             "end": 240,
                             "label": "Dimmer curve S response LED"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

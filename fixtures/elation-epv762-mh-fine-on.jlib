@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "AB89A771-FB01-7140-9AA9-B05E08021C91",
+            "colortable": "",
             "hasIntensity": false,
             "manufacturerName": "Elation",
             "maxOffset": 5,
             "modeName": "Fine On",
             "modelName": "EPV762 MH",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,9 +44,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Focus Speed",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -60,7 +57,10 @@
                             "end": 240,
                             "label": "Focus Track"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 5,
@@ -69,9 +69,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -139,7 +136,10 @@
                             "end": 247,
                             "label": "Audio"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

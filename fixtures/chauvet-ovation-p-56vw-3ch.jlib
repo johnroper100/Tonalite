@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "5641F455-B640-417C-9F83-3FC7B1B374C7",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Chauvet",
             "maxOffset": 2,
             "modeName": "3ch",
             "modelName": "Ovation P-56VW",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Temp",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -118,7 +115,10 @@
                             "end": 250,
                             "label": "Color Temp 100"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -127,9 +127,6 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tint",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -143,7 +140,10 @@
                             "end": 255,
                             "label": "Tint"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

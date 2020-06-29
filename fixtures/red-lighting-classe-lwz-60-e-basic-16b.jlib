@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "D431F0EB-BF44-4201-A93C-467206469BFF",
+            "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "hasIntensity": true,
             "manufacturerName": "Red Lighting",
             "maxOffset": 16,
             "modeName": "Basic-16b",
             "modelName": "Classe LWZ 60 E",
-            "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,10 +44,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Focus Speed",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 5,
@@ -56,9 +56,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Pan Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -126,7 +123,10 @@
                             "end": 207,
                             "label": "Pan Mode [Tilt Mode]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 6,
@@ -135,9 +135,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -187,7 +184,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 7,
@@ -196,10 +196,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 8,
@@ -208,9 +208,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -248,7 +245,10 @@
                             "end": 95,
                             "label": "Color Bounce"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 9,
@@ -257,9 +257,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -417,7 +414,10 @@
                             "end": 255,
                             "label": "White 8000K"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 10,
@@ -426,9 +426,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -508,7 +505,10 @@
                             "end": 255,
                             "label": "Red down Green 0 Blue full White 0"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 11,
@@ -517,10 +517,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Red",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 12,
@@ -529,10 +529,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Green",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 13,
@@ -541,10 +541,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Blue",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 14,
@@ -553,10 +553,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "White",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 15,
@@ -565,10 +565,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Zoom",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 16,
@@ -577,9 +577,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -617,7 +614,10 @@
                             "end": 91,
                             "label": "Sleep"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

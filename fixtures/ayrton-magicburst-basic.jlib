@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "342D65E9-1BA4-48E8-ABDB-2A28555A0B4B",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Ayrton",
             "maxOffset": 11,
             "modeName": "Basic",
             "modelName": "MagicBurst",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32512,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 32512,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 2,
@@ -42,9 +42,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Focus Speed",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -64,7 +61,10 @@
                             "end": 245,
                             "label": "Focus Track"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 3,
@@ -73,9 +73,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Pan Rotate",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -101,7 +98,10 @@
                             "end": 255,
                             "label": "Pan Rotate <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 4,
@@ -110,9 +110,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Tilt <>",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -138,7 +135,10 @@
                             "end": 255,
                             "label": "Tilt Rotate"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 5,
@@ -147,10 +147,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 6,
@@ -159,9 +159,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe Duration",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -169,7 +166,10 @@
                             "end": 255,
                             "label": "0.0s"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 7,
@@ -178,9 +178,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -194,7 +191,10 @@
                             "end": 255,
                             "label": "Strobe"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 8,
@@ -203,9 +203,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Chase",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1581,7 +1578,10 @@
                             "end": 246,
                             "label": "off"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 9,
@@ -1590,9 +1590,6 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Chase Rate",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1612,7 +1609,10 @@
                             "end": 255,
                             "label": "Chase Rate"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 10,
@@ -1621,10 +1621,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Chase Level",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 11,
@@ -1633,9 +1633,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1697,7 +1694,10 @@
                             "end": 247,
                             "label": "Internal program 8"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

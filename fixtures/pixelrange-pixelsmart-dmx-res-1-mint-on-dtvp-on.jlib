@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "B4D8CB20-F723-454F-BC3E-E59501BC3527",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "PixelRange",
             "maxOffset": 3,
             "modeName": "DMX Res 1 Mint on dTvP on",
             "modelName": "PixelSmart",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "White",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 2
                 },
                 {
@@ -43,9 +43,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -59,7 +56,10 @@
                             "end": 170,
                             "label": "Tungsten"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

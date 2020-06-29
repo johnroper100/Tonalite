@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "C53BFCE0-94F7-0344-B37C-45270D84B262",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "SGM",
             "maxOffset": 1,
             "modeName": "2ch",
             "modelName": "P-5W",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -64,7 +61,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -73,10 +73,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 }
             ]
         }

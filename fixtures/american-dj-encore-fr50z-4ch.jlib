@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "E9632F7C-04E7-4F5A-BFA1-C887192F1813",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "American DJ",
             "maxOffset": 3,
             "modeName": "4ch",
             "modelName": "Encore FR50z",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,9 +31,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -83,7 +80,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -92,9 +92,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -138,7 +135,10 @@
                             "end": 255,
                             "label": "Default"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

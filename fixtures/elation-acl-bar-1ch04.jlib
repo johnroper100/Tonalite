@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "D512862E-0A35-43F7-B6E8-0E41A5843E63",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Elation",
             "maxOffset": 3,
             "modeName": "1CH:04",
             "modelName": "ACL Bar",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -412,7 +409,10 @@
                             "end": 254,
                             "label": "Color 64"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -421,9 +421,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -473,7 +470,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -482,10 +482,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 3
                 }
             ]

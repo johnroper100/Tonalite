@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "B08B3914-B4F4-A249-A2BF-8B134843EAED",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Milford Instruments",
             "maxOffset": 3,
             "modeName": "-",
             "modelName": "DMX MP3 player",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 512,
                     "invert": false,
                     "name": "Play Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 1,
@@ -82,7 +79,10 @@
                             "end": 10,
                             "label": "Un-mute Left"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -91,9 +91,6 @@
                     "home": 256,
                     "invert": false,
                     "name": "Macros",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1631,7 +1628,10 @@
                             "end": 255,
                             "label": "Track 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -1640,10 +1640,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 3,
@@ -1652,10 +1652,10 @@
                     "home": 32512,
                     "invert": false,
                     "name": "Aud Balance",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 }
             ]
         }

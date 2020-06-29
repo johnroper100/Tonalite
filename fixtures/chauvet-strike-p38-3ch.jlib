@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "54117615-4EB5-41F5-93C5-3D930D4914EC",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Chauvet",
             "maxOffset": 2,
             "modeName": "3ch",
             "modelName": "Strike P38",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Red Shift",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -46,7 +43,10 @@
                             "end": 255,
                             "label": "Off"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -55,9 +55,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -65,7 +62,10 @@
                             "end": 0,
                             "label": "As per menu"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

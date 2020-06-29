@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "54B44327-EED6-E24B-B7D1-B6EC86FB79F9",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Licht Technik",
             "maxOffset": 3,
             "modeName": "Scroller m2 - Shutter m2 - Fan on",
             "modelName": "MagVader 175 Event",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -172,7 +169,10 @@
                             "end": 255,
                             "label": "colour 25"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -181,9 +181,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Fan",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -197,7 +194,10 @@
                             "end": 255,
                             "label": "Fan Speed"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -206,10 +206,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 3
                 }
             ]

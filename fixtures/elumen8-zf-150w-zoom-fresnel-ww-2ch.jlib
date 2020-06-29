@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "04D38CF0-817B-4806-A925-623A34ABCA10",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "elumen8",
             "maxOffset": 1,
             "modeName": "2ch",
             "modelName": "ZF 150W Zoom Fresnel WW",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -88,7 +85,10 @@
                             "end": 240,
                             "label": "S-curve LED"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

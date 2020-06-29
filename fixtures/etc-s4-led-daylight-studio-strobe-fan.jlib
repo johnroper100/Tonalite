@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "619CDB30-27B1-5D47-9E1A-85446045908F",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "ETC",
             "maxOffset": 2,
             "modeName": "Studio Strobe Fan",
             "modelName": "S4 LED Daylight",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -52,7 +49,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -61,9 +61,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Fan",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -77,7 +74,10 @@
                             "end": 255,
                             "label": "Fan Speed"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "13AF2691-4F7E-44D0-A15A-3BB8DDF04376",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Picturall",
             "maxOffset": 17,
             "modeName": "v1.3 Layer Mini",
             "modelName": "Octo",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "X Pos",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 2
                 },
                 {
@@ -43,10 +43,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Y Pos",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 4
                 },
                 {
@@ -56,9 +56,6 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Rotate Z",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -79,6 +76,9 @@
                             "label": "Rot >>"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 6
                 },
                 {
@@ -88,10 +88,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Scale",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 8
                 },
                 {
@@ -101,10 +101,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Aspect Ratio",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 10
                 },
                 {
@@ -114,9 +114,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "VisMode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1654,7 +1651,10 @@
                             "end": 255,
                             "label": "VisMode 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 12,
@@ -1663,9 +1663,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "File",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -3203,7 +3200,10 @@
                             "end": 255,
                             "label": "File 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 13,
@@ -3212,9 +3212,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Library",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -4752,7 +4749,10 @@
                             "end": 255,
                             "label": "Library 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 14,
@@ -4761,9 +4761,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Playback Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -6301,7 +6298,10 @@
                             "end": 255,
                             "label": "Playback Mode 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 15,
@@ -6310,9 +6310,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "PlaySpd",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -6332,7 +6329,10 @@
                             "end": 160,
                             "label": "Spd"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 16,
@@ -6341,10 +6341,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Audio Vol",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 }
             ]
         }

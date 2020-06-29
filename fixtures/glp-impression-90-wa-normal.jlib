@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "F8E7E93C-7742-4140-8C6F-3953DA42B1B2",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "GLP",
             "maxOffset": 9,
             "modeName": "Normal",
             "modelName": "Impression 90 WA",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,10 +44,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "White",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 5,
@@ -56,10 +56,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Amber",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 6,
@@ -68,9 +68,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -120,7 +117,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 7,
@@ -129,10 +129,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 8,
@@ -141,9 +141,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Pos Macros",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -919,7 +916,10 @@
                             "end": 254,
                             "label": "Rnd movement [MSize,Pos Macro Start]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 9,
@@ -928,9 +928,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Focus Speed",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -944,7 +941,10 @@
                             "end": 255,
                             "label": "Focus Spd [Pos Macro Rate]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 }
             ]
         }

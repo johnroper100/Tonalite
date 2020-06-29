@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "3061C249-771D-43ED-92E4-FB9A70EE170D",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "ADB",
             "maxOffset": 1,
             "modeName": "Mode 2",
             "modelName": "ALS 150 D 18-38",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -82,7 +79,10 @@
                             "end": 255,
                             "label": "Rnd"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "1547E7BF-5E3D-3143-B0E6-C2C3BBB3C831",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Coemar",
             "maxOffset": 4,
             "modeName": "-",
             "modelName": "Reflection LEDko 3200K",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 2
                 },
                 {
@@ -31,9 +31,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -95,7 +92,10 @@
                             "end": 255,
                             "label": "Rnd"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 4,
@@ -104,9 +104,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "PWM Freq",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -180,7 +177,10 @@
                             "end": 251,
                             "label": "PWM Freq 100"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "AB2E73BE-78CF-4B45-8655-986ADC6EFFDD",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Prism Projection",
             "maxOffset": 2,
             "modeName": "Mode 0 Algorithm 1 Refresh Off",
             "modelName": "Reveal CW",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Fixture Display",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -34,7 +31,10 @@
                             "end": 160,
                             "label": "Display Off"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -43,9 +43,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Temp",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -179,7 +176,10 @@
                             "end": 255,
                             "label": "9000K"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -188,10 +188,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 }
             ]
         }

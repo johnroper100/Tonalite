@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "3EA8A485-E956-DF48-96FB-08B6C3EF2B23",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Coolux",
             "maxOffset": 4,
             "modeName": "v3.5 Sequence Library",
             "modelName": "Pandoras Box MediaPlayer Standard",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Play Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -52,7 +49,10 @@
                             "end": 255,
                             "label": "Stop"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -61,9 +61,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Cue",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1601,7 +1598,10 @@
                             "end": 255,
                             "label": "Cue 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -1610,10 +1610,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Frame",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 4
                 }
             ]

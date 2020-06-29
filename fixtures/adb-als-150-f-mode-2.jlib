@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "C128537F-35EE-4F7E-B62C-A2A80CC5317D",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "ADB",
             "maxOffset": 1,
             "modeName": "Mode 2",
             "modelName": "ALS 150 F",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -82,7 +79,10 @@
                             "end": 255,
                             "label": "Rnd"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

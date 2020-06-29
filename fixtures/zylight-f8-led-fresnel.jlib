@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "C6578CF9-35C1-094B-8900-34E340EBEB0B",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Zylight",
             "maxOffset": 1,
             "modeName": "-",
             "modelName": "F8 LED Fresnel",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Fixture Sleep",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -34,7 +31,10 @@
                             "end": 255,
                             "label": "Wake"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -43,10 +43,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 }
             ]
         }

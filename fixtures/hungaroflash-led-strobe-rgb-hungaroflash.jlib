@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "3972964E-42F4-4943-A30A-60B377AC297F",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Hungaroflash",
             "maxOffset": 1,
             "modeName": "Hungaroflash",
             "modelName": "LED Strobe RGB",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe Duration",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -46,7 +43,10 @@
                             "end": 255,
                             "label": "1.0s"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

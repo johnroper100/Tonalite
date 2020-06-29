@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "9B8D2F3C-B733-C14E-AEDD-BF1767A05FB5",
+            "colortable": "",
             "hasIntensity": false,
             "manufacturerName": "Avolites",
             "maxOffset": 11,
             "modeName": "v5.1 Master channels",
             "modelName": "Ai Media Server",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Brightness",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Look",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1570,7 +1567,10 @@
                             "end": 255,
                             "label": "Look 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -1579,9 +1579,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Retrigger",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -3119,7 +3116,10 @@
                             "end": 255,
                             "label": "Retrigger 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 11,
@@ -3128,10 +3128,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Audio Vol",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 }
             ]
         }

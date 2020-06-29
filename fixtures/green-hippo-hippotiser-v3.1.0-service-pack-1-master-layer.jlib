@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "E12C67A8-2AFB-5046-9F8D-1FA58E19EE37",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Green Hippo",
             "maxOffset": 54,
             "modeName": "V3.1.0 Service Pack 1 - Master Layer",
             "modelName": "Hippotiser",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Keystone X 4",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 2
                 },
                 {
@@ -43,10 +43,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Keystone Y 4",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 4
                 },
                 {
@@ -56,10 +56,10 @@
                     "home": 0,
                     "invert": true,
                     "name": "Keystone X 3",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 6
                 },
                 {
@@ -69,10 +69,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Keystone Y 3",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 8
                 },
                 {
@@ -82,10 +82,10 @@
                     "home": 0,
                     "invert": true,
                     "name": "Keystone X 2",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 10
                 },
                 {
@@ -95,10 +95,10 @@
                     "home": 0,
                     "invert": true,
                     "name": "Keystone Y 2",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 12
                 },
                 {
@@ -108,10 +108,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Keystone X",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 14
                 },
                 {
@@ -121,10 +121,10 @@
                     "home": 0,
                     "invert": true,
                     "name": "Keystone Y",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 16
                 },
                 {
@@ -134,10 +134,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Image Adj Red",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 18,
@@ -146,10 +146,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Image Adj Green",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 19,
@@ -158,10 +158,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Image Adj Blue",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 20,
@@ -170,10 +170,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Brightness",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 21,
@@ -182,10 +182,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Contrast",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 22,
@@ -194,9 +194,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Image Negative Picture",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -216,7 +213,10 @@
                             "end": 255,
                             "label": "On"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 23,
@@ -225,9 +225,6 @@
                     "home": 16384,
                     "invert": false,
                     "name": "Rotate Z",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -254,6 +251,9 @@
                             "label": "Rot <<"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 24
                 },
                 {
@@ -263,10 +263,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "X Pos",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 26
                 },
                 {
@@ -276,10 +276,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Y Pos",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 28
                 },
                 {
@@ -289,10 +289,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Scale",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 30
                 },
                 {
@@ -302,9 +302,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1842,7 +1839,10 @@
                             "end": 255,
                             "label": "FX 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 32,
@@ -1851,10 +1851,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX Level",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 33,
@@ -1863,10 +1863,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 34,
@@ -1875,10 +1875,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param 2",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 35,
@@ -1887,10 +1887,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param 3",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 36,
@@ -1899,10 +1899,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param 4",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 37,
@@ -1911,10 +1911,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 1 Param 5",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 38,
@@ -1923,9 +1923,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -3463,7 +3460,10 @@
                             "end": 255,
                             "label": "FX 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 39,
@@ -3472,10 +3472,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX Level 2",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 40,
@@ -3484,10 +3484,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 41,
@@ -3496,10 +3496,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param 2",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 42,
@@ -3508,10 +3508,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param 3",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 43,
@@ -3520,10 +3520,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param 4",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 44,
@@ -3532,10 +3532,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX 2 Param 5",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 45,
@@ -3544,9 +3544,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Warp",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -5084,7 +5081,10 @@
                             "end": 255,
                             "label": "Warp 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 46,
@@ -5093,9 +5093,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Warp 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -6633,7 +6630,10 @@
                             "end": 255,
                             "label": "Warp 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 47,
@@ -6642,10 +6642,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Warp Mix",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 48,
@@ -6654,9 +6654,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Mask",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -8194,7 +8191,10 @@
                             "end": 255,
                             "label": "Mask 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 49,
@@ -8203,9 +8203,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "VidMap Enable",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -8225,7 +8222,10 @@
                             "end": 255,
                             "label": "VidMap On"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 50,
@@ -8234,9 +8234,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "VidMap Mix Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -9774,7 +9771,10 @@
                             "end": 255,
                             "label": "VidMap Mix Mode 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 51,
@@ -9783,9 +9783,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "VidMap Mix Morph Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -9805,7 +9802,10 @@
                             "end": 255,
                             "label": "Video Map Mixer Morph Enable"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 52,
@@ -9814,9 +9814,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "VidMap",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -11354,7 +11351,10 @@
                             "end": 255,
                             "label": "VidMap 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 53,
@@ -11363,9 +11363,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "VidMap 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -12903,7 +12900,10 @@
                             "end": 255,
                             "label": "VidMap 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 54,
@@ -12912,10 +12912,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Audio Vol",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 }
             ]
         }

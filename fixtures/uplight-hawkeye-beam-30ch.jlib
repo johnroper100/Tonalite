@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "D29B7D9A-A57B-4F6F-811C-2D711DB2F63A",
+            "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "hasIntensity": true,
             "manufacturerName": "Uplight",
             "maxOffset": 29,
             "modeName": "30ch",
             "modelName": "HawkEye Beam",
-            "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,10 +44,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Zoom",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 5
                 },
                 {
@@ -57,9 +57,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Cmpnd Lens <>",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -80,6 +77,9 @@
                             "label": "Cmpnd Lens <>"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 7
                 },
                 {
@@ -89,10 +89,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Focus Speed",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 9,
@@ -101,9 +101,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Global Reset",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -141,7 +138,10 @@
                             "end": 232,
                             "label": "off"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 10,
@@ -150,10 +150,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 11,
@@ -162,9 +162,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -220,7 +217,10 @@
                             "end": 251,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 12,
@@ -229,10 +229,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Red",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 13,
@@ -241,10 +241,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Green",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 14,
@@ -253,10 +253,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Blue",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 15,
@@ -265,10 +265,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "White",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 16,
@@ -277,9 +277,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Temp",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -293,7 +290,10 @@
                             "end": 255,
                             "label": "Color Temp"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 17,
@@ -302,9 +302,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1842,7 +1839,10 @@
                             "end": 255,
                             "label": "Color 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 18,
@@ -1851,9 +1851,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Macro",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -2011,7 +2008,10 @@
                             "end": 252,
                             "label": "MixMacro 25"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 19,
@@ -2020,10 +2020,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix Macro Rate",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 20,
@@ -2032,10 +2032,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix Macro Time",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 21,
@@ -2044,10 +2044,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Fg Red",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 22,
@@ -2056,10 +2056,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Fg Green",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 23,
@@ -2068,10 +2068,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Fg Blue",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 24,
@@ -2080,10 +2080,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Fg White",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 25,
@@ -2092,10 +2092,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Fg Int",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 26,
@@ -2104,10 +2104,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Bg Int",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 27,
@@ -2116,9 +2116,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Fg Shutter Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -2174,7 +2171,10 @@
                             "end": 251,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 28,
@@ -2183,9 +2183,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Bg Shutter Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -2241,7 +2238,10 @@
                             "end": 251,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 29,
@@ -2250,9 +2250,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -2284,7 +2281,10 @@
                             "end": 223,
                             "label": "off"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

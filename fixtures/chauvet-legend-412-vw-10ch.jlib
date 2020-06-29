@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "E789F763-6A8A-6048-BF9A-161A637C7BF6",
+            "colortable": "7B365530-A4DF-44AD-AEF5-225472BE02AE",
             "hasIntensity": true,
             "manufacturerName": "Chauvet",
             "maxOffset": 9,
             "modeName": "10ch",
             "modelName": "Legend 412 VW",
-            "colortable": "7B365530-A4DF-44AD-AEF5-225472BE02AE",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32767,
                     "invert": true,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,10 +44,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Focus Speed",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 5,
@@ -56,10 +56,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 6,
@@ -68,9 +68,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -144,7 +141,10 @@
                             "end": 237,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 7,
@@ -153,10 +153,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "WarmWhite",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 8,
@@ -165,10 +165,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "CoolWhite",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 9,
@@ -177,9 +177,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Global Reset",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -199,7 +196,10 @@
                             "end": 160,
                             "label": "BlackMove On"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

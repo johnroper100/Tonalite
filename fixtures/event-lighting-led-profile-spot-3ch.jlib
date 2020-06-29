@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "BA3CB4C5-963C-4943-A6AC-FC6CEE230615",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Event Lighting",
             "maxOffset": 2,
             "modeName": "3ch",
             "modelName": "LED Profile Spot",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,9 +31,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -47,7 +44,10 @@
                             "end": 255,
                             "label": "Strobe"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

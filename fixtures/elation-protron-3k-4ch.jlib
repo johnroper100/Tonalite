@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "52274BF9-49F6-4ADF-888C-847CE0558EFD",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Elation",
             "maxOffset": 3,
             "modeName": "4ch",
             "modelName": "Protron 3K",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe Duration",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -42,9 +42,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -130,7 +127,10 @@
                             "end": 255,
                             "label": "Spikes [Strobe FX Rate]"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -139,9 +139,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -185,7 +182,10 @@
                             "end": 235,
                             "label": "Strobe Mode 1"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

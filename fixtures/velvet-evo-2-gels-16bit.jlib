@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "D768F19C-6140-4AC1-AB7F-5E3EC5B45E0C",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Velvet",
             "maxOffset": 9,
             "modeName": "Gels 16bit",
             "modelName": "Evo 2",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Temp",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,9 +44,6 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tint",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -73,6 +70,9 @@
                             "label": "Mag"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 5
                 },
                 {
@@ -82,10 +82,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Saturation",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 7
                 },
                 {
@@ -95,9 +95,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gel",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1635,7 +1632,10 @@
                             "end": 255,
                             "label": "Gel 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

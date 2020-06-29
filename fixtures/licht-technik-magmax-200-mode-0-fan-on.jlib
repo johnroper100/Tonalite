@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "0038F307-0601-D648-8358-C180749FF5DD",
+            "colortable": "",
             "hasIntensity": false,
             "manufacturerName": "Licht Technik",
             "maxOffset": 2,
             "modeName": "Mode 0 - Fan on",
             "modelName": "MagMax 200",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -142,7 +139,10 @@
                             "end": 255,
                             "label": "colour 20"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -151,10 +151,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Color Speed",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 2,
@@ -163,9 +163,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Fan",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -179,7 +176,10 @@
                             "end": 255,
                             "label": "Fan Speed"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

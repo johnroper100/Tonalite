@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "D1586C69-8924-4E26-9074-E7A5B8C57528",
+            "colortable": "D1586C69-8924-4E26-9074-E7A5B8C57528",
             "hasIntensity": true,
             "manufacturerName": "Clay Paky",
             "maxOffset": 26,
             "modeName": "-",
             "modelName": "K-Eye HCR S20",
-            "colortable": "D1586C69-8924-4E26-9074-E7A5B8C57528",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Red",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Amber",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,10 +44,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Lime",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 5
                 },
                 {
@@ -57,10 +57,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Green",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 7
                 },
                 {
@@ -70,10 +70,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Cyan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 9
                 },
                 {
@@ -83,10 +83,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Blue",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 11
                 },
                 {
@@ -96,9 +96,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Temp",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -196,7 +193,10 @@
                             "end": 255,
                             "label": "2600K"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 13,
@@ -205,9 +205,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1745,7 +1742,10 @@
                             "end": 255,
                             "label": "Color 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 14,
@@ -1754,9 +1754,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1812,7 +1809,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 15,
@@ -1821,10 +1821,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 16
                 },
                 {
@@ -1834,10 +1834,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Hue",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 18
                 },
                 {
@@ -1847,10 +1847,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Saturation",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 20,
@@ -1859,10 +1859,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix XFade Rate",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 21,
@@ -1871,10 +1871,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control Range",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 22,
@@ -1883,9 +1883,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Fans Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -3423,7 +3420,10 @@
                             "end": 255,
                             "label": "Fans 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 23,
@@ -3432,10 +3432,10 @@
                     "home": 32512,
                     "invert": false,
                     "name": "Tint",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 24,
@@ -3444,10 +3444,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Zoom",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 25,
@@ -3456,9 +3456,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -3586,7 +3583,10 @@
                             "end": 253,
                             "label": "Default function recall"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 26,
@@ -3595,9 +3595,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Global Reset",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -3605,7 +3602,10 @@
                             "end": 0,
                             "label": "None"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

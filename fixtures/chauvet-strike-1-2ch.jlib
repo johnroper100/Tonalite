@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "B3379027-FFDA-46EA-997C-3D28F41F32E9",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Chauvet",
             "maxOffset": 1,
             "modeName": "2ch",
             "modelName": "Strike 1",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Red Shift",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -46,7 +43,10 @@
                             "end": 255,
                             "label": "Off"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

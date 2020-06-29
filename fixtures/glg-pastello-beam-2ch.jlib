@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "D9404952-159C-457F-B052-0D72DAE35DBB",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "GLG",
             "maxOffset": 1,
             "modeName": "2ch",
             "modelName": "Pastello Beam",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1570,7 +1567,10 @@
                             "end": 255,
                             "label": "Color 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

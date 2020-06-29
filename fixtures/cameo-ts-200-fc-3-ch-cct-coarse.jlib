@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "1C9C6087-FD44-4B27-B71F-F21E3039C5DA",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Cameo",
             "maxOffset": 2,
             "modeName": "3 CH CCT Coarse",
             "modelName": "TS 200 FC",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Temp",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -106,7 +103,10 @@
                             "end": 255,
                             "label": "7000K"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -115,9 +115,6 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tint",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -131,7 +128,10 @@
                             "end": 255,
                             "label": "Tint"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

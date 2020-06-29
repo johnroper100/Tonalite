@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "2C6F7FF4-552B-2E43-977B-FB6A1D6C9BD9",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Showtec",
             "maxOffset": 18,
             "modeName": "19ch",
             "modelName": "Infinity iB-2R",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 2
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,10 +44,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Focus Speed",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 },
                 {
                     "coarse": 5,
@@ -56,10 +56,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 6
                 },
                 {
@@ -69,9 +69,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -121,7 +118,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 8,
@@ -130,9 +130,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -452,7 +449,10 @@
                             "end": 255,
                             "label": "Spin <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 9,
@@ -461,9 +461,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Gobo",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -843,7 +840,10 @@
                             "end": 255,
                             "label": "Spin <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 10,
@@ -852,9 +852,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -876,7 +873,10 @@
                                 "name": "(5 Prism)"
                             }
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 11,
@@ -885,79 +885,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX <>",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 127,
-                            "label": "Index"
-                        },
-                        {
-                            "begin": 128,
-                            "default": 158,
-                            "end": 189,
-                            "label": "Rot >>"
-                        },
-                        {
-                            "begin": 191,
-                            "default": 191,
-                            "end": 191,
-                            "label": "Rot Stop"
-                        },
-                        {
-                            "begin": 194,
-                            "default": 194,
-                            "end": 255,
-                            "label": "Rot <<"
-                        }
-                    ]
-                },
-                {
-                    "coarse": 12,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "FX 2",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
-                    "ranges": [
-                        {
-                            "begin": 0,
-                            "default": 0,
-                            "end": 0,
-                            "label": "(Open)",
-                            "media": {
-                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
-                                "name": "(Open)"
-                            }
-                        },
-                        {
-                            "begin": 130,
-                            "default": 130,
-                            "end": 130,
-                            "label": "(8 Prism)",
-                            "media": {
-                                "dcid": "9B1E5889-82BE-794C-B45B-05B19EE25B36",
-                                "name": "(8 Prism)"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "coarse": 13,
-                    "fadeWithIntensity": false,
-                    "highlight": 0,
-                    "home": 0,
-                    "invert": false,
-                    "name": "FX 2 <>",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -984,6 +911,79 @@
                             "label": "Rot <<"
                         }
                     ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX 2",
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "(8 Prism)",
+                            "media": {
+                                "dcid": "9B1E5889-82BE-794C-B45B-05B19EE25B36",
+                                "name": "(8 Prism)"
+                            }
+                        }
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX 2 <>",
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 14
                 },
                 {
@@ -993,10 +993,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Focus",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 16,
@@ -1005,9 +1005,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1105,7 +1102,10 @@
                             "end": 251,
                             "label": "Control Range"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 17,
@@ -1114,9 +1114,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Pos Macros",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1310,7 +1307,10 @@
                             "end": 251,
                             "label": "Pos Macros 31"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 18,
@@ -1319,10 +1319,10 @@
                     "home": 65535,
                     "invert": true,
                     "name": "Pos Macro Rate",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 2,
-                    "ranges": []
+                    "type": 2
                 }
             ]
         }

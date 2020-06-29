@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "C29A9381-AE57-B442-B86A-9BDAE367035D",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Showline",
             "maxOffset": 7,
             "modeName": "CCT 16b",
             "modelName": "SL Band 300 TW",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,9 +31,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -119,7 +116,10 @@
                             "end": 255,
                             "label": "C Pulse"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -128,10 +128,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe Duration",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 4,
@@ -140,9 +140,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Int Timing",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -984,7 +981,10 @@
                             "end": 255,
                             "label": "Time"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 5,
@@ -993,9 +993,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1015,7 +1012,10 @@
                             "end": 59,
                             "label": "Unknown"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 6,
@@ -1024,9 +1024,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Temp",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1083,6 +1080,9 @@
                             "label": "5600K"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 7
                 }
             ]

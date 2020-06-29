@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "CAB32672-8470-E940-993D-2D5D10F8E359",
+            "colortable": "7B365530-A4DF-44AD-AEF5-225472BE02AE",
             "hasIntensity": false,
             "manufacturerName": "Showtec",
             "maxOffset": 3,
             "modeName": "4ch",
             "modelName": "Cameleon Spot 18-2 SW",
-            "colortable": "7B365530-A4DF-44AD-AEF5-225472BE02AE",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "CoolWhite",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 1,
@@ -30,10 +30,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "WarmWhite",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 2,
@@ -42,9 +42,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -58,7 +55,10 @@
                             "end": 255,
                             "label": "Strobe"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -67,9 +67,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Macros",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1607,7 +1604,10 @@
                             "end": 255,
                             "label": "Macros 255"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

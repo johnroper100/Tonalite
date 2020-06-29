@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "5AEB4426-1DDD-1245-B376-26FD2559585E",
+            "colortable": "F877A2FB-F40D-4856-BA51-D3F8132B9747",
             "hasIntensity": true,
             "manufacturerName": "ETC",
             "maxOffset": 5,
             "modeName": "HSI Fan",
             "modelName": "D60 Vivid",
-            "colortable": "F877A2FB-F40D-4856-BA51-D3F8132B9747",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Hue",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Saturation",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 3,
@@ -43,10 +43,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 5,
@@ -55,9 +55,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Fan",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -71,7 +68,10 @@
                             "end": 255,
                             "label": "Fan Speed"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

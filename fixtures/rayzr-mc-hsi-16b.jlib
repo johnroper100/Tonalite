@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "9FD08F11-551D-4D0F-A0B7-51C14B22E235",
+            "colortable": "B3D05F0E-FB45-4EEA-A8D5-61F545A922DE",
             "hasIntensity": true,
             "manufacturerName": "Rayzr",
             "maxOffset": 6,
             "modeName": "HSI 16b",
             "modelName": "MC",
-            "colortable": "B3D05F0E-FB45-4EEA-A8D5-61F545A922DE",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 3840,
                     "invert": false,
                     "name": "Mode",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 15,
@@ -34,7 +31,10 @@
                             "end": 44,
                             "label": "HSI"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -43,9 +43,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -71,7 +68,10 @@
                             "end": 225,
                             "label": "S-Curve"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -80,10 +80,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -93,10 +93,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Hue",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 5
                 },
                 {
@@ -106,10 +106,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Saturation",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 }
             ]
         }

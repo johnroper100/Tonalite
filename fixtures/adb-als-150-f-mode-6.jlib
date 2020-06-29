@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "08A8F04B-A685-4840-9C95-E5337DC6D6F0",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "ADB",
             "maxOffset": 4,
             "modeName": "Mode 6",
             "modelName": "ALS 150 F",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,9 +31,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -83,7 +80,10 @@
                             "end": 255,
                             "label": "Rnd"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -92,10 +92,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Fan",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 },
                 {
                     "coarse": 4,
@@ -104,9 +104,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Dimmer Curve",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -156,7 +153,10 @@
                             "end": 238,
                             "label": "Theatre"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

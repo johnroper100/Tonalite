@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "4089D83F-38F7-5544-AF65-FAE8BE25465E",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "DTS",
             "maxOffset": 1,
             "modeName": "2ch",
             "modelName": "Scena Compact LED 50",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,9 +18,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -76,7 +73,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 1,
@@ -85,10 +85,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 }
             ]
         }

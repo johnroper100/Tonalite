@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "F956C9B8-29CE-40B0-A70E-9069582FF791",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "ADB",
             "maxOffset": 5,
             "modeName": "Mode 5",
             "modelName": "Lexpert Fresnel M",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,9 +31,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -83,7 +80,10 @@
                             "end": 255,
                             "label": "Rnd"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -92,9 +92,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -102,7 +99,10 @@
                             "end": 0,
                             "label": "None"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 4,
@@ -111,10 +111,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Zoom",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 4,
-                    "ranges": [],
                     "fine": 5
                 }
             ]

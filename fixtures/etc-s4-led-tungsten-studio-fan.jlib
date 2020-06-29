@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "838664E2-FC1D-CE45-9A01-1177D2B2966D",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "ETC",
             "maxOffset": 2,
             "modeName": "Studio Fan",
             "modelName": "S4 LED Tungsten",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 2,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Fan",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -46,7 +43,10 @@
                             "end": 255,
                             "label": "Fan Speed"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }

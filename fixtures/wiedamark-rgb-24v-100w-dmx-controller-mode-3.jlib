@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "C900F7C0-6413-B24D-9914-A5E6506C5195",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Wiedamark",
             "maxOffset": 2,
             "modeName": "Mode 3",
             "modelName": "RGB 24v 100w DMX Controller",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -46,7 +43,10 @@
                             "end": 255,
                             "label": "Strobe"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -55,10 +55,10 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Red",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 5,
-                    "ranges": []
+                    "type": 5
                 }
             ]
         }

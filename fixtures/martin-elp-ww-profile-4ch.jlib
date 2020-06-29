@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "B6017BB8-2619-4A7C-A4CC-552AB246CEBA",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Martin",
             "maxOffset": 3,
             "modeName": "4ch",
             "modelName": "ELP WW Profile",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 1,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,9 +31,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -83,7 +80,10 @@
                             "end": 255,
                             "label": "Open"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 3,
@@ -92,10 +92,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Int Speed",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 }
             ]
         }

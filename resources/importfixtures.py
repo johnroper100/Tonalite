@@ -34,7 +34,6 @@ with open('Carallon.def') as f:
     }
     personality = {}
     parameter = {}
-    swatches = []
     rangeItem = {}
     filename = ""
     needsFade = True
@@ -132,12 +131,12 @@ with open('Carallon.def') as f:
             if "$$MANUFACTURER" in line:
                 personality = {
                     "dcid": "",
+                    "colortable": "",
                     "hasIntensity": False,
                     "manufacturerName": "",
                     "maxOffset": 0,
                     "modeName": "",
                     "modelName": "",
-                    "colortable": "",
                     "parameters": []
                 }
                 personality["manufacturerName"] = line.partition("$$MANUFACTURER")[
@@ -189,10 +188,10 @@ with open('Carallon.def') as f:
                         "home": 0,
                         "invert": False,
                         "name": "",
+                        "ranges": [],
                         "size": 8,  # 8bit or 16bit
                         "snap": False,
-                        "type": 1,
-                        "ranges": []
+                        "type": 1
                     }
 
                     parameter["name"] = " ".join(line.partition("$$PARAMETER")[
@@ -253,38 +252,34 @@ with open('Carallon.def') as f:
                     rangeItem["default"] = int(
                         (rangeItem["begin"]+rangeItem["end"])/2)
             if "$$GEL" in line:
-                rangeItem["media"] = {
-                    "dcid": "",
-                    "name": ""
-                }
+                if not "media" in rangeItem.keys():
+                    rangeItem["media"] = {
+                        "dcid": "",
+                        "name": ""
+                    }
                 rangeItem["media"]["name"] = rangeItem["label"]
                 rangeItem["media"]["dcid"] = line.partition("$$GEL")[2].strip()
             if "$$IMAGE" in line:
-                rangeItem["media"] = {
-                    "dcid": "",
-                    "name": ""
-                }
+                if not "media" in rangeItem.keys():
+                    rangeItem["media"] = {
+                        "dcid": "",
+                        "name": ""
+                    }
                 rangeItem["media"]["name"] = rangeItem["label"]
                 rangeItem["media"]["dcid"] = line.partition("$$IMAGE")[
                     2].strip()
             if "$$SWATCH" in line:
-                swatch = {
-                    "name": "",
-                    "color": "",
-                    "parameters": [0, 0, 0]
-                }
-                swatch["name"] = rangeItem["label"]
-                swatch["parameters"][0] = int(line.partition("$$SWATCH")[
-                    2].strip().split(" ")[0])
-                swatch["parameters"][1] = int(line.partition(
-                    "$$SWATCH")[2].strip().split(" ")[1])
-                swatch["parameters"][2] = int(line.partition("$$SWATCH")[
-                    2].strip().split(" ")[2])
-                swatch["color"] = "#"+("".join(
-                    [format(val, '02X') for val in swatch["parameters"]]))
-                if not swatch in swatches:
-                    swatches.append(swatch)
-
-#swatches = sorted(swatches, key=lambda i: get_hsv(i['color']))
-# with open("../swatches.json", 'w') as f:
-#    json.dump(swatches, f, indent=4)
+                if not "media" in rangeItem.keys():
+                    rangeItem["media"] = {
+                        "b": None,
+                        "g": None,
+                        "name": "",
+                        "r": None
+                    }
+                rangeItem["media"]["name"] = rangeItem["label"]
+                rangeItem["media"]["b"] = int(line.partition("$$SWATCH")[
+                                              2].strip().split(" ")[2])
+                rangeItem["media"]["g"] = int(line.partition("$$SWATCH")[
+                                              2].strip().split(" ")[1])
+                rangeItem["media"]["r"] = int(line.partition("$$SWATCH")[
+                                              2].strip().split(" ")[0])

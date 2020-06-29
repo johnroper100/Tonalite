@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "DE1A0838-3130-F340-80E3-1D9F83E228B3",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "High End Systems",
             "maxOffset": 23,
             "modeName": "Std and Ext mode Motion and Global channels",
             "modelName": "ShowPix",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Pan",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 1
                 },
                 {
@@ -31,10 +31,10 @@
                     "home": 32768,
                     "invert": false,
                     "name": "Tilt",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 2,
-                    "ranges": [],
                     "fine": 3
                 },
                 {
@@ -44,9 +44,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Focus Speed",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -60,7 +57,10 @@
                             "end": 255,
                             "label": "Time"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 5,
@@ -69,9 +69,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Pos Macros",
-                    "size": 8,
-                    "snap": false,
-                    "type": 2,
                     "ranges": [
                         {
                             "begin": 0,
@@ -127,7 +124,10 @@
                             "end": 227,
                             "label": "off"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 2
                 },
                 {
                     "coarse": 6,
@@ -136,9 +136,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Control",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -170,7 +167,10 @@
                             "end": 135,
                             "label": "Outrig Mode On"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 7,
@@ -179,9 +179,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Strobe",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -207,7 +204,10 @@
                             "end": 113,
                             "label": "Rnd Sync"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 8,
@@ -216,10 +216,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 9,
@@ -228,9 +228,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color FX",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -442,7 +439,10 @@
                             "end": 34,
                             "label": "Color FX 34"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 10,
@@ -451,9 +451,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Image Adj Red",
-                    "size": 16,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -474,6 +471,9 @@
                             "label": "Color FX Rate"
                         }
                     ],
+                    "size": 16,
+                    "snap": false,
+                    "type": 4,
                     "fine": 11
                 },
                 {
@@ -483,10 +483,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Image Adj Green",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 13
                 },
                 {
@@ -496,10 +496,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Image Adj Blue",
+                    "ranges": [],
                     "size": 16,
                     "snap": false,
                     "type": 5,
-                    "ranges": [],
                     "fine": 15
                 },
                 {
@@ -509,10 +509,10 @@
                     "home": 32767,
                     "invert": true,
                     "name": "Scale",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 17,
@@ -521,9 +521,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Rotate Z",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -549,7 +546,10 @@
                             "end": 255,
                             "label": "Rot <<"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 18,
@@ -558,9 +558,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Dampening",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -574,7 +571,10 @@
                             "end": 255,
                             "label": "Dampening"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 19,
@@ -583,9 +583,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Trans Type",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1097,7 +1094,10 @@
                             "end": 84,
                             "label": "Trans Type 84"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 20,
@@ -1106,10 +1106,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Trans",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 21,
@@ -1118,9 +1118,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1248,7 +1245,10 @@
                             "end": 20,
                             "label": "FX 20"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 22,
@@ -1257,10 +1257,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX Param",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 },
                 {
                     "coarse": 23,
@@ -1269,10 +1269,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "FX Param 2",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 4,
-                    "ranges": []
+                    "type": 4
                 }
             ]
         }

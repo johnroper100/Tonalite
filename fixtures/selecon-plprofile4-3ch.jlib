@@ -4,12 +4,12 @@
     "personalities": [
         {
             "dcid": "B621EE3A-B798-654E-8B13-0967B36EF056",
+            "colortable": "",
             "hasIntensity": true,
             "manufacturerName": "Selecon",
             "maxOffset": 2,
             "modeName": "3ch",
             "modelName": "PLProfile4",
-            "colortable": "",
             "parameters": [
                 {
                     "coarse": 0,
@@ -18,10 +18,10 @@
                     "home": 0,
                     "invert": false,
                     "name": "Intensity",
+                    "ranges": [],
                     "size": 8,
                     "snap": false,
-                    "type": 1,
-                    "ranges": []
+                    "type": 1
                 },
                 {
                     "coarse": 1,
@@ -30,9 +30,6 @@
                     "home": 0,
                     "invert": false,
                     "name": "Color Mix",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -232,7 +229,10 @@
                             "end": 129,
                             "label": "Custom 6"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 },
                 {
                     "coarse": 2,
@@ -241,9 +241,6 @@
                     "home": 65535,
                     "invert": false,
                     "name": "Global Speed",
-                    "size": 8,
-                    "snap": false,
-                    "type": 4,
                     "ranges": [
                         {
                             "begin": 0,
@@ -1265,7 +1262,10 @@
                             "end": 255,
                             "label": "Global Speed"
                         }
-                    ]
+                    ],
+                    "size": 8,
+                    "snap": false,
+                    "type": 4
                 }
             ]
         }
