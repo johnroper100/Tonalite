@@ -1,17 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Tonalite</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tonalite</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.1/css/all.css"
+    integrity="sha384-B9BoFFAuBaCfqw6lxWBZrhg/z4NkwqdBci+E+Sc2XlK/Rz25RYn8Fetb+Aw5irxa" crossorigin="anonymous">
+  <style>
+    *:focus {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  </style>
 </head>
 
-<body>
-    <div id="app">
-        {{ message }}
+<body class="bg-dark">
+  <div id="app">
+    <nav class="navbar navbar-expand navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-expanded="false">
+                File
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-expanded="false">
+                Edit
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-expanded="false">
+                Help
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="blindInput" v-model="blind">
+              <label class="form-check-label text-primary" for="blindInput" v-if="blind == true">Blind</label>
+              <label class="form-check-label text-success" for="blindInput" v-if="blind == false">Live</label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="fixed-bottom">
+      <div class="row text-center bg-secondary p-2">
+        <div class="col-4">
+          <button class="btn btn-primary w-100"><i class="fad fa-chevron-double-left"></i></button>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-danger w-100">Record</button>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary w-100"><i class="fad fa-chevron-double-right"></i></button>
+        </div>
+      </div>
+      <div class="row text-center bg-light">
+        <div class="col-3">
+          <i class="fad fa-lightbulb-on text-danger fa-lg mt-3"></i>
+          <h6>Fixtures</h6>
+        </div>
+        <div class="col-3">
+          <i class="fad fa-stream fa-lg mt-3"></i>
+          <h6>Cues</h6>
+        </div>
+        <div class="col-3">
+          <i class="fad fa-users-class fa-lg mt-3"></i>
+          <h6>Groups</h6>
+        </div>
+        <div class="col-3">
+          <i class="fad fa-swatchbook fa-lg mt-3"></i>
+          <h6>Presets</h6>
+        </div>
+      </div>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/vue.js"></script>
-    <script src="/js/app.js"></script>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+    crossorigin="anonymous"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/vue.js"></script>
+  <script src="/js/app.js"></script>
 </body>
 
 </html>
