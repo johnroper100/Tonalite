@@ -51,8 +51,6 @@ with open('Carallon.def') as f:
                         command["steps"].append(stepItem)
                         stepItem = {}
                     if command != {}:
-                        command["steps"] = sorted(
-                            command["steps"], key=lambda i: i['index'])
                         personality["commands"].append(command)
                         command = {}
                     if parameter != {}:
@@ -87,8 +85,10 @@ with open('Carallon.def') as f:
                     if not personality["manufacturerName"] in fixturesList:
                         fixturesList[personality["manufacturerName"]] = {}
                     if not personality["modelName"] in fixturesList[personality["manufacturerName"]]:
-                        fixturesList[personality["manufacturerName"]][personality["modelName"]] = {}
-                    fixturesList[personality["manufacturerName"]][personality["modelName"]][personality["modeName"]] = filename
+                        fixturesList[personality["manufacturerName"]
+                                     ][personality["modelName"]] = {}
+                    fixturesList[personality["manufacturerName"]
+                                 ][personality["modelName"]][personality["modeName"]] = filename
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):
                             print(filename)
@@ -116,8 +116,6 @@ with open('Carallon.def') as f:
                         command["steps"].append(stepItem)
                         stepItem = {}
                     if command != {}:
-                        command["steps"] = sorted(
-                            command["steps"], key=lambda i: i['index'])
                         personality["commands"].append(command)
                         command = {}
                     if parameter != {}:
@@ -154,8 +152,10 @@ with open('Carallon.def') as f:
                     if not personality["manufacturerName"] in fixturesList:
                         fixturesList[personality["manufacturerName"]] = {}
                     if not personality["modelName"] in fixturesList[personality["manufacturerName"]]:
-                        fixturesList[personality["manufacturerName"]][personality["modelName"]] = {}
-                    fixturesList[personality["manufacturerName"]][personality["modelName"]][personality["modeName"]] = filename
+                        fixturesList[personality["manufacturerName"]
+                                     ][personality["modelName"]] = {}
+                    fixturesList[personality["manufacturerName"]
+                                 ][personality["modelName"]][personality["modeName"]] = filename
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):
                             print(filename)
@@ -273,8 +273,6 @@ with open('Carallon.def') as f:
                     if command != {}:
                         if stepItem != {}:
                             command["steps"].append(stepItem)
-                        command["steps"] = sorted(
-                            command["steps"], key=lambda i: i['index'])
                         personality["commands"].append(command)
                         stepItem = {}
                         command = {}
@@ -289,13 +287,13 @@ with open('Carallon.def') as f:
                     command["steps"].append(stepItem)
                     stepItem = {}
                 stepItem = {
-                    "index": 0,
+                    "step": 0,
                     "key": -1,
                     "subkey": -1
                 }
                 tableInfo = line.partition("$$DEVICECOMMANDSTEP")[
                     2].strip().split(" ")
-                stepItem["index"] = int(tableInfo[0])
+                stepItem["step"] = int(tableInfo[0])
             if "$$DEVICECOMMANDACTION" in line:
                 tableInfo = line.partition("$$DEVICECOMMANDACTION")[
                     2].strip().split(" ")
