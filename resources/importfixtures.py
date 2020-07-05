@@ -34,7 +34,9 @@ with open('Carallon.def') as f:
     }
     personality = {}
     parameter = {}
+    command = {}
     rangeItem = {}
+    stepItem = {}
     filename = ""
     needsFade = True
     for line in f.readlines():
@@ -91,6 +93,12 @@ with open('Carallon.def') as f:
                 personality = {}
             if "ENDDATA" in line:
                 if personality != {}:
+                    if stepItem != {}:
+                        command["steps"].append(stepItem)
+                    if command != {}:
+                        command["steps"] = sorted(
+                            command["steps"], key=lambda i: i['index'])
+                        personality["commands"].append(command)
                     if parameter != {}:
                         if rangeItem != {}:
                             parameter["ranges"].append(rangeItem)
@@ -137,7 +145,8 @@ with open('Carallon.def') as f:
                     "maxOffset": 0,
                     "modeName": "",
                     "modelName": "",
-                    "parameters": []
+                    "parameters": [],
+                    "commands": []
                 }
                 personality["manufacturerName"] = line.partition("$$MANUFACTURER")[
                     2].strip()
@@ -200,7 +209,6 @@ with open('Carallon.def') as f:
                         2].strip().split(" ")[3])
                     if (invertTest == "O N"):
                         parameter["invert"] = True
-
             if "$$OFFSET" in line:
                 parameter["coarse"] = int(line.partition("$$OFFSET")[
                     2].strip().split(" ")[0])
@@ -226,6 +234,39 @@ with open('Carallon.def') as f:
                     parameter["type"] = 4
                 if number == 2:
                     parameter["type"] = 2
+            if "$$DEVICECOMMAND" in line:
+                if not "STEP" in line and not "ACTION" in line:
+                    if command != {}:
+                        if stepItem != {}:
+                            command["steps"].append(stepItem)
+                        command["steps"] = sorted(
+                            command["steps"], key=lambda i: i['index'])
+                        personality["commands"].append(command)
+                        stepItem = {}
+                        command = {}
+                    command = {
+                        "name": "",
+                        "steps": []
+                    }
+                    command["name"] = " ".join(line.partition("$$DEVICECOMMAND")[
+                        2].strip().split(" ")[5:])
+            if "$$DEVICECOMMANDSTEP" in line:
+                if stepItem != {}:
+                    command["steps"].append(stepItem)
+                    stepItem = {}
+                stepItem = {
+                    "index": 0,
+                    "key": -1,
+                    "subkey": -1
+                }
+                tableInfo = line.partition("$$DEVICECOMMANDSTEP")[
+                    2].strip().split(" ")
+                stepItem["index"] = int(tableInfo[0])
+            if "$$DEVICECOMMANDACTION" in line:
+                tableInfo = line.partition("$$DEVICECOMMANDACTION")[
+                    2].strip().split(" ")
+                stepItem["key"] = int(tableInfo[0])
+                stepItem["subkey"] = int(tableInfo[1])
             if "$$TABLE" in line:
                 if rangeItem != {}:
                     parameter["ranges"].append(rangeItem)
