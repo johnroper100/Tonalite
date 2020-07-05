@@ -222,7 +222,7 @@ with open('Carallon.def') as f:
                         "highlight": 0,
                         "home": 0,
                         "white": {
-                            "val": 0,
+                            "val": None,
                             "temp": ""
                         },
                         "invert": False,
