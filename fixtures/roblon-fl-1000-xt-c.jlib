@@ -227,21 +227,6 @@
             ],
             "commands": [
                 {
-                    "name": "Lamp on",
-                    "steps": [
-                        {
-                            "index": 0,
-                            "key": 0,
-                            "subkey": 255
-                        },
-                        {
-                            "index": 4,
-                            "key": 0,
-                            "subkey": -1
-                        }
-                    ]
-                },
-                {
                     "name": "Scut On",
                     "steps": [
                         {
@@ -281,6 +266,21 @@
                         },
                         {
                             "index": 16,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Color Reset",
+                    "steps": [
+                        {
+                            "index": 0,
+                            "key": 2,
+                            "subkey": 170
+                        },
+                        {
+                            "index": 26,
                             "key": 2,
                             "subkey": -1
                         }

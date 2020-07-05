@@ -64,21 +64,6 @@
             ],
             "commands": [
                 {
-                    "name": "Heater Off",
-                    "steps": [
-                        {
-                            "index": 0,
-                            "key": 2,
-                            "subkey": 175
-                        },
-                        {
-                            "index": 7,
-                            "key": 2,
-                            "subkey": -1
-                        }
-                    ]
-                },
-                {
                     "name": "Prime",
                     "steps": [
                         {
@@ -100,6 +85,21 @@
                             "index": 0,
                             "key": 1,
                             "subkey": 175
+                        },
+                        {
+                            "index": 7,
+                            "key": 1,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Heater On",
+                    "steps": [
+                        {
+                            "index": 0,
+                            "key": 1,
+                            "subkey": 228
                         },
                         {
                             "index": 7,

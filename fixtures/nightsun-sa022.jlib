@@ -591,16 +591,21 @@
             ],
             "commands": [
                 {
-                    "name": "Lamp On",
+                    "name": "Reset",
                     "steps": [
                         {
                             "index": 0,
-                            "key": 0,
-                            "subkey": 251
+                            "key": 6,
+                            "subkey": 0
                         },
                         {
-                            "index": 7,
-                            "key": 0,
+                            "index": 5,
+                            "key": 6,
+                            "subkey": 255
+                        },
+                        {
+                            "index": 31,
+                            "key": 6,
                             "subkey": -1
                         }
                     ]

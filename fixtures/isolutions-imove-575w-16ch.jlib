@@ -1352,21 +1352,6 @@
             ],
             "commands": [
                 {
-                    "name": "Gobo Mode Aud",
-                    "steps": [
-                        {
-                            "index": 0,
-                            "key": 6,
-                            "subkey": 255
-                        },
-                        {
-                            "index": 1,
-                            "key": 6,
-                            "subkey": -1
-                        }
-                    ]
-                },
-                {
                     "name": "Lamp On",
                     "steps": [
                         {
@@ -1391,6 +1376,21 @@
                         },
                         {
                             "index": 36,
+                            "key": 15,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "index": 0,
+                            "key": 15,
+                            "subkey": 234
+                        },
+                        {
+                            "index": 6,
                             "key": 15,
                             "subkey": -1
                         }

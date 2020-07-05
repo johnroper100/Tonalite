@@ -864,16 +864,26 @@
             ],
             "commands": [
                 {
-                    "name": "Aud Mode",
+                    "name": "Reset",
                     "steps": [
                         {
                             "index": 0,
-                            "key": 31,
+                            "key": 2,
                             "subkey": 0
                         },
                         {
-                            "index": 6,
-                            "key": 31,
+                            "index": 1,
+                            "key": 2,
+                            "subkey": 255
+                        },
+                        {
+                            "index": 1,
+                            "key": 2,
+                            "subkey": 0
+                        },
+                        {
+                            "index": 31,
+                            "key": 2,
                             "subkey": -1
                         }
                     ]

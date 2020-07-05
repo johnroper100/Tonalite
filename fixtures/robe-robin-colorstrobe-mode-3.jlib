@@ -699,21 +699,6 @@
             ],
             "commands": [
                 {
-                    "name": "RoboSpot disabled except handle faders and pan/tilt",
-                    "steps": [
-                        {
-                            "index": 0,
-                            "key": 5,
-                            "subkey": 252
-                        },
-                        {
-                            "index": 4,
-                            "key": 5,
-                            "subkey": -1
-                        }
-                    ]
-                },
-                {
                     "name": "Display 100%",
                     "steps": [
                         {
@@ -915,6 +900,21 @@
                             "index": 0,
                             "key": 10,
                             "subkey": 87
+                        },
+                        {
+                            "index": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer curve square law",
+                    "steps": [
+                        {
+                            "index": 0,
+                            "key": 10,
+                            "subkey": 92
                         },
                         {
                             "index": 4,

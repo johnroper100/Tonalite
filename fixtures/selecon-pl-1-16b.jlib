@@ -2591,21 +2591,6 @@
             ],
             "commands": [
                 {
-                    "name": "Lamp On",
-                    "steps": [
-                        {
-                            "index": 0,
-                            "key": 15,
-                            "subkey": 240
-                        },
-                        {
-                            "index": 7,
-                            "key": 15,
-                            "subkey": -1
-                        }
-                    ]
-                },
-                {
                     "name": "Display Toggle",
                     "steps": [
                         {
@@ -2682,6 +2667,26 @@
                             "index": 4,
                             "key": 14,
                             "subkey": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "index": 0,
+                            "key": 14,
+                            "subkey": 252
+                        },
+                        {
+                            "index": 4,
+                            "key": 14,
+                            "subkey": 0
+                        },
+                        {
+                            "index": 30,
+                            "key": 14,
+                            "subkey": -1
                         }
                     ]
                 }

@@ -589,21 +589,6 @@
             ],
             "commands": [
                 {
-                    "name": "Audio control off",
-                    "steps": [
-                        {
-                            "index": 0,
-                            "key": 2,
-                            "subkey": 15
-                        },
-                        {
-                            "index": 4,
-                            "key": 2,
-                            "subkey": -1
-                        }
-                    ]
-                },
-                {
                     "name": "RGB Color mixing mode",
                     "steps": [
                         {
@@ -665,6 +650,21 @@
                 },
                 {
                     "name": "Audio control on",
+                    "steps": [
+                        {
+                            "index": 0,
+                            "key": 27,
+                            "subkey": 15
+                        },
+                        {
+                            "index": 4,
+                            "key": 27,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Audio control off",
                     "steps": [
                         {
                             "index": 0,

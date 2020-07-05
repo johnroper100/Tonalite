@@ -84,21 +84,6 @@
             ],
             "commands": [
                 {
-                    "name": "Fan Speed 2 1..100%",
-                    "steps": [
-                        {
-                            "index": 0,
-                            "key": 5,
-                            "subkey": 248
-                        },
-                        {
-                            "index": 4,
-                            "key": 5,
-                            "subkey": -1
-                        }
-                    ]
-                },
-                {
                     "name": "Display 100%",
                     "steps": [
                         {
@@ -153,6 +138,21 @@
                         },
                         {
                             "index": 4,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Pos Reset",
+                    "steps": [
+                        {
+                            "index": 0,
+                            "key": 5,
+                            "subkey": 52
+                        },
+                        {
+                            "index": 24,
                             "key": 5,
                             "subkey": -1
                         }

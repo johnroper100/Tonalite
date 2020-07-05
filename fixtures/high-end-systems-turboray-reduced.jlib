@@ -3020,31 +3020,6 @@
             ],
             "commands": [
                 {
-                    "name": "Reset",
-                    "steps": [
-                        {
-                            "index": 0,
-                            "key": 2,
-                            "subkey": 0
-                        },
-                        {
-                            "index": 1,
-                            "key": 2,
-                            "subkey": 255
-                        },
-                        {
-                            "index": 1,
-                            "key": 2,
-                            "subkey": 0
-                        },
-                        {
-                            "index": 31,
-                            "key": 2,
-                            "subkey": -1
-                        }
-                    ]
-                },
-                {
                     "name": "Display 0%",
                     "steps": [
                         {
@@ -3231,6 +3206,21 @@
                             "index": 0,
                             "key": 24,
                             "subkey": 132
+                        },
+                        {
+                            "index": 3,
+                            "key": 24,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 100 Hz",
+                    "steps": [
+                        {
+                            "index": 0,
+                            "key": 24,
+                            "subkey": 135
                         },
                         {
                             "index": 3,

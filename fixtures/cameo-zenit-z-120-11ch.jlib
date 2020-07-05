@@ -367,21 +367,6 @@
             ],
             "commands": [
                 {
-                    "name": "25000Hz",
-                    "steps": [
-                        {
-                            "index": 0,
-                            "key": 7,
-                            "subkey": 246
-                        },
-                        {
-                            "index": 6,
-                            "key": 7,
-                            "subkey": -1
-                        }
-                    ]
-                },
-                {
                     "name": "Dimmer response LED",
                     "steps": [
                         {
@@ -406,6 +391,21 @@
                         },
                         {
                             "index": 6,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "index": 0,
+                            "key": 10,
+                            "subkey": 223
+                        },
+                        {
+                            "index": 26,
                             "key": 10,
                             "subkey": -1
                         }

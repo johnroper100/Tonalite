@@ -3092,21 +3092,6 @@
             ],
             "commands": [
                 {
-                    "name": "Reset",
-                    "steps": [
-                        {
-                            "index": 0,
-                            "key": 8,
-                            "subkey": 255
-                        },
-                        {
-                            "index": 7,
-                            "key": 8,
-                            "subkey": -1
-                        }
-                    ]
-                },
-                {
                     "name": "Auto",
                     "steps": [
                         {
@@ -3131,6 +3116,21 @@
                         },
                         {
                             "index": 11,
+                            "key": 15,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "index": 0,
+                            "key": 15,
+                            "subkey": 224
+                        },
+                        {
+                            "index": 31,
                             "key": 15,
                             "subkey": -1
                         }

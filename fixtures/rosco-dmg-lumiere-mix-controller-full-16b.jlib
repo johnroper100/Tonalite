@@ -210,21 +210,6 @@
             ],
             "commands": [
                 {
-                    "name": "Lamp On",
-                    "steps": [
-                        {
-                            "index": 0,
-                            "key": 0,
-                            "subkey": 230
-                        },
-                        {
-                            "index": 6,
-                            "key": 0,
-                            "subkey": -1
-                        }
-                    ]
-                },
-                {
                     "name": "Linear",
                     "steps": [
                         {
@@ -439,6 +424,26 @@
                         },
                         {
                             "index": 4,
+                            "key": 12,
+                            "subkey": 0
+                        }
+                    ]
+                },
+                {
+                    "name": "Slew=25",
+                    "steps": [
+                        {
+                            "index": 0,
+                            "key": 12,
+                            "subkey": 155
+                        },
+                        {
+                            "index": 1,
+                            "key": 12,
+                            "subkey": -1
+                        },
+                        {
+                            "index": 3,
                             "key": 12,
                             "subkey": 0
                         }

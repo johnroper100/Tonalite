@@ -37,12 +37,24 @@ with open('Carallon.def') as f:
     command = {}
     rangeItem = {}
     stepItem = {}
+
+    fixturesList = {
+
+    }
     filename = ""
     needsFade = True
     for line in f.readlines():
         if len(line) > 0:
             if "$TEMPLATE" in line:
                 if personality != {}:
+                    if stepItem != {}:
+                        command["steps"].append(stepItem)
+                        stepItem = {}
+                    if command != {}:
+                        command["steps"] = sorted(
+                            command["steps"], key=lambda i: i['index'])
+                        personality["commands"].append(command)
+                        command = {}
                     if parameter != {}:
                         if rangeItem != {}:
                             parameter["ranges"].append(rangeItem)
@@ -81,6 +93,8 @@ with open('Carallon.def') as f:
 
                     parameter = {}
                     rangeItem = {}
+                    command = {}
+                    stepItem = {}
                     needsFade = True
 
                     fixtureProfile = {
@@ -95,10 +109,12 @@ with open('Carallon.def') as f:
                 if personality != {}:
                     if stepItem != {}:
                         command["steps"].append(stepItem)
+                        stepItem = {}
                     if command != {}:
                         command["steps"] = sorted(
                             command["steps"], key=lambda i: i['index'])
                         personality["commands"].append(command)
+                        command = {}
                     if parameter != {}:
                         if rangeItem != {}:
                             parameter["ranges"].append(rangeItem)
@@ -249,7 +265,7 @@ with open('Carallon.def') as f:
                         "steps": []
                     }
                     command["name"] = line.partition("$$DEVICECOMMAND")[
-                    2].strip()
+                        2].strip()
             if "$$DEVICECOMMANDSTEP" in line:
                 if stepItem != {}:
                     command["steps"].append(stepItem)
