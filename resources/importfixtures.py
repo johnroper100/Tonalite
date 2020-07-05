@@ -84,6 +84,12 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
+                    if not personality["manufacturerName"] in fixturesList:
+                        fixturesList[personality["manufacturerName"]] = {}
+                    if not personality["modelName"] in fixturesList[personality["manufacturerName"]]:
+                        fixturesList[personality["manufacturerName"]][personality["modelName"]] = {}
+                    if not personality["modeName"] in fixturesList[personality["manufacturerName"]][personality["modelName"]]:
+                        fixturesList[personality["manufacturerName"]][personality["modelName"]][personality["modeName"]] = filename
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):
                             print(filename)
@@ -146,6 +152,12 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     fixtureProfile["personalities"].append(personality)
+                    if not personality["manufacturerName"] in fixturesList:
+                        fixturesList[personality["manufacturerName"]] = {}
+                    if not personality["modelName"] in fixturesList[personality["manufacturerName"]]:
+                        fixturesList[personality["manufacturerName"]][personality["modelName"]] = {}
+                    if not personality["modeName"] in fixturesList[personality["manufacturerName"]][personality["modelName"]]:
+                        fixturesList[personality["manufacturerName"]][personality["modelName"]][personality["modeName"]] = filename
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):
                             print(filename)
@@ -340,3 +352,5 @@ with open('Carallon.def') as f:
                                               2].strip().split(" ")[1])
                 rangeItem["media"]["r"] = int(line.partition("$$SWATCH")[
                                               2].strip().split(" ")[0])
+    with open("../fixtures/fixtureList.json", 'w', encoding='utf-8') as f:
+        json.dump(fixturesList, f, ensure_ascii=False, indent=4)
