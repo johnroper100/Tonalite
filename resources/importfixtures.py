@@ -248,8 +248,8 @@ with open('Carallon.def') as f:
                         "name": "",
                         "steps": []
                     }
-                    command["name"] = " ".join(line.partition("$$DEVICECOMMAND")[
-                        2].strip().split(" ")[5:])
+                    command["name"] = line.partition("$$DEVICECOMMAND")[
+                    2].strip()
             if "$$DEVICECOMMANDSTEP" in line:
                 if stepItem != {}:
                     command["steps"].append(stepItem)
