@@ -221,6 +221,10 @@ with open('Carallon.def') as f:
                         "fadeWithIntensity": False,
                         "highlight": 0,
                         "home": 0,
+                        "white": {
+                            "val": 0,
+                            "temp": ""
+                        },
                         "invert": False,
                         "name": "",
                         "ranges": [],
@@ -245,6 +249,10 @@ with open('Carallon.def') as f:
             if "$$DEFAULT" in line:
                 parameter["home"] = int(line.partition("$$DEFAULT")[
                     2].strip())
+            if "$$WHITE" in line:
+                tableInfo = line.partition("$$WHITE")[2].strip().split(" ")
+                parameter["white"]["val"] = int(tableInfo[0])
+                parameter["white"]["temp"] = tableInfo[1]
             if "$$HIGHLIGHT" in line:
                 parameter["highlight"] = int(line.partition("$$HIGHLIGHT")[
                     2].strip())
