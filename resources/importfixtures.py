@@ -88,8 +88,7 @@ with open('Carallon.def') as f:
                         fixturesList[personality["manufacturerName"]] = {}
                     if not personality["modelName"] in fixturesList[personality["manufacturerName"]]:
                         fixturesList[personality["manufacturerName"]][personality["modelName"]] = {}
-                    if not personality["modeName"] in fixturesList[personality["manufacturerName"]][personality["modelName"]]:
-                        fixturesList[personality["manufacturerName"]][personality["modelName"]][personality["modeName"]] = filename
+                    fixturesList[personality["manufacturerName"]][personality["modelName"]][personality["modeName"]] = filename
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):
                             print(filename)
@@ -156,8 +155,7 @@ with open('Carallon.def') as f:
                         fixturesList[personality["manufacturerName"]] = {}
                     if not personality["modelName"] in fixturesList[personality["manufacturerName"]]:
                         fixturesList[personality["manufacturerName"]][personality["modelName"]] = {}
-                    if not personality["modeName"] in fixturesList[personality["manufacturerName"]][personality["modelName"]]:
-                        fixturesList[personality["manufacturerName"]][personality["modelName"]][personality["modeName"]] = filename
+                    fixturesList[personality["manufacturerName"]][personality["modelName"]][personality["modeName"]] = filename
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):
                             print(filename)
