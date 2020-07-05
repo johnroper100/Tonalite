@@ -19,7 +19,7 @@
 
 <body class="bg-dark">
   <div id="app">
-    <nav class="navbar navbar-expand navbar-light bg-light">
+    <nav class="navbar navbar-expand fixed-top navbar-light bg-light">
       <div class="container-fluid">
         <div class="navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
@@ -66,6 +66,14 @@
               </ul>
             </li>
           </ul>
+          <div class="mr-3">
+            Cue 199
+            <br>
+            <div class="progress bg-dark">
+              <div class="progress-bar p-2" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0"
+                aria-valuemax="100">75%</div>
+            </div>
+          </div>
           <form class="d-flex">
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" id="blindInput" v-model="blind">
@@ -76,6 +84,19 @@
         </div>
       </div>
     </nav>
+    <div class="fixed-top mt-5 pt-2">
+      <div class="row bg-secondary text-center p-2">
+        <div class="col-4">
+          <button class="btn btn-primary w-100"><i class="fad fa-chevron-double-left"></i></button>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-danger w-100">Record</button>
+        </div>
+        <div class="col-4">
+          <button class="btn btn-primary w-100"><i class="fad fa-chevron-double-right"></i></button>
+        </div>
+      </div>
+    </div>
     <div class="fixed-bottom">
       <div class="row text-center bg-secondary p-2">
         <div class="col-4">
