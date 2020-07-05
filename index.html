@@ -102,7 +102,8 @@
     </div>
     <div class="container-fluid mt-5 pt-5">
       <div class="row mt-5 pl-3 pr-3">
-        <div class="col-4 col-md-3 col-lg-2 col-xl-1 bg-primary text-center text-light p-2 pt-3 pb-3 rounded mb-3">
+        <div v-longpress="incrementPlusTen" @click="sayHi2" class="col-4 col-md-3 col-lg-2 col-xl-1 text-center text-light p-2 pt-3 pb-3 rounded mb-3"
+          v-bind:class="{ 'bg-primary': blind == true, 'bg-success': blind == false}">
           <h3 class="mb-1">100%</h3>
           Rogue (512)
         </div>
