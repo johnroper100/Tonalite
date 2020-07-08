@@ -58,7 +58,8 @@ Vue.directive('longpress', {
 var app = new Vue({
     el: '#app',
     data: {
-        blind: false
+        blind: false,
+        fixtures: []
     },
     methods: {
         incrementPlusTen: function() {
@@ -68,4 +69,8 @@ var app = new Vue({
             console.log("hey");
         }
     }
-})
+});
+
+socket.on('fixtures', function(msg) {
+    app.fixtures = msg;
+});

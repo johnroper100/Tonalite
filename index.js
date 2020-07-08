@@ -26,6 +26,8 @@ app.get('/', (req, res) => {
 
 var channels = new Array(2048).fill(0);
 
+var fixtures = [];
+
 var u1 = null;
 var u2 = null;
 var u3 = null;
@@ -61,7 +63,7 @@ function dmxLoop() {
 }
 
 io.on('connection', (socket) => {
-    //console.log('a user connected');
+    socket.emit('fixtures', fixtures);
 });
 
 //dmxLoop();
