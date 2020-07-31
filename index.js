@@ -311,8 +311,7 @@ function openSettings() {
                 }
             }
 
-            // Output DMX frames FPS times a second
-            setInterval(dmxLoop, (1000 / FPS));
+            dmxLoop();
         }
     });
 }
@@ -2245,6 +2244,9 @@ function dmxLoop() {
     client.send(packet);
     artnet.set(0, 1, u1);
     artnet.set(1, 1, u2);
+
+    // Output DMX frames FPS times a second
+    setTimeout(dmxLoop, (1000 / FPS));
 };
 
 // Load the fixtures, cues, and groups from file
