@@ -14,11 +14,63 @@
 #include <string>
 #include <string_view>
 #include <random>
+#include <queue>
 #include "json.hpp"
 #include "App.h"
 
 using namespace std;
 using json = nlohmann::json;
+
+template <typename T>
+class ThreadsafeQueue
+{
+    queue<T> queue_;
+    mutable mutex mutex_;
+
+    // Moved out of public interface to prevent races between this
+    // and pop().
+    bool empty() const
+    {
+        return queue_.empty();
+    }
+
+public:
+    ThreadsafeQueue() = default;
+    ThreadsafeQueue(const ThreadsafeQueue<T> &) = delete;
+    ThreadsafeQueue &operator=(const ThreadsafeQueue<T> &) = delete;
+
+    ThreadsafeQueue(ThreadsafeQueue<T> &&other)
+    {
+        lock_guard<mutex> lock(mutex_);
+        queue_ = move(other.queue_);
+    }
+
+    virtual ~ThreadsafeQueue() {}
+
+    unsigned long size() const
+    {
+        lock_guard<mutex> lock(mutex_);
+        return queue_.size();
+    }
+
+    optional<T> pop()
+    {
+        lock_guard<mutex> lock(mutex_);
+        if (queue_.empty())
+        {
+            return {};
+        }
+        T tmp = queue_.front();
+        queue_.pop();
+        return tmp;
+    }
+
+    void push(const T &item)
+    {
+        lock_guard<mutex> lock(mutex_);
+        queue_.push(item);
+    }
+};
 
 string random_string(size_t length)
 {
@@ -40,7 +92,7 @@ string random_string(size_t length)
 
 struct PerSocketData
 {
-    /* Fill with user data */
+    uWS::WebSocket<PerSocketData> *socketItem;
 };
 
 struct Fixture
@@ -59,14 +111,17 @@ struct Fixture
 atomic<int> finished;
 mutex door;
 unordered_map<string, Fixture> fixtures;
+vector<PerSocketData*> users;
+ThreadsafeQueue<json> tasks;
+
+uint8_t frames[2048] = {0};
 
 bool SendData(ola::client::OlaClientWrapper *wrapper)
 {
-    static uint8_t frames[2048] = {0};
-    static ola::DmxBuffer buffer1;
-    static ola::DmxBuffer buffer2;
-    static ola::DmxBuffer buffer3; 
-    static ola::DmxBuffer buffer4;
+    ola::DmxBuffer buffer1;
+    ola::DmxBuffer buffer2;
+    ola::DmxBuffer buffer3;
+    ola::DmxBuffer buffer4;
 
     lock_guard<mutex> lg(door);
     for (auto &it : fixtures)
@@ -106,12 +161,15 @@ bool SendData(ola::client::OlaClientWrapper *wrapper)
 void webThread()
 {
     uWS::App().get("/*", [](auto *res, auto *req) {
-        ifstream infile;
-        infile.open("index.html");
-        string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
-            res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(str);
-    }).ws<PerSocketData>("/*", {
-        .open = [](auto *ws) {
+                  ifstream infile;
+                  infile.open("index.html");
+                  string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
+                  res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(str);
+              })
+        .ws<PerSocketData>("/*", {.open = [](auto *ws) {
+            PerSocketData *psd = (PerSocketData *) ws->getUserData();
+            psd->socketItem = ws;
+            users.push_back(psd);
             ws->subscribe("all");
             json j;
             j["fixtures"] = {};
@@ -122,21 +180,33 @@ void webThread()
                 j["fixtures"].push_back({{"id", it.first}, {"value", it.second.value}});
             }
             door.unlock();
-            ws->send(j.dump(), uWS::OpCode::TEXT, true);
-        },
-        .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
-            json j = json::parse(message);
-            if (j["msgType"] == "fixtureValue") {
+            ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
+            tasks.push(json::parse(message));
+         }})
+        .listen(8000, [](auto *listenSocket) {
+            if (listenSocket)
+            {
+                cout << "Tonalite Lighting Control: Running on http://localhost:8000" << endl;
+            }
+        })
+        .run();
+}
+
+void tasksThread()
+{
+    optional<json> tItem;
+    json task; 
+    while (finished == 0) {
+        tItem = tasks.pop();
+        if (tItem) {
+            task = *tItem;
+            if (task["msgType"] == "fixtureValue") {
                 lock_guard<mutex> lg(door);
-                fixtures[j["id"]].value = j["value"];
+                fixtures[task["id"]].value = task["value"];
                 door.unlock();
             }
         }
-    }).listen(8000, [](auto *listenSocket) {
-        if (listenSocket) {
-            cout << "Tonalite Lighting Control: Running on http://localhost:8000" << endl;
-        }
-    }).run();
+    }
 }
 
 int main()
@@ -144,13 +214,14 @@ int main()
     finished = 0;
 
     Fixture newFixture;
-    
+
     newFixture.channel = 1;
     fixtures[random_string(5)] = newFixture;
     newFixture.channel = 2;
     fixtures[random_string(5)] = newFixture;
 
     thread webThreading(webThread);
+    thread tasksThreading(tasksThread);
 
     ola::InitLogging(ola::OLA_LOG_WARN, ola::OLA_LOG_STDERR);
     ola::client::OlaClientWrapper wrapper;
