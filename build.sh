@@ -1,1 +1,0 @@
-g++ -std=c++17 main.cpp -lz -lpthread -IuWebSockets/src -IuWebSockets/uSockets/src -LuWebSockets/uSockets -l:uSockets.a $(pkg-config --cflags --libs libola) -o tonalite
