@@ -45,10 +45,10 @@ struct PerSocketData
 
 struct Fixture
 {
-    double value = 1.0;
+    double value = 0.0;
     int universe = 1;
     int channel = 1;
-    int fine = 1;
+    int fine = 0;
 
     int getDMXValue()
     {
@@ -147,6 +147,7 @@ void webThread()
             ws->subscribe("all");
             json j;
             j["fixtures"] = {};
+            j["msgType"] = "fixtures";
             lock_guard<mutex> lg(door);
             for (auto &it : fixtures)
             {
@@ -156,7 +157,12 @@ void webThread()
             ws->send(j.dump(), uWS::OpCode::TEXT, true);
         },
         .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
-            ws->send(message, opCode, true);
+            json j = json::parse(message);
+            if (j["msgType"] == "fixtureValue") {
+                lock_guard<mutex> lg(door);
+                fixtures[j["id"]].value = j["value"];
+                door.unlock();
+            }
         }
     }).listen(8000, [](auto *listenSocket) {
         if (listenSocket) {
@@ -169,8 +175,12 @@ int main()
 {
     finished = 0;
 
-    fixtures[random_string(5)] = Fixture();
-    fixtures[random_string(5)] = Fixture();
+    Fixture newFixture;
+    
+    newFixture.channel = 1;
+    fixtures[random_string(5)] = newFixture;
+    newFixture.channel = 2;
+    fixtures[random_string(5)] = newFixture;
 
     thread webThreading(webThread);
 

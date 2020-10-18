@@ -3,14 +3,36 @@
 
 <head>
     <title>Tonalite</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
-    Hi2
+    <div id="app">
+        {{ fixtures }}
+        <br>
+        <input v-for="fixture in fixtures" v-model.number="fixture.value" type="range" min="0" max="1" :key="fixture.id"
+            step="0.00001" v-on:input="updateFixtureValue(fixture)">
+    </div>
     <script>
         const socket = new WebSocket("ws://" + location.host);
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                fixtures: {}
+            },
+            methods: {
+                updateFixtureValue: function (fixture) {
+                    socket.send(JSON.stringify({ msgType: "fixtureValue", id: fixture["id"], value: fixture["value"] }));
+                }
+            }
+        });
+
         socket.addEventListener('message', function (event) {
-            console.log('Message from server ', JSON.parse(event.data));
+            msg = JSON.parse(event.data);
+            if (msg["msgType"] == "fixtures") {
+                app.fixtures = msg["fixtures"];
+            }
         });
     </script>
 </body>
