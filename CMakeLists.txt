@@ -34,3 +34,4 @@ target_include_directories(tonalite PUBLIC
 target_link_libraries(tonalite ${CMAKE_SOURCE_DIR}/uWebSockets/uSockets/uSockets.a)
 
 configure_file(index.html index.html COPYONLY)
+configure_file(run.sh run.sh COPYONLY)
