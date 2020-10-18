@@ -92,7 +92,8 @@ string random_string(size_t length)
 
 struct PerSocketData
 {
-    uWS::WebSocket<PerSocketData> *socketItem;
+    uWS::WebSocket<0, 1> *socketItem;
+    string userID;
 };
 
 struct Fixture
@@ -111,7 +112,7 @@ struct Fixture
 atomic<int> finished;
 mutex door;
 unordered_map<string, Fixture> fixtures;
-vector<PerSocketData*> users;
+vector<PerSocketData *> users;
 ThreadsafeQueue<json> tasks;
 
 uint8_t frames[2048] = {0};
@@ -169,6 +170,7 @@ void webThread()
         .ws<PerSocketData>("/*", {.open = [](auto *ws) {
             PerSocketData *psd = (PerSocketData *) ws->getUserData();
             psd->socketItem = ws;
+            psd->userID = random_string(5);
             users.push_back(psd);
             ws->subscribe("all");
             json j;
@@ -180,9 +182,7 @@ void webThread()
                 j["fixtures"].push_back({{"id", it.first}, {"value", it.second.value}});
             }
             door.unlock();
-            ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
-            tasks.push(json::parse(message));
-         }})
+            ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) { tasks.push(json::parse(message)); }})
         .listen(8000, [](auto *listenSocket) {
             if (listenSocket)
             {
@@ -195,12 +195,19 @@ void webThread()
 void tasksThread()
 {
     optional<json> tItem;
-    json task; 
-    while (finished == 0) {
+    json task;
+    while (finished == 0)
+    {
         tItem = tasks.pop();
-        if (tItem) {
+        if (tItem)
+        {
             task = *tItem;
-            if (task["msgType"] == "fixtureValue") {
+            for (auto &it : users)
+            {
+                it->socketItem->send("test", uWS::OpCode::TEXT, true);
+            }
+            if (task["msgType"] == "fixtureValue")
+            {
                 lock_guard<mutex> lg(door);
                 fixtures[task["id"]].value = task["value"];
                 door.unlock();
