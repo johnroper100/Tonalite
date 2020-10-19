@@ -233,10 +233,6 @@ int main()
     finished = 0;
 
     Fixture newFixture;
-
-    newFixture.channel = 1;
-    fixtures[random_string(5)] = newFixture;
-    newFixture.channel = 2;
     fixtures[random_string(5)] = newFixture;
 
     thread webThreading(webThread);
