@@ -159,41 +159,17 @@ bool SendData(ola::client::OlaClientWrapper *wrapper)
     return true;
 }
 
-void webThread()
+json getFixtures()
 {
-    uWS::App().get("/*", [](auto *res, auto *req) {
-                  ifstream infile;
-                  infile.open("index.html");
-                  string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
-                  res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(str);
-              })
-        .ws<PerSocketData>("/*", {.open = [](auto *ws) {
-            PerSocketData *psd = (PerSocketData *) ws->getUserData();
-            psd->socketItem = ws;
-            psd->userID = random_string(5);
-            users[psd->userID] = psd;
-            ws->subscribe("all");
-            json j;
-            j["fixtures"] = {};
-            j["msgType"] = "fixtures";
-            lock_guard<mutex> lg(door);
-            for (auto &it : fixtures)
-            {
-                j["fixtures"].push_back({{"id", it.first}, {"value", it.second.value}});
-            }
-            door.unlock();
-            ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
-            PerSocketData *psd = (PerSocketData *) ws->getUserData();
-            json j = json::parse(message);
-            j["socketID"] = psd->userID;
-            tasks.push(j); }})
-        .listen(8000, [](auto *listenSocket) {
-            if (listenSocket)
-            {
-                cout << "Tonalite Lighting Control: Running on http://localhost:8000" << endl;
-            }
-        })
-        .run();
+    json j;
+    j["fixtures"] = {};
+    lock_guard<mutex> lg(door);
+    for (auto &it : fixtures)
+    {
+        j["fixtures"].push_back({{"id", it.first}, {"value", it.second.value}});
+    }
+    door.unlock();
+    return j;
 }
 
 void sendToAllExcept(string content, string socketID)
@@ -226,6 +202,36 @@ void tasksThread()
             }
         }
     }
+}
+
+void webThread()
+{
+    uWS::App().get("/*", [](auto *res, auto *req) {
+                  ifstream infile;
+                  infile.open("index.html");
+                  string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
+                  res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(str);
+              })
+        .ws<PerSocketData>("/*", {.open = [](auto *ws) {
+            PerSocketData *psd = (PerSocketData *) ws->getUserData();
+            psd->socketItem = ws;
+            psd->userID = random_string(5);
+            users[psd->userID] = psd;
+            ws->subscribe("all");
+            json j = getFixtures();
+            j["msgType"] = "fixtures";
+            ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
+            PerSocketData *psd = (PerSocketData *) ws->getUserData();
+            json j = json::parse(message);
+            j["socketID"] = psd->userID;
+            tasks.push(j); }})
+        .listen(8000, [](auto *listenSocket) {
+            if (listenSocket)
+            {
+                cout << "Tonalite Lighting Control: Running on http://localhost:8000" << endl;
+            }
+        })
+        .run();
 }
 
 int main()
