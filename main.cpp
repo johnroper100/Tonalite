@@ -112,7 +112,7 @@ struct Fixture
 atomic<int> finished;
 mutex door;
 unordered_map<string, Fixture> fixtures;
-vector<PerSocketData *> users;
+unordered_map<string, PerSocketData *> users;
 ThreadsafeQueue<json> tasks;
 
 uint8_t frames[2048] = {0};
@@ -171,7 +171,7 @@ void webThread()
             PerSocketData *psd = (PerSocketData *) ws->getUserData();
             psd->socketItem = ws;
             psd->userID = random_string(5);
-            users.push_back(psd);
+            users[psd->userID] = psd;
             ws->subscribe("all");
             json j;
             j["fixtures"] = {};
@@ -182,7 +182,11 @@ void webThread()
                 j["fixtures"].push_back({{"id", it.first}, {"value", it.second.value}});
             }
             door.unlock();
-            ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) { tasks.push(json::parse(message)); }})
+            ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
+            PerSocketData *psd = (PerSocketData *) ws->getUserData();
+            json j = json::parse(message);
+            j["socketID"] = psd->userID;
+            tasks.push(j); }})
         .listen(8000, [](auto *listenSocket) {
             if (listenSocket)
             {
@@ -190,6 +194,17 @@ void webThread()
             }
         })
         .run();
+}
+
+void sendToAllExcept(string content, string socketID)
+{
+    for (auto &it : users)
+    {
+        if (it.second->userID != socketID)
+        {
+            it.second->socketItem->send(content, uWS::OpCode::TEXT, true);
+        }
+    }
 }
 
 void tasksThread()
@@ -202,10 +217,7 @@ void tasksThread()
         if (tItem)
         {
             task = *tItem;
-            for (auto &it : users)
-            {
-                it->socketItem->send("test", uWS::OpCode::TEXT, true);
-            }
+            sendToAllExcept("hi", task["socketID"]);
             if (task["msgType"] == "fixtureValue")
             {
                 lock_guard<mutex> lg(door);
