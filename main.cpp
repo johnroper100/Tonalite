@@ -217,7 +217,7 @@ void tasksThread()
         if (tItem)
         {
             task = *tItem;
-            sendToAllExcept("hi", task["socketID"]);
+            sendToAllExcept("{}", task["socketID"]);
             if (task["msgType"] == "fixtureValue")
             {
                 lock_guard<mutex> lg(door);
