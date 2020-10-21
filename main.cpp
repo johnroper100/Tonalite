@@ -96,17 +96,23 @@ struct PerSocketData
     string userID;
 };
 
-struct Fixture
+struct FixtureParameter
 {
+    int coarse = 0;
+    int fine = -1;
     double value = 0.0;
-    int universe = 1;
-    int channel = 1;
-    int fine = 0;
 
     int getDMXValue()
     {
         return ceil(65535.0 * value);
     }
+};
+
+struct Fixture
+{
+    int universe = 1;
+    int address = 1;
+    unordered_map<string, FixtureParameter> parameters;
 };
 
 atomic<int> finished;
@@ -127,10 +133,13 @@ bool SendData(ola::client::OlaClientWrapper *wrapper)
     lock_guard<mutex> lg(door);
     for (auto &it : fixtures)
     {
-        frames[((it.second.universe - 1) * 512) + (it.second.channel - 1)] = it.second.getDMXValue() >> 8;
-        if (it.second.fine == 1)
+        for (auto &fp : it.second.parameters)
         {
-            frames[((it.second.universe - 1) * 512) + (it.second.channel)] = it.second.getDMXValue() & 0xff;
+            frames[((it.second.universe - 1) * 512) + (it.second.address + fp.second.coarse)] = fp.second.getDMXValue() >> 8;
+            if (fp.second.fine != -1)
+            {
+                frames[((it.second.universe - 1) * 512) + (it.second.address + fp.second.fine)] = fp.second.getDMXValue() & 0xff;
+            }
         }
     }
     door.unlock();
@@ -162,11 +171,24 @@ bool SendData(ola::client::OlaClientWrapper *wrapper)
 json getFixtures()
 {
     json j;
+    json fItem;
+    json pItem;
     j["fixtures"] = {};
     lock_guard<mutex> lg(door);
     for (auto &it : fixtures)
     {
-        j["fixtures"].push_back({{"id", it.first}, {"value", it.second.value}});
+
+        fItem["id"] = it.first;
+        fItem["universe"] = it.second.universe;
+        fItem["address"] = it.second.address;
+        fItem["parameters"] = {};
+        for (auto &pi : it.second.parameters)
+        {
+            pItem["id"] = pi.first;
+            pItem["value"] = pi.second.value;
+            fItem["parameters"].push_back(pItem);
+        }
+        j["fixtures"].push_back(fItem);
     }
     door.unlock();
     return j;
@@ -197,7 +219,7 @@ void tasksThread()
             if (task["msgType"] == "fixtureValue")
             {
                 lock_guard<mutex> lg(door);
-                fixtures[task["id"]].value = task["value"];
+                fixtures[task["id"]].address = task["value"];
                 door.unlock();
             }
         }
@@ -239,6 +261,8 @@ int main()
     finished = 0;
 
     Fixture newFixture;
+    FixtureParameter newParameter;
+    newFixture.parameters[random_string(5)] = newParameter;
     fixtures[random_string(5)] = newFixture;
 
     thread webThreading(webThread);

@@ -15,10 +15,9 @@
 
 <body>
     <div id="app">
-        {{ fixtures }}
-        <br>
-        <input v-for="fixture in fixtures" v-model.number="fixture.value" type="range" min="0" max="1" :key="fixture.id"
-            step="0.00001" v-on:input="updateFixtureValue(fixture)" width="100%">
+        <div class="container-fluid">
+            {{fixtures}}
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -35,9 +34,6 @@
                 fixtures: {}
             },
             methods: {
-                updateFixtureValue: function (fixture) {
-                    socket.send(JSON.stringify({ msgType: "fixtureValue", id: fixture["id"], value: fixture["value"] }));
-                }
             }
         });
 
