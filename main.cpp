@@ -1,63 +1,59 @@
-#include <iostream>
+#include <ola/Callback.h>
 #include <ola/DmxBuffer.h>
-#include <ola/io/SelectServer.h>
 #include <ola/Logging.h>
 #include <ola/client/ClientWrapper.h>
-#include <ola/Callback.h>
-#include <mutex>
-#include <unordered_map>
+#include <ola/io/SelectServer.h>
+
 #include <atomic>
 #include <cmath>
-#include <thread>
 #include <fstream>
+#include <iostream>
+#include <mutex>
+#include <queue>
+#include <random>
 #include <streambuf>
 #include <string>
 #include <string_view>
-#include <random>
-#include <queue>
-#include "json.hpp"
+#include <thread>
+#include <unordered_map>
+
 #include "App.h"
+#include "json.hpp"
 
 using namespace std;
 using json = nlohmann::json;
 
 template <typename T>
-class ThreadsafeQueue
-{
+class ThreadsafeQueue {
     queue<T> queue_;
     mutable mutex mutex_;
 
     // Moved out of public interface to prevent races between this
     // and pop().
-    bool empty() const
-    {
+    bool empty() const {
         return queue_.empty();
     }
 
-public:
+   public:
     ThreadsafeQueue() = default;
     ThreadsafeQueue(const ThreadsafeQueue<T> &) = delete;
     ThreadsafeQueue &operator=(const ThreadsafeQueue<T> &) = delete;
 
-    ThreadsafeQueue(ThreadsafeQueue<T> &&other)
-    {
+    ThreadsafeQueue(ThreadsafeQueue<T> &&other) {
         lock_guard<mutex> lock(mutex_);
         queue_ = move(other.queue_);
     }
 
     virtual ~ThreadsafeQueue() {}
 
-    unsigned long size() const
-    {
+    unsigned long size() const {
         lock_guard<mutex> lock(mutex_);
         return queue_.size();
     }
 
-    optional<T> pop()
-    {
+    optional<T> pop() {
         lock_guard<mutex> lock(mutex_);
-        if (queue_.empty())
-        {
+        if (queue_.empty()) {
             return {};
         }
         T tmp = queue_.front();
@@ -65,15 +61,13 @@ public:
         return tmp;
     }
 
-    void push(const T &item)
-    {
+    void push(const T &item) {
         lock_guard<mutex> lock(mutex_);
         queue_.push(item);
     }
 };
 
-string random_string(size_t length)
-{
+string random_string(size_t length) {
     const string CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     random_device random_device;
@@ -82,34 +76,29 @@ string random_string(size_t length)
 
     string random_string;
 
-    for (size_t i = 0; i < length; ++i)
-    {
+    for (size_t i = 0; i < length; ++i) {
         random_string += CHARACTERS[distribution(generator)];
     }
 
     return random_string;
 }
 
-struct PerSocketData
-{
+struct PerSocketData {
     uWS::WebSocket<0, 1> *socketItem;
     string userID;
 };
 
-struct FixtureParameter
-{
+struct FixtureParameter {
     int coarse = 0;
     int fine = -1;
     double value = 0.0;
 
-    int getDMXValue()
-    {
+    int getDMXValue() {
         return ceil(65535.0 * value);
     }
 };
 
-struct Fixture
-{
+struct Fixture {
     int universe = 1;
     int address = 1;
     unordered_map<string, FixtureParameter> parameters;
@@ -123,22 +112,18 @@ ThreadsafeQueue<json> tasks;
 
 uint8_t frames[2048] = {0};
 
-bool SendData(ola::client::OlaClientWrapper *wrapper)
-{
+bool SendData(ola::client::OlaClientWrapper *wrapper) {
     ola::DmxBuffer buffer1;
     ola::DmxBuffer buffer2;
     ola::DmxBuffer buffer3;
     ola::DmxBuffer buffer4;
 
     lock_guard<mutex> lg(door);
-    for (auto &it : fixtures)
-    {
-        for (auto &fp : it.second.parameters)
-        {
-            frames[((it.second.universe - 1) * 512) + (it.second.address + fp.second.coarse)] = fp.second.getDMXValue() >> 8;
-            if (fp.second.fine != -1)
-            {
-                frames[((it.second.universe - 1) * 512) + (it.second.address + fp.second.fine)] = fp.second.getDMXValue() & 0xff;
+    for (auto &it : fixtures) {
+        for (auto &fp : it.second.parameters) {
+            frames[((it.second.universe - 1) * 512) + ((it.second.address - 1) + fp.second.coarse)] = fp.second.getDMXValue() >> 8;
+            if (fp.second.fine != -1) {
+                frames[((it.second.universe - 1) * 512) + ((it.second.address - 1) + fp.second.fine)] = fp.second.getDMXValue() & 0xff;
             }
         }
     }
@@ -148,8 +133,7 @@ bool SendData(ola::client::OlaClientWrapper *wrapper)
     buffer2.Blackout();
     buffer3.Blackout();
     buffer4.Blackout();
-    for (int ii = 0; ii < 512; ii++)
-    {
+    for (int ii = 0; ii < 512; ii++) {
         buffer1.SetChannel(ii, frames[(0 * 512) + ii]);
         buffer2.SetChannel(ii, frames[(1 * 512) + ii]);
         buffer3.SetChannel(ii, frames[(2 * 512) + ii]);
@@ -160,30 +144,25 @@ bool SendData(ola::client::OlaClientWrapper *wrapper)
     wrapper->GetClient()->SendDMX(3, buffer3, ola::client::SendDMXArgs());
     wrapper->GetClient()->SendDMX(4, buffer4, ola::client::SendDMXArgs());
 
-    if (finished == 1)
-    {
+    if (finished == 1) {
         wrapper->GetSelectServer()->Terminate();
     }
 
     return true;
 }
 
-json getFixtures()
-{
+json getFixtures() {
     json j;
     json fItem;
     json pItem;
     j["fixtures"] = {};
     lock_guard<mutex> lg(door);
-    for (auto &it : fixtures)
-    {
-
+    for (auto &it : fixtures) {
         fItem["id"] = it.first;
         fItem["universe"] = it.second.universe;
         fItem["address"] = it.second.address;
         fItem["parameters"] = {};
-        for (auto &pi : it.second.parameters)
-        {
+        for (auto &pi : it.second.parameters) {
             pItem["id"] = pi.first;
             pItem["value"] = pi.second.value;
             fItem["parameters"].push_back(pItem);
@@ -194,30 +173,23 @@ json getFixtures()
     return j;
 }
 
-void sendToAllExcept(string content, string socketID)
-{
-    for (auto &it : users)
-    {
-        if (it.second->userID != socketID)
-        {
+void sendToAllExcept(string content, string socketID) {
+    for (auto &it : users) {
+        if (it.second->userID != socketID) {
             it.second->socketItem->send(content, uWS::OpCode::TEXT, true);
         }
     }
 }
 
-void tasksThread()
-{
+void tasksThread() {
     optional<json> tItem;
     json task;
-    while (finished == 0)
-    {
+    while (finished == 0) {
         tItem = tasks.pop();
-        if (tItem)
-        {
+        if (tItem) {
             task = *tItem;
             sendToAllExcept("{}", task["socketID"]);
-            if (task["msgType"] == "fixtureValue")
-            {
+            if (task["msgType"] == "fixtureValue") {
                 lock_guard<mutex> lg(door);
                 fixtures[task["id"]].address = task["value"];
                 door.unlock();
@@ -226,8 +198,7 @@ void tasksThread()
     }
 }
 
-void webThread()
-{
+void webThread() {
     uWS::App().get("/*", [](auto *res, auto *req) {
                   ifstream infile;
                   infile.open("index.html");
@@ -248,16 +219,14 @@ void webThread()
             j["socketID"] = psd->userID;
             tasks.push(j); }})
         .listen(8000, [](auto *listenSocket) {
-            if (listenSocket)
-            {
+            if (listenSocket) {
                 cout << "Tonalite Lighting Control: Running on http://localhost:8000" << endl;
             }
         })
         .run();
 }
 
-int main()
-{
+int main() {
     finished = 0;
 
     Fixture newFixture;
@@ -270,8 +239,7 @@ int main()
 
     ola::InitLogging(ola::OLA_LOG_WARN, ola::OLA_LOG_STDERR);
     ola::client::OlaClientWrapper wrapper;
-    if (!wrapper.Setup())
-    {
+    if (!wrapper.Setup()) {
         cerr << "Setup failed" << endl;
         exit(1);
     }
