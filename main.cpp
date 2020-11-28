@@ -99,8 +99,8 @@ struct FixtureParameter {
 };
 
 struct Fixture {
-    int universe = 1;
-    int address = 1;
+    int universe = 4;
+    int address = 512;
     unordered_map<string, FixtureParameter> parameters;
 };
 
@@ -158,12 +158,16 @@ json getFixtures() {
     j["fixtures"] = {};
     lock_guard<mutex> lg(door);
     for (auto &it : fixtures) {
-        fItem["id"] = it.first;
+        fItem["i"] = it.first;
         fItem["universe"] = it.second.universe;
         fItem["address"] = it.second.address;
         fItem["parameters"] = {};
+        fItem["x"] = 0;
+        fItem["y"] = 0;
+        fItem["w"] = 2;
+        fItem["h"] = 1;
         for (auto &pi : it.second.parameters) {
-            pItem["id"] = pi.first;
+            pItem["i"] = pi.first;
             pItem["value"] = pi.second.value;
             fItem["parameters"].push_back(pItem);
         }
@@ -191,7 +195,7 @@ void tasksThread() {
             sendToAllExcept("{}", task["socketID"]);
             if (task["msgType"] == "fixtureValue") {
                 lock_guard<mutex> lg(door);
-                fixtures[task["id"]].address = task["value"];
+                fixtures[task["i"]].address = task["value"];
                 door.unlock();
             }
         }
@@ -212,7 +216,7 @@ void webThread() {
                       ifstream infile;
                       infile.open(s);
                       string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
-                      res->writeHeader("Content-Type", "charset=utf-8")->end(str);
+                      res->end(str);
                   }
               })
         .ws<PerSocketData>("/*", {.open = [](auto *ws) {

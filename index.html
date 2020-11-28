@@ -27,6 +27,10 @@
             color: #f8f9fa;
         }
 
+        #app {
+            min-height: 100vh;
+        }
+
         .header {
             background-color: #343a40;
             font-size: 1.2rem;
@@ -87,11 +91,28 @@
         .btn-success {
             background-color: #51cf66 !important;
         }
+
+        .inLayout {
+            background-size: 3vw 4vh;
+            background-image: radial-gradient(circle, #868e96 1px, rgba(0, 0, 0, 0) 1px);
+        }
+
+        .fixtureItem {
+            background-color: #fd7e14;
+        }
+
+        .fixtureItem:hover {
+            cursor: pointer;
+        }
+
+        .selected {
+            border: solid 2px #40c057;
+        }
     </style>
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" v-bind:class="{inLayout: fixtureGridLayout}">
         <div class="sticky-top">
             <div class="header p-2 pl-3 pr-3">
                 <span class="brand">Tonalite</span>
@@ -133,18 +154,27 @@
                         </span>
                         <span class="d-none d-sm-inline-block">Deselect</span>
                     </button>
-                    <button class="btn" v-if="fixturesTab == 'fixtures'"
+                    <button class="btn d-none d-md-inline-block" v-if="fixturesTab == 'fixtures'"
                         v-bind:class="{'btn-success': fixtureGridLayout }"
                         @click="fixtureGridLayout = !fixtureGridLayout">
                         <i class="fa-regular fa-up-down-left-right d-inline-block"></i>
                         <span class="d-none d-sm-inline-block">Layout View</span>
                     </button>
-
                 </div>
             </div>
         </div>
         <div class="container-fluid">
-            {{fixtures}}
+            <grid-layout :layout.sync="fixtures" :col-num="24" :row-height="25" :vertical-compact="false"
+                :is-resizable="fixtureGridLayout" :is-draggable="fixtureGridLayout">
+                <grid-item v-for="item in fixtures" class="fixtureItem text-center"
+                    v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }" :x="item.x" :y="item.y"
+                    :w="item.w" :h="item.h" :i="item.i" :key="item.i">
+                    <div @click="selectFixture(item.i)" class="h-100">
+                        <i class=" fa-regular fa-lightbulb d-none d-lg-inline-block"></i>
+                        {{item.universe}}:{{item.address}}
+                    </div>
+                </grid-item>
+            </grid-layout>
         </div>
         <div class="fixed-bottom">
             <div class="row header text-center pl-2 pr-2">
@@ -170,13 +200,26 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="vue-grid-layout.umd.min.js"></script>
     <script>
         var app = new Vue({
             el: '#app',
             data: {
                 fixturesTab: 'fixtures',
                 fixtureGridLayout: false,
-                fixtures: {}
+                fixtures: [],
+                selectedFixtures: []
+            },
+            methods: {
+                selectFixture: function (fixtureID) {
+                    if (app.fixtureGridLayout == false) {
+                        if (app.selectedFixtures.indexOf(fixtureID) >= 0) {
+                            app.selectedFixtures.splice(app.selectedFixtures.indexOf(fixtureID), 1);
+                        } else {
+                            app.selectedFixtures.push(fixtureID);
+                        }
+                    }
+                },
             }
         });
 
