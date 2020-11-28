@@ -20,6 +20,10 @@
             border-radius: 0px !important;
         }
 
+        *.disabled:hover {
+            cursor: auto;
+        }
+
         body {
             font-family: 'Roboto', sans-serif;
             font-weight: 300;
@@ -64,6 +68,14 @@
 
         .menu-dropdown {
             color: #adb5bd;
+        }
+
+        .dropdown-menu {
+            background-color: #868e96;
+        }
+
+        .dropdown-toggle:hover {
+            cursor: pointer;
         }
 
         .form-control,
@@ -122,7 +134,7 @@
                             aria-haspopup="true" aria-expanded="false">
                             File
                         </span>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Action</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#">Something else here</a>
@@ -133,7 +145,7 @@
                             aria-haspopup="true" aria-expanded="false">
                             Settings
                         </span>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Action</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#">Something else here</a>
@@ -148,7 +160,7 @@
                     <option value="groups">Groups</option>
                 </select>
                 <div class="float-right d-inline-block">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" v-bind:class="{ disabled: selectedFixtures.length == 0 }">
                         <span class="fa-layers fa-fw d-inline-block">
                             <i class="fa-solid fa-hand-pointer fa-xs"></i>
                             <i class="fa-regular fa-ban fa-lg"></i>
