@@ -200,10 +200,20 @@ void tasksThread() {
 
 void webThread() {
     uWS::App().get("/*", [](auto *res, auto *req) {
-                  ifstream infile;
-                  infile.open("index.html");
-                  string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
-                  res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(str);
+                  if (req->getUrl() == "/") {
+                      ifstream infile;
+                      infile.open("index.html");
+                      string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
+                      res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(str);
+                  } else {
+                      string_view filename = req->getUrl();
+                      filename.remove_prefix(1);
+                      string s = {filename.begin(), filename.end()};
+                      ifstream infile;
+                      infile.open(s);
+                      string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
+                      res->writeHeader("Content-Type", "charset=utf-8")->end(str);
+                  }
               })
         .ws<PerSocketData>("/*", {.open = [](auto *ws) {
             PerSocketData *psd = (PerSocketData *) ws->getUserData();

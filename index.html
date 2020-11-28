@@ -6,34 +6,177 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <script defer src="all.min.js"></script>
+
     <title>Tonalite</title>
+
+    <style>
+        * {
+            border-radius: 0px !important;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            background-color: #212529;
+            color: #f8f9fa;
+        }
+
+        .header {
+            background-color: #343a40;
+            font-size: 1.2rem;
+        }
+
+        .sub-header {
+            background-color: #495057;
+        }
+
+        .tab {
+            text-align: center;
+            color: #adb5bd;
+        }
+
+        .tab:hover {
+            cursor: pointer;
+            color: #dee2e6;
+            border-bottom: solid 3px #339af0;
+        }
+
+        .tab.active {
+            border-bottom: solid 3px #339af0;
+            color: #f8f9fa;
+            font-weight: 400;
+        }
+
+        .brand {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .menu-dropdown {
+            color: #adb5bd;
+        }
+
+        .form-control,
+        .form-control:active,
+        .form-control:focus,
+        .btn,
+        .btn:active,
+        .btn:focus {
+            background-color: #343a40;
+            color: #f8f9fa !important;
+            outline: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            font-weight: 300;
+        }
+
+        select {
+            width: auto !important;
+        }
+
+        .btn-primary {
+            background-color: #339af0 !important;
+        }
+
+        .btn-success {
+            background-color: #51cf66 !important;
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
+        <div class="sticky-top">
+            <div class="header p-2 pl-3 pr-3">
+                <span class="brand">Tonalite</span>
+                <div class="float-right">
+                    <div class="dropdown d-inline-block mr-2">
+                        <span class="menu-dropdown dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            File
+                        </span>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                    <div class="dropdown d-inline-block">
+                        <span class="menu-dropdown dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Settings
+                        </span>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-header p-2">
+                <select class="form-control d-inline-block" v-model="fixturesTab">
+                    <option value="fixtures">Fixtures</option>
+                    <option value="groups">Groups</option>
+                </select>
+                <div class="float-right d-inline-block">
+                    <button class="btn btn-primary">
+                        <span class="fa-layers fa-fw d-inline-block">
+                            <i class="fa-solid fa-hand-pointer fa-xs"></i>
+                            <i class="fa-regular fa-ban fa-lg"></i>
+                        </span>
+                        <span class="d-none d-sm-inline-block">Deselect</span>
+                    </button>
+                    <button class="btn" v-if="fixturesTab == 'fixtures'"
+                        v-bind:class="{'btn-success': fixtureGridLayout }"
+                        @click="fixtureGridLayout = !fixtureGridLayout">
+                        <i class="fa-regular fa-up-down-left-right d-inline-block"></i>
+                        <span class="d-none d-sm-inline-block">Layout View</span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
         <div class="container-fluid">
             {{fixtures}}
         </div>
+        <div class="fixed-bottom">
+            <div class="row header text-center pl-2 pr-2">
+                <div class="col-3 tab active pt-3 pb-3">
+                    Fixtures
+                </div>
+                <div class="col-3 tab pt-3 pb-3">
+                    Cues
+                </div>
+                <div class="col-3 tab pt-3 pb-3">
+                    Effects
+                </div>
+                <div class="col-3 tab pt-3 pb-3">
+                    Presets
+                </div>
+            </div>
+        </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
         var app = new Vue({
             el: '#app',
             data: {
+                fixturesTab: 'fixtures',
+                fixtureGridLayout: false,
                 fixtures: {}
-            },
-            methods: {
             }
         });
 
