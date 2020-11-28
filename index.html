@@ -143,7 +143,8 @@
             </div>
             <div class="sub-header p-2">
                 <select class="form-control d-inline-block" v-model="fixturesTab">
-                    <option value="fixtures">Fixtures</option>
+                    <option value="fixturesList">Fixture List</option>
+                    <option value="fixturesGrid" class="d-none d-md-inline-block">Fixture Grid</option>
                     <option value="groups">Groups</option>
                 </select>
                 <div class="float-right d-inline-block">
@@ -154,7 +155,7 @@
                         </span>
                         <span class="d-none d-sm-inline-block">Deselect</span>
                     </button>
-                    <button class="btn d-none d-md-inline-block" v-if="fixturesTab == 'fixtures'"
+                    <button class="btn d-none d-md-inline-block" v-if="fixturesTab == 'fixturesGrid'"
                         v-bind:class="{'btn-success': fixtureGridLayout }"
                         @click="fixtureGridLayout = !fixtureGridLayout">
                         <i class="fa-regular fa-up-down-left-right d-inline-block"></i>
@@ -165,7 +166,8 @@
         </div>
         <div class="container-fluid">
             <grid-layout :layout.sync="fixtures" :col-num="24" :row-height="25" :vertical-compact="false"
-                :is-resizable="fixtureGridLayout" :is-draggable="fixtureGridLayout">
+                :is-resizable="fixtureGridLayout" :is-draggable="fixtureGridLayout"
+                v-if="fixturesTab == 'fixturesGrid'">
                 <grid-item v-for="item in fixtures" class="fixtureItem text-center"
                     v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }" :x="item.x" :y="item.y"
                     :w="item.w" :h="item.h" :i="item.i" :key="item.i">
@@ -175,6 +177,13 @@
                     </div>
                 </grid-item>
             </grid-layout>
+            <div class="row mt-3 pl-2 pr-2" v-if="fixturesTab == 'fixturesList'">
+                <div class="col-6 col-md-3 fixtureItem text-center" v-for="item in fixtures"
+                    @click="selectFixture(item.i)" v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
+                    {{item.i}}<br>
+                    {{item.universe}}:{{item.address}}
+                </div>
+            </div>
         </div>
         <div class="fixed-bottom">
             <div class="row header text-center pl-2 pr-2">
@@ -205,7 +214,7 @@
         var app = new Vue({
             el: '#app',
             data: {
-                fixturesTab: 'fixtures',
+                fixturesTab: 'fixturesList',
                 fixtureGridLayout: false,
                 fixtures: [],
                 selectedFixtures: []
