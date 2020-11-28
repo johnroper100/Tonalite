@@ -1,5 +1,5 @@
 {
-    "date": "2020-07-27 16:12",
+    "date": "2020-11-23 15:50",
     "editorVersion": "1.1.1.9.0.4",
     "personalities": [
         {
@@ -206,7 +206,20 @@
                     },
                     "invert": false,
                     "name": "Intensity 2",
-                    "ranges": [],
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Intensity"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 127,
+                            "end": 255,
+                            "label": "Blue"
+                        }
+                    ],
                     "size": 8,
                     "snap": false,
                     "type": 4

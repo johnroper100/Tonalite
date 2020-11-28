@@ -1,5 +1,5 @@
 {
-    "date": "2020-07-27 16:12",
+    "date": "2020-11-23 15:50",
     "editorVersion": "1.1.1.9.0.4",
     "personalities": [
         {
@@ -292,13 +292,13 @@
                         "temp": ""
                     },
                     "invert": false,
-                    "name": "Int Mode",
+                    "name": "Control",
                     "ranges": [
                         {
                             "begin": 0,
                             "default": 0,
                             "end": 0,
-                            "label": "From menu"
+                            "label": "None"
                         }
                     ],
                     "size": 8,
@@ -308,12 +308,12 @@
             ],
             "commands": [
                 {
-                    "name": "Off",
+                    "name": "Int Reset",
                     "steps": [
                         {
                             "step": 0,
                             "key": 10,
-                            "subkey": 76
+                            "subkey": 11
                         },
                         {
                             "step": 4,
@@ -323,12 +323,12 @@
                     ]
                 },
                 {
-                    "name": "Speed 1",
+                    "name": "Red Shift On",
                     "steps": [
                         {
                             "step": 0,
                             "key": 10,
-                            "subkey": 127
+                            "subkey": 19
                         },
                         {
                             "step": 4,
@@ -338,12 +338,12 @@
                     ]
                 },
                 {
-                    "name": "Speed 2",
+                    "name": "Red Shift Off",
                     "steps": [
                         {
                             "step": 0,
                             "key": 10,
-                            "subkey": 178
+                            "subkey": 27
                         },
                         {
                             "step": 4,
@@ -353,12 +353,177 @@
                     ]
                 },
                 {
-                    "name": "Speed 3",
+                    "name": "S-Curve",
                     "steps": [
                         {
                             "step": 0,
                             "key": 10,
-                            "subkey": 229
+                            "subkey": 35
+                        },
+                        {
+                            "step": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Linear",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 43
+                        },
+                        {
+                            "step": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Square",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 51
+                        },
+                        {
+                            "step": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Inverse Square",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 59
+                        },
+                        {
+                            "step": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer speed mode off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 67
+                        },
+                        {
+                            "step": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer mode 1",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 75
+                        },
+                        {
+                            "step": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer mode 2",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 83
+                        },
+                        {
+                            "step": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer mode 3",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 91
+                        },
+                        {
+                            "step": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Auto",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 99
+                        },
+                        {
+                            "step": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Fan 100%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 107
+                        },
+                        {
+                            "step": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Fan 0%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 115
+                        },
+                        {
+                            "step": 4,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Silent",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 123
                         },
                         {
                             "step": 4,
