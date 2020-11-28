@@ -56,7 +56,7 @@
         }
 
         .tab.active {
-            border-bottom: solid 3px #339af0;
+            border-bottom: solid 3px #228be6;
             color: #f8f9fa;
             font-weight: 400;
         }
@@ -97,11 +97,19 @@
         }
 
         .btn-primary {
-            background-color: #339af0 !important;
+            background-color: #228be6 !important;
         }
 
         .btn-success {
-            background-color: #51cf66 !important;
+            background-color: #40c057 !important;
+        }
+
+        .btn-warning {
+            background-color: #fd7e14 !important;
+        }
+
+        .btn-danger {
+            background-color: #fa5252 !important;
         }
 
         .inLayout {
@@ -157,10 +165,23 @@
                 <select class="form-control d-inline-block" v-model="fixturesTab">
                     <option value="fixturesList">Fixture List</option>
                     <option value="fixturesGrid" class="d-none d-md-inline-block">Fixture Grid</option>
-                    <option value="groups">Groups</option>
+                    <option value="groups">Group List</option>
                 </select>
                 <div class="float-right d-inline-block">
-                    <button class="btn btn-primary" v-bind:class="{ disabled: selectedFixtures.length == 0 }">
+                    <button class="btn btn-danger" v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
+                        v-bind:class="{ disabled: selectedFixtures.length == 0 }">
+                        <i class="fa-regular fa-sliders d-inline-block fa-lg"></i>
+                        <span class="d-none d-sm-inline-block">Parameters</span>
+                    </button>
+                    <button class="btn btn-success"
+                        v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
+                        v-bind:class="{ disabled: selectedFixtures.length == 0 }">
+                        <i class="fa-regular fa-object-group d-inline-block fa-lg"></i>
+                        <span class="d-none d-sm-inline-block">Group</span>
+                    </button>
+                    <button class="btn btn-primary"
+                        v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
+                        v-bind:class="{ disabled: selectedFixtures.length == 0 }" @click="selectedFixtures = []">
                         <span class="fa-layers fa-fw d-inline-block">
                             <i class="fa-solid fa-hand-pointer fa-xs"></i>
                             <i class="fa-regular fa-ban fa-lg"></i>
@@ -184,17 +205,17 @@
                     v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }" :x="item.x" :y="item.y"
                     :w="item.w" :h="item.h" :i="item.i" :key="item.i">
                     <div @click="selectFixture(item.i)" class="h-100">
-                        <i class=" fa-regular fa-lightbulb d-none d-lg-inline-block"></i>
+                        <i class="fa-regular fa-lightbulb d-none d-lg-inline-block"></i>
                         {{item.universe}}:{{item.address}}
                     </div>
                 </grid-item>
             </grid-layout>
             <div class="row mt-3" v-if="fixturesTab == 'fixturesList'">
                 <div class="col-6 col-md-3 col-lg-2 col-xl-1 text-center mb-3" v-for="item in fixtures">
-                    <div class="fixtureItem" @click="selectFixture(item.i)"
+                    <div class="fixtureItem p-2" @click="selectFixture(item.i)"
                         v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
-                        {{item.i}}<br>
-                        {{item.universe}}:{{item.address}}
+                        <h5 class="mb-0 pb-2">100%</h5>
+                        {{item.name}} ({{item.universe}}:{{item.address}})
                     </div>
                 </div>
             </div>

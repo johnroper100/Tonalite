@@ -101,6 +101,7 @@ struct FixtureParameter {
 struct Fixture {
     int universe = 4;
     int address = 512;
+    string name = "Source Four";
     unordered_map<string, FixtureParameter> parameters;
 };
 
@@ -161,6 +162,7 @@ json getFixtures() {
         fItem["i"] = it.first;
         fItem["universe"] = it.second.universe;
         fItem["address"] = it.second.address;
+        fItem["name"] = it.second.name;
         fItem["parameters"] = {};
         fItem["x"] = 0;
         fItem["y"] = 0;
