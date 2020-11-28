@@ -209,14 +209,20 @@ void webThread() {
                       infile.open("index.html");
                       string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
                       res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(str);
+                      infile.close();
                   } else {
                       string_view filename = req->getUrl();
                       filename.remove_prefix(1);
                       string s = {filename.begin(), filename.end()};
                       ifstream infile;
                       infile.open(s);
-                      string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
-                      res->end(str);
+                      if (infile.fail() == false) {
+                          string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
+                          res->end(str);
+                      } else {
+                          res->end("");
+                      }
+                      infile.close();
                   }
               })
         .ws<PerSocketData>("/*", {.open = [](auto *ws) {

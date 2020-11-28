@@ -153,7 +153,7 @@
                     </div>
                 </div>
             </div>
-            <div class="sub-header p-2">
+            <div class="sub-header p-2" v-if="tab == 'fixtures'">
                 <select class="form-control d-inline-block" v-model="fixturesTab">
                     <option value="fixturesList">Fixture List</option>
                     <option value="fixturesGrid" class="d-none d-md-inline-block">Fixture Grid</option>
@@ -176,7 +176,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid" v-if="tab == 'fixtures'">
             <grid-layout :layout.sync="fixtures" :col-num="24" :row-height="25" :vertical-compact="false"
                 :is-resizable="fixtureGridLayout" :is-draggable="fixtureGridLayout"
                 v-if="fixturesTab == 'fixturesGrid'">
@@ -201,16 +201,16 @@
         </div>
         <div class="fixed-bottom">
             <div class="row header text-center pl-2 pr-2">
-                <div class="col-3 tab active pt-3 pb-3">
+                <div class="col-3 tab pt-3 pb-3" @click="tab = 'fixtures'" v-bind:class="{ active: tab == 'fixtures' }">
                     Fixtures
                 </div>
-                <div class="col-3 tab pt-3 pb-3">
+                <div class="col-3 tab pt-3 pb-3" @click="tab = 'cues'" v-bind:class="{ active: tab == 'cues' }">
                     Cues
                 </div>
-                <div class="col-3 tab pt-3 pb-3">
+                <div class="col-3 tab pt-3 pb-3" @click="tab = 'effects'" v-bind:class="{ active: tab == 'effects' }">
                     Effects
                 </div>
-                <div class="col-3 tab pt-3 pb-3">
+                <div class="col-3 tab pt-3 pb-3" @click="tab = 'presets'" v-bind:class="{ active: tab == 'presets' }">
                     Presets
                 </div>
             </div>
@@ -231,7 +231,8 @@
                 fixturesTab: 'fixturesList',
                 fixtureGridLayout: false,
                 fixtures: [],
-                selectedFixtures: []
+                selectedFixtures: [],
+                tab: "fixtures"
             },
             methods: {
                 selectFixture: function (fixtureID) {
