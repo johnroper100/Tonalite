@@ -247,6 +247,17 @@ int main() {
     FixtureParameter newParameter;
     newFixture.parameters[random_string(5)] = newParameter;
     fixtures[random_string(5)] = newFixture;
+    fixtures[random_string(5)] = newFixture;
+    fixtures[random_string(5)] = newFixture;
+    fixtures[random_string(5)] = newFixture;
+    fixtures[random_string(5)] = newFixture;
+    fixtures[random_string(5)] = newFixture;
+    fixtures[random_string(5)] = newFixture;
+    fixtures[random_string(5)] = newFixture;
+    fixtures[random_string(5)] = newFixture;
+    fixtures[random_string(5)] = newFixture;
+    fixtures[random_string(5)] = newFixture;
+    fixtures[random_string(5)] = newFixture;
 
     thread webThreading(webThread);
     thread tasksThreading(tasksThread);

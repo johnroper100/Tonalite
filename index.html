@@ -177,11 +177,13 @@
                     </div>
                 </grid-item>
             </grid-layout>
-            <div class="row mt-3 pl-2 pr-2" v-if="fixturesTab == 'fixturesList'">
-                <div class="col-6 col-md-3 fixtureItem text-center" v-for="item in fixtures"
-                    @click="selectFixture(item.i)" v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
-                    {{item.i}}<br>
-                    {{item.universe}}:{{item.address}}
+            <div class="row mt-3" v-if="fixturesTab == 'fixturesList'">
+                <div class="col-6 col-md-3 col-lg-2 col-xl-1 text-center mb-3" v-for="item in fixtures">
+                    <div class="fixtureItem" @click="selectFixture(item.i)"
+                        v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
+                        {{item.i}}<br>
+                        {{item.universe}}:{{item.address}}
+                    </div>
                 </div>
             </div>
         </div>
