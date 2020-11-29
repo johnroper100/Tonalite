@@ -4,8 +4,10 @@
 #include <ola/client/ClientWrapper.h>
 #include <ola/io/SelectServer.h>
 
+#include <algorithm>
 #include <atomic>
 #include <cmath>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <mutex>
@@ -16,12 +18,14 @@
 #include <string_view>
 #include <thread>
 #include <unordered_map>
+#include <vector>
 
 #include "App.h"
 #include "json.hpp"
 
 using namespace std;
 using json = nlohmann::json;
+namespace fs = std::filesystem;
 
 template <typename T>
 class ThreadsafeQueue {
@@ -69,7 +73,6 @@ class ThreadsafeQueue {
 
 string random_string(size_t length) {
     const string CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-
     random_device random_device;
     mt19937 generator(random_device());
     uniform_int_distribution<> distribution(0, CHARACTERS.size() - 1);
@@ -114,6 +117,7 @@ mutex door;
 unordered_map<string, Fixture> fixtures;
 unordered_map<string, PerSocketData *> users;
 ThreadsafeQueue<json> tasks;
+json fixtureProfiles;
 
 uint8_t frames[2048] = {0};
 
@@ -183,12 +187,50 @@ json getFixtures() {
     return j;
 }
 
+void getFixtureProfiles() {
+    json file;
+    ifstream infile;
+    string manName;
+    string modeName;
+    string modName;
+
+    infile.open("fixtures/fixtureList.json");
+    if (infile.fail() != true) {
+        infile >> file;
+        infile.close();
+
+        fixtureProfiles = file;
+
+        if (fs::exists("custom-fixtures")) {
+            for (const auto &entry : fs::directory_iterator("custom-fixtures")) {
+                infile.open(entry.path());
+                if (infile.fail() == true) {
+                    infile.close();
+                    continue;
+                }
+                infile >> file;
+                infile.close();
+                manName = file["personalities"][0]["manufacturerName"];
+                modeName = file["personalities"][0]["modelName"];
+                modName = file["personalities"][0]["modeName"];
+                fixtureProfiles[manName][modeName][modName] = entry.path().filename();
+            }
+        }
+    } else {
+        infile.close();
+    }
+}
+
 void sendToAllExcept(string content, string socketID) {
     for (auto &it : users) {
-        if (it.second->userID != socketID) {
+        if (it.first != socketID) {
             it.second->socketItem->send(content, uWS::OpCode::TEXT, true);
         }
     }
+}
+
+void sendTo(string content, string socketID) {
+    users[socketID]->socketItem->send(content, uWS::OpCode::TEXT, true);
 }
 
 void tasksThread() {
@@ -210,6 +252,9 @@ void tasksThread() {
                 fixtures[task["i"]].w = task["w"];
                 door.unlock();
                 sendToAllExcept(task.dump(), task["socketID"]);
+            } else if (task["msgType"] == "getFixtureProfiles") {
+                getFixtureProfiles();
+                sendTo(fixtureProfiles.dump(), task["socketID"]);
             }
         }
     }
@@ -261,6 +306,8 @@ void webThread() {
 
 int main() {
     finished = 0;
+
+    getFixtureProfiles();
 
     Fixture newFixture;
     FixtureParameter newParameter;
