@@ -38,9 +38,8 @@ with open('Carallon.def') as f:
     rangeItem = {}
     stepItem = {}
 
-    fixturesList = {
+    fixturesList = {}
 
-    }
     filename = ""
     needsFade = True
     for line in f.readlines():
@@ -88,7 +87,11 @@ with open('Carallon.def') as f:
                         fixturesList[personality["manufacturerName"]
                                      ][personality["modelName"]] = {}
                     fixturesList[personality["manufacturerName"]
-                                 ][personality["modelName"]][personality["modeName"]] = filename
+                                 ][personality["modelName"]][personality["modeName"]] = {
+                                     "file": filename,
+                                     "dcid": personality["dcid"],
+                                     "modeName": personality["modeName"]
+                                 }
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):
                             print(filename)
@@ -155,7 +158,11 @@ with open('Carallon.def') as f:
                         fixturesList[personality["manufacturerName"]
                                      ][personality["modelName"]] = {}
                     fixturesList[personality["manufacturerName"]
-                                 ][personality["modelName"]][personality["modeName"]] = filename
+                                 ][personality["modelName"]][personality["modeName"]] = {
+                                     "file": filename,
+                                     "dcid": personality["dcid"],
+                                     "modeName": personality["modeName"]
+                                 }
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):
                             print(filename)

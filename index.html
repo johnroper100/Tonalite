@@ -74,8 +74,16 @@
             background-color: #868e96;
         }
 
+        .modal-content {
+            background-color: #495057;
+        }
+
         .dropdown-toggle:hover {
             cursor: pointer;
+        }
+
+        .list-group-item {
+            background-color: #343a40;
         }
 
         .form-control,
@@ -136,6 +144,11 @@
         i {
             vertical-align: middle;
         }
+
+        .profilesList {
+            max-height: 25rem;
+            overflow-y: auto;
+        }
     </style>
 </head>
 
@@ -177,7 +190,7 @@
                     <option value="patch">Patch</option>
                 </select>
                 <div class="float-right d-inline-block">
-                    <button class="btn btn-success" v-if="fixturesTab == 'patch'">
+                    <button class="btn btn-success" v-if="fixturesTab == 'patch'" @click="getFixtureProfiles">
                         <i class="fa-regular fa-circle-plus d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Add Fixture</span>
                     </button>
@@ -244,6 +257,61 @@
                 </div>
             </div>
             <div class="mt-3" v-if="fixturesTab == 'patch'">
+                <div class="modal" id="fixtureModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add Fixture</h5>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa-regular fa-lightbulb"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-2">
+                                    <span v-if="isEmpty(fixtureProfiles) == false"
+                                        @click="clearFixtureProfilesSelection('manufacturers')">
+                                        <span>All Fixtures</span>
+                                    </span>
+                                    <span v-if="fixtureProfilesManufacturer != ''">
+                                        >
+                                        <span
+                                            @click="clearFixtureProfilesSelection('models')">{{fixtureProfilesManufacturer}}</span>
+                                    </span>
+                                    <span v-if="fixtureProfilesModel != '' && fixtureProfilesManufacturer != ''">
+                                        >
+                                        <span>{{fixtureProfilesModel}}</span>
+                                    </span>
+                                    <span v-if="isEmpty(fixtureProfiles) == true">Loading fixture profiles...</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Search"
+                                    v-model="fixtureProfilesSearch">
+
+                                <ul class="list-group mt-3 profilesList">
+                                    <span
+                                        v-if="filteredFixtureProfilesList['objs'].length == 0 && isEmpty(fixtureProfiles) == false && fixtureProfilesSearch != ''"
+                                        class="dark">Nothing matching this search parameter exists.</span>
+                                    <li class="list-group-item " v-for="profile in filteredFixtureProfilesList['objs']"
+                                        @click="addFixture(profile.file, profile.dcid)"
+                                        v-if="filteredFixtureProfilesList['type'] == 'modes'">
+                                        <span v-if="profile.modeName != '-'">{{profile.modeName}}</span>
+                                        <span v-if="profile.modeName == '-'">Default Mode</span>
+                                    </li>
+                                    <li class="list-group-item "
+                                        v-for="manufacturer in filteredFixtureProfilesList['objs']"
+                                        v-if="filteredFixtureProfilesList['type'] == 'manufacturers'"
+                                        @click="setFixtureProfilesSelection(manufacturer, filteredFixtureProfilesList['type'])">
+                                        {{manufacturer}}
+                                    </li>
+                                    <li class="list-group-item " v-for="model in filteredFixtureProfilesList['objs']"
+                                        v-if="filteredFixtureProfilesList['type'] == 'models'"
+                                        @click="setFixtureProfilesSelection(model, filteredFixtureProfilesList['type'])">
+                                        {{model}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-dark">
                         <thead>
@@ -297,13 +365,81 @@
             el: '#app',
             data: {
                 fixtureProfiles: {},
+                fixtureProfilesManufacturer: "",
+                fixtureProfilesModel: "",
+                fixtureProfilesSearch: "",
                 fixturesTab: 'fixturesList',
                 fixtureGridLayout: false,
                 fixtures: [],
                 selectedFixtures: [],
                 tab: "fixtures"
             },
+            computed: {
+                filteredFixtureProfilesList() {
+                    if (this.isEmpty(this.fixtureProfiles) == false) {
+                        if (app.fixtureProfilesManufacturer != "") {
+                            if (app.fixtureProfilesModel != "") {
+                                var keys = Object.values(this.fixtureProfiles[app.fixtureProfilesManufacturer][app.fixtureProfilesModel]);
+                                return {
+                                    'objs': keys.filter(profile => {
+                                        return profile.modeName.toLowerCase().includes(this.fixtureProfilesSearch.toLowerCase());
+                                    }), 'type': 'modes'
+                                };
+                            } else {
+                                var keys = Object.keys(this.fixtureProfiles[app.fixtureProfilesManufacturer]);
+                                return {
+                                    'objs': keys.filter(profile => {
+                                        return profile.toLowerCase().includes(this.fixtureProfilesSearch.toLowerCase());
+                                    }), 'type': 'models'
+                                };
+                            }
+                        } else {
+                            var keys = Object.keys(this.fixtureProfiles);
+                            return {
+                                'objs': keys.filter(profile => {
+                                    return profile.toLowerCase().includes(this.fixtureProfilesSearch.toLowerCase());
+                                }), 'type': 'manufacturers'
+                            };
+                        }
+                    } else {
+                        return { 'objs': [], 'type': 'manufacturers' };
+                    }
+                }
+            },
             methods: {
+                isEmpty: function (obj) {
+                    for (var key in obj) {
+                        if (obj.hasOwnProperty(key))
+                            return false;
+                    }
+                    return true;
+                },
+                clearFixtureProfilesSelection: function (type) {
+                    if (type == 'manufacturers') {
+                        app.fixtureProfilesManufacturer = "";
+                        app.fixtureProfilesModel = "";
+                    } else if (type == 'models') {
+                        app.fixtureProfilesModel = "";
+                    }
+                    app.fixtureProfilesSearch = "";
+                },
+                setFixtureProfilesSelection: function (obj, type) {
+                    if (type == 'manufacturers') {
+                        app.fixtureProfilesManufacturer = obj;
+                    } else if (type == 'models') {
+                        app.fixtureProfilesModel = obj;
+                    }
+                    app.fixtureProfilesSearch = "";
+                },
+                clearFixtureProfilesSelection: function (type) {
+                    if (type == 'manufacturers') {
+                        app.fixtureProfilesManufacturer = "";
+                        app.fixtureProfilesModel = "";
+                    } else if (type == 'models') {
+                        app.fixtureProfilesModel = "";
+                    }
+                    app.fixtureProfilesSearch = "";
+                },
                 selectFixture: function (fixtureID) {
                     if (app.fixtureGridLayout == false) {
                         if (app.selectedFixtures.indexOf(fixtureID) >= 0) {
@@ -330,6 +466,10 @@
                         "w": parseInt(w)
                     }
                     socket.send(JSON.stringify(message));
+                },
+                getFixtureProfiles: function () {
+                    socket.send(JSON.stringify({ "msgType": "getFixtureProfiles" }));
+                    $('#fixtureModal').modal('show');
                 }
             }
         });
