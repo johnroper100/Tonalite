@@ -474,6 +474,9 @@
                 },
                 getFixtureProfiles: function () {
                     socket.send(JSON.stringify({ "msgType": "getFixtureProfiles" }));
+                    app.fixtureProfilesManufacturer = "";
+                    app.fixtureProfilesModel = "";
+                    app.fixtureProfilesSearch = "";
                     $('#fixtureModal').modal('show');
                 }
             }
