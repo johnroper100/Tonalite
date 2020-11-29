@@ -90,8 +90,9 @@ with open('Carallon.def') as f:
                                  ][personality["modelName"]][personality["modeName"]] = {
                                      "file": filename,
                                      "dcid": personality["dcid"],
-                                     "modeName": personality["modeName"]
-                                 }
+                                     "modeName": personality["modeName"],
+                                     "channels": personality["maxOffset"] + 1
+                    }
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):
                             print(filename)
@@ -161,8 +162,9 @@ with open('Carallon.def') as f:
                                  ][personality["modelName"]][personality["modeName"]] = {
                                      "file": filename,
                                      "dcid": personality["dcid"],
-                                     "modeName": personality["modeName"]
-                                 }
+                                     "modeName": personality["modeName"],
+                                     "channels": personality["maxOffset"] + 1
+                    }
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):
                             print(filename)

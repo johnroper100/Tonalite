@@ -51,8 +51,8 @@
 
         .tab:hover {
             cursor: pointer;
-            color: #dee2e6;
-            border-bottom: solid 3px #339af0;
+            color: #dee2e6 !important;
+            border-bottom: solid 3px #1c7ed6 !important;
         }
 
         .tab.active {
@@ -131,10 +131,13 @@
 
         .fixtureItem:hover {
             cursor: pointer;
+            box-shadow: inset 0px 0px 0px 2px #37b24d !important;
+            box-sizing: border-box;
         }
 
         .selected {
-            border: solid 2px #40c057 !important;
+            box-shadow: inset 0px 0px 0px 2px #40c057 !important;
+            box-sizing: border-box;
         }
 
         .fa-stack.small {
@@ -152,6 +155,16 @@
 
         .fixtureProfileText {
             background-color: #40c057;
+        }
+
+        .fixtureProfileText:hover {
+            cursor: pointer;
+            background-color: #37b24d;
+        }
+
+        .fixtureProfileItem:hover {
+            cursor: pointer;
+            background-color: #212529;
         }
     </style>
 </head>
@@ -295,19 +308,22 @@
                                     <span
                                         v-if="filteredFixtureProfilesList['objs'].length == 0 && isEmpty(fixtureProfiles) == false && fixtureProfilesSearch != ''"
                                         class="dark">Nothing matching this search parameter exists.</span>
-                                    <li class="list-group-item " v-for="profile in filteredFixtureProfilesList['objs']"
+                                    <li class="list-group-item fixtureProfileItem"
+                                        v-for="profile in filteredFixtureProfilesList['objs']"
                                         @click="addFixture(profile.file, profile.dcid)"
                                         v-if="filteredFixtureProfilesList['type'] == 'modes'">
                                         <span v-if="profile.modeName != '-'">{{profile.modeName}}</span>
                                         <span v-if="profile.modeName == '-'">Default Mode</span>
+                                        <span class="float-right"><b>Channels:</b> {{profile.channels}}</span>
                                     </li>
-                                    <li class="list-group-item "
+                                    <li class="list-group-item fixtureProfileItem"
                                         v-for="manufacturer in filteredFixtureProfilesList['objs']"
                                         v-if="filteredFixtureProfilesList['type'] == 'manufacturers'"
                                         @click="setFixtureProfilesSelection(manufacturer, filteredFixtureProfilesList['type'])">
                                         {{manufacturer}}
                                     </li>
-                                    <li class="list-group-item " v-for="model in filteredFixtureProfilesList['objs']"
+                                    <li class="list-group-item fixtureProfileItem"
+                                        v-for="model in filteredFixtureProfilesList['objs']"
                                         v-if="filteredFixtureProfilesList['type'] == 'models'"
                                         @click="setFixtureProfilesSelection(model, filteredFixtureProfilesList['type'])">
                                         {{model}}

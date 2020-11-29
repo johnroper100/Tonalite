@@ -216,6 +216,7 @@ void getFixtureProfiles() {
                     fixtureProfiles[manName][modeName][modName] = {};
                     fixtureProfiles[manName][modeName][modName]["filename"] = entry.path().filename();
                     fixtureProfiles[manName][modeName][modName]["dcid"] = it["dcid"];
+                    fixtureProfiles[manName][modeName][modName]["channels"] = it["maxOffset"].get<int>() + 1;
                     fixtureProfiles[manName][modeName][modName]["modeName"] = modName;
                 }
             }
