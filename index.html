@@ -149,6 +149,10 @@
             max-height: 25rem;
             overflow-y: auto;
         }
+
+        .fixtureProfileText {
+            background-color: #868e96;
+        }
     </style>
 </head>
 
@@ -267,21 +271,22 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="mb-2">
+                                <div class="mb-3">
                                     <span v-if="isEmpty(fixtureProfiles) == false"
                                         @click="clearFixtureProfilesSelection('manufacturers')">
-                                        <span>All Fixtures</span>
+                                        <span class="fixtureProfileText p-1">All Fixtures</span>
                                     </span>
                                     <span v-if="fixtureProfilesManufacturer != ''">
                                         >
-                                        <span
+                                        <span class="fixtureProfileText p-1"
                                             @click="clearFixtureProfilesSelection('models')">{{fixtureProfilesManufacturer}}</span>
                                     </span>
                                     <span v-if="fixtureProfilesModel != '' && fixtureProfilesManufacturer != ''">
                                         >
-                                        <span>{{fixtureProfilesModel}}</span>
+                                        <span class="fixtureProfileText p-1">{{fixtureProfilesModel}}</span>
                                     </span>
-                                    <span v-if="isEmpty(fixtureProfiles) == true">Loading fixture profiles...</span>
+                                    <span v-if="isEmpty(fixtureProfiles) == true" class="fixtureProfileText p-1">Loading
+                                        fixture profiles...</span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="Search"
                                     v-model="fixtureProfilesSearch">
