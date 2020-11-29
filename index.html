@@ -151,7 +151,7 @@
         }
 
         .fixtureProfileText {
-            background-color: #868e96;
+            background-color: #40c057;
         }
     </style>
 </head>
@@ -261,33 +261,33 @@
                 </div>
             </div>
             <div class="mt-3" v-if="fixturesTab == 'patch'">
-                <div class="modal" id="fixtureModal">
+                <div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" id="fixtureModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Add Fixture</h5>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
-                                    <i class="fa-regular fa-lightbulb"></i>
+                                    <i class="fa-regular fa-xmark"></i>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="mb-3">
-                                    <span v-if="isEmpty(fixtureProfiles) == false"
-                                        @click="clearFixtureProfilesSelection('manufacturers')">
-                                        <span class="fixtureProfileText p-1">All Fixtures</span>
-                                    </span>
-                                    <span v-if="fixtureProfilesManufacturer != ''">
-                                        >
-                                        <span class="fixtureProfileText p-1"
-                                            @click="clearFixtureProfilesSelection('models')">{{fixtureProfilesManufacturer}}</span>
-                                    </span>
-                                    <span v-if="fixtureProfilesModel != '' && fixtureProfilesManufacturer != ''">
-                                        >
-                                        <span class="fixtureProfileText p-1">{{fixtureProfilesModel}}</span>
-                                    </span>
-                                    <span v-if="isEmpty(fixtureProfiles) == true" class="fixtureProfileText p-1">Loading
-                                        fixture profiles...</span>
-                                </div>
+                                <span v-if="isEmpty(fixtureProfiles) == false"
+                                    @click="clearFixtureProfilesSelection('manufacturers')" class="d-inline-block mb-2">
+                                    <span class="fixtureProfileText p-1">All Fixtures</span>
+                                </span>
+                                <span v-if="fixtureProfilesManufacturer != ''" class="d-inline-block mb-2">
+                                    <i class="fa-thin fa-angle-right"></i>
+                                    <span class="fixtureProfileText p-1"
+                                        @click="clearFixtureProfilesSelection('models')">{{fixtureProfilesManufacturer}}</span>
+                                </span>
+                                <span v-if="fixtureProfilesModel != '' && fixtureProfilesManufacturer != ''"
+                                    class="d-inline-block mb-2">
+                                    <i class="fa-thin fa-angle-right"></i>
+                                    <span class="fixtureProfileText p-1">{{fixtureProfilesModel}}</span>
+                                </span>
+                                <span v-if="isEmpty(fixtureProfiles) == true"
+                                    class="fixtureProfileText p-1 d-inline-block mb-2">Loading
+                                    fixture profiles...</span>
                                 <input type="text" class="form-control" placeholder="Search"
                                     v-model="fixtureProfilesSearch">
 
