@@ -218,11 +218,18 @@ void getFixtureProfiles() {
                     fixtureProfiles[manName][modeName][modName]["dcid"] = it["dcid"];
                     fixtureProfiles[manName][modeName][modName]["channels"] = it["maxOffset"].get<int>() + 1;
                     fixtureProfiles[manName][modeName][modName]["modeName"] = modName;
+                    fixtureProfiles[manName][modeName][modName]["custom"] = true;
                 }
             }
         }
     } else {
         infile.close();
+    }
+}
+
+void sendToAll(string content) {
+    for (auto &it : users) {
+        it.second->socketItem->send(content, uWS::OpCode::TEXT, true);
     }
 }
 
@@ -263,6 +270,33 @@ void tasksThread() {
                 item["msgType"] = "fixtureProfiles";
                 item["profiles"] = fixtureProfiles;
                 sendTo(item.dump(), task["socketID"]);
+            } else if (task["msgType"] == "addFixture") {
+                json file;
+                ifstream infile;
+
+                if (task["custom"] == false) {
+                    infile.open("custom-fixtures/" + task["file"].get<string>());
+                } else {
+                    infile.open("fixtures/" + task["file"].get<string>());
+                }
+
+                if (infile.fail() != true) {
+                    infile >> file;
+                    for (auto &it : file["personalities"]) {
+                        if (it["dcid"] == task["dcid"]) {
+                            for (int i = 0; i < task["number"]; i++) {
+                                Fixture newFixture;
+                                //FixtureParameter newParameter;
+                                //newFixture.parameters[random_string(5)] = newParameter;
+                                newFixture.universe = task["universe"];
+                                newFixture.address = task["address"];
+                                fixtures[random_string(5)] = newFixture;
+                            }
+                        }
+                    }
+                }
+
+                infile.close();
             }
         }
     }

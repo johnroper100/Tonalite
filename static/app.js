@@ -118,6 +118,18 @@ var app = new Vue({
             app.fixtureProfileAddress = 1;
             app.fixtureProfileNumber = 1;
             $('#fixtureModal').modal('show');
+        },
+        addFixture: function() {
+            message = {
+                "msgType": "addFixture",
+                "number": parseInt(app.fixtureProfileNumber),
+                "address": parseInt(app.fixtureProfileAddress),
+                "universe": parseInt(app.fixtureProfileUniverse),
+                "dcid": "",
+                "file": "",
+                "custom": parseInt()
+            }
+            $('#fixtureModal').modal('hide');
         }
     }
 });
