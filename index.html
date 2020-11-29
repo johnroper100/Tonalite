@@ -199,11 +199,12 @@
         </div>
         <div class="container-fluid mb-5" v-if="tab == 'fixtures'">
             <grid-layout :layout.sync="fixtures" :col-num="24" :row-height="25" :vertical-compact="false"
-                :is-resizable="fixtureGridLayout" :is-draggable="fixtureGridLayout"
+                :is-resizable="fixtureGridLayout" :preventCollision="true" :is-draggable="fixtureGridLayout"
                 v-if="fixturesTab == 'fixturesGrid'">
                 <grid-item v-for="item in fixtures" class="fixtureItem text-center"
-                    v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }" :x="item.x" :y="item.y"
-                    :w="item.w" :h="item.h" :i="item.i" :key="item.i">
+                    v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }" :minW="2" , :minH="1" :x="item.x"
+                    :y="item.y" :w="item.w" :h="item.h" :i="item.i" :key="item.i" @moved="moveFixture"
+                    @resized="resizeFixture">
                     <div @click="selectFixture(item.i)" class="h-100">
                         <i class="fa-regular fa-lightbulb d-none d-lg-inline-block"></i>
                         {{item.universe}}:{{item.address}}
@@ -246,6 +247,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="vue-grid-layout.umd.min.js"></script>
     <script>
+        const socket = new WebSocket("ws://" + location.host);
+
         var app = new Vue({
             el: '#app',
             data: {
@@ -265,15 +268,39 @@
                         }
                     }
                 },
+                moveFixture: function (fixtureID, x, y) {
+                    message = {
+                        "msgType": "moveFixture",
+                        "i": fixtureID,
+                        "x": parseInt(x),
+                        "y": parseInt(y)
+                    }
+                    socket.send(JSON.stringify(message));
+                },
+                resizeFixture: function (fixtureID, h, w, hp, wp) {
+                    message = {
+                        "msgType": "resizeFixture",
+                        "i": fixtureID,
+                        "h": parseInt(h),
+                        "w": parseInt(w)
+                    }
+                    socket.send(JSON.stringify(message));
+                }
             }
         });
-
-        const socket = new WebSocket("ws://" + location.host);
 
         socket.addEventListener('message', function (event) {
             msg = JSON.parse(event.data);
             if (msg["msgType"] == "fixtures") {
                 app.fixtures = msg["fixtures"];
+            } else if (msg["msgType"] == "moveFixture") {
+                item = app.fixtures.find(x => x.i === msg["i"]);
+                item.x = msg["x"];
+                item.y = msg["y"];
+            } else if (msg["msgType"] == "resizeFixture") {
+                item = app.fixtures.find(x => x.i === msg["i"]);
+                item.w = msg["w"];
+                item.h = msg["h"];
             }
         });
     </script>

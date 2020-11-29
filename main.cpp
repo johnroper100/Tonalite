@@ -101,6 +101,10 @@ struct FixtureParameter {
 struct Fixture {
     int universe = 4;
     int address = 512;
+    int x = 0;
+    int y = 0;
+    int w = 2;
+    int h = 1;
     string name = "Source Four";
     unordered_map<string, FixtureParameter> parameters;
 };
@@ -164,10 +168,10 @@ json getFixtures() {
         fItem["address"] = it.second.address;
         fItem["name"] = it.second.name;
         fItem["parameters"] = {};
-        fItem["x"] = 0;
-        fItem["y"] = 0;
-        fItem["w"] = 2;
-        fItem["h"] = 1;
+        fItem["x"] = it.second.x;
+        fItem["y"] = it.second.y;
+        fItem["w"] = it.second.w;
+        fItem["h"] = it.second.h;
         for (auto &pi : it.second.parameters) {
             pItem["i"] = pi.first;
             pItem["value"] = pi.second.value;
@@ -194,11 +198,18 @@ void tasksThread() {
         tItem = tasks.pop();
         if (tItem) {
             task = *tItem;
-            sendToAllExcept("{}", task["socketID"]);
-            if (task["msgType"] == "fixtureValue") {
+            if (task["msgType"] == "moveFixture") {
                 lock_guard<mutex> lg(door);
-                fixtures[task["i"]].address = task["value"];
+                fixtures[task["i"]].x = task["x"];
+                fixtures[task["i"]].y = task["y"];
                 door.unlock();
+                sendToAllExcept(task.dump(), task["socketID"]);
+            } else if (task["msgType"] == "resizeFixture") {
+                lock_guard<mutex> lg(door);
+                fixtures[task["i"]].h = task["h"];
+                fixtures[task["i"]].w = task["w"];
+                door.unlock();
+                sendToAllExcept(task.dump(), task["socketID"]);
             }
         }
     }
