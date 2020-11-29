@@ -199,10 +199,10 @@
         </div>
         <div class="container-fluid mb-5" v-if="tab == 'fixtures'">
             <grid-layout :layout.sync="fixtures" :col-num="24" :row-height="25" :vertical-compact="false"
-                :is-resizable="fixtureGridLayout" :preventCollision="true" :is-draggable="fixtureGridLayout"
+                :is-resizable="fixtureGridLayout" :prevent-collision="true" :is-draggable="fixtureGridLayout"
                 v-if="fixturesTab == 'fixturesGrid'">
                 <grid-item v-for="item in fixtures" class="fixtureItem text-center"
-                    v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }" :minW="2" , :minH="1" :x="item.x"
+                    v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }" :min-w="2" :min-h="1" :x="item.x"
                     :y="item.y" :w="item.w" :h="item.h" :i="item.i" :key="item.i" @moved="moveFixture"
                     @resized="resizeFixture">
                     <div @click="selectFixture(item.i)" class="h-100">
