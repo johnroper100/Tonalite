@@ -161,10 +161,9 @@ bool SendData(ola::client::OlaClientWrapper *wrapper) {
 }
 
 json getFixtures() {
-    json j;
+    json j = {};
     json fItem;
     json pItem;
-    j["fixtures"] = {};
     lock_guard<mutex> lg(door);
     for (auto &it : fixtures) {
         fItem["i"] = it.first;
@@ -181,7 +180,7 @@ json getFixtures() {
             pItem["value"] = pi.second.value;
             fItem["parameters"].push_back(pItem);
         }
-        j["fixtures"].push_back(fItem);
+        j.push_back(fItem);
     }
     door.unlock();
     return j;
@@ -254,7 +253,10 @@ void tasksThread() {
                 sendToAllExcept(task.dump(), task["socketID"]);
             } else if (task["msgType"] == "getFixtureProfiles") {
                 getFixtureProfiles();
-                sendTo(fixtureProfiles.dump(), task["socketID"]);
+                json item;
+                item["msgType"] = "fixtureProfiles";
+                item["profiles"] = fixtureProfiles;
+                sendTo(item.dump(), task["socketID"]);
             }
         }
     }
@@ -289,8 +291,9 @@ void webThread() {
             psd->userID = random_string(5);
             users[psd->userID] = psd;
             ws->subscribe("all");
-            json j = getFixtures();
+            json j;
             j["msgType"] = "fixtures";
+            j["fixtures"] = getFixtures();
             ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
             PerSocketData *psd = (PerSocketData *) ws->getUserData();
             json j = json::parse(message);
