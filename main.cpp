@@ -209,10 +209,15 @@ void getFixtureProfiles() {
                 }
                 infile >> file;
                 infile.close();
-                manName = file["personalities"][0]["manufacturerName"];
-                modeName = file["personalities"][0]["modelName"];
-                modName = file["personalities"][0]["modeName"];
-                fixtureProfiles[manName][modeName][modName] = entry.path().filename();
+                for (auto &it : file["personalities"]) {
+                    manName = it["manufacturerName"];
+                    modeName = it["modelName"];
+                    modName = it["modeName"];
+                    fixtureProfiles[manName][modeName][modName] = {};
+                    fixtureProfiles[manName][modeName][modName]["filename"] = entry.path().filename();
+                    fixtureProfiles[manName][modeName][modName]["dcid"] = it["dcid"];
+                    fixtureProfiles[manName][modeName][modName]["modeName"] = modName;
+                }
             }
         }
     } else {
