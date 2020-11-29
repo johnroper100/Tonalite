@@ -1,0 +1,151 @@
+* {
+    border-radius: 0px !important;
+}
+
+*.disabled:hover {
+    cursor: auto;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    background-color: #212529;
+    color: #f8f9fa;
+}
+
+#app {
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #343a40;
+    font-size: 1.2rem;
+}
+
+.sub-header {
+    background-color: #495057;
+}
+
+.tab {
+    text-align: center;
+    color: #adb5bd;
+}
+
+.tab:hover {
+    cursor: pointer;
+    color: #dee2e6 !important;
+    border-bottom: solid 3px #1c7ed6 !important;
+}
+
+.tab.active {
+    border-bottom: solid 3px #228be6;
+    color: #f8f9fa;
+    font-weight: 400;
+}
+
+.brand {
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.menu-dropdown {
+    color: #adb5bd;
+}
+
+.dropdown-menu {
+    background-color: #868e96;
+}
+
+.modal-content {
+    background-color: #495057;
+}
+
+.dropdown-toggle:hover {
+    cursor: pointer;
+}
+
+.list-group-item {
+    background-color: #343a40;
+}
+
+.form-control,
+.form-control:active,
+.form-control:focus,
+.btn,
+.btn:active,
+.btn:focus {
+    background-color: #343a40;
+    color: #f8f9fa !important;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-weight: 300;
+}
+
+select {
+    width: auto !important;
+}
+
+.btn-primary {
+    background-color: #228be6 !important;
+}
+
+.btn-success {
+    background-color: #40c057 !important;
+}
+
+.btn-warning {
+    background-color: #fd7e14 !important;
+}
+
+.btn-danger {
+    background-color: #fa5252 !important;
+}
+
+.inLayout {
+    background-size: 3vw 4vh;
+    background-image: radial-gradient(circle, #868e96 1px, rgba(0, 0, 0, 0) 1px);
+}
+
+.fixtureItem {
+    background-color: #fd7e14;
+}
+
+.fixtureItem:hover {
+    cursor: pointer;
+    box-shadow: inset 0px 0px 0px 2px #37b24d !important;
+    box-sizing: border-box;
+}
+
+.selected {
+    box-shadow: inset 0px 0px 0px 2px #40c057 !important;
+    box-sizing: border-box;
+}
+
+.fa-stack.small {
+    font-size: 0.65em;
+}
+
+i {
+    vertical-align: middle;
+}
+
+.profilesList {
+    max-height: 25rem;
+    overflow-y: auto;
+}
+
+.fixtureProfileText {
+    background-color: #40c057;
+    font-size: 0.9rem;
+}
+
+.fixtureProfileText:hover {
+    cursor: pointer;
+    background-color: #37b24d;
+}
+
+.fixtureProfileItem:hover {
+    cursor: pointer;
+    background-color: #212529;
+}
