@@ -98,6 +98,10 @@ select {
     background-color: #fd7e14 !important;
 }
 
+.text-warning {
+    color: #fd7e14 !important;
+}
+
 .btn-danger {
     background-color: #fa5252 !important;
 }
@@ -111,10 +115,10 @@ select {
     background-color: #fd7e14;
 }
 
-.fixtureItem:hover {
+.fixtureItem:hover,
+.fixturePatchItem:hover {
     cursor: pointer;
-    box-shadow: inset 0px 0px 0px 2px #37b24d !important;
-    box-sizing: border-box;
+
 }
 
 .selected {
@@ -148,4 +152,9 @@ i {
 .fixtureProfileItem:hover {
     cursor: pointer;
     background-color: #212529;
+}
+
+th,
+b {
+    font-weight: 500 !important;
 }

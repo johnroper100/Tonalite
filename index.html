@@ -175,7 +175,8 @@
                                         v-if="filteredFixtureProfilesList['type'] == 'modes'">
                                         <span v-if="profile.modeName != '-'">{{profile.modeName}}</span>
                                         <span v-if="profile.modeName == '-'">Default Mode</span>
-                                        <span class="float-right"><b>Channels:</b> {{profile.channels}}</span>
+                                        <span class="float-right"><b class="text-warning">Channels:</b>
+                                            {{profile.channels}}</span>
                                     </li>
                                     <li class="list-group-item fixtureProfileItem"
                                         v-for="manufacturer in filteredFixtureProfilesList['objs']"
@@ -204,9 +205,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in fixtures" @click="selectFixture(item.i)"
+                            <tr v-for="item in fixtures" class="fixturePatchItem" @click="selectFixture(item.i)"
                                 v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
-                                <th scope="row">{{item.name}}</th>
+                                <td>{{item.name}}</td>
                                 <td>{{item.universe}}</td>
                                 <td>{{item.address}}-{{item.address}}</td>
                             </tr>
