@@ -178,8 +178,12 @@
                 </select>
                 <div class="float-right d-inline-block">
                     <button class="btn btn-success" v-if="fixturesTab == 'patch'">
-                        <i class="fa-regular fa-hexagon-plus d-inline-block fa-lg"></i>
+                        <i class="fa-regular fa-circle-plus d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Add Fixture</span>
+                    </button>
+                    <button class="btn btn-warning" v-if="fixturesTab == 'patch'">
+                        <i class="fa-regular fa-wifi d-inline-block fa-lg"></i>
+                        <span class="d-none d-sm-inline-block">RDM Search</span>
                     </button>
                     <button class="btn btn-danger" v-if="fixturesTab == 'patch'"
                         v-bind:class="{ disabled: selectedFixtures.length == 0 }">
@@ -254,7 +258,7 @@
                                 v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
                                 <th scope="row">{{item.name}}</th>
                                 <td>{{item.universe}}</td>
-                                <td>{{item.address}}</td>
+                                <td>{{item.address}}-{{item.address}}</td>
                             </tr>
                         </tbody>
                     </table>
