@@ -138,6 +138,9 @@ var app = new Vue({
                 "fixtureIDs": app.selectedFixtures
             }
             socket.send(JSON.stringify(message));
+        },
+        rdmSearch: function () {
+            socket.send(JSON.stringify({ "msgType": "rdmSearch" }));
         }
     }
 });

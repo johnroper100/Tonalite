@@ -59,7 +59,7 @@
                         <i class="fa-regular fa-circle-plus d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Add Fixture</span>
                     </button>
-                    <button class="btn btn-warning" v-if="fixturesTab == 'patch'">
+                    <button class="btn btn-warning" v-if="fixturesTab == 'patch'" @click="rdmSearch">
                         <i class="fa-regular fa-wifi d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">RDM Search</span>
                     </button>

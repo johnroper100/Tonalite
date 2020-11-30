@@ -166,8 +166,10 @@ void getFixtureProfiles() {
                     fixtureProfiles[manName][modeName][modName] = {};
                     fixtureProfiles[manName][modeName][modName]["filename"] = entry.path().filename();
                     fixtureProfiles[manName][modeName][modName]["dcid"] = it["dcid"];
-                    fixtureProfiles[manName][modeName][modName]["channels"] = it["maxOffset"].get<int>() + 1;
                     fixtureProfiles[manName][modeName][modName]["modeName"] = modName;
+                    fixtureProfiles[manName][modeName][modName]["channels"] = it["maxOffset"].get<int>() + 1;
+                    fixtureProfiles[manName][modeName][modName]["manufacturerID"] = it["manufacturerID"];
+                    fixtureProfiles[manName][modeName][modName]["deviceID"] = it["deviceID"];
                     fixtureProfiles[manName][modeName][modName]["custom"] = 1;
                 }
             }
@@ -195,18 +197,24 @@ void sendTo(string content, string socketID) {
     users[socketID]->socketItem->send(content, uWS::OpCode::TEXT, true);
 }
 
-void UIDList(const ola::client::Result &result, const ola::rdm::UIDSet &uids) {
-    ola::rdm::UIDSet::Iterator i;
-    for (i = uids.Begin(); i != uids.End(); ++i) {
-        cout << (*i).ManufacturerId() << " " << (*i).DeviceId() << endl;
+void RDMSearchCallback(const ola::client::Result &result, const ola::rdm::UIDSet &uids) {
+    if (result.Success() == true) {
+        ola::rdm::UIDSet::Iterator i;
+        for (i = uids.Begin(); i != uids.End(); ++i) {
+            for (auto &man : fixtureProfiles) {
+                for (auto &mod : man) {
+                    for (auto &mode : mod) {
+                        if (mode["manufacturerID"] == (*i).ManufacturerId() && mode["deviceID"] == (*i).DeviceId()) {
+                            cout << mode["filename"] << endl;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 void tasksThread(ola::client::OlaClientWrapper *wrapper) {
-    wrapper->GetClient()->RunDiscovery(
-        1,
-        ola::client::DISCOVERY_FULL,
-        ola::NewSingleCallback(&UIDList));
     optional<json> tItem;
     json task;
     while (finished == 0) {
@@ -272,6 +280,9 @@ void tasksThread(ola::client::OlaClientWrapper *wrapper) {
                 item["msgType"] = "fixtures";
                 item["fixtures"] = getFixtures();
                 sendToAll(item.dump());
+            } else if (task["msgType"] == "rdmSearch") {
+                getFixtureProfiles();
+                wrapper->GetClient()->RunDiscovery(1, ola::client::DISCOVERY_FULL, ola::NewSingleCallback(&RDMSearchCallback));
             }
         }
     }
