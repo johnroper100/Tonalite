@@ -92,7 +92,7 @@ with open('Carallon.def') as f:
                                      "dcid": personality["dcid"],
                                      "modeName": personality["modeName"],
                                      "channels": personality["maxOffset"] + 1,
-                                     "custom": False
+                                     "custom": 0
                     }
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):
@@ -165,7 +165,7 @@ with open('Carallon.def') as f:
                                      "dcid": personality["dcid"],
                                      "modeName": personality["modeName"],
                                      "channels": personality["maxOffset"] + 1,
-                                     "custom": False
+                                     "custom": 0
                     }
                     if debugPrint == True:
                         if os.path.exists("../fixtures/"+filename):

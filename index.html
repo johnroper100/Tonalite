@@ -171,7 +171,7 @@
                                         class="dark">Nothing matching this search parameter exists.</span>
                                     <li class="list-group-item fixtureProfileItem"
                                         v-for="profile in filteredFixtureProfilesList['objs']"
-                                        @click="addFixture(profile.file, profile.dcid)"
+                                        @click="addFixture(profile.dcid, profile.file, profile.custom)"
                                         v-if="filteredFixtureProfilesList['type'] == 'modes'">
                                         <span v-if="profile.modeName != '-'">{{profile.modeName}}</span>
                                         <span v-if="profile.modeName == '-'">Default Mode</span>

@@ -119,16 +119,17 @@ var app = new Vue({
             app.fixtureProfileNumber = 1;
             $('#fixtureModal').modal('show');
         },
-        addFixture: function() {
+        addFixture: function(dcid, file, custom) {
             message = {
                 "msgType": "addFixture",
                 "number": parseInt(app.fixtureProfileNumber),
                 "address": parseInt(app.fixtureProfileAddress),
                 "universe": parseInt(app.fixtureProfileUniverse),
-                "dcid": "",
-                "file": "",
-                "custom": parseInt()
+                "dcid": dcid,
+                "file": file,
+                "custom": parseInt(custom)
             }
+            socket.send(JSON.stringify(message));
             $('#fixtureModal').modal('hide');
         }
     }
@@ -148,5 +149,7 @@ socket.addEventListener('message', function (event) {
         item.h = msg["h"];
     } else if (msg["msgType"] == "fixtureProfiles") {
         app.fixtureProfiles = msg["profiles"];
+    } else if (msg["msgType"] == "addFixtureResponse") {
+        app.fixtures.push(msg["fixture"]);
     }
 });
