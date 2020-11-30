@@ -147,6 +147,8 @@ socket.addEventListener('message', function (event) {
     if (msg["msgType"] == "fixtures") {
         if (msg["fixtures"] != null) {
             app.fixtures = msg["fixtures"];
+        } else {
+            app.fixtures = [];
         }
     } else if (msg["msgType"] == "moveFixture") {
         item = app.fixtures.find(x => x.i === msg["i"]);
