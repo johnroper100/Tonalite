@@ -211,6 +211,9 @@
                                 <td>{{item.universe}}</td>
                                 <td>{{item.address}}-{{item.maxOffset+item.address}}</td>
                             </tr>
+                            <tr v-if="fixtures.length == 0">
+                                <td>No fixtures are currently patched.</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

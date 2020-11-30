@@ -195,7 +195,18 @@ void sendTo(string content, string socketID) {
     users[socketID]->socketItem->send(content, uWS::OpCode::TEXT, true);
 }
 
-void tasksThread() {
+void UIDList(const ola::client::Result &result, const ola::rdm::UIDSet &uids) {
+    ola::rdm::UIDSet::Iterator i;
+    for (i = uids.Begin(); i != uids.End(); ++i) {
+        cout << (*i).ToString() << " ";
+    }
+}
+
+void tasksThread(ola::client::OlaClientWrapper *wrapper) {
+    wrapper->GetClient()->RunDiscovery(
+        1,
+        ola::client::DISCOVERY_FULL,
+        ola::NewSingleCallback(&UIDList));
     optional<json> tItem;
     json task;
     while (finished == 0) {
@@ -316,15 +327,16 @@ int main() {
 
     getFixtureProfiles();
 
-    thread webThreading(webThread);
-    thread tasksThreading(tasksThread);
-
     ola::InitLogging(ola::OLA_LOG_WARN, ola::OLA_LOG_STDERR);
     ola::client::OlaClientWrapper wrapper;
     if (!wrapper.Setup()) {
         cerr << "Setup failed" << endl;
         exit(1);
     }
+
+    thread webThreading(webThread);
+    thread tasksThreading(tasksThread, &wrapper);
+
     ola::io::SelectServer *ss = wrapper.GetSelectServer();
     ss->RegisterRepeatingTimeout(25, ola::NewCallback(&SendData, &wrapper));
     ss->Run();
