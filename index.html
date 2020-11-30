@@ -209,7 +209,7 @@
                                 v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
                                 <td>{{item.name}}</td>
                                 <td>{{item.universe}}</td>
-                                <td>{{item.address}}-{{item.address}}</td>
+                                <td>{{item.address}}-{{item.maxOffset+item.address}}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -119,7 +119,7 @@ var app = new Vue({
             app.fixtureProfileNumber = 1;
             $('#fixtureModal').modal('show');
         },
-        addFixture: function(dcid, file, custom) {
+        addFixture: function (dcid, file, custom) {
             message = {
                 "msgType": "addFixture",
                 "number": parseInt(app.fixtureProfileNumber),
@@ -138,7 +138,9 @@ var app = new Vue({
 socket.addEventListener('message', function (event) {
     msg = JSON.parse(event.data);
     if (msg["msgType"] == "fixtures") {
-        app.fixtures = msg["fixtures"];
+        if (msg["fixtures"] != null) {
+            app.fixtures = msg["fixtures"];
+        }
     } else if (msg["msgType"] == "moveFixture") {
         item = app.fixtures.find(x => x.i === msg["i"]);
         item.x = msg["x"];

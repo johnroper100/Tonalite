@@ -4,25 +4,39 @@
 #include <string>
 #include <unordered_map>
 
-using namespace std;
+#include "json.hpp"
 
-struct FixtureParameter {
+using namespace std;
+using json = nlohmann::json;
+
+class FixtureParameter {
+   public:
     int coarse = 0;
     int fine = -1;
     double value = 0.0;
     int getDMXValue();
 };
 
-struct Fixture {
+class Fixture {
+   public:
+    string i;
+    string name;
     int universe = 1;
     int address = 1;
-    string i;
     int x = 0;
     int y = 0;
     int w = 2;
     int h = 1;
-    string name;
+
+    bool hasIntensity;
+    string manufacturerName;
+    int maxOffset;
+    string modeName;
+    string modelName;
     unordered_map<string, FixtureParameter> parameters;
+    Fixture();
+    Fixture(json profile, json task, int createIndex);
+    json asJson();
 };
 
 #endif

@@ -21,8 +21,9 @@
 #include <vector>
 
 #include "App.h"
-#include "json.hpp"
 #include "Fixture.hpp"
+#include "Utilities.hpp"
+#include "json.hpp"
 
 using namespace std;
 using json = nlohmann::json;
@@ -71,21 +72,6 @@ class ThreadsafeQueue {
         queue_.push(item);
     }
 };
-
-string random_string(size_t length) {
-    const string CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    random_device random_device;
-    mt19937 generator(random_device());
-    uniform_int_distribution<> distribution(0, CHARACTERS.size() - 1);
-
-    string random_string;
-
-    for (size_t i = 0; i < length; ++i) {
-        random_string += CHARACTERS[distribution(generator)];
-    }
-
-    return random_string;
-}
 
 struct PerSocketData {
     uWS::WebSocket<0, 1> *socketItem;
@@ -140,31 +126,11 @@ bool SendData(ola::client::OlaClientWrapper *wrapper) {
     return true;
 }
 
-json getFixture(Fixture fixture) {
-    json fItem;
-    json pItem;
-    fItem["i"] = fixture.i;
-    fItem["universe"] = fixture.universe;
-    fItem["address"] = fixture.address;
-    fItem["name"] = fixture.name;
-    fItem["parameters"] = {};
-    fItem["x"] = fixture.x;
-    fItem["y"] = fixture.y;
-    fItem["w"] = fixture.w;
-    fItem["h"] = fixture.h;
-    for (auto &pi : fixture.parameters) {
-        pItem["i"] = pi.first;
-        pItem["value"] = pi.second.value;
-        fItem["parameters"].push_back(pItem);
-    }
-    return fItem;
-}
-
 json getFixtures() {
     json j = {};
     lock_guard<mutex> lg(door);
     for (auto &it : fixtures) {
-        j.push_back(getFixture(it.second));
+        j.push_back(it.second.asJson());
     }
     door.unlock();
     return j;
@@ -209,15 +175,6 @@ void getFixtureProfiles() {
     } else {
         infile.close();
     }
-}
-
-Fixture generateFixture(json profile, json task, int createIndex) {
-    Fixture newFixture;
-    newFixture.i = random_string(5);
-    newFixture.name = profile["modelName"];
-    newFixture.universe = task["universe"];
-    newFixture.address = task["address"].get<int>() + ((profile["maxOffset"].get<int>()+1)*createIndex);
-    return newFixture;
 }
 
 void sendToAll(string content) {
@@ -278,7 +235,7 @@ void tasksThread() {
                     for (auto &it : file["personalities"]) {
                         if (it["dcid"] == task["dcid"]) {
                             for (int i = 0; i < task["number"]; i++) {
-                                Fixture newFixture = generateFixture(it, task, i);
+                                Fixture newFixture(it, task, i);
 
                                 lock_guard<mutex> lg(door);
                                 fixtures[newFixture.i] = newFixture;
@@ -286,7 +243,7 @@ void tasksThread() {
 
                                 json msg;
                                 msg["msgType"] = "addFixtureResponse";
-                                msg["fixture"] = getFixture(newFixture);
+                                msg["fixture"] = newFixture.asJson();
                                 sendToAll(msg.dump());
                             }
                         }
@@ -347,12 +304,6 @@ int main() {
     finished = 0;
 
     getFixtureProfiles();
-
-    Fixture newFixture;
-    FixtureParameter newParameter;
-    newFixture.parameters[random_string(5)] = newParameter;
-    fixtures[random_string(5)] = newFixture;
-    fixtures[random_string(5)] = newFixture;
 
     thread webThreading(webThread);
     thread tasksThreading(tasksThread);
