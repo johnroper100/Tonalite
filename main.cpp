@@ -198,7 +198,7 @@ void sendTo(string content, string socketID) {
 void UIDList(const ola::client::Result &result, const ola::rdm::UIDSet &uids) {
     ola::rdm::UIDSet::Iterator i;
     for (i = uids.Begin(); i != uids.End(); ++i) {
-        cout << (*i).ToString() << " ";
+        cout << (*i).ManufacturerId() << " " << (*i).DeviceId() << endl;
     }
 }
 

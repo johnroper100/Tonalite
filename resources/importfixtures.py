@@ -26,6 +26,17 @@ def slugify(value):
     return re.sub(r'[-\s]+', '-', value)
 
 
+RDMS = {}
+
+with open('RDMMODELS.def') as f:
+    for line in f.readlines():
+        if len(line) > 0:
+            props = line.split(" ")
+            RDMS[props[5]] = {
+                "manufacturer": int(props[0]),
+                "device": int(props[6])
+            }
+
 with open('Carallon.def') as f:
     fixtureProfile = {
         "date": "",
@@ -80,6 +91,9 @@ with open('Carallon.def') as f:
                                 param["fadeWithIntensity"] = True
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
+                    if personality["dcid"] in RDMS:
+                        personality["manufacturerID"] = RDMS[personality["dcid"]]["manufacturer"]
+                        personality["deviceID"] = RDMS[personality["dcid"]]["device"]
                     fixtureProfile["personalities"].append(personality)
                     if not personality["manufacturerName"] in fixturesList:
                         fixturesList[personality["manufacturerName"]] = {}
@@ -92,6 +106,8 @@ with open('Carallon.def') as f:
                                      "dcid": personality["dcid"],
                                      "modeName": personality["modeName"],
                                      "channels": personality["maxOffset"] + 1,
+                                     "manufacturerID": personality["manufacturerID"],
+                                     "deviceID": personality["deviceID"],
                                      "custom": 0
                     }
                     if debugPrint == True:
@@ -153,6 +169,9 @@ with open('Carallon.def') as f:
                                 param["fadeWithIntensity"] = True
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
+                    if personality["dcid"] in RDMS:
+                        personality["manufacturerID"] = RDMS[personality["dcid"]]["manufacturer"]
+                        personality["deviceID"] = RDMS[personality["dcid"]]["device"]
                     fixtureProfile["personalities"].append(personality)
                     if not personality["manufacturerName"] in fixturesList:
                         fixturesList[personality["manufacturerName"]] = {}
@@ -165,6 +184,8 @@ with open('Carallon.def') as f:
                                      "dcid": personality["dcid"],
                                      "modeName": personality["modeName"],
                                      "channels": personality["maxOffset"] + 1,
+                                     "manufacturerID": personality["manufacturerID"],
+                                     "deviceID": personality["deviceID"],
                                      "custom": 0
                     }
                     if debugPrint == True:
@@ -177,6 +198,8 @@ with open('Carallon.def') as f:
                 personality = {
                     "dcid": "",
                     "colortable": "",
+                    "deviceID": None,
+                    "manufacturerID": None,
                     "hasIntensity": False,
                     "manufacturerName": "",
                     "maxOffset": 0,
