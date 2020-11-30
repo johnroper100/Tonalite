@@ -131,6 +131,13 @@ var app = new Vue({
             }
             socket.send(JSON.stringify(message));
             $('#fixtureModal').modal('hide');
+        },
+        removeFixtures: function () {
+            message = {
+                "msgType": "removeFixtures",
+                "fixtureIDs": app.selectedFixtures
+            }
+            socket.send(JSON.stringify(message));
         }
     }
 });

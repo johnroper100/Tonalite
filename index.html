@@ -63,7 +63,7 @@
                         <i class="fa-regular fa-wifi d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">RDM Search</span>
                     </button>
-                    <button class="btn btn-danger" v-if="fixturesTab == 'patch'"
+                    <button class="btn btn-danger" v-if="fixturesTab == 'patch'" @click="removeFixtures"
                         v-bind:class="{ disabled: selectedFixtures.length == 0 }">
                         <i class="fa-regular fa-trash-can d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Delete</span>

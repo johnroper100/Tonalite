@@ -250,6 +250,17 @@ void tasksThread() {
                     }
                 }
                 infile.close();
+            } else if (task["msgType"] == "removeFixtures") {
+                lock_guard<mutex> lg(door);
+                for (auto &id : task["fixtureIDs"]) {
+                    fixtures.erase(id);
+                }
+                door.unlock();
+
+                json item;
+                item["msgType"] = "fixtures";
+                item["fixtures"] = getFixtures();
+                sendToAll(item.dump());
             }
         }
     }
