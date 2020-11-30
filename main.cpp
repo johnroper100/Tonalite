@@ -179,6 +179,38 @@ void getFixtureProfiles() {
     }
 }
 
+void addFixture(int custom, string file, string dcid, int universe, int address, int number) {
+    json file;
+    ifstream infile;
+
+    if (custom == 1) {
+        infile.open("custom-fixtures/" + file);
+    } else {
+        infile.open("fixtures/" + file);
+    }
+
+    if (infile.fail() != true) {
+        infile >> file;
+        for (auto &it : file["personalities"]) {
+            if (it["dcid"] == dcid) {
+                for (int i = 0; i < number; i++) {
+                    Fixture newFixture(it, universe, address, i);
+
+                    lock_guard<mutex> lg(door);
+                    fixtures[newFixture.i] = newFixture;
+                    door.unlock();
+
+                    json msg;
+                    msg["msgType"] = "addFixtureResponse";
+                    msg["fixture"] = newFixture.asJson();
+                    sendToAll(msg.dump());
+                }
+            }
+        }
+    }
+    infile.close();
+}
+
 void sendToAll(string content) {
     for (auto &it : users) {
         it.second->socketItem->send(content, uWS::OpCode::TEXT, true);
@@ -240,35 +272,7 @@ void tasksThread(ola::client::OlaClientWrapper *wrapper) {
                 item["profiles"] = fixtureProfiles;
                 sendTo(item.dump(), task["socketID"]);
             } else if (task["msgType"] == "addFixture") {
-                json file;
-                ifstream infile;
-
-                if (task["custom"] == 1) {
-                    infile.open("custom-fixtures/" + task["file"].get<string>());
-                } else {
-                    infile.open("fixtures/" + task["file"].get<string>());
-                }
-
-                if (infile.fail() != true) {
-                    infile >> file;
-                    for (auto &it : file["personalities"]) {
-                        if (it["dcid"] == task["dcid"]) {
-                            for (int i = 0; i < task["number"]; i++) {
-                                Fixture newFixture(it, task, i);
-
-                                lock_guard<mutex> lg(door);
-                                fixtures[newFixture.i] = newFixture;
-                                door.unlock();
-
-                                json msg;
-                                msg["msgType"] = "addFixtureResponse";
-                                msg["fixture"] = newFixture.asJson();
-                                sendToAll(msg.dump());
-                            }
-                        }
-                    }
-                }
-                infile.close();
+                addFixture(task["custom"], task["file"], task["dcid"], task["universe"], task["address"], task["number"]);
             } else if (task["msgType"] == "removeFixtures") {
                 lock_guard<mutex> lg(door);
                 for (auto &id : task["fixtureIDs"]) {

@@ -41,11 +41,11 @@ json Fixture::asJson() {
 Fixture::Fixture() {
 }
 
-Fixture::Fixture(json profile, json task, int createIndex) {
+Fixture::Fixture(json profile, int universe, int address, int createIndex) {
     i = random_string(5);
     name = profile["modelName"];
-    universe = task["universe"];
-    address = task["address"].get<int>() + ((profile["maxOffset"].get<int>() + 1) * createIndex);
+    universe = universe;
+    address = address + ((profile["maxOffset"].get<int>() + 1) * createIndex);
 
     hasIntensity = profile["hasIntensity"];
     manufacturerName = profile["manufacturerName"];

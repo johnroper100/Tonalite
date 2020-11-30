@@ -35,7 +35,7 @@ class Fixture {
     string modelName;
     unordered_map<string, FixtureParameter> parameters;
     Fixture();
-    Fixture(json profile, json task, int createIndex);
+    Fixture(json profile, int universe, int address, int createIndex);
     json asJson();
 };
 
