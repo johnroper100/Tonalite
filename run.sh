@@ -8,4 +8,4 @@ ola_patch -d 7 -p 1 -u 2
 ola_patch -d 7 -p 2 -u 3
 ola_patch -d 7 -p 3 -u 4
 
-./tonalite
+./build/tonalite

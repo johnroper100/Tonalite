@@ -22,6 +22,7 @@
 
 #include "App.h"
 #include "json.hpp"
+#include "Fixture.hpp"
 
 using namespace std;
 using json = nlohmann::json;
@@ -91,27 +92,6 @@ struct PerSocketData {
     string userID;
 };
 
-struct FixtureParameter {
-    int coarse = 0;
-    int fine = -1;
-    double value = 0.0;
-
-    int getDMXValue() {
-        return ceil(65535.0 * value);
-    }
-};
-
-struct Fixture {
-    int universe = 4;
-    int address = 512;
-    int x = 0;
-    int y = 0;
-    int w = 2;
-    int h = 1;
-    string name = "Source Four";
-    unordered_map<string, FixtureParameter> parameters;
-};
-
 atomic<int> finished;
 mutex door;
 unordered_map<string, Fixture> fixtures;
@@ -160,27 +140,31 @@ bool SendData(ola::client::OlaClientWrapper *wrapper) {
     return true;
 }
 
-json getFixtures() {
-    json j = {};
+json getFixture(Fixture fixture) {
     json fItem;
     json pItem;
+    fItem["i"] = fixture.i;
+    fItem["universe"] = fixture.universe;
+    fItem["address"] = fixture.address;
+    fItem["name"] = fixture.name;
+    fItem["parameters"] = {};
+    fItem["x"] = fixture.x;
+    fItem["y"] = fixture.y;
+    fItem["w"] = fixture.w;
+    fItem["h"] = fixture.h;
+    for (auto &pi : fixture.parameters) {
+        pItem["i"] = pi.first;
+        pItem["value"] = pi.second.value;
+        fItem["parameters"].push_back(pItem);
+    }
+    return fItem;
+}
+
+json getFixtures() {
+    json j = {};
     lock_guard<mutex> lg(door);
     for (auto &it : fixtures) {
-        fItem["i"] = it.first;
-        fItem["universe"] = it.second.universe;
-        fItem["address"] = it.second.address;
-        fItem["name"] = it.second.name;
-        fItem["parameters"] = {};
-        fItem["x"] = it.second.x;
-        fItem["y"] = it.second.y;
-        fItem["w"] = it.second.w;
-        fItem["h"] = it.second.h;
-        for (auto &pi : it.second.parameters) {
-            pItem["i"] = pi.first;
-            pItem["value"] = pi.second.value;
-            fItem["parameters"].push_back(pItem);
-        }
-        j.push_back(fItem);
+        j.push_back(getFixture(it.second));
     }
     door.unlock();
     return j;
@@ -218,13 +202,22 @@ void getFixtureProfiles() {
                     fixtureProfiles[manName][modeName][modName]["dcid"] = it["dcid"];
                     fixtureProfiles[manName][modeName][modName]["channels"] = it["maxOffset"].get<int>() + 1;
                     fixtureProfiles[manName][modeName][modName]["modeName"] = modName;
-                    fixtureProfiles[manName][modeName][modName]["custom"] = true;
+                    fixtureProfiles[manName][modeName][modName]["custom"] = 1;
                 }
             }
         }
     } else {
         infile.close();
     }
+}
+
+Fixture generateFixture(json profile, json task, int createIndex) {
+    Fixture newFixture;
+    newFixture.i = random_string(5);
+    newFixture.name = profile["modelName"];
+    newFixture.universe = task["universe"];
+    newFixture.address = task["address"].get<int>() + ((profile["maxOffset"].get<int>()+1)*createIndex);
+    return newFixture;
 }
 
 void sendToAll(string content) {
@@ -274,7 +267,7 @@ void tasksThread() {
                 json file;
                 ifstream infile;
 
-                if (task["custom"] == false) {
+                if (task["custom"] == 1) {
                     infile.open("custom-fixtures/" + task["file"].get<string>());
                 } else {
                     infile.open("fixtures/" + task["file"].get<string>());
@@ -285,17 +278,20 @@ void tasksThread() {
                     for (auto &it : file["personalities"]) {
                         if (it["dcid"] == task["dcid"]) {
                             for (int i = 0; i < task["number"]; i++) {
-                                Fixture newFixture;
-                                //FixtureParameter newParameter;
-                                //newFixture.parameters[random_string(5)] = newParameter;
-                                newFixture.universe = task["universe"];
-                                newFixture.address = task["address"];
-                                fixtures[random_string(5)] = newFixture;
+                                Fixture newFixture = generateFixture(it, task, i);
+
+                                lock_guard<mutex> lg(door);
+                                fixtures[newFixture.i] = newFixture;
+                                door.unlock();
+
+                                json msg;
+                                msg["msgType"] = "addFixtureResponse";
+                                msg["fixture"] = getFixture(newFixture);
+                                sendToAll(msg.dump());
                             }
                         }
                     }
                 }
-
                 infile.close();
             }
         }
@@ -355,16 +351,6 @@ int main() {
     Fixture newFixture;
     FixtureParameter newParameter;
     newFixture.parameters[random_string(5)] = newParameter;
-    fixtures[random_string(5)] = newFixture;
-    fixtures[random_string(5)] = newFixture;
-    fixtures[random_string(5)] = newFixture;
-    fixtures[random_string(5)] = newFixture;
-    fixtures[random_string(5)] = newFixture;
-    fixtures[random_string(5)] = newFixture;
-    fixtures[random_string(5)] = newFixture;
-    fixtures[random_string(5)] = newFixture;
-    fixtures[random_string(5)] = newFixture;
-    fixtures[random_string(5)] = newFixture;
     fixtures[random_string(5)] = newFixture;
     fixtures[random_string(5)] = newFixture;
 

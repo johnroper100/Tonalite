@@ -11,7 +11,7 @@ find_package(PkgConfig REQUIRED)
 
 include_directories(${ZLIB_INCLUDE_DIRS})
 
-add_executable(tonalite main.cpp)
+add_executable(tonalite main.cpp Fixture.cpp)
 
 pkg_check_modules(tonalite "libola")
 
@@ -32,11 +32,3 @@ target_include_directories(tonalite PUBLIC
 )
 
 target_link_libraries(tonalite ${CMAKE_SOURCE_DIR}/uWebSockets/uSockets/uSockets.a)
-
-configure_file(index.html index.html COPYONLY)
-configure_file(static/vue-grid-layout.umd.min.js static/vue-grid-layout.umd.min.js COPYONLY)
-configure_file(static/vue-grid-layout.umd.min.js.map static/vue-grid-layout.umd.min.js.map COPYONLY)
-configure_file(static/all.min.css static/all.min.css COPYONLY)
-configure_file(static/style.css static/style.css COPYONLY)
-configure_file(static/app.js static/app.js COPYONLY)
-configure_file(run.sh run.sh COPYONLY)
