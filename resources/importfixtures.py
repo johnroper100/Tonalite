@@ -61,6 +61,8 @@ with open('Carallon.def') as f:
                         command["steps"].append(stepItem)
                         stepItem = {}
                     if command != {}:
+                        if "commands" not in personality:
+                            personality["commands"] = []
                         personality["commands"].append(command)
                         command = {}
                     if parameter != {}:
@@ -141,6 +143,8 @@ with open('Carallon.def') as f:
                         command["steps"].append(stepItem)
                         stepItem = {}
                     if command != {}:
+                        if "commands" not in personality:
+                            personality["commands"] = []
                         personality["commands"].append(command)
                         command = {}
                     if parameter != {}:
@@ -205,7 +209,7 @@ with open('Carallon.def') as f:
             if "$$MANUFACTURER" in line:
                 personality = {
                     "dcid": "",
-                    "colortable": "",
+                    #"colortable": "",
                     "deviceID": None,
                     "manufacturerID": None,
                     "hasIntensity": False,
@@ -214,7 +218,7 @@ with open('Carallon.def') as f:
                     "modeName": "",
                     "modelName": "",
                     "parameters": [],
-                    "commands": []
+                    #"commands": []
                 }
                 personality["manufacturerName"] = line.partition("$$MANUFACTURER")[
                     2].strip()
@@ -320,6 +324,8 @@ with open('Carallon.def') as f:
                     if command != {}:
                         if stepItem != {}:
                             command["steps"].append(stepItem)
+                        if "commands" not in personality:
+                            personality["commands"] = []
                         personality["commands"].append(command)
                         stepItem = {}
                         command = {}
