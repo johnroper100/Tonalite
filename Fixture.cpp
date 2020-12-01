@@ -56,8 +56,19 @@ Fixture::Fixture(json profile, int universe, int address, int createIndex) {
     for (auto &pi : profile["parameters"]) {
         FixtureParameter newParam;
         newParam.i = random_string(10);
+
         newParam.coarse = pi["coarse"];
+        if (pi.contains("fine")) {
+            newParam.fine = pi["fine"];
+        }
         newParam.fadeWithIntensity = pi["fadeWithIntensity"];
+        newParam.highlight = pi["highlight"];
+        newParam.home = pi["home"];
+        newParam.invert = pi["invert"];
+        newParam.name = pi["name"];
+        newParam.size = pi["size"];
+        newParam.type = pi["type"];
+
         parameters[newParam.i] = newParam;
     }
 }

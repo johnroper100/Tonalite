@@ -95,7 +95,8 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     if personality["dcid"] in RDMS:
-                        personality["manufacturerID"] = RDMS[personality["dcid"]]["manufacturer"]
+                        personality["manufacturerID"] = RDMS[personality["dcid"]
+                                                             ]["manufacturer"]
                         personality["deviceID"] = RDMS[personality["dcid"]]["device"]
                     fixtureProfile["personalities"].append(personality)
                     if not personality["manufacturerName"] in fixturesList:
@@ -176,7 +177,8 @@ with open('Carallon.def') as f:
                     personality["parameters"] = sorted(
                         personality["parameters"], key=lambda i: i['coarse'])
                     if personality["dcid"] in RDMS:
-                        personality["manufacturerID"] = RDMS[personality["dcid"]]["manufacturer"]
+                        personality["manufacturerID"] = RDMS[personality["dcid"]
+                                                             ]["manufacturer"]
                         personality["deviceID"] = RDMS[personality["dcid"]]["device"]
                     fixtureProfile["personalities"].append(personality)
                     if not personality["manufacturerName"] in fixturesList:
@@ -261,19 +263,19 @@ with open('Carallon.def') as f:
                         parameter = {}
                     parameter = {
                         "coarse": 0,
-                        #"fine": -1,
+                        # "fine": -1,
                         "fadeWithIntensity": False,
                         "highlight": 0,
                         "home": 0,
-                        #"white": {
+                        # "white": {
                         #    "val": None,
                         #    "temp": ""
-                        #},
+                        # },
                         "invert": False,
                         "name": "",
-                        #"ranges": [],
+                        # "ranges": [],
                         "size": 8,  # 8bit or 16bit
-                        "snap": False,
+                        # "snap": False, (Not imported)
                         "type": 1
                     }
 
