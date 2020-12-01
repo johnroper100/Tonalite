@@ -85,9 +85,29 @@ unordered_map<string, PerSocketData *> users;
 ThreadsafeQueue<json> tasks;
 json fixtureProfiles;
 
+ola::client::OlaClientWrapper wrapper;
+
 uint8_t frames[2048] = {0};
 
-bool SendData(ola::client::OlaClientWrapper *wrapper) {
+void sendToAll(string content) {
+    for (auto &it : users) {
+        it.second->socketItem->send(content, uWS::OpCode::TEXT, true);
+    }
+}
+
+void sendToAllExcept(string content, string socketID) {
+    for (auto &it : users) {
+        if (it.first != socketID) {
+            it.second->socketItem->send(content, uWS::OpCode::TEXT, true);
+        }
+    }
+}
+
+void sendTo(string content, string socketID) {
+    users[socketID]->socketItem->send(content, uWS::OpCode::TEXT, true);
+}
+
+bool SendData() {
     ola::DmxBuffer buffer1;
     ola::DmxBuffer buffer2;
     ola::DmxBuffer buffer3;
@@ -114,13 +134,13 @@ bool SendData(ola::client::OlaClientWrapper *wrapper) {
         buffer3.SetChannel(ii, frames[(2 * 512) + ii]);
         buffer4.SetChannel(ii, frames[(3 * 512) + ii]);
     }
-    wrapper->GetClient()->SendDMX(1, buffer1, ola::client::SendDMXArgs());
-    wrapper->GetClient()->SendDMX(2, buffer2, ola::client::SendDMXArgs());
-    wrapper->GetClient()->SendDMX(3, buffer3, ola::client::SendDMXArgs());
-    wrapper->GetClient()->SendDMX(4, buffer4, ola::client::SendDMXArgs());
+    wrapper.GetClient()->SendDMX(1, buffer1, ola::client::SendDMXArgs());
+    wrapper.GetClient()->SendDMX(2, buffer2, ola::client::SendDMXArgs());
+    wrapper.GetClient()->SendDMX(3, buffer3, ola::client::SendDMXArgs());
+    wrapper.GetClient()->SendDMX(4, buffer4, ola::client::SendDMXArgs());
 
     if (finished == 1) {
-        wrapper->GetSelectServer()->Terminate();
+        wrapper.GetSelectServer()->Terminate();
     }
 
     return true;
@@ -128,11 +148,9 @@ bool SendData(ola::client::OlaClientWrapper *wrapper) {
 
 json getFixtures() {
     json j = {};
-    lock_guard<mutex> lg(door);
     for (auto &it : fixtures) {
         j.push_back(it.second.asJson());
     }
-    door.unlock();
     return j;
 }
 
@@ -179,14 +197,14 @@ void getFixtureProfiles() {
     }
 }
 
-void addFixture(int custom, string file, string dcid, int universe, int address, int number) {
+void addFixture(int custom, string filename, string dcid, int universe, int address, int number, int isRDM) {
     json file;
     ifstream infile;
 
     if (custom == 1) {
-        infile.open("custom-fixtures/" + file);
+        infile.open("custom-fixtures/" + filename);
     } else {
-        infile.open("fixtures/" + file);
+        infile.open("fixtures/" + filename);
     }
 
     if (infile.fail() != true) {
@@ -211,22 +229,14 @@ void addFixture(int custom, string file, string dcid, int universe, int address,
     infile.close();
 }
 
-void sendToAll(string content) {
-    for (auto &it : users) {
-        it.second->socketItem->send(content, uWS::OpCode::TEXT, true);
-    }
-}
-
-void sendToAllExcept(string content, string socketID) {
-    for (auto &it : users) {
-        if (it.first != socketID) {
-            it.second->socketItem->send(content, uWS::OpCode::TEXT, true);
-        }
-    }
-}
-
-void sendTo(string content, string socketID) {
-    users[socketID]->socketItem->send(content, uWS::OpCode::TEXT, true);
+void saveShow() {
+    json j;
+    lock_guard<mutex> lg(door);
+    j["fixtures"] = getFixtures();
+    door.unlock();
+    ofstream o("show.tonalite");
+    o << j;
+    o.close();
 }
 
 void RDMSearchCallback(const ola::client::Result &result, const ola::rdm::UIDSet &uids) {
@@ -237,7 +247,7 @@ void RDMSearchCallback(const ola::client::Result &result, const ola::rdm::UIDSet
                 for (auto &mod : man) {
                     for (auto &mode : mod) {
                         if (mode["manufacturerID"] == (*i).ManufacturerId() && mode["deviceID"] == (*i).DeviceId()) {
-                            cout << mode["filename"] << endl;
+                            addFixture(mode["custom"], mode["filename"], mode["dcid"], 1, 1, 1, 1);  // Need to get universe and address
                         }
                     }
                 }
@@ -246,7 +256,7 @@ void RDMSearchCallback(const ola::client::Result &result, const ola::rdm::UIDSet
     }
 }
 
-void tasksThread(ola::client::OlaClientWrapper *wrapper) {
+void tasksThread() {
     optional<json> tItem;
     json task;
     while (finished == 0) {
@@ -272,21 +282,26 @@ void tasksThread(ola::client::OlaClientWrapper *wrapper) {
                 item["profiles"] = fixtureProfiles;
                 sendTo(item.dump(), task["socketID"]);
             } else if (task["msgType"] == "addFixture") {
-                addFixture(task["custom"], task["file"], task["dcid"], task["universe"], task["address"], task["number"]);
+                addFixture(task["custom"], task["file"], task["dcid"], task["universe"], task["address"], task["number"], 0);
             } else if (task["msgType"] == "removeFixtures") {
+                json item;
+                item["msgType"] = "fixtures";
+
                 lock_guard<mutex> lg(door);
                 for (auto &id : task["fixtureIDs"]) {
                     fixtures.erase(id);
                 }
+                item["fixtures"] = getFixtures();
                 door.unlock();
 
-                json item;
-                item["msgType"] = "fixtures";
-                item["fixtures"] = getFixtures();
                 sendToAll(item.dump());
             } else if (task["msgType"] == "rdmSearch") {
                 getFixtureProfiles();
-                wrapper->GetClient()->RunDiscovery(1, ola::client::DISCOVERY_FULL, ola::NewSingleCallback(&RDMSearchCallback));
+                for (int i = 1; i <= 4; i++) {
+                    wrapper.GetClient()->RunDiscovery(i, ola::client::DISCOVERY_FULL, ola::NewSingleCallback(&RDMSearchCallback));
+                }
+            } else if (task["msgType"] == "saveShow") {
+                saveShow();
             }
         }
     }
@@ -318,12 +333,14 @@ void webThread() {
         .ws<PerSocketData>("/*", {.open = [](auto *ws) {
             PerSocketData *psd = (PerSocketData *) ws->getUserData();
             psd->socketItem = ws;
-            psd->userID = random_string(5);
+            psd->userID = random_string(10);
             users[psd->userID] = psd;
             ws->subscribe("all");
             json j;
             j["msgType"] = "fixtures";
+            lock_guard<mutex> lg(door);
             j["fixtures"] = getFixtures();
+            door.unlock();
             ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
             PerSocketData *psd = (PerSocketData *) ws->getUserData();
             json j = json::parse(message);
@@ -343,16 +360,15 @@ int main() {
     getFixtureProfiles();
 
     ola::InitLogging(ola::OLA_LOG_WARN, ola::OLA_LOG_STDERR);
-    ola::client::OlaClientWrapper wrapper;
     if (!wrapper.Setup()) {
         cerr << "Setup failed" << endl;
         exit(1);
     }
 
     thread webThreading(webThread);
-    thread tasksThreading(tasksThread, &wrapper);
+    thread tasksThreading(tasksThread);
 
     ola::io::SelectServer *ss = wrapper.GetSelectServer();
-    ss->RegisterRepeatingTimeout(25, ola::NewCallback(&SendData, &wrapper));
+    ss->RegisterRepeatingTimeout(25, ola::NewCallback(&SendData));
     ss->Run();
 }

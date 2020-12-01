@@ -11,8 +11,10 @@ using json = nlohmann::json;
 
 class FixtureParameter {
    public:
+    string i;
     int coarse = 0;
-    int fine = -1;
+    bool fadeWithIntensity = false;
+    
     double value = 0.0;
     int getDMXValue();
 };

@@ -141,6 +141,9 @@ var app = new Vue({
         },
         rdmSearch: function () {
             socket.send(JSON.stringify({ "msgType": "rdmSearch" }));
+        },
+        saveShow: function() {
+            socket.send(JSON.stringify({ "msgType": "saveShow" }));
         }
     }
 });

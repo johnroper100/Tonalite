@@ -42,7 +42,7 @@ Fixture::Fixture() {
 }
 
 Fixture::Fixture(json profile, int universe, int address, int createIndex) {
-    i = random_string(5);
+    i = random_string(10);
     name = profile["modelName"];
     universe = universe;
     address = address + ((profile["maxOffset"].get<int>() + 1) * createIndex);
@@ -52,4 +52,12 @@ Fixture::Fixture(json profile, int universe, int address, int createIndex) {
     maxOffset = profile["maxOffset"];
     modeName = profile["modeName"];
     modelName = profile["modelName"];
+
+    for (auto &pi : profile["parameters"]) {
+        FixtureParameter newParam;
+        newParam.i = random_string(10);
+        newParam.coarse = pi["coarse"];
+        newParam.fadeWithIntensity = pi["fadeWithIntensity"];
+        parameters[newParam.i] = newParam;
+    }
 }

@@ -65,13 +65,16 @@ with open('Carallon.def') as f:
                         command = {}
                     if parameter != {}:
                         if rangeItem != {}:
+                            if "ranges" not in parameter:
+                                parameter["ranges"] = []
                             parameter["ranges"].append(rangeItem)
                             if parameter["type"] == 5:
                                 parameter["type"] = 4
                             if parameter["type"] == 1 and parameter["name"] != "Intensity":
                                 parameter["type"] = 4
-                        parameter["ranges"] = sorted(
-                            parameter["ranges"], key=lambda i: i['begin'])
+                        if "ranges" in parameter:
+                            parameter["ranges"] = sorted(
+                                parameter["ranges"], key=lambda i: i['begin'])
                         personality["parameters"].append(parameter)
                         rangeItem = {}
                         parameter = {}
@@ -141,6 +144,8 @@ with open('Carallon.def') as f:
                         command = {}
                     if parameter != {}:
                         if rangeItem != {}:
+                            if "ranges" not in parameter:
+                                parameter["ranges"] = []
                             parameter["ranges"].append(rangeItem)
                             if parameter["type"] == 5:
                                 parameter["type"] = 4
@@ -148,8 +153,9 @@ with open('Carallon.def') as f:
                                 parameter["type"] = 4
                             if parameter["type"] == 1 and parameter["name"] == "Intensity":
                                 personality["hasIntensity"] = True
-                        parameter["ranges"] = sorted(
-                            parameter["ranges"], key=lambda i: i['begin'])
+                        if "ranges" in parameter:
+                            parameter["ranges"] = sorted(
+                                parameter["ranges"], key=lambda i: i['begin'])
                         personality["parameters"].append(parameter)
                         rangeItem = {}
                         parameter = {}
@@ -238,6 +244,8 @@ with open('Carallon.def') as f:
                 if not "GROUP" in line:
                     if parameter != {}:
                         if rangeItem != {}:
+                            if "ranges" not in parameter:
+                                parameter["ranges"] = []
                             parameter["ranges"].append(rangeItem)
                             if parameter["type"] == 5:
                                 parameter["type"] = 4
@@ -245,23 +253,25 @@ with open('Carallon.def') as f:
                                 parameter["type"] = 4
                             if parameter["type"] == 1 and parameter["name"] == "Intensity":
                                 personality["hasIntensity"] = True
-                        parameter["ranges"] = sorted(
-                            parameter["ranges"], key=lambda i: i['begin'])
+                        if "ranges" in parameter:
+                            parameter["ranges"] = sorted(
+                                parameter["ranges"], key=lambda i: i['begin'])
                         personality["parameters"].append(parameter)
                         rangeItem = {}
                         parameter = {}
                     parameter = {
                         "coarse": 0,
+                        #"fine": -1,
                         "fadeWithIntensity": False,
                         "highlight": 0,
                         "home": 0,
-                        "white": {
-                            "val": None,
-                            "temp": ""
-                        },
+                        #"white": {
+                        #    "val": None,
+                        #    "temp": ""
+                        #},
                         "invert": False,
                         "name": "",
-                        "ranges": [],
+                        #"ranges": [],
                         "size": 8,  # 8bit or 16bit
                         "snap": False,
                         "type": 1
@@ -285,6 +295,7 @@ with open('Carallon.def') as f:
                     2].strip())
             if "$$WHITE" in line:
                 tableInfo = line.partition("$$WHITE")[2].strip().split(" ")
+                parameter["white"] = {}
                 parameter["white"]["val"] = int(tableInfo[0])
                 parameter["white"]["temp"] = tableInfo[1]
             if "$$HIGHLIGHT" in line:
@@ -335,6 +346,8 @@ with open('Carallon.def') as f:
                 stepItem["subkey"] = int(tableInfo[1])
             if "$$TABLE" in line:
                 if rangeItem != {}:
+                    if "ranges" not in parameter:
+                        parameter["ranges"] = []
                     parameter["ranges"].append(rangeItem)
                     if parameter["type"] == 5:
                         parameter["type"] = 4
