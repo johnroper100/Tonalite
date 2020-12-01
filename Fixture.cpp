@@ -1,6 +1,7 @@
 #include "Fixture.hpp"
 
 #include <cmath>
+#include <iostream>
 
 #include "Utilities.hpp"
 #include "json.hpp"
@@ -32,6 +33,15 @@ json Fixture::asJson() {
     fItem["parameters"] = {};
     for (auto &pi : parameters) {
         pItem["i"] = pi.first;
+        pItem["coarse"] = pi.second.coarse;
+        pItem["fine"] = pi.second.fine;
+        pItem["fadeWithIntensity"] = pi.second.fadeWithIntensity;
+        pItem["highlight"] = pi.second.highlight;
+        pItem["home"] = pi.second.home;
+        pItem["invert"] = pi.second.invert;
+        pItem["name"] = pi.second.name;
+        pItem["size"] = pi.second.size;
+        pItem["type"] = pi.second.type;
         pItem["value"] = pi.second.value;
         fItem["parameters"].push_back(pItem);
     }
