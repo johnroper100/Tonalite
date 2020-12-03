@@ -3,6 +3,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 #include "json.hpp"
 
@@ -42,8 +43,10 @@ struct FixtureParameter {
     unordered_map<string, FixtureParameterRange> ranges;
     WhiteItem white;
 
-    double value = 0.0;
+    double liveValue = 0.0;
+    unordered_map<string, double> blindValues;
     int getDMXValue();
+    int getDMXValue(string userID);
 };
 
 struct Fixture {
