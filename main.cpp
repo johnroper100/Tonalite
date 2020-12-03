@@ -22,6 +22,7 @@
 
 #include "App.h"
 #include "Fixture.hpp"
+#include "Group.hpp"
 #include "Utilities.hpp"
 #include "json.hpp"
 
