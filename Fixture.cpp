@@ -67,6 +67,10 @@ json Fixture::asJson() {
         pItem["white"]["temp"] = pi.second.white.temp;
 
         pItem["liveValue"] = pi.second.liveValue;
+        pItem["blindValues"] = {};
+        for (auto &ri : pi.second.blindValues) {
+            pItem["blindValues"][ri.first] = ri.second;
+        }
         fItem["parameters"].push_back(pItem);
     }
     return fItem;
