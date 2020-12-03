@@ -9,25 +9,44 @@
 using namespace std;
 using json = nlohmann::json;
 
-class FixtureParameter {
-   public:
+struct MediaItem {
+    string dcid = "";
+    string name = "";
+};
+
+struct WhiteItem {
+    int val = -1;
+    string temp = "";
+};
+
+struct FixtureParameterRange {
+    string i;
+    int beginVal;
+    int defaultVal;
+    int endVal;
+    string label;
+    MediaItem media;
+};
+
+struct FixtureParameter {
     string i;
     int coarse;
     int fine = -1;
-    bool fadeWithIntensity = false;
+    bool fadeWithIntensity;
     int highlight;
     int home;
     bool invert;
     string name;
     int size;
     int type;
+    unordered_map<string, FixtureParameterRange> ranges;
+    WhiteItem white;
 
     double value = 0.0;
     int getDMXValue();
 };
 
-class Fixture {
-   public:
+struct Fixture {
     string i;
     string name;
     int universe = 1;
@@ -37,6 +56,8 @@ class Fixture {
     int w = 2;
     int h = 1;
 
+    string colortable = "";
+    string dcid;
     bool hasIntensity;
     string manufacturerName;
     int maxOffset;

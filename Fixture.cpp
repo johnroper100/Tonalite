@@ -57,6 +57,10 @@ Fixture::Fixture(json profile, int universe, int address, int createIndex) {
     universe = universe;
     address = address + ((profile["maxOffset"].get<int>() + 1) * createIndex);
 
+    if (profile.contains("colortable")) {
+        colortable = profile["colortable"];
+    }
+    dcid = profile["dcid"];
     hasIntensity = profile["hasIntensity"];
     manufacturerName = profile["manufacturerName"];
     maxOffset = profile["maxOffset"];
@@ -78,6 +82,25 @@ Fixture::Fixture(json profile, int universe, int address, int createIndex) {
         newParam.name = pi["name"];
         newParam.size = pi["size"];
         newParam.type = pi["type"];
+        if (pi.contains("white")) {
+            newParam.white.val = pi["white"]["val"];
+            newParam.white.temp = pi["white"]["temp"];
+        }
+        if (pi.contains("ranges")) {
+            for (auto &ri : pi["ranges"]) {
+                FixtureParameterRange newRange;
+                newRange.i = random_string(10);
+                newRange.beginVal = ri["begin"];
+                newRange.defaultVal = ri["default"];
+                newRange.endVal = ri["end"];
+                newRange.label = ri["label"];
+                if (ri.contains("media")) {
+                    newRange.media.dcid = ri["media"]["dcid"];
+                    newRange.media.name = ri["media"]["name"];
+                }
+                newParam.ranges[newRange.i] = newRange;
+            }
+        }
 
         parameters[newParam.i] = newParam;
     }
