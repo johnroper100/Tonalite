@@ -1,5 +1,6 @@
 #include "Group.hpp"
 
+#include "Utilities.hpp"
 #include "json.hpp"
 
 using namespace std;
@@ -19,4 +20,24 @@ json Group::asJson() {
 };
 
 Group::Group() {
+}
+
+Group::Group(json profile) {
+    if (profile.contains("i")) {
+        i = profile["i"];
+    } else {
+        i = random_string(10);
+    }
+
+    if (profile.contains("name")) {
+        name = profile["name"];
+    } else {
+        name = "Group";
+    }
+
+    if (profile.contains("fixtures")) {
+        for (auto &fi : profile["fixtures"]) {
+            fixtures.push_back(fi);
+        }
+    }
 }

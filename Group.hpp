@@ -15,6 +15,7 @@ struct Group {
     vector<string> fixtures;
 
     Group();
+    Group(json profile);
     json asJson();
 };
 
