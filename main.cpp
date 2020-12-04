@@ -82,6 +82,7 @@ struct PerSocketData {
 atomic<int> finished;
 mutex door;
 unordered_map<string, Fixture> fixtures;
+unordered_map<string, Group> groups;
 unordered_map<string, PerSocketData *> users;
 ThreadsafeQueue<json> tasks;
 json fixtureProfiles;
@@ -150,6 +151,14 @@ bool SendData() {
 json getFixtures() {
     json j = {};
     for (auto &it : fixtures) {
+        j.push_back(it.second.asJson());
+    }
+    return j;
+}
+
+json getGroups() {
+    json j = {};
+    for (auto &it : groups) {
         j.push_back(it.second.asJson());
     }
     return j;
@@ -234,6 +243,7 @@ void saveShow() {
     json j;
     lock_guard<mutex> lg(door);
     j["fixtures"] = getFixtures();
+    j["groups"] = getGroups();
     door.unlock();
     ofstream o("show.tonalite");
     o << j;
@@ -338,10 +348,16 @@ void webThread() {
             users[psd->userID] = psd;
             ws->subscribe("all");
             json j;
-            j["msgType"] = "fixtures";
             lock_guard<mutex> lg(door);
-            j["fixtures"] = getFixtures();
+            json fixtureItems = getFixtures();
+            json groupItems = getGroups();
             door.unlock();
+            j["msgType"] = "fixtures";
+            j["fixtures"] = fixtureItems;
+            ws->send(j.dump(), uWS::OpCode::TEXT, true);
+            j = {};
+            j["msgType"] = "groups";
+            j["groups"] = groupItems;
             ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
             PerSocketData *psd = (PerSocketData *) ws->getUserData();
             json j = json::parse(message);

@@ -9,6 +9,13 @@
 using namespace std;
 using json = nlohmann::json;
 
+struct Group {
+    string i;
+    string name;
+    vector<string> fixtures;
 
+    Group();
+    json asJson();
+};
 
 #endif

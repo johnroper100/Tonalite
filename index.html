@@ -63,19 +63,19 @@
                         <i class="fa-regular fa-wifi d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">RDM Search</span>
                     </button>
+                    <button class="btn btn-success"
+                        v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
+                        v-bind:class="{ disabled: selectedFixtures.length == 0 }">
+                        <i class="fa-regular fa-sliders d-inline-block fa-lg"></i>
+                        <span class="d-none d-sm-inline-block">Parameters</span>
+                    </button>
                     <button class="btn btn-danger" v-if="fixturesTab == 'patch'" @click="removeFixtures"
                         v-bind:class="{ disabled: selectedFixtures.length == 0 }">
                         <i class="fa-regular fa-trash-can d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Delete</span>
                     </button>
                     <button class="btn btn-danger" v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
-                        v-bind:class="{ disabled: selectedFixtures.length == 0 }">
-                        <i class="fa-regular fa-sliders d-inline-block fa-lg"></i>
-                        <span class="d-none d-sm-inline-block">Parameters</span>
-                    </button>
-                    <button class="btn btn-success"
-                        v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
-                        v-bind:class="{ disabled: selectedFixtures.length == 0 }">
+                        v-bind:class="{ disabled: selectedFixtures.length < 2 }">
                         <i class="fa-regular fa-object-group d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Group</span>
                     </button>
@@ -86,7 +86,6 @@
                             <i class="fa-solid fa-hand-pointer fa-stack-1x"></i>
                             <i class="fa-solid fa-ban fa-stack-2x"></i>
                         </span>
-
                         <span class="d-none d-sm-inline-block">Deselect</span>
                     </button>
                     <button class="btn d-none d-md-inline-block" v-if="fixturesTab == 'fixturesGrid'"
@@ -94,6 +93,26 @@
                         @click="fixtureGridLayout = !fixtureGridLayout">
                         <i class="fa-regular fa-up-down-left-right d-inline-block"></i>
                         <span class="d-none d-sm-inline-block">Move Items</span>
+                    </button>
+
+                    <!-- Groups Buttons -->
+                    <button class="btn btn-success" v-if="fixturesTab == 'groups'"
+                        v-bind:class="{ disabled: selectedGroups.length == 0 }">
+                        <i class="fa-regular fa-sliders d-inline-block fa-lg"></i>
+                        <span class="d-none d-sm-inline-block">Parameters</span>
+                    </button>
+                    <button class="btn btn-danger" v-if="fixturesTab == 'groups'"
+                        v-bind:class="{ disabled: selectedGroups.length == 0 }">
+                        <i class="fa-regular fa-trash-can d-inline-block fa-lg"></i>
+                        <span class="d-none d-sm-inline-block">Delete</span>
+                    </button>
+                    <button class="btn btn-primary" v-if="fixturesTab == 'groups'"
+                        v-bind:class="{ disabled: selectedGroups.length == 0 }" @click="selectedGroups = []">
+                        <span class="fa-stack small">
+                            <i class="fa-solid fa-hand-pointer fa-stack-1x"></i>
+                            <i class="fa-solid fa-ban fa-stack-2x"></i>
+                        </span>
+                        <span class="d-none d-sm-inline-block">Deselect</span>
                     </button>
                 </div>
             </div>
@@ -216,6 +235,14 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="row mt-3" v-if="fixturesTab == 'groups'">
+                <div class="col-6 col-md-3 col-lg-2 col-xl-1 text-center mb-3" v-for="item in groups">
+                    <div class="groupItem p-2" @click="selectGroup(item.i)"
+                        v-bind:class="{ selected: selectedGroups.indexOf(item.i) >= 0 }">
+                        {{item.name}}
+                    </div>
                 </div>
             </div>
         </div>

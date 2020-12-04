@@ -14,6 +14,8 @@ var app = new Vue({
         fixtureGridLayout: false,
         fixtures: [],
         selectedFixtures: [],
+        groups: [],
+        selectedGroups: [],
         tab: "fixtures"
     },
     computed: {
@@ -139,6 +141,13 @@ var app = new Vue({
             }
             socket.send(JSON.stringify(message));
         },
+        selectGroup: function (groupID) {
+            if (app.selectedGroups.indexOf(groupID) >= 0) {
+                app.selectedGroups.splice(app.selectedGroups.indexOf(groupID), 1);
+            } else {
+                app.selectedGroups.push(groupID);
+            }
+        },
         rdmSearch: function () {
             socket.send(JSON.stringify({ "msgType": "rdmSearch" }));
         },
@@ -155,6 +164,12 @@ socket.addEventListener('message', function (event) {
             app.fixtures = msg["fixtures"];
         } else {
             app.fixtures = [];
+        }
+    } else if (msg["msgType"] == "groups") {
+        if (msg["groups"] != null) {
+            app.groups = msg["groups"];
+        } else {
+            app.groups = [];
         }
     } else if (msg["msgType"] == "moveFixture") {
         item = app.fixtures.find(x => x.i === msg["i"]);

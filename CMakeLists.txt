@@ -11,7 +11,7 @@ find_package(PkgConfig REQUIRED)
 
 include_directories(${ZLIB_INCLUDE_DIRS})
 
-add_executable(tonalite main.cpp Fixture.cpp Utilities.cpp)
+add_executable(tonalite main.cpp Fixture.cpp Group.cpp Utilities.cpp)
 
 pkg_check_modules(tonalite "libola")
 
