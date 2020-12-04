@@ -121,6 +121,10 @@
             <grid-layout :layout.sync="fixtures" :col-num="24" :row-height="25" :vertical-compact="false"
                 :is-resizable="fixtureGridLayout" :prevent-collision="true" :is-draggable="fixtureGridLayout"
                 v-if="fixturesTab == 'fixturesGrid'">
+                <div class="col-12 mt-3" v-if="fixtures.length == 0">
+                    No fixtures have been patched. Use either the Add Fixture or RDM Search tools in the Patch tab to
+                    add some to this show.
+                </div>
                 <grid-item v-for="item in fixtures" class="fixtureItem text-center"
                     v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }" :min-w="2" :min-h="1" :x="item.x"
                     :y="item.y" :w="item.w" :h="item.h" :i="item.i" :key="item.i" @moved="moveFixture"
@@ -132,6 +136,10 @@
                 </grid-item>
             </grid-layout>
             <div class="row mt-3" v-if="fixturesTab == 'fixturesList'">
+                <div class="col-12" v-if="fixtures.length == 0">
+                    No fixtures have been patched. Use either the Add Fixture or RDM Search tools in the Patch tab to
+                    add some to this show.
+                </div>
                 <div class="col-6 col-md-3 col-lg-2 col-xl-1 text-center mb-3" v-for="item in fixtures">
                     <div class="fixtureItem p-2" @click="selectFixture(item.i)"
                         v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
@@ -214,7 +222,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
+                <div class="col-12" v-if="fixtures.length == 0">
+                    No fixtures have been patched. Use either the Add Fixture or RDM Search tools to add some to this
+                    show.
+                </div>
+                <div class="table-responsive" v-if="fixtures.length != 0">
                     <table class="table table-dark">
                         <thead>
                             <tr>
@@ -230,14 +242,15 @@
                                 <td>{{item.universe}}</td>
                                 <td>{{item.address}}-{{item.maxOffset+item.address}}</td>
                             </tr>
-                            <tr v-if="fixtures.length == 0">
-                                <td>No fixtures are currently patched.</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="row mt-3" v-if="fixturesTab == 'groups'">
+                <div class="col-12" v-if="groups.length == 0">
+                    No fixtures have been grouped. Use the Group tool in either tha Fixture List or Fixture Grid tab to
+                    group some together.
+                </div>
                 <div class="col-6 col-md-3 col-lg-2 col-xl-1 text-center mb-3" v-for="item in groups">
                     <div class="groupItem p-2" @click="selectGroup(item.i)"
                         v-bind:class="{ selected: selectedGroups.indexOf(item.i) >= 0 }">
