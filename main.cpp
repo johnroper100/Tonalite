@@ -24,55 +24,12 @@
 #include "Fixture.hpp"
 #include "Group.hpp"
 #include "Utilities.hpp"
+#include "concurrentqueue.h"
 #include "json.hpp"
 
 using namespace std;
 using json = nlohmann::json;
 namespace fs = std::filesystem;
-
-template <typename T>
-class ThreadsafeQueue {
-    queue<T> queue_;
-    mutable mutex mutex_;
-
-    // Moved out of public interface to prevent races between this
-    // and pop().
-    bool empty() const {
-        return queue_.empty();
-    }
-
-   public:
-    ThreadsafeQueue() = default;
-    ThreadsafeQueue(const ThreadsafeQueue<T> &) = delete;
-    ThreadsafeQueue &operator=(const ThreadsafeQueue<T> &) = delete;
-
-    ThreadsafeQueue(ThreadsafeQueue<T> &&other) {
-        lock_guard<mutex> lock(mutex_);
-        queue_ = move(other.queue_);
-    }
-
-    virtual ~ThreadsafeQueue() {}
-
-    unsigned long size() const {
-        lock_guard<mutex> lock(mutex_);
-        return queue_.size();
-    }
-
-    optional<T> pop() {
-        lock_guard<mutex> lock(mutex_);
-        if (queue_.empty()) {
-            return {};
-        }
-        T tmp = queue_.front();
-        queue_.pop();
-        return tmp;
-    }
-
-    void push(const T &item) {
-        lock_guard<mutex> lock(mutex_);
-        queue_.push(item);
-    }
-};
 
 struct PerSocketData {
     uWS::WebSocket<0, 1> *socketItem;
@@ -84,7 +41,7 @@ mutex door;
 unordered_map<string, Fixture> fixtures;
 unordered_map<string, Group> groups;
 unordered_map<string, PerSocketData *> users;
-ThreadsafeQueue<json> tasks;
+moodycamel::ConcurrentQueue<json> tasks;
 json fixtureProfiles;
 
 ola::client::OlaClientWrapper wrapper;
@@ -268,12 +225,10 @@ void RDMSearchCallback(const ola::client::Result &result, const ola::rdm::UIDSet
 }
 
 void tasksThread() {
-    optional<json> tItem;
     json task;
     while (finished == 0) {
-        tItem = tasks.pop();
-        if (tItem) {
-            task = *tItem;
+        bool found = tasks.try_dequeue(task);
+        if (found) {
             if (task["msgType"] == "moveFixture") {
                 lock_guard<mutex> lg(door);
                 fixtures[task["i"]].x = task["x"];
@@ -362,7 +317,7 @@ void webThread() {
             PerSocketData *psd = (PerSocketData *) ws->getUserData();
             json j = json::parse(message);
             j["socketID"] = psd->userID;
-            tasks.push(j); }})
+            tasks.enqueue(j); }})
         .listen(8000, [](auto *listenSocket) {
             if (listenSocket) {
                 cout << "Tonalite Lighting Control: Running on http://localhost:8000" << endl;
