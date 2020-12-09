@@ -158,6 +158,14 @@ var app = new Vue({
                 app.selectedGroups.push(groupID);
             }
         },
+        removeGroups: function () {
+            message = {
+                "msgType": "removeGroups",
+                "groups": app.selectedGroups
+            }
+            socket.send(JSON.stringify(message));
+            app.selectedGroups = [];
+        },
         rdmSearch: function () {
             socket.send(JSON.stringify({ "msgType": "rdmSearch" }));
         },
@@ -174,12 +182,14 @@ socket.addEventListener('message', function (event) {
             app.fixtures = msg["fixtures"];
         } else {
             app.fixtures = [];
+            app.selectedGroups = [];
         }
     } else if (msg["msgType"] == "groups") {
         if (msg["groups"] != null) {
             app.groups = msg["groups"];
         } else {
             app.groups = [];
+            app.selectedGroups = [];
         }
     } else if (msg["msgType"] == "moveFixture") {
         item = app.fixtures.find(x => x.i === msg["i"]);

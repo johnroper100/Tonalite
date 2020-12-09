@@ -1,5 +1,7 @@
 #include "Group.hpp"
 
+#include <algorithm>
+
 #include "Utilities.hpp"
 #include "json.hpp"
 
@@ -19,8 +21,7 @@ json Group::asJson() {
     return gItem;
 };
 
-Group::Group() {
-}
+Group::Group(){};
 
 Group::Group(json profile) {
     if (profile.contains("i")) {
@@ -40,4 +41,12 @@ Group::Group(json profile) {
             fixtures.push_back(fi);
         }
     }
-}
+};
+
+bool Group::removeFixture(string fixtureID) {
+    auto itr = std::find(fixtures.begin(), fixtures.end(), fixtureID);
+    if (itr != fixtures.end()) {
+        fixtures.erase(itr);
+    }
+    return fixtures.empty();
+};

@@ -17,6 +17,7 @@ struct Group {
     Group();
     Group(json profile);
     json asJson();
+    bool removeFixture(string fixtureID);
 };
 
 #endif

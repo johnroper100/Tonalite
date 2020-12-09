@@ -249,6 +249,37 @@ void tasksThread() {
                 sendTo(item.dump(), task["socketID"]);
             } else if (task["msgType"] == "addFixture") {
                 addFixture(task["custom"], task["file"], task["dcid"], task["universe"], task["address"], task["number"], 0);
+            } else if (task["msgType"] == "removeFixtures") {
+                json fixturesItem;
+                json groupsItem;
+                fixturesItem["msgType"] = "fixtures";
+                groupsItem["msgType"] = "groups";
+
+                lock_guard<mutex> lg(door);
+                for (auto &id : task["fixtures"]) {
+                    if (fixtures.find(id) != fixtures.end()) {
+                        fixtures.erase(id);
+                    }
+
+                    // Remove any empty groups
+                    vector<string> groupsToRemove;
+                    for (auto &gi : groups) {
+                        if (gi.second.removeFixture(id) == true) {
+                            groupsToRemove.push_back(gi.first);
+                        }
+                    }
+                    for (auto &gi : groupsToRemove) {
+                        if (groups.find(gi) != groups.end()) {
+                            groups.erase(gi);
+                        }
+                    }
+                }
+                fixturesItem["fixtures"] = getFixtures();
+                groupsItem["groups"] = getGroups();
+                door.unlock();
+
+                sendToAll(fixturesItem.dump());
+                sendToAll(groupsItem.dump());
             } else if (task["msgType"] == "groupFixtures") {
                 json item;
                 item["msgType"] = "groups";
@@ -261,15 +292,17 @@ void tasksThread() {
                 door.unlock();
 
                 sendToAll(item.dump());
-            } else if (task["msgType"] == "removeFixtures") {
+            } else if (task["msgType"] == "removeGroups") {
                 json item;
-                item["msgType"] = "fixtures";
+                item["msgType"] = "groups";
 
                 lock_guard<mutex> lg(door);
-                for (auto &id : task["fixtures"]) {
-                    fixtures.erase(id);
+                for (auto &id : task["groups"]) {
+                    if (groups.find(id) != groups.end()) {
+                        groups.erase(id);
+                    }
                 }
-                item["fixtures"] = getFixtures();
+                item["groups"] = getGroups();
                 door.unlock();
 
                 sendToAll(item.dump());
