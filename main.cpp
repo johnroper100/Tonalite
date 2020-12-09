@@ -202,7 +202,8 @@ void saveShow() {
     j["fixtures"] = getFixtures();
     j["groups"] = getGroups();
     door.unlock();
-    ofstream o("show.tonalite");
+    fs::create_directory("shows");
+    ofstream o("shows/show.tonalite");
     o << j;
     o.close();
 }
