@@ -249,12 +249,24 @@ void tasksThread() {
                 sendTo(item.dump(), task["socketID"]);
             } else if (task["msgType"] == "addFixture") {
                 addFixture(task["custom"], task["file"], task["dcid"], task["universe"], task["address"], task["number"], 0);
+            } else if (task["msgType"] == "groupFixtures") {
+                json item;
+                item["msgType"] = "groups";
+
+                Group newGroup(task);
+                lock_guard<mutex> lg(door);
+                groups[newGroup.i] = newGroup;
+                door.unlock();
+                item["groups"] = getGroups();
+                door.unlock();
+
+                sendToAll(item.dump());
             } else if (task["msgType"] == "removeFixtures") {
                 json item;
                 item["msgType"] = "fixtures";
 
                 lock_guard<mutex> lg(door);
-                for (auto &id : task["fixtureIDs"]) {
+                for (auto &id : task["fixtures"]) {
                     fixtures.erase(id);
                 }
                 item["fixtures"] = getFixtures();

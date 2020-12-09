@@ -137,9 +137,19 @@ var app = new Vue({
         removeFixtures: function () {
             message = {
                 "msgType": "removeFixtures",
-                "fixtureIDs": app.selectedFixtures
+                "fixtures": app.selectedFixtures
             }
             socket.send(JSON.stringify(message));
+            app.selectedFixtures = [];
+        },
+        groupFixtures: function () {
+            message = {
+                "msgType": "groupFixtures",
+                "fixtures": app.selectedFixtures
+            }
+            socket.send(JSON.stringify(message));
+            app.selectedFixtures = [];
+            app.fixturesTab = "groups";
         },
         selectGroup: function (groupID) {
             if (app.selectedGroups.indexOf(groupID) >= 0) {

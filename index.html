@@ -75,7 +75,7 @@
                         <span class="d-none d-sm-inline-block">Delete</span>
                     </button>
                     <button class="btn btn-danger" v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
-                        v-bind:class="{ disabled: selectedFixtures.length < 2 }">
+                        v-bind:class="{ disabled: selectedFixtures.length < 2 }" @click="groupFixtures">
                         <i class="fa-regular fa-object-group d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Group</span>
                     </button>
