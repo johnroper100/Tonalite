@@ -96,6 +96,11 @@
                         <i class="fa-regular fa-sliders d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Parameters</span>
                     </button>
+                    <button class="btn btn-warning" v-if="fixturesTab == 'groups'"
+                        v-bind:class="{ disabled: selectedGroups.length == 0 }" @click="viewGroupSettings">
+                        <i class="fa-regular fa-gear d-inline-block fa-lg"></i>
+                        <span class="d-none d-sm-inline-block">Settings</span>
+                    </button>
                     <button class="btn btn-danger" v-if="fixturesTab == 'groups'"
                         v-bind:class="{ disabled: selectedGroups.length == 0 }" @click="removeGroups">
                         <i class="fa-regular fa-trash-can d-inline-block fa-lg"></i>
@@ -254,9 +259,17 @@
                 </div>
             </div>
         </div>
+        <div class="container-fluid mb-5" v-if="tab == 'groupSettings'">
+            <div class="row mt-3">
+                <div class="col-12">
+                    <input class="form-control" v-model="groupSettings.name" @input="editGroups">
+                </div>
+            </div>
+        </div>
         <div class="fixed-bottom">
             <div class="row header text-center pl-2 pr-2">
-                <div class="col-3 tab pt-3 pb-3" @click="tab = 'fixtures'" v-bind:class="{ active: tab == 'fixtures' }">
+                <div class="col-3 tab pt-3 pb-3" @click="tab = 'fixtures'"
+                    v-bind:class="{ active: (tab == 'fixtures' || tab == 'groupSettings') }">
                     Fixtures
                 </div>
                 <div class="col-3 tab pt-3 pb-3" @click="tab = 'cues'" v-bind:class="{ active: tab == 'cues' }">

@@ -16,6 +16,7 @@ var app = new Vue({
         selectedFixtures: [],
         groups: [],
         selectedGroups: [],
+        groupSettings: {},
         tab: "fixtures"
     },
     computed: {
@@ -166,6 +167,30 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
             app.selectedGroups = [];
         },
+        viewGroupSettings: function () {
+            app.groupSettings = {};
+            app.groupSettings["name"] = "";
+            app.groupSettings["fixtures"] = [];
+
+            for (i = 0; i < app.groups.length; i++) {
+                if (app.selectedGroups.includes(app.groups[i].i)) {
+                    if (app.groupSettings["name"] == "" || app.groupSettings["name"] == app.groups[i].name) {
+                        app.groupSettings["name"] = app.groups[i].name;
+                    } else {
+                        app.groupSettings["name"] = "Multiple";
+                    }
+                }
+            }
+            app.tab = "groupSettings";
+        },
+        editGroups: function () {
+            message = {
+                "msgType": "editGroups",
+                "groups": app.selectedGroups,
+                "groupSettings": app.groupSettings
+            }
+            socket.send(JSON.stringify(message));
+        },
         rdmSearch: function () {
             socket.send(JSON.stringify({ "msgType": "rdmSearch" }));
         },
@@ -187,9 +212,15 @@ socket.addEventListener('message', function (event) {
     } else if (msg["msgType"] == "groups") {
         if (msg["groups"] != null) {
             app.groups = msg["groups"];
+            if (app.tab == "groupSettings") {
+                app.viewGroupSettings();
+            }
         } else {
             app.groups = [];
             app.selectedGroups = [];
+            if (app.tab == "groupSettings") {
+                app.tab = "groups";
+            }
         }
     } else if (msg["msgType"] == "moveFixture") {
         item = app.fixtures.find(x => x.i === msg["i"]);

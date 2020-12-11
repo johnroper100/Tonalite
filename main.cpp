@@ -307,6 +307,22 @@ void tasksThread() {
                 door.unlock();
 
                 sendToAll(item.dump());
+            } else if (task["msgType"] == "editGroups") {
+                json item;
+                item["msgType"] = "groups";
+
+                lock_guard<mutex> lg(door);
+                for (auto &id : task["groups"]) {
+                    if (groups.find(id) != groups.end()) {
+                        if (task["groupSettings"]["name"] != "Multiple") {
+                            groups[id].name = task["groupSettings"]["name"];
+                        }
+                    }
+                }
+                item["groups"] = getGroups();
+                door.unlock();
+
+                sendToAll(item.dump());
             } else if (task["msgType"] == "rdmSearch") {
                 getFixtureProfiles();
                 for (int i = 1; i <= 4; i++) {
