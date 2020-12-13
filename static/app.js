@@ -90,7 +90,8 @@ var app = new Vue({
             if (avInputs == 0) {
                 return 0.0;
             }
-            return avVal / avInputs;
+            number = avVal / avInputs;
+            return Math.round(number * 10) / 10;
         },
         clearFixtureProfilesSelection: function (type) {
             if (type == 'manufacturers') {
@@ -176,11 +177,12 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
             app.selectedFixtures = [];
         },
-        viewGroupFixtureParameters: function() {
+        viewGroupFixtureParameters: function () {
             app.selectedFixtures = []; // fill with group fixtures;
             app.viewFixtureParameters();
         },
         viewFixtureParameters: function () {
+            app.fixtureParameters = [];
             fixtureIndex = app.fixtures.findIndex(x => x.i === app.selectedFixtures[0]);
             for (i = 0; i < app.fixtures[fixtureIndex].parameters.length; i++) {
                 ready = true;
@@ -214,7 +216,7 @@ var app = new Vue({
             }
             app.tab = "fixtureParameters";
         },
-        editFixtureParameters: function(){
+        editFixtureParameters: function () {
             message = {
                 "msgType": "editFixtureParameters",
                 "fixtures": app.selectedFixtures,
@@ -303,7 +305,7 @@ socket.addEventListener('message', function (event) {
         } else {
             app.fixtures = [];
             app.selectedFixtures = [];
-            app,tab
+            app, tab
             if (app.tab == "fixtureParameters") {
                 app.tab = "fixtures";
             }

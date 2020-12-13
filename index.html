@@ -168,15 +168,17 @@
                                 <div class="row mb-3">
                                     <div class="col-4">
                                         Universe:
-                                        <input type="number" class="form-control" v-model="fixtureProfileUniverse">
+                                        <input type="number" class="form-control"
+                                            v-model.number="fixtureProfileUniverse">
                                     </div>
                                     <div class="col-4">
                                         Address:
-                                        <input type="number" class="form-control" v-model="fixtureProfileAddress">
+                                        <input type="number" class="form-control"
+                                            v-model.number="fixtureProfileAddress">
                                     </div>
                                     <div class="col-4">
                                         Number:
-                                        <input type="number" class="form-control" v-model="fixtureProfileNumber">
+                                        <input type="number" class="form-control" v-model.number="fixtureProfileNumber">
                                     </div>
                                 </div>
                                 <span v-if="isEmpty(fixtureProfiles) == true"
@@ -268,10 +270,10 @@
         <div class="container-fluid mb-5" v-if="tab == 'fixtureParameters'">
             <div v-for="param in fixtureParameters">
                 {{param.name}}
-                <input type="range" class="form-range" v-model="param.liveValue" min="0.0" max="100.0" step="0.001"
-                    v-if="blind == false" @input="editFixtureParameters">
-                <input type="range" class="form-range" v-model="param.blindValues[socketID]" min="0.0" max="100.0"
-                    step="0.001" v-if="blind == true" @input="editFixtureParameters">
+                <input type="range" class="form-range" v-model.number="param.liveValue" min="0.0" max="100.0"
+                    step="0.001" v-if="blind == false" @input="editFixtureParameters">
+                <input type="range" class="form-range" v-model.number="param.blindValues[socketID]" min="0.0"
+                    max="100.0" step="0.001" v-if="blind == true" @input="editFixtureParameters">
             </div>
         </div>
         <div class="container-fluid mb-5" v-if="tab == 'groupSettings'">
@@ -320,7 +322,7 @@
         <div class="fixed-bottom">
             <div class="row header text-center ps-2 pe-2">
                 <div class="col-3 tab pt-3 pb-3" @click="tab = 'fixtures'"
-                    v-bind:class="{ active: (tab == 'fixtures' || tab == 'groupSettings') }">
+                    v-bind:class="{ active: (tab == 'fixtures' || tab == 'fixtureParameters' || tab == 'groupSettings') }">
                     Fixtures
                 </div>
                 <div class="col-3 tab pt-3 pb-3" @click="tab = 'cues'" v-bind:class="{ active: tab == 'cues' }">

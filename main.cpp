@@ -322,13 +322,13 @@ void tasksThread() {
                         for (auto &p : fixtures[fi].parameters) {
                             if (p.second.coarse == pi["coarse"] && p.second.fine == pi["fine"] && p.second.type == pi["type"] && p.second.fadeWithIntensity == pi["fadeWithIntensity"] && p.second.home == pi["home"]) {
                                 p.second.liveValue = pi["liveValue"];
-                                //p.second.blindValues[task["socketID"]] = pi["blindValues"][task["socketID"]];
+                                p.second.blindValues[task["socketID"]] = pi["blindValues"][task["socketID"].get<string>()];
                             }
                         }
                     }
                 }
                 item["fixtures"] = getFixtures();
-                sendToAllExcept(item.dump(), task["socketID"]);
+                sendToAll(item.dump());
                 door.unlock();
             } else if (task["msgType"] == "groupFixtures") {
                 json item;
