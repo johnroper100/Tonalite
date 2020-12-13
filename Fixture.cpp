@@ -17,6 +17,44 @@ int FixtureParameter::getDMXValue(string userID) {
     return ceil(65535.0 * blindValues[userID]);
 };
 
+json FixtureParameter::asJson() {
+    json pItem;
+    json rItem;
+
+    pItem["i"] = i;
+    pItem["coarse"] = coarse;
+    pItem["fine"] = fine;
+    pItem["fadeWithIntensity"] = fadeWithIntensity;
+    pItem["highlight"] = highlight;
+    pItem["home"] = home;
+    pItem["invert"] = invert;
+    pItem["name"] = name;
+    pItem["size"] = size;
+    pItem["type"] = type;
+    pItem["ranges"] = {};
+    for (auto &ri : ranges) {
+        rItem["i"] = ri.second.i;
+        rItem["begin"] = ri.second.beginVal;
+        rItem["default"] = ri.second.defaultVal;
+        rItem["end"] = ri.second.endVal;
+        rItem["label"] = ri.second.label;
+        rItem["media"] = {};
+        rItem["media"]["dcid"] = ri.second.media.dcid;
+        rItem["media"]["name"] = ri.second.media.name;
+        pItem["ranges"].push_back(rItem);
+    }
+    pItem["white"] = {};
+    pItem["white"]["val"] = white.val;
+    pItem["white"]["temp"] = white.temp;
+
+    pItem["liveValue"] = liveValue;
+    pItem["blindValues"] = {};
+    for (auto &ri : blindValues) {
+        pItem["blindValues"][ri.first] = ri.second;
+    }
+    return pItem;
+};
+
 json Fixture::asJson() {
     json fItem;
     json pItem;
@@ -40,38 +78,7 @@ json Fixture::asJson() {
     fItem["modelName"] = modelName;
     fItem["parameters"] = {};
     for (auto &pi : parameters) {
-        pItem["i"] = pi.first;
-        pItem["coarse"] = pi.second.coarse;
-        pItem["fine"] = pi.second.fine;
-        pItem["fadeWithIntensity"] = pi.second.fadeWithIntensity;
-        pItem["highlight"] = pi.second.highlight;
-        pItem["home"] = pi.second.home;
-        pItem["invert"] = pi.second.invert;
-        pItem["name"] = pi.second.name;
-        pItem["size"] = pi.second.size;
-        pItem["type"] = pi.second.type;
-        pItem["ranges"] = {};
-        for (auto &ri : pi.second.ranges) {
-            rItem["i"] = ri.second.i;
-            rItem["begin"] = ri.second.beginVal;
-            rItem["default"] = ri.second.defaultVal;
-            rItem["end"] = ri.second.endVal;
-            rItem["label"] = ri.second.label;
-            rItem["media"] = {};
-            rItem["media"]["dcid"] = ri.second.media.dcid;
-            rItem["media"]["name"] = ri.second.media.name;
-            pItem["ranges"].push_back(rItem);
-        }
-        pItem["white"] = {};
-        pItem["white"]["val"] = pi.second.white.val;
-        pItem["white"]["temp"] = pi.second.white.temp;
-
-        pItem["liveValue"] = pi.second.liveValue;
-        pItem["blindValues"] = {};
-        for (auto &ri : pi.second.blindValues) {
-            pItem["blindValues"][ri.first] = ri.second;
-        }
-        fItem["parameters"].push_back(pItem);
+        fItem["parameters"].push_back(pi.second.asJson());
     }
     return fItem;
 };

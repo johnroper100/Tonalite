@@ -61,7 +61,7 @@
                         <i class="fa-regular fa-wifi d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">RDM Search</span>
                     </button>
-                    <button class="btn btn-success"
+                    <button class="btn btn-success" @click="fixtureParameters"
                         v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
                         v-bind:class="{ disabled: selectedFixtures.length == 0 }">
                         <i class="fa-regular fa-sliders d-inline-block fa-lg"></i>

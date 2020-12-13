@@ -305,6 +305,31 @@ void tasksThread() {
 
                 sendToAll(fixturesItem.dump());
                 sendToAll(groupsItem.dump());
+            } else if (task["msgType"] == "getFixtureParameters") {
+                json item;
+                item["msgType"] = "fixturePara";
+                item["parameters"] = {};
+                lock_guard<mutex> lg(door);
+                for (auto &pid : fixtures[task["fixtures"][0]].parameters) {
+                    bool ready = true;
+                    for (auto &fi : task["fixtures"]) {
+                        bool readyTwo = false;
+                        for (auto &pi : fixtures[fi].parameters) {
+                            if (pid.second.coarse == pi.second.coarse && pid.second.fine == pi.second.fine && pid.second.type == pi.second.type) {
+                                readyTwo = true;
+                            }
+                        }
+                        if (readyTwo == false) {
+                            ready = false;
+                        }
+                    }
+                    if (ready == true) {
+                        cout << pid.second.name << endl;
+                        item["parameters"].push_back(pid.second.asJson());
+                    }
+                }
+                door.unlock();
+                sendTo(item.dump(), task["socketID"]);
             } else if (task["msgType"] == "groupFixtures") {
                 json item;
                 item["msgType"] = "groups";

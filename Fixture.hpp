@@ -47,6 +47,7 @@ struct FixtureParameter {
     unordered_map<string, double> blindValues;
     int getDMXValue();
     int getDMXValue(string userID);
+    json asJson();
 };
 
 struct Fixture {

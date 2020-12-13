@@ -155,6 +155,13 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
             app.selectedFixtures = [];
         },
+        fixtureParameters: function () {
+            message = {
+                "msgType": "fixtureParameters",
+                "fixtures": app.selectedFixtures
+            }
+            socket.send(JSON.stringify(message));
+        },
         groupFixtures: function () {
             message = {
                 "msgType": "groupFixtures",
