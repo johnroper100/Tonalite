@@ -6,6 +6,8 @@ var app = new Vue({
         Multiselect: window.VueMultiselect.default
     },
     data: {
+        socketID: "",
+        blind: false,
         fixtureProfiles: {},
         fixtureProfilesManufacturer: "",
         fixtureProfilesModel: "",
@@ -17,6 +19,7 @@ var app = new Vue({
         fixtureGridLayout: false,
         fixtures: [],
         selectedFixtures: [],
+        fixtureParameters: [],
         groups: [],
         selectedGroups: [],
         groupSettingsName: "",
@@ -70,6 +73,24 @@ var app = new Vue({
                     return false;
             }
             return true;
+        },
+        intensityAverage(parameters) {
+            avVal = 0.0;
+            avInputs = 0;
+            for (i = 0; i < parameters.length; i++) {
+                if (parameters[i].fadeWithIntensity == true) {
+                    avInputs += 1;
+                    if (app.blind == true) {
+                        avVal += parameters[i].blindValues[app.socketID];
+                    } else {
+                        avVal += parameters[i].liveValue;
+                    }
+                }
+            }
+            if (avInputs == 0) {
+                return 0.0;
+            }
+            return avVal / avInputs;
         },
         clearFixtureProfilesSelection: function (type) {
             if (type == 'manufacturers') {
@@ -155,12 +176,39 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
             app.selectedFixtures = [];
         },
-        fixtureParameters: function () {
-            message = {
-                "msgType": "fixtureParameters",
-                "fixtures": app.selectedFixtures
+        viewFixtureParameters: function () {
+            fixtureIndex = app.fixtures.findIndex(x => x.i === app.selectedFixtures[0]);
+            for (i = 0; i < app.fixtures[fixtureIndex].parameters.length; i++) {
+                ready = true;
+                parameterLiveValue = app.fixtures[fixtureIndex].parameters[i].liveValue;
+                parameterLiveInputs = 1.0;
+                parameterBlindValue = app.fixtures[fixtureIndex].parameters[i].blindValues[app.socketID];
+                parameterBlindInputs = 1.0;
+                if (app.selectedFixtures.length > 1) {
+                    for (fi = 1; fi < app.selectedFixtures.length; fi++) {
+                        fixtureTwoIndex = app.fixtures.findIndex(x => x.i === app.selectedFixtures[fi]);
+                        readyTwo = false;
+                        for (pi = 0; pi < app.fixtures[fixtureTwoIndex].parameters.length; pi++) {
+                            if (app.fixtures[fixtureIndex].parameters[i].coarse == app.fixtures[fixtureTwoIndex].parameters[pi].coarse && app.fixtures[fixtureIndex].parameters[i].fine == app.fixtures[fixtureTwoIndex].parameters[pi].fine && app.fixtures[fixtureIndex].parameters[i].type == app.fixtures[fixtureTwoIndex].parameters[pi].type && app.fixtures[fixtureIndex].parameters[i].fadeWithIntensity == app.fixtures[fixtureTwoIndex].parameters[pi].fadeWithIntensity && app.fixtures[fixtureIndex].parameters[i].home == app.fixtures[fixtureTwoIndex].parameters[pi].home) {
+                                readyTwo = true;
+                                parameterLiveInputs += 1;
+                                parameterLiveValue += app.fixtures[fixtureTwoIndex].parameters[pi].liveValue;
+                                parameterBlindInputs += 1;
+                                parameterBlindValue += app.fixtures[fixtureTwoIndex].parameters[pi].blindValues[app.socketID];
+                            }
+                        }
+                        if (readyTwo == false) {
+                            ready = false;
+                        }
+                    }
+                }
+                if (ready == true) {
+                    app.fixtureParameters.push(app.fixtures[fixtureIndex].parameters[i]);
+                    app.fixtureParameters[app.fixtureParameters.length - 1].liveValue = parameterLiveValue / parameterLiveInputs;
+                    app.fixtureParameters[app.fixtureParameters.length - 1].blindValues[app.socketID] = parameterBlindValue / parameterBlindInputs;
+                }
             }
-            socket.send(JSON.stringify(message));
+            app.tab = "fixtureParameters";
         },
         groupFixtures: function () {
             message = {
@@ -186,7 +234,6 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
             app.selectedGroups = [];
             app.tab = "fixtures";
-            app.fixturesTab = "groups";
         },
         viewGroupSettings: function () {
             app.groupSettingsName = "";
@@ -252,9 +299,10 @@ socket.addEventListener('message', function (event) {
             app.selectedGroups = [];
             if (app.tab == "groupSettings") {
                 app.tab = "fixtures";
-                app.fixturesTab = "groups";
             }
         }
+    } else if (msg["msgType"] == "socketID") {
+        app.socketID = msg["socketID"];
     } else if (msg["msgType"] == "moveFixture") {
         item = app.fixtures.find(x => x.i === msg["i"]);
         item.x = msg["x"];

@@ -35,7 +35,7 @@
                             <li><a class="dropdown-item" @click="saveShow">Save</a></li>
                         </ul>
                     </div>
-                    <div class="dropdown d-inline-block">
+                    <div class="dropdown d-inline-block me-2">
                         <span class="menu-dropdown dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Settings
@@ -43,6 +43,9 @@
                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         </ul>
                     </div>
+                    <div class="btn d-inline-block btn-sm"
+                        v-bind:class="{'btn-outline-danger': blind == false, 'btn-danger': blind == true}"
+                        @click="blind = !blind">Blind</div>
                 </div>
             </div>
             <div class="sub-header p-2" v-if="tab == 'fixtures'">
@@ -61,7 +64,7 @@
                         <i class="fa-regular fa-wifi d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">RDM Search</span>
                     </button>
-                    <button class="btn btn-success" @click="fixtureParameters"
+                    <button class="btn btn-success" @click="viewFixtureParameters"
                         v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
                         v-bind:class="{ disabled: selectedFixtures.length == 0 }">
                         <i class="fa-regular fa-sliders d-inline-block fa-lg"></i>
@@ -146,7 +149,7 @@
                 <div class="col-6 col-md-3 col-lg-2 col-xl-1 text-center mb-3" v-for="item in fixtures">
                     <div class="fixtureItem p-2" @click="selectFixture(item.i)"
                         v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
-                        <h5 class="mb-0 pb-2">100%</h5>
+                        <h5 class="mb-0 pb-2">{{intensityAverage(item.parameters)}}%</h5>
                         {{item.name}} ({{item.universe}}:{{item.address}})
                     </div>
                 </div>
@@ -260,6 +263,15 @@
                         {{item.name}}
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="container-fluid mb-5" v-if="tab == 'fixtureParameters'">
+            <div v-for="param in fixtureParameters">
+                {{param.name}}
+                <input type="range" class="form-range" v-model="param.liveValue" min="0.0" max="100.0" step="0.001"
+                    v-if="blind == false">
+                <input type="range" class="form-range" v-model="param.blindValues[socketID]" min="0.0" max="100.0"
+                    step="0.001" v-if="blind == true">
             </div>
         </div>
         <div class="container-fluid mb-5" v-if="tab == 'groupSettings'">

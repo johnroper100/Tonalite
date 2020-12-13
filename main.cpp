@@ -232,6 +232,14 @@ void openShow() {
     }
 }
 
+void setFixtureBlindValues(string socketID) {
+    for (auto &fi : fixtures) {
+        for (auto &pi : fi.second.parameters) {
+            pi.second.blindValues[socketID] = pi.second.liveValue;
+        }
+    }
+}
+
 void RDMSearchCallback(const ola::client::Result &result, const ola::rdm::UIDSet &uids) {
     if (result.Success() == true) {
         ola::rdm::UIDSet::Iterator i;
@@ -305,31 +313,6 @@ void tasksThread() {
 
                 sendToAll(fixturesItem.dump());
                 sendToAll(groupsItem.dump());
-            } else if (task["msgType"] == "getFixtureParameters") {
-                json item;
-                item["msgType"] = "fixturePara";
-                item["parameters"] = {};
-                lock_guard<mutex> lg(door);
-                for (auto &pid : fixtures[task["fixtures"][0]].parameters) {
-                    bool ready = true;
-                    for (auto &fi : task["fixtures"]) {
-                        bool readyTwo = false;
-                        for (auto &pi : fixtures[fi].parameters) {
-                            if (pid.second.coarse == pi.second.coarse && pid.second.fine == pi.second.fine && pid.second.type == pi.second.type) {
-                                readyTwo = true;
-                            }
-                        }
-                        if (readyTwo == false) {
-                            ready = false;
-                        }
-                    }
-                    if (ready == true) {
-                        cout << pid.second.name << endl;
-                        item["parameters"].push_back(pid.second.asJson());
-                    }
-                }
-                door.unlock();
-                sendTo(item.dump(), task["socketID"]);
             } else if (task["msgType"] == "groupFixtures") {
                 json item;
                 item["msgType"] = "groups";
@@ -421,6 +404,7 @@ void webThread() {
             ws->subscribe("all");
             json j;
             lock_guard<mutex> lg(door);
+            setFixtureBlindValues(psd->userID);
             json fixtureItems = getFixtures();
             json groupItems = getGroups();
             door.unlock();
@@ -430,6 +414,10 @@ void webThread() {
             j = {};
             j["msgType"] = "groups";
             j["groups"] = groupItems;
+            ws->send(j.dump(), uWS::OpCode::TEXT, true);
+            j = {};
+            j["msgType"] = "socketID";
+            j["socketID"] = psd->userID;
             ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
             PerSocketData *psd = (PerSocketData *) ws->getUserData();
             json j = json::parse(message);
