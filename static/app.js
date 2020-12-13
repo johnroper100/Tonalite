@@ -78,7 +78,7 @@ var app = new Vue({
             avVal = 0.0;
             avInputs = 0;
             for (i = 0; i < parameters.length; i++) {
-                if (parameters[i].fadeWithIntensity == true) {
+                if (parameters[i].fadeWithIntensity == true || parameters[i].type == 1) {
                     avInputs += 1;
                     if (app.blind == true) {
                         avVal += parameters[i].blindValues[app.socketID];
