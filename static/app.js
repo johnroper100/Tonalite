@@ -58,7 +58,7 @@ var app = new Vue({
         fixtureIds() {
             ids = [];
             for (i = 0; i < app.fixtures.length; i++) {
-                ids.push(app.fixtures[i].i);
+                ids.push({ id: app.fixtures[i].i, name: app.fixtures[i].name });
             }
             return ids;
         }
@@ -193,7 +193,7 @@ var app = new Vue({
                     }
                     for (g = 0; g < app.groups[i].fixtures.length; g++) {
                         if (app.groupSettingsFixtures.includes(app.groups[i].fixtures[g]) == false) {
-                            app.groupSettingsFixtures.push(app.groups[i].fixtures[g]);
+                            app.groupSettingsFixtures.push({ id: app.groups[i].fixtures[g], name: app.fixtures.find(x => x.i === app.groups[i].fixtures[g]).name });
                         }
                     }
                 }

@@ -266,6 +266,12 @@
             <div class="card mt-3">
                 <div class="card-body">
                     <div class="row">
+                        <div class="col-12 text-center">
+                            <b v-if="selectedGroups.length == 1">Edit Group</b>
+                            <b v-if="selectedGroups.length > 1">Edit Groups</b>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-12">
                             <label class="form-label">Name:</label>
                             <input id="groupNameInput" class="form-control" v-model="groupSettingsName"
@@ -275,8 +281,25 @@
                     <div class="row mt-3">
                         <div class="col-12">
                             <label class="form-label">Fixtures:</label>
-                            <multiselect v-model="groupSettingsFixtures" :allow-empty="false" :options="fixtureIds"
-                                :multiple="true" :taggable="true" @input="editGroupsFixtures"></multiselect>
+                            <multiselect v-model="groupSettingsFixtures" track-by="id" label="name" :allow-empty="false"
+                                :options="fixtureIds" :multiple="true" :taggable="true" @input="editGroupsFixtures">
+                            </multiselect>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <button class="btn btn-success w-100"
+                                v-bind:class="{ disabled: selectedGroups.length == 0 }">
+                                <i class="fa-regular fa-sliders d-inline-block fa-lg"></i>
+                                <span class="d-inline-block">Parameters</span>
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-danger w-100" v-bind:class="{ disabled: selectedGroups.length == 0 }"
+                                @click="removeGroups">
+                                <i class="fa-regular fa-trash-can d-inline-block fa-lg"></i>
+                                <span class="d-inline-block">Delete</span>
+                            </button>
                         </div>
                     </div>
                 </div>

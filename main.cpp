@@ -320,7 +320,7 @@ void tasksThread() {
                         if (task["fixturesChanged"] == true) {
                             groups[id].fixtures.clear();
                             for (auto &fi : task["fixtures"]) {
-                                groups[id].fixtures.push_back(fi);
+                                groups[id].fixtures.push_back(fi["id"]);
                             }
                         }
                     }
