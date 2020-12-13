@@ -201,33 +201,26 @@ void saveShow(string showName) {
     lock_guard<mutex> lg(door);
     j["fixtures"] = getFixtures();
     j["groups"] = getGroups();
+    j["showName"] = showName;
     door.unlock();
     fs::create_directory("shows");
     ofstream o;
-    if (showName == "default") {
-        o.open("default.tonalite");
-    } else {
+    if (showName != "default") {
         o.open("shows/" + showName + ".tonalite");
+        o << j;
+        o.close();
     }
+    o.open("default.tonalite");
     o << j;
     o.close();
 }
 
-void openShow(string showName) {
+void openShow() {
     std::ifstream i;
     bool exists = false;
-    if (showName == "default") {
-        if (fs::exists("default.tonalite")) {
-            i.open("default.tonalite");
-            exists = true;
-        }
-    } else {
-        if (fs::exists("shows/" + showName + ".tonalite")) {
-            i.open("shows/" + showName + ".tonalite");
-            exists = true;
-        }
-    }
-    if (exists == true) {
+    if (fs::exists("default.tonalite")) {
+        i.open("default.tonalite");
+        exists = true;
         json j;
         i >> j;
         lock_guard<mutex> lg(door);
@@ -430,7 +423,7 @@ int main() {
 
     getFixtureProfiles();
 
-    openShow("default");
+    openShow();
 
     ola::InitLogging(ola::OLA_LOG_WARN, ola::OLA_LOG_STDERR);
     if (!wrapper.Setup()) {
