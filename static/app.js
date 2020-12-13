@@ -176,6 +176,10 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
             app.selectedFixtures = [];
         },
+        viewGroupFixtureParameters: function() {
+            app.selectedFixtures = []; // fill with group fixtures;
+            app.viewFixtureParameters();
+        },
         viewFixtureParameters: function () {
             fixtureIndex = app.fixtures.findIndex(x => x.i === app.selectedFixtures[0]);
             for (i = 0; i < app.fixtures[fixtureIndex].parameters.length; i++) {
@@ -209,6 +213,9 @@ var app = new Vue({
                 }
             }
             app.tab = "fixtureParameters";
+        },
+        editFixtureParameters: function(){
+
         },
         groupFixtures: function () {
             message = {
@@ -284,13 +291,22 @@ socket.addEventListener('message', function (event) {
     if (msg["msgType"] == "fixtures") {
         if (msg["fixtures"] != null) {
             app.fixtures = msg["fixtures"];
+            // update selected fixtures if fixtures has been removed
+            if (app.tab == "fixtureParameters") {
+                app.viewFixtureParameters();
+            }
         } else {
             app.fixtures = [];
-            app.selectedGroups = [];
+            app.selectedFixtures = [];
+            app,tab
+            if (app.tab == "fixtureParameters") {
+                app.tab = "fixtures";
+            }
         }
     } else if (msg["msgType"] == "groups") {
         if (msg["groups"] != null) {
             app.groups = msg["groups"];
+            // update selected groups if group has been removed
             if (app.tab == "groupSettings") {
                 app.viewGroupSettings();
             }
