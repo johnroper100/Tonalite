@@ -314,8 +314,14 @@ void tasksThread() {
                 lock_guard<mutex> lg(door);
                 for (auto &id : task["groups"]) {
                     if (groups.find(id) != groups.end()) {
-                        if (task["groupSettings"]["name"] != "Multiple") {
-                            groups[id].name = task["groupSettings"]["name"];
+                        if (task["name"] != "Multiple") {
+                            groups[id].name = task["name"];
+                        }
+                        if (task["fixturesChanged"] == true) {
+                            groups[id].fixtures.clear();
+                            for (auto &fi : task["fixtures"]) {
+                                groups[id].fixtures.push_back(fi);
+                            }
                         }
                     }
                 }

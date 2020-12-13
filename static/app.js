@@ -2,6 +2,9 @@ const socket = new WebSocket("ws://" + location.host);
 
 var app = new Vue({
     el: '#app',
+    components: {
+        Multiselect: window.VueMultiselect.default
+    },
     data: {
         fixtureProfiles: {},
         fixtureProfilesManufacturer: "",
@@ -16,7 +19,9 @@ var app = new Vue({
         selectedFixtures: [],
         groups: [],
         selectedGroups: [],
-        groupSettings: {},
+        groupSettingsName: "",
+        groupSettingsFixtures: [],
+        groupSettingsFixturesChanged: false,
         tab: "fixtures"
     },
     computed: {
@@ -49,6 +54,13 @@ var app = new Vue({
             } else {
                 return { 'objs': [], 'type': 'manufacturers' };
             }
+        },
+        fixtureIds() {
+            ids = [];
+            for (i = 0; i < app.fixtures.length; i++) {
+                ids.push(app.fixtures[i].i);
+            }
+            return ids;
         }
     },
     methods: {
@@ -168,26 +180,37 @@ var app = new Vue({
             app.selectedGroups = [];
         },
         viewGroupSettings: function () {
-            app.groupSettings = {};
-            app.groupSettings["name"] = "";
-            app.groupSettings["fixtures"] = [];
+            app.groupSettingsName = "";
+            app.groupSettingsFixtures = [];
+            app.groupSettingsFixturesChanged = false;
 
             for (i = 0; i < app.groups.length; i++) {
                 if (app.selectedGroups.includes(app.groups[i].i)) {
-                    if (app.groupSettings["name"] == "" || app.groupSettings["name"] == app.groups[i].name) {
-                        app.groupSettings["name"] = app.groups[i].name;
+                    if (app.groupSettingsName == "" || app.groupSettingsName == app.groups[i].name) {
+                        app.groupSettingsName = app.groups[i].name;
                     } else {
-                        app.groupSettings["name"] = "Multiple";
+                        app.groupSettingsName = "Multiple";
+                    }
+                    for (g = 0; g < app.groups[i].fixtures.length; g++) {
+                        if (app.groupSettingsFixtures.includes(app.groups[i].fixtures[g]) == false) {
+                            app.groupSettingsFixtures.push(app.groups[i].fixtures[g]);
+                        }
                     }
                 }
             }
             app.tab = "groupSettings";
         },
+        editGroupsFixtures(value, id) {
+            app.groupSettingsFixturesChanged = true;
+            app.editGroups();
+        },
         editGroups: function () {
             message = {
                 "msgType": "editGroups",
                 "groups": app.selectedGroups,
-                "groupSettings": app.groupSettings
+                "name": app.groupSettingsName,
+                "fixtures": app.groupSettingsFixtures,
+                "fixturesChanged": app.groupSettingsFixturesChanged
             }
             socket.send(JSON.stringify(message));
         },

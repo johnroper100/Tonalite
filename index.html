@@ -4,13 +4,16 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&dispsay=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
     <link href="static/all.min.css" rel="stylesheet" />
     <link href="static/style.css" rel="stylesheet" />
 
@@ -20,38 +23,38 @@
 <body>
     <div id="app" v-bind:class="{inLayout: fixtureGridLayout}">
         <div class="sticky-top">
-            <div class="header p-2 pl-3 pr-3">
+            <div class="header p-2 ps-3 pe-3">
                 <span class="brand">Tonalite</span>
-                <div class="float-right">
-                    <div class="dropdown d-inline-block mr-2">
-                        <span class="menu-dropdown dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                <div class="float-end">
+                    <div class="dropdown d-inline-block me-2">
+                        <span class="menu-dropdown dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             File
                         </span>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" @click="saveShow">Save</a>
-                        </div>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" @click="saveShow">Save</a></li>
+                        </ul>
                     </div>
                     <div class="dropdown d-inline-block">
-                        <span class="menu-dropdown dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <span class="menu-dropdown dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             Settings
                         </span>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        </div>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="sub-header p-2" v-if="tab == 'fixtures'">
-                <select class="form-control d-inline-block" v-model="fixturesTab">
+                <select class="form-select d-inline-block" v-model="fixturesTab">
                     <option value="fixturesList">Fixture List</option>
                     <option value="fixturesGrid" class="d-none d-md-inline-block">Fixture Grid</option>
                     <option value="groups">Group List</option>
                     <option value="patch">Patch</option>
                 </select>
-                <div class="float-right d-inline-block">
+                <div class="float-end d-inline-block">
                     <button class="btn btn-success" v-if="fixturesTab == 'patch'" @click="getFixtureProfiles">
-                        <i class="fa-regular fa-circle-plus d-inline-block fa-lg"></i>
+                        <i class="fa-regular fa-circle-psus d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Add Fixture</span>
                     </button>
                     <button class="btn btn-warning" v-if="fixturesTab == 'patch'" @click="rdmSearch">
@@ -190,7 +193,7 @@
                                     <i class="fa-thin fa-angle-right"></i>
                                     <span class="fixtureProfileText p-1">{{fixtureProfilesModel}}</span>
                                 </span>
-                                <input type="text" class="form-control mb-2" placeholder="Search"
+                                <input type="text" class="form-control mb-2" psaceholder="Search"
                                     v-model="fixtureProfilesSearch">
                                 <ul class="list-group profilesList">
                                     <span
@@ -202,7 +205,7 @@
                                         v-if="filteredFixtureProfilesList['type'] == 'modes'">
                                         <span v-if="profile.modeName != '-'">{{profile.modeName}}</span>
                                         <span v-if="profile.modeName == '-'">Default Mode</span>
-                                        <span class="float-right"><b class="text-warning">Channels:</b>
+                                        <span class="float-end"><b class="text-warning">Channels:</b>
                                             {{profile.channels}}</span>
                                     </li>
                                     <li class="list-group-item fixtureProfileItem"
@@ -227,7 +230,7 @@
                     show.
                 </div>
                 <div class="table-responsive" v-if="fixtures.length != 0">
-                    <table class="table table-dark">
+                    <table class="table table-dark table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
@@ -262,12 +265,18 @@
         <div class="container-fluid mb-5" v-if="tab == 'groupSettings'">
             <div class="row mt-3">
                 <div class="col-12">
-                    <input class="form-control" v-model="groupSettings.name" @input="editGroups">
+                    <input class="form-control" v-model="groupSettingsName" @input="editGroups">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <multiselect v-model="groupSettingsFixtures" :allow-empty="false" :options="fixtureIds"
+                        :multipse="true" :taggable="true" @input="editGroupsFixtures"></multiselect>
                 </div>
             </div>
         </div>
         <div class="fixed-bottom">
-            <div class="row header text-center pl-2 pr-2">
+            <div class="row header text-center ps-2 pe-2">
                 <div class="col-3 tab pt-3 pb-3" @click="tab = 'fixtures'"
                     v-bind:class="{ active: (tab == 'fixtures' || tab == 'groupSettings') }">
                     Fixtures
@@ -284,13 +293,11 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
     <script src="static/vue-grid-layout.umd.min.js"></script>
     <script src="static/app.js"></script>
 </body>
