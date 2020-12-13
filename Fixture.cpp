@@ -10,11 +10,11 @@ using namespace std;
 using json = nlohmann::json;
 
 int FixtureParameter::getDMXValue() {
-    return ceil(65535.0 * liveValue);
+    return ceil(65535.0 * (liveValue / 100.0));
 };
 
 int FixtureParameter::getDMXValue(string userID) {
-    return ceil(65535.0 * blindValues[userID]);
+    return ceil(65535.0 * (blindValues[userID] / 100.0));
 };
 
 json FixtureParameter::asJson() {
