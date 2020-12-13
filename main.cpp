@@ -313,6 +313,23 @@ void tasksThread() {
 
                 sendToAll(fixturesItem.dump());
                 sendToAll(groupsItem.dump());
+            } else if (task["msgType"] == "editFixtureParameters") {
+                json item;
+                item["msgType"] = "fixtures";
+                lock_guard<mutex> lg(door);
+                for (auto &fi : task["fixtures"]) {
+                    for (auto &pi : task["parameters"]) {
+                        for (auto &p : fixtures[fi].parameters) {
+                            if (p.second.coarse == pi["coarse"] && p.second.fine == pi["fine"] && p.second.type == pi["type"] && p.second.fadeWithIntensity == pi["fadeWithIntensity"] && p.second.home == pi["home"]) {
+                                p.second.liveValue = pi["liveValue"];
+                                //p.second.blindValues[task["socketID"]] = pi["blindValues"][task["socketID"]];
+                            }
+                        }
+                    }
+                }
+                item["fixtures"] = getFixtures();
+                sendToAllExcept(item.dump(), task["socketID"]);
+                door.unlock();
             } else if (task["msgType"] == "groupFixtures") {
                 json item;
                 item["msgType"] = "groups";

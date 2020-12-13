@@ -215,7 +215,12 @@ var app = new Vue({
             app.tab = "fixtureParameters";
         },
         editFixtureParameters: function(){
-
+            message = {
+                "msgType": "editFixtureParameters",
+                "fixtures": app.selectedFixtures,
+                "parameters": app.fixtureParameters
+            }
+            socket.send(JSON.stringify(message))
         },
         groupFixtures: function () {
             message = {
