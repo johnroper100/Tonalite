@@ -178,6 +178,8 @@ var app = new Vue({
             }
             socket.send(JSON.stringify(message));
             app.selectedGroups = [];
+            app.tab = "fixtures";
+            app.fixturesTab = "groups";
         },
         viewGroupSettings: function () {
             app.groupSettingsName = "";
@@ -242,7 +244,8 @@ socket.addEventListener('message', function (event) {
             app.groups = [];
             app.selectedGroups = [];
             if (app.tab == "groupSettings") {
-                app.tab = "groups";
+                app.tab = "fixtures";
+                app.fixturesTab = "groups";
             }
         }
     } else if (msg["msgType"] == "moveFixture") {
