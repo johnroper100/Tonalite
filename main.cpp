@@ -196,16 +196,47 @@ void addFixture(int custom, string filename, string dcid, int universe, int addr
     infile.close();
 }
 
-void saveShow() {
+void saveShow(string showName) {
     json j;
     lock_guard<mutex> lg(door);
     j["fixtures"] = getFixtures();
     j["groups"] = getGroups();
     door.unlock();
     fs::create_directory("shows");
-    ofstream o("shows/show.tonalite");
+    ofstream o;
+    if (showName == "default") {
+        o.open("default.tonalite");
+    } else {
+        o.open("shows/" + showName + ".tonalite");
+    }
     o << j;
     o.close();
+}
+
+void openShow(string showName) {
+    std::ifstream i;
+    bool exists = false;
+    if (showName == "default") {
+        if (fs::exists("default.tonalite")) {
+            i.open("default.tonalite");
+            exists = true;
+        }
+    } else {
+        if (fs::exists("shows/" + showName + ".tonalite")) {
+            i.open("shows/" + showName + ".tonalite");
+            exists = true;
+        }
+    }
+    if (exists == true) {
+        json j;
+        i >> j;
+        lock_guard<mutex> lg(door);
+        for (auto &fi : j["fixtures"]) {
+            Fixture newFixture(fi, 0, 0, 0);
+            fixtures[newFixture.i] = newFixture;
+        }
+        door.unlock();
+    }
 }
 
 void RDMSearchCallback(const ola::client::Result &result, const ola::rdm::UIDSet &uids) {
@@ -335,7 +366,7 @@ void tasksThread() {
                     wrapper.GetClient()->RunDiscovery(i, ola::client::DISCOVERY_FULL, ola::NewSingleCallback(&RDMSearchCallback));
                 }
             } else if (task["msgType"] == "saveShow") {
-                saveShow();
+                saveShow("default");
             }
         }
     }
@@ -398,6 +429,8 @@ int main() {
     finished = 0;
 
     getFixtureProfiles();
+
+    openShow("default");
 
     ola::InitLogging(ola::OLA_LOG_WARN, ola::OLA_LOG_STDERR);
     if (!wrapper.Setup()) {
