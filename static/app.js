@@ -318,7 +318,6 @@ socket.addEventListener('message', function (event) {
         } else {
             app.fixtures = [];
             app.selectedFixtures = [];
-            app, tab
             if (app.tab == "fixtureParameters") {
                 app.tab = "fixtures";
             }

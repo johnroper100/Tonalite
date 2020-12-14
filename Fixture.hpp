@@ -69,8 +69,9 @@ struct Fixture {
     string modelName;
     unordered_map<string, FixtureParameter> parameters;
     Fixture();
-    Fixture(json profile, int universe, int address, int createIndex);
+    Fixture(json profile, int inputUniverse, int inputAddress, int createIndex);
     json asJson();
+    void addUserBlind(string socketID);
 };
 
 #endif

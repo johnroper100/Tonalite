@@ -181,6 +181,10 @@ void addFixture(int custom, string filename, string dcid, int universe, int addr
                 for (int i = 0; i < number; i++) {
                     Fixture newFixture(it, universe, address, i);
 
+                    for (auto &ui : users) {
+                        newFixture.addUserBlind(ui.second->userID);
+                    }
+
                     lock_guard<mutex> lg(door);
                     fixtures[newFixture.i] = newFixture;
                     door.unlock();
@@ -229,14 +233,6 @@ void openShow() {
             fixtures[newFixture.i] = newFixture;
         }
         door.unlock();
-    }
-}
-
-void setFixtureBlindValues(string socketID) {
-    for (auto &fi : fixtures) {
-        for (auto &pi : fi.second.parameters) {
-            pi.second.blindValues[socketID] = pi.second.liveValue;
-        }
     }
 }
 
@@ -421,7 +417,9 @@ void webThread() {
             ws->subscribe("all");
             json j;
             lock_guard<mutex> lg(door);
-            setFixtureBlindValues(psd->userID);
+            for (auto &fi : fixtures) {
+                fi.second.addUserBlind(psd->userID);
+            }
             json fixtureItems = getFixtures();
             json groupItems = getGroups();
             door.unlock();

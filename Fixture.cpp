@@ -83,10 +83,16 @@ json Fixture::asJson() {
     return fItem;
 };
 
+void Fixture::addUserBlind(string socketID) {
+    for (auto &pi : parameters) {
+        pi.second.blindValues[socketID] = pi.second.liveValue;
+    }
+}
+
 Fixture::Fixture() {
 }
 
-Fixture::Fixture(json profile, int universe, int address, int createIndex) {
+Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIndex) {
     if (profile.contains("i")) {
         i = profile["i"];
     } else {
@@ -102,13 +108,13 @@ Fixture::Fixture(json profile, int universe, int address, int createIndex) {
     if (profile.contains("universe")) {
         universe = profile["universe"];
     } else {
-        universe = universe;
+        universe = inputUniverse;
     }
 
     if (profile.contains("address")) {
         address = profile["address"];
     } else {
-        address = address + ((profile["maxOffset"].get<int>() + 1) * createIndex);
+        address = inputAddress + ((profile["maxOffset"].get<int>() + 1) * createIndex);
     }
 
     if (profile.contains("x")) {
@@ -153,6 +159,7 @@ Fixture::Fixture(json profile, int universe, int address, int createIndex) {
         newParam.fadeWithIntensity = pi["fadeWithIntensity"];
         newParam.highlight = pi["highlight"];
         newParam.home = pi["home"];
+        newParam.liveValue = (newParam.home / 65535.0) * 100.0;
         newParam.invert = pi["invert"];
         newParam.name = pi["name"];
         newParam.size = pi["size"];
