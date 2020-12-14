@@ -1,0 +1,796 @@
+{
+    "date": "2020-11-23 15:50",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "332567B9-7412-48AF-8174-711D05008A44",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "DTS",
+            "maxOffset": 3,
+            "modeName": "4ch",
+            "modelName": "Scena LED 200",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 30,
+                            "default": 74,
+                            "end": 119,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 134,
+                            "end": 149,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 164,
+                            "end": 179,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 180,
+                            "default": 180,
+                            "end": 204,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 205,
+                            "default": 205,
+                            "end": 229,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 232,
+                            "default": 232,
+                            "end": 232,
+                            "label": "Strobe One Shot"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "type": 1,
+                    "fine": 2
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Time 0s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 19
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 1s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 25
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 5s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 27
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 10s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 29
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 15s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 31
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 20s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 33
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 25s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 35
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 30s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 37
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 35s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 39
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 40s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 41
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 45s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 43
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 50s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 45
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 55s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 47
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 60s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 49
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 65s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 51
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 70s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 53
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 75s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 55
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 80s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 57
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 85s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 59
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 90s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 61
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Time 100s",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 63
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Gamma correction quadratic",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 69
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Gamma correction linear",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 79
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 1 Hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 94
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 10 Hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 105
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 20 Hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 106
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 30 Hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 107
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 40 Hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 108
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 50 Hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 109
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 60 Hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 110
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 70 Hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 111
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 80 Hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 112
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 90 Hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 113
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PWM Freq 100 Hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 114
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Boost on",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 139
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Boost off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 149
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Display 0%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 159
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Display 100%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 169
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "No DMX-keep last",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 175
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "No DMX-blackout",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 177
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "No DMX-all to 100%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 179
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "No DMX-CHPR steps",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 181
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "No DMX-custom",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 183
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "As Menu",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 239
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Silent",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 250
+                        },
+                        {
+                            "step": 6,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

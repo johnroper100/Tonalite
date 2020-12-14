@@ -1,0 +1,696 @@
+{
+    "date": "2020-11-23 15:50",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "DAD9CC7D-01C8-4C1D-B04E-D15A4FA04B3F",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Ablelite International",
+            "maxOffset": 14,
+            "modeName": "Std",
+            "modelName": "EVA150Z",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 32512,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 32512,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe Mode",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Strobe Mode"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "O Pulse Mode"
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "C Pulse Mode"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 55,
+                            "label": "Rnd Mode"
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "Strobe Mode"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 31,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 31,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 31,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 31,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 127,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 223,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 223,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 223,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 223,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 239,
+                            "end": 255,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 239,
+                            "end": 255,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 239,
+                            "end": 255,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 239,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix Mode",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "CTC"
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "Forward spin"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 55,
+                            "label": "Reverse spin"
+                        },
+                        {
+                            "begin": 71,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Continuous"
+                        },
+                        {
+                            "begin": 95,
+                            "default": 95,
+                            "end": 95,
+                            "label": "Color Bounce"
+                        },
+                        {
+                            "begin": 119,
+                            "default": 119,
+                            "end": 119,
+                            "label": "LED segments"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "off"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 30,
+                            "label": "2000K"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "MixCycle"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "MixCycle"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "MixCycle"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 1,
+                            "label": "Red"
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 1,
+                            "label": "Red"
+                        },
+                        {
+                            "begin": 2,
+                            "default": 2,
+                            "end": 2,
+                            "label": "Green"
+                        },
+                        {
+                            "begin": 2,
+                            "default": 2,
+                            "end": 2,
+                            "label": "Green"
+                        },
+                        {
+                            "begin": 3,
+                            "default": 3,
+                            "end": 3,
+                            "label": "Blue"
+                        },
+                        {
+                            "begin": 3,
+                            "default": 3,
+                            "end": 3,
+                            "label": "Blue"
+                        },
+                        {
+                            "begin": 4,
+                            "default": 4,
+                            "end": 4,
+                            "label": "White"
+                        },
+                        {
+                            "begin": 4,
+                            "default": 4,
+                            "end": 4,
+                            "label": "White"
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 46,
+                            "label": "Red 0%/green increasing/blue 100%/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 46,
+                            "label": "Red 0%/green increasing/blue 100%/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 31,
+                            "default": 31,
+                            "end": 62,
+                            "label": "2100K"
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 88,
+                            "label": "Red 0%/green 100%/blue decreasing/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 88,
+                            "label": "Red 0%/green 100%/blue decreasing/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 63,
+                            "default": 63,
+                            "end": 94,
+                            "label": "2200K"
+                        },
+                        {
+                            "begin": 89,
+                            "default": 89,
+                            "end": 130,
+                            "label": "Red increasing/green 100%/blue 0%/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 89,
+                            "default": 89,
+                            "end": 130,
+                            "label": "Red increasing/green 100%/blue 0%/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 95,
+                            "default": 95,
+                            "end": 126,
+                            "label": "2300K"
+                        },
+                        {
+                            "begin": 127,
+                            "default": 127,
+                            "end": 158,
+                            "label": "2400K"
+                        },
+                        {
+                            "begin": 131,
+                            "default": 131,
+                            "end": 172,
+                            "label": "Red 100%/green decreasing/blue 0%/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 131,
+                            "default": 131,
+                            "end": 172,
+                            "label": "Red 100%/green decreasing/blue 0%/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 190,
+                            "label": "2500K"
+                        },
+                        {
+                            "begin": 173,
+                            "default": 173,
+                            "end": 214,
+                            "label": "Red 100%/green 0%/blue increasing/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 173,
+                            "default": 173,
+                            "end": 214,
+                            "label": "Red 100%/green 0%/blue increasing/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 223,
+                            "label": "2600K"
+                        },
+                        {
+                            "begin": 215,
+                            "default": 215,
+                            "end": 255,
+                            "label": "Red decreasing/green 0%/blue 100%/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 215,
+                            "default": 215,
+                            "end": 255,
+                            "label": "Red decreasing/green 0%/blue 100%/white 0% [Mix Pos]"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 231,
+                            "end": 231,
+                            "label": "3200K"
+                        },
+                        {
+                            "begin": 232,
+                            "default": 239,
+                            "end": 239,
+                            "label": "4200K"
+                        },
+                        {
+                            "begin": 240,
+                            "default": 247,
+                            "end": 247,
+                            "label": "5600K"
+                        },
+                        {
+                            "begin": 248,
+                            "default": 255,
+                            "end": 255,
+                            "label": "8000K"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 1,
+                            "label": "Red"
+                        },
+                        {
+                            "begin": 2,
+                            "default": 2,
+                            "end": 2,
+                            "label": "Green"
+                        },
+                        {
+                            "begin": 3,
+                            "default": 3,
+                            "end": 3,
+                            "label": "Blue"
+                        },
+                        {
+                            "begin": 4,
+                            "default": 4,
+                            "end": 4,
+                            "label": "White"
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 46,
+                            "label": "Red 0%/green increasing/blue 100%/white 0% [Mix Pos 2]"
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 88,
+                            "label": "Red 0%/green 100%/blue decreasing/white 0% [Mix Pos 2]"
+                        },
+                        {
+                            "begin": 89,
+                            "default": 89,
+                            "end": 130,
+                            "label": "Red increasing/green 100%/blue 0%/white 0% [Mix Pos 2]"
+                        },
+                        {
+                            "begin": 131,
+                            "default": 131,
+                            "end": 172,
+                            "label": "Red 100%/green decreasing/blue 0%/white 0% [Mix Pos 2]"
+                        },
+                        {
+                            "begin": 173,
+                            "default": 173,
+                            "end": 214,
+                            "label": "Red 100%/green 0%/blue increasing/white 0% [Mix Pos 2]"
+                        },
+                        {
+                            "begin": 215,
+                            "default": 215,
+                            "end": 255,
+                            "label": "Red decreasing/green 0%/blue 100%/white 0% [Mix Pos 2]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Green",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Blue",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "White",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "NonPos Reset"
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "Display Off"
+                        },
+                        {
+                            "begin": 67,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Display On"
+                        },
+                        {
+                            "begin": 91,
+                            "default": 91,
+                            "end": 91,
+                            "label": "Sleep"
+                        }
+                    ]
+                }
+            ],
+            "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 14,
+                            "subkey": 11
+                        },
+                        {
+                            "step": 7,
+                            "key": 14,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

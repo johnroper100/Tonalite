@@ -1,0 +1,235 @@
+{
+    "date": "2020-11-23 15:50",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "77D10B71-A2C1-4FC9-AA89-32E6C7F3C906",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Cameo",
+            "maxOffset": 4,
+            "modeName": "5ch",
+            "modelName": "Auro Spot CLAS300",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 8,
+                            "default": 8,
+                            "end": 8,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 33,
+                            "label": "Rnd Pulse"
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 56,
+                            "label": "Rnd O Pulse"
+                        },
+                        {
+                            "begin": 57,
+                            "default": 57,
+                            "end": 79,
+                            "label": "Rnd C Pulse"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 80,
+                            "end": 102,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 103,
+                            "default": 103,
+                            "end": 108,
+                            "label": "5.0s"
+                        },
+                        {
+                            "begin": 109,
+                            "default": 109,
+                            "end": 114,
+                            "label": "4.0s"
+                        },
+                        {
+                            "begin": 115,
+                            "default": 115,
+                            "end": 120,
+                            "label": "3.0s"
+                        },
+                        {
+                            "begin": 121,
+                            "default": 121,
+                            "end": 127,
+                            "label": "2.0s"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 250,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Macros",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Programs off"
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 22,
+                            "label": "Program 1"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "Program 2"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 86,
+                            "end": 86,
+                            "label": "Program 3"
+                        },
+                        {
+                            "begin": 118,
+                            "default": 118,
+                            "end": 118,
+                            "label": "Program 4"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 150,
+                            "label": "Program 5"
+                        },
+                        {
+                            "begin": 182,
+                            "default": 182,
+                            "end": 182,
+                            "label": "Program 6"
+                        },
+                        {
+                            "begin": 214,
+                            "default": 214,
+                            "end": 214,
+                            "label": "Program 7"
+                        },
+                        {
+                            "begin": 243,
+                            "default": 243,
+                            "end": 243,
+                            "label": "Program 8"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Macro Rate",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Global Reset",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 66,
+                            "default": 66,
+                            "end": 66,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "NonPos Reset"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 4,
+                            "subkey": 223
+                        },
+                        {
+                            "step": 7,
+                            "key": 4,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

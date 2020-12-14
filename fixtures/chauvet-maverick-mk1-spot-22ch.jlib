@@ -1,0 +1,1212 @@
+{
+    "date": "2020-11-23 15:50",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "06C8A580-718C-4927-A4B1-47E5A9AA9F24",
+            "deviceID": 14016637,
+            "manufacturerID": 8612,
+            "hasIntensity": true,
+            "manufacturerName": "Chauvet",
+            "maxOffset": 21,
+            "modeName": "22ch",
+            "modelName": "Maverick MK1 Spot",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32767,
+                    "home": 32767,
+                    "invert": true,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 5,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 8,
+                            "default": 8,
+                            "end": 76,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 77,
+                            "default": 77,
+                            "end": 145,
+                            "label": "Pulse"
+                        },
+                        {
+                            "begin": 146,
+                            "default": 146,
+                            "end": 215,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "LED Engine FX",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Off"
+                        },
+                        {
+                            "begin": 2,
+                            "default": 2,
+                            "end": 128,
+                            "label": "Shaking Strobe [LED FX Rate]"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
+                            "label": "Fading Strobe [LED FX Rate]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Cyan",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Magenta",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Yellow",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 10,
+                            "label": "(Red)",
+                            "media": {
+                                "b": 0,
+                                "g": 0,
+                                "name": "(Red)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "(Orange)",
+                            "media": {
+                                "b": 0,
+                                "g": 11,
+                                "name": "(Orange)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "(Green)",
+                            "media": {
+                                "b": 4,
+                                "g": 255,
+                                "name": "(Green)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 31,
+                            "default": 31,
+                            "end": 31,
+                            "label": "(Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 1,
+                                "name": "(Blue)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 38,
+                            "default": 38,
+                            "end": 38,
+                            "label": "(Magenta)",
+                            "media": {
+                                "b": 146,
+                                "g": 0,
+                                "name": "(Magenta)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": "(UV)",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "(UV)",
+                                "r": 144,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "(CTO)",
+                            "media": {
+                                "b": 0,
+                                "g": 101,
+                                "name": "(CTO)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 60,
+                            "default": 60,
+                            "end": 68,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 69,
+                            "default": 84,
+                            "end": 84,
+                            "label": "Red",
+                            "media": {
+                                "b": 0,
+                                "g": 0,
+                                "name": "Red",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 85,
+                            "default": 100,
+                            "end": 100,
+                            "label": "Orange",
+                            "media": {
+                                "b": 0,
+                                "g": 11,
+                                "name": "Orange",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 101,
+                            "default": 116,
+                            "end": 116,
+                            "label": "Green",
+                            "media": {
+                                "b": 4,
+                                "g": 255,
+                                "name": "Green",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 117,
+                            "default": 132,
+                            "end": 132,
+                            "label": "Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 1,
+                                "name": "Blue",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 133,
+                            "default": 147,
+                            "end": 147,
+                            "label": "Magenta",
+                            "media": {
+                                "b": 146,
+                                "g": 0,
+                                "name": "Magenta",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 148,
+                            "default": 163,
+                            "end": 163,
+                            "label": "UV",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "UV",
+                                "r": 144,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 164,
+                            "default": 179,
+                            "end": 179,
+                            "label": "CTO",
+                            "media": {
+                                "b": 0,
+                                "g": 101,
+                                "name": "CTO",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 180,
+                            "default": 183,
+                            "end": 187,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 188,
+                            "default": 203,
+                            "end": 219,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 221,
+                            "default": 221,
+                            "end": 221,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "(Sailboat)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Sailboat)"
+                            }
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "(Wavy Bar)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Wavy Bar)"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "(Dot Crickets)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Dot Crickets)"
+                            }
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "(Nuts N Bolts)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Nuts N Bolts)"
+                            }
+                        },
+                        {
+                            "begin": 43,
+                            "default": 43,
+                            "end": 43,
+                            "label": "(Linear Ovals)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Linear Ovals)"
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "(Star Field)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Star Field)"
+                            }
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "(08)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(08)"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 71,
+                            "end": 71,
+                            "label": "(08) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(08) [S]"
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 79,
+                            "end": 79,
+                            "label": "(Star Field) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Star Field) [S]"
+                            }
+                        },
+                        {
+                            "begin": 80,
+                            "default": 87,
+                            "end": 87,
+                            "label": "(Linear Ovals) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Linear Ovals) [S]"
+                            }
+                        },
+                        {
+                            "begin": 88,
+                            "default": 95,
+                            "end": 95,
+                            "label": "(Nuts N Bolts) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Nuts N Bolts) [S]"
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 103,
+                            "end": 103,
+                            "label": "(Dot Crickets) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Dot Crickets) [S]"
+                            }
+                        },
+                        {
+                            "begin": 104,
+                            "default": 111,
+                            "end": 111,
+                            "label": "(Wavy Bar) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Wavy Bar) [S]"
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 119,
+                            "end": 119,
+                            "label": "(Sailboat) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Sailboat) [S]"
+                            }
+                        },
+                        {
+                            "begin": 123,
+                            "default": 123,
+                            "end": 123,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 191,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 63,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 104,
+                            "end": 145,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 147,
+                            "default": 147,
+                            "end": 147,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 231,
+                            "label": "Rot <<"
+                        },
+                        {
+                            "begin": 232,
+                            "default": 232,
+                            "end": 255,
+                            "label": "Gobo Shake ^"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 10,
+                            "label": "(Cheese Puffs)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Cheese Puffs)"
+                            }
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "(Triangle Breakups)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Triangle Breakups)"
+                            }
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "(Splot Breakup)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Splot Breakup)"
+                            }
+                        },
+                        {
+                            "begin": 31,
+                            "default": 31,
+                            "end": 31,
+                            "label": "(Triangle)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Triangle)"
+                            }
+                        },
+                        {
+                            "begin": 38,
+                            "default": 38,
+                            "end": 38,
+                            "label": "(Circuits)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Circuits)"
+                            }
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": "(Random Dots)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Random Dots)"
+                            }
+                        },
+                        {
+                            "begin": 56,
+                            "default": 56,
+                            "end": 56,
+                            "label": "(Tight Breakup)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Tight Breakup)"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 70,
+                            "end": 70,
+                            "label": "(Tight Breakup) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Tight Breakup) [S]"
+                            }
+                        },
+                        {
+                            "begin": 71,
+                            "default": 77,
+                            "end": 77,
+                            "label": "(Random Dots) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Random Dots) [S]"
+                            }
+                        },
+                        {
+                            "begin": 78,
+                            "default": 84,
+                            "end": 84,
+                            "label": "(Circuits) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Circuits) [S]"
+                            }
+                        },
+                        {
+                            "begin": 85,
+                            "default": 91,
+                            "end": 91,
+                            "label": "(Triangle) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Triangle) [S]"
+                            }
+                        },
+                        {
+                            "begin": 92,
+                            "default": 98,
+                            "end": 98,
+                            "label": "(Splot Breakup) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Splot Breakup) [S]"
+                            }
+                        },
+                        {
+                            "begin": 99,
+                            "default": 105,
+                            "end": 105,
+                            "label": "(Triangle Breakups) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Triangle Breakups) [S]"
+                            }
+                        },
+                        {
+                            "begin": 106,
+                            "default": 112,
+                            "end": 112,
+                            "label": "(Cheese Puffs) [S]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Cheese Puffs) [S]"
+                            }
+                        },
+                        {
+                            "begin": 120,
+                            "default": 120,
+                            "end": 120,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 191,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "(3 Prism)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(3 Prism)"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 18,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 19,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Iris",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 63,
+                            "label": "Iris"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 127,
+                            "label": "Iris Strobe Pulse"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 191,
+                            "label": "Iris Strobe O Pulse"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Iris Strobe C Pulse"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 20,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Frost",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 21,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "BlackMove On"
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "BlackMove Off [Clr Blink]"
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "BlackMove Off [Gobo & Gobo 2 Blink]"
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "BlackMove On [Clr Blink]"
+                        },
+                        {
+                            "begin": 43,
+                            "default": 43,
+                            "end": 43,
+                            "label": "BlackMove On [Gobo & Gobo 2 Blink]"
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "BlackMove On [Clr & Gobo & Gobo 2 Blink]"
+                        },
+                        {
+                            "begin": 195,
+                            "default": 195,
+                            "end": 195,
+                            "label": "Fan Speed 1"
+                        },
+                        {
+                            "begin": 203,
+                            "default": 203,
+                            "end": 203,
+                            "label": "Fan Speed 100"
+                        },
+                        {
+                            "begin": 211,
+                            "default": 211,
+                            "end": 211,
+                            "label": "Auto"
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 223,
+                            "label": "Iris Speed 100"
+                        },
+                        {
+                            "begin": 228,
+                            "default": 228,
+                            "end": 228,
+                            "label": "Iris Speed 1"
+                        },
+                        {
+                            "begin": 233,
+                            "default": 233,
+                            "end": 233,
+                            "label": "Pos Mode 1"
+                        },
+                        {
+                            "begin": 238,
+                            "default": 238,
+                            "end": 238,
+                            "label": "off"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Pan Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 99
+                        },
+                        {
+                            "step": 33,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Tilt Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 107
+                        },
+                        {
+                            "step": 18,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Color Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 115
+                        },
+                        {
+                            "step": 5,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Gobo Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 123
+                        },
+                        {
+                            "step": 38,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "FX Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 139
+                        },
+                        {
+                            "step": 13,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 155
+                        },
+                        {
+                            "step": 83,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Iris Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 163
+                        },
+                        {
+                            "step": 8,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Frost Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 171
+                        },
+                        {
+                            "step": 8,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Zoom Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 179
+                        },
+                        {
+                            "step": 13,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Color Mix Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 187
+                        },
+                        {
+                            "step": 5,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ],
+            "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139"
+        }
+    ]
+}

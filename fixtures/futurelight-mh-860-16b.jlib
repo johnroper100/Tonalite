@@ -1,0 +1,998 @@
+{
+    "date": "2020-11-23 15:50",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "F6B9CB6A-FD60-DF4C-A492-6FBDE6880522",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Futurelight",
+            "maxOffset": 15,
+            "modeName": "16b",
+            "modelName": "MH 860",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 2
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 249,
+                            "label": "Focus Spd"
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
+                            "label": "Focus Track [Clr & Clr 2 & Gobo & Gobo 2 Blink]"
+                        },
+                        {
+                            "begin": 254,
+                            "default": 254,
+                            "end": 254,
+                            "label": "Focus Track [BlackMove,Clr & Clr 2 & Gobo & Gobo 2 Blink]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Fan Speed"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 5,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Colors"
+                        },
+                        {
+                            "begin": 6,
+                            "default": 18,
+                            "end": 18,
+                            "label": "Light Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 242,
+                                "name": "Light Blue",
+                                "r": 113,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 19,
+                            "default": 31,
+                            "end": 31,
+                            "label": "Red",
+                            "media": {
+                                "b": 0,
+                                "g": 0,
+                                "name": "Red",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 32,
+                            "default": 44,
+                            "end": 44,
+                            "label": "Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "Blue",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 45,
+                            "default": 57,
+                            "end": 57,
+                            "label": "Light Green",
+                            "media": {
+                                "b": 157,
+                                "g": 255,
+                                "name": "Light Green",
+                                "r": 145,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 58,
+                            "default": 69,
+                            "end": 69,
+                            "label": "Yellow",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Yellow",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 82,
+                            "end": 82,
+                            "label": "Magenta",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "Magenta",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 83,
+                            "default": 95,
+                            "end": 95,
+                            "label": "Cyan",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Cyan",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 108,
+                            "end": 108,
+                            "label": "Green",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Green",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 109,
+                            "default": 121,
+                            "end": 121,
+                            "label": "Orange",
+                            "media": {
+                                "b": 3,
+                                "g": 133,
+                                "name": "Orange",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 122,
+                            "default": 124,
+                            "end": 127,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 159,
+                            "end": 190,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 193,
+                            "end": 193,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "(Deep Red)",
+                            "media": {
+                                "b": 10,
+                                "g": 2,
+                                "name": "(Deep Red)",
+                                "r": 196,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 29,
+                            "default": 29,
+                            "end": 29,
+                            "label": "(Deep Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "(Deep Blue)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 41,
+                            "default": 41,
+                            "end": 41,
+                            "label": "(Pink)",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "(Pink)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 53,
+                            "default": 53,
+                            "end": 53,
+                            "label": "(Cyan 2)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Cyan 2)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 65,
+                            "default": 65,
+                            "end": 65,
+                            "label": "(Magenta 2)",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "(Magenta 2)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 77,
+                            "default": 77,
+                            "end": 77,
+                            "label": "(Yellow 2)",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "(Yellow 2)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 89,
+                            "default": 89,
+                            "end": 89,
+                            "label": "(CTC 6000K)",
+                            "media": {
+                                "b": 255,
+                                "g": 238,
+                                "name": "(CTC 6000K)",
+                                "r": 206,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 101,
+                            "default": 101,
+                            "end": 101,
+                            "label": "(CTC 3200K)",
+                            "media": {
+                                "b": 164,
+                                "g": 255,
+                                "name": "(CTC 3200K)",
+                                "r": 253,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 113,
+                            "default": 113,
+                            "end": 113,
+                            "label": "(UV)",
+                            "media": {
+                                "b": 199,
+                                "g": 20,
+                                "name": "(UV)",
+                                "r": 101,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 123,
+                            "default": 123,
+                            "end": 123,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Stepped 1"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 1,
+                            "default": 63,
+                            "end": 63,
+                            "label": "(3 Prism) [>>]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(3 Prism) [>>]"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "(3 Prism)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(3 Prism)"
+                            }
+                        },
+                        {
+                            "begin": 65,
+                            "default": 127,
+                            "end": 127,
+                            "label": "(3 Prism) [<<]",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(3 Prism) [<<]"
+                            }
+                        },
+                        {
+                            "begin": 131,
+                            "default": 131,
+                            "end": 131,
+                            "label": "Prism and gobo macro 1"
+                        },
+                        {
+                            "begin": 139,
+                            "default": 139,
+                            "end": 139,
+                            "label": "Prism and gobo macro 2"
+                        },
+                        {
+                            "begin": 147,
+                            "default": 147,
+                            "end": 147,
+                            "label": "Prism and gobo macro 3"
+                        },
+                        {
+                            "begin": 155,
+                            "default": 155,
+                            "end": 155,
+                            "label": "Prism and gobo macro 4"
+                        },
+                        {
+                            "begin": 163,
+                            "default": 163,
+                            "end": 163,
+                            "label": "Prism and gobo macro 5"
+                        },
+                        {
+                            "begin": 171,
+                            "default": 171,
+                            "end": 171,
+                            "label": "Prism and gobo macro 6"
+                        },
+                        {
+                            "begin": 179,
+                            "default": 179,
+                            "end": 179,
+                            "label": "Prism and gobo macro 7"
+                        },
+                        {
+                            "begin": 187,
+                            "default": 187,
+                            "end": 187,
+                            "label": "Prism and gobo macro 8"
+                        },
+                        {
+                            "begin": 195,
+                            "default": 195,
+                            "end": 195,
+                            "label": "Prism and gobo macro 9"
+                        },
+                        {
+                            "begin": 203,
+                            "default": 203,
+                            "end": 203,
+                            "label": "Prism and gobo macro 10"
+                        },
+                        {
+                            "begin": 211,
+                            "default": 211,
+                            "end": 211,
+                            "label": "Prism and gobo macro 11"
+                        },
+                        {
+                            "begin": 219,
+                            "default": 219,
+                            "end": 219,
+                            "label": "Prism and gobo macro 12"
+                        },
+                        {
+                            "begin": 227,
+                            "default": 227,
+                            "end": 227,
+                            "label": "Prism and gobo macro 13"
+                        },
+                        {
+                            "begin": 235,
+                            "default": 235,
+                            "end": 235,
+                            "label": "Prism and gobo macro 14"
+                        },
+                        {
+                            "begin": 243,
+                            "default": 243,
+                            "end": 243,
+                            "label": "Prism and gobo macro 15"
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
+                            "label": "Prism and gobo macro 16"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 7,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 8,
+                            "default": 15,
+                            "end": 15,
+                            "label": "(38)"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 23,
+                            "end": 23,
+                            "label": "(39)"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 31,
+                            "end": 31,
+                            "label": "(40)"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 39,
+                            "end": 39,
+                            "label": "(41)"
+                        },
+                        {
+                            "begin": 40,
+                            "default": 47,
+                            "end": 47,
+                            "label": "(42)"
+                        },
+                        {
+                            "begin": 48,
+                            "default": 55,
+                            "end": 55,
+                            "label": "(43)"
+                        },
+                        {
+                            "begin": 56,
+                            "default": 63,
+                            "end": 63,
+                            "label": "(44)"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 71,
+                            "end": 71,
+                            "label": "(45)"
+                        },
+                        {
+                            "begin": 72,
+                            "default": 79,
+                            "end": 79,
+                            "label": "(46)"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 95,
+                            "end": 95,
+                            "label": "(38) [S]"
+                        },
+                        {
+                            "begin": 96,
+                            "default": 111,
+                            "end": 111,
+                            "label": "(39) [S]"
+                        },
+                        {
+                            "begin": 112,
+                            "default": 127,
+                            "end": 127,
+                            "label": "(40) [S]"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 143,
+                            "end": 143,
+                            "label": "(41) [S]"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 159,
+                            "end": 159,
+                            "label": "(42) [S]"
+                        },
+                        {
+                            "begin": 160,
+                            "default": 175,
+                            "end": 175,
+                            "label": "(43) [S]"
+                        },
+                        {
+                            "begin": 176,
+                            "default": 191,
+                            "end": 191,
+                            "label": "(44) [S]"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 207,
+                            "end": 207,
+                            "label": "(45) [S]"
+                        },
+                        {
+                            "begin": 208,
+                            "default": 223,
+                            "end": 223,
+                            "label": "(46) [S]"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 31,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 63,
+                            "end": 63,
+                            "label": "(47)"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 95,
+                            "end": 95,
+                            "label": "(48)"
+                        },
+                        {
+                            "begin": 96,
+                            "default": 127,
+                            "end": 127,
+                            "label": "(49)"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 159,
+                            "end": 159,
+                            "label": "(50)"
+                        },
+                        {
+                            "begin": 160,
+                            "default": 191,
+                            "end": 191,
+                            "label": "(51)"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 223,
+                            "end": 223,
+                            "label": "(52)"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2 <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 159,
+                            "end": 190,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 192,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Iris",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 179,
+                            "label": "Iris"
+                        },
+                        {
+                            "begin": 185,
+                            "default": 185,
+                            "end": 185,
+                            "label": "Iris 1"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 223,
+                            "label": "Iris Strobe C Pulse"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 239,
+                            "end": 255,
+                            "label": "Iris Strobe O Pulse"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 85,
+                            "label": "Focus [Zoom]"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 128,
+                            "end": 170,
+                            "label": "Focus [Zoom]"
+                        },
+                        {
+                            "begin": 171,
+                            "default": 213,
+                            "end": 255,
+                            "label": "Focus [Zoom]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 47,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 95,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 111,
+                            "default": 111,
+                            "end": 111,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 143,
+                            "default": 143,
+                            "end": 143,
+                            "label": "Pulse 100"
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 223,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 234
+                        },
+                        {
+                            "step": 4,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 133
+                        },
+                        {
+                            "step": 7,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

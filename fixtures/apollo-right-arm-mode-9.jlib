@@ -1,0 +1,93 @@
+{
+    "date": "2020-11-23 15:50",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "05E97666-3D98-4A4F-898C-D964DBA5069C",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": false,
+            "manufacturerName": "Apollo",
+            "maxOffset": 4,
+            "modeName": "Mode 9",
+            "modelName": "Right Arm",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Focus Track"
+                        },
+                        {
+                            "begin": 2,
+                            "default": 64,
+                            "end": 126,
+                            "label": "Focus Spd"
+                        },
+                        {
+                            "begin": 153,
+                            "default": 153,
+                            "end": 153,
+                            "label": "Focus 1"
+                        },
+                        {
+                            "begin": 242,
+                            "default": 242,
+                            "end": 242,
+                            "label": "Focus Track"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 34,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

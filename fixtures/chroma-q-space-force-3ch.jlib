@@ -1,0 +1,390 @@
+{
+    "date": "2020-11-23 15:50",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "AF377545-F5DF-4E3A-8BAB-D68D30D70883",
+            "deviceID": 16132713,
+            "manufacturerID": 21360,
+            "hasIntensity": true,
+            "manufacturerName": "Chroma Q",
+            "maxOffset": 2,
+            "modeName": "3ch",
+            "modelName": "Space Force",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Color Temp",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 12,
+                            "label": "2800K"
+                        },
+                        {
+                            "begin": 13,
+                            "default": 13,
+                            "end": 26,
+                            "label": "3000K"
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 36,
+                            "label": "3200K"
+                        },
+                        {
+                            "begin": 37,
+                            "default": 37,
+                            "end": 54,
+                            "label": "3350K"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 81,
+                            "label": "3600K"
+                        },
+                        {
+                            "begin": 82,
+                            "default": 82,
+                            "end": 116,
+                            "label": "4000K"
+                        },
+                        {
+                            "begin": 117,
+                            "default": 117,
+                            "end": 150,
+                            "label": "4500K"
+                        },
+                        {
+                            "begin": 151,
+                            "default": 151,
+                            "end": 191,
+                            "label": "5000K"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 219,
+                            "label": "5600K"
+                        },
+                        {
+                            "begin": 220,
+                            "default": 220,
+                            "end": 255,
+                            "label": "6000K"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Fade off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 11
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Fade on",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 13
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "750",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 71
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "1500",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 73
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "3000",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 75
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "6000",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 77
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "12000",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 79
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "24000",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 81
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "48000",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 83
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "96000",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 85
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "RDM Control",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 141
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "RDM Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 143
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Hold Last DMX Look On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 151
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Hold Last DMX Look Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 153
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "DMX lost fixture to selected look",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 157
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Save as user defaults",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 244
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Restore user defaults",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 246
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Restore defaults",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 248
+                        },
+                        {
+                            "step": 6,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
