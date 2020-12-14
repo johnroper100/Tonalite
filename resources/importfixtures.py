@@ -209,7 +209,7 @@ with open('Carallon.def') as f:
             if "$$MANUFACTURER" in line:
                 personality = {
                     "dcid": "",
-                    #"colortable": "",
+                    # "colortable": "",
                     "deviceID": None,
                     "manufacturerID": None,
                     "hasIntensity": False,
@@ -218,7 +218,7 @@ with open('Carallon.def') as f:
                     "modeName": "",
                     "modelName": "",
                     "parameters": [],
-                    #"commands": []
+                    # "commands": []
                 }
                 personality["manufacturerName"] = line.partition("$$MANUFACTURER")[
                     2].strip()
@@ -387,6 +387,8 @@ with open('Carallon.def') as f:
                     }
                 rangeItem["media"]["name"] = rangeItem["label"]
                 rangeItem["media"]["dcid"] = line.partition("$$GEL")[2].strip()
+                if not os.path.exists("fixture-images/"+rangeItem["media"]["dcid"]+".png"):
+                    rangeItem["media"]["dcid"] = "missing"
             if "$$IMAGE" in line:
                 if not "media" in rangeItem.keys():
                     rangeItem["media"] = {
