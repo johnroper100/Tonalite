@@ -222,7 +222,20 @@ var app = new Vue({
                 "fixtures": app.selectedFixtures,
                 "parameters": app.fixtureParameters
             }
-            socket.send(JSON.stringify(message))
+            socket.send(JSON.stringify(message));
+            for (i = 0; i < app.selectedFixtures.length; i++) {
+                fixture = app.fixtures.find(x => x.i === app.selectedFixtures[i]);
+                for (p = 0; p < fixture.parameters.length; p++) {
+                    fixtureParam = fixture.parameters[p];
+                    for (pi = 0; pi < app.fixtureParameters.length; pi++) {
+                        globalParam = app.fixtureParameters[pi];
+                        if (globalParam.coarse == fixtureParam.coarse && globalParam.fine == fixtureParam.fine && globalParam.type == fixtureParam.type && globalParam.fadeWithIntensity == fixtureParam.fadeWithIntensity && globalParam.home == fixtureParam.home) {
+                            fixtureParam.liveValue = globalParam.liveValue;
+                            fixtureParam.blindValues[app.socketID] = globalParam.blindValues[app.socketID];
+                        }
+                    }
+                }
+            }
         },
         groupFixtures: function () {
             message = {

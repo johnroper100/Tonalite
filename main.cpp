@@ -328,7 +328,7 @@ void tasksThread() {
                     }
                 }
                 item["fixtures"] = getFixtures();
-                sendToAll(item.dump());
+                sendToAllExcept(item.dump(), task["socketID"]);
                 door.unlock();
             } else if (task["msgType"] == "groupFixtures") {
                 json item;
