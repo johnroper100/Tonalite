@@ -327,15 +327,14 @@ void tasksThread() {
                 door.unlock();
             } else if (task["msgType"] == "groupFixtures") {
                 json item;
-                item["msgType"] = "groups";
+                item["msgType"] = "addGroupResponse";
 
                 Group newGroup(task);
                 lock_guard<mutex> lg(door);
                 groups[newGroup.i] = newGroup;
                 door.unlock();
-                item["groups"] = getGroups();
-                door.unlock();
 
+                item["group"] = newGroup.asJson();
                 sendToAll(item.dump());
             } else if (task["msgType"] == "removeGroups") {
                 json item;
