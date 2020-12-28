@@ -165,8 +165,12 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
         newParam.size = pi["size"];
         newParam.type = pi["type"];
         if (pi.contains("white") && pi["white"] != NULL) {
-            newParam.white.val = pi["white"]["val"];
-            newParam.white.temp = pi["white"]["temp"];
+            if (pi["white"].contains("val") && pi["white"]["val"] != NULL) {
+                newParam.white.val = pi["white"]["val"];
+            }
+            if (pi["white"].contains("temp") && pi["white"]["temp"] != NULL) {
+                newParam.white.temp = pi["white"]["temp"];
+            }
         }
         if (pi.contains("ranges") && pi["ranges"] != NULL) {
             for (auto &ri : pi["ranges"]) {
@@ -176,13 +180,25 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
                 } else {
                     newRange.i = random_string(10);
                 }
-                newRange.beginVal = ri["begin"];
-                newRange.defaultVal = ri["default"];
-                newRange.endVal = ri["end"];
-                newRange.label = ri["label"];
+                if (ri.contains("begin") && ri["begin"] != NULL) {
+                    newRange.beginVal = ri["begin"];
+                }
+                if (ri.contains("default") && ri["default"] != NULL) {
+                    newRange.defaultVal = ri["default"];
+                }
+                if (ri.contains("end") && ri["end"] != NULL) {
+                    newRange.endVal = ri["end"];
+                }
+                if (ri.contains("label") && ri["label"] != NULL) {
+                    newRange.label = ri["label"];
+                }
                 if (ri.contains("media") && ri["media"] != NULL) {
-                    newRange.media.dcid = ri["media"]["dcid"];
-                    newRange.media.name = ri["media"]["name"];
+                    if (ri["media"].contains("dcid") && ri["media"]["dcid"] != NULL) {
+                        newRange.media.dcid = ri["media"]["dcid"];
+                    }
+                    if (ri["media"].contains("name") && ri["media"]["name"] != NULL) {
+                        newRange.media.name = ri["media"]["name"];
+                    }
                 }
                 newParam.ranges[newRange.i] = newRange;
             }

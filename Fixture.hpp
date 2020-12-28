@@ -11,13 +11,13 @@ using namespace std;
 using json = nlohmann::json;
 
 struct MediaItem {
-    string dcid = "";
-    string name = "";
+    string dcid;
+    string name;
 };
 
 struct WhiteItem {
-    int val = -1;
-    string temp = "";
+    int val;
+    string temp;
 };
 
 struct FixtureParameterRange {
@@ -53,14 +53,14 @@ struct FixtureParameter {
 struct Fixture {
     string i;
     string name;
-    int universe = 1;
-    int address = 1;
+    int universe;
+    int address;
     int x = 0;
     int y = 0;
     int w = 2;
     int h = 1;
 
-    string colortable = "";
+    string colortable;
     string dcid;
     bool hasIntensity;
     string manufacturerName;
