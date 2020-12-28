@@ -146,10 +146,14 @@
                     add some to this show.
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 col-xl-1 text-center mb-3" v-for="item in fixtures">
-                    <div class="fixtureItem p-2" @click="selectFixture(item.i)"
+                    <div class="fixtureItem " @click="selectFixture(item.i)"
                         v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
-                        <h5 class="mb-0 pb-2">{{intensityAverage(item.parameters)}}%</h5>
-                        {{item.name}} ({{item.universe}}:{{item.address}})
+                        <div class="p-2">
+                            {{item.name}} ({{item.universe}}:{{item.address}})
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-danger" v-bind:style="{ width: intensityAverage(item.parameters) + '%' }" role="progressbar">{{intensityAverage(item.parameters)}}%</div>
+                        </div>
                     </div>
                 </div>
             </div>
