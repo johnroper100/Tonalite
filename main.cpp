@@ -289,14 +289,13 @@ void tasksThread() {
                     if (fixtures.find(id) != fixtures.end()) {
                         fixtures.erase(id);
                     }
-
-                    // Remove any empty groups
                     vector<string> groupsToRemove;
                     for (auto &gi : groups) {
                         if (gi.second.removeFixture(id) == true) {
                             groupsToRemove.push_back(gi.first);
                         }
                     }
+                    // Remove any empty groups
                     for (auto &gi : groupsToRemove) {
                         if (groups.find(gi) != groups.end()) {
                             groups.erase(gi);
