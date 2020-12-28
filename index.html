@@ -59,10 +59,10 @@
                         <i class="fa-regular fa-circle-plus d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Add Fixture</span>
                     </button>
-                    <button class="btn btn-warning" v-if="fixturesTab == 'patch'" @click="rdmSearch">
+                    <!--<button class="btn btn-warning" v-if="fixturesTab == 'patch'" @click="rdmSearch">
                         <i class="fa-regular fa-wifi d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">RDM Search</span>
-                    </button>
+                    </button>-->
                     <button class="btn btn-success" @click="viewFixtureParameters"
                         v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
                         v-bind:class="{ disabled: selectedFixtures.length == 0 }">
@@ -127,7 +127,7 @@
                 :is-resizable="fixtureGridLayout" :prevent-collision="true" :is-draggable="fixtureGridLayout"
                 v-if="fixturesTab == 'fixturesGrid'">
                 <div class="col-12 mt-3" v-if="fixtures.length == 0">
-                    No fixtures have been patched. Use either the Add Fixture or RDM Search tools in the Patch tab to
+                    No fixtures have been patched. Use the Add Fixture tool in the Patch tab to
                     add some to this show.
                 </div>
                 <grid-item v-for="item in fixtures" class="fixtureItem text-center"
@@ -142,7 +142,7 @@
             </grid-layout>
             <div class="row mt-3" v-if="fixturesTab == 'fixturesList'">
                 <div class="col-12" v-if="fixtures.length == 0">
-                    No fixtures have been patched. Use either the Add Fixture or RDM Search tools in the Patch tab to
+                    No fixtures have been patched. Use the Add Fixture tool in the Patch tab to
                     add some to this show.
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 col-xl-1 text-center mb-3" v-for="item in fixtures">
@@ -230,7 +230,7 @@
                     </div>
                 </div>
                 <div class="col-12" v-if="fixtures.length == 0">
-                    No fixtures have been patched. Use either the Add Fixture or RDM Search tools to add some to this
+                    No fixtures have been patched. Use the Add Fixture tool to add some to this
                     show.
                 </div>
                 <div class="table-responsive" v-if="fixtures.length != 0">
