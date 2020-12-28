@@ -93,47 +93,47 @@ Fixture::Fixture() {
 }
 
 Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIndex) {
-    if (profile.contains("i")) {
+    if (profile.contains("i") && profile["i"] != NULL) {
         i = profile["i"];
     } else {
         i = random_string(10);
     }
 
-    if (profile.contains("name")) {
+    if (profile.contains("name") && profile["name"] != NULL) {
         name = profile["name"];
     } else {
         name = profile["modelName"];
     }
 
-    if (profile.contains("universe")) {
+    if (profile.contains("universe") && profile["universe"] != NULL) {
         universe = profile["universe"];
     } else {
         universe = inputUniverse;
     }
 
-    if (profile.contains("address")) {
+    if (profile.contains("address") && profile["address"] != NULL) {
         address = profile["address"];
     } else {
         address = inputAddress + ((profile["maxOffset"].get<int>() + 1) * createIndex);
     }
 
-    if (profile.contains("x")) {
+    if (profile.contains("x") && profile["x"] != NULL) {
         x = profile["x"];
     }
 
-    if (profile.contains("y")) {
+    if (profile.contains("y") && profile["y"] != NULL) {
         x = profile["y"];
     }
 
-    if (profile.contains("w")) {
+    if (profile.contains("w") && profile["w"] != NULL) {
         x = profile["w"];
     }
 
-    if (profile.contains("h")) {
+    if (profile.contains("h") && profile["h"] != NULL) {
         x = profile["h"];
     }
 
-    if (profile.contains("colortable")) {
+    if (profile.contains("colortable") && profile["colortable"] != NULL) {
         colortable = profile["colortable"];
     }
     dcid = profile["dcid"];
@@ -146,14 +146,14 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
     for (auto &pi : profile["parameters"]) {
         FixtureParameter newParam;
 
-        if (pi.contains("i")) {
+        if (pi.contains("i") && pi["i"] != NULL) {
             newParam.i = pi["i"];
         } else {
             newParam.i = random_string(10);
         }
 
         newParam.coarse = pi["coarse"];
-        if (pi.contains("fine")) {
+        if (pi.contains("fine") && pi["fine"] != NULL) {
             newParam.fine = pi["fine"];
         }
         newParam.fadeWithIntensity = pi["fadeWithIntensity"];
@@ -164,14 +164,14 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
         newParam.name = pi["name"];
         newParam.size = pi["size"];
         newParam.type = pi["type"];
-        if (pi.contains("white")) {
+        if (pi.contains("white") && pi["white"] != NULL) {
             newParam.white.val = pi["white"]["val"];
             newParam.white.temp = pi["white"]["temp"];
         }
-        if (pi.contains("ranges")) {
+        if (pi.contains("ranges") && pi["ranges"] != NULL) {
             for (auto &ri : pi["ranges"]) {
                 FixtureParameterRange newRange;
-                if (ri.contains("i")) {
+                if (ri.contains("i") && ri["i"] != NULL) {
                     newRange.i = ri["i"];
                 } else {
                     newRange.i = random_string(10);
@@ -180,14 +180,13 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
                 newRange.defaultVal = ri["default"];
                 newRange.endVal = ri["end"];
                 newRange.label = ri["label"];
-                if (ri.contains("media")) {
+                if (ri.contains("media") && ri["media"] != NULL) {
                     newRange.media.dcid = ri["media"]["dcid"];
                     newRange.media.name = ri["media"]["name"];
                 }
                 newParam.ranges[newRange.i] = newRange;
             }
         }
-
         parameters[newParam.i] = newParam;
     }
 }

@@ -149,7 +149,7 @@ void getFixtureProfiles() {
                     modeName = it["modelName"];
                     modName = it["modeName"];
                     fixtureProfiles[manName][modeName][modName] = {};
-                    fixtureProfiles[manName][modeName][modName]["filename"] = entry.path().filename();
+                    fixtureProfiles[manName][modeName][modName]["file"] = entry.path().filename();
                     fixtureProfiles[manName][modeName][modName]["dcid"] = it["dcid"];
                     fixtureProfiles[manName][modeName][modName]["modeName"] = modName;
                     fixtureProfiles[manName][modeName][modName]["channels"] = it["maxOffset"].get<int>() + 1;
@@ -244,7 +244,7 @@ void RDMSearchCallback(const ola::client::Result &result, const ola::rdm::UIDSet
                 for (auto &mod : man) {
                     for (auto &mode : mod) {
                         if (mode["manufacturerID"] == (*i).ManufacturerId() && mode["deviceID"] == (*i).DeviceId()) {
-                            addFixture(mode["custom"], mode["filename"], mode["dcid"], 1, 1, 1, 1);  // Need to get universe and address
+                            addFixture(mode["custom"], mode["file"], mode["dcid"], 1, 1, 1, 1);  // Need to get universe and address
                         }
                     }
                 }
