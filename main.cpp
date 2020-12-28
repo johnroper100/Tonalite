@@ -36,17 +36,85 @@ struct PerSocketData {
     string userID;
 };
 
+struct SendMessage {
+    string content;
+    string type;
+    string to;
+    string recipient = "";
+};
+
 atomic<int> finished;
 mutex door;
+mutex sendMessagesDoor;
 unordered_map<string, Fixture> fixtures;
 unordered_map<string, Group> groups;
 unordered_map<string, PerSocketData *> users;
 moodycamel::ConcurrentQueue<json> tasks;
+vector<SendMessage> sendMessages;
 json fixtureProfiles;
 
 ola::client::OlaClientWrapper wrapper;
 
 uint8_t frames[2048] = {0};
+
+void sendToAllMessage(string content, string type) {
+    SendMessage newSendMessage;
+    newSendMessage.content = content;
+    newSendMessage.type = type;
+    newSendMessage.to = "all";
+    bool needsPush = true;
+    lock_guard<mutex> lg(sendMessagesDoor);
+    for (auto &tm : sendMessages) {
+        if (tm.type == newSendMessage.type && tm.to == newSendMessage.to && tm.recipient == newSendMessage.recipient) {
+            tm.content = newSendMessage.content;
+            needsPush = false;
+        }
+    }
+    if (needsPush == true) {
+        sendMessages.push_back(newSendMessage);
+    }
+    sendMessagesDoor.unlock();
+}
+
+void sendToAllExceptMessage(string content, string socketID, string type) {
+    SendMessage newSendMessage;
+    newSendMessage.content = content;
+    newSendMessage.type = type;
+    newSendMessage.to = "allExcept";
+    newSendMessage.recipient = socketID;
+    bool needsPush = true;
+    lock_guard<mutex> lg(sendMessagesDoor);
+    for (auto &tm : sendMessages) {
+        if (tm.type == newSendMessage.type && tm.to == newSendMessage.to && tm.recipient == newSendMessage.recipient) {
+            tm.content = newSendMessage.content;
+            needsPush = false;
+        }
+    }
+    if (needsPush == true) {
+        sendMessages.push_back(newSendMessage);
+    }
+    sendMessagesDoor.unlock();
+}
+
+void sendToMessage(string content, string socketID, string type) {
+    SendMessage newSendMessage;
+    newSendMessage.content = content;
+    newSendMessage.type = type;
+    newSendMessage.to = "single";
+    newSendMessage.recipient = socketID;
+    bool needsPush = true;
+    lock_guard<mutex> lg(sendMessagesDoor);
+    for (auto &tm : sendMessages) {
+        if (tm.type == newSendMessage.type && tm.to == newSendMessage.to && tm.recipient == newSendMessage.recipient) {
+            tm.content = newSendMessage.content;
+            needsPush = false;
+        }
+    }
+    if (needsPush == true) {
+        sendMessages.push_back(newSendMessage);
+    }
+    sendMessagesDoor.unlock();
+}
 
 void sendToAll(string content) {
     for (auto &it : users) {
@@ -185,14 +253,15 @@ void addFixture(int custom, string filename, string dcid, int universe, int addr
                         newFixture.addUserBlind(ui.second->userID);
                     }
 
+                    json msg;
+                    msg["msgType"] = "fixtures";
+
                     lock_guard<mutex> lg(door);
                     fixtures[newFixture.i] = newFixture;
+                    msg["fixtures"] = getFixtures();
                     door.unlock();
 
-                    json msg;
-                    msg["msgType"] = "addFixtureResponse";
-                    msg["fixture"] = newFixture.asJson();
-                    sendToAll(msg.dump());
+                    sendToAllMessage(msg.dump(), msg["msgType"]);
                 }
             }
         }
@@ -253,134 +322,146 @@ void RDMSearchCallback(const ola::client::Result &result, const ola::rdm::UIDSet
     }
 }
 
-void tasksThread() {
-    json task;
-    while (finished == 0) {
-        bool found = tasks.try_dequeue(task);
-        if (found) {
-            if (task["msgType"] == "moveFixture") {
-                lock_guard<mutex> lg(door);
-                fixtures[task["i"]].x = task["x"];
-                fixtures[task["i"]].y = task["y"];
-                door.unlock();
-                sendToAllExcept(task.dump(), task["socketID"]);
-            } else if (task["msgType"] == "resizeFixture") {
-                lock_guard<mutex> lg(door);
-                fixtures[task["i"]].h = task["h"];
-                fixtures[task["i"]].w = task["w"];
-                door.unlock();
-                sendToAllExcept(task.dump(), task["socketID"]);
-            } else if (task["msgType"] == "getFixtureProfiles") {
-                getFixtureProfiles();
-                json item;
-                item["msgType"] = "fixtureProfiles";
-                item["profiles"] = fixtureProfiles;
-                sendTo(item.dump(), task["socketID"]);
-            } else if (task["msgType"] == "addFixture") {
-                addFixture(task["custom"], task["file"], task["dcid"], task["universe"], task["address"], task["number"], 0);
-            } else if (task["msgType"] == "removeFixtures") {
-                json fixturesItem;
-                json groupsItem;
-                fixturesItem["msgType"] = "fixtures";
-                groupsItem["msgType"] = "groups";
+void processTask(json task) {
+    if (task["msgType"] == "moveFixture") {
+        lock_guard<mutex> lg(door);
+        fixtures[task["i"]].x = task["x"];
+        fixtures[task["i"]].y = task["y"];
+        door.unlock();
+        sendToAllExceptMessage(task.dump(), task["socketID"], task["msgType"]);
+    } else if (task["msgType"] == "resizeFixture") {
+        lock_guard<mutex> lg(door);
+        fixtures[task["i"]].h = task["h"];
+        fixtures[task["i"]].w = task["w"];
+        door.unlock();
+        sendToAllExceptMessage(task.dump(), task["socketID"], task["msgType"]);
+    } else if (task["msgType"] == "getFixtureProfiles") {
+        getFixtureProfiles();
+        json item;
+        item["msgType"] = "fixtureProfiles";
+        item["profiles"] = fixtureProfiles;
+        sendToMessage(item.dump(), task["socketID"], item["msgType"]);
+    } else if (task["msgType"] == "addFixture") {
+        addFixture(task["custom"], task["file"], task["dcid"], task["universe"], task["address"], task["number"], 0);
+    } else if (task["msgType"] == "removeFixtures") {
+        json fixturesItem;
+        json groupsItem;
+        fixturesItem["msgType"] = "fixtures";
+        groupsItem["msgType"] = "groups";
 
-                lock_guard<mutex> lg(door);
-                for (auto &id : task["fixtures"]) {
-                    if (fixtures.find(id) != fixtures.end()) {
-                        fixtures.erase(id);
-                    }
-                    vector<string> groupsToRemove;
-                    for (auto &gi : groups) {
-                        if (gi.second.removeFixture(id) == true) {
-                            groupsToRemove.push_back(gi.first);
-                        }
-                    }
-                    // Remove any empty groups
-                    for (auto &gi : groupsToRemove) {
-                        if (groups.find(gi) != groups.end()) {
-                            groups.erase(gi);
-                        }
-                    }
+        lock_guard<mutex> lg(door);
+        for (auto &id : task["fixtures"]) {
+            if (fixtures.find(id) != fixtures.end()) {
+                fixtures.erase(id);
+            }
+            vector<string> groupsToRemove;
+            for (auto &gi : groups) {
+                if (gi.second.removeFixture(id) == true) {
+                    groupsToRemove.push_back(gi.first);
                 }
-                fixturesItem["fixtures"] = getFixtures();
-                groupsItem["groups"] = getGroups();
-                door.unlock();
-
-                sendToAll(fixturesItem.dump());
-                sendToAll(groupsItem.dump());
-            } else if (task["msgType"] == "editFixtureParameters") {
-                json item;
-                item["msgType"] = "fixtures";
-                lock_guard<mutex> lg(door);
-                for (auto &fi : task["fixtures"]) {
-                    for (auto &pi : task["parameters"]) {
-                        for (auto &p : fixtures[fi].parameters) {
-                            if (p.second.coarse == pi["coarse"] && p.second.fine == pi["fine"] && p.second.type == pi["type"] && p.second.fadeWithIntensity == pi["fadeWithIntensity"] && p.second.home == pi["home"]) {
-                                p.second.liveValue = pi["liveValue"];
-                                p.second.blindValues[task["socketID"]] = pi["blindValues"][task["socketID"].get<string>()];
-                            }
-                        }
-                    }
+            }
+            // Remove any empty groups
+            for (auto &gi : groupsToRemove) {
+                if (groups.find(gi) != groups.end()) {
+                    groups.erase(gi);
                 }
-                item["fixtures"] = getFixtures();
-                sendToAllExcept(item.dump(), task["socketID"]);
-                door.unlock();
-            } else if (task["msgType"] == "groupFixtures") {
-                json item;
-                item["msgType"] = "addGroupResponse";
-
-                Group newGroup(task);
-                lock_guard<mutex> lg(door);
-                groups[newGroup.i] = newGroup;
-                door.unlock();
-
-                item["group"] = newGroup.asJson();
-                sendToAll(item.dump());
-            } else if (task["msgType"] == "removeGroups") {
-                json item;
-                item["msgType"] = "groups";
-
-                lock_guard<mutex> lg(door);
-                for (auto &id : task["groups"]) {
-                    if (groups.find(id) != groups.end()) {
-                        groups.erase(id);
-                    }
-                }
-                item["groups"] = getGroups();
-                door.unlock();
-
-                sendToAll(item.dump());
-            } else if (task["msgType"] == "editGroups") {
-                json item;
-                item["msgType"] = "groups";
-
-                lock_guard<mutex> lg(door);
-                for (auto &id : task["groups"]) {
-                    if (groups.find(id) != groups.end()) {
-                        if (task["name"] != "Multiple") {
-                            groups[id].name = task["name"];
-                        }
-                        if (task["fixturesChanged"] == true) {
-                            groups[id].fixtures.clear();
-                            for (auto &fi : task["fixtures"]) {
-                                groups[id].fixtures.push_back(fi["id"]);
-                            }
-                        }
-                    }
-                }
-                item["groups"] = getGroups();
-                door.unlock();
-
-                sendToAll(item.dump());
-            } else if (task["msgType"] == "rdmSearch") {
-                getFixtureProfiles();
-                for (int i = 1; i <= 4; i++) {
-                    wrapper.GetClient()->RunDiscovery(i, ola::client::DISCOVERY_FULL, ola::NewSingleCallback(&RDMSearchCallback));
-                }
-            } else if (task["msgType"] == "saveShow") {
-                saveShow("default");
             }
         }
+        fixturesItem["fixtures"] = getFixtures();
+        groupsItem["groups"] = getGroups();
+        door.unlock();
+
+        sendToAllMessage(fixturesItem.dump(), fixturesItem["msgType"]);
+        sendToAllMessage(groupsItem.dump(), groupsItem["msgType"]);
+    } else if (task["msgType"] == "editFixtureParameters") {
+        json item;
+        item["msgType"] = "fixtures";
+        lock_guard<mutex> lg(door);
+        for (auto &fi : task["fixtures"]) {
+            for (auto &pi : task["parameters"]) {
+                for (auto &p : fixtures[fi].parameters) {
+                    if (p.second.coarse == pi["coarse"] && p.second.fine == pi["fine"] && p.second.type == pi["type"] && p.second.fadeWithIntensity == pi["fadeWithIntensity"] && p.second.home == pi["home"]) {
+                        p.second.liveValue = pi["liveValue"];
+                        p.second.blindValues[task["socketID"]] = pi["blindValues"][task["socketID"].get<string>()];
+                    }
+                }
+            }
+        }
+        item["fixtures"] = getFixtures();
+        sendToAllExceptMessage(item.dump(), task["socketID"], item["msgType"]);
+        door.unlock();
+    } else if (task["msgType"] == "groupFixtures") {
+        json item;
+        item["msgType"] = "groups";
+
+        Group newGroup(task);
+        lock_guard<mutex> lg(door);
+        groups[newGroup.i] = newGroup;
+        item["groups"] = getGroups();
+        door.unlock();
+
+        sendToAllMessage(item.dump(), item["msgType"]);
+    } else if (task["msgType"] == "removeGroups") {
+        json item;
+        item["msgType"] = "groups";
+
+        lock_guard<mutex> lg(door);
+        for (auto &id : task["groups"]) {
+            if (groups.find(id) != groups.end()) {
+                groups.erase(id);
+            }
+        }
+        item["groups"] = getGroups();
+        door.unlock();
+
+        sendToAllMessage(item.dump(), item["msgType"]);
+    } else if (task["msgType"] == "editGroups") {
+        json item;
+        item["msgType"] = "groups";
+
+        lock_guard<mutex> lg(door);
+        for (auto &id : task["groups"]) {
+            if (groups.find(id) != groups.end()) {
+                if (task["name"] != "Multiple") {
+                    groups[id].name = task["name"];
+                }
+                if (task["fixturesChanged"] == true) {
+                    groups[id].fixtures.clear();
+                    for (auto &fi : task["fixtures"]) {
+                        groups[id].fixtures.push_back(fi["id"]);
+                    }
+                }
+            }
+        }
+        item["groups"] = getGroups();
+        door.unlock();
+
+        sendToAllMessage(item.dump(), item["msgType"]);
+    } else if (task["msgType"] == "rdmSearch") {
+        getFixtureProfiles();
+        for (int i = 1; i <= 4; i++) {
+            wrapper.GetClient()->RunDiscovery(i, ola::client::DISCOVERY_FULL, ola::NewSingleCallback(&RDMSearchCallback));
+        }
+    } else if (task["msgType"] == "saveShow") {
+        saveShow("default");
+    }
+}
+
+void messagesThread() {
+    while (finished == 0) {
+        lock_guard<mutex> lg(sendMessagesDoor);
+        for (auto &tm : sendMessages) {
+            if (tm.to == "all") {
+                sendToAll(tm.content);
+            } else if (tm.to == "allExcept") {
+                sendToAllExcept(tm.content, tm.recipient);
+            } else if (tm.to == "single") {
+                sendTo(tm.content, tm.recipient);
+            }
+        }
+        sendMessages.clear();
+        sendMessagesDoor.unlock();
+        this_thread::sleep_for(75ms);
     }
 }
 
@@ -435,7 +516,7 @@ void webThread() {
             PerSocketData *psd = (PerSocketData *) ws->getUserData();
             json j = json::parse(message);
             j["socketID"] = psd->userID;
-            tasks.enqueue(j); }})
+            processTask(j); }})
         .listen(8000, [](auto *listenSocket) {
             if (listenSocket) {
                 cout << "Tonalite Lighting Control: Running on http://localhost:8000" << endl;
@@ -458,7 +539,7 @@ int main() {
     }
 
     thread webThreading(webThread);
-    thread tasksThreading(tasksThread);
+    thread messagesThreading(messagesThread);
 
     ola::io::SelectServer *ss = wrapper.GetSelectServer();
     ss->RegisterRepeatingTimeout(25, ola::NewCallback(&SendData));

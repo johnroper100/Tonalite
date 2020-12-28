@@ -365,9 +365,5 @@ socket.addEventListener('message', function (event) {
         }
     } else if (msg["msgType"] == "fixtureProfiles") {
         app.fixtureProfiles = msg["profiles"];
-    } else if (msg["msgType"] == "addFixtureResponse") {
-        app.fixtures.push(msg["fixture"]);
-    } else if (msg["msgType"] == "addGroupResponse") {
-        app.groups.push(msg["group"]);
     }
 });
