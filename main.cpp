@@ -297,8 +297,8 @@ void saveShow(string showName) {
     lock_guard<mutex> lg(door);
     j["fixtures"] = getFixtures();
     j["groups"] = getGroups();
-    j["showName"] = showName;
     door.unlock();
+    j["showName"] = showName;
     ofstream o;
     if (showName != "default") {
         o.open("shows/" + showName + ".tonalite");
