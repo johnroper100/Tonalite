@@ -85,7 +85,7 @@ json Fixture::asJson() {
 
 void Fixture::addUserBlind(string socketID) {
     for (auto &pi : parameters) {
-        pi.second.blindValues[socketID] = pi.second.liveValue;
+        pi.second.blindValues[socketID] = (pi.second.home / 65535.0) * 100.0;
     }
 }
 
