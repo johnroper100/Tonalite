@@ -36,6 +36,7 @@
                             Settings
                         </span>
                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" @click="goFullscreen">Fullscreen</a></li>
                         </ul>
                     </div>
                     <div class="btn d-inline-block btn-sm"
@@ -84,7 +85,7 @@
                         </span>
                         <span class="d-none d-sm-inline-block">Deselect</span>
                     </button>
-                    <button class="btn d-none d-md-inline-block" v-if="fixturesTab == 'fixturesGrid'"
+                    <button class="btn" v-if="fixturesTab == 'fixturesGrid'"
                         v-bind:class="{'btn-success': fixtureGridLayout }"
                         @click="fixtureGridLayout = !fixtureGridLayout">
                         <i class="fa-regular fa-up-down-left-right d-inline-block"></i>
@@ -348,6 +349,7 @@
     <script src="static/js/vue.js"></script>
     <script src="static/js/vue-multiselect.min.js"></script>
     <script src="static/js/vue-grid-layout.umd.min.js"></script>
+    <script src="static/js/screenfull.min.js"></script>
     <script src="static/js/app.js"></script>
 </body>
 

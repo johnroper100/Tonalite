@@ -67,6 +67,11 @@ var app = new Vue({
         }
     },
     methods: {
+        goFullscreen: function () {
+            if (screenfull.isEnabled) {
+                screenfull.request();
+            }
+        },
         isEmpty: function (obj) {
             for (var key in obj) {
                 if (obj.hasOwnProperty(key))

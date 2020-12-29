@@ -46,6 +46,7 @@ struct SendMessage {
 atomic<int> finished;
 mutex door;
 mutex sendMessagesDoor;
+mutex userDoor;
 unordered_map<string, Fixture> fixtures;
 unordered_map<string, Group> groups;
 unordered_map<string, PerSocketData *> users;
@@ -117,21 +118,29 @@ void sendToMessage(string content, string socketID, string type) {
 }
 
 void sendToAll(string content) {
+    lock_guard<mutex> lg(userDoor);
     for (auto &it : users) {
         it.second->socketItem->send(content, uWS::OpCode::TEXT, true);
     }
+    userDoor.unlock();
 }
 
 void sendToAllExcept(string content, string socketID) {
+    lock_guard<mutex> lg(userDoor);
     for (auto &it : users) {
         if (it.first != socketID) {
             it.second->socketItem->send(content, uWS::OpCode::TEXT, true);
         }
     }
+    userDoor.unlock();
 }
 
 void sendTo(string content, string socketID) {
-    users[socketID]->socketItem->send(content, uWS::OpCode::TEXT, true);
+    lock_guard<mutex> lg(userDoor);
+    if (users.find(socketID) != users.end()) {
+        users[socketID]->socketItem->send(content, uWS::OpCode::TEXT, true);
+    }
+    userDoor.unlock();
 }
 
 bool SendData() {
@@ -537,7 +546,11 @@ void webThread() {
             PerSocketData *psd = (PerSocketData *) ws->getUserData();
             json j = json::parse(message);
             j["socketID"] = psd->userID;
-            processTask(j); }})
+            processTask(j); }, .close = [](auto *ws, int code, string_view message) {
+                PerSocketData *psd = (PerSocketData *) ws->getUserData();
+                lock_guard<mutex> lg(userDoor);
+                users.erase(psd->userID);
+                userDoor.unlock(); }})
         .listen(8000, [](auto *listenSocket) {
             if (listenSocket) {
                 cout << "Tonalite Lighting Control: Running on http://localhost:8000" << endl;
