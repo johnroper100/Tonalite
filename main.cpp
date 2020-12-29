@@ -290,7 +290,6 @@ void saveShow(string showName) {
     j["groups"] = getGroups();
     j["showName"] = showName;
     door.unlock();
-    fs::create_directory("shows");
     ofstream o;
     if (showName != "default") {
         o.open("shows/" + showName + ".tonalite");
@@ -549,6 +548,9 @@ void webThread() {
 
 int main() {
     finished = 0;
+
+    fs::create_directory("shows");
+    fs::create_directory("custom-fixtures");
 
     getFixtureProfiles();
 
