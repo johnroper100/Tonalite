@@ -105,6 +105,8 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
         name = profile["modelName"];
     }
 
+    maxOffset = profile["maxOffset"];
+
     if (profile.contains("universe") && profile["universe"] != NULL) {
         universe = profile["universe"];
     } else {
@@ -115,6 +117,11 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
         address = profile["address"];
     } else {
         address = inputAddress + ((profile["maxOffset"].get<int>() + 1) * createIndex);
+    }
+
+    if (address > 512 || address + maxOffset > 512) {
+        universe = (int)ceil((address + maxOffset) / 512.0);
+        address = (address + maxOffset) - (512 * (universe - 1));
     }
 
     if (profile.contains("x") && profile["x"] != NULL) {
@@ -139,7 +146,6 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
     dcid = profile["dcid"];
     hasIntensity = profile["hasIntensity"];
     manufacturerName = profile["manufacturerName"];
-    maxOffset = profile["maxOffset"];
     modeName = profile["modeName"];
     modelName = profile["modelName"];
 

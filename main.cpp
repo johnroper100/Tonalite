@@ -173,11 +173,16 @@ bool SendData() {
     return true;
 }
 
+bool compareByAddress(const json &a, const json &b) {
+    return (a["universe"] < b["universe"]) || ((a["universe"] == b["universe"]) && (a["address"] < b["address"]));
+}
+
 json getFixtures() {
     json j = {};
     for (auto &it : fixtures) {
         j.push_back(it.second.asJson());
     }
+    sort(j.begin(), j.end(), compareByAddress);
     return j;
 }
 
@@ -232,9 +237,10 @@ void getFixtureProfiles() {
     }
 }
 
-void addFixture(int custom, string filename, string dcid, int universe, int address, int number, int isRDM) {
+bool addFixture(int custom, string filename, string dcid, int universe, int address, int number, int isRDM) {
     json file;
     ifstream infile;
+    bool conflicting = false;
 
     if (custom == 1) {
         infile.open("custom-fixtures/" + filename);
@@ -249,24 +255,32 @@ void addFixture(int custom, string filename, string dcid, int universe, int addr
                 for (int i = 0; i < number; i++) {
                     Fixture newFixture(it, universe, address, i);
 
-                    for (auto &ui : users) {
-                        newFixture.addUserBlind(ui.second->userID);
+                    if (newFixture.universe <= 4) {
+                        for (auto &ui : users) {
+                            newFixture.addUserBlind(ui.second->userID);
+                        }
+
+                        bool conflicts = false;
+                        lock_guard<mutex> lg(door);
+                        for (auto &fi : fixtures) {
+                            if (newFixture.universe == fi.second.universe) {
+                                if ((newFixture.address >= fi.second.address && newFixture.address <= fi.second.address + fi.second.maxOffset) || (newFixture.address + newFixture.maxOffset >= fi.second.address && newFixture.address + newFixture.maxOffset <= fi.second.address + fi.second.maxOffset) || (newFixture.address < fi.second.address && newFixture.address + newFixture.maxOffset > fi.second.address + fi.second.maxOffset)) {
+                                    conflicts = true;
+                                    conflicting = true;
+                                }
+                            }
+                        }
+                        if (conflicts == false) {
+                            fixtures[newFixture.i] = newFixture;
+                        }
+                        door.unlock();
                     }
-
-                    json msg;
-                    msg["msgType"] = "fixtures";
-
-                    lock_guard<mutex> lg(door);
-                    fixtures[newFixture.i] = newFixture;
-                    msg["fixtures"] = getFixtures();
-                    door.unlock();
-
-                    sendToAllMessage(msg.dump(), msg["msgType"]);
                 }
             }
         }
     }
     infile.close();
+    return conflicting;
 }
 
 void saveShow(string showName) {
@@ -343,6 +357,14 @@ void processTask(json task) {
         sendToMessage(item.dump(), task["socketID"], item["msgType"]);
     } else if (task["msgType"] == "addFixture") {
         addFixture(task["custom"], task["file"], task["dcid"], task["universe"], task["address"], task["number"], 0);
+        json msg;
+        msg["msgType"] = "fixtures";
+
+        lock_guard<mutex> lg(door);
+        msg["fixtures"] = getFixtures();
+        door.unlock();
+
+        sendToAllMessage(msg.dump(), msg["msgType"]);
     } else if (task["msgType"] == "removeFixtures") {
         json fixturesItem;
         json groupsItem;
@@ -488,7 +510,7 @@ void webThread() {
                       infile.close();
                   }
               })
-        .ws<PerSocketData>("/*", {.open = [](auto *ws) {
+        .ws<PerSocketData>("/*", {.compression = uWS::SHARED_COMPRESSOR, .open = [](auto *ws) {
             PerSocketData *psd = (PerSocketData *) ws->getUserData();
             psd->socketItem = ws;
             psd->userID = random_string(10);
