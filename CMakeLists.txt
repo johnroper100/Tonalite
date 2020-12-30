@@ -22,7 +22,9 @@ add_executable(tonalite main.cpp Fixture.cpp Group.cpp Utilities.cpp)
 
 pkg_check_modules(tonalite "libola")
 
-target_link_libraries(${PROJECT_NAME} Threads::Threads)
+add_subdirectory(zipper)
+
+target_link_libraries(${PROJECT_NAME} Threads::Threads staticZipper)
 
 target_link_libraries(tonalite ${tonalite_LIBRARIES})
 add_definitions(${tonalite_CFLAGS} ${tonalite_CFLAGS_OTHER})

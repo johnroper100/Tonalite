@@ -5,6 +5,7 @@
 #include <ola/io/SelectServer.h>
 
 #include <algorithm>
+#include <unistd.h>
 #include <atomic>
 #include <cmath>
 #include <filesystem>
@@ -19,6 +20,8 @@
 #include <thread>
 #include <unordered_map>
 #include <vector>
+#include <zipper/unzipper.h>
+#include <zipper/zipper.h>
 
 #include "App.h"
 #include "Fixture.hpp"
@@ -31,6 +34,7 @@
 using namespace std;
 using json = nlohmann::json;
 namespace fs = std::filesystem;
+using namespace zipper;
 
 struct PerSocketData {
     uWS::WebSocket<0, 1> *socketItem;
@@ -481,6 +485,11 @@ void processTask(json task) {
         newFile.open("firmware.zip", ios::out | ios::binary);
         newFile << s;
         newFile.close();
+        Unzipper unzipper("firmware.zip");
+        unzipper.extract();
+        unzipper.close();
+        char *argv[] = {"./run.sh", NULL};
+        execvp(argv[0], argv);
     }
 }
 
