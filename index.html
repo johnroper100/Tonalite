@@ -17,6 +17,8 @@
 
 <body>
     <div id="app" v-bind:class="{inLayout: fixtureGridLayout}">
+        <input type="file" id="uploadInput">
+        <button @click="uploadTest">Submit</button>
         <div class="sticky-top">
             <div class="header p-2 ps-3 pe-3">
                 <span class="brand">Tonalite</span>

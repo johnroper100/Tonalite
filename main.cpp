@@ -26,6 +26,7 @@
 #include "Utilities.hpp"
 #include "concurrentqueue.h"
 #include "json.hpp"
+#include "base64.hpp"
 
 using namespace std;
 using json = nlohmann::json;
@@ -474,6 +475,12 @@ void processTask(json task) {
         }
     } else if (task["msgType"] == "saveShow") {
         saveShow("default");
+    } else if (task["msgType"] == "updateFirmware") {
+        auto s = base64::from_base64(task["data"]);
+        ofstream newFile;
+        newFile.open("firmware.zip", ios::out | ios::binary);
+        newFile << s;
+        newFile.close();
     }
 }
 
@@ -518,14 +525,14 @@ void webThread() {
                 infile.close();
             }
         })
-        .ws<PerSocketData>("/*", {
+        .ws<PerSocketData>("/", {
             .compression = uWS::SHARED_COMPRESSOR,
+            .maxPayloadLength = 1000 * 1000 * 1000,
             .open = [](auto *ws) {
                 PerSocketData *psd = (PerSocketData *) ws->getUserData();
                 psd->socketItem = ws;
                 psd->userID = random_string(10);
                 users[psd->userID] = psd;
-                ws->subscribe("all");
                 json j;
                 lock_guard<mutex> lg(door);
                 for (auto &fi : fixtures) {

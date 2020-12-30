@@ -67,6 +67,18 @@ var app = new Vue({
         }
     },
     methods: {
+        uploadTest: function () {
+            var file = document.getElementById('uploadInput').files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                message = {
+                    "msgType": "updateFirmware",
+                    "data": reader.result.split(',')[1]
+                }
+                socket.send(JSON.stringify(message));
+            }
+            reader.readAsDataURL(file);
+        },
         goFullscreen: function () {
             if (screenfull.isEnabled) {
                 screenfull.request();
