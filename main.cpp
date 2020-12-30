@@ -497,60 +497,68 @@ void messagesThread() {
 
 void webThread() {
     uWS::App().get("/*", [](auto *res, auto *req) {
-                  if (req->getUrl() == "/") {
-                      ifstream infile;
-                      infile.open("index.html");
-                      string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
-                      res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(str);
-                      infile.close();
-                  } else {
-                      string_view filename = req->getUrl();
-                      filename.remove_prefix(1);
-                      string s = {filename.begin(), filename.end()};
-                      ifstream infile;
-                      infile.open(s);
-                      if (infile.fail() == false) {
-                          string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
-                          res->end(str);
-                      } else {
-                          res->end("");
-                      }
-                      infile.close();
-                  }
-              })
-        .ws<PerSocketData>("/*", {.compression = uWS::SHARED_COMPRESSOR, .open = [](auto *ws) {
-            PerSocketData *psd = (PerSocketData *) ws->getUserData();
-            psd->socketItem = ws;
-            psd->userID = random_string(10);
-            users[psd->userID] = psd;
-            ws->subscribe("all");
-            json j;
-            lock_guard<mutex> lg(door);
-            for (auto &fi : fixtures) {
-                fi.second.addUserBlind(psd->userID);
+            if (req->getUrl() == "/") {
+                ifstream infile;
+                infile.open("index.html");
+                string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
+                res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(str);
+                infile.close();
+            } else {
+                string_view filename = req->getUrl();
+                filename.remove_prefix(1);
+                string s = {filename.begin(), filename.end()};
+                ifstream infile;
+                infile.open(s);
+                if (infile.fail() == false) {
+                    string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
+                    res->end(str);
+                } else {
+                    res->end("");
+                }
+                infile.close();
             }
-            json fixtureItems = getFixtures();
-            json groupItems = getGroups();
-            door.unlock();
-            j["msgType"] = "fixtures";
-            j["fixtures"] = fixtureItems;
-            ws->send(j.dump(), uWS::OpCode::TEXT, true);
-            j = {};
-            j["msgType"] = "groups";
-            j["groups"] = groupItems;
-            ws->send(j.dump(), uWS::OpCode::TEXT, true);
-            j = {};
-            j["msgType"] = "socketID";
-            j["socketID"] = psd->userID;
-            ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
-            PerSocketData *psd = (PerSocketData *) ws->getUserData();
-            json j = json::parse(message);
-            j["socketID"] = psd->userID;
-            processTask(j); }, .close = [](auto *ws, int code, string_view message) {
+        })
+        .ws<PerSocketData>("/*", {
+            .compression = uWS::SHARED_COMPRESSOR,
+            .open = [](auto *ws) {
+                PerSocketData *psd = (PerSocketData *) ws->getUserData();
+                psd->socketItem = ws;
+                psd->userID = random_string(10);
+                users[psd->userID] = psd;
+                ws->subscribe("all");
+                json j;
+                lock_guard<mutex> lg(door);
+                for (auto &fi : fixtures) {
+                    fi.second.addUserBlind(psd->userID);
+                }
+                json fixtureItems = getFixtures();
+                json groupItems = getGroups();
+                door.unlock();
+                j["msgType"] = "fixtures";
+                j["fixtures"] = fixtureItems;
+                ws->send(j.dump(), uWS::OpCode::TEXT, true);
+                j = {};
+                j["msgType"] = "groups";
+                j["groups"] = groupItems;
+                ws->send(j.dump(), uWS::OpCode::TEXT, true);
+                j = {};
+                j["msgType"] = "socketID";
+                j["socketID"] = psd->userID;
+                ws->send(j.dump(), uWS::OpCode::TEXT, true);
+            },
+            .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
+                PerSocketData *psd = (PerSocketData *) ws->getUserData();
+                json j = json::parse(message);
+                j["socketID"] = psd->userID;
+                processTask(j);
+            },
+            .close = [](auto *ws, int code, string_view message) {
                 PerSocketData *psd = (PerSocketData *) ws->getUserData();
                 lock_guard<mutex> lg(userDoor);
                 users.erase(psd->userID);
-                userDoor.unlock(); }})
+                userDoor.unlock();
+            }
+        })
         .listen(8000, [](auto *listenSocket) {
             if (listenSocket) {
                 cout << "Tonalite Lighting Control: Running on http://localhost:8000" << endl;
