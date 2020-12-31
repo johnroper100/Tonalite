@@ -17,8 +17,6 @@
 
 <body>
     <div id="app" v-bind:class="{inLayout: fixtureGridLayout}">
-        <input type="file" id="uploadInput">
-        <button @click="uploadTest">Submit</button>
         <div class="sticky-top">
             <div class="header p-2 ps-3 pe-3">
                 <span class="brand">Tonalite</span>
@@ -88,7 +86,7 @@
                         <span class="d-none d-sm-inline-block">Deselect</span>
                     </button>
                     <button class="btn" v-if="fixturesTab == 'fixturesGrid'"
-                        v-bind:class="{'btn-success': fixtureGridLayout }"
+                        v-bind:class="{'btn-success': fixtureGridLayout, 'disabled': fixtures.length == 0 }"
                         @click="fixtureGridLayout = !fixtureGridLayout">
                         <i class="fa-regular fa-up-down-left-right d-inline-block"></i>
                         <span class="d-none d-sm-inline-block">Move Items</span>
@@ -100,15 +98,10 @@
                         <i class="fa-regular fa-sliders d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Parameters</span>
                     </button>
-                    <button class="btn btn-warning" v-if="fixturesTab == 'groups'"
+                    <button class="btn btn-danger" v-if="fixturesTab == 'groups'"
                         v-bind:class="{ disabled: selectedGroups.length == 0 }" @click="viewGroupSettings">
                         <i class="fa-regular fa-gear d-inline-block fa-lg"></i>
                         <span class="d-none d-sm-inline-block">Settings</span>
-                    </button>
-                    <button class="btn btn-danger" v-if="fixturesTab == 'groups'"
-                        v-bind:class="{ disabled: selectedGroups.length == 0 }" @click="removeGroups">
-                        <i class="fa-regular fa-trash-can d-inline-block fa-lg"></i>
-                        <span class="d-none d-sm-inline-block">Delete</span>
                     </button>
                     <button class="btn btn-primary" v-if="fixturesTab == 'groups'"
                         v-bind:class="{ disabled: selectedGroups.length == 0 }" @click="selectedGroups = []">
@@ -238,25 +231,24 @@
                     No fixtures have been patched. Use the Add Fixture tool to add some to this
                     show.
                 </div>
-                <div class="table-responsive" v-if="fixtures.length != 0">
-                    <table class="table table-dark table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Universe</th>
-                                <th scope="col">Address</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="item in fixtures" class="fixturePatchItem" @click="selectFixture(item.i)"
-                                v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
-                                <td>{{item.name}}</td>
-                                <td>{{item.universe}}</td>
-                                <td>{{item.address}}-{{item.maxOffset+item.address}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table class="table table-dark table-striped" v-if="fixtures.length != 0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Universe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in fixtures" class="fixturePatchItem" @click="selectFixture(item.i)"
+                            v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
+                            <td>{{item.name}}</td>
+                            <td>{{item.address}}<span v-if="item.maxOffset > 0"> -
+                                    {{item.maxOffset+item.address}}</span></td>
+                            <td>{{item.universe}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="row mt-3" v-if="fixturesTab == 'groups'">
                 <div class="col-12" v-if="groups.length == 0">
