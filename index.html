@@ -278,7 +278,7 @@
         <div class="container-fluid mb-5" v-if="tab == 'fixtureParameters'">
             <div v-for="param in fixtureParameters">
                 {{param.name}}
-                <input type="range" class="form-range" v-model.number="param.liveValue" min="0.0" max="100.0"
+                <input type="range" class="form-range" v-model.number="param.displayValue" min="0.0" max="100.0"
                     step="0.001" v-if="blind == false" @input="editFixtureParameters">
                 <input type="range" class="form-range" v-model.number="param.blindValues[socketID]" min="0.0"
                     max="100.0" step="0.001" v-if="blind == true" @input="editFixtureParameters">

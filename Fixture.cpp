@@ -48,6 +48,7 @@ json FixtureParameter::asJson() {
     pItem["white"]["temp"] = white.temp;
 
     pItem["liveValue"] = liveValue;
+    pItem["displayValue"] = displayValue;
     pItem["blindValues"] = {};
     for (auto &ri : blindValues) {
         pItem["blindValues"][ri.first] = ri.second;
@@ -166,6 +167,7 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
         newParam.highlight = pi["highlight"];
         newParam.home = pi["home"];
         newParam.liveValue = (newParam.home / 65535.0) * 100.0;
+        newParam.displayValue = newParam.liveValue;
         newParam.invert = pi["invert"];
         newParam.name = pi["name"];
         newParam.size = pi["size"];

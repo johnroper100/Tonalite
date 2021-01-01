@@ -424,7 +424,8 @@ void processTask(json task) {
             for (auto &pi : task["parameters"]) {
                 for (auto &p : fixtures[fi].parameters) {
                     if (p.second.coarse == pi["coarse"] && p.second.fine == pi["fine"] && p.second.type == pi["type"] && p.second.fadeWithIntensity == pi["fadeWithIntensity"] && p.second.home == pi["home"]) {
-                        p.second.liveValue = pi["liveValue"];
+                        p.second.liveValue = pi["displayValue"];
+                        p.second.displayValue = pi["displayValue"];
                         p.second.blindValues[task["socketID"]] = pi["blindValues"][task["socketID"].get<string>()];
                     }
                 }

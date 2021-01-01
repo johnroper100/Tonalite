@@ -44,6 +44,7 @@ struct FixtureParameter {
     WhiteItem white;
 
     double liveValue = 0.0;
+    double displayValue = 0.0;
     unordered_map<string, double> blindValues;
     int getDMXValue();
     int getDMXValue(string userID);
