@@ -321,6 +321,28 @@
             </div>
         </div>
         <div class="fixed-bottom">
+            <div class="sub-header p-2">
+                <div class="row">
+                    <div class="col-3 col-md-2 col-lg-1">
+                        No Cue
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+                    <div class="col-9 col-md-10 col-lg-11">
+                        <div class="float-end">
+                            <button class="btn btn-primary"><i
+                                    class="fa-regular fa-angle-left fa-lg d-inline-block"></i> <span
+                                    class="d-none d-sm-inline-block">Go Last</span></button>
+                            <button class="btn btn-danger"><i class="fa-regular fa-camera d-inline-block fa-lg"></i>
+                                <span class="d-none d-sm-inline-block">Record Cue</span></button>
+                            <button class="btn btn-primary"><span class="d-none d-sm-inline-block">Go Next</span> <i
+                                    class="fa-regular fa-angle-right fa-lg d-inline-block"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row header text-center ps-2 pe-2">
                 <div class="col-3 tab pt-3 pb-3" @click="tab = 'fixtures'"
                     v-bind:class="{ active: (tab == 'fixtures' || tab == 'fixtureParameters' || tab == 'groupSettings') }">
