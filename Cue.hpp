@@ -9,13 +9,12 @@
 using namespace std;
 using json = nlohmann::json;
 
-struct Cue;
-
 struct Cue {
     string i;
     string name;
-    Cue *lastCue;
-    Cue *nextCue;
+    string lastCue = "";
+    string nextCue = "";
+    int order;
 
     Cue();
     Cue(json profile);

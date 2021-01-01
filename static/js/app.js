@@ -25,6 +25,8 @@ var app = new Vue({
         groupSettingsName: "",
         groupSettingsFixtures: [],
         groupSettingsFixturesChanged: false,
+        cues: [],
+        selectedCues: [],
         tab: "fixtures"
     },
     computed: {
@@ -327,6 +329,13 @@ var app = new Vue({
             }
             socket.send(JSON.stringify(message));
         },
+        recordCue: function () {
+            message = {
+                "msgType": "recordCue",
+                "blind": app.blind
+            }
+            socket.send(JSON.stringify(message));
+        },
         rdmSearch: function () {
             socket.send(JSON.stringify({ "msgType": "rdmSearch" }));
         },
@@ -365,6 +374,14 @@ socket.addEventListener('message', function (event) {
             if (app.tab == "groupSettings") {
                 app.tab = "fixtures";
             }
+        }
+    } else if (msg["msgType"] == "cues") {
+        if (msg["cues"] != null) {
+            app.cues = msg["cues"];
+            // update selected cues if cue has been removed
+        } else {
+            app.cues = [];
+            app.selectedCues = [];
         }
     } else if (msg["msgType"] == "socketID") {
         app.socketID = msg["socketID"];

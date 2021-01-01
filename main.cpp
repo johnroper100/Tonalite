@@ -55,6 +55,7 @@ mutex sendMessagesDoor;
 mutex userDoor;
 unordered_map<string, Fixture> fixtures;
 unordered_map<string, Group> groups;
+unordered_map<string, Cue> cues;
 unordered_map<string, PerSocketData *> users;
 moodycamel::ConcurrentQueue<json> tasks;
 vector<SendMessage> sendMessages;
@@ -192,6 +193,10 @@ bool compareByAddress(const json &a, const json &b) {
     return (a["universe"] < b["universe"]) || ((a["universe"] == b["universe"]) && (a["address"] < b["address"]));
 }
 
+bool compareByOrder(const json &a, const json &b) {
+    return a["order"] < b["order"];
+}
+
 json getFixtures() {
     json j = {};
     for (auto &it : fixtures) {
@@ -206,6 +211,15 @@ json getGroups() {
     for (auto &it : groups) {
         j.push_back(it.second.asJson());
     }
+    return j;
+}
+
+json getCues() {
+    json j = {};
+    for (auto &it : cues) {
+        j.push_back(it.second.asJson());
+    }
+    sort(j.begin(), j.end(), compareByOrder);
     return j;
 }
 
@@ -473,6 +487,29 @@ void processTask(json task) {
         door.unlock();
 
         sendToAllMessage(item.dump(), item["msgType"]);
+    } else if (task["msgType"] == "recordCue") {
+        json item;
+        item["msgType"] = "cues";
+        Cue newCue;
+        newCue.i = random_string(10);
+
+        lock_guard<mutex> lg(door);
+        newCue.name = "Cue " + to_string(cues.size() + 1);
+        newCue.order = cues.size();
+        if (cues.size() > 0) {
+            for (auto &ci : cues) {
+                if (ci.second.nextCue == "") {
+                    newCue.lastCue = ci.first;
+                    ci.second.nextCue = newCue.i;
+                    break;
+                }
+            }
+        }
+        cues[newCue.i] = newCue;
+        item["cues"] = getCues();
+        door.unlock();
+
+        sendToAllMessage(item.dump(), item["msgType"]);
     } else if (task["msgType"] == "rdmSearch") {
         getFixtureProfiles();
         for (int i = 1; i <= 4; i++) {
@@ -550,6 +587,7 @@ void webThread() {
                 }
                 json fixtureItems = getFixtures();
                 json groupItems = getGroups();
+                json cueItems = getCues();
                 door.unlock();
                 j["msgType"] = "fixtures";
                 j["fixtures"] = fixtureItems;
@@ -557,6 +595,10 @@ void webThread() {
                 j = {};
                 j["msgType"] = "groups";
                 j["groups"] = groupItems;
+                ws->send(j.dump(), uWS::OpCode::TEXT, true);
+                j = {};
+                j["msgType"] = "cues";
+                j["cues"] = cueItems;
                 ws->send(j.dump(), uWS::OpCode::TEXT, true);
                 j = {};
                 j["msgType"] = "socketID";

@@ -332,6 +332,21 @@
                 </div>
             </div>
         </div>
+        <div class="container-fluid mb-5" v-if="tab == 'cues'">
+            <div class="row mt-3">
+                <div class="col-12" v-if="cues.length == 0">
+                    No cues have been recorded. Use the Record Cue tool to
+                    add some to this show.
+                </div>
+                <div class="col-6 col-md-3 col-lg-2 col-xl-1 text-center mb-3" v-for="item in cues">
+                    <div class="fixtureItem">
+                        <div class="p-2">
+                            {{item.name}} ({{item.order}})
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="fixed-bottom">
             <div class="sub-header p-2">
                 <div class="row">
@@ -347,8 +362,8 @@
                             <button class="btn btn-primary disabled"><i
                                     class="fa-regular fa-angle-left fa-lg d-inline-block"></i> <span
                                     class="d-none d-sm-inline-block">Go Last</span></button>
-                            <button class="btn btn-danger" v-bind:class="{ disabled: fixtures.length == 0 }"><i
-                                    class="fa-regular fa-camera d-inline-block fa-lg"></i>
+                            <button class="btn btn-danger" v-bind:class="{ disabled: fixtures.length == 0 }"
+                                @click="recordCue"><i class="fa-regular fa-camera d-inline-block fa-lg"></i>
                                 <span class="d-none d-sm-inline-block">Record Cue</span></button>
                             <button class="btn btn-primary disabled"><span class="d-none d-sm-inline-block">Go
                                     Next</span> <i class="fa-regular fa-angle-right fa-lg d-inline-block"></i></button>
