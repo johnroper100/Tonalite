@@ -309,6 +309,7 @@ void saveShow(string showName) {
     lock_guard<mutex> lg(door);
     j["fixtures"] = getFixtures();
     j["groups"] = getGroups();
+    j["cues"] = getCues();
     door.unlock();
     j["showName"] = showName;
     ofstream o;
