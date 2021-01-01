@@ -56,6 +56,7 @@ mutex userDoor;
 unordered_map<string, Fixture> fixtures;
 unordered_map<string, Group> groups;
 unordered_map<string, Cue> cues;
+string currentCue = "";
 unordered_map<string, PerSocketData *> users;
 moodycamel::ConcurrentQueue<json> tasks;
 vector<SendMessage> sendMessages;
@@ -150,6 +151,13 @@ void sendTo(string content, string socketID) {
     userDoor.unlock();
 }
 
+void setFrames(int universe, int address, int coarse, int fine, int dmxValue) {
+    frames[((universe - 1) * 512) + ((address - 1) + coarse)] = dmxValue >> 8;
+    if (fine != -1) {
+        frames[((universe - 1) * 512) + ((address - 1) + fine)] = dmxValue & 0xff;
+    }
+}
+
 bool SendData() {
     ola::DmxBuffer buffer1;
     ola::DmxBuffer buffer2;
@@ -159,10 +167,21 @@ bool SendData() {
     lock_guard<mutex> lg(door);
     for (auto &it : fixtures) {
         for (auto &fp : it.second.parameters) {
-            frames[((it.second.universe - 1) * 512) + ((it.second.address - 1) + fp.second.coarse)] = fp.second.getDMXValue() >> 8;
-            if (fp.second.fine != -1) {
-                frames[((it.second.universe - 1) * 512) + ((it.second.address - 1) + fp.second.fine)] = fp.second.getDMXValue() & 0xff;
+            setFrames(it.second.universe, it.second.address, fp.second.coarse, fp.second.fine, fp.second.getDMXValue());
+        }
+    }
+    if (currentCue != "") {
+        Cue &currentCueItem = cues[currentCue];
+        for (auto &fi : currentCueItem.fixtures) {
+            for (auto &pi : fi.second.parameters) {
+                int outputValue = (pi.second.getDMXValue() + (((fixtures[fi.first].parameters[pi.first].getDMXValue() - pi.second.getDMXValue()) / (currentCueItem.progressTime * 40)) * currentCueItem.totalProgress));
+                fixtures[fi.first].parameters[pi.first].displayValue = (65535.0 / outputValue) * 100.0;
+                setFrames(fixtures[fi.first].universe, fixtures[fi.first].address, pi.second.coarse, pi.second.fine, outputValue);
             }
+        }
+        currentCueItem.totalProgress -= 1;
+        if (currentCueItem.totalProgress < 0) {
+            currentCue = "";
         }
     }
     door.unlock();
