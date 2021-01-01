@@ -58,6 +58,7 @@ unordered_map<string, Group> groups;
 unordered_map<string, Cue> cues;
 string currentCue = "";
 string lastCue = "";
+bool cuePlaying = false;
 unordered_map<string, PerSocketData *> users;
 moodycamel::ConcurrentQueue<json> tasks;
 vector<SendMessage> sendMessages;
@@ -197,7 +198,7 @@ bool SendData() {
             setFrames(it.second.universe, it.second.address, fp.second.coarse, fp.second.fine, fp.second.getDMXValue());
         }
     }
-    if (currentCue != "") {
+    if (cuePlaying == true) {
         Cue &currentCueItem = cues[currentCue];
         for (auto &fi : currentCueItem.fixtures) {
             for (auto &pi : fi.second.parameters) {
@@ -211,8 +212,7 @@ bool SendData() {
         }
         currentCueItem.totalProgress -= 1;
         if (currentCueItem.totalProgress < 0) {
-            lastCue = currentCue;
-            currentCue = "";
+            cuePlaying = false;
         }
 
         json msg = {};
@@ -547,13 +547,14 @@ void processTask(json task) {
             }
         }
         cues[newCue.i] = newCue;
+        currentCue = newCue.i;
         item["cues"] = getCues();
         door.unlock();
 
         sendToAllMessage(item.dump(), item["msgType"]);
     } else if (task["msgType"] == "nextCue") {
         lock_guard<mutex> lg(door);
-        if (lastCue == "") {
+        if (currentCue == "" || cues[currentCue].nextCue == "") {
             for (auto &ci : cues) {
                 if (ci.second.lastCue == "") {
                     currentCue = ci.first;
@@ -561,9 +562,25 @@ void processTask(json task) {
                 }
             }
         } else {
-            currentCue = cues[lastCue].nextCue;
+            currentCue = cues[currentCue].nextCue;
         }
         cues[currentCue].go();
+        cuePlaying = true;
+        door.unlock();
+    } else if (task["msgType"] == "lastCue") {
+        lock_guard<mutex> lg(door);
+        if (currentCue == "" || cues[currentCue].lastCue == "") {
+            for (auto &ci : cues) {
+                if (ci.second.nextCue == "") {
+                    currentCue = ci.first;
+                    break;
+                }
+            }
+        } else {
+            currentCue = cues[currentCue].lastCue;
+        }
+        cues[currentCue].go();
+        cuePlaying = true;
         door.unlock();
     } else if (task["msgType"] == "rdmSearch") {
         getFixtureProfiles();
