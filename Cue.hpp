@@ -23,7 +23,7 @@ struct Cue {
     Cue();
     Cue(json profile);
     json asJson();
-    bool shouldChange(unordered_map<string, Cue> &cues, FixtureParameter &param);
+    bool shouldChange(unordered_map<string, Cue> &cues, string fixtureID, FixtureParameter &param);
 };
 
 #endif

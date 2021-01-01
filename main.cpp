@@ -502,7 +502,7 @@ void processTask(json task) {
             newCueFixture.i = fi.first;
             bool addFixture = false;
             for (auto &pi : fi.second.parameters) {
-                if (newCue.shouldChange(cues, pi.second)) {
+                if (newCue.shouldChange(cues, fi.first, pi.second)) {
                     newCueFixture.parameters[pi.first] = pi.second;
                     addFixture = true;
                 }
