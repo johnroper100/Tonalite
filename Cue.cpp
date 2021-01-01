@@ -14,6 +14,12 @@ json Cue::asJson() {
     cItem["order"] = order;
     cItem["nextCue"] = nextCue;
     cItem["lastCue"] = lastCue;
+    cItem["fixtures"] = {};
+
+    for (auto &it : fixtures) {
+        cItem["fixtures"].push_back(it.second.asJson());
+    }
+    sort(cItem["fixtures"].begin(), cItem["fixtures"].end(), compareByAddress);
 
     return cItem;
 };

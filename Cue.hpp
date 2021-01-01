@@ -2,8 +2,9 @@
 #define CUE_HPP_INCLUDED
 
 #include <string>
-#include <vector>
+#include <unordered_map>
 
+#include "Fixture.hpp"
 #include "json.hpp"
 
 using namespace std;
@@ -15,6 +16,7 @@ struct Cue {
     string lastCue = "";
     string nextCue = "";
     int order;
+    unordered_map<string, Fixture> fixtures;
 
     Cue();
     Cue(json profile);

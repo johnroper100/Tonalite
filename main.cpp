@@ -189,14 +189,6 @@ bool SendData() {
     return true;
 }
 
-bool compareByAddress(const json &a, const json &b) {
-    return (a["universe"] < b["universe"]) || ((a["universe"] == b["universe"]) && (a["address"] < b["address"]));
-}
-
-bool compareByOrder(const json &a, const json &b) {
-    return a["order"] < b["order"];
-}
-
 json getFixtures() {
     json j = {};
     for (auto &it : fixtures) {
@@ -503,6 +495,24 @@ void processTask(json task) {
                     ci.second.nextCue = newCue.i;
                     break;
                 }
+            }
+        }
+        for (auto &fi : fixtures) {
+            Fixture newCueFixture;
+            newCueFixture.i = fi.first;
+            bool addFixture = false;
+            for (auto &pi : fi.second.parameters) {
+                if (cues.size() == 0) {
+                    if (pi.second.getDMXValue() != pi.second.home) {
+                        newCueFixture.parameters[pi.first] = pi.second;
+                        addFixture = true;
+                    }
+                } else {
+                    //cues[newCue.lastCue].check
+                }
+            }
+            if (addFixture == true) {
+                newCue.fixtures[newCueFixture.i] = newCueFixture;
             }
         }
         cues[newCue.i] = newCue;

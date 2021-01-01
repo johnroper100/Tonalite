@@ -1,8 +1,10 @@
 #include "Utilities.hpp"
+#include "json.hpp"
 
 #include <random>
 
 using namespace std;
+using json = nlohmann::json;
 
 string random_string(size_t length) {
     const string CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -17,4 +19,12 @@ string random_string(size_t length) {
     }
 
     return random_string;
+}
+
+bool compareByAddress(const json &a, const json &b) {
+    return (a["universe"] < b["universe"]) || ((a["universe"] == b["universe"]) && (a["address"] < b["address"]));
+}
+
+bool compareByOrder(const json &a, const json &b) {
+    return a["order"] < b["order"];
 }
