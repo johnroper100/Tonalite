@@ -47,7 +47,7 @@
             <div class="sub-header p-2" v-if="tab == 'fixtures'">
                 <select class="form-select d-inline-block" v-model="fixturesTab">
                     <option value="fixturesList">Fixture List</option>
-                    <option value="fixturesGrid" class="d-none d-md-inline-block">Fixture Grid</option>
+                    <option value="fixturesGrid">Fixture Grid</option>
                     <option value="groups">Group List</option>
                     <option value="patch">Patch</option>
                 </select>
@@ -85,12 +85,7 @@
                         </span>
                         <span class="d-none d-sm-inline-block">Deselect</span>
                     </button>
-                    <button class="btn" v-if="fixturesTab == 'fixturesGrid'"
-                        v-bind:class="{'btn-success': fixtureGridLayout, 'disabled': fixtures.length == 0 }"
-                        @click="fixtureGridLayout = !fixtureGridLayout">
-                        <i class="fa-regular fa-up-down-left-right d-inline-block"></i>
-                        <span class="d-none d-sm-inline-block">Move Items</span>
-                    </button>
+
 
                     <!-- Groups Buttons -->
                     <button class="btn btn-success" v-if="fixturesTab == 'groups'" @click="viewGroupFixtureParameters"
@@ -110,6 +105,23 @@
                             <i class="fa-solid fa-ban fa-stack-2x"></i>
                         </span>
                         <span class="d-none d-sm-inline-block">Deselect</span>
+                    </button>
+
+                    <!-- Fixtures buttons -->
+
+                    <button class="btn btn-warning" data-bs-toggle="dropdown" aria-expanded="false"
+                        v-bind:class="{'disabled': fixtures.length == 0 }">
+                        <i class="fa-regular fa-screwdriver-wrench d-inline-block"></i>
+                        <span class="d-none d-sm-inline-block">Tools</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" style="position: absolute;">
+                        <li><a class="dropdown-item" @click="saveShow">Save</a></li>
+                    </ul>
+                    <button class="btn" v-if="fixturesTab == 'fixturesGrid'"
+                        v-bind:class="{'btn-success': fixtureGridLayout, 'disabled': fixtures.length == 0 }"
+                        @click="fixtureGridLayout = !fixtureGridLayout">
+                        <i class="fa-regular fa-up-down-left-right d-inline-block"></i>
+                        <span class="d-none d-sm-inline-block">Move Items</span>
                     </button>
                 </div>
             </div>
@@ -332,14 +344,14 @@
                     </div>
                     <div class="col-9 col-md-10 col-lg-11">
                         <div class="float-end">
-                            <button class="btn btn-primary"><i
+                            <button class="btn btn-primary disabled"><i
                                     class="fa-regular fa-angle-left fa-lg d-inline-block"></i> <span
                                     class="d-none d-sm-inline-block">Go Last</span></button>
                             <button class="btn btn-danger" v-bind:class="{ disabled: fixtures.length == 0 }"><i
                                     class="fa-regular fa-camera d-inline-block fa-lg"></i>
                                 <span class="d-none d-sm-inline-block">Record Cue</span></button>
-                            <button class="btn btn-primary"><span class="d-none d-sm-inline-block">Go Next</span> <i
-                                    class="fa-regular fa-angle-right fa-lg d-inline-block"></i></button>
+                            <button class="btn btn-primary disabled"><span class="d-none d-sm-inline-block">Go
+                                    Next</span> <i class="fa-regular fa-angle-right fa-lg d-inline-block"></i></button>
                         </div>
                     </div>
                 </div>
