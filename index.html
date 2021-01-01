@@ -335,7 +335,8 @@
                             <button class="btn btn-primary"><i
                                     class="fa-regular fa-angle-left fa-lg d-inline-block"></i> <span
                                     class="d-none d-sm-inline-block">Go Last</span></button>
-                            <button class="btn btn-danger"><i class="fa-regular fa-camera d-inline-block fa-lg"></i>
+                            <button class="btn btn-danger" v-bind:class="{ disabled: fixtures.length == 0 }"><i
+                                    class="fa-regular fa-camera d-inline-block fa-lg"></i>
                                 <span class="d-none d-sm-inline-block">Record Cue</span></button>
                             <button class="btn btn-primary"><span class="d-none d-sm-inline-block">Go Next</span> <i
                                     class="fa-regular fa-angle-right fa-lg d-inline-block"></i></button>
