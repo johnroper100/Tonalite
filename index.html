@@ -110,7 +110,7 @@
                     <!-- Fixtures buttons -->
 
                     <button class="btn btn-warning" data-bs-toggle="dropdown" aria-expanded="false"
-                        v-bind:class="{'disabled': fixtures.length == 0 }">
+                        v-bind:class="{'disabled': (fixtures.length == 0 || selectedFixtures.length == 0) }">
                         <i class="fa-regular fa-screwdriver-wrench d-inline-block"></i>
                         <span class="d-none d-sm-inline-block">Tools</span>
                     </button>

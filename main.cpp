@@ -26,6 +26,7 @@
 #include "App.h"
 #include "Fixture.hpp"
 #include "Group.hpp"
+#include "Cue.hpp"
 #include "Utilities.hpp"
 #include "concurrentqueue.h"
 #include "json.hpp"
