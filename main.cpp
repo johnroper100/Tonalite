@@ -215,9 +215,13 @@ bool SendData() {
             currentCue = "";
         }
 
-        json msg;
+        json msg = {};
         msg["msgType"] = "fixtures";
         msg["fixtures"] = getFixtures();
+        sendToAllMessage(msg.dump(), msg["msgType"]);
+        msg = {};
+        msg["msgType"] = "cues";
+        msg["cues"] = getCues();
         sendToAllMessage(msg.dump(), msg["msgType"]);
     }
     door.unlock();
@@ -559,7 +563,7 @@ void processTask(json task) {
         } else {
             currentCue = cues[lastCue].nextCue;
         }
-        cues[currentCue].totalProgress = 40 * cues[currentCue].progressTime;
+        cues[currentCue].go();
         door.unlock();
     } else if (task["msgType"] == "rdmSearch") {
         getFixtureProfiles();

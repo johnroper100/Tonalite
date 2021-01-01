@@ -42,6 +42,10 @@ bool Cue::shouldChange(unordered_map<string, Cue> &cues, string fixtureID, Fixtu
     return result;
 };
 
+void Cue::go() {
+    totalProgress = 40 * progressTime;
+}
+
 Cue::Cue(){};
 
 Cue::Cue(json profile) {
