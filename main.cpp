@@ -57,6 +57,7 @@ unordered_map<string, Fixture> fixtures;
 unordered_map<string, Group> groups;
 unordered_map<string, Cue> cues;
 string currentCue = "";
+string lastCue = "";
 unordered_map<string, PerSocketData *> users;
 moodycamel::ConcurrentQueue<json> tasks;
 vector<SendMessage> sendMessages;
@@ -158,56 +159,6 @@ void setFrames(int universe, int address, int coarse, int fine, int dmxValue) {
     }
 }
 
-bool SendData() {
-    ola::DmxBuffer buffer1;
-    ola::DmxBuffer buffer2;
-    ola::DmxBuffer buffer3;
-    ola::DmxBuffer buffer4;
-
-    lock_guard<mutex> lg(door);
-    for (auto &it : fixtures) {
-        for (auto &fp : it.second.parameters) {
-            setFrames(it.second.universe, it.second.address, fp.second.coarse, fp.second.fine, fp.second.getDMXValue());
-        }
-    }
-    if (currentCue != "") {
-        Cue &currentCueItem = cues[currentCue];
-        for (auto &fi : currentCueItem.fixtures) {
-            for (auto &pi : fi.second.parameters) {
-                int outputValue = (pi.second.getDMXValue() + (((fixtures[fi.first].parameters[pi.first].getDMXValue() - pi.second.getDMXValue()) / (currentCueItem.progressTime * 40)) * currentCueItem.totalProgress));
-                fixtures[fi.first].parameters[pi.first].displayValue = (65535.0 / outputValue) * 100.0;
-                setFrames(fixtures[fi.first].universe, fixtures[fi.first].address, pi.second.coarse, pi.second.fine, outputValue);
-            }
-        }
-        currentCueItem.totalProgress -= 1;
-        if (currentCueItem.totalProgress < 0) {
-            currentCue = "";
-        }
-    }
-    door.unlock();
-
-    buffer1.Blackout();
-    buffer2.Blackout();
-    buffer3.Blackout();
-    buffer4.Blackout();
-    for (int ii = 0; ii < 512; ii++) {
-        buffer1.SetChannel(ii, frames[(0 * 512) + ii]);
-        buffer2.SetChannel(ii, frames[(1 * 512) + ii]);
-        buffer3.SetChannel(ii, frames[(2 * 512) + ii]);
-        buffer4.SetChannel(ii, frames[(3 * 512) + ii]);
-    }
-    wrapper.GetClient()->SendDMX(1, buffer1, ola::client::SendDMXArgs());
-    wrapper.GetClient()->SendDMX(2, buffer2, ola::client::SendDMXArgs());
-    wrapper.GetClient()->SendDMX(3, buffer3, ola::client::SendDMXArgs());
-    wrapper.GetClient()->SendDMX(4, buffer4, ola::client::SendDMXArgs());
-
-    if (finished == 1) {
-        wrapper.GetSelectServer()->Terminate();
-    }
-
-    return true;
-}
-
 json getFixtures() {
     json j = {};
     for (auto &it : fixtures) {
@@ -232,6 +183,65 @@ json getCues() {
     }
     sort(j.begin(), j.end(), compareByOrder);
     return j;
+}
+
+bool SendData() {
+    ola::DmxBuffer buffer1;
+    ola::DmxBuffer buffer2;
+    ola::DmxBuffer buffer3;
+    ola::DmxBuffer buffer4;
+
+    lock_guard<mutex> lg(door);
+    for (auto &it : fixtures) {
+        for (auto &fp : it.second.parameters) {
+            setFrames(it.second.universe, it.second.address, fp.second.coarse, fp.second.fine, fp.second.getDMXValue());
+        }
+    }
+    if (currentCue != "") {
+        Cue &currentCueItem = cues[currentCue];
+        for (auto &fi : currentCueItem.fixtures) {
+            for (auto &pi : fi.second.parameters) {
+                int outputValue = (pi.second.getDMXValue() + (((fixtures[fi.first].parameters[pi.first].getDMXValue() - pi.second.getDMXValue()) / (currentCueItem.progressTime * 40)) * currentCueItem.totalProgress));
+                fixtures[fi.first].parameters[pi.first].displayValue = (outputValue / 65535.0) * 100.0;
+                if (currentCueItem.totalProgress - 1 < 0) {
+                    fixtures[fi.first].parameters[pi.first].liveValue = fixtures[fi.first].parameters[pi.first].displayValue;
+                }
+                setFrames(fixtures[fi.first].universe, fixtures[fi.first].address, pi.second.coarse, pi.second.fine, outputValue);
+            }
+        }
+        currentCueItem.totalProgress -= 1;
+        if (currentCueItem.totalProgress < 0) {
+            lastCue = currentCue;
+            currentCue = "";
+        }
+
+        json msg;
+        msg["msgType"] = "fixtures";
+        msg["fixtures"] = getFixtures();
+        sendToAllMessage(msg.dump(), msg["msgType"]);
+    }
+    door.unlock();
+
+    buffer1.Blackout();
+    buffer2.Blackout();
+    buffer3.Blackout();
+    buffer4.Blackout();
+    for (int ii = 0; ii < 512; ii++) {
+        buffer1.SetChannel(ii, frames[(0 * 512) + ii]);
+        buffer2.SetChannel(ii, frames[(1 * 512) + ii]);
+        buffer3.SetChannel(ii, frames[(2 * 512) + ii]);
+        buffer4.SetChannel(ii, frames[(3 * 512) + ii]);
+    }
+    wrapper.GetClient()->SendDMX(1, buffer1, ola::client::SendDMXArgs());
+    wrapper.GetClient()->SendDMX(2, buffer2, ola::client::SendDMXArgs());
+    wrapper.GetClient()->SendDMX(3, buffer3, ola::client::SendDMXArgs());
+    wrapper.GetClient()->SendDMX(4, buffer4, ola::client::SendDMXArgs());
+
+    if (finished == 1) {
+        wrapper.GetSelectServer()->Terminate();
+    }
+
+    return true;
 }
 
 void getFixtureProfiles() {
@@ -537,6 +547,20 @@ void processTask(json task) {
         door.unlock();
 
         sendToAllMessage(item.dump(), item["msgType"]);
+    } else if (task["msgType"] == "nextCue") {
+        lock_guard<mutex> lg(door);
+        if (lastCue == "") {
+            for (auto &ci : cues) {
+                if (ci.second.lastCue == "") {
+                    currentCue = ci.first;
+                    break;
+                }
+            }
+        } else {
+            currentCue = cues[lastCue].nextCue;
+        }
+        cues[currentCue].totalProgress = 40 * cues[currentCue].progressTime;
+        door.unlock();
     } else if (task["msgType"] == "rdmSearch") {
         getFixtureProfiles();
         for (int i = 1; i <= 4; i++) {

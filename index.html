@@ -363,13 +363,16 @@
                     </div>
                     <div class="col-9 col-md-10 col-lg-11">
                         <div class="float-end">
-                            <button class="btn btn-primary disabled"><i
+                            <button class="btn btn-primary"
+                                v-bind:class="{ disabled: (cues.length == 0 || blind == true) }" @click="lastCue"><i
                                     class="fa-regular fa-angle-left fa-lg d-inline-block"></i> <span
                                     class="d-none d-sm-inline-block">Go Last</span></button>
                             <button class="btn btn-danger" v-bind:class="{ disabled: fixtures.length == 0 }"
                                 @click="recordCue"><i class="fa-regular fa-camera d-inline-block fa-lg"></i>
                                 <span class="d-none d-sm-inline-block">Record Cue</span></button>
-                            <button class="btn btn-primary disabled"><span class="d-none d-sm-inline-block">Go
+                            <button class="btn btn-primary"
+                                v-bind:class="{ disabled: (cues.length == 0 || blind == true) }" @click="nextCue"><span
+                                    class="d-none d-sm-inline-block">Go
                                     Next</span> <i class="fa-regular fa-angle-right fa-lg d-inline-block"></i></button>
                         </div>
                     </div>

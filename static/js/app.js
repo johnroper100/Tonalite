@@ -336,6 +336,18 @@ var app = new Vue({
             }
             socket.send(JSON.stringify(message));
         },
+        nextCue: function () {
+            message = {
+                "msgType": "nextCue"
+            }
+            socket.send(JSON.stringify(message));
+        },
+        lastCue: function () {
+            message = {
+                "msgType": "lastCue"
+            }
+            socket.send(JSON.stringify(message));
+        },
         rdmSearch: function () {
             socket.send(JSON.stringify({ "msgType": "rdmSearch" }));
         },
