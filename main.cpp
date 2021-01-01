@@ -502,13 +502,9 @@ void processTask(json task) {
             newCueFixture.i = fi.first;
             bool addFixture = false;
             for (auto &pi : fi.second.parameters) {
-                if (cues.size() == 0) {
-                    if (pi.second.getDMXValue() != pi.second.home) {
-                        newCueFixture.parameters[pi.first] = pi.second;
-                        addFixture = true;
-                    }
-                } else {
-                    //cues[newCue.lastCue].check
+                if (newCue.shouldChange(cues, pi.second)) {
+                    newCueFixture.parameters[pi.first] = pi.second;
+                    addFixture = true;
                 }
             }
             if (addFixture == true) {

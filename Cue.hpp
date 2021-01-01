@@ -10,6 +10,8 @@
 using namespace std;
 using json = nlohmann::json;
 
+struct Cue;
+
 struct Cue {
     string i;
     string name;
@@ -21,6 +23,7 @@ struct Cue {
     Cue();
     Cue(json profile);
     json asJson();
+    bool shouldChange(unordered_map<string, Cue> &cues, FixtureParameter &param);
 };
 
 #endif

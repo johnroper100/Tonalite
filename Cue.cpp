@@ -1,5 +1,9 @@
 #include "Cue.hpp"
 
+#include <string>
+#include <unordered_map>
+
+#include "Fixture.hpp"
 #include "Utilities.hpp"
 #include "json.hpp"
 
@@ -22,6 +26,16 @@ json Cue::asJson() {
     sort(cItem["fixtures"].begin(), cItem["fixtures"].end(), compareByAddress);
 
     return cItem;
+};
+
+bool Cue::shouldChange(unordered_map<string, Cue> &cues, FixtureParameter &param) {
+    bool result = false;
+    if (lastCue != "") {
+        result = cues[lastCue].shouldChange(cues, param);
+    } else {
+        result = param.getDMXValue() != param.home;
+    }
+    return result;
 };
 
 Cue::Cue(){};
