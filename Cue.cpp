@@ -30,11 +30,11 @@ json Cue::asJson() {
 
 bool Cue::shouldChange(unordered_map<string, Cue> &cues, string fixtureID, FixtureParameter &param) {
     bool result = false;
-    if (lastCue != "") {
-        result = cues[lastCue].shouldChange(cues, fixtureID, param);
+    if (fixtures.contains(fixtureID) && fixtures[fixtureID].parameters.contains(param.i)) {
+        result = fixtures[fixtureID].parameters[param.i].liveValue != param.liveValue;
     } else {
-        if (fixtures.contains(fixtureID) && fixtures[fixtureID].parameters.contains(param.i)) {
-            result = fixtures[fixtureID].parameters[param.i].liveValue != param.liveValue;
+        if (lastCue != "") {
+            result = cues[lastCue].shouldChange(cues, fixtureID, param);
         } else {
             result = param.getDMXValue() != param.home;
         }
