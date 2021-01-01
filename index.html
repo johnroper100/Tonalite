@@ -341,7 +341,11 @@
                 <div class="col-6 col-md-3 col-lg-2 col-xl-1 text-center mb-3" v-for="item in cues">
                     <div class="fixtureItem">
                         <div class="p-2">
-                            {{item.name}} ({{item.order}})
+                            {{item.name}}
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" v-bind:style="{ width: 100 + '%' }" role="progressbar">
+                                100%</div>
                         </div>
                     </div>
                 </div>

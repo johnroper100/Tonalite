@@ -12,6 +12,8 @@ json Cue::asJson() {
     cItem["i"] = i;
     cItem["name"] = name;
     cItem["order"] = order;
+    cItem["nextCue"] = nextCue;
+    cItem["lastCue"] = lastCue;
 
     return cItem;
 };
