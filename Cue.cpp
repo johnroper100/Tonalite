@@ -15,7 +15,6 @@ json Cue::asJson() {
 
     cItem["i"] = i;
     cItem["name"] = name;
-    cItem["order"] = order;
     cItem["nextCue"] = nextCue;
     cItem["lastCue"] = lastCue;
     cItem["order"] = order;
@@ -39,15 +38,16 @@ void Cue::go() {
 Cue::Cue(){};
 
 Cue::Cue(json profile) {
-    if (profile.contains("i") && profile["i"] != NULL) {
-        i = profile["i"];
-    } else {
-        i = random_string(10);
-    }
-
-    if (profile.contains("name") && profile["name"] != NULL) {
-        name = profile["name"];
-    } else {
-        name = "Cue";
+    i = profile["i"];
+    name = profile["name"];
+    lastCue = profile["lastCue"];
+    nextCue = profile["nextCue"];
+    order = profile["order"];
+    totalProgress = profile["totalProgress"];
+    displayProgress = profile["displayProgress"];
+    progressTime = profile["progressTime"];
+    for (auto &it : profile["fixtures"]) {
+        Fixture newFixture(it, 0, 0, 0);
+        fixtures[newFixture.i] = newFixture;
     }
 };

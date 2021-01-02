@@ -373,6 +373,14 @@ void openShow() {
             Fixture newFixture(fi, 0, 0, 0);
             fixtures[newFixture.i] = newFixture;
         }
+        for (auto &gi : j["groups"]) {
+            Group newGroup(gi);
+            groups[newGroup.i] = newGroup;
+        }
+        for (auto &ci : j["cues"]) {
+            Cue newCue(ci);
+            cues[newCue.i] = newCue;
+        }
         door.unlock();
     }
 }
