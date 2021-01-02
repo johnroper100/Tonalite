@@ -655,6 +655,8 @@ void webThread() {
                 psd->userID = random_string(10);
                 users[psd->userID] = psd;
                 json j;
+                j["msgType"] = "currentCue";
+
                 lock_guard<mutex> lg(door);
                 for (auto &fi : fixtures) {
                     fi.second.addUserBlind(psd->userID);
@@ -662,18 +664,25 @@ void webThread() {
                 json fixtureItems = getFixtures();
                 json groupItems = getGroups();
                 json cueItems = getCues();
+                
+                j["currentCue"] = currentCue;
                 door.unlock();
+                ws->send(j.dump(), uWS::OpCode::TEXT, true);
+
                 j["msgType"] = "fixtures";
                 j["fixtures"] = fixtureItems;
                 ws->send(j.dump(), uWS::OpCode::TEXT, true);
+
                 j = {};
                 j["msgType"] = "groups";
                 j["groups"] = groupItems;
                 ws->send(j.dump(), uWS::OpCode::TEXT, true);
+
                 j = {};
                 j["msgType"] = "cues";
                 j["cues"] = cueItems;
                 ws->send(j.dump(), uWS::OpCode::TEXT, true);
+
                 j = {};
                 j["msgType"] = "socketID";
                 j["socketID"] = psd->userID;

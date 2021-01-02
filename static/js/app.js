@@ -67,6 +67,24 @@ var app = new Vue({
                 ids.push({ id: app.fixtures[i].i, name: app.fixtures[i].name });
             }
             return ids;
+        },
+        currentCueName() {
+            if (this.currentCue != "") {
+                currentCue = this.cues.find(x => x.i === this.currentCue);
+                if (currentCue != undefined) {
+                    return currentCue.name;
+                }
+            }
+            return "No Cue";
+        },
+        currentCueProgress() {
+            if (this.currentCue != "") {
+                currentCue = this.cues.find(x => x.i === this.currentCue);
+                if (currentCue != undefined) {
+                    return currentCue.displayProgress;
+                }
+            }
+            return 0.0;
         }
     },
     methods: {
@@ -112,24 +130,6 @@ var app = new Vue({
             }
             number = avVal / avInputs;
             return Math.round(number * 10) / 10;
-        },
-        currentCueName: function () {
-            if (app.currentCue != "") {
-                currentCue = app.cues.find(x => x.i === app.currentCue);
-                if (currentCue != undefined) {
-                    return currentCue.name;
-                }
-            }
-            return "No Cue";
-        },
-        currentCueProgress: function () {
-            if (app.currentCue != "") {
-                currentCue = app.cues.find(x => x.i === app.currentCue);
-                if (currentCue != undefined) {
-                    return currentCue.displayProgress;
-                }
-            }
-            return 0.0;
         },
         clearFixtureProfilesSelection: function (type) {
             if (type == 'manufacturers') {
