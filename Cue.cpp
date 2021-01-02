@@ -28,20 +28,6 @@ json Cue::asJson() {
     return cItem;
 };
 
-bool Cue::shouldChange(unordered_map<string, Cue> &cues, string fixtureID, FixtureParameter &param) {
-    bool result = false;
-    if (fixtures.find(fixtureID) != fixtures.end() && fixtures[fixtureID].parameters.find(param.i) != fixtures[fixtureID].parameters.end()) {
-        result = fixtures[fixtureID].parameters[param.i].liveValue != param.liveValue;
-    } else {
-        if (lastCue != "") {
-            result = cues[lastCue].shouldChange(cues, fixtureID, param);
-        } else {
-            result = param.getDMXValue() != param.home;
-        }
-    }
-    return result;
-};
-
 void Cue::go() {
     totalProgress = 40 * progressTime;
 }

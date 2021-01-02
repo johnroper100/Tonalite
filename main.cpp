@@ -202,12 +202,14 @@ bool SendData() {
         Cue &currentCueItem = cues[currentCue];
         for (auto &fi : currentCueItem.fixtures) {
             for (auto &pi : fi.second.parameters) {
-                int outputValue = (pi.second.getDMXValue() + (((fixtures[fi.first].parameters[pi.first].getDMXValue() - pi.second.getDMXValue()) / (currentCueItem.progressTime * 40)) * currentCueItem.totalProgress));
-                fixtures[fi.first].parameters[pi.first].displayValue = (outputValue / 65535.0) * 100.0;
-                if (currentCueItem.totalProgress - 1 < 0) {
-                    fixtures[fi.first].parameters[pi.first].liveValue = fixtures[fi.first].parameters[pi.first].displayValue;
+                if (currentCueItem.lastCue == "" || cues[currentCueItem.lastCue].fixtures[fi.first].parameters[pi.first].liveValue != pi.second.liveValue) {
+                    int outputValue = (pi.second.getDMXValue() + (((fixtures[fi.first].parameters[pi.first].getDMXValue() - pi.second.getDMXValue()) / (currentCueItem.progressTime * 40)) * currentCueItem.totalProgress));
+                    fixtures[fi.first].parameters[pi.first].displayValue = (outputValue / 65535.0) * 100.0;
+                    if (currentCueItem.totalProgress - 1 < 0) {
+                        fixtures[fi.first].parameters[pi.first].liveValue = fixtures[fi.first].parameters[pi.first].displayValue;
+                    }
+                    setFrames(fixtures[fi.first].universe, fixtures[fi.first].address, pi.second.coarse, pi.second.fine, outputValue);
                 }
-                setFrames(fixtures[fi.first].universe, fixtures[fi.first].address, pi.second.coarse, pi.second.fine, outputValue);
             }
         }
         currentCueItem.totalProgress -= 1;
@@ -532,20 +534,7 @@ void processTask(json task) {
                 }
             }
         }
-        for (auto &fi : fixtures) {
-            Fixture newCueFixture;
-            newCueFixture.i = fi.first;
-            bool addFixture = false;
-            for (auto &pi : fi.second.parameters) {
-                if (newCue.shouldChange(cues, fi.first, pi.second)) {
-                    newCueFixture.parameters[pi.first] = pi.second;
-                    addFixture = true;
-                }
-            }
-            if (addFixture == true) {
-                newCue.fixtures[newCueFixture.i] = newCueFixture;
-            }
-        }
+        newCue.fixtures = fixtures;
         cues[newCue.i] = newCue;
         currentCue = newCue.i;
         item["cues"] = getCues();
