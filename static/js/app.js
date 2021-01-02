@@ -27,6 +27,7 @@ var app = new Vue({
         groupSettingsFixturesChanged: false,
         cues: [],
         selectedCues: [],
+        currentCue: "",
         tab: "fixtures"
     },
     computed: {
@@ -93,7 +94,7 @@ var app = new Vue({
             }
             return true;
         },
-        intensityAverage(parameters) {
+        intensityAverage: function (parameters) {
             avVal = 0.0;
             avInputs = 0;
             for (i = 0; i < parameters.length; i++) {
@@ -111,6 +112,24 @@ var app = new Vue({
             }
             number = avVal / avInputs;
             return Math.round(number * 10) / 10;
+        },
+        currentCueName: function () {
+            if (app.currentCue != "") {
+                currentCue = app.cues.find(x => x.i === app.currentCue);
+                if (currentCue != undefined) {
+                    return currentCue.name;
+                }
+            }
+            return "No Cue";
+        },
+        currentCueProgress: function () {
+            if (app.currentCue != "") {
+                currentCue = app.cues.find(x => x.i === app.currentCue);
+                if (currentCue != undefined) {
+                    return currentCue.displayProgress;
+                }
+            }
+            return 0.0;
         },
         clearFixtureProfilesSelection: function (type) {
             if (type == 'manufacturers') {
@@ -397,6 +416,8 @@ socket.addEventListener('message', function (event) {
         }
     } else if (msg["msgType"] == "socketID") {
         app.socketID = msg["socketID"];
+    } else if (msg["msgType"] == "currentCue") {
+        app.currentCue = msg["currentCue"];
     } else if (msg["msgType"] == "moveFixture") {
         item = app.fixtures.find(x => x.i === msg["i"]);
         if (item != undefined) {

@@ -203,7 +203,7 @@ bool SendData() {
         for (auto &fi : currentCueItem.fixtures) {
             for (auto &pi : fi.second.parameters) {
                 if (currentCueItem.lastCue == "" || cues[currentCueItem.lastCue].fixtures[fi.first].parameters[pi.first].liveValue != pi.second.liveValue) {
-                    int outputValue = (pi.second.getDMXValue() + (((fixtures[fi.first].parameters[pi.first].getDMXValue() - pi.second.getDMXValue()) / (currentCueItem.progressTime * 40)) * currentCueItem.totalProgress));
+                    int outputValue = (pi.second.getDMXValue() + (((fixtures[fi.first].parameters[pi.first].getDMXValue() - pi.second.getDMXValue()) / (currentCueItem.progressTime * 40.0)) * currentCueItem.totalProgress));
                     fixtures[fi.first].parameters[pi.first].displayValue = (outputValue / 65535.0) * 100.0;
                     if (currentCueItem.totalProgress - 1 < 0) {
                         fixtures[fi.first].parameters[pi.first].liveValue = fixtures[fi.first].parameters[pi.first].displayValue;
@@ -212,6 +212,8 @@ bool SendData() {
                 }
             }
         }
+        currentCueItem.displayProgress = (((currentCueItem.progressTime * 40.0) - currentCueItem.totalProgress) / (currentCueItem.progressTime * 40.0)) * 100.0;
+        currentCueItem.displayProgress = ceil(currentCueItem.displayProgress);
         currentCueItem.totalProgress -= 1;
         if (currentCueItem.totalProgress < 0) {
             cuePlaying = false;
@@ -539,9 +541,14 @@ void processTask(json task) {
         currentCue = newCue.i;
         item["cues"] = getCues();
         door.unlock();
-
+        sendToAllMessage(item.dump(), item["msgType"]);
+        item = {};
+        item["msgType"] = "currentCue";
+        item["currentCue"] = newCue.i;
         sendToAllMessage(item.dump(), item["msgType"]);
     } else if (task["msgType"] == "nextCue") {
+        json item;
+        item["msgType"] = "currentCue";
         lock_guard<mutex> lg(door);
         if (currentCue == "" || cues[currentCue].nextCue == "") {
             for (auto &ci : cues) {
@@ -555,8 +562,12 @@ void processTask(json task) {
         }
         cues[currentCue].go();
         cuePlaying = true;
+        item["currentCue"] = currentCue;
         door.unlock();
+        sendToAllMessage(item.dump(), item["msgType"]);
     } else if (task["msgType"] == "lastCue") {
+        json item;
+        item["msgType"] = "currentCue";
         lock_guard<mutex> lg(door);
         if (currentCue == "" || cues[currentCue].lastCue == "") {
             for (auto &ci : cues) {
@@ -570,7 +581,9 @@ void processTask(json task) {
         }
         cues[currentCue].go();
         cuePlaying = true;
+        item["currentCue"] = currentCue;
         door.unlock();
+        sendToAllMessage(item.dump(), item["msgType"]);
     } else if (task["msgType"] == "rdmSearch") {
         getFixtureProfiles();
         for (int i = 1; i <= 4; i++) {

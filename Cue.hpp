@@ -19,6 +19,7 @@ struct Cue {
     string nextCue = "";
     int order;
     int totalProgress = 0;
+    double displayProgress = 100.0;
     double progressTime = 3.0;
     unordered_map<string, Fixture> fixtures;
 

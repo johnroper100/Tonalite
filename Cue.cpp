@@ -18,6 +18,10 @@ json Cue::asJson() {
     cItem["order"] = order;
     cItem["nextCue"] = nextCue;
     cItem["lastCue"] = lastCue;
+    cItem["order"] = order;
+    cItem["totalProgress"] = totalProgress;
+    cItem["displayProgress"] = displayProgress;
+    cItem["progressTime"] = progressTime;
     cItem["fixtures"] = {};
 
     for (auto &it : fixtures) {
