@@ -27,6 +27,9 @@ struct FixtureParameterRange {
     int endVal;
     string label;
     MediaItem media;
+
+    FixtureParameterRange();
+    FixtureParameterRange(json profile);
 };
 
 struct FixtureParameter {
@@ -40,8 +43,8 @@ struct FixtureParameter {
     string name;
     int size;
     int type;
-    unordered_map<string, FixtureParameterRange> ranges;
     WhiteItem white;
+    unordered_map<string, FixtureParameterRange> ranges;
 
     double liveValue = 0.0;
     double displayValue = 0.0;
@@ -49,6 +52,9 @@ struct FixtureParameter {
     int getDMXValue();
     int getDMXValue(string userID);
     json asJson();
+
+    FixtureParameter();
+    FixtureParameter(json profile);
 };
 
 struct Fixture {
