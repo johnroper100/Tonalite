@@ -127,8 +127,6 @@ FixtureParameter::FixtureParameter(json profile) {
 
 json Fixture::asJson() {
     json fItem;
-    json pItem;
-    json rItem;
 
     fItem["i"] = i;
     fItem["name"] = name;
