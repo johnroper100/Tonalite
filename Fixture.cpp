@@ -12,28 +12,28 @@ using json = nlohmann::json;
 FixtureParameterRange::FixtureParameterRange(){};
 
 FixtureParameterRange::FixtureParameterRange(json profile) {
-    if (profile.contains("i") && profile["i"] != NULL) {
+    if (profile.contains("i") && profile["i"] != nullptr) {
         i = profile["i"];
     } else {
         i = random_string(10);
     }
-    if (profile.contains("begin") && profile["begin"] != NULL) {
+    if (profile.contains("begin") && profile["begin"] != nullptr) {
         beginVal = profile["begin"];
     }
-    if (profile.contains("default") && profile["default"] != NULL) {
+    if (profile.contains("default") && profile["default"] != nullptr) {
         defaultVal = profile["default"];
     }
-    if (profile.contains("end") && profile["end"] != NULL) {
+    if (profile.contains("end") && profile["end"] != nullptr) {
         endVal = profile["end"];
     }
-    if (profile.contains("label") && profile["label"] != NULL) {
+    if (profile.contains("label") && profile["label"] != nullptr) {
         label = profile["label"];
     }
-    if (profile.contains("media") && profile["media"] != NULL) {
-        if (profile["media"].contains("dcid") && profile["media"]["dcid"] != NULL) {
+    if (profile.contains("media") && profile["media"] != nullptr) {
+        if (profile["media"].contains("dcid") && profile["media"]["dcid"] != nullptr) {
             media.dcid = profile["media"]["dcid"];
         }
-        if (profile["media"].contains("name") && profile["media"]["name"] != NULL) {
+        if (profile["media"].contains("name") && profile["media"]["name"] != nullptr) {
             media.name = profile["media"]["name"];
         }
     }
@@ -89,14 +89,14 @@ json FixtureParameter::asJson() {
 FixtureParameter::FixtureParameter(){};
 
 FixtureParameter::FixtureParameter(json profile) {
-    if (profile.contains("i") && profile["i"] != NULL) {
+    if (profile.contains("i") && profile["i"] != nullptr) {
         i = profile["i"];
     } else {
         i = random_string(10);
     }
 
     coarse = profile["coarse"];
-    if (profile.contains("fine") && profile["fine"] != NULL) {
+    if (profile.contains("fine") && profile["fine"] != nullptr) {
         fine = profile["fine"];
     }
     fadeWithIntensity = profile["fadeWithIntensity"];
@@ -106,22 +106,26 @@ FixtureParameter::FixtureParameter(json profile) {
     name = profile["name"];
     size = profile["size"];
     type = profile["type"];
-    if (profile.contains("white") && profile["white"] != NULL) {
-        if (profile["white"].contains("val") && profile["white"]["val"] != NULL) {
+    if (profile.contains("white") && profile["white"] != nullptr) {
+        if (profile["white"].contains("val") && profile["white"]["val"] != nullptr) {
             white.val = profile["white"]["val"];
         }
-        if (profile["white"].contains("temp") && profile["white"]["temp"] != NULL) {
+        if (profile["white"].contains("temp") && profile["white"]["temp"] != nullptr) {
             white.temp = profile["white"]["temp"];
         }
     }
-    if (profile.contains("ranges") && profile["ranges"] != NULL) {
+    if (profile.contains("ranges") && profile["ranges"] != nullptr) {
         for (auto &ri : profile["ranges"]) {
             FixtureParameterRange newRange(ri);
             ranges[newRange.i] = newRange;
         }
     }
 
-    liveValue = (home / 65535.0) * 100.0;
+    if (profile.contains("liveValue") && profile["liveValue"] != nullptr) {
+        liveValue = profile["liveValue"];
+    } else {
+        liveValue = (home / 65535.0) * 100.0;
+    }
     displayValue = liveValue;
 };
 
@@ -160,19 +164,19 @@ void Fixture::addUserBlind(string socketID) {
 Fixture::Fixture(){};
 
 Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIndex) {
-    if (profile.contains("i") && profile["i"] != NULL) {
+    if (profile.contains("i") && profile["i"] != nullptr) {
         i = profile["i"];
     } else {
         i = random_string(10);
     }
 
-    if (profile.contains("name") && profile["name"] != NULL) {
+    if (profile.contains("name") && profile["name"] != nullptr) {
         name = profile["name"];
     } else {
         name = profile["modelName"];
     }
 
-    if (profile.contains("universe") && profile["universe"] != NULL) {
+    if (profile.contains("universe") && profile["universe"] != nullptr) {
         universe = profile["universe"];
     } else {
         universe = inputUniverse;
@@ -180,7 +184,7 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
 
     maxOffset = profile["maxOffset"];
 
-    if (profile.contains("address") && profile["address"] != NULL) {
+    if (profile.contains("address") && profile["address"] != nullptr) {
         address = profile["address"];
     } else {
         address = inputAddress + ((profile["maxOffset"].get<int>() + 1) * createIndex);
@@ -193,23 +197,23 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
         }
     }
 
-    if (profile.contains("x") && profile["x"] != NULL) {
+    if (profile.contains("x") && profile["x"] != nullptr) {
         x = profile["x"];
     }
 
-    if (profile.contains("y") && profile["y"] != NULL) {
+    if (profile.contains("y") && profile["y"] != nullptr) {
         y = profile["y"];
     }
 
-    if (profile.contains("w") && profile["w"] != NULL) {
+    if (profile.contains("w") && profile["w"] != nullptr) {
         w = profile["w"];
     }
 
-    if (profile.contains("h") && profile["h"] != NULL) {
+    if (profile.contains("h") && profile["h"] != nullptr) {
         h = profile["h"];
     }
 
-    if (profile.contains("colortable") && profile["colortable"] != NULL) {
+    if (profile.contains("colortable") && profile["colortable"] != nullptr) {
         colortable = profile["colortable"];
     }
     dcid = profile["dcid"];
@@ -217,6 +221,28 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
     manufacturerName = profile["manufacturerName"];
     modeName = profile["modeName"];
     modelName = profile["modelName"];
+
+    for (auto &pi : profile["parameters"]) {
+        FixtureParameter newParam(pi);
+        parameters[newParam.i] = newParam;
+    }
+};
+
+json SmallFixture::asJson() {
+    json fItem;
+
+    fItem["i"] = i;
+    fItem["parameters"] = {};
+    for (auto &pi : parameters) {
+        fItem["parameters"].push_back(pi.second.asJson());
+    }
+    return fItem;
+};
+
+SmallFixture::SmallFixture(){};
+
+SmallFixture::SmallFixture(json profile) {
+    i = profile["i"];
 
     for (auto &pi : profile["parameters"]) {
         FixtureParameter newParam(pi);

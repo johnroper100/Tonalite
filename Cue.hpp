@@ -21,10 +21,11 @@ struct Cue {
     int totalProgress = 0;
     double displayProgress = 100.0;
     double progressTime = 3.0;
-    unordered_map<string, Fixture> fixtures;
+    unordered_map<string, SmallFixture> fixtures;
 
     Cue();
     Cue(json profile);
+    Cue(unordered_map<string, Fixture> fixtureItems, bool blind, string userID);
     json asJson();
     void go();
 };

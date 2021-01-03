@@ -24,19 +24,19 @@ json Group::asJson() {
 Group::Group(){};
 
 Group::Group(json profile) {
-    if (profile.contains("i") && profile["i"] != NULL) {
+    if (profile.contains("i") && profile["i"] != nullptr) {
         i = profile["i"];
     } else {
         i = random_string(10);
     }
 
-    if (profile.contains("name") && profile["name"] != NULL) {
+    if (profile.contains("name") && profile["name"] != nullptr) {
         name = profile["name"];
     } else {
         name = "Group";
     }
 
-    if (profile.contains("fixtures") && profile["fixtures"] != NULL) {
+    if (profile.contains("fixtures") && profile["fixtures"] != nullptr) {
         for (auto &fi : profile["fixtures"]) {
             fixtures.push_back(fi);
         }

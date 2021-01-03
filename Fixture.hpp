@@ -81,4 +81,12 @@ struct Fixture {
     void addUserBlind(string socketID);
 };
 
+struct SmallFixture {
+    string i;
+    unordered_map<string, FixtureParameter> parameters;
+    SmallFixture();
+    SmallFixture(json profile);
+    json asJson();
+};
+
 #endif

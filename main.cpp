@@ -534,10 +534,10 @@ void processTask(json task) {
     } else if (task["msgType"] == "recordCue") {
         json item;
         item["msgType"] = "cues";
-        Cue newCue;
-        newCue.i = random_string(10);
 
         lock_guard<mutex> lg(door);
+        Cue newCue(fixtures, task["blind"], task["socketID"]);
+        newCue.i = random_string(10);
         newCue.name = "Cue " + to_string(cues.size() + 1);
         newCue.order = cues.size();
         if (cues.size() > 0) {
@@ -549,7 +549,6 @@ void processTask(json task) {
                 }
             }
         }
-        newCue.fixtures = fixtures;
         cues[newCue.i] = newCue;
         currentCue = newCue.i;
         item["cues"] = getCues();

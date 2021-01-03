@@ -47,7 +47,21 @@ Cue::Cue(json profile) {
     displayProgress = profile["displayProgress"];
     progressTime = profile["progressTime"];
     for (auto &it : profile["fixtures"]) {
-        Fixture newFixture(it, 0, 0, 0);
+        SmallFixture newFixture(it);
         fixtures[newFixture.i] = newFixture;
     }
 };
+
+Cue::Cue(unordered_map<string, Fixture> fixtureItems, bool blind, string userID) {
+    for (auto &fi : fixtureItems) {
+        SmallFixture newFixture;
+        newFixture.i = fi.first;
+        newFixture.parameters = fi.second.parameters;
+        if (blind == true) {
+            for (auto &pi : newFixture.parameters) {
+                pi.second.liveValue = pi.second.blindValues[userID];
+            }
+        }
+        fixtures[newFixture.i] = newFixture;
+    }
+}
