@@ -368,9 +368,13 @@
                                 v-bind:class="{ disabled: (cues.length == 0 || blind == true) }" @click="lastCue"><i
                                     class="fa-regular fa-angle-left fa-lg d-inline-block"></i> <span
                                     class="d-none d-sm-inline-block">Go Last</span></button>
-                            <button class="btn btn-danger" v-bind:class="{ disabled: fixtures.length == 0 }"
-                                @click="recordCue"><i class="fa-regular fa-camera d-inline-block fa-lg"></i>
+                            <button class="btn btn-danger" v-if="cuePlaying == false"
+                                v-bind:class="{ disabled: fixtures.length == 0 }" @click="recordCue"><i
+                                    class="fa-regular fa-camera d-inline-block fa-lg"></i>
                                 <span class="d-none d-sm-inline-block">Record Cue</span></button>
+                            <button class="btn btn-danger" v-if="cuePlaying != false" @click="recordCue"><i
+                                    class="fa-regular fa-circle-stop d-inline-block fa-lg"></i>
+                                <span class="d-none d-sm-inline-block">Stop Cue</span></button>
                             <button class="btn btn-primary"
                                 v-bind:class="{ disabled: (cues.length == 0 || blind == true) }" @click="nextCue"><span
                                     class="d-none d-sm-inline-block">Go

@@ -227,6 +227,11 @@ bool SendData() {
         msg["msgType"] = "cues";
         msg["cues"] = getCues();
         sendToAllMessage(msg.dump(), msg["msgType"]);
+        msg = {};
+        msg["msgType"] = "currentCue";
+        msg["currentCue"] = currentCue;
+        msg["cuePlaying"] = cuePlaying;
+        sendToAllMessage(msg.dump(), msg["msgType"]);
     }
     door.unlock();
 
@@ -553,6 +558,7 @@ void processTask(json task) {
         item = {};
         item["msgType"] = "currentCue";
         item["currentCue"] = newCue.i;
+        item["cuePlaying"] = cuePlaying;
         sendToAllMessage(item.dump(), item["msgType"]);
     } else if (task["msgType"] == "nextCue") {
         json item;
@@ -571,6 +577,7 @@ void processTask(json task) {
         cues[currentCue].go();
         cuePlaying = true;
         item["currentCue"] = currentCue;
+        item["cuePlaying"] = cuePlaying;
         door.unlock();
         sendToAllMessage(item.dump(), item["msgType"]);
     } else if (task["msgType"] == "lastCue") {
@@ -590,6 +597,7 @@ void processTask(json task) {
         cues[currentCue].go();
         cuePlaying = true;
         item["currentCue"] = currentCue;
+        item["cuePlaying"] = cuePlaying;
         door.unlock();
         sendToAllMessage(item.dump(), item["msgType"]);
     } else if (task["msgType"] == "rdmSearch") {
@@ -674,6 +682,7 @@ void webThread() {
                 json cueItems = getCues();
                 
                 j["currentCue"] = currentCue;
+                j["cuePlaying"] = cuePlaying;
                 door.unlock();
                 ws->send(j.dump(), uWS::OpCode::TEXT, true);
 

@@ -28,6 +28,7 @@ var app = new Vue({
         cues: [],
         selectedCues: [],
         currentCue: "",
+        cuePlaying: false,
         tab: "fixtures"
     },
     computed: {
@@ -418,6 +419,7 @@ socket.addEventListener('message', function (event) {
         app.socketID = msg["socketID"];
     } else if (msg["msgType"] == "currentCue") {
         app.currentCue = msg["currentCue"];
+        app.cuePlaying = msg["cuePlaying"];
     } else if (msg["msgType"] == "moveFixture") {
         item = app.fixtures.find(x => x.i === msg["i"]);
         if (item != undefined) {
