@@ -80,6 +80,7 @@ json FixtureParameter::asJson() {
     pItem["manualValue"] = manualValue;
     pItem["outputValue"] = outputValue;
     pItem["manualInput"] = manualInput;
+    pItem["manualUser"] = manualUser;
     pItem["blindManualValues"] = {};
     for (auto &ri : blindManualValues) {
         pItem["blindManualValues"][ri.first] = ri.second;

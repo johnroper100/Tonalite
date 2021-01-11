@@ -48,6 +48,7 @@ struct FixtureParameter {
 
     double outputValue;
     double manualValue = 0.0;
+    string manualUser = "";
     int manualInput = 0;
     unordered_map<string, double> blindManualValues;
     int getDMXValue();

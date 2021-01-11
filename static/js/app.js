@@ -271,28 +271,13 @@ var app = new Vue({
             }
             app.tab = "fixtureParameters";
         },
-        editFixtureParameters: function () {
+        editFixtureParameters: function (parameter) {
             message = {
                 "msgType": "editFixtureParameters",
                 "fixtures": app.selectedFixtures,
-                "parameters": app.fixtureParameters
+                "parameter": parameter
             }
             socket.send(JSON.stringify(message));
-            for (i = 0; i < app.selectedFixtures.length; i++) {
-                fixture = app.fixtures.find(x => x.i === app.selectedFixtures[i]);
-                if (fixture != undefined) {
-                    for (p = 0; p < fixture.parameters.length; p++) {
-                        fixtureParam = fixture.parameters[p];
-                        for (pi = 0; pi < app.fixtureParameters.length; pi++) {
-                            globalParam = app.fixtureParameters[pi];
-                            if (globalParam.coarse == fixtureParam.coarse && globalParam.fine == fixtureParam.fine && globalParam.type == fixtureParam.type && globalParam.fadeWithIntensity == fixtureParam.fadeWithIntensity && globalParam.home == fixtureParam.home) {
-                                fixtureParam.manualValue = globalParam.manualValue;
-                                fixtureParam.blindManualValues[app.socketID] = globalParam.blindManualValues[app.socketID];
-                            }
-                        }
-                    }
-                }
-            }
         },
         groupFixtures: function () {
             message = {
