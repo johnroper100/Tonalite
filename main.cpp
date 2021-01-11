@@ -195,10 +195,10 @@ bool SendData() {
     lock_guard<mutex> lg(door);
     for (auto &it : fixtures) {
         for (auto &fp : it.second.parameters) {
-            setFrames(it.second.universe, it.second.address, fp.second.coarse, fp.second.fine, fp.second.getDMXValue());
+            fp.second.outputValue = (fp.second.home / 65535.0) * 100.0;
         }
     }
-    if (cuePlaying == true) {
+    /*if (cuePlaying == true) {
         Cue &currentCueItem = cues.at(currentCue);
         for (auto &fi : currentCueItem.fixtures) {
             for (auto &pi : fi.second.parameters) {
@@ -232,7 +232,19 @@ bool SendData() {
         msg["currentCue"] = currentCue;
         msg["cuePlaying"] = cuePlaying;
         sendToAllMessage(msg.dump(), msg["msgType"]);
+    }*/
+    for (auto &it : fixtures) {
+        for (auto &fp : it.second.parameters) {
+            if (fp.second.manualInput == 1 ){
+                fp.second.outputValue = fp.second.manualValue;
+            }
+            setFrames(it.second.universe, it.second.address, fp.second.coarse, fp.second.fine, fp.second.getDMXValue());   
+        }
     }
+    json msg = {};
+    msg["msgType"] = "fixtures";
+    msg["fixtures"] = getFixtures();
+    sendToAllMessage(msg.dump(), msg["msgType"]);
     door.unlock();
 
     buffer1.Blackout();
@@ -428,18 +440,18 @@ void processTask(json task) {
         sendToMessage(item.dump(), task["socketID"], item["msgType"]);
     } else if (task["msgType"] == "addFixture") {
         addFixture(task["custom"], task["file"], task["dcid"], task["universe"], task["address"], task["number"], 0);
-        json msg;
+        /*json msg;
         msg["msgType"] = "fixtures";
 
         lock_guard<mutex> lg(door);
         msg["fixtures"] = getFixtures();
         door.unlock();
 
-        sendToAllMessage(msg.dump(), msg["msgType"]);
+        sendToAllMessage(msg.dump(), msg["msgType"]);*/
     } else if (task["msgType"] == "removeFixtures") {
-        json fixturesItem;
+        //json fixturesItem;
         json groupsItem;
-        fixturesItem["msgType"] = "fixtures";
+        //fixturesItem["msgType"] = "fixtures";
         groupsItem["msgType"] = "groups";
 
         lock_guard<mutex> lg(door);
@@ -460,29 +472,29 @@ void processTask(json task) {
                 }
             }
         }
-        fixturesItem["fixtures"] = getFixtures();
+        //fixturesItem["fixtures"] = getFixtures();
         groupsItem["groups"] = getGroups();
         door.unlock();
 
-        sendToAllMessage(fixturesItem.dump(), fixturesItem["msgType"]);
+        //sendToAllMessage(fixturesItem.dump(), fixturesItem["msgType"]);
         sendToAllMessage(groupsItem.dump(), groupsItem["msgType"]);
     } else if (task["msgType"] == "editFixtureParameters") {
-        json item;
-        item["msgType"] = "fixtures";
+        //json item;
+        //item["msgType"] = "fixtures";
         lock_guard<mutex> lg(door);
         for (auto &fi : task["fixtures"]) {
             for (auto &pi : task["parameters"]) {
                 for (auto &p : fixtures.at(fi).parameters) {
                     if (p.second.coarse == pi["coarse"] && p.second.fine == pi["fine"] && p.second.type == pi["type"] && p.second.fadeWithIntensity == pi["fadeWithIntensity"] && p.second.home == pi["home"]) {
-                        p.second.liveValue = pi["displayValue"];
-                        p.second.displayValue = pi["displayValue"];
-                        p.second.blindValues.at(task["socketID"]) = pi["blindValues"][task["socketID"].get<string>()];
+                        p.second.manualInput = 1;
+                        p.second.manualValue = pi["manualValue"];
+                        p.second.blindManualValues.at(task["socketID"]) = pi["blindManualValues"][task["socketID"].get<string>()];
                     }
                 }
             }
         }
-        item["fixtures"] = getFixtures();
-        sendToAllExceptMessage(item.dump(), task["socketID"], item["msgType"]);
+        //item["fixtures"] = getFixtures();
+        //sendToAllExceptMessage(item.dump(), task["socketID"], item["msgType"]);
         door.unlock();
     } else if (task["msgType"] == "groupFixtures") {
         json item;
@@ -685,9 +697,9 @@ void webThread() {
                 door.unlock();
                 ws->send(j.dump(), uWS::OpCode::TEXT, true);
 
-                j["msgType"] = "fixtures";
-                j["fixtures"] = fixtureItems;
-                ws->send(j.dump(), uWS::OpCode::TEXT, true);
+                //j["msgType"] = "fixtures";
+                //j["fixtures"] = fixtureItems;
+                //ws->send(j.dump(), uWS::OpCode::TEXT, true);
 
                 j = {};
                 j["msgType"] = "groups";

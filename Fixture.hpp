@@ -46,9 +46,10 @@ struct FixtureParameter {
     WhiteItem white;
     unordered_map<string, FixtureParameterRange> ranges;
 
-    double liveValue = 0.0;
-    double displayValue = 0.0;
-    unordered_map<string, double> blindValues;
+    double outputValue;
+    double manualValue = 0.0;
+    int manualInput = 0;
+    unordered_map<string, double> blindManualValues;
     int getDMXValue();
     int getDMXValue(string userID);
     json asJson();

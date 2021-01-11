@@ -40,11 +40,11 @@ FixtureParameterRange::FixtureParameterRange(json profile) {
 };
 
 int FixtureParameter::getDMXValue() {
-    return ceil(65535.0 * (liveValue / 100.0));
+    return ceil(65535.0 * (outputValue / 100.0));
 };
 
 int FixtureParameter::getDMXValue(string userID) {
-    return ceil(65535.0 * (blindValues.at(userID) / 100.0));
+    return ceil(65535.0 * (blindManualValues.at(userID) / 100.0));
 };
 
 json FixtureParameter::asJson() {
@@ -77,11 +77,12 @@ json FixtureParameter::asJson() {
     pItem["white"]["val"] = white.val;
     pItem["white"]["temp"] = white.temp;
 
-    pItem["liveValue"] = liveValue;
-    pItem["displayValue"] = displayValue;
-    pItem["blindValues"] = {};
-    for (auto &ri : blindValues) {
-        pItem["blindValues"][ri.first] = ri.second;
+    pItem["manualValue"] = manualValue;
+    pItem["outputValue"] = outputValue;
+    pItem["manualInput"] = manualInput;
+    pItem["blindManualValues"] = {};
+    for (auto &ri : blindManualValues) {
+        pItem["blindManualValues"][ri.first] = ri.second;
     }
     return pItem;
 };
@@ -120,13 +121,6 @@ FixtureParameter::FixtureParameter(json profile) {
             ranges[newRange.i] = newRange;
         }
     }
-
-    if (profile.contains("liveValue") && profile["liveValue"] != nullptr) {
-        liveValue = profile["liveValue"];
-    } else {
-        liveValue = (home / 65535.0) * 100.0;
-    }
-    displayValue = liveValue;
 };
 
 json Fixture::asJson() {
@@ -157,7 +151,7 @@ json Fixture::asJson() {
 
 void Fixture::addUserBlind(string socketID) {
     for (auto &pi : parameters) {
-        pi.second.blindValues[socketID] = (pi.second.home / 65535.0) * 100.0;
+        pi.second.blindManualValues[socketID] = (pi.second.home / 65535.0) * 100.0;
     }
 };
 
