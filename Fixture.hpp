@@ -47,12 +47,17 @@ struct FixtureParameter {
     unordered_map<string, FixtureParameterRange> ranges;
 
     double outputValue;
+    double backgroundValue;
     double manualValue = 0.0;
     string manualUser = "";
     int manualInput = 0;
+    int sneak = 0;
+    float sneakTime = 3.0;
+    int totalSneakProgress;
     unordered_map<string, double> blindManualValues;
     int getDMXValue();
     int getDMXValue(string userID);
+    void startSneak(float inputTime);
     json asJson();
 
     FixtureParameter();

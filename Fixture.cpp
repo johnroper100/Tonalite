@@ -47,6 +47,14 @@ int FixtureParameter::getDMXValue(string userID) {
     return ceil(65535.0 * (blindManualValues.at(userID) / 100.0));
 };
 
+void FixtureParameter::startSneak(float inputTime) {
+    sneak = 1;
+    manualInput = 0;
+    manualUser = "";
+    sneakTime = inputTime;
+    totalSneakProgress = 40.0 * sneakTime;
+};
+
 json FixtureParameter::asJson() {
     json pItem;
     json rItem;

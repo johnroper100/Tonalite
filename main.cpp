@@ -189,7 +189,7 @@ json getCues() {
 void recalculateOutputValues() {
     for (auto &it : fixtures) {
         for (auto &fp : it.second.parameters) {
-            fp.second.outputValue = (fp.second.home / 65535.0) * 100.0;
+            fp.second.backgroundValue = (fp.second.home / 65535.0) * 100.0;
         }
     }
     /*if (cuePlaying == true) {
@@ -229,8 +229,16 @@ void recalculateOutputValues() {
     }*/
     for (auto &it : fixtures) {
         for (auto &fp : it.second.parameters) {
-            if (fp.second.manualInput == 1 ){
+            fp.second.outputValue = fp.second.backgroundValue;
+            if (fp.second.manualInput == 1) {
                 fp.second.outputValue = fp.second.manualValue;
+            } else {
+                if (fp.second.sneak == 1) {
+                    fp.second.outputValue = (fp.second.backgroundValue + (((fp.second.manualValue - fp.second.backgroundValue) / (fp.second.sneakTime * 40.0)) * fp.second.totalSneakProgress));
+                    if (--fp.second.totalSneakProgress < 0) {
+                        fp.second.sneak = 0;
+                    }
+                }
             }
         }
     }
@@ -245,8 +253,19 @@ bool SendData() {
     ola::DmxBuffer buffer2;
     ola::DmxBuffer buffer3;
     ola::DmxBuffer buffer4;
+    int shouldUpdate = 0;
 
     lock_guard<mutex> lg(door);
+    for (auto &it : fixtures) {
+        for (auto &fp : it.second.parameters) {
+            if (fp.second.sneak == 1) {
+                shouldUpdate = 1;
+            }
+        }
+    }
+    if (shouldUpdate == 1) {
+        recalculateOutputValues();
+    }
     for (auto &it : fixtures) {
         for (auto &fp : it.second.parameters) {
             setFrames(it.second.universe, it.second.address, fp.second.coarse, fp.second.fine, fp.second.getDMXValue());   
@@ -485,19 +504,30 @@ void processTask(json task) {
         lock_guard<mutex> lg(door);
         for (auto &fi : task["fixtures"]) {
             for (auto &p : fixtures.at(fi).parameters) {
-                if (p.second.coarse == task["parameter"]["coarse"] && p.second.fine == task["parameter"]["fine"] && p.second.type == task["parameter"]["type"] && p.second.fadeWithIntensity == task["parameter"]["fadeWithIntensity"] && p.second.home == task["parameter"]["home"]) {
+                if (p.second.highlight == task["parameter"]["highlight"] && p.second.size == task["parameter"]["size"] && p.second.type == task["parameter"]["type"] && p.second.fadeWithIntensity == task["parameter"]["fadeWithIntensity"] && p.second.home == task["parameter"]["home"]) {
                     if (task["parameter"]["manualInput"] == 0) {
                         p.second.manualValue = task["parameter"]["outputValue"];
                     } else {
                         p.second.manualValue = task["parameter"]["manualValue"];
                     }
                     p.second.manualInput = 1;
+                    p.second.sneak = 0;
                     p.second.manualUser = task["socketID"];
                     p.second.blindManualValues.at(task["socketID"]) = task["parameter"]["blindManualValues"][task["socketID"].get<string>()];
                 }
             }
         }
         recalculateOutputValues();
+        door.unlock();
+    } else if (task["msgType"] == "sneak") {
+        lock_guard<mutex> lg(door);
+        for (auto &fi: fixtures) {
+            for (auto &pi: fi.second.parameters) {
+                if (pi.second.manualInput == 1 && pi.second.manualUser == task["socketID"]) {
+                    pi.second.startSneak(3.0);
+                }
+            }
+        }
         door.unlock();
     } else if (task["msgType"] == "groupFixtures") {
         json item;

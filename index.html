@@ -115,7 +115,7 @@
                         <span class="d-none d-sm-inline-block">Tools</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" style="position: absolute;">
-                        <li><a class="dropdown-item" @click="saveShow">Save</a></li>
+                        <li><a class="dropdown-item" @click="sneak">Sneak</a></li>
                     </ul>
                     <button class="btn" v-if="fixturesTab == 'fixturesGrid'"
                         v-bind:class="{'btn-success': fixtureGridLayout, 'disabled': fixtures.length == 0 }"
