@@ -59,7 +59,7 @@ Cue::Cue(unordered_map<string, Fixture> fixtureItems, bool blind, string userID)
         newFixture.parameters = fi.second.parameters;
         if (blind == true) {
             for (auto &pi : newFixture.parameters) {
-                pi.second.liveValue = pi.second.blindValues[userID];
+                pi.second.liveValue = pi.second.blindValues.at(userID);
             }
         }
         fixtures[newFixture.i] = newFixture;

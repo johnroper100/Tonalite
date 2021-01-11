@@ -148,7 +148,7 @@ void sendToAllExcept(string content, string socketID) {
 void sendTo(string content, string socketID) {
     lock_guard<mutex> lg(userDoor);
     if (users.find(socketID) != users.end()) {
-        users[socketID]->socketItem->send(content, uWS::OpCode::TEXT, true);
+        users.at(socketID)->socketItem->send(content, uWS::OpCode::TEXT, true);
     }
     userDoor.unlock();
 }
@@ -199,16 +199,16 @@ bool SendData() {
         }
     }
     if (cuePlaying == true) {
-        Cue &currentCueItem = cues[currentCue];
+        Cue &currentCueItem = cues.at(currentCue);
         for (auto &fi : currentCueItem.fixtures) {
             for (auto &pi : fi.second.parameters) {
-                if (currentCueItem.lastCue == "" || cues[currentCueItem.lastCue].fixtures[fi.first].parameters[pi.first].liveValue != pi.second.liveValue) {
-                    int outputValue = (pi.second.getDMXValue() + (((fixtures[fi.first].parameters[pi.first].getDMXValue() - pi.second.getDMXValue()) / (currentCueItem.progressTime * 40.0)) * currentCueItem.totalProgress));
-                    fixtures[fi.first].parameters[pi.first].displayValue = (outputValue / 65535.0) * 100.0;
+                if (currentCueItem.lastCue == "" || cues.at(currentCueItem.lastCue).fixtures.at(fi.first).parameters.at(pi.first).liveValue != pi.second.liveValue) {
+                    int outputValue = (pi.second.getDMXValue() + (((fixtures.at(fi.first).parameters.at(pi.first).getDMXValue() - pi.second.getDMXValue()) / (currentCueItem.progressTime * 40.0)) * currentCueItem.totalProgress));
+                    fixtures.at(fi.first).parameters.at(pi.first).displayValue = (outputValue / 65535.0) * 100.0;
                     if (currentCueItem.totalProgress - 1 < 0) {
-                        fixtures[fi.first].parameters[pi.first].liveValue = fixtures[fi.first].parameters[pi.first].displayValue;
+                        fixtures.at(fi.first).parameters.at(pi.first).liveValue = fixtures.at(fi.first).parameters.at(pi.first).displayValue;
                     }
-                    setFrames(fixtures[fi.first].universe, fixtures[fi.first].address, pi.second.coarse, pi.second.fine, outputValue);
+                    setFrames(fixtures.at(fi.first).universe, fixtures.at(fi.first).address, pi.second.coarse, pi.second.fine, outputValue);
                 }
             }
         }
@@ -410,14 +410,14 @@ void RDMSearchCallback(const ola::client::Result &result, const ola::rdm::UIDSet
 void processTask(json task) {
     if (task["msgType"] == "moveFixture") {
         lock_guard<mutex> lg(door);
-        fixtures[task["i"]].x = task["x"];
-        fixtures[task["i"]].y = task["y"];
+        fixtures.at(task["i"]).x = task["x"];
+        fixtures.at(task["i"]).y = task["y"];
         door.unlock();
         sendToAllExceptMessage(task.dump(), task["socketID"], task["msgType"]);
     } else if (task["msgType"] == "resizeFixture") {
         lock_guard<mutex> lg(door);
-        fixtures[task["i"]].h = task["h"];
-        fixtures[task["i"]].w = task["w"];
+        fixtures.at(task["i"]).h = task["h"];
+        fixtures.at(task["i"]).w = task["w"];
         door.unlock();
         sendToAllExceptMessage(task.dump(), task["socketID"], task["msgType"]);
     } else if (task["msgType"] == "getFixtureProfiles") {
@@ -472,11 +472,11 @@ void processTask(json task) {
         lock_guard<mutex> lg(door);
         for (auto &fi : task["fixtures"]) {
             for (auto &pi : task["parameters"]) {
-                for (auto &p : fixtures[fi].parameters) {
+                for (auto &p : fixtures.at(fi).parameters) {
                     if (p.second.coarse == pi["coarse"] && p.second.fine == pi["fine"] && p.second.type == pi["type"] && p.second.fadeWithIntensity == pi["fadeWithIntensity"] && p.second.home == pi["home"]) {
                         p.second.liveValue = pi["displayValue"];
                         p.second.displayValue = pi["displayValue"];
-                        p.second.blindValues[task["socketID"]] = pi["blindValues"][task["socketID"].get<string>()];
+                        p.second.blindValues.at(task["socketID"]) = pi["blindValues"][task["socketID"].get<string>()];
                     }
                 }
             }
@@ -517,12 +517,12 @@ void processTask(json task) {
         for (auto &id : task["groups"]) {
             if (groups.find(id) != groups.end()) {
                 if (task["name"] != "Multiple") {
-                    groups[id].name = task["name"];
+                    groups.at(id).name = task["name"];
                 }
                 if (task["fixturesChanged"] == true) {
-                    groups[id].fixtures.clear();
+                    groups.at(id).fixtures.clear();
                     for (auto &fi : task["fixtures"]) {
-                        groups[id].fixtures.push_back(fi["id"]);
+                        groups.at(id).fixtures.push_back(fi["id"]);
                     }
                 }
             }
@@ -563,7 +563,7 @@ void processTask(json task) {
         json item;
         item["msgType"] = "currentCue";
         lock_guard<mutex> lg(door);
-        if (currentCue == "" || cues[currentCue].nextCue == "") {
+        if (currentCue == "" || cues.at(currentCue).nextCue == "") {
             for (auto &ci : cues) {
                 if (ci.second.lastCue == "") {
                     currentCue = ci.first;
@@ -571,9 +571,9 @@ void processTask(json task) {
                 }
             }
         } else {
-            currentCue = cues[currentCue].nextCue;
+            currentCue = cues.at(currentCue).nextCue;
         }
-        cues[currentCue].go();
+        cues.at(currentCue).go();
         cuePlaying = true;
         item["currentCue"] = currentCue;
         item["cuePlaying"] = cuePlaying;
@@ -583,7 +583,7 @@ void processTask(json task) {
         json item;
         item["msgType"] = "currentCue";
         lock_guard<mutex> lg(door);
-        if (currentCue == "" || cues[currentCue].lastCue == "") {
+        if (currentCue == "" || cues.at(currentCue).lastCue == "") {
             for (auto &ci : cues) {
                 if (ci.second.nextCue == "") {
                     currentCue = ci.first;
@@ -591,9 +591,9 @@ void processTask(json task) {
                 }
             }
         } else {
-            currentCue = cues[currentCue].lastCue;
+            currentCue = cues.at(currentCue).lastCue;
         }
-        cues[currentCue].go();
+        cues.at(currentCue).go();
         cuePlaying = true;
         item["currentCue"] = currentCue;
         item["cuePlaying"] = cuePlaying;

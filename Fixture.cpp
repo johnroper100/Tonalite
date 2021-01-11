@@ -44,7 +44,7 @@ int FixtureParameter::getDMXValue() {
 };
 
 int FixtureParameter::getDMXValue(string userID) {
-    return ceil(65535.0 * (blindValues[userID] / 100.0));
+    return ceil(65535.0 * (blindValues.at(userID) / 100.0));
 };
 
 json FixtureParameter::asJson() {
