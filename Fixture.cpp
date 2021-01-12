@@ -77,12 +77,24 @@ int FixtureParameter::getDMXValue(string userID) {
     return ceil(65535.0 * (blindManualValues.at(userID).outputValue / 100.0));
 };
 
-void FixtureParameter::startSneak(float inputTime) {
-    value.sneak = 1;
-    value.manualInput = 0;
-    value.manualUser = "";
-    value.sneakTime = inputTime;
-    value.totalSneakProgress = 40.0 * value.sneakTime;
+void FixtureParameter::startSneak(float inputTime, string userID) {
+    if (userID == "") {
+        if (value.manualInput == 1) {
+            value.sneak = 1;
+            value.manualInput = 0;
+            value.manualUser = "";
+            value.sneakTime = inputTime;
+            value.totalSneakProgress = 40.0 * value.sneakTime;
+        }
+    } else {
+        if (blindManualValues.at(userID).manualInput == 1) {
+            blindManualValues.at(userID).sneak = 1;
+            blindManualValues.at(userID).manualInput = 0;
+            blindManualValues.at(userID).manualUser = "";
+            blindManualValues.at(userID).sneakTime = inputTime;
+            blindManualValues.at(userID).totalSneakProgress = 40.0 * blindManualValues.at(userID).sneakTime;
+        }
+    }
 };
 
 json FixtureParameter::asJson() {

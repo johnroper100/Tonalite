@@ -527,20 +527,12 @@ void processTask(json task) {
             for (auto &p : fixtures.at(fi).parameters) {
                 if (p.second.size == task["parameter"]["size"] && p.second.type == task["parameter"]["type"] && p.second.fadeWithIntensity == task["parameter"]["fadeWithIntensity"] && p.second.name == task["parameter"]["name"]) {
                     if (task["blind"] == false) {
-                        if (task["parameter"]["value"]["manualInput"] == 0) {
-                            p.second.value.manualValue = task["parameter"]["value"]["outputValue"];
-                        } else {
-                            p.second.value.manualValue = task["parameter"]["value"]["manualValue"];
-                        }
+                        p.second.value.manualValue = task["parameter"]["value"]["outputValue"];
                         p.second.value.manualInput = 1;
                         p.second.value.sneak = 0;
                         p.second.value.manualUser = task["socketID"];
                     } else {
-                        if (task["parameter"]["blindManualValues"][task["socketID"].get<string>()]["manualInput"] == 0) {
-                            p.second.blindManualValues.at(task["socketID"]).manualValue = task["parameter"]["blindManualValues"][task["socketID"].get<string>()]["outputValue"];
-                        } else {
-                            p.second.blindManualValues.at(task["socketID"]).manualValue = task["parameter"]["blindManualValues"][task["socketID"].get<string>()]["manualValue"];
-                        }
+                        p.second.blindManualValues.at(task["socketID"]).manualValue = task["parameter"]["blindManualValues"][task["socketID"].get<string>()]["outputValue"];
                         p.second.blindManualValues.at(task["socketID"]).manualInput = 1;
                         p.second.blindManualValues.at(task["socketID"]).sneak = 0;
                         p.second.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
@@ -555,11 +547,11 @@ void processTask(json task) {
         for (auto &fi: fixtures) {
             for (auto &pi: fi.second.parameters) {
                 if (task["blind"] == false) {
-                    if (pi.second.value.manualInput == 1 && pi.second.value.manualUser == task["socketID"]) {
-                        pi.second.startSneak(3.0);
+                    if (pi.second.value.manualUser == task["socketID"]) {
+                        pi.second.startSneak(3.0, "");
                     }
                 } else {
-                    
+                    pi.second.startSneak(3.0, task["socketID"]);
                 }
             }
         }
