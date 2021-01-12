@@ -237,9 +237,13 @@ void recalculateOutputValues() {
                 fp.second.value.outputValue = fp.second.value.manualValue;
             } else {
                 if (fp.second.value.sneak == 1) {
-                    fp.second.value.manualValue += (fp.second.value.backgroundValue - fp.second.value.manualValue) / fp.second.value.totalSneakProgress;
-                    fp.second.value.outputValue = fp.second.value.manualValue;
-                    if (--fp.second.value.totalSneakProgress == 0) {
+                    if (fp.second.value.manualValue != fp.second.value.outputValue) {
+                        fp.second.value.manualValue += (fp.second.value.backgroundValue - fp.second.value.manualValue) / fp.second.value.totalSneakProgress;
+                        fp.second.value.outputValue = fp.second.value.manualValue;
+                        if (--fp.second.value.totalSneakProgress == 0) {
+                            fp.second.value.sneak = 0;
+                        }
+                    } else {
                         fp.second.value.sneak = 0;
                     }
                 }
@@ -250,9 +254,13 @@ void recalculateOutputValues() {
                     ui.second.outputValue = ui.second.manualValue;
                 } else {
                     if (ui.second.sneak == 1) {
-                        ui.second.manualValue += (ui.second.backgroundValue - ui.second.manualValue) / ui.second.totalSneakProgress;
-                        ui.second.outputValue = ui.second.manualValue;
-                        if (--ui.second.totalSneakProgress == 0) {
+                        if (ui.second.manualValue != ui.second.outputValue) {
+                            ui.second.manualValue += (ui.second.backgroundValue - ui.second.manualValue) / ui.second.totalSneakProgress;
+                            ui.second.outputValue = ui.second.manualValue;
+                            if (--ui.second.totalSneakProgress == 0) {
+                                ui.second.sneak = 0;
+                            }
+                        } else {
                             ui.second.sneak = 0;
                         }
                     }
@@ -564,12 +572,12 @@ void processTask(json task) {
             for (auto &p : fixtures.at(fi).parameters) {
                 if (p.second.type == 1 || p.second.fadeWithIntensity == true) {
                     if (task["blind"] == false) {
-                        p.second.value.manualValue = 1.0;
+                        p.second.value.manualValue = 100.0;
                         p.second.value.manualInput = 1;
                         p.second.value.sneak = 0;
                         p.second.value.manualUser = task["socketID"];
                     } else {
-                        p.second.blindManualValues.at(task["socketID"]).manualValue = 1.0;
+                        p.second.blindManualValues.at(task["socketID"]).manualValue = 100.0;
                         p.second.blindManualValues.at(task["socketID"]).manualInput = 1;
                         p.second.blindManualValues.at(task["socketID"]).sneak = 0;
                         p.second.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
@@ -583,7 +591,7 @@ void processTask(json task) {
         lock_guard<mutex> lg(door);
         for (auto &fi : task["fixtures"]) {
             for (auto &p : fixtures.at(fi).parameters) {
-                if (p.second.fadeWithIntensity == true) {
+                if (p.second.type == 1 || p.second.fadeWithIntensity == true) {
                     if (task["blind"] == false) {
                         p.second.value.manualValue = 0.0;
                         p.second.value.manualInput = 1;
