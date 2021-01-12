@@ -608,6 +608,23 @@ void processTask(json task) {
         }
         recalculateOutputValues();
         door.unlock();
+    } else if (task["msgType"] == "fixturesHome") {
+        lock_guard<mutex> lg(door);
+        for (auto &fi : task["fixtures"]) {
+            for (auto &p : fixtures.at(fi).parameters) {
+                if (p.second.type != 1 && p.second.fadeWithIntensity != true) {
+                    if (task["blind"] == false) {
+                        p.second.value.manualInput = 0;
+                        p.second.value.sneak = 0;
+                    } else {
+                        p.second.blindManualValues.at(task["socketID"]).manualInput = 0;
+                        p.second.blindManualValues.at(task["socketID"]).sneak = 0;
+                    }
+                }
+            }
+        }
+        recalculateOutputValues();
+        door.unlock();
     } else if (task["msgType"] == "groupFixtures") {
         json item;
         item["msgType"] = "groups";

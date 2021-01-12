@@ -311,6 +311,14 @@ var app = new Vue({
             }
             socket.send(JSON.stringify(message));
         },
+        fixturesHome: function () {
+            message = {
+                "msgType": "fixturesHome",
+                "blind": app.blind,
+                "fixtures": app.selectedFixtures
+            }
+            socket.send(JSON.stringify(message));
+        },
         groupFixtures: function () {
             message = {
                 "msgType": "groupFixtures",

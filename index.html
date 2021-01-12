@@ -117,6 +117,7 @@
                     <ul class="dropdown-menu dropdown-menu-right" style="position: absolute;">
                         <li><a class="dropdown-item" @click="fixturesFull">Full</a></li>
                         <li><a class="dropdown-item" @click="fixturesOut">Out</a></li>
+                        <li><a class="dropdown-item" @click="fixturesHome">Home</a></li>
                     </ul>
                     <button class="btn" v-if="fixturesTab == 'fixturesGrid'"
                         v-bind:class="{'btn-success': fixtureGridLayout, 'disabled': fixtures.length == 0 }"
@@ -392,8 +393,8 @@
                                     class="fa-regular fa-circle-xmark fa-lg d-inline-block"></i> <span
                                     class="d-none d-sm-inline-block">Release Cue</span></button>
                             <button class="btn btn-warning" v-bind:class="{ disabled: fixtures.length == 0 }"
-                                @click="fixturesSneak"><i class="fa-regular fa-transporter-2 fa-lg d-inline-block"></i> <span
-                                    class="d-none d-sm-inline-block">Sneak Fixtures</span></button>
+                                @click="fixturesSneak"><i class="fa-regular fa-transporter-2 fa-lg d-inline-block"></i>
+                                <span class="d-none d-sm-inline-block">Sneak Fixtures</span></button>
                         </div>
                     </div>
                 </div>
