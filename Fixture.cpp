@@ -164,6 +164,12 @@ void Fixture::addUserBlind(string socketID) {
     }
 };
 
+void Fixture::removeUserBlind(string socketID) {
+    for (auto &pi : parameters) {
+        pi.second.blindManualValues.erase([socketID);
+    }
+};
+
 Fixture::Fixture(){};
 
 Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIndex) {

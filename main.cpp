@@ -758,6 +758,9 @@ void webThread() {
             .close = [](auto *ws, int code, string_view message) {
                 PerSocketData *psd = (PerSocketData *) ws->getUserData();
                 lock_guard<mutex> lg(userDoor);
+                for (auto &fi : fixtures) {
+                    fi.second.removeUserBlind(psd->userID);
+                }
                 users.erase(psd->userID);
                 userDoor.unlock();
             }

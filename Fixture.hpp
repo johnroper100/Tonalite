@@ -86,6 +86,7 @@ struct Fixture {
     Fixture(json profile, int inputUniverse, int inputAddress, int createIndex);
     json asJson();
     void addUserBlind(string socketID);
+    void removeUserBlind(string socketID);
 };
 
 struct SmallFixture {
