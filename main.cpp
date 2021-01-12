@@ -237,8 +237,9 @@ void recalculateOutputValues() {
                 fp.second.value.outputValue = fp.second.value.manualValue;
             } else {
                 if (fp.second.value.sneak == 1) {
-                    fp.second.value.outputValue = (fp.second.value.backgroundValue + (((fp.second.value.manualValue - fp.second.value.backgroundValue) / (fp.second.value.sneakTime * 40.0)) * fp.second.value.totalSneakProgress));
-                    if (--fp.second.value.totalSneakProgress < 0) {
+                    fp.second.value.manualValue += (fp.second.value.backgroundValue - fp.second.value.manualValue) / fp.second.value.totalSneakProgress;
+                    fp.second.value.outputValue = fp.second.value.manualValue;
+                    if (--fp.second.value.totalSneakProgress == 0) {
                         fp.second.value.sneak = 0;
                     }
                 }
@@ -249,8 +250,9 @@ void recalculateOutputValues() {
                     ui.second.outputValue = ui.second.manualValue;
                 } else {
                     if (ui.second.sneak == 1) {
-                        ui.second.outputValue = (ui.second.backgroundValue + (((ui.second.manualValue - ui.second.backgroundValue) / (ui.second.sneakTime * 40.0)) * ui.second.totalSneakProgress));
-                        if (--ui.second.totalSneakProgress < 0) {
+                        ui.second.manualValue += (ui.second.backgroundValue - ui.second.manualValue) / ui.second.totalSneakProgress;
+                        ui.second.outputValue = ui.second.manualValue;
+                        if (--ui.second.totalSneakProgress == 0) {
                             ui.second.sneak = 0;
                         }
                     }
