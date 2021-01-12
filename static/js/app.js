@@ -258,7 +258,7 @@ var app = new Vue({
                                         }
                                         parameterBlindInputs += 1;
                                         if (app.fixtures[fixtureIndex].parameters[i].blindManualValues[app.socketID].manualInput == 1) {
-                                        parameterBlindValue += app.fixtures[fixtureTwoIndex].parameters[pi].blindManualValues[app.socketID].manualValue;
+                                            parameterBlindValue += app.fixtures[fixtureTwoIndex].parameters[pi].blindManualValues[app.socketID].manualValue;
                                         } else {
                                             parameterBlindValue += app.fixtures[fixtureTwoIndex].parameters[pi].blindManualValues[app.socketID].outputValue;
                                         }
@@ -290,7 +290,8 @@ var app = new Vue({
         },
         sneak: function () {
             message = {
-                "msgType": "sneak"
+                "msgType": "sneak",
+                "blind": app.blind
             }
             socket.send(JSON.stringify(message));
         },

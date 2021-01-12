@@ -190,6 +190,9 @@ void recalculateOutputValues() {
     for (auto &it : fixtures) {
         for (auto &fp : it.second.parameters) {
             fp.second.value.backgroundValue = (fp.second.home / 65535.0) * 100.0;
+            for (auto &ui: fp.second.blindManualValues) {
+                ui.second.backgroundValue = fp.second.value.backgroundValue;
+            }
         }
     }
     /*if (cuePlaying == true) {
@@ -240,6 +243,19 @@ void recalculateOutputValues() {
                     }
                 }
             }
+            for (auto &ui: fp.second.blindManualValues) {
+                ui.second.outputValue = ui.second.backgroundValue;
+                if (ui.second.manualInput == 1) {
+                    ui.second.outputValue = ui.second.manualValue;
+                } else {
+                    if (ui.second.sneak == 1) {
+                        ui.second.outputValue = (ui.second.backgroundValue + (((ui.second.manualValue - ui.second.backgroundValue) / (ui.second.sneakTime * 40.0)) * ui.second.totalSneakProgress));
+                        if (--ui.second.totalSneakProgress < 0) {
+                            ui.second.sneak = 0;
+                        }
+                    }
+                }
+            }
         }
     }
     json msg = {};
@@ -260,6 +276,11 @@ bool SendData() {
         for (auto &fp : it.second.parameters) {
             if (fp.second.value.sneak == 1) {
                 shouldUpdate = 1;
+            }
+            for (auto &ui: fp.second.blindManualValues) {
+                if (ui.second.sneak == 1) {
+                    shouldUpdate = 1;
+                }
             }
         }
     }
@@ -533,8 +554,12 @@ void processTask(json task) {
         lock_guard<mutex> lg(door);
         for (auto &fi: fixtures) {
             for (auto &pi: fi.second.parameters) {
-                if (pi.second.value.manualInput == 1 && pi.second.value.manualUser == task["socketID"]) {
-                    pi.second.startSneak(3.0);
+                if (task["blind"] == false) {
+                    if (pi.second.value.manualInput == 1 && pi.second.value.manualUser == task["socketID"]) {
+                        pi.second.startSneak(3.0);
+                    }
+                } else {
+                    
                 }
             }
         }
