@@ -1,0 +1,94 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "9785A276-CC6C-41CD-AEAC-0F55EA12798D",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": false,
+            "manufacturerName": "Master FX",
+            "maxOffset": 2,
+            "modeName": "-",
+            "modelName": "Mystic Hazer",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Haze",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Blower",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Mode",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "On"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Off shut down"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 63
+                        },
+                        {
+                            "step": 4,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Off shut down",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 191
+                        },
+                        {
+                            "step": 4,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

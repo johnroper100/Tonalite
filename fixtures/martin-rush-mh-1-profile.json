@@ -1,0 +1,1233 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "4C4D6FCD-ADA5-6E43-9574-F7B0FE54FC92",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Martin",
+            "maxOffset": 16,
+            "modeName": "-",
+            "modelName": "Rush MH 1 Profile",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32767,
+                    "home": 32767,
+                    "invert": true,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 254,
+                            "label": "Focus Spd"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Focus Track"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 131,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 135,
+                            "default": 135,
+                            "end": 135,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 140,
+                            "default": 140,
+                            "end": 181,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 185,
+                            "default": 185,
+                            "end": 185,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 231,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 235,
+                            "default": 235,
+                            "end": 235,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 243,
+                            "default": 243,
+                            "end": 243,
+                            "label": "Rnd 100"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "(Light Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 242,
+                                "name": "(Light Blue)",
+                                "r": 113,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "(Green)",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "(Green)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "(Orange)",
+                            "media": {
+                                "b": 3,
+                                "g": 133,
+                                "name": "(Orange)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "(Yellow)",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "(Yellow)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 43,
+                            "default": 43,
+                            "end": 43,
+                            "label": "(Magenta)",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "(Magenta)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "(Dark Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "(Dark Blue)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "(Red)",
+                            "media": {
+                                "b": 0,
+                                "g": 0,
+                                "name": "(Red)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 79,
+                            "end": 79,
+                            "label": "Light Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 242,
+                                "name": "Light Blue",
+                                "r": 113,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 80,
+                            "default": 87,
+                            "end": 87,
+                            "label": "Green",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Green",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 88,
+                            "default": 95,
+                            "end": 95,
+                            "label": "Orange",
+                            "media": {
+                                "b": 3,
+                                "g": 133,
+                                "name": "Orange",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 103,
+                            "end": 103,
+                            "label": "Yellow",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Yellow",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 104,
+                            "default": 111,
+                            "end": 111,
+                            "label": "Magenta",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "Magenta",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 119,
+                            "end": 119,
+                            "label": "Dark Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "Dark Blue",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 120,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Red",
+                            "media": {
+                                "b": 0,
+                                "g": 0,
+                                "name": "Red",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "(Pink)",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "(Pink)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "(CTO 3200K)",
+                            "media": {
+                                "b": 164,
+                                "g": 255,
+                                "name": "(CTO 3200K)",
+                                "r": 253,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "(Purple)",
+                            "media": {
+                                "b": 172,
+                                "g": 10,
+                                "name": "(Purple)",
+                                "r": 158,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "(Yellow)",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "(Yellow)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 43,
+                            "default": 43,
+                            "end": 43,
+                            "label": "(Green)",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "(Green)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "(CTO 5600K)",
+                            "media": {
+                                "b": 255,
+                                "g": 238,
+                                "name": "(CTO 5600K)",
+                                "r": 206,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "(Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "(Blue)",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 79,
+                            "end": 79,
+                            "label": "Pink",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "Pink",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 80,
+                            "default": 87,
+                            "end": 87,
+                            "label": "CTO 3200K",
+                            "media": {
+                                "b": 164,
+                                "g": 255,
+                                "name": "CTO 3200K",
+                                "r": 253,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 88,
+                            "default": 95,
+                            "end": 95,
+                            "label": "Purple",
+                            "media": {
+                                "b": 172,
+                                "g": 10,
+                                "name": "Purple",
+                                "r": 158,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 103,
+                            "end": 103,
+                            "label": "Yellow",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Yellow",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 104,
+                            "default": 111,
+                            "end": 111,
+                            "label": "Green",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Green",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 119,
+                            "end": 119,
+                            "label": "CTO 5600K",
+                            "media": {
+                                "b": 255,
+                                "g": 238,
+                                "name": "CTO 5600K",
+                                "r": 206,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 120,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "Blue",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "(116)",
+                            "media": {
+                                "dcid": "C6E7BFF5-F57F-0449-AE77-4A0CB28E435D",
+                                "name": "(116)"
+                            }
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "(140)",
+                            "media": {
+                                "dcid": "8E110C54-6C9D-5947-8E0A-579C0726F9B0",
+                                "name": "(140)"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "(Ray Away Full)",
+                            "media": {
+                                "dcid": "0F173589-550D-1946-AD6B-35DD8F8C40F2",
+                                "name": "(Ray Away Full)"
+                            }
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "(131)",
+                            "media": {
+                                "dcid": "05D054EC-BD27-D842-8382-1642F92D8408",
+                                "name": "(131)"
+                            }
+                        },
+                        {
+                            "begin": 43,
+                            "default": 43,
+                            "end": 43,
+                            "label": "(132)",
+                            "media": {
+                                "dcid": "0CFD5A2A-786C-BE4C-9767-29444DF8B52E",
+                                "name": "(132)"
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "(133)",
+                            "media": {
+                                "dcid": "AB7EDAD3-757E-5F42-9173-08DAE70DF33C",
+                                "name": "(133)"
+                            }
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "(Bar)",
+                            "media": {
+                                "dcid": "E07B6C49-AC5C-5D41-921F-3A56CB880730",
+                                "name": "(Bar)"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 73,
+                            "end": 73,
+                            "label": "(116) [S]",
+                            "media": {
+                                "dcid": "C6E7BFF5-F57F-0449-AE77-4A0CB28E435D",
+                                "name": "(116) [S]"
+                            }
+                        },
+                        {
+                            "begin": 74,
+                            "default": 82,
+                            "end": 82,
+                            "label": "(140) [S]",
+                            "media": {
+                                "dcid": "8E110C54-6C9D-5947-8E0A-579C0726F9B0",
+                                "name": "(140) [S]"
+                            }
+                        },
+                        {
+                            "begin": 83,
+                            "default": 91,
+                            "end": 91,
+                            "label": "(Ray Away Full) [S]",
+                            "media": {
+                                "dcid": "0F173589-550D-1946-AD6B-35DD8F8C40F2",
+                                "name": "(Ray Away Full) [S]"
+                            }
+                        },
+                        {
+                            "begin": 92,
+                            "default": 100,
+                            "end": 100,
+                            "label": "(131) [S]",
+                            "media": {
+                                "dcid": "05D054EC-BD27-D842-8382-1642F92D8408",
+                                "name": "(131) [S]"
+                            }
+                        },
+                        {
+                            "begin": 101,
+                            "default": 109,
+                            "end": 109,
+                            "label": "(132) [S]",
+                            "media": {
+                                "dcid": "0CFD5A2A-786C-BE4C-9767-29444DF8B52E",
+                                "name": "(132) [S]"
+                            }
+                        },
+                        {
+                            "begin": 110,
+                            "default": 118,
+                            "end": 118,
+                            "label": "(133) [S]",
+                            "media": {
+                                "dcid": "AB7EDAD3-757E-5F42-9173-08DAE70DF33C",
+                                "name": "(133) [S]"
+                            }
+                        },
+                        {
+                            "begin": 119,
+                            "default": 127,
+                            "end": 127,
+                            "label": "(Bar) [S]",
+                            "media": {
+                                "dcid": "E07B6C49-AC5C-5D41-921F-3A56CB880730",
+                                "name": "(Bar) [S]"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "(134)",
+                            "media": {
+                                "dcid": "281CFB99-5D34-984D-B73F-D25807FF1823",
+                                "name": "(134)"
+                            }
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 18,
+                            "label": "(135)",
+                            "media": {
+                                "dcid": "E8C5E686-4D63-2C49-95AE-066FBABBEF19",
+                                "name": "(135)"
+                            }
+                        },
+                        {
+                            "begin": 25,
+                            "default": 25,
+                            "end": 25,
+                            "label": "(136)",
+                            "media": {
+                                "dcid": "523953AB-A854-1E48-A282-2B8F47D5895B",
+                                "name": "(136)"
+                            }
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 32,
+                            "label": "(137)",
+                            "media": {
+                                "dcid": "EE72C3E8-5015-5A43-AC3A-4DF16AA39124",
+                                "name": "(137)"
+                            }
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "(138)",
+                            "media": {
+                                "dcid": "E34EFF64-0C75-3D4D-AE50-4C64C6140CAB",
+                                "name": "(138)"
+                            }
+                        },
+                        {
+                            "begin": 46,
+                            "default": 46,
+                            "end": 46,
+                            "label": "(Holes)",
+                            "media": {
+                                "dcid": "4C400452-17D3-AA40-8CA6-88447790C3B3",
+                                "name": "(Holes)"
+                            }
+                        },
+                        {
+                            "begin": 53,
+                            "default": 53,
+                            "end": 53,
+                            "label": "(139)",
+                            "media": {
+                                "dcid": "5ED98E73-FD27-2F40-9461-7B2603ACC6DE",
+                                "name": "(139)"
+                            }
+                        },
+                        {
+                            "begin": 60,
+                            "default": 60,
+                            "end": 60,
+                            "label": "(141)",
+                            "media": {
+                                "dcid": "1FD8B0AB-49C8-7C4A-8A5C-8E8780365B43",
+                                "name": "(141)"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 71,
+                            "end": 71,
+                            "label": "(134) [S]",
+                            "media": {
+                                "dcid": "281CFB99-5D34-984D-B73F-D25807FF1823",
+                                "name": "(134) [S]"
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 79,
+                            "end": 79,
+                            "label": "(135) [S]",
+                            "media": {
+                                "dcid": "E8C5E686-4D63-2C49-95AE-066FBABBEF19",
+                                "name": "(135) [S]"
+                            }
+                        },
+                        {
+                            "begin": 80,
+                            "default": 87,
+                            "end": 87,
+                            "label": "(136) [S]",
+                            "media": {
+                                "dcid": "523953AB-A854-1E48-A282-2B8F47D5895B",
+                                "name": "(136) [S]"
+                            }
+                        },
+                        {
+                            "begin": 88,
+                            "default": 95,
+                            "end": 95,
+                            "label": "(137) [S]",
+                            "media": {
+                                "dcid": "EE72C3E8-5015-5A43-AC3A-4DF16AA39124",
+                                "name": "(137) [S]"
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 103,
+                            "end": 103,
+                            "label": "(138) [S]",
+                            "media": {
+                                "dcid": "E34EFF64-0C75-3D4D-AE50-4C64C6140CAB",
+                                "name": "(138) [S]"
+                            }
+                        },
+                        {
+                            "begin": 104,
+                            "default": 111,
+                            "end": 111,
+                            "label": "(Holes) [S]",
+                            "media": {
+                                "dcid": "4C400452-17D3-AA40-8CA6-88447790C3B3",
+                                "name": "(Holes) [S]"
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 119,
+                            "end": 119,
+                            "label": "(139) [S]",
+                            "media": {
+                                "dcid": "5ED98E73-FD27-2F40-9461-7B2603ACC6DE",
+                                "name": "(139) [S]"
+                            }
+                        },
+                        {
+                            "begin": 120,
+                            "default": 127,
+                            "end": 127,
+                            "label": "(141) [S]",
+                            "media": {
+                                "dcid": "1FD8B0AB-49C8-7C4A-8A5C-8E8780365B43",
+                                "name": "(141) [S]"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "(3 Prism)",
+                            "media": {
+                                "dcid": "18021D4A-FFCD-794C-9C33-911F94B12A93",
+                                "name": "(3 Prism)"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Iris",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "BlackMove On"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "BlackMove Off"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 94,
+                            "label": "Color Blink On [Clr 2 Blink]"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 104,
+                            "label": "Color Blink Off"
+                        },
+                        {
+                            "begin": 114,
+                            "default": 114,
+                            "end": 114,
+                            "label": "Gobo Blink On [Gobo 2 Blink]"
+                        },
+                        {
+                            "begin": 124,
+                            "default": 124,
+                            "end": 124,
+                            "label": "Gobo Blink Off"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 144,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "Color Reset [Color 2 Reset]"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "Gobo Reset [Gobo 2 Reset]"
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 184,
+                            "label": "Focus Reset"
+                        },
+                        {
+                            "begin": 214,
+                            "default": 214,
+                            "end": 214,
+                            "label": "BlackMove On [Clr & Clr 2 & Gobo & Gobo 2 Blink]"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 224,
+                            "label": "BlackMove Off"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 16,
+                            "subkey": 204
+                        },
+                        {
+                            "step": 7,
+                            "key": 16,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

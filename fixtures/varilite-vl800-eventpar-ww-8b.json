@@ -1,0 +1,458 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "67D0537D-F605-47CC-8982-906C8811DD46",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "VariLite",
+            "maxOffset": 3,
+            "modeName": "8b",
+            "modelName": "VL800 EventPar WW",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Rnd Sync"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Unknown"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe Mode",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 8,
+                            "default": 8,
+                            "end": 8,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 13,
+                            "default": 13,
+                            "end": 13,
+                            "label": "Strobe Mode"
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 18,
+                            "label": "Rnd Mode"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "Rnd Sync Mode"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 8
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 21,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Sleep",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 23
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Display 100%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 28
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Display 0%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 33
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Linear",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 38
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "S Curve",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 43
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Square",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 48
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer snap on",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 63
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer snap off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 68
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Color Cal on",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 73
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Color Cal off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 78
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Standard",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 83
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Studio",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 88
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Whisper",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 95
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Fan Speed 100%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 115
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Auto",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 125
+                        },
+                        {
+                            "step": 3,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

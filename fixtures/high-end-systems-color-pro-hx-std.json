@@ -1,0 +1,267 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "035A5B94-0806-014F-848E-3EABE006FD2F",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": false,
+            "manufacturerName": "High End Systems",
+            "maxOffset": 5,
+            "modeName": "Std",
+            "modelName": "Color Pro HX",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Intensity"
+                        },
+                        {
+                            "begin": 135,
+                            "default": 135,
+                            "end": 135,
+                            "label": "Open [Full]"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 187,
+                            "label": "Strobe [Full]"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Open [Full]"
+                        },
+                        {
+                            "begin": 196,
+                            "default": 196,
+                            "end": 239,
+                            "label": "Rnd [Full]"
+                        },
+                        {
+                            "begin": 247,
+                            "default": 247,
+                            "end": 247,
+                            "label": "Open [Full]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": true,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": true,
+                    "name": "Cyan",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": true,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": true,
+                    "name": "Magenta",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": true,
+                    "highlight": 3071,
+                    "home": 3071,
+                    "invert": true,
+                    "name": "Yellow",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Beamshaper",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 255,
+                            "label": "Rot"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 19,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Display 0%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 24
+                        },
+                        {
+                            "step": 1,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Display 50%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 34
+                        },
+                        {
+                            "step": 1,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Display 100%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 44
+                        },
+                        {
+                            "step": 1,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 64
+                        },
+                        {
+                            "step": 31,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 84
+                        },
+                        {
+                            "step": 1,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 94
+                        },
+                        {
+                            "step": 1,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Sleep",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 125
+                        },
+                        {
+                            "step": 3,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 94
+                        },
+                        {
+                            "step": 7,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ],
+            "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139"
+        }
+    ]
+}

@@ -1,0 +1,1939 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "1C2EEE0F-1D3D-794F-9812-69F9C9058E79",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "PR Lighting",
+            "maxOffset": 30,
+            "modeName": "Compatible",
+            "modelName": "XR 330 BWS",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved"
+                        },
+                        {
+                            "begin": 12,
+                            "default": 12,
+                            "end": 12,
+                            "label": "Wired DMX"
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "Wireless DMX"
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 22,
+                            "label": "Lamp Pwr 50"
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "Lamp Pwr 100"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "FMd Track"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "FMd Time"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "BlackMove On"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "BlackMove Off"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 94,
+                            "label": "Color Blink On"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 104,
+                            "label": "Color Blink Off"
+                        },
+                        {
+                            "begin": 114,
+                            "default": 114,
+                            "end": 114,
+                            "label": "Gobo Blink On"
+                        },
+                        {
+                            "begin": 124,
+                            "default": 124,
+                            "end": 124,
+                            "label": "Gobo Blink Off"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 144,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "Color Reset"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "Gobo Reset [Gobo 2 Reset]"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 174,
+                            "label": "Shutter Reset [Int Reset]"
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 184,
+                            "label": "Zoom Reset [FX & Focus Reset]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 16,
+                    "type": 4,
+                    "fine": 7,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 4,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 5,
+                            "default": 13,
+                            "end": 13,
+                            "label": "Deep Red",
+                            "media": {
+                                "b": 0,
+                                "g": 1,
+                                "name": "Deep Red",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 14,
+                            "default": 22,
+                            "end": 22,
+                            "label": "Deep Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "Deep Blue",
+                                "r": 59,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 23,
+                            "default": 32,
+                            "end": 32,
+                            "label": "Yellow",
+                            "media": {
+                                "b": 0,
+                                "g": 153,
+                                "name": "Yellow",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 33,
+                            "default": 41,
+                            "end": 41,
+                            "label": "Green",
+                            "media": {
+                                "b": 11,
+                                "g": 255,
+                                "name": "Green",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 42,
+                            "default": 50,
+                            "end": 50,
+                            "label": "Magenta",
+                            "media": {
+                                "b": 129,
+                                "g": 0,
+                                "name": "Magenta",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 59,
+                            "end": 59,
+                            "label": "Azure",
+                            "media": {
+                                "b": 252,
+                                "g": 255,
+                                "name": "Azure",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 60,
+                            "default": 68,
+                            "end": 68,
+                            "label": "Red",
+                            "media": {
+                                "b": 0,
+                                "g": 6,
+                                "name": "Red",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 69,
+                            "default": 77,
+                            "end": 77,
+                            "label": "Dark Green",
+                            "media": {
+                                "b": 22,
+                                "g": 255,
+                                "name": "Dark Green",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 78,
+                            "default": 86,
+                            "end": 86,
+                            "label": "Amber",
+                            "media": {
+                                "b": 0,
+                                "g": 80,
+                                "name": "Amber",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 87,
+                            "default": 96,
+                            "end": 96,
+                            "label": "Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 15,
+                                "name": "Blue",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 97,
+                            "default": 105,
+                            "end": 105,
+                            "label": "Orange",
+                            "media": {
+                                "b": 0,
+                                "g": 22,
+                                "name": "Orange",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 106,
+                            "default": 114,
+                            "end": 114,
+                            "label": "CTO",
+                            "media": {
+                                "b": 0,
+                                "g": 41,
+                                "name": "CTO",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 115,
+                            "default": 127,
+                            "end": 127,
+                            "label": "UV",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "UV",
+                                "r": 153,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 132,
+                            "label": "(Deep Red)",
+                            "media": {
+                                "b": 0,
+                                "g": 1,
+                                "name": "(Deep Red)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 136,
+                            "default": 136,
+                            "end": 136,
+                            "label": "(Deep Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "(Deep Blue)",
+                                "r": 59,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 141,
+                            "default": 141,
+                            "end": 141,
+                            "label": "(Yellow)",
+                            "media": {
+                                "b": 0,
+                                "g": 153,
+                                "name": "(Yellow)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 145,
+                            "default": 145,
+                            "end": 145,
+                            "label": "(Green)",
+                            "media": {
+                                "b": 11,
+                                "g": 255,
+                                "name": "(Green)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 150,
+                            "label": "(Magenta)",
+                            "media": {
+                                "b": 129,
+                                "g": 0,
+                                "name": "(Magenta)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 155,
+                            "default": 155,
+                            "end": 155,
+                            "label": "(Azure)",
+                            "media": {
+                                "b": 252,
+                                "g": 255,
+                                "name": "(Azure)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "(Red)",
+                            "media": {
+                                "b": 0,
+                                "g": 6,
+                                "name": "(Red)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "(Dark Green)",
+                            "media": {
+                                "b": 22,
+                                "g": 255,
+                                "name": "(Dark Green)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 169,
+                            "default": 169,
+                            "end": 169,
+                            "label": "(Amber)",
+                            "media": {
+                                "b": 0,
+                                "g": 80,
+                                "name": "(Amber)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 174,
+                            "label": "(Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 15,
+                                "name": "(Blue)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 178,
+                            "default": 178,
+                            "end": 178,
+                            "label": "(Orange)",
+                            "media": {
+                                "b": 0,
+                                "g": 22,
+                                "name": "(Orange)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 183,
+                            "default": 183,
+                            "end": 183,
+                            "label": "(CTO)",
+                            "media": {
+                                "b": 0,
+                                "g": 41,
+                                "name": "(CTO)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 187,
+                            "default": 187,
+                            "end": 187,
+                            "label": "(UV)",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "(UV)",
+                                "r": 153,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 190,
+                            "default": 202,
+                            "end": 215,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 217,
+                            "default": 217,
+                            "end": 217,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 218,
+                            "default": 218,
+                            "end": 243,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 250,
+                            "default": 252,
+                            "end": 255,
+                            "label": "Rnd"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 6,
+                            "default": 6,
+                            "end": 6,
+                            "label": "(192)",
+                            "media": {
+                                "dcid": "BF97C0AE-7160-A749-9B4D-5471CA098F86",
+                                "name": "(192)"
+                            }
+                        },
+                        {
+                            "begin": 12,
+                            "default": 12,
+                            "end": 12,
+                            "label": "(190)",
+                            "media": {
+                                "dcid": "E6BC3B53-5AEC-AA4E-89B7-0416CF49AC1E",
+                                "name": "(190)"
+                            }
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 18,
+                            "label": "(189)",
+                            "media": {
+                                "dcid": "3B3EC079-E01F-DF4B-A8E6-E1F9C3BDFC5F",
+                                "name": "(189)"
+                            }
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "(006)",
+                            "media": {
+                                "dcid": "BEC2534B-6491-8744-996D-34EDBA2716DE",
+                                "name": "(006)"
+                            }
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "(043)",
+                            "media": {
+                                "dcid": "AD0CB387-3ECB-314E-B25C-365557BF7982",
+                                "name": "(043)"
+                            }
+                        },
+                        {
+                            "begin": 36,
+                            "default": 36,
+                            "end": 36,
+                            "label": "(013)",
+                            "media": {
+                                "dcid": "AA5FCFEB-61DA-464E-B3AD-86FB4284E712",
+                                "name": "(013)"
+                            }
+                        },
+                        {
+                            "begin": 42,
+                            "default": 42,
+                            "end": 42,
+                            "label": "(023)",
+                            "media": {
+                                "dcid": "AE6A3502-E689-1744-A357-545A5065487E",
+                                "name": "(023)"
+                            }
+                        },
+                        {
+                            "begin": 48,
+                            "default": 48,
+                            "end": 48,
+                            "label": "(024)",
+                            "media": {
+                                "dcid": "06F92650-ADBE-E84B-99C1-A5317EC6219D",
+                                "name": "(024)"
+                            }
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "(010)",
+                            "media": {
+                                "dcid": "F776DB68-8820-5343-BE6F-1CE0C8A93D85",
+                                "name": "(010)"
+                            }
+                        },
+                        {
+                            "begin": 60,
+                            "default": 60,
+                            "end": 60,
+                            "label": "(025)",
+                            "media": {
+                                "dcid": "9C0A70C5-954D-1349-978C-661F449BA9BC",
+                                "name": "(025)"
+                            }
+                        },
+                        {
+                            "begin": 66,
+                            "default": 66,
+                            "end": 66,
+                            "label": "(011)",
+                            "media": {
+                                "dcid": "9228B683-21BE-6D4A-92DD-F6907A220233",
+                                "name": "(011)"
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 72,
+                            "end": 72,
+                            "label": "(012)",
+                            "media": {
+                                "dcid": "4A6C4EAA-2C99-8343-B2FD-3AA259DAD3E6",
+                                "name": "(012)"
+                            }
+                        },
+                        {
+                            "begin": 78,
+                            "default": 78,
+                            "end": 78,
+                            "label": "(026)",
+                            "media": {
+                                "dcid": "4DB63423-C55B-AB47-8534-574A6B08ACA5",
+                                "name": "(026)"
+                            }
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 88,
+                            "default": 95,
+                            "end": 95,
+                            "label": "(192) [S]",
+                            "media": {
+                                "dcid": "BF97C0AE-7160-A749-9B4D-5471CA098F86",
+                                "name": "(192) [S]"
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 103,
+                            "end": 103,
+                            "label": "(190) [S]",
+                            "media": {
+                                "dcid": "E6BC3B53-5AEC-AA4E-89B7-0416CF49AC1E",
+                                "name": "(190) [S]"
+                            }
+                        },
+                        {
+                            "begin": 104,
+                            "default": 111,
+                            "end": 111,
+                            "label": "(189) [S]",
+                            "media": {
+                                "dcid": "3B3EC079-E01F-DF4B-A8E6-E1F9C3BDFC5F",
+                                "name": "(189) [S]"
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 119,
+                            "end": 119,
+                            "label": "(006) [S]",
+                            "media": {
+                                "dcid": "BEC2534B-6491-8744-996D-34EDBA2716DE",
+                                "name": "(006) [S]"
+                            }
+                        },
+                        {
+                            "begin": 120,
+                            "default": 127,
+                            "end": 127,
+                            "label": "(043) [S]",
+                            "media": {
+                                "dcid": "AD0CB387-3ECB-314E-B25C-365557BF7982",
+                                "name": "(043) [S]"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 135,
+                            "end": 135,
+                            "label": "(013) [S]",
+                            "media": {
+                                "dcid": "AA5FCFEB-61DA-464E-B3AD-86FB4284E712",
+                                "name": "(013) [S]"
+                            }
+                        },
+                        {
+                            "begin": 136,
+                            "default": 143,
+                            "end": 143,
+                            "label": "(023) [S]",
+                            "media": {
+                                "dcid": "AE6A3502-E689-1744-A357-545A5065487E",
+                                "name": "(023) [S]"
+                            }
+                        },
+                        {
+                            "begin": 144,
+                            "default": 151,
+                            "end": 151,
+                            "label": "(024) [S]",
+                            "media": {
+                                "dcid": "06F92650-ADBE-E84B-99C1-A5317EC6219D",
+                                "name": "(024) [S]"
+                            }
+                        },
+                        {
+                            "begin": 152,
+                            "default": 159,
+                            "end": 159,
+                            "label": "(010) [S]",
+                            "media": {
+                                "dcid": "F776DB68-8820-5343-BE6F-1CE0C8A93D85",
+                                "name": "(010) [S]"
+                            }
+                        },
+                        {
+                            "begin": 160,
+                            "default": 167,
+                            "end": 167,
+                            "label": "(025) [S]",
+                            "media": {
+                                "dcid": "9C0A70C5-954D-1349-978C-661F449BA9BC",
+                                "name": "(025) [S]"
+                            }
+                        },
+                        {
+                            "begin": 168,
+                            "default": 175,
+                            "end": 175,
+                            "label": "(011) [S]",
+                            "media": {
+                                "dcid": "9228B683-21BE-6D4A-92DD-F6907A220233",
+                                "name": "(011) [S]"
+                            }
+                        },
+                        {
+                            "begin": 176,
+                            "default": 183,
+                            "end": 183,
+                            "label": "(012) [S]",
+                            "media": {
+                                "dcid": "4A6C4EAA-2C99-8343-B2FD-3AA259DAD3E6",
+                                "name": "(012) [S]"
+                            }
+                        },
+                        {
+                            "begin": 184,
+                            "default": 191,
+                            "end": 191,
+                            "label": "(026) [S]",
+                            "media": {
+                                "dcid": "4DB63423-C55B-AB47-8534-574A6B08ACA5",
+                                "name": "(026) [S]"
+                            }
+                        },
+                        {
+                            "begin": 192,
+                            "default": 199,
+                            "end": 199,
+                            "label": "(Open) [S]",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open) [S]"
+                            }
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 200,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 202,
+                            "default": 211,
+                            "end": 221,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 222,
+                            "default": 222,
+                            "end": 222,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 243,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 246,
+                            "default": 246,
+                            "end": 246,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 249,
+                            "default": 252,
+                            "end": 255,
+                            "label": "Rnd"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open) [I]",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open) [I]"
+                            }
+                        },
+                        {
+                            "begin": 2,
+                            "default": 2,
+                            "end": 2,
+                            "label": "(Open) [I]",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open) [I]"
+                            }
+                        },
+                        {
+                            "begin": 6,
+                            "default": 6,
+                            "end": 6,
+                            "label": "(Spun Dots) [I]",
+                            "media": {
+                                "dcid": "080D5FA0-31DC-E346-9723-A436DB3990DF",
+                                "name": "(Spun Dots) [I]"
+                            }
+                        },
+                        {
+                            "begin": 9,
+                            "default": 9,
+                            "end": 9,
+                            "label": "(Small And Big Dots) [I]",
+                            "media": {
+                                "dcid": "57F9190E-5D36-5442-9403-F20ECEB5EDB7",
+                                "name": "(Small And Big Dots) [I]"
+                            }
+                        },
+                        {
+                            "begin": 12,
+                            "default": 12,
+                            "end": 12,
+                            "label": "(Triangles) [I]",
+                            "media": {
+                                "dcid": "82F28218-A897-AA4D-8F70-DFC6642B9932",
+                                "name": "(Triangles) [I]"
+                            }
+                        },
+                        {
+                            "begin": 15,
+                            "default": 15,
+                            "end": 15,
+                            "label": "(Dot Matrix) [I]",
+                            "media": {
+                                "dcid": "B007B8A8-4AA0-FD41-8B19-96BFFAB5DA61",
+                                "name": "(Dot Matrix) [I]"
+                            }
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 18,
+                            "label": "(Dots) [I]",
+                            "media": {
+                                "dcid": "FFC4728F-A190-E64F-A337-7F47BB53251C",
+                                "name": "(Dots) [I]"
+                            }
+                        },
+                        {
+                            "begin": 21,
+                            "default": 21,
+                            "end": 21,
+                            "label": "(Linear) [I]",
+                            "media": {
+                                "dcid": "B46ADDEA-8C04-DD44-AED1-46FA9FCA047D",
+                                "name": "(Linear) [I]"
+                            }
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "(Quadrangles) [I]",
+                            "media": {
+                                "dcid": "826EA2C5-2781-C940-B76A-5FDAD5EFE76A",
+                                "name": "(Quadrangles) [I]"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "(Sun) [I]",
+                            "media": {
+                                "dcid": "FA4A2B25-9BEF-3448-ADC9-30C59AA92A81",
+                                "name": "(Sun) [I]"
+                            }
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "(4 Circles In A Line) [I]",
+                            "media": {
+                                "dcid": "A550D3A3-A27B-2E48-9168-FD2E3FF5FF37",
+                                "name": "(4 Circles In A Line) [I]"
+                            }
+                        },
+                        {
+                            "begin": 33,
+                            "default": 33,
+                            "end": 33,
+                            "label": "(Spun Dots) [R]",
+                            "media": {
+                                "dcid": "080D5FA0-31DC-E346-9723-A436DB3990DF",
+                                "name": "(Spun Dots) [R]"
+                            }
+                        },
+                        {
+                            "begin": 36,
+                            "default": 36,
+                            "end": 36,
+                            "label": "(Small And Big Dots) [R]",
+                            "media": {
+                                "dcid": "57F9190E-5D36-5442-9403-F20ECEB5EDB7",
+                                "name": "(Small And Big Dots) [R]"
+                            }
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "(Triangles) [R]",
+                            "media": {
+                                "dcid": "82F28218-A897-AA4D-8F70-DFC6642B9932",
+                                "name": "(Triangles) [R]"
+                            }
+                        },
+                        {
+                            "begin": 42,
+                            "default": 42,
+                            "end": 42,
+                            "label": "(Dot Matrix) [R]",
+                            "media": {
+                                "dcid": "B007B8A8-4AA0-FD41-8B19-96BFFAB5DA61",
+                                "name": "(Dot Matrix) [R]"
+                            }
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": "(Dots) [R]",
+                            "media": {
+                                "dcid": "FFC4728F-A190-E64F-A337-7F47BB53251C",
+                                "name": "(Dots) [R]"
+                            }
+                        },
+                        {
+                            "begin": 48,
+                            "default": 48,
+                            "end": 48,
+                            "label": "(Linear) [R]",
+                            "media": {
+                                "dcid": "B46ADDEA-8C04-DD44-AED1-46FA9FCA047D",
+                                "name": "(Linear) [R]"
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "(Quadrangles) [R]",
+                            "media": {
+                                "dcid": "826EA2C5-2781-C940-B76A-5FDAD5EFE76A",
+                                "name": "(Quadrangles) [R]"
+                            }
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "(Sun) [R]",
+                            "media": {
+                                "dcid": "FA4A2B25-9BEF-3448-ADC9-30C59AA92A81",
+                                "name": "(Sun) [R]"
+                            }
+                        },
+                        {
+                            "begin": 57,
+                            "default": 57,
+                            "end": 57,
+                            "label": "(4 Circles In A Line) [R]",
+                            "media": {
+                                "dcid": "A550D3A3-A27B-2E48-9168-FD2E3FF5FF37",
+                                "name": "(4 Circles In A Line) [R]"
+                            }
+                        },
+                        {
+                            "begin": 60,
+                            "default": 67,
+                            "end": 67,
+                            "label": "(Spun Dots) [I,S]",
+                            "media": {
+                                "dcid": "080D5FA0-31DC-E346-9723-A436DB3990DF",
+                                "name": "(Spun Dots) [I,S]"
+                            }
+                        },
+                        {
+                            "begin": 68,
+                            "default": 75,
+                            "end": 75,
+                            "label": "(Small And Big Dots) [I,S]",
+                            "media": {
+                                "dcid": "57F9190E-5D36-5442-9403-F20ECEB5EDB7",
+                                "name": "(Small And Big Dots) [I,S]"
+                            }
+                        },
+                        {
+                            "begin": 76,
+                            "default": 83,
+                            "end": 83,
+                            "label": "(Triangles) [I,S]",
+                            "media": {
+                                "dcid": "82F28218-A897-AA4D-8F70-DFC6642B9932",
+                                "name": "(Triangles) [I,S]"
+                            }
+                        },
+                        {
+                            "begin": 84,
+                            "default": 91,
+                            "end": 91,
+                            "label": "(Dot Matrix) [I,S]",
+                            "media": {
+                                "dcid": "B007B8A8-4AA0-FD41-8B19-96BFFAB5DA61",
+                                "name": "(Dot Matrix) [I,S]"
+                            }
+                        },
+                        {
+                            "begin": 92,
+                            "default": 99,
+                            "end": 99,
+                            "label": "(Dots) [I,S]",
+                            "media": {
+                                "dcid": "FFC4728F-A190-E64F-A337-7F47BB53251C",
+                                "name": "(Dots) [I,S]"
+                            }
+                        },
+                        {
+                            "begin": 100,
+                            "default": 107,
+                            "end": 107,
+                            "label": "(Dots) [I,S]",
+                            "media": {
+                                "dcid": "FFC4728F-A190-E64F-A337-7F47BB53251C",
+                                "name": "(Dots) [I,S]"
+                            }
+                        },
+                        {
+                            "begin": 108,
+                            "default": 115,
+                            "end": 115,
+                            "label": "(Quadrangles) [I,S]",
+                            "media": {
+                                "dcid": "826EA2C5-2781-C940-B76A-5FDAD5EFE76A",
+                                "name": "(Quadrangles) [I,S]"
+                            }
+                        },
+                        {
+                            "begin": 116,
+                            "default": 123,
+                            "end": 123,
+                            "label": "(Sun) [I,S]",
+                            "media": {
+                                "dcid": "FA4A2B25-9BEF-3448-ADC9-30C59AA92A81",
+                                "name": "(Sun) [I,S]"
+                            }
+                        },
+                        {
+                            "begin": 124,
+                            "default": 129,
+                            "end": 129,
+                            "label": "(4 Circles In A Line) [I,S]",
+                            "media": {
+                                "dcid": "A550D3A3-A27B-2E48-9168-FD2E3FF5FF37",
+                                "name": "(4 Circles In A Line) [I,S]"
+                            }
+                        },
+                        {
+                            "begin": 130,
+                            "default": 137,
+                            "end": 137,
+                            "label": "(Spun Dots) [R,S]",
+                            "media": {
+                                "dcid": "080D5FA0-31DC-E346-9723-A436DB3990DF",
+                                "name": "(Spun Dots) [R,S]"
+                            }
+                        },
+                        {
+                            "begin": 138,
+                            "default": 145,
+                            "end": 145,
+                            "label": "(Small And Big Dots) [R,S]",
+                            "media": {
+                                "dcid": "57F9190E-5D36-5442-9403-F20ECEB5EDB7",
+                                "name": "(Small And Big Dots) [R,S]"
+                            }
+                        },
+                        {
+                            "begin": 146,
+                            "default": 153,
+                            "end": 153,
+                            "label": "(Triangles) [R,S]",
+                            "media": {
+                                "dcid": "82F28218-A897-AA4D-8F70-DFC6642B9932",
+                                "name": "(Triangles) [R,S]"
+                            }
+                        },
+                        {
+                            "begin": 154,
+                            "default": 161,
+                            "end": 161,
+                            "label": "(Dot Matrix) [R,S]",
+                            "media": {
+                                "dcid": "B007B8A8-4AA0-FD41-8B19-96BFFAB5DA61",
+                                "name": "(Dot Matrix) [R,S]"
+                            }
+                        },
+                        {
+                            "begin": 162,
+                            "default": 169,
+                            "end": 169,
+                            "label": "(Dots) [R,S]",
+                            "media": {
+                                "dcid": "FFC4728F-A190-E64F-A337-7F47BB53251C",
+                                "name": "(Dots) [R,S]"
+                            }
+                        },
+                        {
+                            "begin": 170,
+                            "default": 177,
+                            "end": 177,
+                            "label": "(Linear) [R,S]",
+                            "media": {
+                                "dcid": "B46ADDEA-8C04-DD44-AED1-46FA9FCA047D",
+                                "name": "(Linear) [R,S]"
+                            }
+                        },
+                        {
+                            "begin": 178,
+                            "default": 185,
+                            "end": 185,
+                            "label": "(Quadrangles) [R,S]",
+                            "media": {
+                                "dcid": "826EA2C5-2781-C940-B76A-5FDAD5EFE76A",
+                                "name": "(Quadrangles) [R,S]"
+                            }
+                        },
+                        {
+                            "begin": 186,
+                            "default": 193,
+                            "end": 193,
+                            "label": "(Sun) [R,S]",
+                            "media": {
+                                "dcid": "FA4A2B25-9BEF-3448-ADC9-30C59AA92A81",
+                                "name": "(Sun) [R,S]"
+                            }
+                        },
+                        {
+                            "begin": 194,
+                            "default": 199,
+                            "end": 199,
+                            "label": "(4 Circles In A Line) [R,S]",
+                            "media": {
+                                "dcid": "A550D3A3-A27B-2E48-9168-FD2E3FF5FF37",
+                                "name": "(4 Circles In A Line) [R,S]"
+                            }
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 200,
+                            "label": "(Open) [R]",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open) [R]"
+                            }
+                        },
+                        {
+                            "begin": 202,
+                            "default": 211,
+                            "end": 221,
+                            "label": "Spin >> [R]"
+                        },
+                        {
+                            "begin": 222,
+                            "default": 222,
+                            "end": 222,
+                            "label": "Spin Stop [R]"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 243,
+                            "label": "Spin << [R]"
+                        },
+                        {
+                            "begin": 246,
+                            "default": 246,
+                            "end": 246,
+                            "label": "Spin Stop [R]"
+                        },
+                        {
+                            "begin": 250,
+                            "default": 252,
+                            "end": 255,
+                            "label": "Rnd [R]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2 <>",
+                    "size": 16,
+                    "type": 4,
+                    "fine": 12,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 1,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 1,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 1,
+                            "default": 64,
+                            "end": 127,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 1,
+                            "default": 64,
+                            "end": 127,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 130,
+                            "end": 130,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 130,
+                            "end": 130,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Rot <<"
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open) [FX Idx]",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open) [FX Idx]"
+                            }
+                        },
+                        {
+                            "begin": 33,
+                            "default": 33,
+                            "end": 33,
+                            "label": "(8 Prism) [FX Idx]",
+                            "media": {
+                                "dcid": "9B1E5889-82BE-794C-B45B-05B19EE25B36",
+                                "name": "(8 Prism) [FX Idx]"
+                            }
+                        },
+                        {
+                            "begin": 62,
+                            "default": 62,
+                            "end": 62,
+                            "label": "(8 Prism) [FX Rot]",
+                            "media": {
+                                "dcid": "9B1E5889-82BE-794C-B45B-05B19EE25B36",
+                                "name": "(8 Prism) [FX Rot]"
+                            }
+                        },
+                        {
+                            "begin": 90,
+                            "default": 90,
+                            "end": 90,
+                            "label": "(16 Facet Prism) [FX Idx]",
+                            "media": {
+                                "dcid": "14D08326-9DBB-7343-93C6-DF7EE94B85E6",
+                                "name": "(16 Facet Prism) [FX Idx]"
+                            }
+                        },
+                        {
+                            "begin": 116,
+                            "default": 116,
+                            "end": 116,
+                            "label": "(16 Facet Prism) [FX Rot]",
+                            "media": {
+                                "dcid": "14D08326-9DBB-7343-93C6-DF7EE94B85E6",
+                                "name": "(16 Facet Prism) [FX Rot]"
+                            }
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "(Open) [FX Idx]",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open) [FX Idx]"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 1,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 1,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 2,
+                            "default": 64,
+                            "end": 127,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 2,
+                            "default": 64,
+                            "end": 127,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 130,
+                            "end": 130,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 130,
+                            "end": 130,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 131,
+                            "default": 131,
+                            "end": 255,
+                            "label": "Rot <<"
+                        },
+                        {
+                            "begin": 131,
+                            "default": 131,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Frost",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 179,
+                            "label": "Frost"
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 184,
+                            "label": "Frost 100"
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 211,
+                            "label": "Frost Strobe -Pulse"
+                        },
+                        {
+                            "begin": 212,
+                            "default": 222,
+                            "end": 233,
+                            "label": "Frost Strobe +Pulse"
+                        },
+                        {
+                            "begin": 234,
+                            "default": 244,
+                            "end": 255,
+                            "label": "Frost Strobe Pulse"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Zoom",
+                    "size": 16,
+                    "type": 4,
+                    "fine": 17
+                },
+                {
+                    "coarse": 18,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Focus",
+                    "size": 16,
+                    "type": 4,
+                    "fine": 19
+                },
+                {
+                    "coarse": 21,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 47,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 95,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 111,
+                            "default": 111,
+                            "end": 111,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 143,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 151,
+                            "end": 159,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 246,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 22,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "type": 1,
+                    "fine": 23
+                },
+                {
+                    "coarse": 24,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "CMY Mixing"
+                        },
+                        {
+                            "begin": 26,
+                            "default": 26,
+                            "end": 26,
+                            "label": "Red"
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": "Yellow"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "Green"
+                        },
+                        {
+                            "begin": 83,
+                            "default": 83,
+                            "end": 83,
+                            "label": "Cyan"
+                        },
+                        {
+                            "begin": 101,
+                            "default": 101,
+                            "end": 101,
+                            "label": "Violet"
+                        },
+                        {
+                            "begin": 119,
+                            "default": 119,
+                            "end": 119,
+                            "label": "Magenta"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 255,
+                            "label": "MixRnd"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 25,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Cyan",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 26,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Yellow",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 27,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Magenta",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 28,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 136,
+                            "default": 136,
+                            "end": 136,
+                            "label": "(16 Facet Prism)",
+                            "media": {
+                                "dcid": "14D08326-9DBB-7343-93C6-DF7EE94B85E6",
+                                "name": "(16 Facet Prism)"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 29,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX 2 <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 128,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 191,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 192,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 30,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Frost 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Frost"
+                        },
+                        {
+                            "begin": 136,
+                            "default": 136,
+                            "end": 136,
+                            "label": "Frost 100"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 134
+                        },
+                        {
+                            "step": 7,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 204
+                        },
+                        {
+                            "step": 7,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 234
+                        },
+                        {
+                            "step": 7,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ],
+            "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139"
+        }
+    ]
+}

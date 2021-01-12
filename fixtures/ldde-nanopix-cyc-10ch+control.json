@@ -1,0 +1,240 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "3D5ED585-5F2A-4E59-92D7-181215B17503",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": false,
+            "manufacturerName": "LDDE",
+            "maxOffset": 10,
+            "modeName": "10ch+control",
+            "modelName": "NanoPix Cyc",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": true,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 16,
+                    "type": 5,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": true,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Green",
+                    "size": 16,
+                    "type": 5,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": true,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Blue",
+                    "size": 16,
+                    "type": 5,
+                    "fine": 5
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": true,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "WarmWhite",
+                    "size": 16,
+                    "type": 5,
+                    "fine": 7
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": true,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "CoolWhite",
+                    "size": 16,
+                    "type": 5,
+                    "fine": 9
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 255,
+                            "label": "Strobe"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "750hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 15
+                        },
+                        {
+                            "step": 3,
+                            "key": 10,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "1500hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 25
+                        },
+                        {
+                            "step": 3,
+                            "key": 10,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "3000hz",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 35
+                        },
+                        {
+                            "step": 3,
+                            "key": 10,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Silent",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 105
+                        },
+                        {
+                            "step": 3,
+                            "key": 10,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Fan Speed 100%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 115
+                        },
+                        {
+                            "step": 3,
+                            "key": 10,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Fade to zero on",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 205
+                        },
+                        {
+                            "step": 3,
+                            "key": 10,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Fade to zero off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 215
+                        },
+                        {
+                            "step": 3,
+                            "key": 10,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ],
+            "colortable": "3D5ED585-5F2A-4E59-92D7-181215B17503"
+        }
+    ]
+}

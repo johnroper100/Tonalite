@@ -1,0 +1,301 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "3B09E08F-E51B-A648-8573-73BC2E3DC3D7",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Chauvet",
+            "maxOffset": 9,
+            "modeName": "-",
+            "modelName": "Q-Wash LED",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 33023,
+                    "home": 33023,
+                    "invert": true,
+                    "name": "Pan",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 32512,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Green",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Blue",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Color Mix"
+                        },
+                        {
+                            "begin": 6,
+                            "default": 6,
+                            "end": 35,
+                            "label": "Red 100, green varies [Mix Pos]"
+                        },
+                        {
+                            "begin": 36,
+                            "default": 36,
+                            "end": 65,
+                            "label": "Green 100, red varies [Mix Pos]"
+                        },
+                        {
+                            "begin": 66,
+                            "default": 66,
+                            "end": 95,
+                            "label": "Green 100, blue varies [Mix Pos]"
+                        },
+                        {
+                            "begin": 96,
+                            "default": 96,
+                            "end": 125,
+                            "label": "Blue 100, Green varies [Mix Pos]"
+                        },
+                        {
+                            "begin": 126,
+                            "default": 126,
+                            "end": 155,
+                            "label": "Blue 100, red varies [Mix Pos]"
+                        },
+                        {
+                            "begin": 156,
+                            "default": 156,
+                            "end": 185,
+                            "label": "Red 100, blue varies [Mix Pos]"
+                        },
+                        {
+                            "begin": 186,
+                            "default": 186,
+                            "end": 215,
+                            "label": "Red 100, green + blue varies [Mix Pos]"
+                        },
+                        {
+                            "begin": 216,
+                            "default": 216,
+                            "end": 240,
+                            "label": "Red + green + blue varies [Mix Pos]"
+                        },
+                        {
+                            "begin": 245,
+                            "default": 245,
+                            "end": 245,
+                            "label": "Auto Color"
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "White"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 6,
+                            "default": 6,
+                            "end": 255,
+                            "label": "Strobe"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 9,
+                            "subkey": 50
+                        },
+                        {
+                            "step": 34,
+                            "key": 9,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Auto 1",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 9,
+                            "subkey": 75
+                        },
+                        {
+                            "step": 4,
+                            "key": 9,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Auto 2",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 9,
+                            "subkey": 115
+                        },
+                        {
+                            "step": 4,
+                            "key": 9,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Sound 1",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 9,
+                            "subkey": 155
+                        },
+                        {
+                            "step": 4,
+                            "key": 9,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Sound 2",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 9,
+                            "subkey": 195
+                        },
+                        {
+                            "step": 4,
+                            "key": 9,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Custom",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 9,
+                            "subkey": 235
+                        },
+                        {
+                            "step": 4,
+                            "key": 9,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ],
+            "colortable": "3874B444-A11E-47D9-8295-04556EAEBEA7"
+        }
+    ]
+}

@@ -1,0 +1,145 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "5B5A8B43-86CD-40D0-8514-0D49D82ED96F",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Robert Juliat",
+            "maxOffset": 2,
+            "modeName": "-",
+            "modelName": "Merlin",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "type": 1,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 40,
+                            "default": 40,
+                            "end": 40,
+                            "label": "Dimmer smoothing off"
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 50,
+                            "label": "Minimum smoothing range on"
+                        },
+                        {
+                            "begin": 60,
+                            "default": 60,
+                            "end": 60,
+                            "label": "Medium smoothing range on"
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 70,
+                            "label": "Maximum smoothing range on"
+                        },
+                        {
+                            "begin": 85,
+                            "default": 85,
+                            "end": 85,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 105,
+                            "default": 105,
+                            "end": 105,
+                            "label": "Maximum range off"
+                        },
+                        {
+                            "begin": 125,
+                            "default": 125,
+                            "end": 125,
+                            "label": "Maximum range on"
+                        },
+                        {
+                            "begin": 145,
+                            "default": 145,
+                            "end": 145,
+                            "label": "RDM Off"
+                        },
+                        {
+                            "begin": 165,
+                            "default": 165,
+                            "end": 165,
+                            "label": "RDM Control"
+                        },
+                        {
+                            "begin": 185,
+                            "default": 185,
+                            "end": 185,
+                            "label": "ECO off"
+                        },
+                        {
+                            "begin": 205,
+                            "default": 205,
+                            "end": 205,
+                            "label": "Auto ECO on"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 225
+                        },
+                        {
+                            "step": 7,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 245
+                        },
+                        {
+                            "step": 7,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

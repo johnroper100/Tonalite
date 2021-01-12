@@ -1,0 +1,258 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "13587B19-7F4B-4B71-87F5-B2BC7B00DEFA",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Robert Juliat",
+            "maxOffset": 7,
+            "modeName": "Mode 6",
+            "modelName": "Oz",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Intensity 2",
+                    "size": 16,
+                    "type": 4,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "type": 1,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe Duration",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 255,
+                            "label": "Strobe Duration"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe Delay",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 1,
+                            "default": 1,
+                            "end": 255,
+                            "label": "Strobe Delay"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "RDM Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 7,
+                            "subkey": 5
+                        },
+                        {
+                            "step": 5,
+                            "key": 7,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 7,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "RDM Control",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 7,
+                            "subkey": 15
+                        },
+                        {
+                            "step": 5,
+                            "key": 7,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 7,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Fan Speed 1%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 7,
+                            "subkey": 105
+                        },
+                        {
+                            "step": 5,
+                            "key": 7,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 7,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Fan Speed 50%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 7,
+                            "subkey": 115
+                        },
+                        {
+                            "step": 5,
+                            "key": 7,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 7,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Fan Speed 100%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 7,
+                            "subkey": 125
+                        },
+                        {
+                            "step": 5,
+                            "key": 7,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 7,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Front ext disable",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 7,
+                            "subkey": 135
+                        },
+                        {
+                            "step": 5,
+                            "key": 7,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 7,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Front ext enable",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 7,
+                            "subkey": 145
+                        },
+                        {
+                            "step": 5,
+                            "key": 7,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 7,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

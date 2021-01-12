@@ -1,0 +1,60 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "41E95D11-6854-1C48-8E3C-0F49276C4A5D",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": false,
+            "manufacturerName": "Robert Juliat",
+            "maxOffset": 0,
+            "modeName": "Mode 3",
+            "modelName": "D'Artagnan",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 1
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 0,
+                            "subkey": 5
+                        },
+                        {
+                            "step": 7,
+                            "key": 0,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 0,
+                            "subkey": 140
+                        },
+                        {
+                            "step": 7,
+                            "key": 0,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,134 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "A4C48C16-1037-0540-A700-80EB7E6A78AC",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "PC Lights",
+            "maxOffset": 5,
+            "modeName": "-",
+            "modelName": "Turbo Par 150",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Magenta",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Cyan",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Yellow",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Global Reset",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 148
+                        },
+                        {
+                            "step": 7,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 190
+                        },
+                        {
+                            "step": 7,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 234
+                        },
+                        {
+                            "step": 7,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ],
+            "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139"
+        }
+    ]
+}

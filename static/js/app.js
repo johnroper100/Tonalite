@@ -288,10 +288,26 @@ var app = new Vue({
             }
             socket.send(JSON.stringify(message));
         },
-        sneak: function () {
+        fixturesSneak: function () {
             message = {
                 "msgType": "sneak",
                 "blind": app.blind
+            }
+            socket.send(JSON.stringify(message));
+        },
+        fixturesFull: function () {
+            message = {
+                "msgType": "fixturesFull",
+                "blind": app.blind,
+                "fixtures": app.selectedFixtures
+            }
+            socket.send(JSON.stringify(message));
+        },
+        fixturesOut: function () {
+            message = {
+                "msgType": "fixturesOut",
+                "blind": app.blind,
+                "fixtures": app.selectedFixtures
             }
             socket.send(JSON.stringify(message));
         },

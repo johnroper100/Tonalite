@@ -1,0 +1,825 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "34FB4050-5A5F-D146-B88A-9001B90DF20F",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Nightsun",
+            "maxOffset": 17,
+            "modeName": "18ch",
+            "modelName": "GA001D",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 12800,
+                    "home": 12800,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 50,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 100,
+                            "default": 100,
+                            "end": 255,
+                            "label": "Strobe"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 4
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 5
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 37,
+                            "default": 37,
+                            "end": 37,
+                            "label": "(Scarlet)",
+                            "media": {
+                                "b": 6,
+                                "g": 0,
+                                "name": "(Scarlet)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 62,
+                            "default": 62,
+                            "end": 62,
+                            "label": "(Green)",
+                            "media": {
+                                "b": 78,
+                                "g": 255,
+                                "name": "(Green)",
+                                "r": 57,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 87,
+                            "default": 87,
+                            "end": 87,
+                            "label": "(Pink)",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "(Pink)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 112,
+                            "end": 112,
+                            "label": "(Purple)",
+                            "media": {
+                                "b": 172,
+                                "g": 10,
+                                "name": "(Purple)",
+                                "r": 158,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 137,
+                            "default": 137,
+                            "end": 137,
+                            "label": "(Yellow)",
+                            "media": {
+                                "b": 8,
+                                "g": 255,
+                                "name": "(Yellow)",
+                                "r": 235,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 162,
+                            "default": 162,
+                            "end": 162,
+                            "label": "(Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "(Blue)",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 187,
+                            "default": 187,
+                            "end": 187,
+                            "label": "(Peach Red)",
+                            "media": {
+                                "b": 72,
+                                "g": 68,
+                                "name": "(Peach Red)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 47,
+                            "label": "(Peach Red2)",
+                            "media": {
+                                "b": 72,
+                                "g": 68,
+                                "name": "(Peach Red2)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 79,
+                            "default": 79,
+                            "end": 79,
+                            "label": "(Blue2)",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "(Blue2)",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 111,
+                            "default": 111,
+                            "end": 111,
+                            "label": "(Yellow2)",
+                            "media": {
+                                "b": 8,
+                                "g": 255,
+                                "name": "(Yellow2)",
+                                "r": 235,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 143,
+                            "default": 143,
+                            "end": 143,
+                            "label": "(Purple2)",
+                            "media": {
+                                "b": 172,
+                                "g": 10,
+                                "name": "(Purple2)",
+                                "r": 158,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "(Pink2)",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "(Pink2)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 207,
+                            "default": 207,
+                            "end": 207,
+                            "label": "(Green2)",
+                            "media": {
+                                "b": 78,
+                                "g": 255,
+                                "name": "(Green2)",
+                                "r": 57,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 239,
+                            "default": 239,
+                            "end": 239,
+                            "label": "(Scarlet2)",
+                            "media": {
+                                "b": 6,
+                                "g": 0,
+                                "name": "(Scarlet2)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 77,
+                            "default": 77,
+                            "end": 77,
+                            "label": "(01)"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 129,
+                            "label": "(02)",
+                            "media": {
+                                "dcid": "688C3B23-30E4-6A46-828D-C2077D8A5349",
+                                "name": "(02)"
+                            }
+                        },
+                        {
+                            "begin": 181,
+                            "default": 181,
+                            "end": 181,
+                            "label": "(03)",
+                            "media": {
+                                "dcid": "7D85BF3F-BBC3-6542-8A16-191D654094D2",
+                                "name": "(03)"
+                            }
+                        },
+                        {
+                            "begin": 231,
+                            "default": 231,
+                            "end": 231,
+                            "label": "(04)",
+                            "media": {
+                                "dcid": "0ABFCA92-D199-244D-978B-A4AF6BDCD106",
+                                "name": "(04)"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "(05)",
+                            "media": {
+                                "dcid": "020027A4-001C-B44E-ADBD-B17BF3B3C280",
+                                "name": "(05)"
+                            }
+                        },
+                        {
+                            "begin": 99,
+                            "default": 99,
+                            "end": 99,
+                            "label": "(06)"
+                        },
+                        {
+                            "begin": 139,
+                            "default": 139,
+                            "end": 139,
+                            "label": "(07)",
+                            "media": {
+                                "dcid": "AD0F698B-B51E-A84A-8247-E72C7AC720A8",
+                                "name": "(07)"
+                            }
+                        },
+                        {
+                            "begin": 179,
+                            "default": 179,
+                            "end": 179,
+                            "label": "(08)"
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2 <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 63,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 65,
+                            "default": 65,
+                            "end": 65,
+                            "label": "Unknown 1"
+                        },
+                        {
+                            "begin": 67,
+                            "default": 97,
+                            "end": 127,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 191,
+                            "label": "Rot <<"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Gobo Rnd"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Iris",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "(Grads Mirror)"
+                        },
+                        {
+                            "begin": 99,
+                            "default": 99,
+                            "end": 99,
+                            "label": "(Pillar Mirror)"
+                        },
+                        {
+                            "begin": 139,
+                            "default": 139,
+                            "end": 139,
+                            "label": "(Incline Mirror)",
+                            "media": {
+                                "dcid": "FAFA933B-1192-9E49-A12F-7DF68C2F58ED",
+                                "name": "(Incline Mirror)"
+                            }
+                        },
+                        {
+                            "begin": 179,
+                            "default": 179,
+                            "end": 179,
+                            "label": "(3 Prism)",
+                            "media": {
+                                "dcid": "18021D4A-FFCD-794C-9C33-911F94B12A93",
+                                "name": "(3 Prism)"
+                            }
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 255,
+                            "label": "FX Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 191,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 77,
+                            "default": 77,
+                            "end": 77,
+                            "label": "(CTC6000K)",
+                            "media": {
+                                "b": 255,
+                                "g": 222,
+                                "name": "(CTC6000K)",
+                                "r": 170,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 129,
+                            "label": "(CTC3200K)",
+                            "media": {
+                                "b": 108,
+                                "g": 250,
+                                "name": "(CTC3200K)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 181,
+                            "default": 181,
+                            "end": 181,
+                            "label": "(Frost Mirror)"
+                        },
+                        {
+                            "begin": 231,
+                            "default": 231,
+                            "end": 231,
+                            "label": "(5 Prism)",
+                            "media": {
+                                "dcid": "6645EA35-BE5D-D449-BE82-F8EA1FD063B5",
+                                "name": "(5 Prism)"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 249,
+                            "label": "Focus Spd"
+                        },
+                        {
+                            "begin": 252,
+                            "default": 252,
+                            "end": 252,
+                            "label": "Focus Track"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "BlackMove Off"
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "BlackMove On [Clr & Clr 2 & FX & FX 2 & Gobo & Gobo 2 Blink]"
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 34,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 44,
+                            "label": "BlackMove On"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "BlackMove Off [Clr & Clr 2 Blink]"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "BlackMove Off [Gobo & Gobo 2 Blink]"
+                        },
+                        {
+                            "begin": 92,
+                            "default": 92,
+                            "end": 92,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 97,
+                            "default": 97,
+                            "end": 97,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 104,
+                            "label": "BlackMove Off [FX & FX 2 Blink]"
+                        },
+                        {
+                            "begin": 118,
+                            "default": 118,
+                            "end": 118,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 147,
+                            "default": 147,
+                            "end": 147,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 163,
+                            "default": 163,
+                            "end": 163,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 171,
+                            "default": 171,
+                            "end": 171,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 179,
+                            "default": 179,
+                            "end": 179,
+                            "label": "Shutter Reset [Color & Gobo 2 Reset]"
+                        },
+                        {
+                            "begin": 195,
+                            "default": 195,
+                            "end": 195,
+                            "label": "Focus Reset [FX & FX 2 Reset]"
+                        },
+                        {
+                            "begin": 203,
+                            "default": 203,
+                            "end": 203,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 211,
+                            "default": 211,
+                            "end": 211,
+                            "label": "Iris Reset [Color 2 & Gobo 2 Reset]"
+                        },
+                        {
+                            "begin": 235,
+                            "default": 235,
+                            "end": 235,
+                            "label": "Unknown"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 131
+                        },
+                        {
+                            "step": 7,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

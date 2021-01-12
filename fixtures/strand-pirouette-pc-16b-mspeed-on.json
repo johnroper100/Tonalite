@@ -1,0 +1,87 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "E76C1FD4-4E66-224C-AC86-882F584A813C",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": false,
+            "manufacturerName": "Strand",
+            "maxOffset": 5,
+            "modeName": "16b MSpeed on",
+            "modelName": "Pirouette PC",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 5,
+                            "subkey": 255
+                        },
+                        {
+                            "step": 1,
+                            "key": 5,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

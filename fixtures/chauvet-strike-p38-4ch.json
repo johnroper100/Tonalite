@@ -1,0 +1,133 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "1C6AA953-CA32-404B-A026-D27440C875C5",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Chauvet",
+            "maxOffset": 3,
+            "modeName": "4ch",
+            "modelName": "Strike P38",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "type": 1,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Red Shift",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "On"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Off"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Dimmer Curve",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "As per menu"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Dimmer mode off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 76
+                        },
+                        {
+                            "step": 4,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer mode 1",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 127
+                        },
+                        {
+                            "step": 4,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer mode 2",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 178
+                        },
+                        {
+                            "step": 4,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer mode 3",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 229
+                        },
+                        {
+                            "step": 4,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

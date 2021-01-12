@@ -1,0 +1,2616 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "664AFDF3-A4B0-5E44-84C9-DC02772315C3",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Prolights",
+            "maxOffset": 16,
+            "modeName": "Ext",
+            "modelName": "Ruby",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Pos Blink",
+                    "size": 8,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Off"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "On"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe Mode",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Strobe Mode"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "O Pulse Mode"
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "C Pulse Mode"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 55,
+                            "label": "Rnd Mode"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 31,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 31,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 31,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 31,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 127,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 223,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 223,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 223,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 223,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 239,
+                            "end": 255,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 239,
+                            "end": 255,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 239,
+                            "end": 255,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 239,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 16384,
+                    "home": 16384,
+                    "invert": false,
+                    "name": "Color Mode",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Full Frame [Color Offset Off]"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "Full Frame [Color Offset Off,Clr Blink]"
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "Spin [Color Offset Off]"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 55,
+                            "label": "Spin [Color Offset Off]"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "Continuous [Color Offset Off]"
+                        },
+                        {
+                            "begin": 95,
+                            "default": 95,
+                            "end": 95,
+                            "label": "Full Frame [Color Scan]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 8,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 8,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 8,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 8,
+                            "label": "Color Shake"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 9,
+                            "default": 17,
+                            "end": 17,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 9,
+                            "default": 17,
+                            "end": 17,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 9,
+                            "default": 25,
+                            "end": 25,
+                            "label": "Red",
+                            "media": {
+                                "b": 3,
+                                "g": 53,
+                                "name": "Red",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 9,
+                            "default": 17,
+                            "end": 17,
+                            "label": "Color Shake"
+                        },
+                        {
+                            "begin": 18,
+                            "default": 26,
+                            "end": 26,
+                            "label": "(Red)",
+                            "media": {
+                                "b": 3,
+                                "g": 53,
+                                "name": "(Red)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 18,
+                            "default": 26,
+                            "end": 26,
+                            "label": "(Red)",
+                            "media": {
+                                "b": 3,
+                                "g": 53,
+                                "name": "(Red)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 18,
+                            "default": 26,
+                            "end": 26,
+                            "label": "(Red) [Color Shake]",
+                            "media": {
+                                "b": 3,
+                                "g": 53,
+                                "name": "(Red) [Color Shake]",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 26,
+                            "default": 42,
+                            "end": 42,
+                            "label": "Dark Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "Dark Blue",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 35,
+                            "end": 35,
+                            "label": "Red",
+                            "media": {
+                                "b": 3,
+                                "g": 53,
+                                "name": "Red",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 35,
+                            "end": 35,
+                            "label": "Red",
+                            "media": {
+                                "b": 3,
+                                "g": 53,
+                                "name": "Red",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 35,
+                            "end": 35,
+                            "label": "Red [Color Shake]",
+                            "media": {
+                                "b": 3,
+                                "g": 53,
+                                "name": "Red [Color Shake]",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 36,
+                            "default": 44,
+                            "end": 44,
+                            "label": "(Dark Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "(Dark Blue)",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 36,
+                            "default": 44,
+                            "end": 44,
+                            "label": "(Dark Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "(Dark Blue)",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 36,
+                            "default": 44,
+                            "end": 44,
+                            "label": "(Dark Blue) [Color Shake]",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "(Dark Blue) [Color Shake]",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 43,
+                            "default": 59,
+                            "end": 59,
+                            "label": "Orange",
+                            "media": {
+                                "b": 3,
+                                "g": 133,
+                                "name": "Orange",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 45,
+                            "default": 53,
+                            "end": 53,
+                            "label": "Dark Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "Dark Blue",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 45,
+                            "default": 53,
+                            "end": 53,
+                            "label": "Dark Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "Dark Blue",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 45,
+                            "default": 53,
+                            "end": 53,
+                            "label": "Dark Blue [Color Shake]",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "Dark Blue [Color Shake]",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 54,
+                            "default": 62,
+                            "end": 62,
+                            "label": "(Orange)",
+                            "media": {
+                                "b": 3,
+                                "g": 133,
+                                "name": "(Orange)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 54,
+                            "default": 62,
+                            "end": 62,
+                            "label": "(Orange)",
+                            "media": {
+                                "b": 3,
+                                "g": 133,
+                                "name": "(Orange)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 54,
+                            "default": 62,
+                            "end": 62,
+                            "label": "(Orange) [Color Shake]",
+                            "media": {
+                                "b": 3,
+                                "g": 133,
+                                "name": "(Orange) [Color Shake]",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 60,
+                            "default": 76,
+                            "end": 76,
+                            "label": "Green",
+                            "media": {
+                                "b": 78,
+                                "g": 255,
+                                "name": "Green",
+                                "r": 57,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 63,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Orange",
+                            "media": {
+                                "b": 3,
+                                "g": 133,
+                                "name": "Orange",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 63,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Orange",
+                            "media": {
+                                "b": 3,
+                                "g": 133,
+                                "name": "Orange",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 63,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Orange [Color Shake]",
+                            "media": {
+                                "b": 3,
+                                "g": 133,
+                                "name": "Orange [Color Shake]",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 80,
+                            "end": 80,
+                            "label": "(Green)",
+                            "media": {
+                                "b": 78,
+                                "g": 255,
+                                "name": "(Green)",
+                                "r": 57,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 80,
+                            "end": 80,
+                            "label": "(Green)",
+                            "media": {
+                                "b": 78,
+                                "g": 255,
+                                "name": "(Green)",
+                                "r": 57,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 80,
+                            "end": 80,
+                            "label": "(Green) [Color Shake]",
+                            "media": {
+                                "b": 78,
+                                "g": 255,
+                                "name": "(Green) [Color Shake]",
+                                "r": 57,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 77,
+                            "default": 93,
+                            "end": 93,
+                            "label": "Magenta",
+                            "media": {
+                                "b": 201,
+                                "g": 69,
+                                "name": "Magenta",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 81,
+                            "default": 89,
+                            "end": 89,
+                            "label": "Green",
+                            "media": {
+                                "b": 78,
+                                "g": 255,
+                                "name": "Green",
+                                "r": 57,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 81,
+                            "default": 89,
+                            "end": 89,
+                            "label": "Green",
+                            "media": {
+                                "b": 78,
+                                "g": 255,
+                                "name": "Green",
+                                "r": 57,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 81,
+                            "default": 89,
+                            "end": 89,
+                            "label": "Green [Color Shake]",
+                            "media": {
+                                "b": 78,
+                                "g": 255,
+                                "name": "Green [Color Shake]",
+                                "r": 57,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 90,
+                            "default": 98,
+                            "end": 98,
+                            "label": "(Magenta)",
+                            "media": {
+                                "b": 201,
+                                "g": 69,
+                                "name": "(Magenta)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 90,
+                            "default": 98,
+                            "end": 98,
+                            "label": "(Magenta)",
+                            "media": {
+                                "b": 201,
+                                "g": 69,
+                                "name": "(Magenta)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 90,
+                            "default": 98,
+                            "end": 98,
+                            "label": "(Magenta) [Color Shake]",
+                            "media": {
+                                "b": 201,
+                                "g": 69,
+                                "name": "(Magenta) [Color Shake]",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 94,
+                            "default": 110,
+                            "end": 110,
+                            "label": "UV",
+                            "media": {
+                                "b": 199,
+                                "g": 20,
+                                "name": "UV",
+                                "r": 101,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 99,
+                            "default": 107,
+                            "end": 107,
+                            "label": "Magenta",
+                            "media": {
+                                "b": 201,
+                                "g": 69,
+                                "name": "Magenta",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 99,
+                            "default": 107,
+                            "end": 107,
+                            "label": "Magenta",
+                            "media": {
+                                "b": 201,
+                                "g": 69,
+                                "name": "Magenta",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 99,
+                            "default": 107,
+                            "end": 107,
+                            "label": "Magenta [Color Shake]",
+                            "media": {
+                                "b": 201,
+                                "g": 69,
+                                "name": "Magenta [Color Shake]",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 108,
+                            "default": 116,
+                            "end": 116,
+                            "label": "(UV)",
+                            "media": {
+                                "b": 199,
+                                "g": 20,
+                                "name": "(UV)",
+                                "r": 101,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 108,
+                            "default": 116,
+                            "end": 116,
+                            "label": "(UV)",
+                            "media": {
+                                "b": 199,
+                                "g": 20,
+                                "name": "(UV)",
+                                "r": 101,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 108,
+                            "default": 116,
+                            "end": 116,
+                            "label": "(UV) [Color Shake]",
+                            "media": {
+                                "b": 199,
+                                "g": 20,
+                                "name": "(UV) [Color Shake]",
+                                "r": 101,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 111,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Grass Green",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Grass Green",
+                                "r": 168,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 117,
+                            "default": 125,
+                            "end": 125,
+                            "label": "UV",
+                            "media": {
+                                "b": 199,
+                                "g": 20,
+                                "name": "UV",
+                                "r": 101,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 117,
+                            "default": 125,
+                            "end": 125,
+                            "label": "UV",
+                            "media": {
+                                "b": 199,
+                                "g": 20,
+                                "name": "UV",
+                                "r": 101,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 117,
+                            "default": 125,
+                            "end": 125,
+                            "label": "UV [Color Shake]",
+                            "media": {
+                                "b": 199,
+                                "g": 20,
+                                "name": "UV [Color Shake]",
+                                "r": 101,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 126,
+                            "default": 134,
+                            "end": 134,
+                            "label": "(Grass Green)",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "(Grass Green)",
+                                "r": 168,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 126,
+                            "default": 134,
+                            "end": 134,
+                            "label": "(Grass Green)",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "(Grass Green)",
+                                "r": 168,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 126,
+                            "default": 134,
+                            "end": 134,
+                            "label": "(Grass Green) [Color Shake]",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "(Grass Green) [Color Shake]",
+                                "r": 168,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 144,
+                            "end": 144,
+                            "label": "Red Purple",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "Red Purple",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 135,
+                            "default": 143,
+                            "end": 143,
+                            "label": "Grass Green",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Grass Green",
+                                "r": 168,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 135,
+                            "default": 143,
+                            "end": 143,
+                            "label": "Grass Green",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Grass Green",
+                                "r": 168,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 135,
+                            "default": 143,
+                            "end": 143,
+                            "label": "Grass Green [Color Shake]",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Grass Green [Color Shake]",
+                                "r": 168,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 144,
+                            "default": 152,
+                            "end": 152,
+                            "label": "(Red Purple)",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "(Red Purple)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 144,
+                            "default": 152,
+                            "end": 152,
+                            "label": "(Red Purple)",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "(Red Purple)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 144,
+                            "default": 152,
+                            "end": 152,
+                            "label": "(Red Purple) [Color Shake]",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "(Red Purple) [Color Shake]",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 145,
+                            "default": 161,
+                            "end": 161,
+                            "label": "Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 242,
+                                "name": "Blue",
+                                "r": 113,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 153,
+                            "default": 161,
+                            "end": 161,
+                            "label": "Red Purple",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "Red Purple",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 153,
+                            "default": 161,
+                            "end": 161,
+                            "label": "Red Purple",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "Red Purple",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 153,
+                            "default": 161,
+                            "end": 161,
+                            "label": "Red Purple [Color Shake]",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "Red Purple [Color Shake]",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 162,
+                            "default": 170,
+                            "end": 170,
+                            "label": "(Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 242,
+                                "name": "(Blue)",
+                                "r": 113,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 162,
+                            "default": 170,
+                            "end": 170,
+                            "label": "(Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 242,
+                                "name": "(Blue)",
+                                "r": 113,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 162,
+                            "default": 178,
+                            "end": 178,
+                            "label": "Brown",
+                            "media": {
+                                "b": 4,
+                                "g": 235,
+                                "name": "Brown",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 162,
+                            "default": 170,
+                            "end": 170,
+                            "label": "(Blue) [Color Shake]",
+                            "media": {
+                                "b": 255,
+                                "g": 242,
+                                "name": "(Blue) [Color Shake]",
+                                "r": 113,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 171,
+                            "default": 179,
+                            "end": 179,
+                            "label": "Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 242,
+                                "name": "Blue",
+                                "r": 113,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 171,
+                            "default": 179,
+                            "end": 179,
+                            "label": "Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 242,
+                                "name": "Blue",
+                                "r": 113,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 171,
+                            "default": 179,
+                            "end": 179,
+                            "label": "Blue [Color Shake]",
+                            "media": {
+                                "b": 255,
+                                "g": 242,
+                                "name": "Blue [Color Shake]",
+                                "r": 113,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 179,
+                            "default": 195,
+                            "end": 195,
+                            "label": "Purple",
+                            "media": {
+                                "b": 172,
+                                "g": 10,
+                                "name": "Purple",
+                                "r": 158,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 180,
+                            "default": 188,
+                            "end": 188,
+                            "label": "(Brown)",
+                            "media": {
+                                "b": 4,
+                                "g": 235,
+                                "name": "(Brown)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 180,
+                            "default": 188,
+                            "end": 188,
+                            "label": "(Brown)",
+                            "media": {
+                                "b": 4,
+                                "g": 235,
+                                "name": "(Brown)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 180,
+                            "default": 188,
+                            "end": 188,
+                            "label": "(Brown) [Color Shake]",
+                            "media": {
+                                "b": 4,
+                                "g": 235,
+                                "name": "(Brown) [Color Shake]",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 189,
+                            "default": 197,
+                            "end": 197,
+                            "label": "Brown",
+                            "media": {
+                                "b": 4,
+                                "g": 235,
+                                "name": "Brown",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 189,
+                            "default": 197,
+                            "end": 197,
+                            "label": "Brown",
+                            "media": {
+                                "b": 4,
+                                "g": 235,
+                                "name": "Brown",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 189,
+                            "default": 197,
+                            "end": 197,
+                            "label": "Brown [Color Shake]",
+                            "media": {
+                                "b": 4,
+                                "g": 235,
+                                "name": "Brown [Color Shake]",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 196,
+                            "default": 212,
+                            "end": 212,
+                            "label": "Yellow",
+                            "media": {
+                                "b": 8,
+                                "g": 255,
+                                "name": "Yellow",
+                                "r": 235,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 198,
+                            "default": 206,
+                            "end": 206,
+                            "label": "(Purple)",
+                            "media": {
+                                "b": 172,
+                                "g": 10,
+                                "name": "(Purple)",
+                                "r": 158,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 198,
+                            "default": 206,
+                            "end": 206,
+                            "label": "(Purple)",
+                            "media": {
+                                "b": 172,
+                                "g": 10,
+                                "name": "(Purple)",
+                                "r": 158,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 198,
+                            "default": 206,
+                            "end": 206,
+                            "label": "(Purple) [Color Shake]",
+                            "media": {
+                                "b": 172,
+                                "g": 10,
+                                "name": "(Purple) [Color Shake]",
+                                "r": 158,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 207,
+                            "default": 215,
+                            "end": 215,
+                            "label": "Purple",
+                            "media": {
+                                "b": 172,
+                                "g": 10,
+                                "name": "Purple",
+                                "r": 158,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 207,
+                            "default": 215,
+                            "end": 215,
+                            "label": "Purple",
+                            "media": {
+                                "b": 172,
+                                "g": 10,
+                                "name": "Purple",
+                                "r": 158,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 207,
+                            "default": 215,
+                            "end": 215,
+                            "label": "Purple [Color Shake]",
+                            "media": {
+                                "b": 172,
+                                "g": 10,
+                                "name": "Purple [Color Shake]",
+                                "r": 158,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 213,
+                            "default": 229,
+                            "end": 229,
+                            "label": "CTB",
+                            "media": {
+                                "b": 255,
+                                "g": 222,
+                                "name": "CTB",
+                                "r": 170,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 216,
+                            "default": 224,
+                            "end": 224,
+                            "label": "(Yellow)",
+                            "media": {
+                                "b": 8,
+                                "g": 255,
+                                "name": "(Yellow)",
+                                "r": 235,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 216,
+                            "default": 224,
+                            "end": 224,
+                            "label": "(Yellow)",
+                            "media": {
+                                "b": 8,
+                                "g": 255,
+                                "name": "(Yellow)",
+                                "r": 235,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 216,
+                            "default": 224,
+                            "end": 224,
+                            "label": "(Yellow) [Color Shake]",
+                            "media": {
+                                "b": 8,
+                                "g": 255,
+                                "name": "(Yellow) [Color Shake]",
+                                "r": 235,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 225,
+                            "default": 233,
+                            "end": 233,
+                            "label": "Yellow",
+                            "media": {
+                                "b": 8,
+                                "g": 255,
+                                "name": "Yellow",
+                                "r": 235,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 225,
+                            "default": 233,
+                            "end": 233,
+                            "label": "Yellow",
+                            "media": {
+                                "b": 8,
+                                "g": 255,
+                                "name": "Yellow",
+                                "r": 235,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 225,
+                            "default": 233,
+                            "end": 233,
+                            "label": "Yellow [Color Shake]",
+                            "media": {
+                                "b": 8,
+                                "g": 255,
+                                "name": "Yellow [Color Shake]",
+                                "r": 235,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 230,
+                            "default": 246,
+                            "end": 246,
+                            "label": "Tan",
+                            "media": {
+                                "b": 108,
+                                "g": 250,
+                                "name": "Tan",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 234,
+                            "default": 242,
+                            "end": 242,
+                            "label": "(CTB)",
+                            "media": {
+                                "b": 255,
+                                "g": 222,
+                                "name": "(CTB)",
+                                "r": 170,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 234,
+                            "default": 242,
+                            "end": 242,
+                            "label": "(CTB)",
+                            "media": {
+                                "b": 255,
+                                "g": 222,
+                                "name": "(CTB)",
+                                "r": 170,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 234,
+                            "default": 242,
+                            "end": 242,
+                            "label": "(CTB) [Color Shake]",
+                            "media": {
+                                "b": 255,
+                                "g": 222,
+                                "name": "(CTB) [Color Shake]",
+                                "r": 170,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 243,
+                            "default": 251,
+                            "end": 251,
+                            "label": "CTB",
+                            "media": {
+                                "b": 255,
+                                "g": 222,
+                                "name": "CTB",
+                                "r": 170,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 243,
+                            "default": 251,
+                            "end": 251,
+                            "label": "CTB",
+                            "media": {
+                                "b": 255,
+                                "g": 222,
+                                "name": "CTB",
+                                "r": 170,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 243,
+                            "default": 251,
+                            "end": 251,
+                            "label": "CTB [Color Shake]",
+                            "media": {
+                                "b": 255,
+                                "g": 222,
+                                "name": "CTB [Color Shake]",
+                                "r": 170,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 247,
+                            "default": 251,
+                            "end": 255,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 252,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(Tan)",
+                            "media": {
+                                "b": 108,
+                                "g": 250,
+                                "name": "(Tan)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 252,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(Tan)",
+                            "media": {
+                                "b": 108,
+                                "g": 250,
+                                "name": "(Tan)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 252,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(Tan) [Color Shake]",
+                            "media": {
+                                "b": 108,
+                                "g": 250,
+                                "name": "(Tan) [Color Shake]",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo mode",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Full Frame"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 23,
+                            "end": 23,
+                            "label": "Full Frame [Gobo Blink]"
+                        },
+                        {
+                            "begin": 39,
+                            "default": 39,
+                            "end": 39,
+                            "label": "Gobo Mode Spin"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 55,
+                            "label": "Gobo Mode Spin"
+                        },
+                        {
+                            "begin": 71,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Gobo mode"
+                        },
+                        {
+                            "begin": 87,
+                            "default": 87,
+                            "end": 87,
+                            "label": "Gobo mode [Shk]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 13,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 13,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 13,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 13,
+                            "label": "(Open) [S]",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open) [S]"
+                            }
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 27,
+                            "end": 27,
+                            "label": "(68)",
+                            "media": {
+                                "dcid": "3B3EC079-E01F-DF4B-A8E6-E1F9C3BDFC5F",
+                                "name": "(68)"
+                            }
+                        },
+                        {
+                            "begin": 14,
+                            "default": 27,
+                            "end": 27,
+                            "label": "(68)",
+                            "media": {
+                                "dcid": "3B3EC079-E01F-DF4B-A8E6-E1F9C3BDFC5F",
+                                "name": "(68)"
+                            }
+                        },
+                        {
+                            "begin": 14,
+                            "default": 27,
+                            "end": 27,
+                            "label": "68",
+                            "media": {
+                                "dcid": "3B3EC079-E01F-DF4B-A8E6-E1F9C3BDFC5F",
+                                "name": "68"
+                            }
+                        },
+                        {
+                            "begin": 14,
+                            "default": 27,
+                            "end": 27,
+                            "label": "(68) [S]",
+                            "media": {
+                                "dcid": "3B3EC079-E01F-DF4B-A8E6-E1F9C3BDFC5F",
+                                "name": "(68) [S]"
+                            }
+                        },
+                        {
+                            "begin": 28,
+                            "default": 41,
+                            "end": 41,
+                            "label": "(69)",
+                            "media": {
+                                "dcid": "E6BC3B53-5AEC-AA4E-89B7-0416CF49AC1E",
+                                "name": "(69)"
+                            }
+                        },
+                        {
+                            "begin": 28,
+                            "default": 41,
+                            "end": 41,
+                            "label": "(69)",
+                            "media": {
+                                "dcid": "E6BC3B53-5AEC-AA4E-89B7-0416CF49AC1E",
+                                "name": "(69)"
+                            }
+                        },
+                        {
+                            "begin": 28,
+                            "default": 41,
+                            "end": 41,
+                            "label": "69",
+                            "media": {
+                                "dcid": "E6BC3B53-5AEC-AA4E-89B7-0416CF49AC1E",
+                                "name": "69"
+                            }
+                        },
+                        {
+                            "begin": 28,
+                            "default": 41,
+                            "end": 41,
+                            "label": "(69) [S]",
+                            "media": {
+                                "dcid": "E6BC3B53-5AEC-AA4E-89B7-0416CF49AC1E",
+                                "name": "(69) [S]"
+                            }
+                        },
+                        {
+                            "begin": 42,
+                            "default": 55,
+                            "end": 55,
+                            "label": "(26)",
+                            "media": {
+                                "dcid": "1E80415D-7ACC-3348-9DD3-D44E19949DE9",
+                                "name": "(26)"
+                            }
+                        },
+                        {
+                            "begin": 42,
+                            "default": 55,
+                            "end": 55,
+                            "label": "(26)",
+                            "media": {
+                                "dcid": "1E80415D-7ACC-3348-9DD3-D44E19949DE9",
+                                "name": "(26)"
+                            }
+                        },
+                        {
+                            "begin": 42,
+                            "default": 55,
+                            "end": 55,
+                            "label": "26",
+                            "media": {
+                                "dcid": "1E80415D-7ACC-3348-9DD3-D44E19949DE9",
+                                "name": "26"
+                            }
+                        },
+                        {
+                            "begin": 42,
+                            "default": 55,
+                            "end": 55,
+                            "label": "(26) [S]",
+                            "media": {
+                                "dcid": "1E80415D-7ACC-3348-9DD3-D44E19949DE9",
+                                "name": "(26) [S]"
+                            }
+                        },
+                        {
+                            "begin": 56,
+                            "default": 69,
+                            "end": 69,
+                            "label": "(50)",
+                            "media": {
+                                "dcid": "BF97C0AE-7160-A749-9B4D-5471CA098F86",
+                                "name": "(50)"
+                            }
+                        },
+                        {
+                            "begin": 56,
+                            "default": 69,
+                            "end": 69,
+                            "label": "(50)",
+                            "media": {
+                                "dcid": "BF97C0AE-7160-A749-9B4D-5471CA098F86",
+                                "name": "(50)"
+                            }
+                        },
+                        {
+                            "begin": 56,
+                            "default": 69,
+                            "end": 69,
+                            "label": "50",
+                            "media": {
+                                "dcid": "BF97C0AE-7160-A749-9B4D-5471CA098F86",
+                                "name": "50"
+                            }
+                        },
+                        {
+                            "begin": 56,
+                            "default": 69,
+                            "end": 69,
+                            "label": "(50) [S]",
+                            "media": {
+                                "dcid": "BF97C0AE-7160-A749-9B4D-5471CA098F86",
+                                "name": "(50) [S]"
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 83,
+                            "end": 83,
+                            "label": "(27)",
+                            "media": {
+                                "dcid": "D7CEBA77-EF6D-A04A-AF1C-772C6C19464F",
+                                "name": "(27)"
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 83,
+                            "end": 83,
+                            "label": "(27)",
+                            "media": {
+                                "dcid": "D7CEBA77-EF6D-A04A-AF1C-772C6C19464F",
+                                "name": "(27)"
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 83,
+                            "end": 83,
+                            "label": "27",
+                            "media": {
+                                "dcid": "D7CEBA77-EF6D-A04A-AF1C-772C6C19464F",
+                                "name": "27"
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 83,
+                            "end": 83,
+                            "label": "(27) [S]",
+                            "media": {
+                                "dcid": "D7CEBA77-EF6D-A04A-AF1C-772C6C19464F",
+                                "name": "(27) [S]"
+                            }
+                        },
+                        {
+                            "begin": 84,
+                            "default": 97,
+                            "end": 97,
+                            "label": "(70)",
+                            "media": {
+                                "dcid": "66C0EC77-72E9-E24B-A3DD-3D0A4FCB60F8",
+                                "name": "(70)"
+                            }
+                        },
+                        {
+                            "begin": 84,
+                            "default": 97,
+                            "end": 97,
+                            "label": "(70)",
+                            "media": {
+                                "dcid": "66C0EC77-72E9-E24B-A3DD-3D0A4FCB60F8",
+                                "name": "(70)"
+                            }
+                        },
+                        {
+                            "begin": 84,
+                            "default": 97,
+                            "end": 97,
+                            "label": "70",
+                            "media": {
+                                "dcid": "66C0EC77-72E9-E24B-A3DD-3D0A4FCB60F8",
+                                "name": "70"
+                            }
+                        },
+                        {
+                            "begin": 84,
+                            "default": 97,
+                            "end": 97,
+                            "label": "(70) [S]",
+                            "media": {
+                                "dcid": "66C0EC77-72E9-E24B-A3DD-3D0A4FCB60F8",
+                                "name": "(70) [S]"
+                            }
+                        },
+                        {
+                            "begin": 98,
+                            "default": 111,
+                            "end": 111,
+                            "label": "(71)",
+                            "media": {
+                                "dcid": "AE6A3502-E689-1744-A357-545A5065487E",
+                                "name": "(71)"
+                            }
+                        },
+                        {
+                            "begin": 98,
+                            "default": 111,
+                            "end": 111,
+                            "label": "(71)",
+                            "media": {
+                                "dcid": "AE6A3502-E689-1744-A357-545A5065487E",
+                                "name": "(71)"
+                            }
+                        },
+                        {
+                            "begin": 98,
+                            "default": 111,
+                            "end": 111,
+                            "label": "71",
+                            "media": {
+                                "dcid": "AE6A3502-E689-1744-A357-545A5065487E",
+                                "name": "71"
+                            }
+                        },
+                        {
+                            "begin": 98,
+                            "default": 111,
+                            "end": 111,
+                            "label": "(71) [S]",
+                            "media": {
+                                "dcid": "AE6A3502-E689-1744-A357-545A5065487E",
+                                "name": "(71) [S]"
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 125,
+                            "end": 125,
+                            "label": "(72)",
+                            "media": {
+                                "dcid": "799C90DE-C61E-3D47-9199-A5B32024DC9D",
+                                "name": "(72)"
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 125,
+                            "end": 125,
+                            "label": "(72)",
+                            "media": {
+                                "dcid": "799C90DE-C61E-3D47-9199-A5B32024DC9D",
+                                "name": "(72)"
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 125,
+                            "end": 125,
+                            "label": "72",
+                            "media": {
+                                "dcid": "799C90DE-C61E-3D47-9199-A5B32024DC9D",
+                                "name": "72"
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 125,
+                            "end": 125,
+                            "label": "(72) [S]",
+                            "media": {
+                                "dcid": "799C90DE-C61E-3D47-9199-A5B32024DC9D",
+                                "name": "(72) [S]"
+                            }
+                        },
+                        {
+                            "begin": 126,
+                            "default": 139,
+                            "end": 139,
+                            "label": "(73)",
+                            "media": {
+                                "dcid": "38AD541F-A75E-0E44-AF03-E777B143F457",
+                                "name": "(73)"
+                            }
+                        },
+                        {
+                            "begin": 126,
+                            "default": 139,
+                            "end": 139,
+                            "label": "(73)",
+                            "media": {
+                                "dcid": "38AD541F-A75E-0E44-AF03-E777B143F457",
+                                "name": "(73)"
+                            }
+                        },
+                        {
+                            "begin": 126,
+                            "default": 139,
+                            "end": 139,
+                            "label": "73",
+                            "media": {
+                                "dcid": "38AD541F-A75E-0E44-AF03-E777B143F457",
+                                "name": "73"
+                            }
+                        },
+                        {
+                            "begin": 126,
+                            "default": 139,
+                            "end": 139,
+                            "label": "(73) [S]",
+                            "media": {
+                                "dcid": "38AD541F-A75E-0E44-AF03-E777B143F457",
+                                "name": "(73) [S]"
+                            }
+                        },
+                        {
+                            "begin": 140,
+                            "default": 153,
+                            "end": 153,
+                            "label": "(74)",
+                            "media": {
+                                "dcid": "2A0D4D79-884D-954F-9927-1ED0FD7BFB05",
+                                "name": "(74)"
+                            }
+                        },
+                        {
+                            "begin": 140,
+                            "default": 153,
+                            "end": 153,
+                            "label": "(74)",
+                            "media": {
+                                "dcid": "2A0D4D79-884D-954F-9927-1ED0FD7BFB05",
+                                "name": "(74)"
+                            }
+                        },
+                        {
+                            "begin": 140,
+                            "default": 153,
+                            "end": 153,
+                            "label": "74",
+                            "media": {
+                                "dcid": "2A0D4D79-884D-954F-9927-1ED0FD7BFB05",
+                                "name": "74"
+                            }
+                        },
+                        {
+                            "begin": 140,
+                            "default": 153,
+                            "end": 153,
+                            "label": "(74) [S]",
+                            "media": {
+                                "dcid": "2A0D4D79-884D-954F-9927-1ED0FD7BFB05",
+                                "name": "(74) [S]"
+                            }
+                        },
+                        {
+                            "begin": 154,
+                            "default": 167,
+                            "end": 167,
+                            "label": "(61)",
+                            "media": {
+                                "dcid": "E07B6C49-AC5C-5D41-921F-3A56CB880730",
+                                "name": "(61)"
+                            }
+                        },
+                        {
+                            "begin": 154,
+                            "default": 167,
+                            "end": 167,
+                            "label": "(61)",
+                            "media": {
+                                "dcid": "E07B6C49-AC5C-5D41-921F-3A56CB880730",
+                                "name": "(61)"
+                            }
+                        },
+                        {
+                            "begin": 154,
+                            "default": 167,
+                            "end": 167,
+                            "label": "61",
+                            "media": {
+                                "dcid": "E07B6C49-AC5C-5D41-921F-3A56CB880730",
+                                "name": "61"
+                            }
+                        },
+                        {
+                            "begin": 154,
+                            "default": 167,
+                            "end": 167,
+                            "label": "(61) [S]",
+                            "media": {
+                                "dcid": "E07B6C49-AC5C-5D41-921F-3A56CB880730",
+                                "name": "(61) [S]"
+                            }
+                        },
+                        {
+                            "begin": 168,
+                            "default": 181,
+                            "end": 181,
+                            "label": "(75)",
+                            "media": {
+                                "dcid": "4A6C4EAA-2C99-8343-B2FD-3AA259DAD3E6",
+                                "name": "(75)"
+                            }
+                        },
+                        {
+                            "begin": 168,
+                            "default": 181,
+                            "end": 181,
+                            "label": "(75)",
+                            "media": {
+                                "dcid": "4A6C4EAA-2C99-8343-B2FD-3AA259DAD3E6",
+                                "name": "(75)"
+                            }
+                        },
+                        {
+                            "begin": 168,
+                            "default": 181,
+                            "end": 181,
+                            "label": "75",
+                            "media": {
+                                "dcid": "4A6C4EAA-2C99-8343-B2FD-3AA259DAD3E6",
+                                "name": "75"
+                            }
+                        },
+                        {
+                            "begin": 168,
+                            "default": 181,
+                            "end": 181,
+                            "label": "(75) [S]",
+                            "media": {
+                                "dcid": "4A6C4EAA-2C99-8343-B2FD-3AA259DAD3E6",
+                                "name": "(75) [S]"
+                            }
+                        },
+                        {
+                            "begin": 182,
+                            "default": 195,
+                            "end": 195,
+                            "label": "(18)",
+                            "media": {
+                                "dcid": "39133F5B-E2CC-5A4B-8CE6-8E5B60BA81EC",
+                                "name": "(18)"
+                            }
+                        },
+                        {
+                            "begin": 182,
+                            "default": 195,
+                            "end": 195,
+                            "label": "(18)",
+                            "media": {
+                                "dcid": "39133F5B-E2CC-5A4B-8CE6-8E5B60BA81EC",
+                                "name": "(18)"
+                            }
+                        },
+                        {
+                            "begin": 182,
+                            "default": 195,
+                            "end": 195,
+                            "label": "18",
+                            "media": {
+                                "dcid": "39133F5B-E2CC-5A4B-8CE6-8E5B60BA81EC",
+                                "name": "18"
+                            }
+                        },
+                        {
+                            "begin": 182,
+                            "default": 195,
+                            "end": 195,
+                            "label": "(18) [S]",
+                            "media": {
+                                "dcid": "39133F5B-E2CC-5A4B-8CE6-8E5B60BA81EC",
+                                "name": "(18) [S]"
+                            }
+                        },
+                        {
+                            "begin": 196,
+                            "default": 209,
+                            "end": 209,
+                            "label": "(05)",
+                            "media": {
+                                "dcid": "F2A0BDC4-704E-7443-9695-3253B4525EC1",
+                                "name": "(05)"
+                            }
+                        },
+                        {
+                            "begin": 196,
+                            "default": 209,
+                            "end": 209,
+                            "label": "(05)",
+                            "media": {
+                                "dcid": "F2A0BDC4-704E-7443-9695-3253B4525EC1",
+                                "name": "(05)"
+                            }
+                        },
+                        {
+                            "begin": 196,
+                            "default": 209,
+                            "end": 209,
+                            "label": "05",
+                            "media": {
+                                "dcid": "F2A0BDC4-704E-7443-9695-3253B4525EC1",
+                                "name": "05"
+                            }
+                        },
+                        {
+                            "begin": 196,
+                            "default": 209,
+                            "end": 209,
+                            "label": "(05) [S]",
+                            "media": {
+                                "dcid": "F2A0BDC4-704E-7443-9695-3253B4525EC1",
+                                "name": "(05) [S]"
+                            }
+                        },
+                        {
+                            "begin": 210,
+                            "default": 223,
+                            "end": 223,
+                            "label": "(63)",
+                            "media": {
+                                "dcid": "80431D76-431A-4140-8298-A852F3B2EF48",
+                                "name": "(63)"
+                            }
+                        },
+                        {
+                            "begin": 210,
+                            "default": 223,
+                            "end": 223,
+                            "label": "(63)",
+                            "media": {
+                                "dcid": "80431D76-431A-4140-8298-A852F3B2EF48",
+                                "name": "(63)"
+                            }
+                        },
+                        {
+                            "begin": 210,
+                            "default": 223,
+                            "end": 223,
+                            "label": "63",
+                            "media": {
+                                "dcid": "80431D76-431A-4140-8298-A852F3B2EF48",
+                                "name": "63"
+                            }
+                        },
+                        {
+                            "begin": 210,
+                            "default": 223,
+                            "end": 223,
+                            "label": "(63) [S]",
+                            "media": {
+                                "dcid": "80431D76-431A-4140-8298-A852F3B2EF48",
+                                "name": "(63) [S]"
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 237,
+                            "end": 237,
+                            "label": "(76)",
+                            "media": {
+                                "dcid": "484C77D0-77DE-A441-8ECD-7B8B875B58A5",
+                                "name": "(76)"
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 237,
+                            "end": 237,
+                            "label": "(76)",
+                            "media": {
+                                "dcid": "484C77D0-77DE-A441-8ECD-7B8B875B58A5",
+                                "name": "(76)"
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 237,
+                            "end": 237,
+                            "label": "76",
+                            "media": {
+                                "dcid": "484C77D0-77DE-A441-8ECD-7B8B875B58A5",
+                                "name": "76"
+                            }
+                        },
+                        {
+                            "begin": 224,
+                            "default": 237,
+                            "end": 237,
+                            "label": "(76) [S]",
+                            "media": {
+                                "dcid": "484C77D0-77DE-A441-8ECD-7B8B875B58A5",
+                                "name": "(76) [S]"
+                            }
+                        },
+                        {
+                            "begin": 238,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(65)",
+                            "media": {
+                                "dcid": "5B1A83B2-3A71-4C43-8606-2620C4B86FB4",
+                                "name": "(65)"
+                            }
+                        },
+                        {
+                            "begin": 238,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(65)",
+                            "media": {
+                                "dcid": "5B1A83B2-3A71-4C43-8606-2620C4B86FB4",
+                                "name": "(65)"
+                            }
+                        },
+                        {
+                            "begin": 238,
+                            "default": 255,
+                            "end": 255,
+                            "label": "65",
+                            "media": {
+                                "dcid": "5B1A83B2-3A71-4C43-8606-2620C4B86FB4",
+                                "name": "65"
+                            }
+                        },
+                        {
+                            "begin": 238,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(65) [S]",
+                            "media": {
+                                "dcid": "5B1A83B2-3A71-4C43-8606-2620C4B86FB4",
+                                "name": "(65) [S]"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 95,
+                            "default": 95,
+                            "end": 95,
+                            "label": "(8 Prism)",
+                            "media": {
+                                "dcid": "9B1E5889-82BE-794C-B45B-05B19EE25B36",
+                                "name": "(8 Prism)"
+                            }
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "(6 Prism)",
+                            "media": {
+                                "dcid": "0E8F44CB-819F-8741-B51F-4FF680698B9B",
+                                "name": "(6 Prism)"
+                            }
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 223,
+                            "label": "(Frost)",
+                            "media": {
+                                "dcid": "41038EA5-E1DE-1649-8D5C-2C5D6E6A439A",
+                                "name": "(Frost)"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 223,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "Color Reset"
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "Gobo Reset"
+                        },
+                        {
+                            "begin": 43,
+                            "default": 43,
+                            "end": 43,
+                            "label": "Shutter Reset"
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "FX Reset [Focus & Int Reset]"
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "Display Off"
+                        },
+                        {
+                            "begin": 67,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Display On"
+                        },
+                        {
+                            "begin": 91,
+                            "default": 91,
+                            "end": 91,
+                            "label": "Sleep"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 16,
+                            "subkey": 11
+                        },
+                        {
+                            "step": 7,
+                            "key": 16,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 16,
+                            "subkey": 75
+                        },
+                        {
+                            "step": 7,
+                            "key": 16,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 16,
+                            "subkey": 83
+                        },
+                        {
+                            "step": 7,
+                            "key": 16,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

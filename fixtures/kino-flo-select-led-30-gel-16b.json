@@ -1,0 +1,944 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "B5B6B476-429C-4061-9E0B-6601B928003B",
+            "deviceID": 51970937,
+            "manufacturerID": 19270,
+            "hasIntensity": true,
+            "manufacturerName": "Kino Flo",
+            "maxOffset": 6,
+            "modeName": "Gel 16b",
+            "modelName": "Select LED 30",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "type": 1,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Temp",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 2,
+                            "label": "2500K"
+                        },
+                        {
+                            "begin": 3,
+                            "default": 3,
+                            "end": 5,
+                            "label": "2600K"
+                        },
+                        {
+                            "begin": 6,
+                            "default": 6,
+                            "end": 9,
+                            "label": "2700K"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 16,
+                            "label": "2800K"
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 23,
+                            "label": "3000K"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 28,
+                            "label": "3200K"
+                        },
+                        {
+                            "begin": 29,
+                            "default": 29,
+                            "end": 36,
+                            "label": "3350K"
+                        },
+                        {
+                            "begin": 37,
+                            "default": 37,
+                            "end": 50,
+                            "label": "3600K"
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 67,
+                            "label": "4000K"
+                        },
+                        {
+                            "begin": 68,
+                            "default": 68,
+                            "end": 85,
+                            "label": "4500K"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 86,
+                            "end": 105,
+                            "label": "5000K"
+                        },
+                        {
+                            "begin": 106,
+                            "default": 106,
+                            "end": 119,
+                            "label": "5600K"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 120,
+                            "end": 136,
+                            "label": "6000K"
+                        },
+                        {
+                            "begin": 137,
+                            "default": 137,
+                            "end": 154,
+                            "label": "6500K"
+                        },
+                        {
+                            "begin": 155,
+                            "default": 155,
+                            "end": 188,
+                            "label": "7000K"
+                        },
+                        {
+                            "begin": 189,
+                            "default": 189,
+                            "end": 222,
+                            "label": "8000K"
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 255,
+                            "label": "9000K"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 32512,
+                    "invert": false,
+                    "name": "Tint",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Gels enabled"
+                        },
+                        {
+                            "begin": 7,
+                            "default": 7,
+                            "end": 7,
+                            "label": "Gels disabled"
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "Gels disabled"
+                        },
+                        {
+                            "begin": 23,
+                            "default": 72,
+                            "end": 121,
+                            "label": "Gels disabled [Mag]"
+                        },
+                        {
+                            "begin": 127,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Gels disabled"
+                        },
+                        {
+                            "begin": 134,
+                            "default": 134,
+                            "end": 232,
+                            "label": "Gels disabled [Grn]"
+                        },
+                        {
+                            "begin": 238,
+                            "default": 238,
+                            "end": 238,
+                            "label": "Gels disabled"
+                        },
+                        {
+                            "begin": 249,
+                            "default": 249,
+                            "end": 249,
+                            "label": "Gels disabled"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gel",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 2,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 3,
+                            "default": 3,
+                            "end": 3,
+                            "label": "Flesh pink [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 4,
+                            "default": 4,
+                            "end": 5,
+                            "label": "KF candle flame [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 6,
+                            "default": 6,
+                            "end": 7,
+                            "label": "KF warm white [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 8,
+                            "default": 8,
+                            "end": 9,
+                            "label": "KF cool white [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 11,
+                            "label": "KF sodium vpr [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 12,
+                            "default": 12,
+                            "end": 13,
+                            "label": "KF mercury vpr [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 15,
+                            "label": "KF 20k blue sky [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 17,
+                            "label": "KF green screen [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 19,
+                            "label": "KF blue screen [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 20,
+                            "default": 20,
+                            "end": 21,
+                            "label": "Smokey pink [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 23,
+                            "label": "Dark magenta [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 25,
+                            "label": "Bright rose [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 26,
+                            "default": 26,
+                            "end": 27,
+                            "label": "Pale salmon [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 28,
+                            "default": 28,
+                            "end": 29,
+                            "label": "Light rose [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 31,
+                            "label": "Light salmon [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 33,
+                            "label": "Magenta [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 35,
+                            "label": "Pink [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 36,
+                            "default": 36,
+                            "end": 37,
+                            "label": "Rosy amber [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 38,
+                            "default": 38,
+                            "end": 39,
+                            "label": "Pale red [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 40,
+                            "default": 40,
+                            "end": 41,
+                            "label": "Scarlet [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 42,
+                            "default": 42,
+                            "end": 43,
+                            "label": "Loving amber [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 45,
+                            "label": "Pale rose [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 46,
+                            "default": 46,
+                            "end": 47,
+                            "label": "Medium red [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 48,
+                            "default": 48,
+                            "end": 49,
+                            "label": "Gold tint [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 51,
+                            "label": "M bastard amber [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 52,
+                            "default": 52,
+                            "end": 53,
+                            "label": "Bright red [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 55,
+                            "label": "Flame red [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 56,
+                            "default": 56,
+                            "end": 57,
+                            "label": "Primary red [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 58,
+                            "default": 58,
+                            "end": 59,
+                            "label": "Light red [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 60,
+                            "default": 60,
+                            "end": 61,
+                            "label": "Dark salmon [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 62,
+                            "default": 62,
+                            "end": 63,
+                            "label": "Fire [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 65,
+                            "label": "Sunset red [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 66,
+                            "default": 66,
+                            "end": 67,
+                            "label": "Pale gold [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 68,
+                            "default": 68,
+                            "end": 69,
+                            "label": "English rose [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 71,
+                            "label": "Bastard amber [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 72,
+                            "default": 72,
+                            "end": 73,
+                            "label": "Surprise peach [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 75,
+                            "label": "Deep gld amber [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 76,
+                            "default": 76,
+                            "end": 77,
+                            "label": "Dark amber [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 78,
+                            "default": 78,
+                            "end": 79,
+                            "label": "Apricot [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 80,
+                            "end": 81,
+                            "label": "Gold amber [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 82,
+                            "default": 82,
+                            "end": 83,
+                            "label": "Cosmetic peach [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 85,
+                            "label": "Deep orange [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 86,
+                            "end": 87,
+                            "label": "Chocolate [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 88,
+                            "default": 88,
+                            "end": 89,
+                            "label": "Orange [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 90,
+                            "default": 90,
+                            "end": 91,
+                            "label": "White flame [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 92,
+                            "default": 92,
+                            "end": 93,
+                            "label": "Medium amber [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 95,
+                            "label": "Pale amber gold [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 96,
+                            "default": 96,
+                            "end": 97,
+                            "label": "Chrome orange [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 98,
+                            "default": 98,
+                            "end": 99,
+                            "label": "Straw tint [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 100,
+                            "default": 100,
+                            "end": 101,
+                            "label": "Straw [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 102,
+                            "default": 102,
+                            "end": 103,
+                            "label": "Deep straw [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 105,
+                            "label": "Deep amber [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 106,
+                            "default": 106,
+                            "end": 107,
+                            "label": "Light amber [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 108,
+                            "default": 108,
+                            "end": 109,
+                            "label": "Yellow [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 110,
+                            "default": 110,
+                            "end": 111,
+                            "label": "Medium yellow [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 112,
+                            "default": 112,
+                            "end": 113,
+                            "label": "Spring yellow [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 114,
+                            "default": 114,
+                            "end": 115,
+                            "label": "Pale yellow [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 116,
+                            "default": 116,
+                            "end": 117,
+                            "label": "Lime green [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 118,
+                            "default": 118,
+                            "end": 119,
+                            "label": "Pale green [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 120,
+                            "end": 121,
+                            "label": "Leaf green [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 122,
+                            "default": 122,
+                            "end": 123,
+                            "label": "Fern green [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 124,
+                            "default": 124,
+                            "end": 125,
+                            "label": "Primary green [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 126,
+                            "default": 126,
+                            "end": 127,
+                            "label": "Moss green [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 129,
+                            "label": "Dark y green [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 131,
+                            "label": "Dark green [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 133,
+                            "label": "Marine blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 134,
+                            "default": 134,
+                            "end": 135,
+                            "label": "Peacock blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 136,
+                            "default": 136,
+                            "end": 137,
+                            "label": "Med blue-green [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 138,
+                            "default": 138,
+                            "end": 139,
+                            "label": "Sp steel blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 140,
+                            "default": 140,
+                            "end": 141,
+                            "label": "Lagoon blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 142,
+                            "default": 142,
+                            "end": 143,
+                            "label": "Steel blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 145,
+                            "label": "Lighter blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 146,
+                            "default": 146,
+                            "end": 147,
+                            "label": "Summer blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 148,
+                            "default": 148,
+                            "end": 149,
+                            "label": "Light blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 151,
+                            "label": "Moonlight blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 152,
+                            "default": 152,
+                            "end": 153,
+                            "label": "Pale blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 155,
+                            "label": "Pale navy blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 156,
+                            "default": 156,
+                            "end": 157,
+                            "label": "Mist blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 158,
+                            "default": 158,
+                            "end": 159,
+                            "label": "Bright blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 160,
+                            "default": 160,
+                            "end": 161,
+                            "label": "True blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 162,
+                            "default": 162,
+                            "end": 163,
+                            "label": "Dark steel blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 165,
+                            "label": "Daylight blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 166,
+                            "default": 166,
+                            "end": 167,
+                            "label": "Slate blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 168,
+                            "default": 168,
+                            "end": 169,
+                            "label": "Medium blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 170,
+                            "default": 170,
+                            "end": 171,
+                            "label": "Sky blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 172,
+                            "default": 172,
+                            "end": 173,
+                            "label": "Paler lavender [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 175,
+                            "label": "Alice blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 176,
+                            "default": 176,
+                            "end": 177,
+                            "label": "Spl lavender [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 178,
+                            "default": 178,
+                            "end": 179,
+                            "label": "Pale violet [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 180,
+                            "default": 180,
+                            "end": 181,
+                            "label": "Just blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 182,
+                            "default": 182,
+                            "end": 183,
+                            "label": "Violet [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 185,
+                            "label": "Dark blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 186,
+                            "default": 186,
+                            "end": 187,
+                            "label": "Surprise pink [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 188,
+                            "default": 188,
+                            "end": 189,
+                            "label": "Deeper blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 191,
+                            "label": "Special m blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 193,
+                            "label": "Zenith blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 195,
+                            "label": "Light lavender [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 196,
+                            "default": 196,
+                            "end": 197,
+                            "label": "Palace blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 198,
+                            "default": 198,
+                            "end": 199,
+                            "label": "Lilac tint [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 201,
+                            "label": "Deep blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 202,
+                            "default": 202,
+                            "end": 203,
+                            "label": "Lavender tint [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 204,
+                            "default": 204,
+                            "end": 205,
+                            "label": "Pale lavender [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 206,
+                            "default": 206,
+                            "end": 207,
+                            "label": "Dark lavender [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 208,
+                            "default": 208,
+                            "end": 209,
+                            "label": "Lavender [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 210,
+                            "default": 210,
+                            "end": 211,
+                            "label": "Deep lavender [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 212,
+                            "default": 212,
+                            "end": 213,
+                            "label": "Congo blue [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 214,
+                            "default": 214,
+                            "end": 215,
+                            "label": "Rose purple [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 216,
+                            "default": 216,
+                            "end": 217,
+                            "label": "Mauve [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 218,
+                            "default": 218,
+                            "end": 219,
+                            "label": "Rose pink [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 220,
+                            "default": 220,
+                            "end": 221,
+                            "label": "Follies pink [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 222,
+                            "default": 222,
+                            "end": 223,
+                            "label": "Bright pink [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 225,
+                            "label": "Middle rose [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 226,
+                            "default": 226,
+                            "end": 227,
+                            "label": "Medium pink [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 228,
+                            "default": 228,
+                            "end": 229,
+                            "label": "Light pink [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 230,
+                            "default": 230,
+                            "end": 231,
+                            "label": "Dark pink [Hue saturation disabled]"
+                        },
+                        {
+                            "begin": 232,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Flesh pink [Hue saturation disabled]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Hue",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Saturation",
+                    "size": 8,
+                    "type": 5
+                }
+            ],
+            "colortable": "B074A2D3-0C40-45A7-844A-7C2721E0B267"
+        }
+    ]
+}

@@ -1,0 +1,263 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "72F0DBAF-C508-E041-971B-9CE18E36DD15",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Showtec",
+            "maxOffset": 5,
+            "modeName": "16b Control",
+            "modelName": "XPLO-15",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "type": 1,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX Macros",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "Ramp up"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "Ramp down"
+                        },
+                        {
+                            "begin": 107,
+                            "default": 107,
+                            "end": 107,
+                            "label": "Ramp up/down"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 150,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 172,
+                            "default": 172,
+                            "end": 172,
+                            "label": "Left zone only"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 174,
+                            "label": "Centre zone only"
+                        },
+                        {
+                            "begin": 177,
+                            "default": 177,
+                            "end": 177,
+                            "label": "Right zone only"
+                        },
+                        {
+                            "begin": 179,
+                            "default": 179,
+                            "end": 179,
+                            "label": "Checker pattern A"
+                        },
+                        {
+                            "begin": 181,
+                            "default": 181,
+                            "end": 181,
+                            "label": "Checker pattern B"
+                        },
+                        {
+                            "begin": 183,
+                            "default": 183,
+                            "end": 183,
+                            "label": "Checker pattern C"
+                        },
+                        {
+                            "begin": 185,
+                            "default": 185,
+                            "end": 185,
+                            "label": "Checker pattern D"
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 200,
+                            "label": "Rnd zones"
+                        },
+                        {
+                            "begin": 225,
+                            "default": 225,
+                            "end": 225,
+                            "label": "Zone chase left to right"
+                        },
+                        {
+                            "begin": 245,
+                            "default": 245,
+                            "end": 245,
+                            "label": "Zone chase right to left"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Dimmer Curve",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Default on console"
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "Unknown"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe Duration",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Linear",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 32
+                        },
+                        {
+                            "step": 5,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Square",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 37
+                        },
+                        {
+                            "step": 5,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "S Curve",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 42
+                        },
+                        {
+                            "step": 5,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "PL Curve",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 47
+                        },
+                        {
+                            "step": 5,
+                            "key": 3,
+                            "subkey": 0
+                        },
+                        {
+                            "step": 1,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

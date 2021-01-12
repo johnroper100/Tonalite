@@ -1,0 +1,832 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "040E6A4F-8FAB-1248-8399-31C286C0BAB1",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Futurelight",
+            "maxOffset": 12,
+            "modeName": "Std",
+            "modelName": "PLB-5R",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 11
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 12
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 225,
+                            "label": "Focus Spd"
+                        },
+                        {
+                            "begin": 230,
+                            "default": 230,
+                            "end": 230,
+                            "label": "Focus Track [BlackMove]"
+                        },
+                        {
+                            "begin": 240,
+                            "default": 240,
+                            "end": 240,
+                            "label": "Focus Track [Clr & Gobo Blink]"
+                        },
+                        {
+                            "begin": 250,
+                            "default": 250,
+                            "end": 250,
+                            "label": "Focus Track"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 9,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 10,
+                            "default": 19,
+                            "end": 19,
+                            "label": "Red",
+                            "media": {
+                                "b": 0,
+                                "g": 0,
+                                "name": "Red",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 20,
+                            "default": 29,
+                            "end": 29,
+                            "label": "Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "Blue",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 30,
+                            "default": 39,
+                            "end": 39,
+                            "label": "Green",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Green",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 40,
+                            "default": 49,
+                            "end": 49,
+                            "label": "Yellow",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Yellow",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 50,
+                            "default": 59,
+                            "end": 59,
+                            "label": "Magenta",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "Magenta",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 60,
+                            "default": 69,
+                            "end": 69,
+                            "label": "Aqua",
+                            "media": {
+                                "b": 255,
+                                "g": 245,
+                                "name": "Aqua",
+                                "r": 196,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 79,
+                            "end": 79,
+                            "label": "Light Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 242,
+                                "name": "Light Blue",
+                                "r": 113,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 80,
+                            "default": 89,
+                            "end": 89,
+                            "label": "Orange",
+                            "media": {
+                                "b": 3,
+                                "g": 133,
+                                "name": "Orange",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 90,
+                            "default": 99,
+                            "end": 99,
+                            "label": "Violet",
+                            "media": {
+                                "b": 255,
+                                "g": 191,
+                                "name": "Violet",
+                                "r": 142,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 100,
+                            "default": 109,
+                            "end": 109,
+                            "label": "UV",
+                            "media": {
+                                "b": 199,
+                                "g": 20,
+                                "name": "UV",
+                                "r": 101,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 110,
+                            "default": 119,
+                            "end": 119,
+                            "label": "CTO",
+                            "media": {
+                                "b": 108,
+                                "g": 250,
+                                "name": "CTO",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 120,
+                            "default": 127,
+                            "end": 127,
+                            "label": "CTB",
+                            "media": {
+                                "b": 255,
+                                "g": 222,
+                                "name": "CTB",
+                                "r": 170,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "(gobo 1)"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "(gobo 2)"
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 34,
+                            "label": "(gobo 3)"
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 44,
+                            "label": "(gobo 4)"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "(gobo 5)"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "(gobo 6)"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "(gobo 7)"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "(gobo 8)"
+                        },
+                        {
+                            "begin": 90,
+                            "default": 104,
+                            "end": 104,
+                            "label": "(gobo 1) [S]"
+                        },
+                        {
+                            "begin": 105,
+                            "default": 119,
+                            "end": 119,
+                            "label": "(gobo 2) [S]"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 134,
+                            "end": 134,
+                            "label": "(gobo 3) [S]"
+                        },
+                        {
+                            "begin": 135,
+                            "default": 149,
+                            "end": 149,
+                            "label": "(gobo 4) [S]"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 164,
+                            "end": 164,
+                            "label": "(gobo 5) [S]"
+                        },
+                        {
+                            "begin": 165,
+                            "default": 179,
+                            "end": 179,
+                            "label": "(gobo 6) [S]"
+                        },
+                        {
+                            "begin": 180,
+                            "default": 194,
+                            "end": 194,
+                            "label": "(gobo 7) [S]"
+                        },
+                        {
+                            "begin": 195,
+                            "default": 209,
+                            "end": 209,
+                            "label": "(gobo 8) [S]"
+                        },
+                        {
+                            "begin": 210,
+                            "default": 210,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 158,
+                            "end": 189,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Prism",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 4,
+                            "default": 63,
+                            "end": 63,
+                            "label": "(8 Prism) [>>]",
+                            "media": {
+                                "dcid": "9B1E5889-82BE-794C-B45B-05B19EE25B36",
+                                "name": "(8 Prism) [>>]"
+                            }
+                        },
+                        {
+                            "begin": 65,
+                            "default": 65,
+                            "end": 65,
+                            "label": "(8 Prism)",
+                            "media": {
+                                "dcid": "9B1E5889-82BE-794C-B45B-05B19EE25B36",
+                                "name": "(8 Prism)"
+                            }
+                        },
+                        {
+                            "begin": 68,
+                            "default": 127,
+                            "end": 127,
+                            "label": "(8 Prism) [<<]",
+                            "media": {
+                                "dcid": "9B1E5889-82BE-794C-B45B-05B19EE25B36",
+                                "name": "(8 Prism) [<<]"
+                            }
+                        },
+                        {
+                            "begin": 131,
+                            "default": 131,
+                            "end": 131,
+                            "label": "Prism and gobos macro 1"
+                        },
+                        {
+                            "begin": 139,
+                            "default": 139,
+                            "end": 139,
+                            "label": "Prism and gobos macro 2"
+                        },
+                        {
+                            "begin": 147,
+                            "default": 147,
+                            "end": 147,
+                            "label": "Prism and gobos macro 3"
+                        },
+                        {
+                            "begin": 155,
+                            "default": 155,
+                            "end": 155,
+                            "label": "Prism and gobos macro 4"
+                        },
+                        {
+                            "begin": 163,
+                            "default": 163,
+                            "end": 163,
+                            "label": "Prism and gobos macro 5"
+                        },
+                        {
+                            "begin": 171,
+                            "default": 171,
+                            "end": 171,
+                            "label": "Prism and gobos macro 6"
+                        },
+                        {
+                            "begin": 179,
+                            "default": 179,
+                            "end": 179,
+                            "label": "Prism and gobos macro 7"
+                        },
+                        {
+                            "begin": 187,
+                            "default": 187,
+                            "end": 187,
+                            "label": "Prism and gobos macro 8"
+                        },
+                        {
+                            "begin": 195,
+                            "default": 195,
+                            "end": 195,
+                            "label": "Prism and gobos macro 9"
+                        },
+                        {
+                            "begin": 203,
+                            "default": 203,
+                            "end": 203,
+                            "label": "Prism and gobos macro 10"
+                        },
+                        {
+                            "begin": 211,
+                            "default": 211,
+                            "end": 211,
+                            "label": "Prism and gobos macro 11"
+                        },
+                        {
+                            "begin": 219,
+                            "default": 219,
+                            "end": 219,
+                            "label": "Prism and gobos macro 12"
+                        },
+                        {
+                            "begin": 227,
+                            "default": 227,
+                            "end": 227,
+                            "label": "Prism and gobos macro 13"
+                        },
+                        {
+                            "begin": 235,
+                            "default": 235,
+                            "end": 235,
+                            "label": "Prism and gobos macro 14"
+                        },
+                        {
+                            "begin": 243,
+                            "default": 243,
+                            "end": 243,
+                            "label": "Prism and gobos macro 15"
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
+                            "label": "Prism and gobos macro 16"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 47,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 95,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 111,
+                            "default": 111,
+                            "end": 111,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 159,
+                            "label": "Pulse"
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 223,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Frost",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Frost"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Frost 100"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Full Frame"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "Continuous"
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 34,
+                            "label": "Continuous [Cnt]"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 86,
+                            "end": 86,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 89,
+                            "default": 89,
+                            "end": 89,
+                            "label": "Color Reset"
+                        },
+                        {
+                            "begin": 92,
+                            "default": 92,
+                            "end": 92,
+                            "label": "Gobo Reset"
+                        },
+                        {
+                            "begin": 95,
+                            "default": 95,
+                            "end": 95,
+                            "label": "Int Reset [Shutter Reset]"
+                        },
+                        {
+                            "begin": 98,
+                            "default": 98,
+                            "end": 98,
+                            "label": "FX Reset"
+                        },
+                        {
+                            "begin": 109,
+                            "default": 109,
+                            "end": 109,
+                            "label": "Internal program 1"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 129,
+                            "label": "Internal program 2"
+                        },
+                        {
+                            "begin": 149,
+                            "default": 149,
+                            "end": 149,
+                            "label": "Internal program 3"
+                        },
+                        {
+                            "begin": 169,
+                            "default": 169,
+                            "end": 169,
+                            "label": "Internal program 4"
+                        },
+                        {
+                            "begin": 189,
+                            "default": 189,
+                            "end": 189,
+                            "label": "Internal program 5"
+                        },
+                        {
+                            "begin": 209,
+                            "default": 209,
+                            "end": 209,
+                            "label": "Internal program 6"
+                        },
+                        {
+                            "begin": 229,
+                            "default": 229,
+                            "end": 229,
+                            "label": "Internal program 7"
+                        },
+                        {
+                            "begin": 247,
+                            "default": 247,
+                            "end": 247,
+                            "label": "Audio"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 49
+                        },
+                        {
+                            "step": 7,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 69
+                        },
+                        {
+                            "step": 7,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 82
+                        },
+                        {
+                            "step": 7,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,406 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "F5A0A3C4-007E-0848-AE52-2A165C76609E",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Wilgex",
+            "maxOffset": 10,
+            "modeName": "8b",
+            "modelName": "LM 3109",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Green",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Blue",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "White",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 32512,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 32512,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 225,
+                            "label": "Focus Spd"
+                        },
+                        {
+                            "begin": 231,
+                            "default": 231,
+                            "end": 231,
+                            "label": "Focus Track [BlackMove]"
+                        },
+                        {
+                            "begin": 246,
+                            "default": 246,
+                            "end": 246,
+                            "label": "Focus Track"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 149,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 199,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 249,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 252,
+                            "default": 252,
+                            "end": 252,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 4,
+                            "label": "Color Mix"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 31,
+                            "label": "Red up/green 0%/blue 0%/white min [Mix Pos]"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 63,
+                            "label": "Red down/green up/blue 0%/white min [Mix Pos]"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 95,
+                            "label": "Red up/green 100%/blue 0%/white min [Mix Pos]"
+                        },
+                        {
+                            "begin": 96,
+                            "default": 96,
+                            "end": 127,
+                            "label": "Red down/green down/blue up/white min [Mix Pos]"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 159,
+                            "label": "Red up/green 0%/blue 100%/white min [Mix Pos]"
+                        },
+                        {
+                            "begin": 160,
+                            "default": 160,
+                            "end": 191,
+                            "label": "Red down/green up/blue 100%/white min [Mix Pos]"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 223,
+                            "label": "Red up/green 100%/blue 100%/white min [Mix Pos]"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 255,
+                            "label": "Red down/green down/blue down/white min [Mix Pos]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Color Mix"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "Red"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "Green"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "Blue"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "Yellow"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 94,
+                            "label": "Cyan"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 104,
+                            "label": "Pure white"
+                        },
+                        {
+                            "begin": 114,
+                            "default": 114,
+                            "end": 114,
+                            "label": "Purple"
+                        },
+                        {
+                            "begin": 124,
+                            "default": 124,
+                            "end": 124,
+                            "label": "White"
+                        },
+                        {
+                            "begin": 134,
+                            "default": 134,
+                            "end": 134,
+                            "label": "3200K"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 144,
+                            "label": "5600K"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "6500K"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "8500K"
+                        },
+                        {
+                            "begin": 172,
+                            "default": 172,
+                            "end": 172,
+                            "label": "10000K"
+                        },
+                        {
+                            "begin": 177,
+                            "default": 177,
+                            "end": 177,
+                            "label": "Change Color"
+                        },
+                        {
+                            "begin": 180,
+                            "default": 180,
+                            "end": 184,
+                            "label": "Change Color [Mix Pos 2]"
+                        },
+                        {
+                            "begin": 187,
+                            "default": 187,
+                            "end": 187,
+                            "label": "Twinkling"
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 194,
+                            "label": "Twinkling [Mix Pos 2]"
+                        },
+                        {
+                            "begin": 197,
+                            "default": 197,
+                            "end": 197,
+                            "label": "Fade"
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 209,
+                            "label": "Fade [Mix Pos 2]"
+                        },
+                        {
+                            "begin": 232,
+                            "default": 232,
+                            "end": 232,
+                            "label": "Auto macro"
+                        },
+                        {
+                            "begin": 235,
+                            "default": 235,
+                            "end": 239,
+                            "label": "Auto macro [Mix Pos 2]"
+                        },
+                        {
+                            "begin": 242,
+                            "default": 242,
+                            "end": 242,
+                            "label": "Sound macro"
+                        },
+                        {
+                            "begin": 245,
+                            "default": 245,
+                            "end": 249,
+                            "label": "Sound macro [Mix Pos 2]"
+                        }
+                    ]
+                }
+            ],
+            "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 224
+                        },
+                        {
+                            "step": 46,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

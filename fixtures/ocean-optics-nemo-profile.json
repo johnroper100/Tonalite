@@ -1,0 +1,111 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "C67811AD-B2B9-B94D-AF94-C479626FDA41",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Ocean Optics",
+            "maxOffset": 5,
+            "modeName": "-",
+            "modelName": "Nemo Profile",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Cyan",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Magenta",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Yellow",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Lamp Pwr",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 1
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 89
+                        },
+                        {
+                            "step": 7,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 217
+                        },
+                        {
+                            "step": 7,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ],
+            "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139"
+        }
+    ]
+}

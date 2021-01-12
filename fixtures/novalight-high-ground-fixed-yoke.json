@@ -1,0 +1,231 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "B666958B-FBAD-624E-A4F7-670AF2D8EBEA",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": false,
+            "manufacturerName": "Novalight",
+            "maxOffset": 3,
+            "modeName": "-",
+            "modelName": "High Ground Fixed Yoke",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 32,
+                            "label": "(Yellow)",
+                            "media": {
+                                "b": 10,
+                                "g": 255,
+                                "name": "(Yellow)",
+                                "r": 235,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 53,
+                            "default": 53,
+                            "end": 53,
+                            "label": "(Green)",
+                            "media": {
+                                "b": 62,
+                                "g": 255,
+                                "name": "(Green)",
+                                "r": 71,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "(Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 203,
+                                "name": "(Blue)",
+                                "r": 55,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 96,
+                            "end": 96,
+                            "label": "(Magenta)",
+                            "media": {
+                                "b": 195,
+                                "g": 63,
+                                "name": "(Magenta)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 117,
+                            "default": 117,
+                            "end": 117,
+                            "label": "(Red)",
+                            "media": {
+                                "b": 14,
+                                "g": 72,
+                                "name": "(Red)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 32512,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 127,
+                            "label": "Intensity"
+                        },
+                        {
+                            "begin": 135,
+                            "default": 135,
+                            "end": 135,
+                            "label": "Open [Full]"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 239,
+                            "label": "Strobe [Full]"
+                        },
+                        {
+                            "begin": 247,
+                            "default": 247,
+                            "end": 247,
+                            "label": "Open [Full]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 39
+                        },
+                        {
+                            "step": 7,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 159
+                        },
+                        {
+                            "step": 7,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 3,
+                            "subkey": 223
+                        },
+                        {
+                            "step": 7,
+                            "key": 3,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

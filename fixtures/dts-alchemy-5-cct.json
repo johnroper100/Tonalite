@@ -1,0 +1,2061 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "36D74CDF-3322-4812-869D-F8ADF517D580",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "DTS",
+            "maxOffset": 19,
+            "modeName": "CCT",
+            "modelName": "Alchemy 5",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 2816,
+                    "home": 2816,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Focus Track"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "Focus 70"
+                        },
+                        {
+                            "begin": 26,
+                            "default": 76,
+                            "end": 127,
+                            "label": "Focus Spd"
+                        },
+                        {
+                            "begin": 187,
+                            "default": 187,
+                            "end": 187,
+                            "label": "Pos Spd Track DMX 100"
+                        },
+                        {
+                            "begin": 249,
+                            "default": 249,
+                            "end": 249,
+                            "label": "Quiet"
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Time 1"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 119,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 120,
+                            "end": 149,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 179,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 184,
+                            "label": "Rnd 100"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 194,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 204,
+                            "default": 204,
+                            "end": 204,
+                            "label": "Open [Clr Blink]"
+                        },
+                        {
+                            "begin": 214,
+                            "default": 214,
+                            "end": 214,
+                            "label": "Open [BlackMove]"
+                        },
+                        {
+                            "begin": 221,
+                            "default": 221,
+                            "end": 221,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 223,
+                            "label": "Open [FX Blink]"
+                        },
+                        {
+                            "begin": 225,
+                            "default": 225,
+                            "end": 225,
+                            "label": "Open [Zm Blink]"
+                        },
+                        {
+                            "begin": 228,
+                            "default": 228,
+                            "end": 228,
+                            "label": "Open [BlackMove,Clr & FX & Zm Blink]"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "type": 1,
+                    "fine": 7
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Temp",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 8,
+                            "label": "1800K"
+                        },
+                        {
+                            "begin": 9,
+                            "default": 9,
+                            "end": 11,
+                            "label": "2100K"
+                        },
+                        {
+                            "begin": 12,
+                            "default": 12,
+                            "end": 14,
+                            "label": "2200K"
+                        },
+                        {
+                            "begin": 15,
+                            "default": 15,
+                            "end": 17,
+                            "label": "2300K"
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 20,
+                            "label": "2400K"
+                        },
+                        {
+                            "begin": 21,
+                            "default": 21,
+                            "end": 23,
+                            "label": "2500K"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 26,
+                            "label": "2600K"
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 30,
+                            "label": "2700K"
+                        },
+                        {
+                            "begin": 31,
+                            "default": 31,
+                            "end": 36,
+                            "label": "2800K"
+                        },
+                        {
+                            "begin": 37,
+                            "default": 37,
+                            "end": 42,
+                            "label": "3000K"
+                        },
+                        {
+                            "begin": 43,
+                            "default": 43,
+                            "end": 47,
+                            "label": "3200K"
+                        },
+                        {
+                            "begin": 48,
+                            "default": 48,
+                            "end": 54,
+                            "label": "3350K"
+                        },
+                        {
+                            "begin": 55,
+                            "default": 55,
+                            "end": 67,
+                            "label": "3600K"
+                        },
+                        {
+                            "begin": 68,
+                            "default": 68,
+                            "end": 82,
+                            "label": "4000K"
+                        },
+                        {
+                            "begin": 83,
+                            "default": 83,
+                            "end": 98,
+                            "label": "4500K"
+                        },
+                        {
+                            "begin": 99,
+                            "default": 99,
+                            "end": 117,
+                            "label": "5000K"
+                        },
+                        {
+                            "begin": 118,
+                            "default": 118,
+                            "end": 129,
+                            "label": "5600K"
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 145,
+                            "label": "6000K"
+                        },
+                        {
+                            "begin": 146,
+                            "default": 146,
+                            "end": 160,
+                            "label": "6500K"
+                        },
+                        {
+                            "begin": 161,
+                            "default": 161,
+                            "end": 191,
+                            "label": "7000K"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 222,
+                            "label": "8000K"
+                        },
+                        {
+                            "begin": 223,
+                            "default": 223,
+                            "end": 255,
+                            "label": "9000K"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 32767,
+                    "home": 32767,
+                    "invert": true,
+                    "name": "Tint",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 10,
+                            "label": "L002 Rose Pink"
+                        },
+                        {
+                            "begin": 12,
+                            "default": 12,
+                            "end": 12,
+                            "label": "L007 Pale Yellow"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "L015 Deep Straw"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 16,
+                            "label": "L019 Fire"
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 18,
+                            "label": "L020 Medium amber"
+                        },
+                        {
+                            "begin": 20,
+                            "default": 20,
+                            "end": 20,
+                            "label": "L021 Gold amber"
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 22,
+                            "label": "L022 Dark amber"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "L025 Sunset red"
+                        },
+                        {
+                            "begin": 26,
+                            "default": 26,
+                            "end": 26,
+                            "label": "L046 Dark magenta"
+                        },
+                        {
+                            "begin": 28,
+                            "default": 28,
+                            "end": 28,
+                            "label": "L049 Medium purple"
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "L058 Lavender"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 32,
+                            "label": "L068 Sky blue"
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 34,
+                            "label": "L079 Just blue"
+                        },
+                        {
+                            "begin": 36,
+                            "default": 36,
+                            "end": 36,
+                            "label": "L085 Deeper blue"
+                        },
+                        {
+                            "begin": 38,
+                            "default": 38,
+                            "end": 38,
+                            "label": "L088 Lime green"
+                        },
+                        {
+                            "begin": 40,
+                            "default": 40,
+                            "end": 40,
+                            "label": "L089 Moss green"
+                        },
+                        {
+                            "begin": 42,
+                            "default": 42,
+                            "end": 42,
+                            "label": "L100 Spring yellow"
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 44,
+                            "label": "L101 Yellow"
+                        },
+                        {
+                            "begin": 46,
+                            "default": 46,
+                            "end": 46,
+                            "label": "L102 Light amber"
+                        },
+                        {
+                            "begin": 48,
+                            "default": 48,
+                            "end": 48,
+                            "label": "L103 Straw"
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 50,
+                            "label": "L104 Deep amber"
+                        },
+                        {
+                            "begin": 52,
+                            "default": 52,
+                            "end": 52,
+                            "label": "L105 Orange"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "L106 Primary red"
+                        },
+                        {
+                            "begin": 56,
+                            "default": 56,
+                            "end": 56,
+                            "label": "L108 English rose"
+                        },
+                        {
+                            "begin": 58,
+                            "default": 58,
+                            "end": 58,
+                            "label": "L111 Dark pink"
+                        },
+                        {
+                            "begin": 60,
+                            "default": 60,
+                            "end": 60,
+                            "label": "L113 Magenta"
+                        },
+                        {
+                            "begin": 62,
+                            "default": 62,
+                            "end": 62,
+                            "label": "L115 Peacock blue"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "L117 Steel Blue"
+                        },
+                        {
+                            "begin": 66,
+                            "default": 66,
+                            "end": 66,
+                            "label": "L118 Light blue"
+                        },
+                        {
+                            "begin": 68,
+                            "default": 68,
+                            "end": 68,
+                            "label": "L119 Dark blue"
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 70,
+                            "label": "L121 Lee green"
+                        },
+                        {
+                            "begin": 72,
+                            "default": 72,
+                            "end": 72,
+                            "label": "L122 Fern green"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "L124 Dark green"
+                        },
+                        {
+                            "begin": 76,
+                            "default": 76,
+                            "end": 76,
+                            "label": "L126 Mauve"
+                        },
+                        {
+                            "begin": 78,
+                            "default": 78,
+                            "end": 78,
+                            "label": "L132 Medium blue"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 80,
+                            "end": 80,
+                            "label": "L136 Pale lavender"
+                        },
+                        {
+                            "begin": 82,
+                            "default": 82,
+                            "end": 82,
+                            "label": "L137 Lavender"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "L138 Pale green"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 86,
+                            "end": 86,
+                            "label": "L139 Primary green"
+                        },
+                        {
+                            "begin": 88,
+                            "default": 88,
+                            "end": 88,
+                            "label": "L142 Pale violet"
+                        },
+                        {
+                            "begin": 90,
+                            "default": 90,
+                            "end": 90,
+                            "label": "L147 Apricot"
+                        },
+                        {
+                            "begin": 92,
+                            "default": 92,
+                            "end": 92,
+                            "label": "L151 Gold tint"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 94,
+                            "label": "L152 Pale gold"
+                        },
+                        {
+                            "begin": 96,
+                            "default": 96,
+                            "end": 96,
+                            "label": "L154 Pale rose"
+                        },
+                        {
+                            "begin": 98,
+                            "default": 98,
+                            "end": 98,
+                            "label": "L156 Chocolate"
+                        },
+                        {
+                            "begin": 100,
+                            "default": 100,
+                            "end": 100,
+                            "label": "L164 Flame red"
+                        },
+                        {
+                            "begin": 102,
+                            "default": 102,
+                            "end": 102,
+                            "label": "L170 Deep lavender"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 104,
+                            "label": "L174 Dark steel blue"
+                        },
+                        {
+                            "begin": 106,
+                            "default": 106,
+                            "end": 106,
+                            "label": "L176 Loving amber"
+                        },
+                        {
+                            "begin": 108,
+                            "default": 108,
+                            "end": 108,
+                            "label": "L179 Chrome orange"
+                        },
+                        {
+                            "begin": 110,
+                            "default": 110,
+                            "end": 110,
+                            "label": "L180 Dark lavender"
+                        },
+                        {
+                            "begin": 112,
+                            "default": 112,
+                            "end": 112,
+                            "label": "L181 Congo blue"
+                        },
+                        {
+                            "begin": 114,
+                            "default": 114,
+                            "end": 114,
+                            "label": "L182 Light red"
+                        },
+                        {
+                            "begin": 116,
+                            "default": 116,
+                            "end": 116,
+                            "label": "L194 Surprise pink"
+                        },
+                        {
+                            "begin": 118,
+                            "default": 118,
+                            "end": 118,
+                            "label": "L195 Zenith blue"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 120,
+                            "end": 120,
+                            "label": "L200 Double CT blue"
+                        },
+                        {
+                            "begin": 122,
+                            "default": 122,
+                            "end": 122,
+                            "label": "L201 Full CT blue"
+                        },
+                        {
+                            "begin": 124,
+                            "default": 124,
+                            "end": 124,
+                            "label": "L202 Half CT blue"
+                        },
+                        {
+                            "begin": 126,
+                            "default": 126,
+                            "end": 126,
+                            "label": "L203 Quarter CT blue"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "L204 Full CT orange"
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "L205 Half CT orange"
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 132,
+                            "label": "L206 Quarter CT orange"
+                        },
+                        {
+                            "begin": 134,
+                            "default": 134,
+                            "end": 134,
+                            "label": "L242 Fluorescent 4300 Kelvin"
+                        },
+                        {
+                            "begin": 136,
+                            "default": 136,
+                            "end": 136,
+                            "label": "L249 1/4 minus green"
+                        },
+                        {
+                            "begin": 138,
+                            "default": 138,
+                            "end": 138,
+                            "label": "L323 Jade"
+                        },
+                        {
+                            "begin": 140,
+                            "default": 140,
+                            "end": 140,
+                            "label": "L328 Follies pink"
+                        },
+                        {
+                            "begin": 142,
+                            "default": 142,
+                            "end": 142,
+                            "label": "L343 Special medium lavender"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 144,
+                            "label": "L345 Fuchsia pink"
+                        },
+                        {
+                            "begin": 146,
+                            "default": 146,
+                            "end": 146,
+                            "label": "L341 Plum"
+                        },
+                        {
+                            "begin": 148,
+                            "default": 148,
+                            "end": 148,
+                            "label": "L353 Lighter blue"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 150,
+                            "label": "L506 Marlene"
+                        },
+                        {
+                            "begin": 152,
+                            "default": 152,
+                            "end": 152,
+                            "label": "L601 Silver"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "L700 Perfect lavender"
+                        },
+                        {
+                            "begin": 156,
+                            "default": 156,
+                            "end": 156,
+                            "label": "L728 Steel green"
+                        },
+                        {
+                            "begin": 158,
+                            "default": 158,
+                            "end": 158,
+                            "label": "L731 Dirty Ice"
+                        },
+                        {
+                            "begin": 160,
+                            "default": 160,
+                            "end": 160,
+                            "label": "L765 LEE yellow"
+                        },
+                        {
+                            "begin": 162,
+                            "default": 162,
+                            "end": 162,
+                            "label": "L777 Rust"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "L795 Magical magenta"
+                        },
+                        {
+                            "begin": 166,
+                            "default": 166,
+                            "end": 166,
+                            "label": "L797 Deep purple"
+                        },
+                        {
+                            "begin": 168,
+                            "default": 168,
+                            "end": 168,
+                            "label": "R003 Dark bastard amber"
+                        },
+                        {
+                            "begin": 170,
+                            "default": 170,
+                            "end": 170,
+                            "label": "R005 Rose tint"
+                        },
+                        {
+                            "begin": 172,
+                            "default": 172,
+                            "end": 172,
+                            "label": "R011 Light straw"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 174,
+                            "label": "R023 Orange"
+                        },
+                        {
+                            "begin": 176,
+                            "default": 176,
+                            "end": 176,
+                            "label": "R025 Orange red"
+                        },
+                        {
+                            "begin": 178,
+                            "default": 178,
+                            "end": 178,
+                            "label": "R031 Salmon pink"
+                        },
+                        {
+                            "begin": 180,
+                            "default": 180,
+                            "end": 180,
+                            "label": "R035 Light pink"
+                        },
+                        {
+                            "begin": 182,
+                            "default": 182,
+                            "end": 182,
+                            "label": "R040 Light salmon"
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 184,
+                            "label": "R054 Special lavender"
+                        },
+                        {
+                            "begin": 186,
+                            "default": 186,
+                            "end": 186,
+                            "label": "R057 Lavender"
+                        },
+                        {
+                            "begin": 188,
+                            "default": 188,
+                            "end": 188,
+                            "label": "R061 Mist blue"
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 190,
+                            "label": "R068 Parry sky blue"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 192,
+                            "label": "R075 Twilight blue"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 194,
+                            "label": "R079 Bright blue"
+                        },
+                        {
+                            "begin": 196,
+                            "default": 196,
+                            "end": 196,
+                            "label": "R082 Surprise blue"
+                        },
+                        {
+                            "begin": 198,
+                            "default": 198,
+                            "end": 198,
+                            "label": "R089 Moss green"
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 200,
+                            "label": "R303 Warm peach"
+                        },
+                        {
+                            "begin": 202,
+                            "default": 202,
+                            "end": 202,
+                            "label": "R318 Mayan sun"
+                        },
+                        {
+                            "begin": 204,
+                            "default": 204,
+                            "end": 204,
+                            "label": "R363 Aquamarine"
+                        },
+                        {
+                            "begin": 206,
+                            "default": 206,
+                            "end": 206,
+                            "label": "R385 Royal blue"
+                        },
+                        {
+                            "begin": 208,
+                            "default": 208,
+                            "end": 208,
+                            "label": "R386 Leaf green"
+                        },
+                        {
+                            "begin": 232,
+                            "default": 232,
+                            "end": 232,
+                            "label": "off"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Color XFade",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Mix 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 10,
+                            "label": "L002 Rose Pink"
+                        },
+                        {
+                            "begin": 12,
+                            "default": 12,
+                            "end": 12,
+                            "label": "L007 Pale Yellow"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "L015 Deep Straw"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 16,
+                            "end": 16,
+                            "label": "L019 Fire"
+                        },
+                        {
+                            "begin": 18,
+                            "default": 18,
+                            "end": 18,
+                            "label": "L020 Medium amber"
+                        },
+                        {
+                            "begin": 20,
+                            "default": 20,
+                            "end": 20,
+                            "label": "L021 Gold amber"
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 22,
+                            "label": "L022 Dark amber"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "L025 Sunset red"
+                        },
+                        {
+                            "begin": 26,
+                            "default": 26,
+                            "end": 26,
+                            "label": "L046 Dark magenta"
+                        },
+                        {
+                            "begin": 28,
+                            "default": 28,
+                            "end": 28,
+                            "label": "L049 Medium purple"
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "L058 Lavender"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 32,
+                            "label": "L068 Sky blue"
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 34,
+                            "label": "L079 Just blue"
+                        },
+                        {
+                            "begin": 36,
+                            "default": 36,
+                            "end": 36,
+                            "label": "L085 Deeper blue"
+                        },
+                        {
+                            "begin": 38,
+                            "default": 38,
+                            "end": 38,
+                            "label": "L088 Lime green"
+                        },
+                        {
+                            "begin": 40,
+                            "default": 40,
+                            "end": 40,
+                            "label": "L089 Moss green"
+                        },
+                        {
+                            "begin": 42,
+                            "default": 42,
+                            "end": 42,
+                            "label": "L100 Spring yellow"
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 44,
+                            "label": "L101 Yellow"
+                        },
+                        {
+                            "begin": 46,
+                            "default": 46,
+                            "end": 46,
+                            "label": "L102 Light amber"
+                        },
+                        {
+                            "begin": 48,
+                            "default": 48,
+                            "end": 48,
+                            "label": "L103 Straw"
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 50,
+                            "label": "L104 Deep amber"
+                        },
+                        {
+                            "begin": 52,
+                            "default": 52,
+                            "end": 52,
+                            "label": "L105 Orange"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "L106 Primary red"
+                        },
+                        {
+                            "begin": 56,
+                            "default": 56,
+                            "end": 56,
+                            "label": "L108 English rose"
+                        },
+                        {
+                            "begin": 58,
+                            "default": 58,
+                            "end": 58,
+                            "label": "L111 Dark pink"
+                        },
+                        {
+                            "begin": 60,
+                            "default": 60,
+                            "end": 60,
+                            "label": "L113 Magenta"
+                        },
+                        {
+                            "begin": 62,
+                            "default": 62,
+                            "end": 62,
+                            "label": "L115 Peacock blue"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "L117 Steel Blue"
+                        },
+                        {
+                            "begin": 66,
+                            "default": 66,
+                            "end": 66,
+                            "label": "L118 Light blue"
+                        },
+                        {
+                            "begin": 68,
+                            "default": 68,
+                            "end": 68,
+                            "label": "L119 Dark blue"
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 70,
+                            "label": "L121 Lee green"
+                        },
+                        {
+                            "begin": 72,
+                            "default": 72,
+                            "end": 72,
+                            "label": "L122 Fern green"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "L124 Dark green"
+                        },
+                        {
+                            "begin": 76,
+                            "default": 76,
+                            "end": 76,
+                            "label": "L126 Mauve"
+                        },
+                        {
+                            "begin": 78,
+                            "default": 78,
+                            "end": 78,
+                            "label": "L132 Medium blue"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 80,
+                            "end": 80,
+                            "label": "L136 Pale lavender"
+                        },
+                        {
+                            "begin": 82,
+                            "default": 82,
+                            "end": 82,
+                            "label": "L137 Lavender"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "L138 Pale green"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 86,
+                            "end": 86,
+                            "label": "L139 Primary green"
+                        },
+                        {
+                            "begin": 88,
+                            "default": 88,
+                            "end": 88,
+                            "label": "L142 Pale violet"
+                        },
+                        {
+                            "begin": 90,
+                            "default": 90,
+                            "end": 90,
+                            "label": "L147 Apricot"
+                        },
+                        {
+                            "begin": 92,
+                            "default": 92,
+                            "end": 92,
+                            "label": "L151 Gold tint"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 94,
+                            "label": "L152 Pale gold"
+                        },
+                        {
+                            "begin": 96,
+                            "default": 96,
+                            "end": 96,
+                            "label": "L154 Pale rose"
+                        },
+                        {
+                            "begin": 98,
+                            "default": 98,
+                            "end": 98,
+                            "label": "L156 Chocolate"
+                        },
+                        {
+                            "begin": 100,
+                            "default": 100,
+                            "end": 100,
+                            "label": "L164 Flame red"
+                        },
+                        {
+                            "begin": 102,
+                            "default": 102,
+                            "end": 102,
+                            "label": "L170 Deep lavender"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 104,
+                            "label": "L174 Dark steel blue"
+                        },
+                        {
+                            "begin": 106,
+                            "default": 106,
+                            "end": 106,
+                            "label": "L176 Loving amber"
+                        },
+                        {
+                            "begin": 108,
+                            "default": 108,
+                            "end": 108,
+                            "label": "L179 Chrome orange"
+                        },
+                        {
+                            "begin": 110,
+                            "default": 110,
+                            "end": 110,
+                            "label": "L180 Dark lavender"
+                        },
+                        {
+                            "begin": 112,
+                            "default": 112,
+                            "end": 112,
+                            "label": "L181 Congo blue"
+                        },
+                        {
+                            "begin": 114,
+                            "default": 114,
+                            "end": 114,
+                            "label": "L182 Light red"
+                        },
+                        {
+                            "begin": 116,
+                            "default": 116,
+                            "end": 116,
+                            "label": "L194 Surprise pink"
+                        },
+                        {
+                            "begin": 118,
+                            "default": 118,
+                            "end": 118,
+                            "label": "L195 Zenith blue"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 120,
+                            "end": 120,
+                            "label": "L200 Double CT blue"
+                        },
+                        {
+                            "begin": 122,
+                            "default": 122,
+                            "end": 122,
+                            "label": "L201 Full CT blue"
+                        },
+                        {
+                            "begin": 124,
+                            "default": 124,
+                            "end": 124,
+                            "label": "L202 Half CT blue"
+                        },
+                        {
+                            "begin": 126,
+                            "default": 126,
+                            "end": 126,
+                            "label": "L203 Quarter CT blue"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "L204 Full CT orange"
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "L205 Half CT orange"
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 132,
+                            "label": "L206 Quarter CT orange"
+                        },
+                        {
+                            "begin": 134,
+                            "default": 134,
+                            "end": 134,
+                            "label": "L242 Fluorescent 4300 Kelvin"
+                        },
+                        {
+                            "begin": 136,
+                            "default": 136,
+                            "end": 136,
+                            "label": "L249 1/4 minus green"
+                        },
+                        {
+                            "begin": 138,
+                            "default": 138,
+                            "end": 138,
+                            "label": "L323 Jade"
+                        },
+                        {
+                            "begin": 140,
+                            "default": 140,
+                            "end": 140,
+                            "label": "L328 Follies pink"
+                        },
+                        {
+                            "begin": 142,
+                            "default": 142,
+                            "end": 142,
+                            "label": "L343 Special medium lavender"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 144,
+                            "label": "L345 Fuchsia pink"
+                        },
+                        {
+                            "begin": 146,
+                            "default": 146,
+                            "end": 146,
+                            "label": "L341 Plum"
+                        },
+                        {
+                            "begin": 148,
+                            "default": 148,
+                            "end": 148,
+                            "label": "L353 Lighter blue"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 150,
+                            "label": "L506 Marlene"
+                        },
+                        {
+                            "begin": 152,
+                            "default": 152,
+                            "end": 152,
+                            "label": "L601 Silver"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "L700 Perfect lavender"
+                        },
+                        {
+                            "begin": 156,
+                            "default": 156,
+                            "end": 156,
+                            "label": "L728 Steel green"
+                        },
+                        {
+                            "begin": 158,
+                            "default": 158,
+                            "end": 158,
+                            "label": "L731 Dirty Ice"
+                        },
+                        {
+                            "begin": 160,
+                            "default": 160,
+                            "end": 160,
+                            "label": "L765 LEE yellow"
+                        },
+                        {
+                            "begin": 162,
+                            "default": 162,
+                            "end": 162,
+                            "label": "L777 Rust"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "L795 Magical magenta"
+                        },
+                        {
+                            "begin": 166,
+                            "default": 166,
+                            "end": 166,
+                            "label": "L797 Deep purple"
+                        },
+                        {
+                            "begin": 168,
+                            "default": 168,
+                            "end": 168,
+                            "label": "R003 Dark bastard amber"
+                        },
+                        {
+                            "begin": 170,
+                            "default": 170,
+                            "end": 170,
+                            "label": "R005 Rose tint"
+                        },
+                        {
+                            "begin": 172,
+                            "default": 172,
+                            "end": 172,
+                            "label": "R011 Light straw"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 174,
+                            "label": "R023 Orange"
+                        },
+                        {
+                            "begin": 176,
+                            "default": 176,
+                            "end": 176,
+                            "label": "R025 Orange red"
+                        },
+                        {
+                            "begin": 178,
+                            "default": 178,
+                            "end": 178,
+                            "label": "R031 Salmon pink"
+                        },
+                        {
+                            "begin": 180,
+                            "default": 180,
+                            "end": 180,
+                            "label": "R035 Light pink"
+                        },
+                        {
+                            "begin": 182,
+                            "default": 182,
+                            "end": 182,
+                            "label": "R040 Light salmon"
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 184,
+                            "label": "R054 Special lavender"
+                        },
+                        {
+                            "begin": 186,
+                            "default": 186,
+                            "end": 186,
+                            "label": "R057 Lavender"
+                        },
+                        {
+                            "begin": 188,
+                            "default": 188,
+                            "end": 188,
+                            "label": "R061 Mist blue"
+                        },
+                        {
+                            "begin": 190,
+                            "default": 190,
+                            "end": 190,
+                            "label": "R068 Parry sky blue"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 192,
+                            "label": "R075 Twilight blue"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 194,
+                            "label": "R079 Bright blue"
+                        },
+                        {
+                            "begin": 196,
+                            "default": 196,
+                            "end": 196,
+                            "label": "R082 Surprise blue"
+                        },
+                        {
+                            "begin": 198,
+                            "default": 198,
+                            "end": 198,
+                            "label": "R089 Moss green"
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 200,
+                            "label": "R303 Warm peach"
+                        },
+                        {
+                            "begin": 202,
+                            "default": 202,
+                            "end": 202,
+                            "label": "R318 Mayan sun"
+                        },
+                        {
+                            "begin": 204,
+                            "default": 204,
+                            "end": 204,
+                            "label": "R363 Aquamarine"
+                        },
+                        {
+                            "begin": 206,
+                            "default": 206,
+                            "end": 206,
+                            "label": "R385 Royal blue"
+                        },
+                        {
+                            "begin": 208,
+                            "default": 208,
+                            "end": 208,
+                            "label": "R386 Leaf green"
+                        },
+                        {
+                            "begin": 232,
+                            "default": 232,
+                            "end": 232,
+                            "label": "off"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Saturation",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "(Light Frost)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Light Frost)"
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 70,
+                            "label": "(Heavy Frost)",
+                            "media": {
+                                "dcid": "missing",
+                                "name": "(Heavy Frost)"
+                            }
+                        },
+                        {
+                            "begin": 110,
+                            "default": 110,
+                            "end": 110,
+                            "label": "(Deep Blue)",
+                            "media": {
+                                "b": 186,
+                                "g": 114,
+                                "name": "(Deep Blue)",
+                                "r": 28,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 150,
+                            "label": "(Deep Red)",
+                            "media": {
+                                "b": 4,
+                                "g": 0,
+                                "name": "(Deep Red)",
+                                "r": 212,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 171,
+                            "default": 210,
+                            "end": 210,
+                            "label": "Deep Blue",
+                            "media": {
+                                "b": 186,
+                                "g": 114,
+                                "name": "Deep Blue",
+                                "r": 28,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 211,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Deep Red",
+                            "media": {
+                                "b": 4,
+                                "g": 0,
+                                "name": "Deep Red",
+                                "r": 212,
+                                "dcid": "missing"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 132,
+                            "label": "(Beamshaper)",
+                            "media": {
+                                "dcid": "2511E333-8671-D647-A442-FEADA8BAB4D5",
+                                "name": "(Beamshaper)"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 154,
+                            "end": 180,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 203,
+                            "default": 203,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 18,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 64,
+                            "label": "Time"
+                        },
+                        {
+                            "begin": 65,
+                            "default": 65,
+                            "end": 65,
+                            "label": "Gamma correction quadratic"
+                        },
+                        {
+                            "begin": 67,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Gamma correction linear"
+                        },
+                        {
+                            "begin": 69,
+                            "default": 69,
+                            "end": 69,
+                            "label": "Gamma correction S-Curve"
+                        },
+                        {
+                            "begin": 71,
+                            "default": 71,
+                            "end": 71,
+                            "label": "Gamma correction 2.2"
+                        },
+                        {
+                            "begin": 75,
+                            "default": 75,
+                            "end": 75,
+                            "label": "Tungsten emulation disabled"
+                        },
+                        {
+                            "begin": 77,
+                            "default": 77,
+                            "end": 77,
+                            "label": "Tungsten emulation enabled"
+                        },
+                        {
+                            "begin": 79,
+                            "default": 79,
+                            "end": 79,
+                            "label": "Crossfade curve intermediate"
+                        },
+                        {
+                            "begin": 81,
+                            "default": 81,
+                            "end": 81,
+                            "label": "Crossfade curve transition"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 94,
+                            "label": "PWM Freq 1"
+                        },
+                        {
+                            "begin": 105,
+                            "default": 109,
+                            "end": 114,
+                            "label": "PWM Freq"
+                        },
+                        {
+                            "begin": 155,
+                            "default": 155,
+                            "end": 155,
+                            "label": "Display standby disabled"
+                        },
+                        {
+                            "begin": 157,
+                            "default": 157,
+                            "end": 157,
+                            "label": "Display standby enabled"
+                        },
+                        {
+                            "begin": 159,
+                            "default": 159,
+                            "end": 159,
+                            "label": "Display standby forced on"
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "No DMX-keep last"
+                        },
+                        {
+                            "begin": 177,
+                            "default": 177,
+                            "end": 177,
+                            "label": "No DMX-blackout"
+                        },
+                        {
+                            "begin": 181,
+                            "default": 181,
+                            "end": 181,
+                            "label": "No DMX-demo program"
+                        },
+                        {
+                            "begin": 183,
+                            "default": 183,
+                            "end": 183,
+                            "label": "No DMX-single cue"
+                        },
+                        {
+                            "begin": 185,
+                            "default": 185,
+                            "end": 185,
+                            "label": "Pan Invert Off"
+                        },
+                        {
+                            "begin": 187,
+                            "default": 187,
+                            "end": 187,
+                            "label": "Pan Invert On"
+                        },
+                        {
+                            "begin": 197,
+                            "default": 197,
+                            "end": 197,
+                            "label": "Tilt Invert Off"
+                        },
+                        {
+                            "begin": 199,
+                            "default": 199,
+                            "end": 199,
+                            "label": "Tilt Invert On"
+                        },
+                        {
+                            "begin": 209,
+                            "default": 209,
+                            "end": 209,
+                            "label": "Normal"
+                        },
+                        {
+                            "begin": 211,
+                            "default": 211,
+                            "end": 211,
+                            "label": "Zoom reversed"
+                        },
+                        {
+                            "begin": 235,
+                            "default": 235,
+                            "end": 235,
+                            "label": "Operationg mode silent"
+                        },
+                        {
+                            "begin": 237,
+                            "default": 237,
+                            "end": 237,
+                            "label": "Operationg mode standard"
+                        },
+                        {
+                            "begin": 241,
+                            "default": 241,
+                            "end": 241,
+                            "label": "As Menu"
+                        },
+                        {
+                            "begin": 243,
+                            "default": 243,
+                            "end": 243,
+                            "label": "Auto"
+                        },
+                        {
+                            "begin": 254,
+                            "default": 254,
+                            "end": 254,
+                            "label": "Set functions to default"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 19,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 42,
+                            "default": 42,
+                            "end": 42,
+                            "label": "Pos Reset 1"
+                        },
+                        {
+                            "begin": 85,
+                            "default": 85,
+                            "end": 85,
+                            "label": "NonPos Reset 1"
+                        },
+                        {
+                            "begin": 125,
+                            "default": 125,
+                            "end": 125,
+                            "label": "Color 1 Reset"
+                        },
+                        {
+                            "begin": 185,
+                            "default": 185,
+                            "end": 185,
+                            "label": "FX 1 Reset"
+                        },
+                        {
+                            "begin": 227,
+                            "default": 227,
+                            "end": 227,
+                            "label": "Zoom Reset 1"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Reset 1",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 19,
+                            "subkey": 247
+                        },
+                        {
+                            "step": 7,
+                            "key": 19,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

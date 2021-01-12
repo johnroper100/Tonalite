@@ -1,0 +1,210 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "1D127909-DF80-456E-8E49-0374420AE784",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Barco",
+            "maxOffset": 1,
+            "modeName": "Basic",
+            "modelName": "F90 4K13",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Proj Input",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "Activate first profile preset"
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "Activate second profile preset"
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "Activate third profile preset"
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "Activate fourth profile preset"
+                        },
+                        {
+                            "begin": 43,
+                            "default": 43,
+                            "end": 43,
+                            "label": "Activate fifth profile preset"
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "Activate sixth profile preset"
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "Activate seventh profile preset"
+                        },
+                        {
+                            "begin": 67,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Activate eighth profile preset"
+                        },
+                        {
+                            "begin": 75,
+                            "default": 75,
+                            "end": 75,
+                            "label": "Activate ninth profile preset"
+                        },
+                        {
+                            "begin": 83,
+                            "default": 83,
+                            "end": 83,
+                            "label": "Activate tenth profile preset"
+                        },
+                        {
+                            "begin": 91,
+                            "default": 91,
+                            "end": 91,
+                            "label": "Select input 1: HDMI Input"
+                        },
+                        {
+                            "begin": 99,
+                            "default": 99,
+                            "end": 99,
+                            "label": "Select input 2: DisplayPort Input"
+                        },
+                        {
+                            "begin": 107,
+                            "default": 107,
+                            "end": 107,
+                            "label": "Select input 3: SDI Input A"
+                        },
+                        {
+                            "begin": 115,
+                            "default": 115,
+                            "end": 115,
+                            "label": "Select input 4: SDI Input B"
+                        },
+                        {
+                            "begin": 123,
+                            "default": 123,
+                            "end": 123,
+                            "label": "Select input 5: HDBaseT Input 1"
+                        },
+                        {
+                            "begin": 131,
+                            "default": 131,
+                            "end": 131,
+                            "label": "Select input 6: Quad SDI input"
+                        },
+                        {
+                            "begin": 139,
+                            "default": 139,
+                            "end": 139,
+                            "label": "Select input 7: Quad DP board Input A"
+                        },
+                        {
+                            "begin": 147,
+                            "default": 147,
+                            "end": 147,
+                            "label": "Select input 8: Quad DP board Input B"
+                        },
+                        {
+                            "begin": 155,
+                            "default": 155,
+                            "end": 155,
+                            "label": "Select input 9: Quad DP board Input C"
+                        },
+                        {
+                            "begin": 163,
+                            "default": 163,
+                            "end": 163,
+                            "label": "Select input 10: Quad DP board Input D"
+                        },
+                        {
+                            "begin": 171,
+                            "default": 171,
+                            "end": 171,
+                            "label": "Select input 11: Quad DP board Inputs A-B"
+                        },
+                        {
+                            "begin": 179,
+                            "default": 179,
+                            "end": 179,
+                            "label": "Select input 12: Quad DP board quad column mode"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 1,
+                            "subkey": 211
+                        },
+                        {
+                            "step": 6,
+                            "key": 1,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 1,
+                            "subkey": 219
+                        },
+                        {
+                            "step": 6,
+                            "key": 1,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

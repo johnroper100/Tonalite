@@ -1,0 +1,217 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "433588A6-F00A-447B-AA60-72CFC1C7357D",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "LightSky",
+            "maxOffset": 11,
+            "modeName": "HSIC",
+            "modelName": "TX1940Z",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "Zoom Reset"
+                        },
+                        {
+                            "begin": 40,
+                            "default": 40,
+                            "end": 40,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 60,
+                            "default": 60,
+                            "end": 60,
+                            "label": "Dimmer speed 1"
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 70,
+                            "label": "Dimmer speed 2"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 80,
+                            "end": 80,
+                            "label": "Dimmer speed 3"
+                        },
+                        {
+                            "begin": 90,
+                            "default": 90,
+                            "end": 90,
+                            "label": "Dimmer speed 4"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Hue",
+                    "size": 16,
+                    "type": 5,
+                    "fine": 6
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Saturation",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 49,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 89,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 90,
+                            "default": 90,
+                            "end": 119,
+                            "label": "Pulse"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 120,
+                            "end": 179,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 180,
+                            "default": 180,
+                            "end": 249,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 252,
+                            "default": 252,
+                            "end": 252,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "CTC",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4
+                }
+            ],
+            "colortable": "B3D05F0E-FB45-4EEA-A8D5-61F545A922DE",
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 4,
+                            "subkey": 50
+                        },
+                        {
+                            "step": 7,
+                            "key": 4,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,699 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "3521FEE5-688D-CA4B-8F8A-F5E430D5E11B",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": false,
+            "manufacturerName": "Christie",
+            "maxOffset": 23,
+            "modeName": "-",
+            "modelName": "YK100-M100",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Mode",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Motor mode 0"
+                        },
+                        {
+                            "begin": 48,
+                            "default": 48,
+                            "end": 48,
+                            "label": "Motor mode 1"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 80,
+                            "end": 80,
+                            "label": "Motor mode 2"
+                        },
+                        {
+                            "begin": 112,
+                            "default": 112,
+                            "end": 112,
+                            "label": "Motor mode 3"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 144,
+                            "label": "Motor mode 4"
+                        },
+                        {
+                            "begin": 208,
+                            "default": 208,
+                            "end": 208,
+                            "label": "Unknown"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Pos Reset",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 53,
+                            "default": 53,
+                            "end": 53,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 86,
+                            "end": 86,
+                            "label": "Load"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 171,
+                            "default": 171,
+                            "end": 171,
+                            "label": "Execute"
+                        },
+                        {
+                            "begin": 213,
+                            "default": 213,
+                            "end": 213,
+                            "label": "Unknown"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Fixture Enable",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Locked"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Unlocked"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Proj Mode",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Picture mute on"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Picture mute off"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Proj Lens Shift",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Off"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "On"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Proj Zoom",
+                    "size": 16,
+                    "type": 4,
+                    "fine": 11
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Proj Focus",
+                    "size": 16,
+                    "type": 4,
+                    "fine": 13
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Proj Lens Shift H",
+                    "size": 16,
+                    "type": 4,
+                    "fine": 15
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Proj Lens Shift V",
+                    "size": 16,
+                    "type": 4,
+                    "fine": 17
+                },
+                {
+                    "coarse": 18,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Proj Input",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Projector channel 1"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "Projector channel 2"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "Projector channel 3"
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 34,
+                            "label": "Projector channel 4"
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 44,
+                            "label": "Projector channel 5"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "Projector channel 6"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "Projector channel 7"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "Projector channel 8"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "Projector channel 9"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 94,
+                            "label": "Projector channel 10"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 104,
+                            "label": "Projector channel 11"
+                        },
+                        {
+                            "begin": 114,
+                            "default": 114,
+                            "end": 114,
+                            "label": "Projector channel 12"
+                        },
+                        {
+                            "begin": 124,
+                            "default": 124,
+                            "end": 124,
+                            "label": "Projector channel 13"
+                        },
+                        {
+                            "begin": 134,
+                            "default": 134,
+                            "end": 134,
+                            "label": "Projector channel 14"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 144,
+                            "label": "Projector channel 15"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "Projector channel 16"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "Projector channel 17"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 174,
+                            "label": "Projector channel 18"
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 184,
+                            "label": "Projector channel 19"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 194,
+                            "label": "Projector channel 20"
+                        },
+                        {
+                            "begin": 227,
+                            "default": 227,
+                            "end": 227,
+                            "label": "Unknown"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 19,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Proj Input 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Slot 1 input 1"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "Slot 1 input 2"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "Slot 1 input 3"
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 34,
+                            "label": "Slot 1 input 4"
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 44,
+                            "label": "Slot 1 input 5"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "Slot 1 input 6"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "Slot 2 input 1"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "Slot 2 input 2"
+                        },
+                        {
+                            "begin": 84,
+                            "default": 84,
+                            "end": 84,
+                            "label": "Slot 2 input 3"
+                        },
+                        {
+                            "begin": 94,
+                            "default": 94,
+                            "end": 94,
+                            "label": "Slot 2 input 4"
+                        },
+                        {
+                            "begin": 104,
+                            "default": 104,
+                            "end": 104,
+                            "label": "Slot 2 input 5"
+                        },
+                        {
+                            "begin": 114,
+                            "default": 114,
+                            "end": 114,
+                            "label": "Slot 2 input 6"
+                        },
+                        {
+                            "begin": 124,
+                            "default": 124,
+                            "end": 124,
+                            "label": "Slot 3 input 1"
+                        },
+                        {
+                            "begin": 134,
+                            "default": 134,
+                            "end": 134,
+                            "label": "Slot 3 input 2"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 144,
+                            "end": 144,
+                            "label": "Slot 3 input 3"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "Slot 3 input 4"
+                        },
+                        {
+                            "begin": 164,
+                            "default": 164,
+                            "end": 164,
+                            "label": "Slot 3 input 5"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 174,
+                            "label": "Slot 3 input 6"
+                        },
+                        {
+                            "begin": 184,
+                            "default": 184,
+                            "end": 184,
+                            "label": "Slot 4 input 1"
+                        },
+                        {
+                            "begin": 194,
+                            "default": 194,
+                            "end": 194,
+                            "label": "Slot 4 input 2"
+                        },
+                        {
+                            "begin": 204,
+                            "default": 204,
+                            "end": 204,
+                            "label": "Slot 4 input 3"
+                        },
+                        {
+                            "begin": 214,
+                            "default": 214,
+                            "end": 214,
+                            "label": "Slot 4 input 4"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 224,
+                            "end": 224,
+                            "label": "Slot 4 input 5"
+                        },
+                        {
+                            "begin": 234,
+                            "default": 234,
+                            "end": 234,
+                            "label": "Slot 4 input 6"
+                        },
+                        {
+                            "begin": 247,
+                            "default": 247,
+                            "end": 247,
+                            "label": "Unknown 1"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 20,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Macros",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Image freeze off"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 213,
+                            "default": 213,
+                            "end": 213,
+                            "label": "Image freeze on"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 21,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Fixture Sleep",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 128,
+                            "label": "Unknown"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Pos Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 5,
+                            "subkey": 20
+                        },
+                        {
+                            "step": 1,
+                            "key": 5,
+                            "subkey": 86
+                        },
+                        {
+                            "step": 2,
+                            "key": 5,
+                            "subkey": 171
+                        },
+                        {
+                            "step": 10,
+                            "key": 5,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Sleep",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 42
+                        },
+                        {
+                            "step": 6,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Wake",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 21,
+                            "subkey": 213
+                        },
+                        {
+                            "step": 6,
+                            "key": 21,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

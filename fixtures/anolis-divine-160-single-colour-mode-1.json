@@ -1,0 +1,175 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "20DFB087-2103-499D-BB5D-8CC8B3D81156",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Anolis",
+            "maxOffset": 3,
+            "modeName": "Mode 1",
+            "modelName": "Divine 160 Single Colour",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Reserved"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 8192,
+                    "home": 8192,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 32,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 95,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 111,
+                            "default": 111,
+                            "end": 111,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 143,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 144,
+                            "default": 151,
+                            "end": 159,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 175,
+                            "default": 175,
+                            "end": 175,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 223,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 239,
+                            "default": 239,
+                            "end": 239,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 16,
+                    "type": 1,
+                    "fine": 3
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Display 100%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 0,
+                            "subkey": 22
+                        },
+                        {
+                            "step": 4,
+                            "key": 0,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Display 0%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 0,
+                            "subkey": 27
+                        },
+                        {
+                            "step": 4,
+                            "key": 0,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer curve linear",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 0,
+                            "subkey": 94
+                        },
+                        {
+                            "step": 4,
+                            "key": 0,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Dimmer curve square law",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 0,
+                            "subkey": 104
+                        },
+                        {
+                            "step": 4,
+                            "key": 0,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

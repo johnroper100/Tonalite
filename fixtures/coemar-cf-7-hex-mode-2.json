@@ -1,0 +1,696 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "C06F30A9-F9BB-AB42-B070-092EF199D2D8",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Coemar",
+            "maxOffset": 20,
+            "modeName": "Mode 2",
+            "modelName": "CF 7 HEX",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 10,
+                            "default": 10,
+                            "end": 127,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 247,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Iris",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Iris 100"
+                        },
+                        {
+                            "begin": 16,
+                            "default": 65,
+                            "end": 115,
+                            "label": "Iris"
+                        },
+                        {
+                            "begin": 154,
+                            "default": 154,
+                            "end": 154,
+                            "label": "Iris 1"
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 251,
+                            "label": "Iris Strobe"
+                        },
+                        {
+                            "begin": 253,
+                            "default": 253,
+                            "end": 253,
+                            "label": "Iris 100"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 30,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 31,
+                            "default": 71,
+                            "end": 71,
+                            "label": "107",
+                            "media": {
+                                "dcid": "A33FE7EA-7808-5441-9B02-BE2E377285D7",
+                                "name": "107"
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 112,
+                            "end": 112,
+                            "label": "106",
+                            "media": {
+                                "dcid": "24DA4EE9-9C48-524F-9B33-74C6FC29A219",
+                                "name": "106"
+                            }
+                        },
+                        {
+                            "begin": 113,
+                            "default": 153,
+                            "end": 153,
+                            "label": "108",
+                            "media": {
+                                "dcid": "C73D6374-5139-0249-A560-F7C0CC20920E",
+                                "name": "108"
+                            }
+                        },
+                        {
+                            "begin": 154,
+                            "default": 194,
+                            "end": 194,
+                            "label": "109",
+                            "media": {
+                                "dcid": "0E9EE560-AB39-924D-A98D-14E5D3333A15",
+                                "name": "109"
+                            }
+                        },
+                        {
+                            "begin": 195,
+                            "default": 235,
+                            "end": 235,
+                            "label": "110",
+                            "media": {
+                                "dcid": "C498377B-6F33-5B49-8AD5-59E353520A9C",
+                                "name": "110"
+                            }
+                        },
+                        {
+                            "begin": 236,
+                            "default": 245,
+                            "end": 255,
+                            "label": "111",
+                            "media": {
+                                "dcid": "9876DE26-2DC4-D747-81B1-8BFE9C877D7F",
+                                "name": "111"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo Index",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Rot"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 255,
+                            "label": "Index"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 100,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 101,
+                            "default": 138,
+                            "end": 176,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 177,
+                            "default": 179,
+                            "end": 179,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 180,
+                            "default": 180,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 22,
+                            "label": "Open",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "Open"
+                            }
+                        },
+                        {
+                            "begin": 23,
+                            "default": 45,
+                            "end": 45,
+                            "label": "100",
+                            "media": {
+                                "dcid": "6405E7DE-1906-E148-AE0E-EBF73015DA62",
+                                "name": "100"
+                            }
+                        },
+                        {
+                            "begin": 46,
+                            "default": 69,
+                            "end": 69,
+                            "label": "101",
+                            "media": {
+                                "dcid": "B4C20C74-3FBF-EB42-B746-829B62387419",
+                                "name": "101"
+                            }
+                        },
+                        {
+                            "begin": 70,
+                            "default": 92,
+                            "end": 92,
+                            "label": "102",
+                            "media": {
+                                "dcid": "E47EC0BF-D826-6B47-99FD-5C84A1C8EEC3",
+                                "name": "102"
+                            }
+                        },
+                        {
+                            "begin": 93,
+                            "default": 116,
+                            "end": 116,
+                            "label": "103",
+                            "media": {
+                                "dcid": "3A337E0E-07C5-A34F-A029-8C549C08F074",
+                                "name": "103"
+                            }
+                        },
+                        {
+                            "begin": 117,
+                            "default": 139,
+                            "end": 139,
+                            "label": "105",
+                            "media": {
+                                "dcid": "FC4D0A2E-6013-8D48-B1FC-17C01AA2B56E",
+                                "name": "105"
+                            }
+                        },
+                        {
+                            "begin": 140,
+                            "default": 145,
+                            "end": 151,
+                            "label": "104",
+                            "media": {
+                                "dcid": "671FA7DC-1FC2-A743-BB08-CDB865FA4F70",
+                                "name": "104"
+                            }
+                        },
+                        {
+                            "begin": 152,
+                            "default": 152,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 127,
+                            "default": 127,
+                            "end": 127,
+                            "label": "(Prism 1)"
+                        },
+                        {
+                            "begin": 213,
+                            "default": 213,
+                            "end": 213,
+                            "label": "(Prism 2)"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 128,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 159,
+                            "end": 189,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 193,
+                            "default": 193,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Macros",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 85,
+                            "label": "Iris focal lens"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 170,
+                            "end": 170,
+                            "label": "Gobo focal lens"
+                        },
+                        {
+                            "begin": 171,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Narrow angle"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Cyan",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Magenta",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 18,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Yellow",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 19,
+                    "fadeWithIntensity": false,
+                    "highlight": 5120,
+                    "home": 5120,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 20,
+                            "default": 20,
+                            "end": 20,
+                            "label": "None"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 20,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Pos Opt Mode",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Normal"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Smooth"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 19,
+                            "subkey": 5
+                        },
+                        {
+                            "step": 7,
+                            "key": 19,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Pan tilt go to sensor",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 19,
+                            "subkey": 65
+                        },
+                        {
+                            "step": 7,
+                            "key": 19,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 19,
+                            "subkey": 135
+                        },
+                        {
+                            "step": 37,
+                            "key": 19,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Zoom control free",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 19,
+                            "subkey": 185
+                        },
+                        {
+                            "step": 7,
+                            "key": 19,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Zoom fast autofocus",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 19,
+                            "subkey": 220
+                        },
+                        {
+                            "step": 7,
+                            "key": 19,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Progressive zoom autofocus",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 19,
+                            "subkey": 245
+                        },
+                        {
+                            "step": 7,
+                            "key": 19,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 19,
+                            "subkey": 252
+                        },
+                        {
+                            "step": 7,
+                            "key": 19,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ],
+            "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139"
+        }
+    ]
+}

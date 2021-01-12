@@ -1,0 +1,593 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "719A02A6-7C51-4FFE-99DC-C5F41AF7C65C",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Light Emotion",
+            "maxOffset": 10,
+            "modeName": "11ch",
+            "modelName": "LE60",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 8,
+                            "default": 8,
+                            "end": 99,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 100,
+                            "default": 124,
+                            "end": 149,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 174,
+                            "default": 174,
+                            "end": 174,
+                            "label": "Strobe Pattern 1"
+                        },
+                        {
+                            "begin": 222,
+                            "default": 222,
+                            "end": 222,
+                            "label": "Strobe Pattern 2"
+                        },
+                        {
+                            "begin": 250,
+                            "default": 250,
+                            "end": 250,
+                            "label": "Strobe Pattern 3"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "(Red)",
+                            "media": {
+                                "b": 0,
+                                "g": 0,
+                                "name": "(Red)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "(Green)",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "(Green)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "(Blue)",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "(Blue)",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "(Yellow)",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "(Yellow)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 43,
+                            "default": 43,
+                            "end": 43,
+                            "label": "(Magenta)",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "(Magenta)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "(Cyan)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Cyan)",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "(Pink)",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "(Pink)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 67,
+                            "default": 67,
+                            "end": 67,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 75,
+                            "default": 75,
+                            "end": 75,
+                            "label": "Red",
+                            "media": {
+                                "b": 0,
+                                "g": 0,
+                                "name": "Red",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 83,
+                            "default": 83,
+                            "end": 83,
+                            "label": "Green",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Green",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 91,
+                            "default": 91,
+                            "end": 91,
+                            "label": "Blue",
+                            "media": {
+                                "b": 255,
+                                "g": 142,
+                                "name": "Blue",
+                                "r": 33,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 99,
+                            "default": 99,
+                            "end": 99,
+                            "label": "Yellow",
+                            "media": {
+                                "b": 0,
+                                "g": 255,
+                                "name": "Yellow",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 107,
+                            "default": 107,
+                            "end": 107,
+                            "label": "Magenta",
+                            "media": {
+                                "b": 255,
+                                "g": 0,
+                                "name": "Magenta",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 115,
+                            "default": 115,
+                            "end": 115,
+                            "label": "Cyan",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Cyan",
+                                "r": 0,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 123,
+                            "default": 123,
+                            "end": 123,
+                            "label": "Pink",
+                            "media": {
+                                "b": 229,
+                                "g": 172,
+                                "name": "Pink",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 191,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "(05)",
+                            "media": {
+                                "dcid": "38BD508C-4197-354A-B636-248C1B2DD24E",
+                                "name": "(05)"
+                            }
+                        },
+                        {
+                            "begin": 19,
+                            "default": 19,
+                            "end": 19,
+                            "label": "(21)",
+                            "media": {
+                                "dcid": "ED8FEA45-401E-6A46-B3ED-53966764DABF",
+                                "name": "(21)"
+                            }
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "(198)",
+                            "media": {
+                                "dcid": "3B78967A-624D-B94F-9641-5C56E5A7E9C0",
+                                "name": "(198)"
+                            }
+                        },
+                        {
+                            "begin": 35,
+                            "default": 35,
+                            "end": 35,
+                            "label": "(220)",
+                            "media": {
+                                "dcid": "799C90DE-C61E-3D47-9199-A5B32024DC9D",
+                                "name": "(220)"
+                            }
+                        },
+                        {
+                            "begin": 43,
+                            "default": 43,
+                            "end": 43,
+                            "label": "(24)",
+                            "media": {
+                                "dcid": "77BC1597-CEC5-AB42-868E-3900672B060C",
+                                "name": "(24)"
+                            }
+                        },
+                        {
+                            "begin": 51,
+                            "default": 51,
+                            "end": 51,
+                            "label": "(Atomic)"
+                        },
+                        {
+                            "begin": 59,
+                            "default": 59,
+                            "end": 59,
+                            "label": "(Star)",
+                            "media": {
+                                "dcid": "E732AC4A-0275-A84D-8A45-92C677902C6E",
+                                "name": "(Star)"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 71,
+                            "end": 71,
+                            "label": "(Open) [S]",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open) [S]"
+                            }
+                        },
+                        {
+                            "begin": 72,
+                            "default": 79,
+                            "end": 79,
+                            "label": "(05) [S]",
+                            "media": {
+                                "dcid": "38BD508C-4197-354A-B636-248C1B2DD24E",
+                                "name": "(05) [S]"
+                            }
+                        },
+                        {
+                            "begin": 80,
+                            "default": 87,
+                            "end": 87,
+                            "label": "(21) [S]",
+                            "media": {
+                                "dcid": "ED8FEA45-401E-6A46-B3ED-53966764DABF",
+                                "name": "(21) [S]"
+                            }
+                        },
+                        {
+                            "begin": 88,
+                            "default": 95,
+                            "end": 95,
+                            "label": "(198) [S]",
+                            "media": {
+                                "dcid": "3B78967A-624D-B94F-9641-5C56E5A7E9C0",
+                                "name": "(198) [S]"
+                            }
+                        },
+                        {
+                            "begin": 96,
+                            "default": 103,
+                            "end": 103,
+                            "label": "(220) [S]",
+                            "media": {
+                                "dcid": "799C90DE-C61E-3D47-9199-A5B32024DC9D",
+                                "name": "(220) [S]"
+                            }
+                        },
+                        {
+                            "begin": 104,
+                            "default": 111,
+                            "end": 111,
+                            "label": "(24) [S]",
+                            "media": {
+                                "dcid": "77BC1597-CEC5-AB42-868E-3900672B060C",
+                                "name": "(24) [S]"
+                            }
+                        },
+                        {
+                            "begin": 112,
+                            "default": 119,
+                            "end": 119,
+                            "label": "(Atomic) [S]"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 127,
+                            "end": 127,
+                            "label": "(Star) [S]",
+                            "media": {
+                                "dcid": "E732AC4A-0275-A84D-8A45-92C677902C6E",
+                                "name": "(Star) [S]"
+                            }
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 191,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 192,
+                            "end": 255,
+                            "label": "Spin >>"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX Macros",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "off"
+                        },
+                        {
+                            "begin": 143,
+                            "default": 143,
+                            "end": 143,
+                            "label": "FX Macros 1"
+                        },
+                        {
+                            "begin": 177,
+                            "default": 177,
+                            "end": 177,
+                            "label": "FX Macros 2"
+                        },
+                        {
+                            "begin": 211,
+                            "default": 211,
+                            "end": 211,
+                            "label": "FX Macros 3"
+                        },
+                        {
+                            "begin": 241,
+                            "default": 241,
+                            "end": 241,
+                            "label": "FX Macros 4"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX Macro Rate",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 235,
+                            "label": "FXM Rate"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 10,
+                            "subkey": 245
+                        },
+                        {
+                            "step": 7,
+                            "key": 10,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

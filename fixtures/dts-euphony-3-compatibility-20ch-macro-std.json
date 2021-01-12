@@ -1,0 +1,628 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "7B42DB24-1161-4301-9B39-B421E0AF968B",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "DTS",
+            "maxOffset": 19,
+            "modeName": "Compatibility 20Ch - Macro Std",
+            "modelName": "Euphony 3",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 2816,
+                    "home": 2816,
+                    "invert": false,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Focus 70"
+                        },
+                        {
+                            "begin": 11,
+                            "default": 11,
+                            "end": 11,
+                            "label": "Focus Track"
+                        },
+                        {
+                            "begin": 26,
+                            "default": 76,
+                            "end": 127,
+                            "label": "Focus Spd"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 247,
+                            "label": "Time"
+                        },
+                        {
+                            "begin": 251,
+                            "default": 251,
+                            "end": 251,
+                            "label": "Time 1"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 17920,
+                    "home": 17920,
+                    "invert": false,
+                    "name": "PWM Freq",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "1000Hz"
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 50,
+                            "label": "610Hz"
+                        },
+                        {
+                            "begin": 60,
+                            "default": 60,
+                            "end": 60,
+                            "label": "800Hz"
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 70,
+                            "label": "1000Hz"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 80,
+                            "end": 80,
+                            "label": "1500Hz"
+                        },
+                        {
+                            "begin": 90,
+                            "default": 90,
+                            "end": 90,
+                            "label": "2000Hz"
+                        },
+                        {
+                            "begin": 100,
+                            "default": 100,
+                            "end": 100,
+                            "label": "2500Hz"
+                        },
+                        {
+                            "begin": 110,
+                            "default": 110,
+                            "end": 110,
+                            "label": "3000Hz"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 120,
+                            "end": 120,
+                            "label": "3500Hz"
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "4000Hz"
+                        },
+                        {
+                            "begin": 140,
+                            "default": 140,
+                            "end": 140,
+                            "label": "4500Hz"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 150,
+                            "label": "5000Hz"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 119,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 120,
+                            "default": 120,
+                            "end": 149,
+                            "label": "O Pulse"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 179,
+                            "label": "C Pulse"
+                        },
+                        {
+                            "begin": 180,
+                            "default": 180,
+                            "end": 204,
+                            "label": "Random strobe, RGBW enabled"
+                        },
+                        {
+                            "begin": 205,
+                            "default": 205,
+                            "end": 229,
+                            "label": "Random strobe, RGBW disabled"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Red",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Green",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Blue",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "White",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Macros",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "No Function"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 80,
+                            "end": 80,
+                            "label": "RGBW at full"
+                        },
+                        {
+                            "begin": 130,
+                            "default": 130,
+                            "end": 130,
+                            "label": "White DTS"
+                        },
+                        {
+                            "begin": 180,
+                            "default": 180,
+                            "end": 180,
+                            "label": "Custom white create"
+                        },
+                        {
+                            "begin": 230,
+                            "default": 230,
+                            "end": 230,
+                            "label": "White CTC"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Temp",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 3,
+                            "label": "2700K"
+                        },
+                        {
+                            "begin": 4,
+                            "default": 4,
+                            "end": 13,
+                            "label": "2800K"
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 23,
+                            "label": "3000K"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 30,
+                            "label": "3200K"
+                        },
+                        {
+                            "begin": 31,
+                            "default": 31,
+                            "end": 42,
+                            "label": "3350K"
+                        },
+                        {
+                            "begin": 43,
+                            "default": 43,
+                            "end": 61,
+                            "label": "3600K"
+                        },
+                        {
+                            "begin": 62,
+                            "default": 62,
+                            "end": 85,
+                            "label": "4000K"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 86,
+                            "end": 109,
+                            "label": "4500K"
+                        },
+                        {
+                            "begin": 110,
+                            "default": 110,
+                            "end": 138,
+                            "label": "5000K"
+                        },
+                        {
+                            "begin": 139,
+                            "default": 139,
+                            "end": 157,
+                            "label": "5600K"
+                        },
+                        {
+                            "begin": 158,
+                            "default": 158,
+                            "end": 181,
+                            "label": "6000K"
+                        },
+                        {
+                            "begin": 182,
+                            "default": 182,
+                            "end": 205,
+                            "label": "6500K"
+                        },
+                        {
+                            "begin": 206,
+                            "default": 206,
+                            "end": 255,
+                            "label": "7000K"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Macro",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Color Mix"
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 22,
+                            "label": "MixMacro 1"
+                        },
+                        {
+                            "begin": 38,
+                            "default": 38,
+                            "end": 38,
+                            "label": "MixMacro 2"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "MixMacro 3"
+                        },
+                        {
+                            "begin": 70,
+                            "default": 70,
+                            "end": 70,
+                            "label": "MixMacro 4"
+                        },
+                        {
+                            "begin": 86,
+                            "default": 86,
+                            "end": 86,
+                            "label": "MixMacro 5"
+                        },
+                        {
+                            "begin": 102,
+                            "default": 102,
+                            "end": 102,
+                            "label": "MixMacro 6"
+                        },
+                        {
+                            "begin": 118,
+                            "default": 118,
+                            "end": 118,
+                            "label": "MixMacro 7"
+                        },
+                        {
+                            "begin": 134,
+                            "default": 134,
+                            "end": 134,
+                            "label": "MixMacro 8"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 150,
+                            "end": 150,
+                            "label": "MixMacro 9"
+                        },
+                        {
+                            "begin": 166,
+                            "default": 166,
+                            "end": 166,
+                            "label": "MixMacro 10"
+                        },
+                        {
+                            "begin": 182,
+                            "default": 182,
+                            "end": 182,
+                            "label": "MixMacro 11"
+                        },
+                        {
+                            "begin": 198,
+                            "default": 198,
+                            "end": 198,
+                            "label": "MixMacro 12"
+                        },
+                        {
+                            "begin": 214,
+                            "default": 214,
+                            "end": 214,
+                            "label": "MixMacro 13"
+                        },
+                        {
+                            "begin": 230,
+                            "default": 230,
+                            "end": 230,
+                            "label": "MixMacro 14"
+                        },
+                        {
+                            "begin": 246,
+                            "default": 246,
+                            "end": 246,
+                            "label": "MixMacro 15"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "MixMacro 16"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color Macros 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 79,
+                            "label": "Custom white recall"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 160,
+                            "end": 160,
+                            "label": "Custom white create"
+                        },
+                        {
+                            "begin": 161,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Custom white store"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 19,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Global Reset",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": "Pos Reset"
+                        },
+                        {
+                            "begin": 157,
+                            "default": 157,
+                            "end": 157,
+                            "label": "Zoom Reset"
+                        }
+                    ]
+                }
+            ],
+            "colortable": "77597794-7BFF-46A3-878B-906D3780E6C9",
+            "commands": [
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 19,
+                            "subkey": 247
+                        },
+                        {
+                            "step": 7,
+                            "key": 19,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

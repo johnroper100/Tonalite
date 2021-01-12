@@ -1,0 +1,764 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "38BA12D5-E708-D546-B214-EBFD20FCDF50",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Martin",
+            "maxOffset": 17,
+            "modeName": "16b Basic",
+            "modelName": "Mac Viper Wash",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 7680,
+                    "home": 7680,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 30,
+                            "default": 30,
+                            "end": 30,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 50,
+                            "default": 50,
+                            "end": 200,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 205,
+                            "default": 205,
+                            "end": 205,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 211,
+                            "default": 211,
+                            "end": 255,
+                            "label": "Rnd"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Cyan",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 3,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Magenta",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Yellow",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "CTO",
+                    "size": 8,
+                    "type": 5
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 32767,
+                    "home": 32767,
+                    "invert": true,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 14
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 16
+                },
+                {
+                    "coarse": 17,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Control",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 125,
+                            "default": 125,
+                            "end": 125,
+                            "label": "Lamp Pwr 100"
+                        },
+                        {
+                            "begin": 127,
+                            "default": 127,
+                            "end": 127,
+                            "label": "Lamp Pwr 90"
+                        },
+                        {
+                            "begin": 129,
+                            "default": 129,
+                            "end": 129,
+                            "label": "Lamp Pwr 80"
+                        },
+                        {
+                            "begin": 131,
+                            "default": 131,
+                            "end": 131,
+                            "label": "Lamp Pwr 70"
+                        },
+                        {
+                            "begin": 133,
+                            "default": 133,
+                            "end": 133,
+                            "label": "Lamp Pwr 60"
+                        },
+                        {
+                            "begin": 152,
+                            "default": 152,
+                            "end": 152,
+                            "label": "Display On"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Cal Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 4
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 12
+                        },
+                        {
+                            "step": 46,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Int Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 17
+                        },
+                        {
+                            "step": 26,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Color Mix Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 22
+                        },
+                        {
+                            "step": 26,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Zoom Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 27
+                        },
+                        {
+                            "step": 26,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Pos Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 32
+                        },
+                        {
+                            "step": 36,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 47
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Cal On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 57
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Linear",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 62
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Square",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 67
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Inverse square",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 72
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "S curve",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 77
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Normal",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 82
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Vector",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 87
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Slow",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 92
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Scut On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 97
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Scut Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 102
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Focus tracking disabled",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 107
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Focus tracking - near",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 112
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Focus tracking - medium",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 117
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Focus tracking - far",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 122
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Auto blackout - On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 137
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Auto blackout - Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 142
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Display 0%",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 157
+                        },
+                        {
+                            "step": 2,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Store PT calibration",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 167
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Store dimmer calibration",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 172
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Store cyan calibration",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 177
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Store magenta calibration",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 182
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Store yellow calibration",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 187
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Store CTO calibration",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 192
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Store CMY CTO calibration",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 197
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Store focus calibration",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 227
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Store zoom calibration",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 232
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Store pan calibration",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 237
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Store tilt calibration",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 242
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Fixture Cal Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 247
+                        },
+                        {
+                            "step": 6,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 17,
+                            "subkey": 42
+                        },
+                        {
+                            "step": 7,
+                            "key": 17,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ],
+            "colortable": "EF4970BA-2536-4725-9B0F-B2D7A021E139"
+        }
+    ]
+}

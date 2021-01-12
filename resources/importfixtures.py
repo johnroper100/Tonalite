@@ -89,7 +89,7 @@ with open('Carallon.def') as f:
                         filename = personality["manufacturerName"]+"-" + \
                             personality["modelName"] + \
                             "-"+personality["modeName"]
-                    filename = slugify(filename)+".jlib"
+                    filename = slugify(filename)+".json"
                     if needsFade == True:
                         for param in personality["parameters"]:
                             if param["type"] == 5:
@@ -173,7 +173,7 @@ with open('Carallon.def') as f:
                         filename = personality["manufacturerName"]+"-" + \
                             personality["modelName"] + \
                             "-"+personality["modeName"]
-                    filename = slugify(filename)+".jlib"
+                    filename = slugify(filename)+".json"
                     if needsFade == True:
                         for param in personality["parameters"]:
                             if param["type"] == 5:

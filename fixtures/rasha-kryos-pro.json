@@ -1,0 +1,923 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "EB9B1482-9B69-4904-AB8E-AA9F24350125",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": true,
+            "manufacturerName": "Rasha",
+            "maxOffset": 16,
+            "modeName": "-",
+            "modelName": "Kryos Pro",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Pan",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 2
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 32768,
+                    "home": 32768,
+                    "invert": false,
+                    "name": "Tilt",
+                    "size": 16,
+                    "type": 2,
+                    "fine": 3
+                },
+                {
+                    "coarse": 4,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": true,
+                    "name": "Focus Speed",
+                    "size": 8,
+                    "type": 2
+                },
+                {
+                    "coarse": 5,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Frost",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Frost"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 255,
+                            "label": "Frost"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 6,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 65535,
+                    "invert": false,
+                    "name": "Strobe",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Closed"
+                        },
+                        {
+                            "begin": 4,
+                            "default": 4,
+                            "end": 103,
+                            "label": "Pulse"
+                        },
+                        {
+                            "begin": 105,
+                            "default": 105,
+                            "end": 105,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 108,
+                            "default": 108,
+                            "end": 207,
+                            "label": "Strobe"
+                        },
+                        {
+                            "begin": 210,
+                            "default": 210,
+                            "end": 210,
+                            "label": "Open"
+                        },
+                        {
+                            "begin": 213,
+                            "default": 213,
+                            "end": 251,
+                            "label": "Rnd"
+                        },
+                        {
+                            "begin": 255,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Open"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 7,
+                    "fadeWithIntensity": false,
+                    "highlight": 65535,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Intensity",
+                    "size": 8,
+                    "type": 1
+                },
+                {
+                    "coarse": 8,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Color",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "(Open)",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 7,
+                            "default": 7,
+                            "end": 7,
+                            "label": "Open",
+                            "media": {
+                                "b": 255,
+                                "g": 255,
+                                "name": "Open",
+                                "r": 255,
+                                "dcid": "missing"
+                            }
+                        },
+                        {
+                            "begin": 12,
+                            "default": 12,
+                            "end": 12,
+                            "label": "(colour 1)"
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "colour 1"
+                        },
+                        {
+                            "begin": 22,
+                            "default": 22,
+                            "end": 22,
+                            "label": "(colour 2)"
+                        },
+                        {
+                            "begin": 27,
+                            "default": 27,
+                            "end": 27,
+                            "label": "colour 2"
+                        },
+                        {
+                            "begin": 32,
+                            "default": 32,
+                            "end": 32,
+                            "label": "(colour 3)"
+                        },
+                        {
+                            "begin": 37,
+                            "default": 37,
+                            "end": 37,
+                            "label": "colour 3"
+                        },
+                        {
+                            "begin": 42,
+                            "default": 42,
+                            "end": 42,
+                            "label": "(colour 4)"
+                        },
+                        {
+                            "begin": 47,
+                            "default": 47,
+                            "end": 47,
+                            "label": "colour 4"
+                        },
+                        {
+                            "begin": 52,
+                            "default": 52,
+                            "end": 52,
+                            "label": "(colour 5)"
+                        },
+                        {
+                            "begin": 57,
+                            "default": 57,
+                            "end": 57,
+                            "label": "colour 5"
+                        },
+                        {
+                            "begin": 62,
+                            "default": 62,
+                            "end": 62,
+                            "label": "(colour 6)"
+                        },
+                        {
+                            "begin": 67,
+                            "default": 67,
+                            "end": 67,
+                            "label": "colour 6"
+                        },
+                        {
+                            "begin": 72,
+                            "default": 72,
+                            "end": 72,
+                            "label": "(colour 7)"
+                        },
+                        {
+                            "begin": 77,
+                            "default": 77,
+                            "end": 77,
+                            "label": "colour 7"
+                        },
+                        {
+                            "begin": 82,
+                            "default": 82,
+                            "end": 82,
+                            "label": "(colour 8)"
+                        },
+                        {
+                            "begin": 87,
+                            "default": 87,
+                            "end": 87,
+                            "label": "colour 8"
+                        },
+                        {
+                            "begin": 92,
+                            "default": 92,
+                            "end": 92,
+                            "label": "(colour 9)"
+                        },
+                        {
+                            "begin": 97,
+                            "default": 97,
+                            "end": 97,
+                            "label": "colour 9"
+                        },
+                        {
+                            "begin": 102,
+                            "default": 102,
+                            "end": 102,
+                            "label": "(colour 10)"
+                        },
+                        {
+                            "begin": 107,
+                            "default": 107,
+                            "end": 107,
+                            "label": "colour 10"
+                        },
+                        {
+                            "begin": 112,
+                            "default": 112,
+                            "end": 112,
+                            "label": "(colour 11)"
+                        },
+                        {
+                            "begin": 117,
+                            "default": 117,
+                            "end": 117,
+                            "label": "colour 11"
+                        },
+                        {
+                            "begin": 122,
+                            "default": 122,
+                            "end": 122,
+                            "label": "(colour 12)"
+                        },
+                        {
+                            "begin": 127,
+                            "default": 127,
+                            "end": 127,
+                            "label": "colour 12"
+                        },
+                        {
+                            "begin": 132,
+                            "default": 132,
+                            "end": 132,
+                            "label": "(colour 13)"
+                        },
+                        {
+                            "begin": 137,
+                            "default": 137,
+                            "end": 137,
+                            "label": "colour 13"
+                        },
+                        {
+                            "begin": 142,
+                            "default": 142,
+                            "end": 142,
+                            "label": "(colour 14)"
+                        },
+                        {
+                            "begin": 147,
+                            "default": 147,
+                            "end": 147,
+                            "label": "colour 14"
+                        },
+                        {
+                            "begin": 150,
+                            "default": 174,
+                            "end": 199,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 200,
+                            "default": 200,
+                            "end": 255,
+                            "label": "Spin <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 9,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 5,
+                            "default": 5,
+                            "end": 5,
+                            "label": "(gobo 1)"
+                        },
+                        {
+                            "begin": 9,
+                            "default": 9,
+                            "end": 9,
+                            "label": "(gobo 2)"
+                        },
+                        {
+                            "begin": 13,
+                            "default": 13,
+                            "end": 13,
+                            "label": "(gobo 3)"
+                        },
+                        {
+                            "begin": 17,
+                            "default": 17,
+                            "end": 17,
+                            "label": "(gobo 4)"
+                        },
+                        {
+                            "begin": 21,
+                            "default": 21,
+                            "end": 21,
+                            "label": "(gobo 5)"
+                        },
+                        {
+                            "begin": 25,
+                            "default": 25,
+                            "end": 25,
+                            "label": "(gobo 6)"
+                        },
+                        {
+                            "begin": 29,
+                            "default": 29,
+                            "end": 29,
+                            "label": "(gobo 7)"
+                        },
+                        {
+                            "begin": 33,
+                            "default": 33,
+                            "end": 33,
+                            "label": "(gobo 8)"
+                        },
+                        {
+                            "begin": 37,
+                            "default": 37,
+                            "end": 37,
+                            "label": "(gobo 9)"
+                        },
+                        {
+                            "begin": 41,
+                            "default": 41,
+                            "end": 41,
+                            "label": "(gobo 10)"
+                        },
+                        {
+                            "begin": 45,
+                            "default": 45,
+                            "end": 45,
+                            "label": "(gobo 11)"
+                        },
+                        {
+                            "begin": 49,
+                            "default": 49,
+                            "end": 49,
+                            "label": "(gobo 12)"
+                        },
+                        {
+                            "begin": 53,
+                            "default": 53,
+                            "end": 53,
+                            "label": "(gobo 13)"
+                        },
+                        {
+                            "begin": 57,
+                            "default": 57,
+                            "end": 57,
+                            "label": "(gobo 14)"
+                        },
+                        {
+                            "begin": 61,
+                            "default": 61,
+                            "end": 61,
+                            "label": "(gobo 15)"
+                        },
+                        {
+                            "begin": 65,
+                            "default": 65,
+                            "end": 65,
+                            "label": "(gobo 16)"
+                        },
+                        {
+                            "begin": 68,
+                            "default": 90,
+                            "end": 113,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 115,
+                            "default": 115,
+                            "end": 115,
+                            "label": "Spin Stop"
+                        },
+                        {
+                            "begin": 118,
+                            "default": 118,
+                            "end": 159,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 160,
+                            "default": 166,
+                            "end": 166,
+                            "label": "(gobo 2) [S]"
+                        },
+                        {
+                            "begin": 167,
+                            "default": 172,
+                            "end": 172,
+                            "label": "(gobo 3) [S]"
+                        },
+                        {
+                            "begin": 173,
+                            "default": 179,
+                            "end": 179,
+                            "label": "(gobo 4) [S]"
+                        },
+                        {
+                            "begin": 180,
+                            "default": 185,
+                            "end": 185,
+                            "label": "(gobo 5) [S]"
+                        },
+                        {
+                            "begin": 186,
+                            "default": 191,
+                            "end": 191,
+                            "label": "(gobo 6) [S]"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 198,
+                            "end": 198,
+                            "label": "(gobo 7) [S]"
+                        },
+                        {
+                            "begin": 199,
+                            "default": 204,
+                            "end": 204,
+                            "label": "(gobo 8) [S]"
+                        },
+                        {
+                            "begin": 205,
+                            "default": 211,
+                            "end": 211,
+                            "label": "(gobo 9) [S]"
+                        },
+                        {
+                            "begin": 212,
+                            "default": 217,
+                            "end": 217,
+                            "label": "(gobo 10) [S]"
+                        },
+                        {
+                            "begin": 218,
+                            "default": 223,
+                            "end": 223,
+                            "label": "(gobo 11) [S]"
+                        },
+                        {
+                            "begin": 224,
+                            "default": 230,
+                            "end": 230,
+                            "label": "(gobo 12) [S]"
+                        },
+                        {
+                            "begin": 231,
+                            "default": 236,
+                            "end": 236,
+                            "label": "(gobo 13) [S]"
+                        },
+                        {
+                            "begin": 237,
+                            "default": 243,
+                            "end": 243,
+                            "label": "(gobo 14) [S]"
+                        },
+                        {
+                            "begin": 244,
+                            "default": 249,
+                            "end": 249,
+                            "label": "(gobo 15) [S]"
+                        },
+                        {
+                            "begin": 250,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(gobo 16) [S]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 10,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 14,
+                            "default": 14,
+                            "end": 14,
+                            "label": "(gobo 1)"
+                        },
+                        {
+                            "begin": 24,
+                            "default": 24,
+                            "end": 24,
+                            "label": "(gobo 2)"
+                        },
+                        {
+                            "begin": 34,
+                            "default": 34,
+                            "end": 34,
+                            "label": "(gobo 3)"
+                        },
+                        {
+                            "begin": 44,
+                            "default": 44,
+                            "end": 44,
+                            "label": "(gobo 4)"
+                        },
+                        {
+                            "begin": 54,
+                            "default": 54,
+                            "end": 54,
+                            "label": "(gobo 5)"
+                        },
+                        {
+                            "begin": 64,
+                            "default": 64,
+                            "end": 64,
+                            "label": "(gobo 6)"
+                        },
+                        {
+                            "begin": 74,
+                            "default": 74,
+                            "end": 74,
+                            "label": "(gobo 7)"
+                        },
+                        {
+                            "begin": 80,
+                            "default": 103,
+                            "end": 127,
+                            "label": "Spin >>"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 185,
+                            "label": "Spin <<"
+                        },
+                        {
+                            "begin": 186,
+                            "default": 195,
+                            "end": 195,
+                            "label": "(gobo 1) [S]"
+                        },
+                        {
+                            "begin": 196,
+                            "default": 205,
+                            "end": 205,
+                            "label": "(gobo 2) [S]"
+                        },
+                        {
+                            "begin": 206,
+                            "default": 215,
+                            "end": 215,
+                            "label": "(gobo 3) [S]"
+                        },
+                        {
+                            "begin": 216,
+                            "default": 225,
+                            "end": 225,
+                            "label": "(gobo 4) [S]"
+                        },
+                        {
+                            "begin": 226,
+                            "default": 235,
+                            "end": 235,
+                            "label": "(gobo 5) [S]"
+                        },
+                        {
+                            "begin": 236,
+                            "default": 245,
+                            "end": 245,
+                            "label": "(gobo 6) [S]"
+                        },
+                        {
+                            "begin": 246,
+                            "default": 255,
+                            "end": 255,
+                            "label": "(gobo 7) [S]"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 11,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Gobo 2 <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 187,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 196,
+                            "default": 196,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 12,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Focus",
+                    "size": 8,
+                    "type": 4
+                },
+                {
+                    "coarse": 13,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "(Open)",
+                            "media": {
+                                "dcid": "21CCD0A1-F5D1-4FC4-BB6A-DB69958AA88D",
+                                "name": "(Open)"
+                            }
+                        },
+                        {
+                            "begin": 64,
+                            "default": 127,
+                            "end": 127,
+                            "label": "effect"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 159,
+                            "end": 191,
+                            "label": "effect"
+                        },
+                        {
+                            "begin": 192,
+                            "default": 223,
+                            "end": 255,
+                            "label": "effect"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 14,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "FX <>",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 127,
+                            "label": "Index"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 157,
+                            "end": 187,
+                            "label": "Rot >>"
+                        },
+                        {
+                            "begin": 191,
+                            "default": 191,
+                            "end": 191,
+                            "label": "Rot Stop"
+                        },
+                        {
+                            "begin": 196,
+                            "default": 196,
+                            "end": 255,
+                            "label": "Rot <<"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 15,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Zoom",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Zoom 100"
+                        },
+                        {
+                            "begin": 128,
+                            "default": 128,
+                            "end": 255,
+                            "label": "Zoom"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 16,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Global Reset",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 152,
+                            "default": 152,
+                            "end": 152,
+                            "label": "Unknown"
+                        },
+                        {
+                            "begin": 230,
+                            "default": 230,
+                            "end": 230,
+                            "label": "Unknown"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Lamp Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 16,
+                            "subkey": 102
+                        },
+                        {
+                            "step": 4,
+                            "key": 16,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Lamp On",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 16,
+                            "subkey": 202
+                        },
+                        {
+                            "step": 4,
+                            "key": 16,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 16,
+                            "subkey": 255
+                        },
+                        {
+                            "step": 34,
+                            "key": 16,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,164 @@
+{
+    "date": "2021-01-04 14:45",
+    "editorVersion": "1.1.1.9.0.4",
+    "personalities": [
+        {
+            "dcid": "6170DFF7-19A6-8E43-9234-CA70A432DA53",
+            "deviceID": null,
+            "manufacturerID": null,
+            "hasIntensity": false,
+            "manufacturerName": "Martin",
+            "maxOffset": 2,
+            "modeName": "-",
+            "modelName": "Jem Ready 365",
+            "parameters": [
+                {
+                    "coarse": 0,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Haze",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "Haze"
+                        },
+                        {
+                            "begin": 13,
+                            "default": 13,
+                            "end": 244,
+                            "label": "Haze"
+                        },
+                        {
+                            "begin": 250,
+                            "default": 250,
+                            "end": 250,
+                            "label": "Haze 100"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 1,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Blower",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 12,
+                            "label": "Blower"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 12,
+                            "label": "Blower"
+                        },
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 255,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 13,
+                            "default": 13,
+                            "end": 244,
+                            "label": "Blower"
+                        },
+                        {
+                            "begin": 13,
+                            "default": 13,
+                            "end": 244,
+                            "label": "Blower"
+                        },
+                        {
+                            "begin": 245,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Blower 100"
+                        },
+                        {
+                            "begin": 245,
+                            "default": 255,
+                            "end": 255,
+                            "label": "Blower 100"
+                        }
+                    ]
+                },
+                {
+                    "coarse": 2,
+                    "fadeWithIntensity": false,
+                    "highlight": 0,
+                    "home": 0,
+                    "invert": false,
+                    "name": "Heater",
+                    "size": 8,
+                    "type": 4,
+                    "ranges": [
+                        {
+                            "begin": 0,
+                            "default": 0,
+                            "end": 0,
+                            "label": "None"
+                        },
+                        {
+                            "begin": 125,
+                            "default": 125,
+                            "end": 125,
+                            "label": "Blower Auto"
+                        },
+                        {
+                            "begin": 228,
+                            "default": 228,
+                            "end": 228,
+                            "label": "On"
+                        }
+                    ]
+                }
+            ],
+            "commands": [
+                {
+                    "name": "Prime",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 75
+                        },
+                        {
+                            "step": 7,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                },
+                {
+                    "name": "Heater Off",
+                    "steps": [
+                        {
+                            "step": 0,
+                            "key": 2,
+                            "subkey": 175
+                        },
+                        {
+                            "step": 7,
+                            "key": 2,
+                            "subkey": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
