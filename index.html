@@ -278,13 +278,15 @@
         <div class="container-fluid mb-5" v-if="tab == 'fixtureParameters'">
             <div v-for="param in fixtureParameters">
                 <span
-                    v-bind:class="{'text-danger': (param.manualInput == 1 && param.manualUser == socketID), 'text-warning': (param.manualInput == 1 && param.manualUser != socketID)}">{{param.name}}</span>
-                <input type="range" class="form-range" v-model.number="param.outputValue" min="0.0" max="100.0"
-                    step="0.001" v-if="blind == false && param.manualInput == 0" @input="editFixtureParameters(param)">
-                <input type="range" class="form-range" v-model.number="param.manualValue" min="0.0" max="100.0"
-                    step="0.001" v-if="blind == false && param.manualInput == 1" @input="editFixtureParameters(param)">
-                <input type="range" class="form-range" v-model.number="param.blindManualValues[socketID]" min="0.0"
-                    max="100.0" step="0.001" v-if="blind == true" @input="editFixtureParameters(param)">
+                    v-bind:class="{'text-danger': (param.value.manualInput == 1 && param.value.manualUser == socketID), 'text-warning': (param.value.manualInput == 1 && param.value.manualUser != socketID)}">{{param.name}}</span>
+                <input type="range" class="form-range" v-model.number="param.value.outputValue" min="0.0" max="100.0"
+                    step="0.001" v-if="blind == false && param.value.manualInput == 0" @input="editFixtureParameters(param)">
+                <input type="range" class="form-range" v-model.number="param.value.manualValue" min="0.0" max="100.0"
+                    step="0.001" v-if="blind == false && param.value.manualInput == 1" @input="editFixtureParameters(param)">
+                <input type="range" class="form-range" v-model.number="param.blindManualValues[socketID].outputValue" min="0.0"
+                    max="100.0" step="0.001" v-if="blind == true && param.blindManualValues[socketID].manualInput == 0" @input="editFixtureParameters(param)">
+                <input type="range" class="form-range" v-model.number="param.blindManualValues[socketID].manual" min="0.0"
+                    max="100.0" step="0.001" v-if="blind == true && param.blindManualValues[socketID].manualInput == 1" @input="editFixtureParameters(param)">
                 <div v-if="param.ranges" v-for="range in param.ranges">
                     {{range.label}}
                     <img v-if="range.media.dcid != 'missing' && range.media.dcid"

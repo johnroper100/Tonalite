@@ -189,7 +189,7 @@ json getCues() {
 void recalculateOutputValues() {
     for (auto &it : fixtures) {
         for (auto &fp : it.second.parameters) {
-            fp.second.backgroundValue = (fp.second.home / 65535.0) * 100.0;
+            fp.second.value.backgroundValue = (fp.second.home / 65535.0) * 100.0;
         }
     }
     /*if (cuePlaying == true) {
@@ -229,14 +229,14 @@ void recalculateOutputValues() {
     }*/
     for (auto &it : fixtures) {
         for (auto &fp : it.second.parameters) {
-            fp.second.outputValue = fp.second.backgroundValue;
-            if (fp.second.manualInput == 1) {
-                fp.second.outputValue = fp.second.manualValue;
+            fp.second.value.outputValue = fp.second.value.backgroundValue;
+            if (fp.second.value.manualInput == 1) {
+                fp.second.value.outputValue = fp.second.value.manualValue;
             } else {
-                if (fp.second.sneak == 1) {
-                    fp.second.outputValue = (fp.second.backgroundValue + (((fp.second.manualValue - fp.second.backgroundValue) / (fp.second.sneakTime * 40.0)) * fp.second.totalSneakProgress));
-                    if (--fp.second.totalSneakProgress < 0) {
-                        fp.second.sneak = 0;
+                if (fp.second.value.sneak == 1) {
+                    fp.second.value.outputValue = (fp.second.value.backgroundValue + (((fp.second.value.manualValue - fp.second.value.backgroundValue) / (fp.second.value.sneakTime * 40.0)) * fp.second.value.totalSneakProgress));
+                    if (--fp.second.value.totalSneakProgress < 0) {
+                        fp.second.value.sneak = 0;
                     }
                 }
             }
@@ -258,7 +258,7 @@ bool SendData() {
     lock_guard<mutex> lg(door);
     for (auto &it : fixtures) {
         for (auto &fp : it.second.parameters) {
-            if (fp.second.sneak == 1) {
+            if (fp.second.value.sneak == 1) {
                 shouldUpdate = 1;
             }
         }
@@ -505,15 +505,25 @@ void processTask(json task) {
         for (auto &fi : task["fixtures"]) {
             for (auto &p : fixtures.at(fi).parameters) {
                 if (p.second.highlight == task["parameter"]["highlight"] && p.second.size == task["parameter"]["size"] && p.second.type == task["parameter"]["type"] && p.second.fadeWithIntensity == task["parameter"]["fadeWithIntensity"] && p.second.home == task["parameter"]["home"]) {
-                    if (task["parameter"]["manualInput"] == 0) {
-                        p.second.manualValue = task["parameter"]["outputValue"];
+                    if (task["blind"] == false) {
+                        if (task["parameter"]["value"]["manualInput"] == 0) {
+                            p.second.value.manualValue = task["parameter"]["value"]["outputValue"];
+                        } else {
+                            p.second.value.manualValue = task["parameter"]["value"]["manualValue"];
+                        }
+                        p.second.value.manualInput = 1;
+                        p.second.value.sneak = 0;
+                        p.second.value.manualUser = task["socketID"];
                     } else {
-                        p.second.manualValue = task["parameter"]["manualValue"];
+                        if (task["parameter"]["blindManualValues"][task["socketID"].get<string>()]["manualInput"] == 0) {
+                            p.second.blindManualValues.at(task["socketID"]).manualValue = task["parameter"]["blindManualValues"][task["socketID"].get<string>()]["outputValue"];
+                        } else {
+                            p.second.blindManualValues.at(task["socketID"]).manualValue = task["parameter"]["blindManualValues"][task["socketID"].get<string>()]["manualValue"];
+                        }
+                        p.second.blindManualValues.at(task["socketID"]).manualInput = 1;
+                        p.second.blindManualValues.at(task["socketID"]).sneak = 0;
+                        p.second.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
                     }
-                    p.second.manualInput = 1;
-                    p.second.sneak = 0;
-                    p.second.manualUser = task["socketID"];
-                    p.second.blindManualValues.at(task["socketID"]) = task["parameter"]["blindManualValues"][task["socketID"].get<string>()];
                 }
             }
         }
@@ -523,7 +533,7 @@ void processTask(json task) {
         lock_guard<mutex> lg(door);
         for (auto &fi: fixtures) {
             for (auto &pi: fi.second.parameters) {
-                if (pi.second.manualInput == 1 && pi.second.manualUser == task["socketID"]) {
+                if (pi.second.value.manualInput == 1 && pi.second.value.manualUser == task["socketID"]) {
                     pi.second.startSneak(3.0);
                 }
             }

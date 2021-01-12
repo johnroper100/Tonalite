@@ -28,8 +28,21 @@ struct FixtureParameterRange {
     string label;
     MediaItem media;
 
+    json asJson();
     FixtureParameterRange();
     FixtureParameterRange(json profile);
+};
+
+struct FixtureParameterValue {
+    double outputValue;
+    double backgroundValue;
+    double manualValue = 0.0;
+    string manualUser = "";
+    int manualInput = 0;
+    int sneak = 0;
+    float sneakTime = 3.0;
+    int totalSneakProgress;
+    json asJson();
 };
 
 struct FixtureParameter {
@@ -46,15 +59,8 @@ struct FixtureParameter {
     WhiteItem white;
     unordered_map<string, FixtureParameterRange> ranges;
 
-    double outputValue;
-    double backgroundValue;
-    double manualValue = 0.0;
-    string manualUser = "";
-    int manualInput = 0;
-    int sneak = 0;
-    float sneakTime = 3.0;
-    int totalSneakProgress;
-    unordered_map<string, double> blindManualValues;
+    FixtureParameterValue value;
+    unordered_map<string, FixtureParameterValue> blindManualValues;
     int getDMXValue();
     int getDMXValue(string userID);
     void startSneak(float inputTime);

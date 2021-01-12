@@ -39,20 +39,35 @@ FixtureParameterRange::FixtureParameterRange(json profile) {
     }
 };
 
+json FixtureParameterRange::asJson() {
+    json rItem;
+
+    rItem["i"] = i;
+    rItem["begin"] = beginVal;
+    rItem["default"] = defaultVal;
+    rItem["end"] = endVal;
+    rItem["label"] = label;
+    rItem["media"] = {};
+    rItem["media"]["dcid"] = media.dcid;
+    rItem["media"]["name"] = media.name;
+        
+    return rItem;
+};
+
 int FixtureParameter::getDMXValue() {
-    return ceil(65535.0 * (outputValue / 100.0));
+    return ceil(65535.0 * (value.outputValue / 100.0));
 };
 
 int FixtureParameter::getDMXValue(string userID) {
-    return ceil(65535.0 * (blindManualValues.at(userID) / 100.0));
+    return ceil(65535.0 * (blindManualValues.at(userID).outputValue / 100.0));
 };
 
 void FixtureParameter::startSneak(float inputTime) {
-    sneak = 1;
-    manualInput = 0;
-    manualUser = "";
-    sneakTime = inputTime;
-    totalSneakProgress = 40.0 * sneakTime;
+    value.sneak = 1;
+    value.manualInput = 0;
+    value.manualUser = "";
+    value.sneakTime = inputTime;
+    value.totalSneakProgress = 40.0 * value.sneakTime;
 };
 
 json FixtureParameter::asJson() {
@@ -71,27 +86,16 @@ json FixtureParameter::asJson() {
     pItem["type"] = type;
     pItem["ranges"] = {};
     for (auto &ri : ranges) {
-        rItem["i"] = ri.second.i;
-        rItem["begin"] = ri.second.beginVal;
-        rItem["default"] = ri.second.defaultVal;
-        rItem["end"] = ri.second.endVal;
-        rItem["label"] = ri.second.label;
-        rItem["media"] = {};
-        rItem["media"]["dcid"] = ri.second.media.dcid;
-        rItem["media"]["name"] = ri.second.media.name;
-        pItem["ranges"].push_back(rItem);
+        pItem["ranges"].push_back(ri.second.asJson());
     }
     pItem["white"] = {};
     pItem["white"]["val"] = white.val;
     pItem["white"]["temp"] = white.temp;
 
-    pItem["manualValue"] = manualValue;
-    pItem["outputValue"] = outputValue;
-    pItem["manualInput"] = manualInput;
-    pItem["manualUser"] = manualUser;
+    pItem["value"] = value.asJson();
     pItem["blindManualValues"] = {};
     for (auto &ri : blindManualValues) {
-        pItem["blindManualValues"][ri.first] = ri.second;
+        pItem["blindManualValues"][ri.first] = ri.second.asJson();
     }
     return pItem;
 };
@@ -130,6 +134,8 @@ FixtureParameter::FixtureParameter(json profile) {
             ranges[newRange.i] = newRange;
         }
     }
+    FixtureParameterValue newValue;
+    value = newValue;
 };
 
 json Fixture::asJson() {
@@ -160,13 +166,14 @@ json Fixture::asJson() {
 
 void Fixture::addUserBlind(string socketID) {
     for (auto &pi : parameters) {
-        pi.second.blindManualValues[socketID] = (pi.second.home / 65535.0) * 100.0;
+        FixtureParameterValue newValue;
+        pi.second.blindManualValues[socketID] = newValue;
     }
 };
 
 void Fixture::removeUserBlind(string socketID) {
     for (auto &pi : parameters) {
-        pi.second.blindManualValues.erase([socketID);
+        pi.second.blindManualValues.erase(socketID);
     }
 };
 
