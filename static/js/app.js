@@ -248,7 +248,7 @@ var app = new Vue({
                             if (fixtureTwoIndex != -1) {
                                 readyTwo = false;
                                 for (pi = 0; pi < app.fixtures[fixtureTwoIndex].parameters.length; pi++) {
-                                    if (app.fixtures[fixtureIndex].parameters[i].highlight == app.fixtures[fixtureTwoIndex].parameters[pi].highlight && app.fixtures[fixtureIndex].parameters[i].size == app.fixtures[fixtureTwoIndex].parameters[pi].size && app.fixtures[fixtureIndex].parameters[i].type == app.fixtures[fixtureTwoIndex].parameters[pi].type && app.fixtures[fixtureIndex].parameters[i].fadeWithIntensity == app.fixtures[fixtureTwoIndex].parameters[pi].fadeWithIntensity && app.fixtures[fixtureIndex].parameters[i].home == app.fixtures[fixtureTwoIndex].parameters[pi].home) {
+                                    if (app.fixtures[fixtureIndex].parameters[i].size == app.fixtures[fixtureTwoIndex].parameters[pi].size && app.fixtures[fixtureIndex].parameters[i].type == app.fixtures[fixtureTwoIndex].parameters[pi].type && app.fixtures[fixtureIndex].parameters[i].fadeWithIntensity == app.fixtures[fixtureTwoIndex].parameters[pi].fadeWithIntensity && app.fixtures[fixtureIndex].parameters[i].name == app.fixtures[fixtureTwoIndex].parameters[pi].name) {
                                         readyTwo = true;
                                         parameterLiveInputs += 1;
                                         if (app.fixtures[fixtureIndex].parameters[i].value.manualInput == 1) {

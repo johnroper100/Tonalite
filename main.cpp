@@ -525,7 +525,7 @@ void processTask(json task) {
         lock_guard<mutex> lg(door);
         for (auto &fi : task["fixtures"]) {
             for (auto &p : fixtures.at(fi).parameters) {
-                if (p.second.highlight == task["parameter"]["highlight"] && p.second.size == task["parameter"]["size"] && p.second.type == task["parameter"]["type"] && p.second.fadeWithIntensity == task["parameter"]["fadeWithIntensity"] && p.second.home == task["parameter"]["home"]) {
+                if (p.second.size == task["parameter"]["size"] && p.second.type == task["parameter"]["type"] && p.second.fadeWithIntensity == task["parameter"]["fadeWithIntensity"] && p.second.name == task["parameter"]["name"]) {
                     if (task["blind"] == false) {
                         if (task["parameter"]["value"]["manualInput"] == 0) {
                             p.second.value.manualValue = task["parameter"]["value"]["outputValue"];

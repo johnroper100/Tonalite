@@ -115,7 +115,7 @@
                         <span class="d-none d-sm-inline-block">Tools</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" style="position: absolute;">
-                        <li><a class="dropdown-item" @click="sneak">Sneak</a></li>
+                        <!--<li><a class="dropdown-item" @click="sneak">Sneak</a></li>-->
                     </ul>
                     <button class="btn" v-if="fixturesTab == 'fixturesGrid'"
                         v-bind:class="{'btn-success': fixtureGridLayout, 'disabled': fixtures.length == 0 }"
@@ -397,6 +397,12 @@
                                 v-bind:class="{ disabled: (cues.length == 0 || blind == true) }" @click="nextCue"><span
                                     class="d-none d-sm-inline-block">Go
                                     Next</span> <i class="fa-regular fa-angle-right fa-lg d-inline-block"></i></button>
+                            <button class="btn btn-success" v-bind:class="{ disabled: cues.length == 0 }"><i
+                                    class="fa-regular fa-circle-xmark fa-lg d-inline-block"></i> <span
+                                    class="d-none d-sm-inline-block">Release Cue</span></button>
+                            <button class="btn btn-warning" v-bind:class="{ disabled: fixtures.length == 0 }"
+                                @click="sneak"><i class="fa-regular fa-transporter-2 fa-lg d-inline-block"></i> <span
+                                    class="d-none d-sm-inline-block">Sneak Fixtures</span></button>
                         </div>
                     </div>
                 </div>
