@@ -127,7 +127,7 @@
             </div>
         </div>
         <div class="container-fluid mb-5" v-if="tab == 'fixtures'">
-            <grid-layout :layout.sync="fixtures" :col-num="24" :row-height="25" :vertical-compact="false"
+            <grid-layout :layout.sync="fixtures" :col-num="20" :row-height="25" :vertical-compact="false"
                 :is-resizable="fixtureGridLayout" :prevent-collision="true" :is-draggable="fixtureGridLayout"
                 v-if="fixturesTab == 'fixturesGrid'">
                 <div class="col-12 mt-3" v-if="fixtures.length == 0">
@@ -135,12 +135,11 @@
                     add some to this show.
                 </div>
                 <grid-item v-for="item in fixtures" class="fixtureItem text-center"
-                    v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }" :min-w="2" :min-h="1" :x="item.x"
+                    v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }" :min-w="1" :min-h="1" :x="item.x"
                     :y="item.y" :w="item.w" :h="item.h" :i="item.i" :key="item.i" @moved="moveFixture"
                     @resized="resizeFixture">
                     <div @click="selectFixture(item.i)" class="h-100">
-                        <i class="fa-regular fa-lightbulb d-none d-lg-inline-block"></i>
-                        {{item.universe}}:{{item.address}}
+                        {{item.channel}}
                     </div>
                 </grid-item>
             </grid-layout>
@@ -150,12 +149,15 @@
                     add some to this show.
                 </div>
                 <div class="col-6 col-md-3 col-lg-2 col-xl-1 text-center mb-3" v-for="item in fixtures">
-                    <div class="fixtureItem " @click="selectFixture(item.i)"
+                    <div class="fixtureItem position-relative" @click="selectFixture(item.i)"
                         v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
-                        <div class="p-2">
-                            {{item.name}} ({{item.universe}}:{{item.address}})
+                        <div class="fixtureItemHeader">
+                            {{item.channel}}
                         </div>
-                        <div class="progress">
+                        <div class="p-2 mb-3">
+                            {{item.name}}
+                        </div>
+                        <div class="progress position-absolute bottom-0 w-100">
                             <div class="progress-bar bg-success"
                                 v-bind:style="{ width: intensityAverage(item.parameters) + '%' }" role="progressbar">
                                 {{intensityAverage(item.parameters)}}%</div>
@@ -246,6 +248,7 @@
                 <table class="table table-dark table-striped" v-if="fixtures.length != 0">
                     <thead>
                         <tr>
+                            <th scope="col">Channel</th>
                             <th scope="col">Name</th>
                             <th scope="col">Address</th>
                             <th scope="col">Universe</th>
@@ -254,6 +257,7 @@
                     <tbody>
                         <tr v-for="item in fixtures" class="fixturePatchItem" @click="selectFixture(item.i)"
                             v-bind:class="{ selected: selectedFixtures.indexOf(item.i) >= 0 }">
+                            <td>{{item.channel}}</td>
                             <td>{{item.name}}</td>
                             <td>{{item.address}}<span v-if="item.maxOffset > 0"> -
                                     {{item.maxOffset+item.address}}</span></td>

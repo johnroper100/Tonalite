@@ -73,11 +73,12 @@ struct FixtureParameter {
 struct Fixture {
     string i;
     string name;
+    int channel;
     int universe;
     int address;
     int x = 0;
     int y = 0;
-    int w = 2;
+    int w = 1;
     int h = 1;
 
     string colortable;

@@ -11,7 +11,7 @@ using json = nlohmann::json;
 
 json FixtureParameterValue::asJson() {
     json vItem;
-    
+
     vItem["outputValue"] = outputValue;
     vItem["backgroundValue"] = backgroundValue;
     vItem["manualValue"] = manualValue;
@@ -65,7 +65,7 @@ json FixtureParameterRange::asJson() {
     rItem["media"] = {};
     rItem["media"]["dcid"] = media.dcid;
     rItem["media"]["name"] = media.name;
-        
+
     return rItem;
 };
 
@@ -160,6 +160,7 @@ json Fixture::asJson() {
     fItem["name"] = name;
     fItem["universe"] = universe;
     fItem["address"] = address;
+    fItem["channel"] = channel;
     fItem["x"] = x;
     fItem["y"] = y;
     fItem["w"] = w;
@@ -227,6 +228,8 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
             address = (address + maxOffset) - (512 * (universe - 1));
         }
     }
+
+    channel = address + (512 * (universe - 1));
 
     if (profile.contains("x") && profile["x"] != nullptr) {
         x = profile["x"];
