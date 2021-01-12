@@ -40,7 +40,6 @@ with open('RDMMODELS.def') as f:
 with open('Carallon.def') as f:
     fixtureProfile = {
         "date": "",
-        "editorVersion": "1.1.1.9.0.4",
         "personalities": []
     }
     personality = {}
@@ -131,7 +130,6 @@ with open('Carallon.def') as f:
 
                     fixtureProfile = {
                         "date": "",
-                        "editorVersion": "1.1.1.9.0.4",
                         "personalities": []
                     }
                     filename = ""
