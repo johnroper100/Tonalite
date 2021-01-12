@@ -547,7 +547,7 @@ void processTask(json task) {
         for (auto &fi: fixtures) {
             for (auto &pi: fi.second.parameters) {
                 if (task["blind"] == false) {
-                    if (pi.second.value.manualUser == task["socketID"]) {
+                    if (pi.second.value.manualUser == task["socketID"] || (users.find(pi.second.value.manualUser) == users.end())) {
                         pi.second.startSneak(3.0, "");
                     }
                 } else {
