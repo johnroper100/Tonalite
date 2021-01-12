@@ -9,6 +9,21 @@
 using namespace std;
 using json = nlohmann::json;
 
+json FixtureParameterValue::asJson() {
+    json vItem;
+    
+    vItem["outputValue"] = outputValue;
+    vItem["backgroundValue"] = backgroundValue;
+    vItem["manualValue"] = manualValue;
+    vItem["manualUser"] = manualUser;
+    vItem["manualInput"] = manualInput;
+    vItem["sneak"] = sneak;
+    vItem["sneakTime"] = sneakTime;
+    vItem["totalSneakProgress"] = totalSneakProgress;
+
+    return vItem;
+};
+
 FixtureParameterRange::FixtureParameterRange(){};
 
 FixtureParameterRange::FixtureParameterRange(json profile) {
