@@ -278,19 +278,37 @@ var app = new Vue({
                 app.selectedFixtures.splice(0, 1);
                 fixtureIndex = app.fixtures.findIndex(x => x.i === app.selectedFixtures[0]);
             }
+            var intensityDisplayValue;
+            var intensityBlindValue;
+            var intensityInputs = 0;
             if (fixtureIndex != -1 && app.selectedFixtures.length > 0) {
+                if (app.selectedFixtures.length > 1) {
+                    for (var fi = 1; fi < app.selectedFixtures.length; fi++) {
+                        var fixtureTwoIndex = app.fixtures.findIndex(x => x.i === app.selectedFixtures[fi]);
+                        if (fixtureTwoIndex != -1) {
+                            var fixtureTwo = app.fixtures[fixtureTwoIndex];
+                            if (fixtureTwo.hasIntensity == false) {
+                                intensityDisplayValue = fixtureTwo.intensityParam.value.outputValue;
+                                intensityBlindValue = fixtureTwo.intensityParam.blindManualValues[app.socketID].outputValue;
+                                intensityInputs += 1;
+                            }
+                        }
+                    }
+                }
+                if (app.fixtures[fixtureIndex].hasIntensity == false) {
+                    intensityDisplayValue = app.fixtures[fixtureIndex].intensityParam.value.outputValue;
+                    intensityBlindValue = app.fixtures[fixtureIndex].intensityParam.blindManualValues[app.socketID].outputValue;
+                    intensityInputs += 1;
+                    app.fixtureParameters.push(app.fixtures[fixtureIndex].intensityParam);
+                    app.fixtureParameters[app.fixtureParameters.length - 1].value.outputValue = intensityDisplayValue / intensityInputs;
+                    app.fixtureParameters[app.fixtureParameters.length - 1].blindManualValues[app.socketID].outputValue = intensityBlindValue / intensityInputs;
+                }
+            }
+            /*if (fixtureIndex != -1 && app.selectedFixtures.length > 0) {
                 for (var i = 0; i < app.fixtures[fixtureIndex].parameters.length; i++) {
                     var ready = true;
-                    if (app.fixtures[fixtureIndex].parameters[i].value.manualInput == 1) {
-                        var parameterDisplayValue = app.fixtures[fixtureIndex].parameters[i].value.manualValue;
-                    } else {
-                        var parameterDisplayValue = app.fixtures[fixtureIndex].parameters[i].value.outputValue;
-                    }
-                    if (app.fixtures[fixtureIndex].parameters[i].blindManualValues[app.socketID].manualInput == 1) {
-                        var parameterBlindValue = app.fixtures[fixtureIndex].parameters[i].blindManualValues[app.socketID].manualValue;
-                    } else {
-                        var parameterBlindValue = app.fixtures[fixtureIndex].parameters[i].blindManualValues[app.socketID].outputValue;
-                    }
+                    var parameterDisplayValue = app.fixtures[fixtureIndex].parameters[i].value.outputValue;
+                    var parameterBlindValue = app.fixtures[fixtureIndex].parameters[i].blindManualValues[app.socketID].outputValue;
                     var parameterLiveInputs = 1.0;
                     var parameterBlindInputs = 1.0;
                     if (app.selectedFixtures.length > 1) {
@@ -302,17 +320,9 @@ var app = new Vue({
                                     if (app.fixtures[fixtureIndex].parameters[i].size == app.fixtures[fixtureTwoIndex].parameters[pi].size && app.fixtures[fixtureIndex].parameters[i].type == app.fixtures[fixtureTwoIndex].parameters[pi].type && app.fixtures[fixtureIndex].parameters[i].fadeWithIntensity == app.fixtures[fixtureTwoIndex].parameters[pi].fadeWithIntensity && app.fixtures[fixtureIndex].parameters[i].name == app.fixtures[fixtureTwoIndex].parameters[pi].name) {
                                         readyTwo = true;
                                         parameterLiveInputs += 1;
-                                        if (app.fixtures[fixtureIndex].parameters[i].value.manualInput == 1) {
-                                            parameterDisplayValue += app.fixtures[fixtureTwoIndex].parameters[pi].value.manualValue;
-                                        } else {
-                                            parameterDisplayValue += app.fixtures[fixtureTwoIndex].parameters[pi].value.outputValue;
-                                        }
+                                        parameterDisplayValue += app.fixtures[fixtureTwoIndex].parameters[pi].value.outputValue;
                                         parameterBlindInputs += 1;
-                                        if (app.fixtures[fixtureIndex].parameters[i].blindManualValues[app.socketID].manualInput == 1) {
-                                            parameterBlindValue += app.fixtures[fixtureTwoIndex].parameters[pi].blindManualValues[app.socketID].manualValue;
-                                        } else {
-                                            parameterBlindValue += app.fixtures[fixtureTwoIndex].parameters[pi].blindManualValues[app.socketID].outputValue;
-                                        }
+                                        parameterBlindValue += app.fixtures[fixtureTwoIndex].parameters[pi].blindManualValues[app.socketID].outputValue;
                                     }
                                 }
                                 if (readyTwo == false) {
@@ -327,7 +337,7 @@ var app = new Vue({
                         app.fixtureParameters[app.fixtureParameters.length - 1].blindManualValues[app.socketID].outputValue = parameterBlindValue / parameterBlindInputs;
                     }
                 }
-            }
+            }*/
             app.tab = "fixtureParameters";
         },
         editFixtureParameters: function (parameter) {
