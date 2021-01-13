@@ -186,7 +186,7 @@ json getCues() {
     return j;
 }
 
-void recalculateOutputValues() {
+void recalculateOutputValues(int animate) {
     for (auto &it : fixtures) {
         if (it.second.hasIntensity == false) {
             it.second.intensityParam.resetOutputValue();
@@ -232,12 +232,12 @@ void recalculateOutputValues() {
     }*/
     for (auto &it : fixtures) {
         if (it.second.hasIntensity == false) {
-            it.second.intensityParam.calculateManAndSneak();
+            it.second.intensityParam.calculateManAndSneak(animate);
         }
 
         // Non-main-intensity params
         for (auto &fp : it.second.parameters) {
-            fp.second.calculateManAndSneak();
+            fp.second.calculateManAndSneak(animate);
             if (it.second.hasIntensity == false) {
                 fp.second.value.modifiedOutputValue = fp.second.value.outputValue * it.second.intensityParam.value.outputValue;
             } else {
@@ -289,7 +289,7 @@ bool SendData() {
         }
     }
     if (shouldUpdate == 1) {
-        recalculateOutputValues();
+        recalculateOutputValues(1);
     }
     for (auto &it : fixtures) {
         for (auto &fp : it.second.parameters) {
@@ -449,7 +449,7 @@ void openShow() {
             Cue newCue(ci);
             cues[newCue.i] = newCue;
         }
-        recalculateOutputValues();
+        recalculateOutputValues(0);
         door.unlock();
     }
 }
@@ -493,7 +493,7 @@ void processTask(json task) {
     } else if (task["msgType"] == "addFixture") {
         addFixture(task["custom"], task["file"], task["dcid"], task["universe"], task["address"], task["number"], 0);
         lock_guard<mutex> lg(door);
-        recalculateOutputValues();
+        recalculateOutputValues(0);
         door.unlock();
     } else if (task["msgType"] == "removeFixtures") {
         json fixturesItem;
@@ -528,23 +528,37 @@ void processTask(json task) {
     } else if (task["msgType"] == "editFixtureParameters") {
         lock_guard<mutex> lg(door);
         for (auto &fi : task["fixtures"]) {
-            for (auto &p : fixtures.at(fi).parameters) {
-                if (p.second.size == task["parameter"]["size"] && p.second.type == task["parameter"]["type"] && p.second.fadeWithIntensity == task["parameter"]["fadeWithIntensity"] && p.second.name == task["parameter"]["name"]) {
-                    if (task["blind"] == false) {
-                        p.second.value.manualValue = task["parameter"]["value"]["outputValue"];
-                        p.second.value.manualInput = 1;
-                        p.second.value.sneak = 0;
-                        p.second.value.manualUser = task["socketID"];
-                    } else {
-                        p.second.blindManualValues.at(task["socketID"]).manualValue = task["parameter"]["blindManualValues"][task["socketID"].get<string>()]["outputValue"];
-                        p.second.blindManualValues.at(task["socketID"]).manualInput = 1;
-                        p.second.blindManualValues.at(task["socketID"]).sneak = 0;
-                        p.second.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
+            if (task["parameter"]["type"] != 1 || (task["parameter"]["type"] == 1 && fixtures.at(fi).hasIntensity == true)) {
+                for (auto &p : fixtures.at(fi).parameters) {
+                    if (p.second.size == task["parameter"]["size"] && p.second.type == task["parameter"]["type"] && p.second.fadeWithIntensity == task["parameter"]["fadeWithIntensity"] && p.second.name == task["parameter"]["name"]) {
+                        if (task["blind"] == false) {
+                            p.second.value.manualValue = task["parameter"]["value"]["outputValue"];
+                            p.second.value.manualInput = 1;
+                            p.second.value.sneak = 0;
+                            p.second.value.manualUser = task["socketID"];
+                        } else {
+                            p.second.blindManualValues.at(task["socketID"]).manualValue = task["parameter"]["blindManualValues"][task["socketID"].get<string>()]["outputValue"];
+                            p.second.blindManualValues.at(task["socketID"]).manualInput = 1;
+                            p.second.blindManualValues.at(task["socketID"]).sneak = 0;
+                            p.second.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
+                        }
                     }
+                }
+            } else if (task["parameter"]["type"] == 1) {
+                if (task["blind"] == false) {
+                    fixtures.at(fi).intensityParam.value.manualValue = task["parameter"]["value"]["outputValue"];
+                    fixtures.at(fi).intensityParam.value.manualInput = 1;
+                    fixtures.at(fi).intensityParam.value.sneak = 0;
+                    fixtures.at(fi).intensityParam.value.manualUser = task["socketID"];
+                } else {
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).manualValue = task["parameter"]["blindManualValues"][task["socketID"].get<string>()]["outputValue"];
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).manualInput = 1;
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).sneak = 0;
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
                 }
             }
         }
-        recalculateOutputValues();
+        recalculateOutputValues(0);
         door.unlock();
     } else if (task["msgType"] == "sneak") {
         lock_guard<mutex> lg(door);
@@ -602,7 +616,7 @@ void processTask(json task) {
                 }
             }
         }
-        recalculateOutputValues();
+        recalculateOutputValues(0);
         door.unlock();
     } else if (task["msgType"] == "fixturesOut") {
         lock_guard<mutex> lg(door);
@@ -637,7 +651,7 @@ void processTask(json task) {
                 }
             }
         }
-        recalculateOutputValues();
+        recalculateOutputValues(0);
         door.unlock();
     } else if (task["msgType"] == "fixturesHome") {
         lock_guard<mutex> lg(door);
@@ -654,7 +668,7 @@ void processTask(json task) {
                 }
             }
         }
-        recalculateOutputValues();
+        recalculateOutputValues(0);
         door.unlock();
     } else if (task["msgType"] == "groupFixtures") {
         json item;

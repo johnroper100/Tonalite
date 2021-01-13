@@ -9,7 +9,7 @@
 using namespace std;
 using json = nlohmann::json;
 
-void FixtureParameterValue::calculateManAndSneak() {
+void FixtureParameterValue::calculateManAndSneak(int animate) {
     outputValue = backgroundValue;
     if (manualInput == 1) {
         outputValue = manualValue;
@@ -18,8 +18,10 @@ void FixtureParameterValue::calculateManAndSneak() {
             if (manualValue != outputValue) {
                 manualValue += (backgroundValue - manualValue) / totalSneakProgress;
                 outputValue = manualValue;
-                if (--totalSneakProgress == 0) {
-                    sneak = 0;
+                if (animate == 1) {
+                    if (--totalSneakProgress == 0) {
+                        sneak = 0;
+                    }
                 }
             } else {
                 sneak = 0;
@@ -165,10 +167,10 @@ void FixtureParameter::resetOutputValue() {
     }
 };
 
-void FixtureParameter::calculateManAndSneak() {
-    value.calculateManAndSneak();
+void FixtureParameter::calculateManAndSneak(int animate) {
+    value.calculateManAndSneak(animate);
     for (auto &ui : blindManualValues) {
-        ui.second.calculateManAndSneak();
+        ui.second.calculateManAndSneak(animate);
     }
 };
 
