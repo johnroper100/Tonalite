@@ -370,10 +370,11 @@ var app = new Vue({
             }
             socket.send(JSON.stringify(message));
         },
-        fixturesSneak: function () {
+        fixturesSneak: function (mode) {
             var message = {
                 "msgType": "sneak",
-                "blind": app.blind
+                "blind": app.blind,
+                "mode": parseInt(mode)
             }
             socket.send(JSON.stringify(message));
         },

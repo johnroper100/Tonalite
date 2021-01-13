@@ -401,9 +401,20 @@
                             <button class="btn btn-success" v-bind:class="{ disabled: cues.length == 0 }"><i
                                     class="fa-regular fa-circle-xmark fa-lg d-inline-block"></i> <span
                                     class="d-none d-sm-inline-block">Release Cue</span></button>
-                            <button class="btn btn-warning" v-bind:class="{ disabled: fixtures.length == 0 }"
-                                @click="fixturesSneak"><i class="fa-regular fa-transporter-2 fa-lg d-inline-block"></i>
-                                <span class="d-none d-sm-inline-block">Sneak Fixtures</span></button>
+                            <div class="dropup d-inline-block">
+                                <button class="btn btn-warning" data-bs-toggle="dropdown" aria-expanded="false"
+                                    v-bind:class="{disabled: fixtures.length == 0 }">
+                                    <i class="fa-regular fa-transporter-2 fa-lg d-inline-block"></i>
+                                    <span class="d-none d-sm-inline-block">Sneak Fixtures</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" style="position: absolute;">
+                                    <li><a class="dropdown-item" @click="fixturesSneak(-1)">All</a></li>
+                                    <li><a class="dropdown-item" @click="fixturesSneak(1)">Intensity</a></li>
+                                    <li><a class="dropdown-item" @click="fixturesSneak(2)">Position</a></li>
+                                    <li><a class="dropdown-item" @click="fixturesSneak(5)">Color</a></li>
+                                    <li><a class="dropdown-item" @click="fixturesSneak(4)">Beam</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
