@@ -171,7 +171,22 @@ var app = new Vue({
             }
         },
         selectManualFixtures: function () {
-
+            app.selectedFixtures = [];
+            for (var i = 0; i < app.fixtures.length; i++) {
+                for (var pi = 0; pi < app.fixtures[i].parameters.length; pi++) {
+                    if (app.blind == false) {
+                        if (app.fixtures[i].parameters[pi].value.manualInput == 1) {
+                            app.selectedFixtures.push(app.fixtures[i].i);
+                            break;
+                        }
+                    } else {
+                        if (app.fixtures[i].parameters[pi].blindManualValues[app.socketID].manualInput == 1) {
+                            app.selectedFixtures.push(app.fixtures[i].i);
+                            break;
+                        }
+                    }
+                }
+            }
         },
         selectActiveFixtures: function () {
             app.selectedFixtures = [];
