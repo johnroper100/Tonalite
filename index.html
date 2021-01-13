@@ -72,9 +72,9 @@
                         <span class="d-none d-sm-inline-block">Select</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" style="position: absolute;">
-                        <li><a class="dropdown-item" @click="fixturesHome">All</a></li>
-                        <li><a class="dropdown-item" @click="fixturesHome">Manual</a></li>
-                        <li><a class="dropdown-item" @click="fixturesHome">Active</a></li>
+                        <li><a class="dropdown-item" @click="selectAllFixtures">All</a></li>
+                        <li><a class="dropdown-item" @click="selectManualFixtures">Manual</a></li>
+                        <li><a class="dropdown-item" @click="selectActiveFixtures">Active</a></li>
                     </ul>
                     <button class="btn btn-primary"
                         v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid' || fixturesTab == 'patch'"

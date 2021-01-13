@@ -63,15 +63,15 @@ var app = new Vue({
             }
         },
         fixtureIds() {
-            ids = [];
-            for (i = 0; i < app.fixtures.length; i++) {
+            var ids = [];
+            for (var i = 0; i < app.fixtures.length; i++) {
                 ids.push({ id: app.fixtures[i].i, name: app.fixtures[i].name });
             }
             return ids;
         },
         currentCueName() {
             if (this.currentCue != "") {
-                currentCue = this.cues.find(x => x.i === this.currentCue);
+                var currentCue = this.cues.find(x => x.i === this.currentCue);
                 if (currentCue != undefined) {
                     return currentCue.name;
                 }
@@ -80,7 +80,7 @@ var app = new Vue({
         },
         currentCueProgress() {
             if (this.currentCue != "") {
-                currentCue = this.cues.find(x => x.i === this.currentCue);
+                var currentCue = this.cues.find(x => x.i === this.currentCue);
                 if (currentCue != undefined) {
                     return currentCue.displayProgress;
                 }
@@ -93,7 +93,7 @@ var app = new Vue({
             var file = document.getElementById('uploadInput').files[0];
             var reader = new FileReader();
             reader.onload = function (e) {
-                message = {
+                var message = {
                     "msgType": "updateFirmware",
                     "data": reader.result.split(',')[1]
                 }
@@ -114,9 +114,9 @@ var app = new Vue({
             return true;
         },
         intensityAverage: function (parameters) {
-            avVal = 0.0;
-            avInputs = 0;
-            for (i = 0; i < parameters.length; i++) {
+            var avVal = 0.0;
+            var avInputs = 0;
+            for (var i = 0; i < parameters.length; i++) {
                 if (parameters[i].fadeWithIntensity == true || parameters[i].type == 1) {
                     avInputs += 1;
                     if (app.blind == true) {
@@ -126,10 +126,7 @@ var app = new Vue({
                     }
                 }
             }
-            if (avInputs == 0) {
-                return 0.0;
-            }
-            number = avVal / avInputs;
+            var number = avVal / avInputs;
             return Math.round(number * 10) / 10;
         },
         clearFixtureProfilesSelection: function (type) {
@@ -167,8 +164,25 @@ var app = new Vue({
                 }
             }
         },
+        selectAllFixtures: function () {
+            app.selectedFixtures = [];
+            for (var i = 0; i < app.fixtures.length; i++) {
+                app.selectedFixtures.push(app.fixtures[i].i);
+            }
+        },
+        selectManualFixtures: function () {
+
+        },
+        selectActiveFixtures: function () {
+            app.selectedFixtures = [];
+            for (var i = 0; i < app.fixtures.length; i++) {
+                if (this.intensityAverage(app.fixtures[i].parameters) > 0.0) {
+                    app.selectedFixtures.push(app.fixtures[i].i);
+                }
+            }
+        },
         moveFixture: function (fixtureID, x, y) {
-            message = {
+            var message = {
                 "msgType": "moveFixture",
                 "i": fixtureID,
                 "x": parseInt(x),
@@ -177,7 +191,7 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
         },
         resizeFixture: function (fixtureID, h, w, hp, wp) {
-            message = {
+            var message = {
                 "msgType": "resizeFixture",
                 "i": fixtureID,
                 "h": parseInt(h),
@@ -196,7 +210,7 @@ var app = new Vue({
             $('#fixtureModal').modal('show');
         },
         addFixture: function (dcid, file, custom) {
-            message = {
+            var message = {
                 "msgType": "addFixture",
                 "number": parseInt(app.fixtureProfileNumber),
                 "address": parseInt(app.fixtureProfileAddress),
@@ -209,7 +223,7 @@ var app = new Vue({
             $('#fixtureModal').modal('hide');
         },
         removeFixtures: function () {
-            message = {
+            var message = {
                 "msgType": "removeFixtures",
                 "fixtures": app.selectedFixtures
             }
@@ -222,32 +236,32 @@ var app = new Vue({
         },
         viewFixtureParameters: function () {
             app.fixtureParameters = [];
-            fixtureIndex = app.fixtures.findIndex(x => x.i === app.selectedFixtures[0]);
+            var fixtureIndex = app.fixtures.findIndex(x => x.i === app.selectedFixtures[0]);
             while (fixtureIndex == -1 && app.selectedFixtures.length > 0) {
                 app.selectedFixtures.splice(0, 1);
                 fixtureIndex = app.fixtures.findIndex(x => x.i === app.selectedFixtures[0]);
             }
             if (fixtureIndex != -1 && app.selectedFixtures.length > 0) {
-                for (i = 0; i < app.fixtures[fixtureIndex].parameters.length; i++) {
-                    ready = true;
+                for (var i = 0; i < app.fixtures[fixtureIndex].parameters.length; i++) {
+                    var ready = true;
                     if (app.fixtures[fixtureIndex].parameters[i].value.manualInput == 1) {
-                        parameterDisplayValue = app.fixtures[fixtureIndex].parameters[i].value.manualValue;
+                        var parameterDisplayValue = app.fixtures[fixtureIndex].parameters[i].value.manualValue;
                     } else {
-                        parameterDisplayValue = app.fixtures[fixtureIndex].parameters[i].value.outputValue;
+                        var parameterDisplayValue = app.fixtures[fixtureIndex].parameters[i].value.outputValue;
                     }
                     if (app.fixtures[fixtureIndex].parameters[i].blindManualValues[app.socketID].manualInput == 1) {
-                        parameterBlindValue = app.fixtures[fixtureIndex].parameters[i].blindManualValues[app.socketID].manualValue;
+                        var parameterBlindValue = app.fixtures[fixtureIndex].parameters[i].blindManualValues[app.socketID].manualValue;
                     } else {
-                        parameterBlindValue = app.fixtures[fixtureIndex].parameters[i].blindManualValues[app.socketID].outputValue;
+                        var parameterBlindValue = app.fixtures[fixtureIndex].parameters[i].blindManualValues[app.socketID].outputValue;
                     }
-                    parameterLiveInputs = 1.0;
-                    parameterBlindInputs = 1.0;
+                    var parameterLiveInputs = 1.0;
+                    var parameterBlindInputs = 1.0;
                     if (app.selectedFixtures.length > 1) {
-                        for (fi = 1; fi < app.selectedFixtures.length; fi++) {
-                            fixtureTwoIndex = app.fixtures.findIndex(x => x.i === app.selectedFixtures[fi]);
+                        for (var fi = 1; fi < app.selectedFixtures.length; fi++) {
+                            var fixtureTwoIndex = app.fixtures.findIndex(x => x.i === app.selectedFixtures[fi]);
                             if (fixtureTwoIndex != -1) {
-                                readyTwo = false;
-                                for (pi = 0; pi < app.fixtures[fixtureTwoIndex].parameters.length; pi++) {
+                                var readyTwo = false;
+                                for (var pi = 0; pi < app.fixtures[fixtureTwoIndex].parameters.length; pi++) {
                                     if (app.fixtures[fixtureIndex].parameters[i].size == app.fixtures[fixtureTwoIndex].parameters[pi].size && app.fixtures[fixtureIndex].parameters[i].type == app.fixtures[fixtureTwoIndex].parameters[pi].type && app.fixtures[fixtureIndex].parameters[i].fadeWithIntensity == app.fixtures[fixtureTwoIndex].parameters[pi].fadeWithIntensity && app.fixtures[fixtureIndex].parameters[i].name == app.fixtures[fixtureTwoIndex].parameters[pi].name) {
                                         readyTwo = true;
                                         parameterLiveInputs += 1;
@@ -280,7 +294,7 @@ var app = new Vue({
             app.tab = "fixtureParameters";
         },
         editFixtureParameters: function (parameter) {
-            message = {
+            var message = {
                 "msgType": "editFixtureParameters",
                 "fixtures": app.selectedFixtures,
                 "parameter": parameter,
@@ -289,14 +303,14 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
         },
         fixturesSneak: function () {
-            message = {
+            var message = {
                 "msgType": "sneak",
                 "blind": app.blind
             }
             socket.send(JSON.stringify(message));
         },
         fixturesFull: function () {
-            message = {
+            var message = {
                 "msgType": "fixturesFull",
                 "blind": app.blind,
                 "fixtures": app.selectedFixtures
@@ -304,7 +318,7 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
         },
         fixturesOut: function () {
-            message = {
+            var message = {
                 "msgType": "fixturesOut",
                 "blind": app.blind,
                 "fixtures": app.selectedFixtures
@@ -312,7 +326,7 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
         },
         fixturesHome: function () {
-            message = {
+            var message = {
                 "msgType": "fixturesHome",
                 "blind": app.blind,
                 "fixtures": app.selectedFixtures
@@ -320,7 +334,7 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
         },
         groupFixtures: function () {
-            message = {
+            var message = {
                 "msgType": "groupFixtures",
                 "fixtures": app.selectedFixtures
             }
@@ -336,7 +350,7 @@ var app = new Vue({
             }
         },
         removeGroups: function () {
-            message = {
+            var message = {
                 "msgType": "removeGroups",
                 "groups": app.selectedGroups
             }
@@ -349,16 +363,16 @@ var app = new Vue({
             app.groupSettingsFixtures = [];
             app.groupSettingsFixturesChanged = false;
 
-            for (i = 0; i < app.groups.length; i++) {
+            for (var i = 0; i < app.groups.length; i++) {
                 if (app.selectedGroups.includes(app.groups[i].i)) {
                     if (app.groupSettingsName == "" || app.groupSettingsName == app.groups[i].name) {
                         app.groupSettingsName = app.groups[i].name;
                     } else {
                         app.groupSettingsName = "Multiple";
                     }
-                    for (g = 0; g < app.groups[i].fixtures.length; g++) {
+                    for (var g = 0; g < app.groups[i].fixtures.length; g++) {
                         if (app.groupSettingsFixtures.includes(app.groups[i].fixtures[g]) == false) {
-                            foundFixture = app.fixtures.find(x => x.i === app.groups[i].fixtures[g]);
+                            var foundFixture = app.fixtures.find(x => x.i === app.groups[i].fixtures[g]);
                             if (foundFixture != undefined) {
                                 app.groupSettingsFixtures.push({ id: app.groups[i].fixtures[g], name: foundFixture.name });
                             }
@@ -373,7 +387,7 @@ var app = new Vue({
             app.editGroups();
         },
         editGroups: function () {
-            message = {
+            var message = {
                 "msgType": "editGroups",
                 "groups": app.selectedGroups,
                 "name": app.groupSettingsName,
@@ -383,20 +397,20 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
         },
         recordCue: function () {
-            message = {
+            var message = {
                 "msgType": "recordCue",
                 "blind": app.blind
             }
             socket.send(JSON.stringify(message));
         },
         nextCue: function () {
-            message = {
+            var message = {
                 "msgType": "nextCue"
             }
             socket.send(JSON.stringify(message));
         },
         lastCue: function () {
-            message = {
+            var message = {
                 "msgType": "lastCue"
             }
             socket.send(JSON.stringify(message));
@@ -411,7 +425,7 @@ var app = new Vue({
 });
 
 socket.addEventListener('message', function (event) {
-    msg = JSON.parse(event.data);
+    var msg = JSON.parse(event.data);
     if (msg["msgType"] == "fixtures") {
         if (msg["fixtures"] != null) {
             app.fixtures = msg["fixtures"];
@@ -454,13 +468,13 @@ socket.addEventListener('message', function (event) {
         app.currentCue = msg["currentCue"];
         app.cuePlaying = msg["cuePlaying"];
     } else if (msg["msgType"] == "moveFixture") {
-        item = app.fixtures.find(x => x.i === msg["i"]);
+        var item = app.fixtures.find(x => x.i === msg["i"]);
         if (item != undefined) {
             item.x = msg["x"];
             item.y = msg["y"];
         }
     } else if (msg["msgType"] == "resizeFixture") {
-        item = app.fixtures.find(x => x.i === msg["i"]);
+        var item = app.fixtures.find(x => x.i === msg["i"]);
         if (item != undefined) {
             item.w = msg["w"];
             item.h = msg["h"];
