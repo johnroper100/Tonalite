@@ -113,17 +113,26 @@ var app = new Vue({
             }
             return true;
         },
-        intensityAverage: function (parameters) {
+        intensityAverage: function (fixture) {
             var avVal = 0.0;
             var avInputs = 0;
-            for (var i = 0; i < parameters.length; i++) {
-                if (parameters[i].fadeWithIntensity == true || parameters[i].type == 1) {
-                    avInputs += 1;
-                    if (app.blind == true) {
-                        avVal += parameters[i].blindManualValues[app.socketID].outputValue;
-                    } else {
-                        avVal += parameters[i].value.outputValue;
+            if (fixture.hasIntensity == true) {
+                for (var i = 0; i < fixture.parameters.length; i++) {
+                    if (fixture.parameters[i].type == 1) {
+                        avInputs += 1;
+                        if (app.blind == true) {
+                            avVal += fixture.parameters[i].blindManualValues[app.socketID].outputValue;
+                        } else {
+                            avVal += fixture.parameters[i].value.outputValue;
+                        }
                     }
+                }
+            } else {
+                avInputs += 1;
+                if (app.blind == true) {
+                    avVal += fixture.intensityParam.blindManualValues[app.socketID].outputValue;
+                } else {
+                    avVal += fixture.intensityParam.value.outputValue;
                 }
             }
             var number = avVal / avInputs;
@@ -191,7 +200,7 @@ var app = new Vue({
         selectActiveFixtures: function () {
             app.selectedFixtures = [];
             for (var i = 0; i < app.fixtures.length; i++) {
-                if (this.intensityAverage(app.fixtures[i].parameters) > 0.0) {
+                if (this.intensityAverage(app.fixtures[i]) > 0.0) {
                     app.selectedFixtures.push(app.fixtures[i].i);
                 }
             }

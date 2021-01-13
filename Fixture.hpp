@@ -93,6 +93,7 @@ struct Fixture {
     string modeName;
     string modelName;
     unordered_map<string, FixtureParameter> parameters;
+    FixtureParameter intensityParam;
     Fixture();
     Fixture(json profile, int inputUniverse, int inputAddress, int createIndex);
     json asJson();

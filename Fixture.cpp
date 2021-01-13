@@ -124,7 +124,13 @@ json FixtureParameter::asJson() {
     return pItem;
 };
 
-FixtureParameter::FixtureParameter(){};
+FixtureParameter::FixtureParameter() {
+    i = random_string(10);
+    FixtureParameterValue newValue;
+    value = newValue;
+    home = 0;
+    type = 1;
+};
 
 FixtureParameter::FixtureParameter(json profile) {
     if (profile.contains("i") && profile["i"] != nullptr) {
@@ -186,6 +192,7 @@ json Fixture::asJson() {
     for (auto &pi : parameters) {
         fItem["parameters"].push_back(pi.second.asJson());
     }
+    fItem["intensityParam"] = intensityParam.asJson();
     return fItem;
 };
 
@@ -194,12 +201,15 @@ void Fixture::addUserBlind(string socketID) {
         FixtureParameterValue newValue;
         pi.second.blindManualValues[socketID] = newValue;
     }
+    FixtureParameterValue newValue;
+    intensityParam.blindManualValues[socketID] = newValue;
 };
 
 void Fixture::removeUserBlind(string socketID) {
     for (auto &pi : parameters) {
         pi.second.blindManualValues.erase(socketID);
     }
+    intensityParam.blindManualValues.erase(socketID);
 };
 
 Fixture::Fixture(){};
@@ -269,6 +279,10 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
         FixtureParameter newParam(pi);
         parameters[newParam.i] = newParam;
     }
+
+    FixtureParameter newParam;
+    newParam.name = "Intensity";
+    intensityParam = newParam;
 };
 
 json SmallFixture::asJson() {

@@ -169,9 +169,9 @@
                             {{item.name}}
                         </div>
                         <div class="progress position-absolute bottom-0 w-100">
-                            <div class="progress-bar bg-success"
-                                v-bind:style="{ width: intensityAverage(item.parameters) + '%' }" role="progressbar">
-                                {{intensityAverage(item.parameters)}}%</div>
+                            <div class="progress-bar bg-success" v-bind:style="{ width: intensityAverage(item) + '%' }"
+                                role="progressbar">
+                                {{intensityAverage(item)}}%</div>
                         </div>
                     </div>
                 </div>

@@ -188,6 +188,12 @@ json getCues() {
 
 void recalculateOutputValues() {
     for (auto &it : fixtures) {
+        if (it.second.hasIntensity == false) {
+            it.second.intensityParam.value.backgroundValue = (it.second.intensityParam.home / 65535.0) * 100.0;
+            for (auto &ui: it.second.intensityParam.blindManualValues) {
+                ui.second.backgroundValue = it.second.intensityParam.value.backgroundValue;
+            }
+        }
         for (auto &fp : it.second.parameters) {
             fp.second.value.backgroundValue = (fp.second.home / 65535.0) * 100.0;
             for (auto &ui: fp.second.blindManualValues) {
@@ -231,6 +237,44 @@ void recalculateOutputValues() {
         sendToAllMessage(msg.dump(), msg["msgType"]);
     }*/
     for (auto &it : fixtures) {
+        if (it.second.hasIntensity == false) {
+            it.second.intensityParam.value.outputValue = it.second.intensityParam.value.backgroundValue;
+            if (it.second.intensityParam.value.manualInput == 1) {
+                it.second.intensityParam.value.outputValue = it.second.intensityParam.value.manualValue;
+            } else {
+                if (it.second.intensityParam.value.sneak == 1) {
+                    if (it.second.intensityParam.value.manualValue != it.second.intensityParam.value.outputValue) {
+                        it.second.intensityParam.value.manualValue += (it.second.intensityParam.value.backgroundValue - it.second.intensityParam.value.manualValue) / it.second.intensityParam.value.totalSneakProgress;
+                        it.second.intensityParam.value.outputValue = it.second.intensityParam.value.manualValue;
+                        if (--it.second.intensityParam.value.totalSneakProgress == 0) {
+                            it.second.intensityParam.value.sneak = 0;
+                        }
+                    } else {
+                        it.second.intensityParam.value.sneak = 0;
+                    }
+                }
+            }
+            for (auto &ui: it.second.intensityParam.blindManualValues) {
+                ui.second.outputValue = ui.second.backgroundValue;
+                if (ui.second.manualInput == 1) {
+                    ui.second.outputValue = ui.second.manualValue;
+                } else {
+                    if (ui.second.sneak == 1) {
+                        if (ui.second.manualValue != ui.second.outputValue) {
+                            ui.second.manualValue += (ui.second.backgroundValue - ui.second.manualValue) / ui.second.totalSneakProgress;
+                            ui.second.outputValue = ui.second.manualValue;
+                            if (--ui.second.totalSneakProgress == 0) {
+                                ui.second.sneak = 0;
+                            }
+                        } else {
+                            ui.second.sneak = 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Non-main-intensity params
         for (auto &fp : it.second.parameters) {
             fp.second.value.outputValue = fp.second.value.backgroundValue;
             if (fp.second.value.manualInput == 1) {
@@ -248,6 +292,9 @@ void recalculateOutputValues() {
                     }
                 }
             }
+            if (it.second.hasIntensity == false) {
+                fp.second.value.outputValue *= it.second.intensityParam.value.outputValue;
+            }
             for (auto &ui: fp.second.blindManualValues) {
                 ui.second.outputValue = ui.second.backgroundValue;
                 if (ui.second.manualInput == 1) {
@@ -264,6 +311,9 @@ void recalculateOutputValues() {
                             ui.second.sneak = 0;
                         }
                     }
+                }
+                if (it.second.hasIntensity == false) {
+                    ui.second.outputValue *= it.second.intensityParam.blindManualValues.at(ui.first).outputValue;
                 }
             }
         }
@@ -283,6 +333,16 @@ bool SendData() {
 
     lock_guard<mutex> lg(door);
     for (auto &it : fixtures) {
+        if (it.second.hasIntensity == false) {
+            if (it.second.intensityParam.value.sneak == 1) {
+                shouldUpdate = 1;
+            }
+            for (auto &ui: it.second.intensityParam.blindManualValues) {
+                if (ui.second.sneak == 1) {
+                    shouldUpdate = 1;
+                }
+            }
+        }
         for (auto &fp : it.second.parameters) {
             if (fp.second.value.sneak == 1) {
                 shouldUpdate = 1;
@@ -555,6 +615,15 @@ void processTask(json task) {
     } else if (task["msgType"] == "sneak") {
         lock_guard<mutex> lg(door);
         for (auto &fi: fixtures) {
+            if (fi.second.hasIntensity == false) {
+                if (task["blind"] == false) {
+                    if (fi.second.intensityParam.value.manualUser == task["socketID"] || (users.find(fi.second.intensityParam.value.manualUser) == users.end())) {
+                        fi.second.intensityParam.startSneak(3.0, "");
+                    }
+                } else {
+                    fi.second.intensityParam.startSneak(3.0, task["socketID"]);
+                }
+            }
             for (auto &pi: fi.second.parameters) {
                 if (task["blind"] == false) {
                     if (pi.second.value.manualUser == task["socketID"] || (users.find(pi.second.value.manualUser) == users.end())) {
@@ -569,19 +638,33 @@ void processTask(json task) {
     } else if (task["msgType"] == "fixturesFull") {
         lock_guard<mutex> lg(door);
         for (auto &fi : task["fixtures"]) {
-            for (auto &p : fixtures.at(fi).parameters) {
-                if (p.second.type == 1 || p.second.fadeWithIntensity == true) {
-                    if (task["blind"] == false) {
-                        p.second.value.manualValue = 100.0;
-                        p.second.value.manualInput = 1;
-                        p.second.value.sneak = 0;
-                        p.second.value.manualUser = task["socketID"];
-                    } else {
-                        p.second.blindManualValues.at(task["socketID"]).manualValue = 100.0;
-                        p.second.blindManualValues.at(task["socketID"]).manualInput = 1;
-                        p.second.blindManualValues.at(task["socketID"]).sneak = 0;
-                        p.second.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
+            if (fixtures.at(fi).hasIntensity == 1) {
+                for (auto &p : fixtures.at(fi).parameters) {
+                    if (p.second.type == 1) {
+                        if (task["blind"] == false) {
+                            p.second.value.manualValue = 100.0;
+                            p.second.value.manualInput = 1;
+                            p.second.value.sneak = 0;
+                            p.second.value.manualUser = task["socketID"];
+                        } else {
+                            p.second.blindManualValues.at(task["socketID"]).manualValue = 100.0;
+                            p.second.blindManualValues.at(task["socketID"]).manualInput = 1;
+                            p.second.blindManualValues.at(task["socketID"]).sneak = 0;
+                            p.second.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
+                        }
                     }
+                }
+            } else {
+                if (task["blind"] == false) {
+                    fixtures.at(fi).intensityParam.value.manualValue = 100.0;
+                    fixtures.at(fi).intensityParam.value.manualInput = 1;
+                    fixtures.at(fi).intensityParam.value.sneak = 0;
+                    fixtures.at(fi).intensityParam.value.manualUser = task["socketID"];
+                } else {
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).manualValue = 100.0;
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).manualInput = 1;
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).sneak = 0;
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
                 }
             }
         }
@@ -590,19 +673,33 @@ void processTask(json task) {
     } else if (task["msgType"] == "fixturesOut") {
         lock_guard<mutex> lg(door);
         for (auto &fi : task["fixtures"]) {
-            for (auto &p : fixtures.at(fi).parameters) {
-                if (p.second.type == 1 || p.second.fadeWithIntensity == true) {
-                    if (task["blind"] == false) {
-                        p.second.value.manualValue = 0.0;
-                        p.second.value.manualInput = 1;
-                        p.second.value.sneak = 0;
-                        p.second.value.manualUser = task["socketID"];
-                    } else {
-                        p.second.blindManualValues.at(task["socketID"]).manualValue = 0.0;
-                        p.second.blindManualValues.at(task["socketID"]).manualInput = 1;
-                        p.second.blindManualValues.at(task["socketID"]).sneak = 0;
-                        p.second.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
+            if (fixtures.at(fi).hasIntensity == 1) {
+                for (auto &p : fixtures.at(fi).parameters) {
+                    if (p.second.type == 1) {
+                        if (task["blind"] == false) {
+                            p.second.value.manualValue = 0.0;
+                            p.second.value.manualInput = 1;
+                            p.second.value.sneak = 0;
+                            p.second.value.manualUser = task["socketID"];
+                        } else {
+                            p.second.blindManualValues.at(task["socketID"]).manualValue = 0.0;
+                            p.second.blindManualValues.at(task["socketID"]).manualInput = 1;
+                            p.second.blindManualValues.at(task["socketID"]).sneak = 0;
+                            p.second.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
+                        }
                     }
+                }
+            } else {
+                if (task["blind"] == false) {
+                    fixtures.at(fi).intensityParam.value.manualValue = 0.0;
+                    fixtures.at(fi).intensityParam.value.manualInput = 1;
+                    fixtures.at(fi).intensityParam.value.sneak = 0;
+                    fixtures.at(fi).intensityParam.value.manualUser = task["socketID"];
+                } else {
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).manualValue = 0.0;
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).manualInput = 1;
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).sneak = 0;
+                    fixtures.at(fi).intensityParam.blindManualValues.at(task["socketID"]).manualUser = task["socketID"];
                 }
             }
         }
@@ -612,7 +709,7 @@ void processTask(json task) {
         lock_guard<mutex> lg(door);
         for (auto &fi : task["fixtures"]) {
             for (auto &p : fixtures.at(fi).parameters) {
-                if (p.second.type != 1 && p.second.fadeWithIntensity != true) {
+                if (p.second.type != 1) {
                     if (task["blind"] == false) {
                         p.second.value.manualInput = 0;
                         p.second.value.sneak = 0;
