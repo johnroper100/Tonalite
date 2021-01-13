@@ -10,31 +10,6 @@
 using namespace std;
 using json = nlohmann::json;
 
-json Cue::asJson() {
-    json cItem;
-
-    cItem["i"] = i;
-    cItem["name"] = name;
-    cItem["nextCue"] = nextCue;
-    cItem["lastCue"] = lastCue;
-    cItem["order"] = order;
-    cItem["totalProgress"] = totalProgress;
-    cItem["displayProgress"] = displayProgress;
-    cItem["progressTime"] = progressTime;
-    cItem["fixtures"] = {};
-
-    for (auto &it : fixtures) {
-        cItem["fixtures"].push_back(it.second.asJson());
-    }
-    sort(cItem["fixtures"].begin(), cItem["fixtures"].end(), compareByAddress);
-
-    return cItem;
-};
-
-void Cue::go() {
-    totalProgress = 40 * progressTime;
-}
-
 Cue::Cue(){};
 
 Cue::Cue(json profile) {
@@ -65,3 +40,28 @@ Cue::Cue(unordered_map<string, Fixture> fixtureItems, bool blind, string userID)
         fixtures[newFixture.i] = newFixture;
     }
 }
+
+void Cue::go() {
+    totalProgress = 40 * progressTime;
+}
+
+json Cue::asJson() {
+    json cItem;
+
+    cItem["i"] = i;
+    cItem["name"] = name;
+    cItem["nextCue"] = nextCue;
+    cItem["lastCue"] = lastCue;
+    cItem["order"] = order;
+    cItem["totalProgress"] = totalProgress;
+    cItem["displayProgress"] = displayProgress;
+    cItem["progressTime"] = progressTime;
+    cItem["fixtures"] = {};
+
+    for (auto &it : fixtures) {
+        cItem["fixtures"].push_back(it.second.asJson());
+    }
+    sort(cItem["fixtures"].begin(), cItem["fixtures"].end(), compareByAddress);
+
+    return cItem;
+};

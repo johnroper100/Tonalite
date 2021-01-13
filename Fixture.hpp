@@ -47,6 +47,7 @@ struct FixtureParameterValue {
     double cueTargetValue = -1.0;
     string cueTarget = "";
 
+    void calculateManAndSneak();
     json asJson();
 };
 
@@ -69,6 +70,8 @@ struct FixtureParameter {
     int getDMXValue();
     int getDMXValue(string userID);
     void startSneak(double inputTime, string userID);
+    void resetOutputValue();
+    void calculateManAndSneak();
     json asJson();
 
     FixtureParameter();

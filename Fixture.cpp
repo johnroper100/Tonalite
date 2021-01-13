@@ -9,10 +9,30 @@
 using namespace std;
 using json = nlohmann::json;
 
+void FixtureParameterValue::calculateManAndSneak() {
+    outputValue = backgroundValue;
+    if (manualInput == 1) {
+        outputValue = manualValue;
+    } else {
+        if (sneak == 1) {
+            if (manualValue != outputValue) {
+                manualValue += (backgroundValue - manualValue) / totalSneakProgress;
+                outputValue = manualValue;
+                if (--totalSneakProgress == 0) {
+                    sneak = 0;
+                }
+            } else {
+                sneak = 0;
+            }
+        }
+    }
+};
+
 json FixtureParameterValue::asJson() {
     json vItem;
 
     vItem["outputValue"] = outputValue;
+    vItem["modifiedOutputValue"] = modifiedOutputValue;
     vItem["backgroundValue"] = backgroundValue;
     vItem["manualValue"] = manualValue;
     vItem["manualUser"] = manualUser;
@@ -68,62 +88,6 @@ json FixtureParameterRange::asJson() {
     return rItem;
 };
 
-int FixtureParameter::getDMXValue() {
-    return ceil(65535.0 * (value.modifiedOutputValue / 100.0));
-};
-
-int FixtureParameter::getDMXValue(string userID) {
-    return ceil(65535.0 * (blindManualValues.at(userID).modifiedOutputValue / 100.0));
-};
-
-void FixtureParameter::startSneak(double inputTime, string userID) {
-    if (userID == "") {
-        if (value.manualInput == 1) {
-            value.sneak = 1;
-            value.manualInput = 0;
-            value.manualUser = "";
-            value.totalSneakProgress = 40.0 * inputTime;
-        }
-    } else {
-        if (blindManualValues.at(userID).manualInput == 1) {
-            blindManualValues.at(userID).sneak = 1;
-            blindManualValues.at(userID).manualInput = 0;
-            blindManualValues.at(userID).manualUser = "";
-            blindManualValues.at(userID).totalSneakProgress = 40.0 * inputTime;
-        }
-    }
-};
-
-json FixtureParameter::asJson() {
-    json pItem;
-    json rItem;
-
-    pItem["i"] = i;
-    pItem["coarse"] = coarse;
-    pItem["fine"] = fine;
-    pItem["fadeWithIntensity"] = fadeWithIntensity;
-    pItem["highlight"] = highlight;
-    pItem["home"] = home;
-    pItem["invert"] = invert;
-    pItem["name"] = name;
-    pItem["size"] = size;
-    pItem["type"] = type;
-    pItem["ranges"] = {};
-    for (auto &ri : ranges) {
-        pItem["ranges"].push_back(ri.second.asJson());
-    }
-    pItem["white"] = {};
-    pItem["white"]["val"] = white.val;
-    pItem["white"]["temp"] = white.temp;
-
-    pItem["value"] = value.asJson();
-    pItem["blindManualValues"] = {};
-    for (auto &ri : blindManualValues) {
-        pItem["blindManualValues"][ri.first] = ri.second.asJson();
-    }
-    return pItem;
-};
-
 FixtureParameter::FixtureParameter() {
     i = random_string(10);
     FixtureParameterValue newValue;
@@ -168,48 +132,74 @@ FixtureParameter::FixtureParameter(json profile) {
     value = newValue;
 };
 
-json Fixture::asJson() {
-    json fItem;
-
-    fItem["i"] = i;
-    fItem["name"] = name;
-    fItem["universe"] = universe;
-    fItem["address"] = address;
-    fItem["channel"] = channel;
-    fItem["x"] = x;
-    fItem["y"] = y;
-    fItem["w"] = w;
-    fItem["h"] = h;
-
-    fItem["colortable"] = colortable;
-    fItem["dcid"] = dcid;
-    fItem["hasIntensity"] = hasIntensity;
-    fItem["manufacturerName"] = manufacturerName;
-    fItem["maxOffset"] = maxOffset;
-    fItem["modeName"] = modeName;
-    fItem["modelName"] = modelName;
-    fItem["parameters"] = {};
-    for (auto &pi : parameters) {
-        fItem["parameters"].push_back(pi.second.asJson());
-    }
-    fItem["intensityParam"] = intensityParam.asJson();
-    return fItem;
+int FixtureParameter::getDMXValue() {
+    return ceil(65535.0 * (value.modifiedOutputValue / 100.0));
 };
 
-void Fixture::addUserBlind(string socketID) {
-    for (auto &pi : parameters) {
-        FixtureParameterValue newValue;
-        pi.second.blindManualValues[socketID] = newValue;
-    }
-    FixtureParameterValue newValue;
-    intensityParam.blindManualValues[socketID] = newValue;
+int FixtureParameter::getDMXValue(string userID) {
+    return ceil(65535.0 * (blindManualValues.at(userID).modifiedOutputValue / 100.0));
 };
 
-void Fixture::removeUserBlind(string socketID) {
-    for (auto &pi : parameters) {
-        pi.second.blindManualValues.erase(socketID);
+void FixtureParameter::startSneak(double inputTime, string userID) {
+    if (userID == "") {
+        if (value.manualInput == 1) {
+            value.sneak = 1;
+            value.manualInput = 0;
+            value.manualUser = "";
+            value.totalSneakProgress = 40.0 * inputTime;
+        }
+    } else {
+        if (blindManualValues.at(userID).manualInput == 1) {
+            blindManualValues.at(userID).sneak = 1;
+            blindManualValues.at(userID).manualInput = 0;
+            blindManualValues.at(userID).manualUser = "";
+            blindManualValues.at(userID).totalSneakProgress = 40.0 * inputTime;
+        }
     }
-    intensityParam.blindManualValues.erase(socketID);
+};
+
+void FixtureParameter::resetOutputValue() {
+    value.backgroundValue = (home / 65535.0) * 100.0;
+    for (auto &ui : blindManualValues) {
+        ui.second.backgroundValue = value.backgroundValue;
+    }
+};
+
+void FixtureParameter::calculateManAndSneak() {
+    value.calculateManAndSneak();
+    for (auto &ui : blindManualValues) {
+        ui.second.calculateManAndSneak();
+    }
+};
+
+json FixtureParameter::asJson() {
+    json pItem;
+    json rItem;
+
+    pItem["i"] = i;
+    pItem["coarse"] = coarse;
+    pItem["fine"] = fine;
+    pItem["fadeWithIntensity"] = fadeWithIntensity;
+    pItem["highlight"] = highlight;
+    pItem["home"] = home;
+    pItem["invert"] = invert;
+    pItem["name"] = name;
+    pItem["size"] = size;
+    pItem["type"] = type;
+    pItem["ranges"] = {};
+    for (auto &ri : ranges) {
+        pItem["ranges"].push_back(ri.second.asJson());
+    }
+    pItem["white"] = {};
+    pItem["white"]["val"] = white.val;
+    pItem["white"]["temp"] = white.temp;
+
+    pItem["value"] = value.asJson();
+    pItem["blindManualValues"] = {};
+    for (auto &ri : blindManualValues) {
+        pItem["blindManualValues"][ri.first] = ri.second.asJson();
+    }
+    return pItem;
 };
 
 Fixture::Fixture(){};
@@ -285,14 +275,47 @@ Fixture::Fixture(json profile, int inputUniverse, int inputAddress, int createIn
     intensityParam = newParam;
 };
 
-json SmallFixture::asJson() {
+void Fixture::addUserBlind(string socketID) {
+    for (auto &pi : parameters) {
+        FixtureParameterValue newValue;
+        pi.second.blindManualValues[socketID] = newValue;
+    }
+    FixtureParameterValue newValue;
+    intensityParam.blindManualValues[socketID] = newValue;
+};
+
+void Fixture::removeUserBlind(string socketID) {
+    for (auto &pi : parameters) {
+        pi.second.blindManualValues.erase(socketID);
+    }
+    intensityParam.blindManualValues.erase(socketID);
+};
+
+json Fixture::asJson() {
     json fItem;
 
     fItem["i"] = i;
+    fItem["name"] = name;
+    fItem["universe"] = universe;
+    fItem["address"] = address;
+    fItem["channel"] = channel;
+    fItem["x"] = x;
+    fItem["y"] = y;
+    fItem["w"] = w;
+    fItem["h"] = h;
+
+    fItem["colortable"] = colortable;
+    fItem["dcid"] = dcid;
+    fItem["hasIntensity"] = hasIntensity;
+    fItem["manufacturerName"] = manufacturerName;
+    fItem["maxOffset"] = maxOffset;
+    fItem["modeName"] = modeName;
+    fItem["modelName"] = modelName;
     fItem["parameters"] = {};
     for (auto &pi : parameters) {
         fItem["parameters"].push_back(pi.second.asJson());
     }
+    fItem["intensityParam"] = intensityParam.asJson();
     return fItem;
 };
 
@@ -305,4 +328,15 @@ SmallFixture::SmallFixture(json profile) {
         FixtureParameter newParam(pi);
         parameters[newParam.i] = newParam;
     }
+};
+
+json SmallFixture::asJson() {
+    json fItem;
+
+    fItem["i"] = i;
+    fItem["parameters"] = {};
+    for (auto &pi : parameters) {
+        fItem["parameters"].push_back(pi.second.asJson());
+    }
+    return fItem;
 };

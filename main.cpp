@@ -189,16 +189,10 @@ json getCues() {
 void recalculateOutputValues() {
     for (auto &it : fixtures) {
         if (it.second.hasIntensity == false) {
-            it.second.intensityParam.value.backgroundValue = (it.second.intensityParam.home / 65535.0) * 100.0;
-            for (auto &ui: it.second.intensityParam.blindManualValues) {
-                ui.second.backgroundValue = it.second.intensityParam.value.backgroundValue;
-            }
+            it.second.intensityParam.resetOutputValue();
         }
         for (auto &fp : it.second.parameters) {
-            fp.second.value.backgroundValue = (fp.second.home / 65535.0) * 100.0;
-            for (auto &ui: fp.second.blindManualValues) {
-                ui.second.backgroundValue = fp.second.value.backgroundValue;
-            }
+            fp.second.resetOutputValue();
         }
     }
     /*if (cuePlaying == true) {
@@ -238,82 +232,18 @@ void recalculateOutputValues() {
     }*/
     for (auto &it : fixtures) {
         if (it.second.hasIntensity == false) {
-            it.second.intensityParam.value.outputValue = it.second.intensityParam.value.backgroundValue;
-            if (it.second.intensityParam.value.manualInput == 1) {
-                it.second.intensityParam.value.outputValue = it.second.intensityParam.value.manualValue;
-            } else {
-                if (it.second.intensityParam.value.sneak == 1) {
-                    if (it.second.intensityParam.value.manualValue != it.second.intensityParam.value.outputValue) {
-                        it.second.intensityParam.value.manualValue += (it.second.intensityParam.value.backgroundValue - it.second.intensityParam.value.manualValue) / it.second.intensityParam.value.totalSneakProgress;
-                        it.second.intensityParam.value.outputValue = it.second.intensityParam.value.manualValue;
-                        if (--it.second.intensityParam.value.totalSneakProgress == 0) {
-                            it.second.intensityParam.value.sneak = 0;
-                        }
-                    } else {
-                        it.second.intensityParam.value.sneak = 0;
-                    }
-                }
-            }
-            for (auto &ui: it.second.intensityParam.blindManualValues) {
-                ui.second.outputValue = ui.second.backgroundValue;
-                if (ui.second.manualInput == 1) {
-                    ui.second.outputValue = ui.second.manualValue;
-                } else {
-                    if (ui.second.sneak == 1) {
-                        if (ui.second.manualValue != ui.second.outputValue) {
-                            ui.second.manualValue += (ui.second.backgroundValue - ui.second.manualValue) / ui.second.totalSneakProgress;
-                            ui.second.outputValue = ui.second.manualValue;
-                            if (--ui.second.totalSneakProgress == 0) {
-                                ui.second.sneak = 0;
-                            }
-                        } else {
-                            ui.second.sneak = 0;
-                        }
-                    }
-                }
-            }
+            it.second.intensityParam.calculateManAndSneak();
         }
 
         // Non-main-intensity params
         for (auto &fp : it.second.parameters) {
-            fp.second.value.outputValue = fp.second.value.backgroundValue;
-            if (fp.second.value.manualInput == 1) {
-                fp.second.value.outputValue = fp.second.value.manualValue;
-            } else {
-                if (fp.second.value.sneak == 1) {
-                    if (fp.second.value.manualValue != fp.second.value.outputValue) {
-                        fp.second.value.manualValue += (fp.second.value.backgroundValue - fp.second.value.manualValue) / fp.second.value.totalSneakProgress;
-                        fp.second.value.outputValue = fp.second.value.manualValue;
-                        if (--fp.second.value.totalSneakProgress == 0) {
-                            fp.second.value.sneak = 0;
-                        }
-                    } else {
-                        fp.second.value.sneak = 0;
-                    }
-                }
-            }
+            fp.second.calculateManAndSneak();
             if (it.second.hasIntensity == false) {
                 fp.second.value.modifiedOutputValue = fp.second.value.outputValue * it.second.intensityParam.value.outputValue;
             } else {
                  fp.second.value.modifiedOutputValue = fp.second.value.outputValue;
             }
             for (auto &ui: fp.second.blindManualValues) {
-                ui.second.outputValue = ui.second.backgroundValue;
-                if (ui.second.manualInput == 1) {
-                    ui.second.outputValue = ui.second.manualValue;
-                } else {
-                    if (ui.second.sneak == 1) {
-                        if (ui.second.manualValue != ui.second.outputValue) {
-                            ui.second.manualValue += (ui.second.backgroundValue - ui.second.manualValue) / ui.second.totalSneakProgress;
-                            ui.second.outputValue = ui.second.manualValue;
-                            if (--ui.second.totalSneakProgress == 0) {
-                                ui.second.sneak = 0;
-                            }
-                        } else {
-                            ui.second.sneak = 0;
-                        }
-                    }
-                }
                 if (it.second.hasIntensity == false) {
                     ui.second.modifiedOutputValue = ui.second.outputValue * it.second.intensityParam.blindManualValues.at(ui.first).outputValue;
                 } else {
