@@ -293,7 +293,9 @@ void recalculateOutputValues() {
                 }
             }
             if (it.second.hasIntensity == false) {
-                fp.second.value.outputValue *= it.second.intensityParam.value.outputValue;
+                fp.second.value.modifiedOutputValue = fp.second.value.outputValue * it.second.intensityParam.value.outputValue;
+            } else {
+                 fp.second.value.modifiedOutputValue = fp.second.value.outputValue;
             }
             for (auto &ui: fp.second.blindManualValues) {
                 ui.second.outputValue = ui.second.backgroundValue;
@@ -313,7 +315,9 @@ void recalculateOutputValues() {
                     }
                 }
                 if (it.second.hasIntensity == false) {
-                    ui.second.outputValue *= it.second.intensityParam.blindManualValues.at(ui.first).outputValue;
+                    ui.second.modifiedOutputValue = ui.second.outputValue * it.second.intensityParam.blindManualValues.at(ui.first).outputValue;
+                } else {
+                    ui.second.modifiedOutputValue = ui.second.outputValue;
                 }
             }
         }

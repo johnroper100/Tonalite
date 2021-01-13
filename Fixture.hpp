@@ -35,6 +35,7 @@ struct FixtureParameterRange {
 
 struct FixtureParameterValue {
     double outputValue;
+    double modifiedOutputValue;
     double backgroundValue;
     double manualValue = 0.0;
     string manualUser = "";

@@ -69,11 +69,11 @@ json FixtureParameterRange::asJson() {
 };
 
 int FixtureParameter::getDMXValue() {
-    return ceil(65535.0 * (value.outputValue / 100.0));
+    return ceil(65535.0 * (value.modifiedOutputValue / 100.0));
 };
 
 int FixtureParameter::getDMXValue(string userID) {
-    return ceil(65535.0 * (blindManualValues.at(userID).outputValue / 100.0));
+    return ceil(65535.0 * (blindManualValues.at(userID).modifiedOutputValue / 100.0));
 };
 
 void FixtureParameter::startSneak(double inputTime, string userID) {
