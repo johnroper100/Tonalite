@@ -563,23 +563,25 @@ void processTask(json task) {
     } else if (task["msgType"] == "sneak") {
         lock_guard<mutex> lg(door);
         for (auto &fi: fixtures) {
-            if (fi.second.hasIntensity == false && (task["mode"] == -1 || task["mode"] == 1)) {
-                if (task["blind"] == false) {
-                    if (fi.second.intensityParam.value.manualUser == task["socketID"] || (users.find(fi.second.intensityParam.value.manualUser) == users.end())) {
-                        fi.second.intensityParam.startSneak(3.0, "");
-                    }
-                } else {
-                    fi.second.intensityParam.startSneak(3.0, task["socketID"]);
-                }
-            }
-            for (auto &pi: fi.second.parameters) {
-                if (task["mode"] == -1 || task["mode"] == pi.second.type) {
+            if (task["fixtures"].size() == 0 || (count(task["fixtures"].begin(), task["fixtures"].end(), fi.first) > 0)) {
+                if (fi.second.hasIntensity == false && (task["mode"] == -1 || task["mode"] == 1)) {
                     if (task["blind"] == false) {
-                        if (pi.second.value.manualUser == task["socketID"] || (users.find(pi.second.value.manualUser) == users.end())) {
-                            pi.second.startSneak(3.0, "");
+                        if (fi.second.intensityParam.value.manualUser == task["socketID"] || (users.find(fi.second.intensityParam.value.manualUser) == users.end())) {
+                            fi.second.intensityParam.startSneak(3.0, "");
                         }
                     } else {
-                        pi.second.startSneak(3.0, task["socketID"]);
+                        fi.second.intensityParam.startSneak(3.0, task["socketID"]);
+                    }
+                }
+                for (auto &pi: fi.second.parameters) {
+                    if (task["mode"] == -1 || task["mode"] == pi.second.type) {
+                        if (task["blind"] == false) {
+                            if (pi.second.value.manualUser == task["socketID"] || (users.find(pi.second.value.manualUser) == users.end())) {
+                                pi.second.startSneak(3.0, "");
+                            }
+                        } else {
+                            pi.second.startSneak(3.0, task["socketID"]);
+                        }
                     }
                 }
             }

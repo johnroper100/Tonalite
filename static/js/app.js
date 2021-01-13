@@ -374,6 +374,7 @@ var app = new Vue({
             var message = {
                 "msgType": "sneak",
                 "blind": app.blind,
+                "fixtures": app.selectedFixtures,
                 "mode": parseInt(mode)
             }
             socket.send(JSON.stringify(message));
