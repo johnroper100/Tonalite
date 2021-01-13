@@ -499,6 +499,9 @@ socket.addEventListener('message', function (event) {
     if (msg["msgType"] == "fixtures") {
         if (msg["fixtures"] != null) {
             app.fixtures = msg["fixtures"];
+            app.fixtures.sort(function (a, b) {
+                return (a.channel < b.channel) ? -1 : (a.channel > b.channel) ? 1 : 0;
+            });
             // update selected fixtures if fixtures has been removed
             if (app.tab == "fixtureParameters") {
                 app.viewFixtureParameters();
@@ -513,6 +516,9 @@ socket.addEventListener('message', function (event) {
     } else if (msg["msgType"] == "groups") {
         if (msg["groups"] != null) {
             app.groups = msg["groups"];
+            app.groups.sort(function (a, b) {
+                return (a.order < b.order) ? -1 : (a.order > b.order) ? 1 : 0;
+            });
             // update selected groups if group has been removed
             if (app.tab == "groupSettings") {
                 app.viewGroupSettings();

@@ -165,7 +165,6 @@ json getFixtures() {
     for (auto &it : fixtures) {
         j.push_back(it.second.asJson());
     }
-    sort(j.begin(), j.end(), compareByAddress);
     return j;
 }
 
@@ -182,7 +181,6 @@ json getCues() {
     for (auto &it : cues) {
         j.push_back(it.second.asJson());
     }
-    sort(j.begin(), j.end(), compareByOrder);
     return j;
 }
 
@@ -824,7 +822,7 @@ void messagesThread() {
         }
         sendMessages.clear();
         sendMessagesDoor.unlock();
-        this_thread::sleep_for(75ms);
+        this_thread::sleep_for(80ms);
     }
 }
 
