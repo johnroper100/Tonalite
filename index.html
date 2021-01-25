@@ -67,14 +67,17 @@
                         <span class="d-none d-sm-inline-block">Parameters</span>
                     </button>
                     <button class="btn btn-danger" v-if="fixturesTab != 'groups'" data-bs-toggle="dropdown"
-                        aria-expanded="false" v-bind:class="{'disabled': (fixtures.length == 0) }">
+                        aria-expanded="false">
                         <i class="fa-regular fa-hand-pointer fa-lg d-inline-block"></i>
                         <span class="d-none d-sm-inline-block">Select</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" style="position: absolute;">
-                        <li><a class="dropdown-item" @click="selectAllFixtures">All</a></li>
-                        <li><a class="dropdown-item" @click="selectManualFixtures">Manual</a></li>
-                        <li><a class="dropdown-item" @click="selectActiveFixtures">Active</a></li>
+                        <li><a class="dropdown-item" @click="selectAllFixtures"
+                                v-bind:class="{'disabled': (fixtures.length == 0) }">All</a></li>
+                        <li><a class="dropdown-item" @click="selectManualFixtures"
+                                v-bind:class="{'disabled': (fixtures.length == 0) }">Manual</a></li>
+                        <li><a class="dropdown-item" @click="selectActiveFixtures"
+                                v-bind:class="{'disabled': (fixtures.length == 0) }">Active</a></li>
                     </ul>
                     <button class="btn btn-primary"
                         v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid' || fixturesTab == 'patch'"
@@ -108,24 +111,28 @@
 
                     <!-- Fixtures buttons -->
                     <button class="btn btn-warning" v-if="fixturesTab != 'groups'" data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        v-bind:class="{'disabled': (fixtures.length == 0 || selectedFixtures.length == 0) }">
+                        aria-expanded="false">
                         <i class="fa-regular fa-screwdriver-wrench d-inline-block"></i>
                         <span class="d-none d-sm-inline-block">Tools</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" style="position: absolute;">
                         <li v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
-                            v-bind:class="{disabled: selectedFixtures.length < 2}"><a class="dropdown-item"
-                                @click="groupFixtures">Group</a></li>
-                        <li v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"><a
+                            v-bind:class="{disabled: (fixtures.length == 0 || selectedFixtures.length < 2)}"><a
+                                class="dropdown-item" @click="groupFixtures">Group</a></li>
+                        <li v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
+                            v-bind:class="{'disabled': (fixtures.length == 0 || selectedFixtures.length == 0) }"><a
                                 class="dropdown-item" @click="fixturesFull">Full</a></li>
-                        <li v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"><a
+                        <li v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
+                            v-bind:class="{'disabled': (fixtures.length == 0 || selectedFixtures.length == 0) }"><a
                                 class="dropdown-item" @click="fixturesOut">Out</a></li>
-                        <li v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"><a
+                        <li v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
+                            v-bind:class="{'disabled': (fixtures.length == 0 || selectedFixtures.length == 0) }"><a
                                 class="dropdown-item" @click="fixturesHome">Home</a></li>
 
                         <!-- Patch -->
-                        <li v-if="fixturesTab == 'patch'"><a class="dropdown-item" @click="removeFixtures">Delete</a>
+                        <li v-if="fixturesTab == 'patch'"
+                            v-bind:class="{'disabled': (fixtures.length == 0 || selectedFixtures.length == 0) }"><a
+                                class="dropdown-item" @click="removeFixtures">Delete</a>
                         </li>
                     </ul>
                     <button class="btn" v-if="fixturesTab == 'fixturesGrid'"
@@ -402,17 +409,21 @@
                                     class="fa-regular fa-circle-xmark fa-lg d-inline-block"></i> <span
                                     class="d-none d-sm-inline-block">Release Cue</span></button>
                             <div class="dropup d-inline-block">
-                                <button class="btn btn-warning" data-bs-toggle="dropdown" aria-expanded="false"
-                                    v-bind:class="{disabled: fixtures.length == 0 }">
+                                <button class="btn btn-warning" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-regular fa-transporter-2 fa-lg d-inline-block"></i>
                                     <span class="d-none d-sm-inline-block">Sneak Fixtures</span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right" style="position: absolute;">
-                                    <li><a class="dropdown-item" @click="fixturesSneak(-1)">All</a></li>
-                                    <li><a class="dropdown-item" @click="fixturesSneak(1)">Intensity</a></li>
-                                    <li><a class="dropdown-item" @click="fixturesSneak(2)">Position</a></li>
-                                    <li><a class="dropdown-item" @click="fixturesSneak(5)">Color</a></li>
-                                    <li><a class="dropdown-item" @click="fixturesSneak(4)">Beam</a></li>
+                                    <li><a class="dropdown-item" @click="fixturesSneak(-1)"
+                                            v-bind:class="{disabled: fixtures.length == 0 }">All</a></li>
+                                    <li><a class="dropdown-item" @click="fixturesSneak(1)"
+                                            v-bind:class="{disabled: fixtures.length == 0 }">Intensity</a></li>
+                                    <li><a class="dropdown-item" @click="fixturesSneak(2)"
+                                            v-bind:class="{disabled: fixtures.length == 0 }">Position</a></li>
+                                    <li><a class="dropdown-item" @click="fixturesSneak(5)"
+                                            v-bind:class="{disabled: fixtures.length == 0 }">Color</a></li>
+                                    <li><a class="dropdown-item" @click="fixturesSneak(4)"
+                                            v-bind:class="{disabled: fixtures.length == 0 }">Beam</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -681,7 +681,7 @@ void processTask(json task) {
         groups[newGroup.i] = newGroup;
         item["groups"] = getGroups();
         door.unlock();
-
+        item["selectGroup"] = newGroup.i;
         sendToAllMessage(item.dump(), item["msgType"]);
     } else if (task["msgType"] == "removeGroups") {
         json item;

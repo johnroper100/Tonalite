@@ -531,6 +531,10 @@ socket.addEventListener('message', function (event) {
             app.groups.sort(function (a, b) {
                 return (a.order < b.order) ? -1 : (a.order > b.order) ? 1 : 0;
             });
+            if ("selectGroup" in msg) {
+                app.selectedGroups = [];
+                app.selectedGroups.push(msg["selectGroup"]);
+            }
             // update selected groups if group has been removed
             if (app.selectedGroups.length > 0) {
                 app.selectGroupFixtures();
