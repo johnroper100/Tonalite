@@ -268,7 +268,15 @@ var app = new Vue({
             app.selectedFixtures = [];
         },
         viewGroupFixtureParameters: function () {
-            app.selectedFixtures = []; // fill with group fixtures;
+            app.selectedFixtures = [];
+            for (var i = 0; i < app.selectedGroups.length; i++) {
+                var groupIndex = app.groups.findIndex(x => x.i === app.selectedGroups[i]);
+                for (var ii = 0; ii < app.groups[groupIndex].fixtures.length; ii++) {
+                    if (app.selectedFixtures.includes(app.groups[groupIndex].fixtures[ii]) == false) {
+                        app.selectedFixtures.push(app.groups[groupIndex].fixtures[ii]);
+                    }
+                }
+            }
             app.viewFixtureParameters();
         },
         viewFixtureParameters: function () {
