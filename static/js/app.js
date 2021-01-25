@@ -267,7 +267,7 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
             app.selectedFixtures = [];
         },
-        selectGroupFixtures: function() {
+        selectGroupFixtures: function () {
             app.selectedFixtures = [];
             for (var i = 0; i < app.selectedGroups.length; i++) {
                 var groupIndex = app.groups.findIndex(x => x.i === app.selectedGroups[i]);
@@ -420,7 +420,6 @@ var app = new Vue({
                 "fixtures": app.selectedFixtures
             }
             socket.send(JSON.stringify(message));
-            app.selectedFixtures = [];
             app.fixturesTab = "groups";
         },
         selectGroup: function (groupID) {
@@ -532,10 +531,10 @@ socket.addEventListener('message', function (event) {
             app.groups.sort(function (a, b) {
                 return (a.order < b.order) ? -1 : (a.order > b.order) ? 1 : 0;
             });
+            // update selected groups if group has been removed
             if (app.selectedGroups.length > 0) {
                 app.selectGroupFixtures();
             }
-            // update selected groups if group has been removed
             if (app.tab == "groupSettings") {
                 app.viewGroupSettings();
             }
