@@ -110,22 +110,21 @@
                     </button>
 
                     <!-- Fixtures buttons -->
-                    <button class="btn btn-warning" v-if="fixturesTab != 'groups'" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                    <button class="btn btn-warning" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-regular fa-screwdriver-wrench d-inline-block"></i>
                         <span class="d-none d-sm-inline-block">Tools</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" style="position: absolute;">
-                        <li v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
+                        <li v-if="fixturesTab != 'patch' && fixturesTab != 'groups'"
                             v-bind:class="{disabled: (fixtures.length == 0 || selectedFixtures.length < 2)}"><a
                                 class="dropdown-item" @click="groupFixtures">Group</a></li>
-                        <li v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
+                        <li v-if="fixturesTab != 'patch'"
                             v-bind:class="{'disabled': (fixtures.length == 0 || selectedFixtures.length == 0) }"><a
                                 class="dropdown-item" @click="fixturesFull">Full</a></li>
-                        <li v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
+                        <li v-if="fixturesTab != 'patch'"
                             v-bind:class="{'disabled': (fixtures.length == 0 || selectedFixtures.length == 0) }"><a
                                 class="dropdown-item" @click="fixturesOut">Out</a></li>
-                        <li v-if="fixturesTab == 'fixturesList' || fixturesTab == 'fixturesGrid'"
+                        <li v-if="fixturesTab != 'patch'"
                             v-bind:class="{'disabled': (fixtures.length == 0 || selectedFixtures.length == 0) }"><a
                                 class="dropdown-item" @click="fixturesHome">Home</a></li>
 
