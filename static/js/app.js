@@ -267,7 +267,7 @@ var app = new Vue({
             socket.send(JSON.stringify(message));
             app.selectedFixtures = [];
         },
-        viewGroupFixtureParameters: function () {
+        selectGroupFixtures: function() {
             app.selectedFixtures = [];
             for (var i = 0; i < app.selectedGroups.length; i++) {
                 var groupIndex = app.groups.findIndex(x => x.i === app.selectedGroups[i]);
@@ -277,6 +277,9 @@ var app = new Vue({
                     }
                 }
             }
+        },
+        viewGroupFixtureParameters: function () {
+            app.selectGroupFixtures();
             app.viewFixtureParameters();
         },
         viewFixtureParameters: function () {
@@ -426,6 +429,7 @@ var app = new Vue({
             } else {
                 app.selectedGroups.push(groupID);
             }
+            app.selectGroupFixtures();
         },
         removeGroups: function () {
             var message = {
@@ -463,6 +467,7 @@ var app = new Vue({
         editGroupsFixtures(value, id) {
             app.groupSettingsFixturesChanged = true;
             app.editGroups();
+            app.selectGroupFixtures();
         },
         editGroups: function () {
             var message = {
@@ -527,6 +532,9 @@ socket.addEventListener('message', function (event) {
             app.groups.sort(function (a, b) {
                 return (a.order < b.order) ? -1 : (a.order > b.order) ? 1 : 0;
             });
+            if (app.selectedGroups.length > 0) {
+                app.selectGroupFixtures();
+            }
             // update selected groups if group has been removed
             if (app.tab == "groupSettings") {
                 app.viewGroupSettings();
