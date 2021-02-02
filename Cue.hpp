@@ -21,6 +21,7 @@ struct Cue {
     int totalProgress = 0;
     double displayProgress = 100.0;
     double progressTime = 3.0;
+    int playing = 0;
     unordered_map<string, SmallFixture> fixtures;
 
     Cue();

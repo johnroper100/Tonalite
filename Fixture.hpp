@@ -43,9 +43,10 @@ struct FixtureParameterValue {
     int sneak = 0;
     double totalSneakProgress;
 
-    double cueValue = -1.0;
-    double cueTargetValue = -1.0;
-    string cueTarget = "";
+    double cueValue = 0.0;
+    string controllingCue = "";
+    int cueSneak = 0;
+    double totalCueSneakProgress;
 
     void calculateManAndSneak(int animate);
     json asJson();

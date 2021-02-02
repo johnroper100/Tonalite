@@ -28,16 +28,30 @@ Cue::Cue(json profile) {
 };
 
 Cue::Cue(unordered_map<string, Fixture> fixtureItems, bool blind, string userID) {
+    i = random_string(10);
     for (auto &fi : fixtureItems) {
+        bool needsAdd = false;
         SmallFixture newFixture;
         newFixture.i = fi.first;
-        newFixture.parameters = fi.second.parameters;
+        /*newFixture.parameters = fi.second.parameters;*/
+        for (auto &pi: fi.second.parameters) {
+            if (pi.second.value.manualInput == 1) {
+                pi.second.value.cueValue = pi.second.value.manualValue;
+                pi.second.value.controllingCue = i;
+                pi.second.value.manualInput = 0;
+                FixtureParameter newParameterCopy = pi.second;
+                newFixture.parameters[newParameterCopy.i] = newParameterCopy;
+                needsAdd = true;
+            }
+        }
         /*if (blind == true) {
             for (auto &pi : newFixture.parameters) {
                 pi.second.manualValue = pi.second.blindManualValues.at(userID);
             }
         }*/
-        fixtures[newFixture.i] = newFixture;
+        if (needsAdd == true) {
+            fixtures[newFixture.i] = newFixture;
+        }
     }
 }
 

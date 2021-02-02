@@ -3,9 +3,11 @@
 #include <ola/Logging.h>
 #include <ola/client/ClientWrapper.h>
 #include <ola/io/SelectServer.h>
+#include <unistd.h>
+#include <zipper/unzipper.h>
+#include <zipper/zipper.h>
 
 #include <algorithm>
-#include <unistd.h>
 #include <atomic>
 #include <cmath>
 #include <filesystem>
@@ -20,17 +22,15 @@
 #include <thread>
 #include <unordered_map>
 #include <vector>
-#include <zipper/unzipper.h>
-#include <zipper/zipper.h>
 
 #include "App.h"
+#include "Cue.hpp"
 #include "Fixture.hpp"
 #include "Group.hpp"
-#include "Cue.hpp"
 #include "Utilities.hpp"
+#include "base64.hpp"
 #include "concurrentqueue.h"
 #include "json.hpp"
-#include "base64.hpp"
 
 using namespace std;
 using json = nlohmann::json;
@@ -193,6 +193,17 @@ void recalculateOutputValues(int animate) {
             fp.second.resetOutputValue();
         }
     }
+    for (auto &it : cues) {
+        if (it.second.playing == 1) {
+            for (auto &fi: it.second.fixtures) {
+                for (auto &pi: fi.second.parameters) {
+                    fixtures.at(fi.first).parameters.at(pi.first).value.controllingCue = it.first;
+                    double interimValue = fixtures.at(fi.first).parameters.at(pi.first).value.cueValue;
+                    fixtures.at(fi.first).parameters.at(pi.first).value.cueValue += pi.second.value.cueValue;
+                }
+            }
+        }
+    }
     /*if (cuePlaying == true) {
         Cue &currentCueItem = cues.at(currentCue);
         for (auto &fi : currentCueItem.fixtures) {
@@ -239,9 +250,9 @@ void recalculateOutputValues(int animate) {
             if (it.second.hasIntensity == false) {
                 fp.second.value.modifiedOutputValue = fp.second.value.outputValue * it.second.intensityParam.value.outputValue;
             } else {
-                 fp.second.value.modifiedOutputValue = fp.second.value.outputValue;
+                fp.second.value.modifiedOutputValue = fp.second.value.outputValue;
             }
-            for (auto &ui: fp.second.blindManualValues) {
+            for (auto &ui : fp.second.blindManualValues) {
                 if (it.second.hasIntensity == false) {
                     ui.second.modifiedOutputValue = ui.second.outputValue * it.second.intensityParam.blindManualValues.at(ui.first).outputValue;
                 } else {
@@ -269,7 +280,7 @@ bool SendData() {
             if (it.second.intensityParam.value.sneak == 1) {
                 shouldUpdate = 1;
             }
-            for (auto &ui: it.second.intensityParam.blindManualValues) {
+            for (auto &ui : it.second.intensityParam.blindManualValues) {
                 if (ui.second.sneak == 1) {
                     shouldUpdate = 1;
                 }
@@ -279,7 +290,7 @@ bool SendData() {
             if (fp.second.value.sneak == 1) {
                 shouldUpdate = 1;
             }
-            for (auto &ui: fp.second.blindManualValues) {
+            for (auto &ui : fp.second.blindManualValues) {
                 if (ui.second.sneak == 1) {
                     shouldUpdate = 1;
                 }
@@ -291,7 +302,7 @@ bool SendData() {
     }
     for (auto &it : fixtures) {
         for (auto &fp : it.second.parameters) {
-            setFrames(it.second.universe, it.second.address, fp.second.coarse, fp.second.fine, fp.second.getDMXValue());   
+            setFrames(it.second.universe, it.second.address, fp.second.coarse, fp.second.fine, fp.second.getDMXValue());
         }
     }
     door.unlock();
@@ -560,7 +571,7 @@ void processTask(json task) {
         door.unlock();
     } else if (task["msgType"] == "sneak") {
         lock_guard<mutex> lg(door);
-        for (auto &fi: fixtures) {
+        for (auto &fi : fixtures) {
             if (task["fixtures"].size() == 0 || (count(task["fixtures"].begin(), task["fixtures"].end(), fi.first) > 0)) {
                 if (fi.second.hasIntensity == false && (task["mode"] == -1 || task["mode"] == 1)) {
                     if (task["blind"] == false) {
@@ -571,7 +582,7 @@ void processTask(json task) {
                         fi.second.intensityParam.startSneak(3.0, task["socketID"]);
                     }
                 }
-                for (auto &pi: fi.second.parameters) {
+                for (auto &pi : fi.second.parameters) {
                     if (task["mode"] == -1 || task["mode"] == pi.second.type) {
                         if (task["blind"] == false) {
                             if (pi.second.value.manualUser == task["socketID"] || (users.find(pi.second.value.manualUser) == users.end())) {
@@ -725,7 +736,6 @@ void processTask(json task) {
 
         lock_guard<mutex> lg(door);
         Cue newCue(fixtures, task["blind"], task["socketID"]);
-        newCue.i = random_string(10);
         newCue.name = "Cue " + to_string(cues.size() + 1);
         newCue.order = cues.size();
         if (cues.size() > 0) {
@@ -828,31 +838,28 @@ void messagesThread() {
 
 void webThread() {
     uWS::App().get("/*", [](auto *res, auto *req) {
-            if (req->getUrl() == "/") {
-                ifstream infile;
-                infile.open("index.html");
-                string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
-                res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(str);
-                infile.close();
-            } else {
-                string_view filename = req->getUrl();
-                filename.remove_prefix(1);
-                string s = {filename.begin(), filename.end()};
-                ifstream infile;
-                infile.open(s);
-                if (infile.fail() == false) {
-                    string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
-                    res->end(str);
-                } else {
-                    res->end("");
-                }
-                infile.close();
-            }
-        })
-        .ws<PerSocketData>("/", {
-            .compression = uWS::SHARED_COMPRESSOR,
-            .maxPayloadLength = 1000 * 1000 * 1000,
-            .open = [](auto *ws) {
+                  if (req->getUrl() == "/") {
+                      ifstream infile;
+                      infile.open("index.html");
+                      string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
+                      res->writeHeader("Content-Type", "text/html; charset=utf-8")->end(str);
+                      infile.close();
+                  } else {
+                      string_view filename = req->getUrl();
+                      filename.remove_prefix(1);
+                      string s = {filename.begin(), filename.end()};
+                      ifstream infile;
+                      infile.open(s);
+                      if (infile.fail() == false) {
+                          string str((istreambuf_iterator<char>(infile)), istreambuf_iterator<char>());
+                          res->end(str);
+                      } else {
+                          res->end("");
+                      }
+                      infile.close();
+                  }
+              })
+        .ws<PerSocketData>("/", {.compression = uWS::SHARED_COMPRESSOR, .maxPayloadLength = 1000 * 1000 * 1000, .open = [](auto *ws) {
                 PerSocketData *psd = (PerSocketData *) ws->getUserData();
                 psd->socketItem = ws;
                 psd->userID = random_string(10);
@@ -890,24 +897,18 @@ void webThread() {
                 j = {};
                 j["msgType"] = "socketID";
                 j["socketID"] = psd->userID;
-                ws->send(j.dump(), uWS::OpCode::TEXT, true);
-            },
-            .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
+                ws->send(j.dump(), uWS::OpCode::TEXT, true); }, .message = [](auto *ws, string_view message, uWS::OpCode opCode) {
                 PerSocketData *psd = (PerSocketData *) ws->getUserData();
                 json j = json::parse(message);
                 j["socketID"] = psd->userID;
-                processTask(j);
-            },
-            .close = [](auto *ws, int code, string_view message) {
+                processTask(j); }, .close = [](auto *ws, int code, string_view message) {
                 PerSocketData *psd = (PerSocketData *) ws->getUserData();
                 lock_guard<mutex> lg(userDoor);
                 for (auto &fi : fixtures) {
                     fi.second.removeUserBlind(psd->userID);
                 }
                 users.erase(psd->userID);
-                userDoor.unlock();
-            }
-        })
+                userDoor.unlock(); }})
         .listen(8000, [](auto *listenSocket) {
             if (listenSocket) {
                 cout << "Tonalite Lighting Control: Running on http://localhost:8000" << endl;
