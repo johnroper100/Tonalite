@@ -42,6 +42,11 @@ Cue::Cue(unordered_map<string, Fixture> &fixtureItems, bool blind, string userID
                 FixtureParameter newParameterCopy = pi.second;
                 newFixture.parameters[newParameterCopy.i] = newParameterCopy;
                 needsAdd = true;
+            } else if (pi.second.value.controllingCue != "") {
+                pi.second.value.controllingCue = i;
+                FixtureParameter newParameterCopy = pi.second;
+                newFixture.parameters[newParameterCopy.i] = newParameterCopy;
+                needsAdd = true;
             }
         }
         /*if (blind == true) {
