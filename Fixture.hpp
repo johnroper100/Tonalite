@@ -43,7 +43,7 @@ struct FixtureParameterValue {
     int sneak = 0;
     double totalSneakProgress;
 
-    double cueValue = 0.0;
+    double cueOutputValue = 0.0;
     string controllingCue = "";
     int cueSneak = 0;
     double totalCueSneakProgress;

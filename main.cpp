@@ -194,16 +194,35 @@ void recalculateOutputValues(int animate) {
         }
     }
     for (auto &it : cues) {
+        json msg;
         if (it.second.playing == 1) {
-            for (auto &fi: it.second.fixtures) {
-                for (auto &pi: fi.second.parameters) {
-                    fixtures.at(fi.first).parameters.at(pi.first).value.controllingCue = it.first;
-                    double interimValue = fixtures.at(fi.first).parameters.at(pi.first).value.cueValue;
-                    fixtures.at(fi.first).parameters.at(pi.first).value.cueValue += pi.second.value.cueValue;
+            for (auto &fi : it.second.fixtures) {
+                for (auto &pi : fi.second.parameters) {
+                    fixtures.at(fi.first).parameters.at(pi.first).value.cueOutputValue += (pi.second.value.cueOutputValue - fixtures.at(fi.first).parameters.at(pi.first).value.cueOutputValue) / it.second.totalProgress;
                 }
+            }
+            it.second.displayProgress = (((it.second.progressTime * 40.0) - it.second.totalProgress) / (it.second.progressTime * 40.0)) * 100.0;
+            it.second.displayProgress = ceil(it.second.displayProgress);
+            if (--it.second.totalProgress == 0) {
+                it.second.playing = 0;
+                if (it.first == currentCue) {
+                    cuePlaying = false;
+                    json msg = {};
+                    msg["msgType"] = "currentCue";
+                    msg["currentCue"] = currentCue;
+                    msg["cuePlaying"] = cuePlaying;
+                    sendToAllMessage(msg.dump(), msg["msgType"]);
+                }
+            }
+            if (it.first == currentCue) {
+                msg = {};
+                msg["msgType"] = "cues";
+                msg["cues"] = getCues();
+                sendToAllMessage(msg.dump(), msg["msgType"]);
             }
         }
     }
+
     /*if (cuePlaying == true) {
         Cue &currentCueItem = cues.at(currentCue);
         for (auto &fi : currentCueItem.fixtures) {
@@ -295,6 +314,11 @@ bool SendData() {
                     shouldUpdate = 1;
                 }
             }
+        }
+    }
+    for (auto &it : cues) {
+        if (it.second.playing == 1) {
+            shouldUpdate = 1;
         }
     }
     if (shouldUpdate == 1) {
@@ -772,6 +796,14 @@ void processTask(json task) {
             currentCue = cues.at(currentCue).nextCue;
         }
         cues.at(currentCue).go();
+        for (auto &fi : cues.at(currentCue).fixtures) {
+            for (auto &pi : fi.second.parameters) {
+                if (fixtures.at(fi.first).parameters.at(pi.first).value.controllingCue == "") {
+                    fixtures.at(fi.first).parameters.at(pi.first).value.cueOutputValue = fixtures.at(fi.first).parameters.at(pi.first).value.backgroundValue;
+                }
+                fixtures.at(fi.first).parameters.at(pi.first).value.controllingCue = currentCue;
+            }
+        }
         cuePlaying = true;
         item["currentCue"] = currentCue;
         item["cuePlaying"] = cuePlaying;

@@ -26,7 +26,7 @@ struct Cue {
 
     Cue();
     Cue(json profile);
-    Cue(unordered_map<string, Fixture> fixtureItems, bool blind, string userID);
+    Cue(unordered_map<string, Fixture> &fixtureItems, bool blind, string userID);
     json asJson();
     void go();
 };
