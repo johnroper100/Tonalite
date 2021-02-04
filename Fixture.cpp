@@ -12,8 +12,6 @@ using json = nlohmann::json;
 void FixtureParameterValue::calculateManAndSneak(int animate) {
     outputValue = backgroundValue;
     if (controllingCue != "") {
-        outputValue = cueOutputValue;
-    } else {
         if (cueSneak == 1) {
             if (cueOutputValue != outputValue) {
                 cueOutputValue += (backgroundValue - cueOutputValue) / totalCueSneakProgress;
@@ -21,12 +19,15 @@ void FixtureParameterValue::calculateManAndSneak(int animate) {
                 if (animate == 1) {
                     if (--totalCueSneakProgress == 0) {
                         cueSneak = 0;
+                        controllingCue = "";
                     }
                 }
             } else {
                 cueSneak = 0;
+                controllingCue = "";
             }
         }
+        outputValue = cueOutputValue;
     }
     if (manualInput == 1) {
         outputValue = manualValue;

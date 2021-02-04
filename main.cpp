@@ -306,7 +306,7 @@ bool SendData() {
             }
         }
         for (auto &fp : it.second.parameters) {
-            if (fp.second.value.sneak == 1) {
+            if (fp.second.value.sneak == 1 || fp.second.value.cueSneak == 1) {
                 shouldUpdate = 1;
             }
             for (auto &ui : fp.second.blindManualValues) {
@@ -785,26 +785,29 @@ void processTask(json task) {
         json item;
         item["msgType"] = "currentCue";
         lock_guard<mutex> lg(door);
-        if (currentCue == "" || cues.at(currentCue).nextCue == "") {
+        if (currentCue == "") {
             for (auto &ci : cues) {
                 if (ci.second.lastCue == "") {
                     currentCue = ci.first;
+                    cuePlaying = true;
                     break;
                 }
             }
-        } else {
+        } else if (cues.at(currentCue).nextCue != "") {
             currentCue = cues.at(currentCue).nextCue;
+            cuePlaying = true;
         }
-        cues.at(currentCue).go();
-        for (auto &fi : cues.at(currentCue).fixtures) {
-            for (auto &pi : fi.second.parameters) {
-                if (fixtures.at(fi.first).parameters.at(pi.first).value.controllingCue == "") {
-                    fixtures.at(fi.first).parameters.at(pi.first).value.cueOutputValue = fixtures.at(fi.first).parameters.at(pi.first).value.backgroundValue;
+        if (cuePlaying == true) {
+            cues.at(currentCue).go();
+            for (auto &fi : cues.at(currentCue).fixtures) {
+                for (auto &pi : fi.second.parameters) {
+                    if (fixtures.at(fi.first).parameters.at(pi.first).value.controllingCue == "") {
+                        fixtures.at(fi.first).parameters.at(pi.first).value.cueOutputValue = fixtures.at(fi.first).parameters.at(pi.first).value.backgroundValue;
+                    }
+                    fixtures.at(fi.first).parameters.at(pi.first).value.controllingCue = currentCue;
                 }
-                fixtures.at(fi.first).parameters.at(pi.first).value.controllingCue = currentCue;
             }
         }
-        cuePlaying = true;
         item["currentCue"] = currentCue;
         item["cuePlaying"] = cuePlaying;
         door.unlock();
@@ -814,17 +817,29 @@ void processTask(json task) {
         item["msgType"] = "currentCue";
         lock_guard<mutex> lg(door);
         if (currentCue == "" || cues.at(currentCue).lastCue == "") {
-            for (auto &ci : cues) {
+            /*for (auto &ci : cues) {
                 if (ci.second.nextCue == "") {
                     currentCue = ci.first;
                     break;
+                }
+            }*/
+            for (auto &fi : fixtures) {
+                for (auto &pi : fi.second.parameters) {
+                    if (pi.second.value.controllingCue != "") {
+                        pi.second.value.totalCueSneakProgress = 40 * 3;
+                        pi.second.value.cueSneak = 1;
+                        currentCue = "";
+                        cuePlaying = false;
+                    }
                 }
             }
         } else {
             currentCue = cues.at(currentCue).lastCue;
         }
-        cues.at(currentCue).go();
-        cuePlaying = true;
+        if (currentCue != "") {
+            cues.at(currentCue).go();
+            cuePlaying = true;
+        }
         item["currentCue"] = currentCue;
         item["cuePlaying"] = cuePlaying;
         door.unlock();
