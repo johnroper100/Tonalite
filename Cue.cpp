@@ -42,12 +42,12 @@ Cue::Cue(unordered_map<string, Fixture> &fixtureItems, bool blind, string userID
                 FixtureParameter newParameterCopy = pi.second;
                 newFixture.parameters[newParameterCopy.i] = newParameterCopy;
                 needsAdd = true;
-            } else if (pi.second.value.controllingCue != "") {
+            } /*else if (pi.second.value.controllingCue != "") {
                 pi.second.value.controllingCue = i;
                 FixtureParameter newParameterCopy = pi.second;
                 newFixture.parameters[newParameterCopy.i] = newParameterCopy;
                 needsAdd = true;
-            }
+            }*/
         }
         /*if (blind == true) {
             for (auto &pi : newFixture.parameters) {
@@ -63,6 +63,13 @@ Cue::Cue(unordered_map<string, Fixture> &fixtureItems, bool blind, string userID
 void Cue::go() {
     totalProgress = 40 * progressTime;
     playing = 1;
+    onlyTargeted = 0;
+}
+
+void Cue::goTarget() {
+    totalProgress = 40 * progressTime;
+    playing = 1;
+    onlyTargeted = 1;
 }
 
 json Cue::asJson() {

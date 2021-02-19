@@ -198,13 +198,16 @@ void recalculateOutputValues(int animate) {
         if (it.second.playing == 1) {
             for (auto &fi : it.second.fixtures) {
                 for (auto &pi : fi.second.parameters) {
-                    fixtures.at(fi.first).parameters.at(pi.first).value.cueOutputValue += (pi.second.value.cueOutputValue - fixtures.at(fi.first).parameters.at(pi.first).value.cueOutputValue) / it.second.totalProgress;
+                    if (it.second.onlyTargeted == 0 || (it.second.onlyTargeted == 1 && fixtures.at(fi.first).parameters.at(pi.first).value.targetCue == it.first)) {
+                        fixtures.at(fi.first).parameters.at(pi.first).value.cueOutputValue += (pi.second.value.cueOutputValue - fixtures.at(fi.first).parameters.at(pi.first).value.cueOutputValue) / it.second.totalProgress;
+                    }
                 }
             }
             it.second.displayProgress = (((it.second.progressTime * 40.0) - it.second.totalProgress) / (it.second.progressTime * 40.0)) * 100.0;
             it.second.displayProgress = ceil(it.second.displayProgress);
             if (--it.second.totalProgress == 0) {
                 it.second.playing = 0;
+                it.second.onlyTargeted = 0;
                 if (it.first == currentCue) {
                     cuePlaying = false;
                     json msg = {};
@@ -837,6 +840,29 @@ void processTask(json task) {
             currentCue = cues.at(currentCue).lastCue;
         }
         if (currentCue != "") {
+            vector<string> targetedCues;
+            string cueToTarget = "";
+            string checkingCue = "";
+            for (auto &fi : fixtures) {
+                for (auto &pi : fi.second.parameters) {
+                    if ((cues.at(currentCue).fixtures.find(fi.first) == cues.at(currentCue).fixtures.end()) || (cues.at(currentCue).fixtures.at(fi.first).parameters.find(pi.first) == cues.at(currentCue).fixtures.at(fi.first).parameters.end())) {
+                        cueToTarget = "";
+                        checkingCue = cues.at(currentCue).lastCue;
+                        while (checkingCue != "") {
+                            if ((cues.at(cueToTarget).fixtures.find(fi.first) != cues.at(cueToTarget).fixtures.end()) && (cues.at(cueToTarget).fixtures.at(fi.first).parameters.find(pi.first) != cues.at(cueToTarget).fixtures.at(fi.first).parameters.end())) {
+                                checkingCue = "";
+                                cueToTarget = checkingCue;
+                            } else {
+                                checkingCue = cues.at(cueToTarget).lastCue;
+                            }
+                        }
+                        if (cueToTarget != "") {
+                            pi.second.value.targetCue = cueToTarget;
+                            cues.at(cueToTarget).goTarget();
+                        }
+                    }
+                }
+            }
             cues.at(currentCue).go();
             cuePlaying = true;
         }

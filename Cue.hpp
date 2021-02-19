@@ -22,6 +22,7 @@ struct Cue {
     double displayProgress = 100.0;
     double progressTime = 3.0;
     int playing = 0;
+    int onlyTargeted = 0;
     unordered_map<string, SmallFixture> fixtures;
 
     Cue();
@@ -29,6 +30,7 @@ struct Cue {
     Cue(unordered_map<string, Fixture> &fixtureItems, bool blind, string userID);
     json asJson();
     void go();
+    void goTarget();
 };
 
 #endif
