@@ -845,19 +845,26 @@ void processTask(json task) {
             string checkingCue = "";
             for (auto &fi : fixtures) {
                 for (auto &pi : fi.second.parameters) {
-                    if ((cues.at(currentCue).fixtures.find(fi.first) == cues.at(currentCue).fixtures.end()) || (cues.at(currentCue).fixtures.at(fi.first).parameters.find(pi.first) == cues.at(currentCue).fixtures.at(fi.first).parameters.end())) {
+                    if (pi.second.value.controllingCue == currentCue) {
                         cueToTarget = "";
-                        checkingCue = cues.at(currentCue).lastCue;
+                        checkingCue = currentCue;
                         while (checkingCue != "") {
-                            if ((cues.at(cueToTarget).fixtures.find(fi.first) != cues.at(cueToTarget).fixtures.end()) && (cues.at(cueToTarget).fixtures.at(fi.first).parameters.find(pi.first) != cues.at(cueToTarget).fixtures.at(fi.first).parameters.end())) {
-                                checkingCue = "";
-                                cueToTarget = checkingCue;
-                            } else {
-                                checkingCue = cues.at(cueToTarget).lastCue;
+                            for (auto &cfi: cues.at(checkingCue).fixtures) {
+                                for (auto &cpi: cfi.second.parameters) {
+                                    cout << cpi.second.value.cueOutputValue << endl;
+                                    if ((cfi.first == fi.first) && (cpi.first == pi.first)) {
+                                        cout << "lol" << endl;
+                                        cueToTarget = checkingCue;
+                                        checkingCue = "";
+                                    } else {
+                                        checkingCue = cues.at(checkingCue).lastCue;
+                                    }
+                                }
                             }
                         }
                         if (cueToTarget != "") {
                             pi.second.value.targetCue = cueToTarget;
+                            pi.second.value.controllingCue = cueToTarget;
                             cues.at(cueToTarget).goTarget();
                         }
                     }
